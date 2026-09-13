@@ -1,0 +1,35 @@
+name: backend
+
+on:
+  push:
+    paths: ["backend/**", "Cargo.toml", "Cargo.lock", ".github/workflows/backend.yml"]
+  pull_request:
+    paths: ["backend/**", "Cargo.toml", "Cargo.lock", ".github/workflows/backend.yml"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: common
+          MYSQL_USER: webuser
+          MYSQL_PASSWORD: changeme
+          MYSQL_ROOT_PASSWORD: changeme
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -u root -pchangeme"
+          --health-interval=5s --health-timeout=5s --health-retries=10
+    env:
+      DATABASE_URL: mysql://webuser:changeme@127.0.0.1:3306/common
+      ALCHEMY_API_KEY: test
+      ETHERSCAN_API_KEY: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo test --workspace
