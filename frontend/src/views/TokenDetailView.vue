@@ -2,14 +2,20 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { api, type ChainSlug, type TokenMetadata } from '@/services/api'
+import { useMessagesStore } from '@/stores/messages'
 
 const route = useRoute()
+const messages = useMessagesStore()
 const chain = route.params.chain as ChainSlug
 const address = route.params.address as string
 const metadata = ref<TokenMetadata | null>(null)
 
 onMounted(async () => {
-  metadata.value = await api.tokenMetadata(chain, address)
+  try {
+    metadata.value = await api.tokenMetadata(chain, address)
+  } catch (err) {
+    messages.push((err as Error).message, 'error')
+  }
 })
 </script>
 

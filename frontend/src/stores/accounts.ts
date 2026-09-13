@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { ChainSlug } from '@/services/api'
+import { useVaultStore } from '@/stores/vault'
 
 export interface WalletAccount {
   address: string
@@ -10,13 +11,24 @@ export interface WalletAccount {
   encryptedKeystore: string
 }
 
-/**
- * Wallet accounts, sourced from the encrypted vault once unlocked (stores/vault.ts).
- * Create/import/sign operations are Phase 5 work built on `ethers` — this store
- * only holds the in-memory list shape for now.
- */
 export const useAccountsStore = defineStore('accounts', () => {
   const accounts = ref<WalletAccount[]>([])
 
-  return { accounts }
+  async function addAccount(account: WalletAccount): Promise<void> {
+    accounts.value.push(account)
+    await useVaultStore().persist()
+  }
+
+  async function removeAccount(address: string): Promise<void> {
+    accounts.value = accounts.value.filter((a) => a.address.toLowerCase() !== address.toLowerCase())
+    await useVaultStore().persist()
+  }
+
+  function findAccount(chain: ChainSlug, address: string): WalletAccount | undefined {
+    return accounts.value.find(
+      (a) => a.chain === chain && a.address.toLowerCase() === address.toLowerCase(),
+    )
+  }
+
+  return { accounts, addAccount, removeAccount, findAccount }
 })

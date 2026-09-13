@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
+import { useMessagesStore } from '@/stores/messages'
 
 const settings = useSettingsLocaleStore()
-onMounted(() => settings.loadLanguages())
+const messages = useMessagesStore()
+onMounted(async () => {
+  try {
+    await settings.loadLanguages()
+  } catch (err) {
+    messages.push((err as Error).message, 'error')
+  }
+})
 </script>
 
 <template>

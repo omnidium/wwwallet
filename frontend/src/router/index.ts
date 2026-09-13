@@ -7,6 +7,11 @@ const router = createRouter({
   routes: [
     { path: '/', name: 'accounts', component: () => import('../views/AccountsView.vue') },
     {
+      path: '/accounts/new',
+      name: 'add-account',
+      component: () => import('../views/AddAccountView.vue'),
+    },
+    {
       path: '/accounts/:chain/:address',
       name: 'account-detail',
       component: () => import('../views/AccountDetailView.vue'),

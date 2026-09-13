@@ -2,14 +2,22 @@
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useChainDataStore } from '@/stores/chainData'
+import { useMessagesStore } from '@/stores/messages'
 import type { ChainSlug } from '@/services/api'
 
 const route = useRoute()
 const chainData = useChainDataStore()
+const messages = useMessagesStore()
 const chain = route.params.chain as ChainSlug
 const address = route.params.address as string
 
-onMounted(() => chainData.loadAddressActivity(chain, address))
+onMounted(async () => {
+  try {
+    await chainData.loadAddressActivity(chain, address)
+  } catch (err) {
+    messages.push((err as Error).message, 'error')
+  }
+})
 </script>
 
 <template>
