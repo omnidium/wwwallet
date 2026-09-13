@@ -7,6 +7,7 @@ import { useAccountsStore } from '@/stores/accounts'
 import { usePayeesStore } from '@/stores/payees'
 import { useMessagesStore } from '@/stores/messages'
 import { isValidAddress, unlockWalletForSigning } from '@/services/wallet'
+import QrScannerDialog from '@/components/QrScannerDialog.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -22,11 +23,22 @@ const to = ref('')
 const amount = ref('')
 const keystorePassword = ref('')
 const busy = ref(false)
+const scannerOpen = ref(false)
 
 const relevantPayees = payees.payees.filter((p) => p.chain === chain)
 
 function pickPayee(payeeAddress: string) {
   to.value = payeeAddress
+}
+
+/** Handles both a bare address and an EIP-681 "ethereum:0x...@chainId" URI. */
+function onQrDecoded(data: string) {
+  const match = data.match(/0x[a-fA-F0-9]{40}/)
+  if (!match) {
+    messages.push('QR code did not contain a recognizable address.', 'warning')
+    return
+  }
+  to.value = match[0]
 }
 
 async function submit() {
@@ -75,7 +87,11 @@ async function submit() {
     <p class="text-medium-emphasis mb-4">From {{ account?.label ?? address }} ({{ chain }})</p>
 
     <v-card class="pa-4" max-width="480">
-      <v-text-field v-model="to" label="Recipient address" />
+      <v-text-field v-model="to" label="Recipient address">
+        <template #append-inner>
+          <v-icon icon="mdi-qrcode-scan" style="cursor: pointer" @click="scannerOpen = true" />
+        </template>
+      </v-text-field>
 
       <v-chip-group v-if="relevantPayees.length" class="mb-2">
         <v-chip v-for="payee in relevantPayees" :key="payee.id" size="small" @click="pickPayee(payee.address)">
@@ -88,5 +104,7 @@ async function submit() {
 
       <v-btn color="primary" block class="mt-2" :loading="busy" @click="submit">Send</v-btn>
     </v-card>
+
+    <QrScannerDialog v-model="scannerOpen" @decoded="onQrDecoded" />
   </v-container>
 </template>
