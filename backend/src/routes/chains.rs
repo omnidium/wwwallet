@@ -63,3 +63,28 @@ pub async fn fx_rates(
     }
     Ok(Json(state.providers.fx_rates(&base).await?))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn accepts_well_formed_checksummed_and_lowercase_addresses() {
+        assert!(validate_address("0x0BfAfCEF10B1F2911F36149e66378A2d9Fdf27eC").is_ok());
+        let all_zero = format!("0x{}", "0".repeat(40));
+        assert!(validate_address(&all_zero).is_ok());
+    }
+
+    #[test]
+    fn rejects_wrong_length_missing_prefix_or_non_hex_chars() {
+        assert!(validate_address("0x123").is_err());
+        assert!(validate_address("0BfAfCEF10B1F2911F36149e66378A2d9Fdf27eC00").is_err());
+        assert!(validate_address("0xzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz").is_err());
+    }
+
+    #[test]
+    fn parse_chain_accepts_known_slugs_and_rejects_unknown_ones() {
+        assert!(parse_chain("ethereum").is_ok());
+        assert!(parse_chain("dogecoin").is_err());
+    }
+}

@@ -52,3 +52,35 @@ impl ChainId {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const ALL_CHAINS: [ChainId; 5] = [
+        ChainId::Ethereum,
+        ChainId::Polygon,
+        ChainId::Arbitrum,
+        ChainId::Base,
+        ChainId::Optimism,
+    ];
+
+    #[test]
+    fn every_chain_round_trips_through_its_url_slug() {
+        for chain in ALL_CHAINS {
+            let slug = format!("{:?}", chain).to_lowercase();
+            assert_eq!(ChainId::from_slug(&slug), Some(chain));
+        }
+    }
+
+    #[test]
+    fn unknown_slug_is_rejected() {
+        assert_eq!(ChainId::from_slug("bitcoin"), None);
+    }
+
+    #[test]
+    fn every_chain_has_a_distinct_eip155_id() {
+        let ids: std::collections::HashSet<u64> = ALL_CHAINS.iter().map(|c| c.eip155_id()).collect();
+        assert_eq!(ids.len(), ALL_CHAINS.len());
+    }
+}

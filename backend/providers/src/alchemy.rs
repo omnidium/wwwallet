@@ -154,3 +154,19 @@ impl ActivityProvider for AlchemyProvider {
         })
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn hex_to_decimal_string_converts_wei_values() {
+        assert_eq!(AlchemyProvider::hex_to_decimal_string("0x0"), "0");
+        assert_eq!(AlchemyProvider::hex_to_decimal_string("0xde0b6b3a7640000"), "1000000000000000000");
+    }
+
+    #[test]
+    fn hex_to_decimal_string_falls_back_to_zero_on_garbage_input() {
+        assert_eq!(AlchemyProvider::hex_to_decimal_string("not hex"), "0");
+    }
+}
