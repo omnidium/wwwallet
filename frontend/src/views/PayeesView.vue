@@ -57,7 +57,7 @@ async function remove(id: string) {
     <v-list v-else>
       <v-list-item v-for="payee in payees.payees" :key="payee.id" :title="payee.label" :subtitle="`${payee.address} (${payee.chain})`">
         <template #append>
-          <v-btn icon="mdi-delete" variant="text" @click="remove(payee.id)" />
+          <v-btn icon="mdi-delete" variant="text" :aria-label="`Delete ${payee.label}`" @click="remove(payee.id)" />
         </template>
       </v-list-item>
     </v-list>

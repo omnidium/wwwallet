@@ -89,7 +89,13 @@ async function submit() {
     <v-card class="pa-4" max-width="480">
       <v-text-field v-model="to" label="Recipient address">
         <template #append-inner>
-          <v-icon icon="mdi-qrcode-scan" style="cursor: pointer" @click="scannerOpen = true" />
+          <v-icon
+            icon="mdi-qrcode-scan"
+            role="button"
+            aria-label="Scan QR code"
+            style="cursor: pointer"
+            @click="scannerOpen = true"
+          />
         </template>
       </v-text-field>
 

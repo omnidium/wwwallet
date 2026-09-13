@@ -12,7 +12,7 @@ const messages = useMessagesStore()
       <v-btn to="/" variant="text">Accounts</v-btn>
       <v-btn to="/payees" variant="text">Payees</v-btn>
       <v-btn to="/backup-restore" variant="text">Backup</v-btn>
-      <v-btn to="/settings" variant="text" icon="mdi-cog" />
+      <v-btn to="/settings" variant="text" icon="mdi-cog" aria-label="Settings" />
     </v-app-bar>
 
     <v-main>
