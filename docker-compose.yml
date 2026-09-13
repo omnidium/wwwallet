@@ -1,22 +1,4 @@
 services:
-  mysql:
-    image: mysql:8.0
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: wwwallet
-      MYSQL_USER: webuser
-      MYSQL_PASSWORD: changeme
-      MYSQL_ROOT_PASSWORD: changeme
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pchangeme"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-
   backend:
     build:
       context: .
@@ -24,13 +6,6 @@ services:
     restart: unless-stopped
     env_file: .env
     environment:
-      DATABASE_URL: mysql://webuser:changeme@mysql:3306/wwwallet
       BIND_ADDR: 0.0.0.0:8080
     ports:
       - "8080:8080"
-    depends_on:
-      mysql:
-        condition: service_healthy
-
-volumes:
-  mysql_data:

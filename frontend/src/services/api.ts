@@ -22,33 +22,6 @@ async function postJson<T>(path: string, payload: unknown): Promise<T> {
   return res.json() as Promise<T>
 }
 
-export interface Currency {
-  language: string
-  id: number
-  key_word: string
-  name: string | null
-}
-
-export interface Language {
-  id: string
-  key_word: string | null
-  name: string | null
-}
-
-export interface MsgCode {
-  language: string
-  id: number
-  key_word: string
-  name: string | null
-}
-
-export interface Template {
-  language: string
-  id: string
-  key_word: string
-  name: string | null
-}
-
 export interface Balance {
   symbol: string
   contract_address: string | null
@@ -96,10 +69,6 @@ export interface TransactionPrep {
 export type ChainSlug = 'ethereum' | 'polygon' | 'arbitrum' | 'base' | 'optimism'
 
 export const api = {
-  currencies: (language: string) => getJson<Currency[]>(`/api/v1/reference/currencies/${language}`),
-  languages: () => getJson<Language[]>('/api/v1/reference/languages'),
-  msgCodes: (language: string) => getJson<MsgCode[]>(`/api/v1/reference/msg-codes/${language}`),
-  templates: (language: string) => getJson<Template[]>(`/api/v1/reference/templates/${language}`),
   addressActivity: (chain: ChainSlug, address: string) =>
     getJson<AddressActivity>(`/api/v1/chains/${chain}/address/${address}`),
   tokenMetadata: (chain: ChainSlug, address: string) =>

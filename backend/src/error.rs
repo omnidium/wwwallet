@@ -6,7 +6,6 @@ use serde_json::json;
 pub enum ApiError {
     BadRequest(String),
     Upstream(String),
-    Internal,
 }
 
 impl IntoResponse for ApiError {
@@ -14,10 +13,6 @@ impl IntoResponse for ApiError {
         let (status, message) = match self {
             ApiError::BadRequest(msg) => (StatusCode::BAD_REQUEST, msg),
             ApiError::Upstream(msg) => (StatusCode::BAD_GATEWAY, msg),
-            ApiError::Internal => (
-                StatusCode::INTERNAL_SERVER_ERROR,
-                "internal server error".to_string(),
-            ),
         };
         (status, Json(json!({ "error": message }))).into_response()
     }
@@ -32,12 +27,5 @@ impl From<wwwallet_providers::ProviderError> for ApiError {
                 ApiError::Upstream("upstream provider request failed".to_string())
             }
         }
-    }
-}
-
-impl From<sqlx::Error> for ApiError {
-    fn from(err: sqlx::Error) -> Self {
-        tracing::error!(error = %err, "database error");
-        ApiError::Internal
     }
 }

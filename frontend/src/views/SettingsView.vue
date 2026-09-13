@@ -1,17 +1,7 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
-import { useMessagesStore } from '@/stores/messages'
 
 const settings = useSettingsLocaleStore()
-const messages = useMessagesStore()
-onMounted(async () => {
-  try {
-    await settings.loadLanguages()
-  } catch (err) {
-    messages.push((err as Error).message, 'error')
-  }
-})
 </script>
 
 <template>
@@ -25,6 +15,12 @@ onMounted(async () => {
       item-value="id"
       v-model="settings.locale"
       @update:model-value="settings.setLocale"
+    />
+    <v-select
+      class="mt-4"
+      label="Currency"
+      :items="settings.currencies"
+      v-model="settings.currency"
     />
   </v-container>
 </template>

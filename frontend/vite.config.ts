@@ -33,11 +33,6 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
         runtimeCaching: [
           {
-            urlPattern: ({ url }) => url.pathname.startsWith('/api/v1/reference/'),
-            handler: 'StaleWhileRevalidate',
-            options: { cacheName: 'reference-data' },
-          },
-          {
             urlPattern: ({ url }) => url.pathname.startsWith('/api/v1/chains/'),
             handler: 'NetworkFirst',
             options: { cacheName: 'chain-data', networkTimeoutSeconds: 5 },

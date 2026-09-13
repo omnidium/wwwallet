@@ -27,8 +27,6 @@ async fn main() -> anyhow::Result<()> {
         .init();
 
     let config = Config::from_env()?;
-    let db = wwwallet_db::create_pool(&config.database_url).await?;
-    wwwallet_db::run_migrations(&db).await?;
 
     let providers = Arc::new(ProviderRegistry::new(ProviderConfig {
         alchemy_api_key: config.alchemy_api_key.clone(),
@@ -51,7 +49,7 @@ async fn main() -> anyhow::Result<()> {
             .allow_headers([header::CONTENT_TYPE])
     };
 
-    let state = AppState { db, providers };
+    let state = AppState { providers };
     let app = routes::build_router(state)
         .layer(TraceLayer::new_for_http())
         .layer(CompressionLayer::new())

@@ -1,34 +1,18 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { api, type Currency, type Language } from '@/services/api'
-import { cachedFetch } from '@/services/cachedFetch'
+import { SUPPORTED_LANGUAGES, SUPPORTED_CURRENCIES } from '@/locales'
+import { i18n } from '@/i18n'
 
 export const useSettingsLocaleStore = defineStore('settingsLocale', () => {
   const locale = ref('en')
   const currency = ref('USD')
-  const languages = ref<Language[]>([])
-  const currencies = ref<Currency[]>([])
-  const loading = ref(false)
-
-  async function loadLanguages() {
-    languages.value = await cachedFetch('reference:languages', () => api.languages())
-  }
-
-  async function loadCurrencies() {
-    loading.value = true
-    try {
-      currencies.value = await cachedFetch(`reference:currencies:${locale.value}`, () =>
-        api.currencies(locale.value),
-      )
-    } finally {
-      loading.value = false
-    }
-  }
+  const languages = SUPPORTED_LANGUAGES
+  const currencies = SUPPORTED_CURRENCIES
 
   function setLocale(next: string) {
     locale.value = next
-    return loadCurrencies()
+    i18n.global.locale.value = next as 'en'
   }
 
-  return { locale, currency, languages, currencies, loading, loadLanguages, loadCurrencies, setLocale }
+  return { locale, currency, languages, currencies, setLocale }
 })
