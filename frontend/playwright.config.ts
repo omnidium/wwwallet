@@ -43,7 +43,9 @@ export default defineConfig({
     headless: !!process.env.CI,
   },
 
-  /* Configure projects for major browsers */
+  /* Chromium-based only: this environment can't install Firefox/WebKit's
+   * system deps without sudo. Covers desktop + the mobile viewport this app
+   * is optimized for. */
   projects: [
     {
       name: 'chromium',
@@ -52,45 +54,11 @@ export default defineConfig({
       },
     },
     {
-      name: 'firefox',
+      name: 'Mobile Chrome',
       use: {
-        ...devices['Desktop Firefox'],
+        ...devices['Pixel 7'],
       },
     },
-    {
-      name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
-      },
-    },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: {
-    //     ...devices['Pixel 5'],
-    //   },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: {
-    //     ...devices['iPhone 12'],
-    //   },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: {
-    //     channel: 'msedge',
-    //   },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: {
-    //     channel: 'chrome',
-    //   },
-    // },
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
