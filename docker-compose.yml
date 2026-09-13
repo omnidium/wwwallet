@@ -3,7 +3,7 @@ services:
     image: mysql:8.0
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: common
+      MYSQL_DATABASE: wwwallet
       MYSQL_USER: webuser
       MYSQL_PASSWORD: changeme
       MYSQL_ROOT_PASSWORD: changeme
@@ -24,7 +24,7 @@ services:
     restart: unless-stopped
     env_file: .env
     environment:
-      DATABASE_URL: mysql://webuser:changeme@mysql:3306/common
+      DATABASE_URL: mysql://webuser:changeme@mysql:3306/wwwallet
       BIND_ADDR: 0.0.0.0:8080
     ports:
       - "8080:8080"

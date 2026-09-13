@@ -31,7 +31,7 @@ cargo run --package wwwallet-backend    # runs sqlx migrations automatically on 
 Seed reference data (currencies/languages/msg codes/templates) once the schema exists:
 
 ```bash
-mysql -h 127.0.0.1 -u webuser -p common < backend/db/seeds/0001_reference_data_seed.sql
+mysql -h 127.0.0.1 -u webuser -p wwwallet < backend/db/seeds/0001_reference_data_seed.sql
 ```
 
 ## Frontend: local dev

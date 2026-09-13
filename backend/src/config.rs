@@ -22,7 +22,7 @@ impl Config {
                 .map(str::to_string)
                 .collect(),
             alchemy_api_key: env::var("ALCHEMY_API_KEY")?,
-            ethplorer_api_key: env::var("ETHPLORER_API_KEY").unwrap_or_else(|_| "freekey".to_string()),
+            ethplorer_api_key: env::var("ETHPLORER_API_KEY")?,
             etherscan_api_key: env::var("ETHERSCAN_API_KEY")?,
         })
     }
