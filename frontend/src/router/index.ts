@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useVaultStore } from '@/stores/vault'
+import { hasVault } from '@/crypto/vault'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +42,15 @@ const router = createRouter({
       component: () => import('../views/VaultSetupView.vue'),
     },
   ],
+})
+
+router.beforeEach(async (to) => {
+  if (to.name === 'vault-unlock' || to.name === 'vault-setup') return true
+
+  const vault = useVaultStore()
+  if (vault.isUnlocked) return true
+
+  return { name: (await hasVault()) ? 'vault-unlock' : 'vault-setup' }
 })
 
 export default router

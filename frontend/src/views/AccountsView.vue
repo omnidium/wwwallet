@@ -8,7 +8,7 @@ const accounts = useAccountsStore()
   <v-container>
     <v-row justify="space-between" align="center">
       <h1 class="text-h5">Accounts</h1>
-      <v-btn color="primary" to="/vault/setup" v-if="accounts.accounts.length === 0">
+      <v-btn color="primary" disabled v-if="accounts.accounts.length === 0">
         Create or import a wallet
       </v-btn>
     </v-row>
