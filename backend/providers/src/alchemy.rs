@@ -3,7 +3,9 @@ use serde_json::{json, Value};
 
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
-use crate::traits::{ActivityProvider, TransactionBroadcaster, TransactionPrepProvider};
+use crate::traits::{
+    ActivityProvider, AllowanceProvider, TransactionBroadcaster, TransactionPrepProvider,
+};
 use crate::types::{AddressActivity, Balance, Transaction, TransactionPrep, TransactionStatus};
 
 pub struct AlchemyProvider {
@@ -63,6 +65,16 @@ impl AlchemyProvider {
             .map_err(|_| ProviderError::InvalidInput("invalid decimal wei value".into()))?;
         Ok(format!("0x{value:x}"))
     }
+
+    fn pad_address_for_abi(address: &str) -> ProviderResult<String> {
+        let trimmed = address.trim_start_matches("0x").to_lowercase();
+        if trimmed.len() != 40 || !trimmed.chars().all(|c| c.is_ascii_hexdigit()) {
+            return Err(ProviderError::InvalidInput(format!(
+                "invalid address: {address}"
+            )));
+        }
+        Ok(format!("{trimmed:0>64}"))
+    }
 }
 
 #[async_trait]
@@ -71,7 +83,11 @@ impl ActivityProvider for AlchemyProvider {
         "alchemy"
     }
 
-    async fn address_activity(&self, chain: ChainId, address: &str) -> ProviderResult<AddressActivity> {
+    async fn address_activity(
+        &self,
+        chain: ChainId,
+        address: &str,
+    ) -> ProviderResult<AddressActivity> {
         let native_balance_hex = self
             .rpc_call(chain, "eth_getBalance", json!([address, "latest"]))
             .await?;
@@ -83,14 +99,13 @@ impl ActivityProvider for AlchemyProvider {
         };
 
         let token_balances_resp = self
-            .rpc_call(
-                chain,
-                "alchemy_getTokenBalances",
-                json!([address, "erc20"]),
-            )
+            .rpc_call(chain, "alchemy_getTokenBalances", json!([address, "erc20"]))
             .await?;
         let mut balances = vec![native_balance];
-        if let Some(entries) = token_balances_resp.get("tokenBalances").and_then(Value::as_array) {
+        if let Some(entries) = token_balances_resp
+            .get("tokenBalances")
+            .and_then(Value::as_array)
+        {
             for entry in entries {
                 let Some(contract) = entry.get("contractAddress").and_then(Value::as_str) else {
                     continue;
@@ -125,19 +140,35 @@ impl ActivityProvider for AlchemyProvider {
         let mut transactions = Vec::new();
         for direction in ["fromAddress", "toAddress"] {
             let resp = self
-                .rpc_call(chain, "alchemy_getAssetTransfers", transfers_params(direction))
+                .rpc_call(
+                    chain,
+                    "alchemy_getAssetTransfers",
+                    transfers_params(direction),
+                )
                 .await?;
             if let Some(transfers) = resp.get("transfers").and_then(Value::as_array) {
                 for t in transfers {
                     transactions.push(Transaction {
-                        hash: t.get("hash").and_then(Value::as_str).unwrap_or_default().to_string(),
-                        from: t.get("from").and_then(Value::as_str).unwrap_or_default().to_string(),
+                        hash: t
+                            .get("hash")
+                            .and_then(Value::as_str)
+                            .unwrap_or_default()
+                            .to_string(),
+                        from: t
+                            .get("from")
+                            .and_then(Value::as_str)
+                            .unwrap_or_default()
+                            .to_string(),
                         to: t.get("to").and_then(Value::as_str).map(str::to_string),
                         value: t
                             .get("value")
                             .map(|v| v.to_string())
                             .unwrap_or_else(|| "0".to_string()),
-                        asset: t.get("asset").and_then(Value::as_str).unwrap_or("").to_string(),
+                        asset: t
+                            .get("asset")
+                            .and_then(Value::as_str)
+                            .unwrap_or("")
+                            .to_string(),
                         block_number: t
                             .get("blockNum")
                             .and_then(Value::as_str)
@@ -170,7 +201,11 @@ impl TransactionBroadcaster for AlchemyProvider {
 
     async fn broadcast(&self, chain: ChainId, raw_transaction_hex: &str) -> ProviderResult<String> {
         let result = self
-            .rpc_call(chain, "eth_sendRawTransaction", json!([raw_transaction_hex]))
+            .rpc_call(
+                chain,
+                "eth_sendRawTransaction",
+                json!([raw_transaction_hex]),
+            )
             .await?;
         result
             .as_str()
@@ -221,6 +256,38 @@ impl TransactionPrepProvider for AlchemyProvider {
     }
 }
 
+#[async_trait]
+impl AllowanceProvider for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn allowance(
+        &self,
+        chain: ChainId,
+        token: &str,
+        owner: &str,
+        spender: &str,
+    ) -> ProviderResult<String> {
+        // ERC-20 allowance(address,address) selector 0xdd62ed3e.
+        let call_data = format!(
+            "0xdd62ed3e{}{}",
+            Self::pad_address_for_abi(owner)?,
+            Self::pad_address_for_abi(spender)?,
+        );
+        let result = self
+            .rpc_call(
+                chain,
+                "eth_call",
+                json!([{ "to": token, "data": call_data }, "latest"]),
+            )
+            .await?;
+        let hex = result.as_str().unwrap_or("0x0");
+        let value = u128::from_str_radix(hex.trim_start_matches("0x"), 16).unwrap_or(u128::MAX);
+        Ok(value.to_string())
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -228,11 +295,28 @@ mod tests {
     #[test]
     fn hex_to_decimal_string_converts_wei_values() {
         assert_eq!(AlchemyProvider::hex_to_decimal_string("0x0"), "0");
-        assert_eq!(AlchemyProvider::hex_to_decimal_string("0xde0b6b3a7640000"), "1000000000000000000");
+        assert_eq!(
+            AlchemyProvider::hex_to_decimal_string("0xde0b6b3a7640000"),
+            "1000000000000000000"
+        );
     }
 
     #[test]
     fn hex_to_decimal_string_falls_back_to_zero_on_garbage_input() {
         assert_eq!(AlchemyProvider::hex_to_decimal_string("not hex"), "0");
+    }
+
+    #[test]
+    fn pad_address_for_abi_produces_a_64_char_hex_word() {
+        let padded =
+            AlchemyProvider::pad_address_for_abi("0x0BfAfCEF10B1F2911F36149e66378A2d9Fdf27eC")
+                .unwrap();
+        assert_eq!(padded.len(), 64);
+        assert!(padded.ends_with("0bfafcef10b1f2911f36149e66378a2d9fdf27ec"));
+    }
+
+    #[test]
+    fn pad_address_for_abi_rejects_malformed_addresses() {
+        assert!(AlchemyProvider::pad_address_for_abi("0x123").is_err());
     }
 }

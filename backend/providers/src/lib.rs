@@ -8,6 +8,7 @@ pub mod fxrate;
 pub mod registry;
 pub mod traits;
 pub mod types;
+pub mod zerox;
 
 pub use chain::ChainId;
 pub use error::{ProviderError, ProviderResult};

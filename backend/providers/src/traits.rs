@@ -2,28 +2,42 @@ use async_trait::async_trait;
 
 use crate::chain::ChainId;
 use crate::error::ProviderResult;
-use crate::types::{AddressActivity, ContractAbi, FxRates, TokenMetadata, TransactionPrep};
+use crate::types::{
+    AddressActivity, ContractAbi, FxRates, SwapQuote, TokenMetadata, TransactionPrep,
+};
 
 /// Fetches native + token balances and recent transactions for an address.
 /// Backed by Alchemy today; any other indexer API can implement this.
 #[async_trait]
 pub trait ActivityProvider: Send + Sync {
     fn name(&self) -> &'static str;
-    async fn address_activity(&self, chain: ChainId, address: &str) -> ProviderResult<AddressActivity>;
+    async fn address_activity(
+        &self,
+        chain: ChainId,
+        address: &str,
+    ) -> ProviderResult<AddressActivity>;
 }
 
 /// Fetches ERC-20 token metadata (name/symbol/decimals/logo). Backed by Ethplorer.
 #[async_trait]
 pub trait TokenMetadataProvider: Send + Sync {
     fn name(&self) -> &'static str;
-    async fn token_metadata(&self, chain: ChainId, contract_address: &str) -> ProviderResult<TokenMetadata>;
+    async fn token_metadata(
+        &self,
+        chain: ChainId,
+        contract_address: &str,
+    ) -> ProviderResult<TokenMetadata>;
 }
 
 /// Fetches verified contract ABIs. Backed by Etherscan (and its per-chain siblings).
 #[async_trait]
 pub trait AbiProvider: Send + Sync {
     fn name(&self) -> &'static str;
-    async fn contract_abi(&self, chain: ChainId, contract_address: &str) -> ProviderResult<ContractAbi>;
+    async fn contract_abi(
+        &self,
+        chain: ChainId,
+        contract_address: &str,
+    ) -> ProviderResult<ContractAbi>;
 }
 
 /// Fetches fiat exchange rates. Backed by a free fx-rate API.
@@ -56,4 +70,33 @@ pub trait TransactionPrepProvider: Send + Sync {
         value_wei: &str,
         data: Option<&str>,
     ) -> ProviderResult<TransactionPrep>;
+}
+
+/// Fetches a ready-to-sign swap transaction from a DEX aggregator. Backed by
+/// the 0x Swap API.
+#[async_trait]
+pub trait SwapQuoteProvider: Send + Sync {
+    fn name(&self) -> &'static str;
+    async fn quote(
+        &self,
+        chain: ChainId,
+        sell_token: &str,
+        buy_token: &str,
+        sell_amount_wei: &str,
+        taker_address: &str,
+    ) -> ProviderResult<SwapQuote>;
+}
+
+/// Reads an ERC-20 `allowance(owner, spender)` value. Used to decide whether
+/// the client needs to send an approval transaction before a swap.
+#[async_trait]
+pub trait AllowanceProvider: Send + Sync {
+    fn name(&self) -> &'static str;
+    async fn allowance(
+        &self,
+        chain: ChainId,
+        token: &str,
+        owner: &str,
+        spender: &str,
+    ) -> ProviderResult<String>;
 }

@@ -66,6 +66,18 @@ export interface TransactionPrep {
   chain_id: number
 }
 
+export interface SwapQuote {
+  to: string
+  data: string
+  value: string
+  gas_price: string
+  estimated_gas: string
+  buy_amount: string
+  sell_amount: string
+  allowance_target: string
+  price: string
+}
+
 export type ChainSlug = 'ethereum' | 'polygon' | 'arbitrum' | 'base' | 'optimism'
 
 export const api = {
@@ -81,5 +93,13 @@ export const api = {
   transactionPrep: (chain: ChainSlug, from: string, to: string, valueWei: string) =>
     getJson<TransactionPrep>(
       `/api/v1/chains/${chain}/tx-prep/${from}?to=${to}&value=${valueWei}`,
+    ),
+  allowance: (chain: ChainSlug, token: string, owner: string, spender: string) =>
+    getJson<{ amount: string }>(
+      `/api/v1/chains/${chain}/allowance?token=${token}&owner=${owner}&spender=${spender}`,
+    ),
+  swapQuote: (chain: ChainSlug, sellToken: string, buyToken: string, sellAmountWei: string, takerAddress: string) =>
+    getJson<SwapQuote>(
+      `/api/v1/chains/${chain}/swap-quote?sell_token=${sellToken}&buy_token=${buyToken}&sell_amount=${sellAmountWei}&taker_address=${takerAddress}`,
     ),
 }

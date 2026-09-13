@@ -27,7 +27,11 @@ impl TokenMetadataProvider for EthplorerProvider {
         "ethplorer"
     }
 
-    async fn token_metadata(&self, chain: ChainId, contract_address: &str) -> ProviderResult<TokenMetadata> {
+    async fn token_metadata(
+        &self,
+        chain: ChainId,
+        contract_address: &str,
+    ) -> ProviderResult<TokenMetadata> {
         if chain != ChainId::Ethereum {
             return Err(ProviderError::Unavailable);
         }
@@ -42,7 +46,10 @@ impl TokenMetadataProvider for EthplorerProvider {
         Ok(TokenMetadata {
             address: contract_address.to_string(),
             name: resp.get("name").and_then(Value::as_str).map(str::to_string),
-            symbol: resp.get("symbol").and_then(Value::as_str).map(str::to_string),
+            symbol: resp
+                .get("symbol")
+                .and_then(Value::as_str)
+                .map(str::to_string),
             decimals: resp
                 .get("decimals")
                 .and_then(Value::as_str)

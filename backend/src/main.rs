@@ -32,6 +32,7 @@ async fn main() -> anyhow::Result<()> {
         alchemy_api_key: config.alchemy_api_key.clone(),
         ethplorer_api_key: config.ethplorer_api_key.clone(),
         etherscan_api_key: config.etherscan_api_key.clone(),
+        zerox_api_key: config.zerox_api_key.clone(),
     }));
 
     let cors = if config.cors_allowed_origins.is_empty() {

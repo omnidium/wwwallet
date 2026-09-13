@@ -28,7 +28,11 @@ impl AbiProvider for EtherscanProvider {
         "etherscan"
     }
 
-    async fn contract_abi(&self, chain: ChainId, contract_address: &str) -> ProviderResult<ContractAbi> {
+    async fn contract_abi(
+        &self,
+        chain: ChainId,
+        contract_address: &str,
+    ) -> ProviderResult<ContractAbi> {
         let url = format!(
             "https://api.etherscan.io/v2/api?chainid={}&module=contract&action=getabi&address={}&apikey={}",
             chain.eip155_id(),

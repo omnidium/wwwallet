@@ -40,6 +40,7 @@ onMounted(async () => {
       </v-list>
       <v-btn class="mt-4 mr-2" color="primary" :to="`/accounts/${chain}/${address}/send`">Send</v-btn>
       <v-btn class="mt-4 mr-2" variant="outlined" :to="`/accounts/${chain}/${address}/receive`">Receive</v-btn>
+      <v-btn class="mt-4 mr-2" variant="outlined" :to="`/accounts/${chain}/${address}/swap`">Swap</v-btn>
       <v-btn class="mt-4" variant="outlined" :to="`/accounts/${chain}/${address}/transactions`">Transactions</v-btn>
     </template>
   </v-container>

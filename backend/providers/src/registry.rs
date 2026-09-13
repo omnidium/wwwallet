@@ -3,22 +3,28 @@ use std::sync::Arc;
 use moka::future::Cache;
 
 use crate::alchemy::AlchemyProvider;
-use crate::cache::{self, ADDRESS_ACTIVITY_TTL, CONTRACT_ABI_TTL, FX_RATES_TTL, TOKEN_METADATA_TTL};
+use crate::cache::{
+    self, ADDRESS_ACTIVITY_TTL, CONTRACT_ABI_TTL, FX_RATES_TTL, TOKEN_METADATA_TTL,
+};
 use crate::chain::ChainId;
 use crate::error::ProviderResult;
 use crate::etherscan::EtherscanProvider;
 use crate::ethplorer::EthplorerProvider;
 use crate::fxrate::FrankfurterProvider;
 use crate::traits::{
-    AbiProvider, ActivityProvider, FxRateProvider, TokenMetadataProvider, TransactionBroadcaster,
-    TransactionPrepProvider,
+    AbiProvider, ActivityProvider, AllowanceProvider, FxRateProvider, SwapQuoteProvider,
+    TokenMetadataProvider, TransactionBroadcaster, TransactionPrepProvider,
 };
-use crate::types::{AddressActivity, ContractAbi, FxRates, TokenMetadata, TransactionPrep};
+use crate::types::{
+    AddressActivity, ContractAbi, FxRates, SwapQuote, TokenMetadata, TransactionPrep,
+};
+use crate::zerox::ZeroExProvider;
 
 pub struct ProviderConfig {
     pub alchemy_api_key: String,
     pub ethplorer_api_key: String,
     pub etherscan_api_key: String,
+    pub zerox_api_key: String,
 }
 
 /// Aggregates every provider behind cached, single-call methods the backend's
@@ -31,6 +37,8 @@ pub struct ProviderRegistry {
     fx: Arc<dyn FxRateProvider>,
     broadcaster: Arc<dyn TransactionBroadcaster>,
     tx_prep: Arc<dyn TransactionPrepProvider>,
+    allowance: Arc<dyn AllowanceProvider>,
+    swap: Arc<dyn SwapQuoteProvider>,
 
     activity_cache: Cache<(ChainId, String), AddressActivity>,
     token_cache: Cache<(ChainId, String), TokenMetadata>,
@@ -44,10 +52,12 @@ impl ProviderRegistry {
         Self {
             activity: alchemy.clone(),
             broadcaster: alchemy.clone(),
+            allowance: alchemy.clone(),
             tx_prep: alchemy,
             tokens: Arc::new(EthplorerProvider::new(config.ethplorer_api_key)),
             abi: Arc::new(EtherscanProvider::new(config.etherscan_api_key)),
             fx: Arc::new(FrankfurterProvider::new()),
+            swap: Arc::new(ZeroExProvider::new(config.zerox_api_key)),
 
             activity_cache: cache::build(ADDRESS_ACTIVITY_TTL, 10_000),
             token_cache: cache::build(TOKEN_METADATA_TTL, 10_000),
@@ -56,7 +66,11 @@ impl ProviderRegistry {
         }
     }
 
-    pub async fn address_activity(&self, chain: ChainId, address: &str) -> ProviderResult<AddressActivity> {
+    pub async fn address_activity(
+        &self,
+        chain: ChainId,
+        address: &str,
+    ) -> ProviderResult<AddressActivity> {
         let key = (chain, address.to_lowercase());
         if let Some(hit) = self.activity_cache.get(&key).await {
             return Ok(hit);
@@ -66,7 +80,11 @@ impl ProviderRegistry {
         Ok(fresh)
     }
 
-    pub async fn token_metadata(&self, chain: ChainId, contract_address: &str) -> ProviderResult<TokenMetadata> {
+    pub async fn token_metadata(
+        &self,
+        chain: ChainId,
+        contract_address: &str,
+    ) -> ProviderResult<TokenMetadata> {
         let key = (chain, contract_address.to_lowercase());
         if let Some(hit) = self.token_cache.get(&key).await {
             return Ok(hit);
@@ -76,7 +94,11 @@ impl ProviderRegistry {
         Ok(fresh)
     }
 
-    pub async fn contract_abi(&self, chain: ChainId, contract_address: &str) -> ProviderResult<ContractAbi> {
+    pub async fn contract_abi(
+        &self,
+        chain: ChainId,
+        contract_address: &str,
+    ) -> ProviderResult<ContractAbi> {
         let key = (chain, contract_address.to_lowercase());
         if let Some(hit) = self.abi_cache.get(&key).await {
             return Ok(hit);
@@ -97,7 +119,11 @@ impl ProviderRegistry {
     }
 
     /// Never cached — this is a write, not a read.
-    pub async fn broadcast_transaction(&self, chain: ChainId, raw_transaction_hex: &str) -> ProviderResult<String> {
+    pub async fn broadcast_transaction(
+        &self,
+        chain: ChainId,
+        raw_transaction_hex: &str,
+    ) -> ProviderResult<String> {
         self.broadcaster.broadcast(chain, raw_transaction_hex).await
     }
 
@@ -111,5 +137,30 @@ impl ProviderRegistry {
         data: Option<&str>,
     ) -> ProviderResult<TransactionPrep> {
         self.tx_prep.prepare(chain, from, to, value_wei, data).await
+    }
+
+    /// Never cached — allowances can change at any time.
+    pub async fn allowance(
+        &self,
+        chain: ChainId,
+        token: &str,
+        owner: &str,
+        spender: &str,
+    ) -> ProviderResult<String> {
+        self.allowance.allowance(chain, token, owner, spender).await
+    }
+
+    /// Never cached — quotes are price/slippage-sensitive and time-limited.
+    pub async fn swap_quote(
+        &self,
+        chain: ChainId,
+        sell_token: &str,
+        buy_token: &str,
+        sell_amount_wei: &str,
+        taker_address: &str,
+    ) -> ProviderResult<SwapQuote> {
+        self.swap
+            .quote(chain, sell_token, buy_token, sell_amount_wei, taker_address)
+            .await
     }
 }

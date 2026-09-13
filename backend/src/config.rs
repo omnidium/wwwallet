@@ -6,6 +6,7 @@ pub struct Config {
     pub alchemy_api_key: String,
     pub ethplorer_api_key: String,
     pub etherscan_api_key: String,
+    pub zerox_api_key: String,
 }
 
 impl Config {
@@ -22,6 +23,7 @@ impl Config {
             alchemy_api_key: env::var("ALCHEMY_API_KEY")?,
             ethplorer_api_key: env::var("ETHPLORER_API_KEY")?,
             etherscan_api_key: env::var("ETHERSCAN_API_KEY")?,
+            zerox_api_key: env::var("ZEROX_API_KEY")?,
         })
     }
 }

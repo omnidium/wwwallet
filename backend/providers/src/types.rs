@@ -59,6 +59,23 @@ pub struct TransactionPrep {
     pub chain_id: u64,
 }
 
+/// A ready-to-sign swap transaction from a DEX aggregator, plus the ERC-20
+/// spender address the client must have approved (for a non-native sell token)
+/// before this transaction will succeed.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SwapQuote {
+    pub to: String,
+    pub data: String,
+    /// Decimal wei string — non-zero only when selling the native currency.
+    pub value: String,
+    pub gas_price: String,
+    pub estimated_gas: String,
+    pub buy_amount: String,
+    pub sell_amount: String,
+    pub allowance_target: String,
+    pub price: String,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FxRates {
     pub base: String,
