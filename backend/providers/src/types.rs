@@ -51,6 +51,15 @@ pub struct ContractAbi {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionPrep {
+    pub nonce: u64,
+    /// Decimal-string wei values, to avoid float/u64 precision loss in JSON.
+    pub gas_price: String,
+    pub gas_limit: String,
+    pub chain_id: u64,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FxRates {
     pub base: String,
     pub rates: std::collections::HashMap<String, f64>,

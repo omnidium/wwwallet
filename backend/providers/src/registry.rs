@@ -9,8 +9,11 @@ use crate::error::ProviderResult;
 use crate::etherscan::EtherscanProvider;
 use crate::ethplorer::EthplorerProvider;
 use crate::fxrate::FrankfurterProvider;
-use crate::traits::{AbiProvider, ActivityProvider, FxRateProvider, TokenMetadataProvider};
-use crate::types::{AddressActivity, ContractAbi, FxRates, TokenMetadata};
+use crate::traits::{
+    AbiProvider, ActivityProvider, FxRateProvider, TokenMetadataProvider, TransactionBroadcaster,
+    TransactionPrepProvider,
+};
+use crate::types::{AddressActivity, ContractAbi, FxRates, TokenMetadata, TransactionPrep};
 
 pub struct ProviderConfig {
     pub alchemy_api_key: String,
@@ -26,6 +29,8 @@ pub struct ProviderRegistry {
     tokens: Arc<dyn TokenMetadataProvider>,
     abi: Arc<dyn AbiProvider>,
     fx: Arc<dyn FxRateProvider>,
+    broadcaster: Arc<dyn TransactionBroadcaster>,
+    tx_prep: Arc<dyn TransactionPrepProvider>,
 
     activity_cache: Cache<(ChainId, String), AddressActivity>,
     token_cache: Cache<(ChainId, String), TokenMetadata>,
@@ -35,8 +40,11 @@ pub struct ProviderRegistry {
 
 impl ProviderRegistry {
     pub fn new(config: ProviderConfig) -> Self {
+        let alchemy = Arc::new(AlchemyProvider::new(config.alchemy_api_key));
         Self {
-            activity: Arc::new(AlchemyProvider::new(config.alchemy_api_key)),
+            activity: alchemy.clone(),
+            broadcaster: alchemy.clone(),
+            tx_prep: alchemy,
             tokens: Arc::new(EthplorerProvider::new(config.ethplorer_api_key)),
             abi: Arc::new(EtherscanProvider::new(config.etherscan_api_key)),
             fx: Arc::new(FrankfurterProvider::new()),
@@ -86,5 +94,22 @@ impl ProviderRegistry {
         let fresh = self.fx.latest_rates(&key).await?;
         self.fx_cache.insert(key, fresh.clone()).await;
         Ok(fresh)
+    }
+
+    /// Never cached — this is a write, not a read.
+    pub async fn broadcast_transaction(&self, chain: ChainId, raw_transaction_hex: &str) -> ProviderResult<String> {
+        self.broadcaster.broadcast(chain, raw_transaction_hex).await
+    }
+
+    /// Never cached — nonce/gas price must always be fresh.
+    pub async fn prepare_transaction(
+        &self,
+        chain: ChainId,
+        from: &str,
+        to: &str,
+        value_wei: &str,
+        data: Option<&str>,
+    ) -> ProviderResult<TransactionPrep> {
+        self.tx_prep.prepare(chain, from, to, value_wei, data).await
     }
 }

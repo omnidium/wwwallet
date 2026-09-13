@@ -6,7 +6,7 @@ mod state;
 use std::sync::Arc;
 use std::time::Duration;
 
-use axum::http::{HeaderValue, Method};
+use axum::http::{header, HeaderValue, Method};
 use tower_http::compression::CompressionLayer;
 use tower_http::cors::{AllowOrigin, CorsLayer};
 use tower_http::timeout::TimeoutLayer;
@@ -47,7 +47,8 @@ async fn main() -> anyhow::Result<()> {
             .collect();
         CorsLayer::new()
             .allow_origin(AllowOrigin::list(origins))
-            .allow_methods([Method::GET])
+            .allow_methods([Method::GET, Method::POST])
+            .allow_headers([header::CONTENT_TYPE])
     };
 
     let state = AppState { db, providers };

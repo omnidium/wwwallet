@@ -3,13 +3,16 @@ import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useChainDataStore } from '@/stores/chainData'
 import { useMessagesStore } from '@/stores/messages'
+import { useAccountsStore } from '@/stores/accounts'
 import type { ChainSlug } from '@/services/api'
 
 const route = useRoute()
 const chainData = useChainDataStore()
 const messages = useMessagesStore()
+const accounts = useAccountsStore()
 const chain = route.params.chain as ChainSlug
 const address = route.params.address as string
+const account = accounts.findAccount(chain, address)
 
 onMounted(async () => {
   try {
@@ -22,8 +25,8 @@ onMounted(async () => {
 
 <template>
   <v-container>
-    <h1 class="text-h5">{{ address }}</h1>
-    <p class="text-medium-emphasis">{{ chain }}</p>
+    <h1 class="text-h5">{{ account?.label ?? address }}</h1>
+    <p class="text-medium-emphasis" style="word-break: break-all">{{ address }} ({{ chain }})</p>
 
     <v-progress-linear v-if="chainData.loading" indeterminate class="my-4" />
 
@@ -35,8 +38,9 @@ onMounted(async () => {
           :title="`${balance.balance} ${balance.symbol}`"
         />
       </v-list>
-      <v-btn class="mt-4 mr-2" color="primary" :to="`/send`">Send</v-btn>
-      <v-btn class="mt-4" variant="outlined" :to="`/receive`">Receive</v-btn>
+      <v-btn class="mt-4 mr-2" color="primary" :to="`/accounts/${chain}/${address}/send`">Send</v-btn>
+      <v-btn class="mt-4 mr-2" variant="outlined" :to="`/accounts/${chain}/${address}/receive`">Receive</v-btn>
+      <v-btn class="mt-4" variant="outlined" :to="`/accounts/${chain}/${address}/transactions`">Transactions</v-btn>
     </template>
   </v-container>
 </template>

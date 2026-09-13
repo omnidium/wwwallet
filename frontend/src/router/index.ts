@@ -16,9 +16,21 @@ const router = createRouter({
       name: 'account-detail',
       component: () => import('../views/AccountDetailView.vue'),
     },
-    { path: '/send', name: 'send', component: () => import('../views/SendView.vue') },
-    { path: '/receive', name: 'receive', component: () => import('../views/ReceiveView.vue') },
-    { path: '/swap', name: 'swap', component: () => import('../views/SwapView.vue') },
+    {
+      path: '/accounts/:chain/:address/send',
+      name: 'send',
+      component: () => import('../views/SendView.vue'),
+    },
+    {
+      path: '/accounts/:chain/:address/receive',
+      name: 'receive',
+      component: () => import('../views/ReceiveView.vue'),
+    },
+    {
+      path: '/accounts/:chain/:address/swap',
+      name: 'swap',
+      component: () => import('../views/SwapView.vue'),
+    },
     { path: '/payees', name: 'payees', component: () => import('../views/PayeesView.vue') },
     {
       path: '/backup-restore',

@@ -1,11 +1,11 @@
 use axum::extract::{Path, State};
 use axum::Json;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 use crate::error::ApiError;
 use crate::state::AppState;
 use wwwallet_providers::ChainId;
-use wwwallet_providers::types::{AddressActivity, ContractAbi, FxRates, TokenMetadata};
+use wwwallet_providers::types::{AddressActivity, ContractAbi, FxRates, TokenMetadata, TransactionPrep};
 
 fn parse_chain(slug: &str) -> Result<ChainId, ApiError> {
     ChainId::from_slug(slug).ok_or_else(|| ApiError::BadRequest(format!("unknown chain '{slug}'")))
@@ -49,6 +49,54 @@ pub async fn contract_abi(
 }
 
 #[derive(Deserialize)]
+pub struct BroadcastRequest {
+    raw_transaction: String,
+}
+
+#[derive(Serialize)]
+pub struct BroadcastResponse {
+    transaction_hash: String,
+}
+
+pub async fn broadcast_transaction(
+    State(state): State<AppState>,
+    Path(chain): Path<String>,
+    Json(body): Json<BroadcastRequest>,
+) -> Result<Json<BroadcastResponse>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    let raw = body.raw_transaction.trim();
+    if !raw.starts_with("0x") || raw.len() < 4 || !raw[2..].chars().all(|c| c.is_ascii_hexdigit()) {
+        return Err(ApiError::BadRequest("raw_transaction must be 0x-prefixed hex".to_string()));
+    }
+    let transaction_hash = state.providers.broadcast_transaction(chain, raw).await?;
+    Ok(Json(BroadcastResponse { transaction_hash }))
+}
+
+#[derive(Deserialize)]
+pub struct TxPrepQuery {
+    to: String,
+    /// Decimal wei string.
+    value: String,
+    data: Option<String>,
+}
+
+pub async fn transaction_prep(
+    State(state): State<AppState>,
+    Path((chain, from)): Path<(String, String)>,
+    axum::extract::Query(query): axum::extract::Query<TxPrepQuery>,
+) -> Result<Json<TransactionPrep>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    validate_address(&from)?;
+    validate_address(&query.to)?;
+    Ok(Json(
+        state
+            .providers
+            .prepare_transaction(chain, &from, &query.to, &query.value, query.data.as_deref())
+            .await?,
+    ))
+}
+
+#[derive(Deserialize)]
 pub struct FxQuery {
     base: Option<String>,
 }
@@ -86,5 +134,17 @@ mod tests {
     fn parse_chain_accepts_known_slugs_and_rejects_unknown_ones() {
         assert!(parse_chain("ethereum").is_ok());
         assert!(parse_chain("dogecoin").is_err());
+    }
+
+    fn is_valid_raw_tx(raw: &str) -> bool {
+        raw.starts_with("0x") && raw.len() >= 4 && raw[2..].chars().all(|c| c.is_ascii_hexdigit())
+    }
+
+    #[test]
+    fn raw_transaction_validation_matches_the_handler() {
+        assert!(is_valid_raw_tx("0xf86c0182"));
+        assert!(!is_valid_raw_tx("f86c0182"));
+        assert!(!is_valid_raw_tx("0x"));
+        assert!(!is_valid_raw_tx("0xzz"));
     }
 }

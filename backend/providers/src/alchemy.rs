@@ -3,8 +3,8 @@ use serde_json::{json, Value};
 
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
-use crate::traits::ActivityProvider;
-use crate::types::{AddressActivity, Balance, Transaction, TransactionStatus};
+use crate::traits::{ActivityProvider, TransactionBroadcaster, TransactionPrepProvider};
+use crate::types::{AddressActivity, Balance, Transaction, TransactionPrep, TransactionStatus};
 
 pub struct AlchemyProvider {
     http: reqwest::Client,
@@ -55,6 +55,13 @@ impl AlchemyProvider {
         u128::from_str_radix(trimmed, 16)
             .map(|v| v.to_string())
             .unwrap_or_else(|_| "0".to_string())
+    }
+
+    fn decimal_to_hex_quantity(decimal: &str) -> ProviderResult<String> {
+        let value: u128 = decimal
+            .parse()
+            .map_err(|_| ProviderError::InvalidInput("invalid decimal wei value".into()))?;
+        Ok(format!("0x{value:x}"))
     }
 }
 
@@ -151,6 +158,65 @@ impl ActivityProvider for AlchemyProvider {
         Ok(AddressActivity {
             balances,
             transactions,
+        })
+    }
+}
+
+#[async_trait]
+impl TransactionBroadcaster for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn broadcast(&self, chain: ChainId, raw_transaction_hex: &str) -> ProviderResult<String> {
+        let result = self
+            .rpc_call(chain, "eth_sendRawTransaction", json!([raw_transaction_hex]))
+            .await?;
+        result
+            .as_str()
+            .map(str::to_string)
+            .ok_or_else(|| ProviderError::Upstream("unexpected broadcast response shape".into()))
+    }
+}
+
+#[async_trait]
+impl TransactionPrepProvider for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn prepare(
+        &self,
+        chain: ChainId,
+        from: &str,
+        to: &str,
+        value_wei: &str,
+        data: Option<&str>,
+    ) -> ProviderResult<TransactionPrep> {
+        let value_hex = Self::decimal_to_hex_quantity(value_wei)?;
+        let mut estimate_params = json!({ "from": from, "to": to, "value": value_hex });
+        if let Some(d) = data {
+            estimate_params["data"] = json!(d);
+        }
+
+        let (nonce_result, gas_price_result, gas_limit_result) = tokio::join!(
+            self.rpc_call(chain, "eth_getTransactionCount", json!([from, "pending"])),
+            self.rpc_call(chain, "eth_gasPrice", json!([])),
+            self.rpc_call(chain, "eth_estimateGas", json!([estimate_params])),
+        );
+
+        let nonce_hex = nonce_result?;
+        let nonce = u64::from_str_radix(
+            nonce_hex.as_str().unwrap_or("0x0").trim_start_matches("0x"),
+            16,
+        )
+        .unwrap_or(0);
+
+        Ok(TransactionPrep {
+            nonce,
+            gas_price: Self::hex_to_decimal_string(gas_price_result?.as_str().unwrap_or("0x0")),
+            gas_limit: Self::hex_to_decimal_string(gas_limit_result?.as_str().unwrap_or("0x0")),
+            chain_id: chain.eip155_id(),
         })
     }
 }
