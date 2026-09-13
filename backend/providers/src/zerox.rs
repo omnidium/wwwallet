@@ -2,7 +2,8 @@ use async_trait::async_trait;
 use serde::Deserialize;
 
 use crate::chain::ChainId;
-use crate::error::{ProviderError, ProviderResult};
+use crate::error::ProviderResult;
+use crate::http;
 use crate::traits::SwapQuoteProvider;
 use crate::types::SwapQuote;
 
@@ -25,20 +26,16 @@ struct ZeroExQuoteResponse {
 }
 
 pub struct ZeroExProvider {
-    http: reqwest::Client,
     api_key: String,
 }
 
 impl ZeroExProvider {
     pub fn new(api_key: String) -> Self {
-        Self {
-            http: reqwest::Client::new(),
-            api_key,
-        }
+        Self { api_key }
     }
 }
 
-#[async_trait]
+#[async_trait(?Send)]
 impl SwapQuoteProvider for ZeroExProvider {
     fn name(&self) -> &'static str {
         "0x"
@@ -57,19 +54,8 @@ impl SwapQuoteProvider for ZeroExProvider {
             chain.zerox_base_url(),
         );
 
-        let resp = self
-            .http
-            .get(url)
-            .header("0x-api-key", &self.api_key)
-            .send()
-            .await?;
-
-        if !resp.status().is_success() {
-            let body = resp.text().await.unwrap_or_default();
-            return Err(ProviderError::Upstream(body));
-        }
-
-        let quote: ZeroExQuoteResponse = resp.json().await?;
+        let quote: ZeroExQuoteResponse =
+            http::get_json_with_headers(&url, &[("0x-api-key", &self.api_key)]).await?;
         Ok(SwapQuote {
             to: quote.to,
             data: quote.data,

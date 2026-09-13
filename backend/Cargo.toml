@@ -5,16 +5,18 @@ edition.workspace = true
 license.workspace = true
 publish.workspace = true
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
-tokio.workspace = true
-axum.workspace = true
-tower.workspace = true
-tower-http.workspace = true
+worker.workspace = true
 serde.workspace = true
 serde_json.workspace = true
-tracing.workspace = true
-tracing-subscriber.workspace = true
-dotenvy.workspace = true
-anyhow.workspace = true
+axum = { version = "0.7", default-features = false, features = ["json", "query"] }
+tower = { version = "0.5", default-features = false }
+tower-http = { version = "0.6", default-features = false, features = ["cors"] }
 
 wwwallet-providers = { path = "providers" }
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false

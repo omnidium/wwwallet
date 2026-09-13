@@ -1,0 +1,6 @@
+# Copy to .dev.vars for local `wrangler dev`. Never commit the real file.
+# In production these are set via `wrangler secret put <NAME>` instead.
+ALCHEMY_API_KEY=
+ETHPLORER_API_KEY=
+ETHERSCAN_API_KEY=
+ZEROX_API_KEY=

@@ -1,8 +1,8 @@
 use async_trait::async_trait;
 use serde::Deserialize;
-use std::time::{SystemTime, UNIX_EPOCH};
 
 use crate::error::ProviderResult;
+use crate::http;
 use crate::traits::FxRateProvider;
 use crate::types::FxRates;
 
@@ -13,25 +13,16 @@ struct FrankfurterResponse {
 }
 
 /// Frankfurter (https://frankfurter.dev) is free, keyless, and backed by ECB reference rates.
-pub struct FrankfurterProvider {
-    http: reqwest::Client,
-}
+#[derive(Default)]
+pub struct FrankfurterProvider;
 
 impl FrankfurterProvider {
     pub fn new() -> Self {
-        Self {
-            http: reqwest::Client::new(),
-        }
+        Self
     }
 }
 
-impl Default for FrankfurterProvider {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-#[async_trait]
+#[async_trait(?Send)]
 impl FxRateProvider for FrankfurterProvider {
     fn name(&self) -> &'static str {
         "frankfurter"
@@ -39,11 +30,8 @@ impl FxRateProvider for FrankfurterProvider {
 
     async fn latest_rates(&self, base: &str) -> ProviderResult<FxRates> {
         let url = format!("https://api.frankfurter.app/latest?from={base}");
-        let resp: FrankfurterResponse = self.http.get(url).send().await?.json().await?;
-        let as_of_unix = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .map(|d| d.as_secs() as i64)
-            .unwrap_or_default();
+        let resp: FrankfurterResponse = http::get_json(&url).await?;
+        let as_of_unix = (worker::Date::now().as_millis() / 1000) as i64;
         Ok(FxRates {
             base: resp.base,
             rates: resp.rates,

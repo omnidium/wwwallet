@@ -14,6 +14,22 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
+          targets: wasm32-unknown-unknown
       - uses: Swatinem/rust-cache@v2
+      # Unit tests run on the host target — `worker` compiles there too, and
+      # it's simpler than executing wasm inside workerd for pure-logic tests.
       - run: cargo clippy --all-targets -- -D warnings
       - run: cargo test --workspace
+      # Compile-check against the actual deployment target.
+      - run: cargo clippy --all-targets --target wasm32-unknown-unknown -- -D warnings
+
+  build-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo install worker-build
+      - run: cd backend && worker-build --release

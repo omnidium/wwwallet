@@ -1,6 +1,6 @@
-use std::sync::Arc;
+use std::rc::Rc;
 
-use moka::future::Cache;
+use worker::kv::KvStore;
 
 use crate::alchemy::AlchemyProvider;
 use crate::cache::{
@@ -30,39 +30,35 @@ pub struct ProviderConfig {
 /// Aggregates every provider behind cached, single-call methods the backend's
 /// HTTP handlers can call directly. This is the one place fallback-between-providers
 /// logic would be added as more providers come online.
+///
+/// Constructed fresh per request (Workers doesn't guarantee an isolate stays
+/// warm between requests, so there's no long-lived singleton to hold this) —
+/// that's cheap, since it's just a handful of small structs holding API keys.
 pub struct ProviderRegistry {
-    activity: Arc<dyn ActivityProvider>,
-    tokens: Arc<dyn TokenMetadataProvider>,
-    abi: Arc<dyn AbiProvider>,
-    fx: Arc<dyn FxRateProvider>,
-    broadcaster: Arc<dyn TransactionBroadcaster>,
-    tx_prep: Arc<dyn TransactionPrepProvider>,
-    allowance: Arc<dyn AllowanceProvider>,
-    swap: Arc<dyn SwapQuoteProvider>,
-
-    activity_cache: Cache<(ChainId, String), AddressActivity>,
-    token_cache: Cache<(ChainId, String), TokenMetadata>,
-    abi_cache: Cache<(ChainId, String), ContractAbi>,
-    fx_cache: Cache<String, FxRates>,
+    activity: Rc<dyn ActivityProvider>,
+    tokens: Rc<dyn TokenMetadataProvider>,
+    abi: Rc<dyn AbiProvider>,
+    fx: Rc<dyn FxRateProvider>,
+    broadcaster: Rc<dyn TransactionBroadcaster>,
+    tx_prep: Rc<dyn TransactionPrepProvider>,
+    allowance: Rc<dyn AllowanceProvider>,
+    swap: Rc<dyn SwapQuoteProvider>,
+    kv: KvStore,
 }
 
 impl ProviderRegistry {
-    pub fn new(config: ProviderConfig) -> Self {
-        let alchemy = Arc::new(AlchemyProvider::new(config.alchemy_api_key));
+    pub fn new(config: ProviderConfig, kv: KvStore) -> Self {
+        let alchemy = Rc::new(AlchemyProvider::new(config.alchemy_api_key));
         Self {
             activity: alchemy.clone(),
             broadcaster: alchemy.clone(),
             allowance: alchemy.clone(),
             tx_prep: alchemy,
-            tokens: Arc::new(EthplorerProvider::new(config.ethplorer_api_key)),
-            abi: Arc::new(EtherscanProvider::new(config.etherscan_api_key)),
-            fx: Arc::new(FrankfurterProvider::new()),
-            swap: Arc::new(ZeroExProvider::new(config.zerox_api_key)),
-
-            activity_cache: cache::build(ADDRESS_ACTIVITY_TTL, 10_000),
-            token_cache: cache::build(TOKEN_METADATA_TTL, 10_000),
-            abi_cache: cache::build(CONTRACT_ABI_TTL, 10_000),
-            fx_cache: cache::build(FX_RATES_TTL, 100),
+            tokens: Rc::new(EthplorerProvider::new(config.ethplorer_api_key)),
+            abi: Rc::new(EtherscanProvider::new(config.etherscan_api_key)),
+            fx: Rc::new(FrankfurterProvider::new()),
+            swap: Rc::new(ZeroExProvider::new(config.zerox_api_key)),
+            kv,
         }
     }
 
@@ -71,13 +67,11 @@ impl ProviderRegistry {
         chain: ChainId,
         address: &str,
     ) -> ProviderResult<AddressActivity> {
-        let key = (chain, address.to_lowercase());
-        if let Some(hit) = self.activity_cache.get(&key).await {
-            return Ok(hit);
-        }
-        let fresh = self.activity.address_activity(chain, address).await?;
-        self.activity_cache.insert(key, fresh.clone()).await;
-        Ok(fresh)
+        let key = format!("activity:{chain:?}:{}", address.to_lowercase());
+        cache::get_or_fetch(&self.kv, &key, ADDRESS_ACTIVITY_TTL, || {
+            self.activity.address_activity(chain, address)
+        })
+        .await
     }
 
     pub async fn token_metadata(
@@ -85,13 +79,11 @@ impl ProviderRegistry {
         chain: ChainId,
         contract_address: &str,
     ) -> ProviderResult<TokenMetadata> {
-        let key = (chain, contract_address.to_lowercase());
-        if let Some(hit) = self.token_cache.get(&key).await {
-            return Ok(hit);
-        }
-        let fresh = self.tokens.token_metadata(chain, contract_address).await?;
-        self.token_cache.insert(key, fresh.clone()).await;
-        Ok(fresh)
+        let key = format!("token:{chain:?}:{}", contract_address.to_lowercase());
+        cache::get_or_fetch(&self.kv, &key, TOKEN_METADATA_TTL, || {
+            self.tokens.token_metadata(chain, contract_address)
+        })
+        .await
     }
 
     pub async fn contract_abi(
@@ -99,23 +91,17 @@ impl ProviderRegistry {
         chain: ChainId,
         contract_address: &str,
     ) -> ProviderResult<ContractAbi> {
-        let key = (chain, contract_address.to_lowercase());
-        if let Some(hit) = self.abi_cache.get(&key).await {
-            return Ok(hit);
-        }
-        let fresh = self.abi.contract_abi(chain, contract_address).await?;
-        self.abi_cache.insert(key, fresh.clone()).await;
-        Ok(fresh)
+        let key = format!("abi:{chain:?}:{}", contract_address.to_lowercase());
+        cache::get_or_fetch(&self.kv, &key, CONTRACT_ABI_TTL, || {
+            self.abi.contract_abi(chain, contract_address)
+        })
+        .await
     }
 
     pub async fn fx_rates(&self, base: &str) -> ProviderResult<FxRates> {
-        let key = base.to_uppercase();
-        if let Some(hit) = self.fx_cache.get(&key).await {
-            return Ok(hit);
-        }
-        let fresh = self.fx.latest_rates(&key).await?;
-        self.fx_cache.insert(key, fresh.clone()).await;
-        Ok(fresh)
+        let base = base.to_uppercase();
+        let key = format!("fx:{base}");
+        cache::get_or_fetch(&self.kv, &key, FX_RATES_TTL, || self.fx.latest_rates(&base)).await
     }
 
     /// Never cached — this is a write, not a read.

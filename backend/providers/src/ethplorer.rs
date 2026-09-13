@@ -3,25 +3,22 @@ use serde_json::Value;
 
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
+use crate::http;
 use crate::traits::TokenMetadataProvider;
 use crate::types::TokenMetadata;
 
 /// Ethplorer only indexes Ethereum mainnet.
 pub struct EthplorerProvider {
-    http: reqwest::Client,
     api_key: String,
 }
 
 impl EthplorerProvider {
     pub fn new(api_key: String) -> Self {
-        Self {
-            http: reqwest::Client::new(),
-            api_key,
-        }
+        Self { api_key }
     }
 }
 
-#[async_trait]
+#[async_trait(?Send)]
 impl TokenMetadataProvider for EthplorerProvider {
     fn name(&self) -> &'static str {
         "ethplorer"
@@ -39,7 +36,7 @@ impl TokenMetadataProvider for EthplorerProvider {
             "https://api.ethplorer.io/getTokenInfo/{}?apiKey={}",
             contract_address, self.api_key
         );
-        let resp: Value = self.http.get(url).send().await?.json().await?;
+        let resp: Value = http::get_json(&url).await?;
         if let Some(err) = resp.get("error") {
             return Err(ProviderError::Upstream(err.to_string()));
         }

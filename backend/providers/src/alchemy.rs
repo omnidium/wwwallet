@@ -3,22 +3,19 @@ use serde_json::{json, Value};
 
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
+use crate::http;
 use crate::traits::{
     ActivityProvider, AllowanceProvider, TransactionBroadcaster, TransactionPrepProvider,
 };
 use crate::types::{AddressActivity, Balance, Transaction, TransactionPrep, TransactionStatus};
 
 pub struct AlchemyProvider {
-    http: reqwest::Client,
     api_key: String,
 }
 
 impl AlchemyProvider {
     pub fn new(api_key: String) -> Self {
-        Self {
-            http: reqwest::Client::new(),
-            api_key,
-        }
+        Self { api_key }
     }
 
     fn rpc_url(&self, chain: ChainId) -> String {
@@ -36,14 +33,7 @@ impl AlchemyProvider {
             "method": method,
             "params": params,
         });
-        let resp: Value = self
-            .http
-            .post(self.rpc_url(chain))
-            .json(&body)
-            .send()
-            .await?
-            .json()
-            .await?;
+        let resp: Value = http::post_json(&self.rpc_url(chain), &body).await?;
         if let Some(err) = resp.get("error") {
             return Err(ProviderError::Upstream(err.to_string()));
         }
@@ -77,7 +67,7 @@ impl AlchemyProvider {
     }
 }
 
-#[async_trait]
+#[async_trait(?Send)]
 impl ActivityProvider for AlchemyProvider {
     fn name(&self) -> &'static str {
         "alchemy"
@@ -193,7 +183,7 @@ impl ActivityProvider for AlchemyProvider {
     }
 }
 
-#[async_trait]
+#[async_trait(?Send)]
 impl TransactionBroadcaster for AlchemyProvider {
     fn name(&self) -> &'static str {
         "alchemy"
@@ -214,7 +204,7 @@ impl TransactionBroadcaster for AlchemyProvider {
     }
 }
 
-#[async_trait]
+#[async_trait(?Send)]
 impl TransactionPrepProvider for AlchemyProvider {
     fn name(&self) -> &'static str {
         "alchemy"
@@ -234,13 +224,14 @@ impl TransactionPrepProvider for AlchemyProvider {
             estimate_params["data"] = json!(d);
         }
 
-        let (nonce_result, gas_price_result, gas_limit_result) = tokio::join!(
-            self.rpc_call(chain, "eth_getTransactionCount", json!([from, "pending"])),
-            self.rpc_call(chain, "eth_gasPrice", json!([])),
-            self.rpc_call(chain, "eth_estimateGas", json!([estimate_params])),
-        );
+        let nonce_hex = self
+            .rpc_call(chain, "eth_getTransactionCount", json!([from, "pending"]))
+            .await?;
+        let gas_price_hex = self.rpc_call(chain, "eth_gasPrice", json!([])).await?;
+        let gas_limit_hex = self
+            .rpc_call(chain, "eth_estimateGas", json!([estimate_params]))
+            .await?;
 
-        let nonce_hex = nonce_result?;
         let nonce = u64::from_str_radix(
             nonce_hex.as_str().unwrap_or("0x0").trim_start_matches("0x"),
             16,
@@ -249,14 +240,14 @@ impl TransactionPrepProvider for AlchemyProvider {
 
         Ok(TransactionPrep {
             nonce,
-            gas_price: Self::hex_to_decimal_string(gas_price_result?.as_str().unwrap_or("0x0")),
-            gas_limit: Self::hex_to_decimal_string(gas_limit_result?.as_str().unwrap_or("0x0")),
+            gas_price: Self::hex_to_decimal_string(gas_price_hex.as_str().unwrap_or("0x0")),
+            gas_limit: Self::hex_to_decimal_string(gas_limit_hex.as_str().unwrap_or("0x0")),
             chain_id: chain.eip155_id(),
         })
     }
 }
 
-#[async_trait]
+#[async_trait(?Send)]
 impl AllowanceProvider for AlchemyProvider {
     fn name(&self) -> &'static str {
         "alchemy"

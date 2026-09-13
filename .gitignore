@@ -1,6 +1,11 @@
 # Rust
-# Cargo.lock is committed deliberately (this workspace produces a binary, not a library)
+# Cargo.lock is committed deliberately (this workspace produces a deployable Worker, not a library)
 /target/
+backend/build/
+
+# wrangler local dev state (KV simulation, bundling temp files)
+.wrangler/
+backend/node_modules/
 
 # Node / frontend
 frontend/node_modules/
@@ -11,6 +16,8 @@ frontend/.vite/
 .env
 .env.*
 !.env.example
+backend/.dev.vars
+!backend/.dev.vars.example
 
 # OS / editor
 .DS_Store

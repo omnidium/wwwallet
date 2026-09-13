@@ -23,7 +23,7 @@ impl From<wwwallet_providers::ProviderError> for ApiError {
         match err {
             wwwallet_providers::ProviderError::InvalidInput(msg) => ApiError::BadRequest(msg),
             other => {
-                tracing::warn!(error = %other, "upstream provider error");
+                worker::console_warn!("upstream provider error: {other}");
                 ApiError::Upstream("upstream provider request failed".to_string())
             }
         }

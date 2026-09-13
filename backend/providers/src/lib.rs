@@ -5,6 +5,7 @@ pub mod error;
 pub mod etherscan;
 pub mod ethplorer;
 pub mod fxrate;
+pub mod http;
 pub mod registry;
 pub mod traits;
 pub mod types;

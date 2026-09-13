@@ -2,10 +2,11 @@ pub mod chains;
 
 use axum::routing::{get, post};
 use axum::Router;
+use tower_http::cors::CorsLayer;
 
 use crate::state::AppState;
 
-pub fn build_router(state: AppState) -> Router {
+pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
     Router::new()
         .route(
             "/api/v1/chains/:chain/address/:address",
@@ -30,5 +31,6 @@ pub fn build_router(state: AppState) -> Router {
         .route("/api/v1/chains/:chain/allowance", get(chains::allowance))
         .route("/api/v1/chains/:chain/swap-quote", get(chains::swap_quote))
         .route("/api/v1/fx-rates", get(chains::fx_rates))
+        .layer(cors)
         .with_state(state)
 }

@@ -1,7 +1,7 @@
 #[derive(Debug, thiserror::Error)]
 pub enum ProviderError {
     #[error("upstream request failed: {0}")]
-    Request(#[from] reqwest::Error),
+    Request(#[from] worker::Error),
     #[error("upstream returned an error: {0}")]
     Upstream(String),
     #[error("no provider available for this operation")]

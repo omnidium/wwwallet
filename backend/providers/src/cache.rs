@@ -1,22 +1,39 @@
-use std::time::Duration;
+use std::future::Future;
 
-use moka::future::Cache;
+use serde::de::DeserializeOwned;
+use serde::Serialize;
+use worker::kv::KvStore;
 
-/// Builds a short-TTL, size-bounded cache. Defaults are sized conservatively
-/// around free-tier provider quotas: short enough to stay fresh, long enough
-/// to absorb bursts of repeat requests (e.g. a user re-opening the same screen).
-pub fn build<K, V>(ttl: Duration, max_capacity: u64) -> Cache<K, V>
+use crate::error::ProviderResult;
+
+// Short TTLs, sized conservatively around free-tier provider quotas. KV is
+// eventually consistent (~60s propagation across the edge), which is fine
+// here — these caches exist to reduce upstream calls, not for correctness.
+pub const ADDRESS_ACTIVITY_TTL: u64 = 20;
+pub const TOKEN_METADATA_TTL: u64 = 60 * 60;
+pub const CONTRACT_ABI_TTL: u64 = 60 * 60 * 24;
+pub const FX_RATES_TTL: u64 = 60 * 30;
+
+/// Reads `key` from KV; on a miss, calls `fetch`, stores the result with the
+/// given TTL (best-effort — a KV write failure doesn't fail the request),
+/// and returns it.
+pub async fn get_or_fetch<T, F, Fut>(
+    kv: &KvStore,
+    key: &str,
+    ttl_secs: u64,
+    fetch: F,
+) -> ProviderResult<T>
 where
-    K: std::hash::Hash + Eq + Send + Sync + 'static,
-    V: Clone + Send + Sync + 'static,
+    T: Serialize + DeserializeOwned,
+    F: FnOnce() -> Fut,
+    Fut: Future<Output = ProviderResult<T>>,
 {
-    Cache::builder()
-        .time_to_live(ttl)
-        .max_capacity(max_capacity)
-        .build()
+    if let Ok(Some(cached)) = kv.get(key).json::<T>().await {
+        return Ok(cached);
+    }
+    let fresh = fetch().await?;
+    if let Ok(builder) = kv.put(key, &fresh) {
+        let _ = builder.expiration_ttl(ttl_secs).execute().await;
+    }
+    Ok(fresh)
 }
-
-pub const ADDRESS_ACTIVITY_TTL: Duration = Duration::from_secs(20);
-pub const TOKEN_METADATA_TTL: Duration = Duration::from_secs(60 * 60);
-pub const CONTRACT_ABI_TTL: Duration = Duration::from_secs(60 * 60 * 24);
-pub const FX_RATES_TTL: Duration = Duration::from_secs(60 * 30);

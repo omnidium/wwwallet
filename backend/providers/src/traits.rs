@@ -8,8 +8,11 @@ use crate::types::{
 
 /// Fetches native + token balances and recent transactions for an address.
 /// Backed by Alchemy today; any other indexer API can implement this.
-#[async_trait]
-pub trait ActivityProvider: Send + Sync {
+///
+/// `?Send`: these futures wrap JS-bound `worker` types that aren't `Send`,
+/// which is fine — Workers run single-threaded, so `Send` was never load-bearing.
+#[async_trait(?Send)]
+pub trait ActivityProvider {
     fn name(&self) -> &'static str;
     async fn address_activity(
         &self,
@@ -19,8 +22,8 @@ pub trait ActivityProvider: Send + Sync {
 }
 
 /// Fetches ERC-20 token metadata (name/symbol/decimals/logo). Backed by Ethplorer.
-#[async_trait]
-pub trait TokenMetadataProvider: Send + Sync {
+#[async_trait(?Send)]
+pub trait TokenMetadataProvider {
     fn name(&self) -> &'static str;
     async fn token_metadata(
         &self,
@@ -30,8 +33,8 @@ pub trait TokenMetadataProvider: Send + Sync {
 }
 
 /// Fetches verified contract ABIs. Backed by Etherscan (and its per-chain siblings).
-#[async_trait]
-pub trait AbiProvider: Send + Sync {
+#[async_trait(?Send)]
+pub trait AbiProvider {
     fn name(&self) -> &'static str;
     async fn contract_abi(
         &self,
@@ -41,8 +44,8 @@ pub trait AbiProvider: Send + Sync {
 }
 
 /// Fetches fiat exchange rates. Backed by a free fx-rate API.
-#[async_trait]
-pub trait FxRateProvider: Send + Sync {
+#[async_trait(?Send)]
+pub trait FxRateProvider {
     fn name(&self) -> &'static str;
     async fn latest_rates(&self, base: &str) -> ProviderResult<FxRates>;
 }
@@ -50,8 +53,8 @@ pub trait FxRateProvider: Send + Sync {
 /// Relays an already-signed raw transaction to the network. The backend never
 /// sees a private key — the client signs locally and only hands over the
 /// resulting raw transaction bytes for broadcast.
-#[async_trait]
-pub trait TransactionBroadcaster: Send + Sync {
+#[async_trait(?Send)]
+pub trait TransactionBroadcaster {
     fn name(&self) -> &'static str;
     async fn broadcast(&self, chain: ChainId, raw_transaction_hex: &str) -> ProviderResult<String>;
 }
@@ -59,8 +62,8 @@ pub trait TransactionBroadcaster: Send + Sync {
 /// Supplies everything the client needs to build and sign a transaction
 /// locally (nonce, gas price, gas limit, chain id) without exposing an RPC
 /// key to the browser.
-#[async_trait]
-pub trait TransactionPrepProvider: Send + Sync {
+#[async_trait(?Send)]
+pub trait TransactionPrepProvider {
     fn name(&self) -> &'static str;
     async fn prepare(
         &self,
@@ -74,8 +77,8 @@ pub trait TransactionPrepProvider: Send + Sync {
 
 /// Fetches a ready-to-sign swap transaction from a DEX aggregator. Backed by
 /// the 0x Swap API.
-#[async_trait]
-pub trait SwapQuoteProvider: Send + Sync {
+#[async_trait(?Send)]
+pub trait SwapQuoteProvider {
     fn name(&self) -> &'static str;
     async fn quote(
         &self,
@@ -89,8 +92,8 @@ pub trait SwapQuoteProvider: Send + Sync {
 
 /// Reads an ERC-20 `allowance(owner, spender)` value. Used to decide whether
 /// the client needs to send an approval transaction before a swap.
-#[async_trait]
-pub trait AllowanceProvider: Send + Sync {
+#[async_trait(?Send)]
+pub trait AllowanceProvider {
     fn name(&self) -> &'static str;
     async fn allowance(
         &self,

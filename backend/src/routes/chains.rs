@@ -23,6 +23,7 @@ fn validate_address(address: &str) -> Result<(), ApiError> {
     Ok(())
 }
 
+#[worker::send]
 pub async fn address_activity(
     State(state): State<AppState>,
     Path((chain, address)): Path<(String, String)>,
@@ -34,6 +35,7 @@ pub async fn address_activity(
     ))
 }
 
+#[worker::send]
 pub async fn token_metadata(
     State(state): State<AppState>,
     Path((chain, address)): Path<(String, String)>,
@@ -43,6 +45,7 @@ pub async fn token_metadata(
     Ok(Json(state.providers.token_metadata(chain, &address).await?))
 }
 
+#[worker::send]
 pub async fn contract_abi(
     State(state): State<AppState>,
     Path((chain, address)): Path<(String, String)>,
@@ -62,6 +65,7 @@ pub struct BroadcastResponse {
     transaction_hash: String,
 }
 
+#[worker::send]
 pub async fn broadcast_transaction(
     State(state): State<AppState>,
     Path(chain): Path<String>,
@@ -86,6 +90,7 @@ pub struct TxPrepQuery {
     data: Option<String>,
 }
 
+#[worker::send]
 pub async fn transaction_prep(
     State(state): State<AppState>,
     Path((chain, from)): Path<(String, String)>,
@@ -109,6 +114,7 @@ pub struct AllowanceQuery {
     spender: String,
 }
 
+#[worker::send]
 pub async fn allowance(
     State(state): State<AppState>,
     Path(chain): Path<String>,
@@ -139,6 +145,7 @@ pub struct SwapQuoteQuery {
     taker_address: String,
 }
 
+#[worker::send]
 pub async fn swap_quote(
     State(state): State<AppState>,
     Path(chain): Path<String>,
@@ -174,6 +181,7 @@ pub struct FxQuery {
     base: Option<String>,
 }
 
+#[worker::send]
 pub async fn fx_rates(
     State(state): State<AppState>,
     axum::extract::Query(query): axum::extract::Query<FxQuery>,
