@@ -46,6 +46,7 @@ onMounted(async () => {
           icon="mdi-tray-arrow-down"
           color="receive"
           size="large"
+          rounded="circle"
           :to="`/accounts/${chain}/${address}/receive`"
           aria-label="Receive crypto"
         />
@@ -53,6 +54,7 @@ onMounted(async () => {
           icon="mdi-tray-arrow-up"
           color="send"
           size="large"
+          rounded="circle"
           :to="`/accounts/${chain}/${address}/send`"
           aria-label="Send crypto"
         />
