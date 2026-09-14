@@ -13,14 +13,19 @@ const activity = chainData.activityByAddress[chainData.keyFor(chain, address)]
 <template>
   <v-container>
     <h1 class="text-h5">Transactions</h1>
-    <v-list v-if="activity">
-      <v-list-item
-        v-for="txn in activity.transactions"
-        :key="txn.hash"
-        :title="`${txn.value} ${txn.asset}`"
-        :subtitle="txn.hash"
-      />
-    </v-list>
+    <template v-if="activity">
+      <v-list v-if="activity.transactions.length">
+        <v-list-item
+          v-for="txn in activity.transactions"
+          :key="txn.hash"
+          :title="`${txn.value} ${txn.asset}`"
+          :subtitle="txn.hash"
+          :prepend-icon="txn.from.toLowerCase() === address.toLowerCase() ? 'mdi-tray-arrow-up' : 'mdi-tray-arrow-down'"
+          :base-color="txn.from.toLowerCase() === address.toLowerCase() ? 'send' : 'receive'"
+        />
+      </v-list>
+      <p v-else class="text-medium-emphasis mt-4">No transactions found.</p>
+    </template>
     <v-alert v-else type="info" variant="tonal" class="mt-4">
       Visit an account first to load its transaction history.
     </v-alert>

@@ -9,20 +9,27 @@ const messages = useMessagesStore()
 const chain = route.params.chain as ChainSlug
 const address = route.params.address as string
 const metadata = ref<TokenMetadata | null>(null)
+const loading = ref(true)
 
 onMounted(async () => {
   try {
     metadata.value = await api.tokenMetadata(chain, address)
   } catch (err) {
     messages.push((err as Error).message, 'error')
+  } finally {
+    loading.value = false
   }
 })
 </script>
 
 <template>
   <v-container>
-    <h1 class="text-h5">{{ metadata?.symbol ?? 'Token' }}</h1>
-    <p class="text-medium-emphasis">{{ address }}</p>
+    <v-progress-linear v-if="loading" indeterminate class="mb-4" />
+    <div class="d-flex align-center">
+      <v-icon icon="mdi-cash-multiple" size="large" class="mr-3" />
+      <h1 class="text-h5">{{ metadata?.symbol ?? 'Token' }}</h1>
+    </div>
+    <p class="text-medium-emphasis mt-2">{{ address }}</p>
     <p v-if="metadata?.name">{{ metadata.name }}</p>
   </v-container>
 </template>
