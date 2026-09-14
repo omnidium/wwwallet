@@ -145,8 +145,49 @@ impl ProviderRegistry {
         sell_amount_wei: &str,
         taker_address: &str,
     ) -> ProviderResult<SwapQuote> {
-        self.swap
+        let mut quote = self
+            .swap
             .quote(chain, sell_token, buy_token, sell_amount_wei, taker_address)
-            .await
+            .await?;
+
+        let sell_decimals = self.token_decimals(chain, sell_token).await;
+        let buy_decimals = self.token_decimals(chain, buy_token).await;
+        quote.price = human_readable_price(
+            &quote.sell_amount,
+            sell_decimals,
+            &quote.buy_amount,
+            buy_decimals,
+        );
+        Ok(quote)
     }
+
+    /// Resolves an ERC-20's decimals, special-cased for the pseudo-address DEX
+    /// aggregators use to mean "the chain's native currency" (never a real
+    /// contract, so it has no on-chain metadata to look up). Falls back to 18
+    /// (the overwhelmingly common case) if metadata lookup fails — this only
+    /// feeds a display estimate, so it's not worth failing the whole quote over.
+    async fn token_decimals(&self, chain: ChainId, token_address: &str) -> u8 {
+        const NATIVE_PSEUDO_ADDRESS: &str = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+        if token_address.eq_ignore_ascii_case(NATIVE_PSEUDO_ADDRESS) {
+            return 18;
+        }
+        self.token_metadata(chain, token_address)
+            .await
+            .ok()
+            .and_then(|meta| meta.decimals)
+            .unwrap_or(18)
+    }
+}
+
+/// Decimals-adjusted buy/sell ratio (buy tokens received per one sell token),
+/// for display purposes only.
+fn human_readable_price(sell_amount_wei: &str, sell_decimals: u8, buy_amount_wei: &str, buy_decimals: u8) -> String {
+    let sell_raw: f64 = sell_amount_wei.parse().unwrap_or(0.0);
+    let buy_raw: f64 = buy_amount_wei.parse().unwrap_or(0.0);
+    let sell = sell_raw / 10f64.powi(sell_decimals as i32);
+    let buy = buy_raw / 10f64.powi(buy_decimals as i32);
+    if sell == 0.0 {
+        return "0".to_string();
+    }
+    (buy / sell).to_string()
 }

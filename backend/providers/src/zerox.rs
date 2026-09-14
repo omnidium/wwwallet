@@ -7,22 +7,30 @@ use crate::http;
 use crate::traits::SwapQuoteProvider;
 use crate::types::SwapQuote;
 
+/// 0x Swap API v2 uses a single base URL for every chain — the chain is
+/// selected via the `chainId` query parameter instead of a per-chain subdomain
+/// (the old v1 layout, which 0x has since decommissioned).
+const ZEROX_BASE_URL: &str = "https://api.0x.org";
+
 #[derive(Deserialize)]
-struct ZeroExQuoteResponse {
+struct ZeroExTransaction {
     to: String,
     data: String,
     value: String,
+    gas: String,
     #[serde(rename = "gasPrice")]
     gas_price: String,
-    #[serde(rename = "estimatedGas")]
-    estimated_gas: String,
+}
+
+#[derive(Deserialize)]
+struct ZeroExQuoteResponse {
+    transaction: ZeroExTransaction,
     #[serde(rename = "buyAmount")]
     buy_amount: String,
     #[serde(rename = "sellAmount")]
     sell_amount: String,
     #[serde(rename = "allowanceTarget")]
     allowance_target: String,
-    price: String,
 }
 
 pub struct ZeroExProvider {
@@ -49,23 +57,39 @@ impl SwapQuoteProvider for ZeroExProvider {
         sell_amount_wei: &str,
         taker_address: &str,
     ) -> ProviderResult<SwapQuote> {
+        let chain_id = chain.eip155_id();
         let url = format!(
-            "{}/swap/v1/quote?sellToken={sell_token}&buyToken={buy_token}&sellAmount={sell_amount_wei}&takerAddress={taker_address}",
-            chain.zerox_base_url(),
+            "{ZEROX_BASE_URL}/swap/allowance-holder/quote?chainId={chain_id}&sellToken={sell_token}&buyToken={buy_token}&sellAmount={sell_amount_wei}&taker={taker_address}",
         );
 
-        let quote: ZeroExQuoteResponse =
-            http::get_json_with_headers(&url, &[("0x-api-key", &self.api_key)]).await?;
+        let quote: ZeroExQuoteResponse = http::get_json_with_headers(
+            &url,
+            &[("0x-api-key", &self.api_key), ("0x-version", "v2")],
+        )
+        .await?;
+
+        let price = quote_price(&quote.buy_amount, &quote.sell_amount);
         Ok(SwapQuote {
-            to: quote.to,
-            data: quote.data,
-            value: quote.value,
-            gas_price: quote.gas_price,
-            estimated_gas: quote.estimated_gas,
+            to: quote.transaction.to,
+            data: quote.transaction.data,
+            value: quote.transaction.value,
+            gas_price: quote.transaction.gas_price,
+            estimated_gas: quote.transaction.gas,
             buy_amount: quote.buy_amount,
             sell_amount: quote.sell_amount,
             allowance_target: quote.allowance_target,
-            price: quote.price,
+            price,
         })
     }
+}
+
+/// Buy/sell ratio in raw (undecimalized) units, for rough display purposes only —
+/// the v2 API no longer returns a `price` field directly (v1 did).
+fn quote_price(buy_amount: &str, sell_amount: &str) -> String {
+    let buy: f64 = buy_amount.parse().unwrap_or(0.0);
+    let sell: f64 = sell_amount.parse().unwrap_or(0.0);
+    if sell == 0.0 {
+        return "0".to_string();
+    }
+    (buy / sell).to_string()
 }

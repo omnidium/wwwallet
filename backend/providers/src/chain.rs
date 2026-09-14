@@ -41,18 +41,6 @@ impl ChainId {
         }
     }
 
-    /// 0x API base URL for this chain (the legacy per-chain-subdomain "swap/v1" API,
-    /// which returns a ready-to-sign transaction rather than requiring Permit2/EIP-712).
-    pub fn zerox_base_url(self) -> &'static str {
-        match self {
-            ChainId::Ethereum => "https://api.0x.org",
-            ChainId::Polygon => "https://polygon.api.0x.org",
-            ChainId::Arbitrum => "https://arbitrum.api.0x.org",
-            ChainId::Base => "https://base.api.0x.org",
-            ChainId::Optimism => "https://optimism.api.0x.org",
-        }
-    }
-
     pub fn from_slug(slug: &str) -> Option<Self> {
         match slug {
             "ethereum" => Some(ChainId::Ethereum),
