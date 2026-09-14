@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { parseUnits } from 'ethers'
+import { formatUnits, parseUnits } from 'ethers'
 import { api, type ChainSlug, type SwapQuote } from '@/services/api'
 import { useAccountsStore } from '@/stores/accounts'
 import { useMessagesStore } from '@/stores/messages'
@@ -19,6 +19,14 @@ function toApiTokenAddress(input: string): string {
   return trimmed.toUpperCase() === NATIVE_SENTINEL ? NATIVE_PSEUDO_ADDRESS : trimmed
 }
 
+// The pseudo-address has no real contract, so there's no metadata to look up —
+// every supported chain's native currency uses 18 decimals.
+async function resolveDecimals(chain: ChainSlug, tokenAddress: string): Promise<number> {
+  if (tokenAddress === NATIVE_PSEUDO_ADDRESS) return 18
+  const metadata = await api.tokenMetadata(chain, tokenAddress)
+  return metadata.decimals ?? 18
+}
+
 const route = useRoute()
 const router = useRouter()
 const accounts = useAccountsStore()
@@ -33,6 +41,7 @@ const buyToken = ref('')
 const sellAmount = ref('')
 const keystorePassword = ref('')
 const quote = ref<SwapQuote | null>(null)
+const buyAmountFormatted = ref('')
 const busy = ref(false)
 
 async function getQuote() {
@@ -42,14 +51,16 @@ async function getQuote() {
   }
   busy.value = true
   try {
-    const sellAmountWei = parseUnits(sellAmount.value, 18).toString()
-    quote.value = await api.swapQuote(
-      chain,
-      toApiTokenAddress(sellToken.value),
-      buyToken.value.trim(),
-      sellAmountWei,
-      address,
-    )
+    const sellTokenAddress = toApiTokenAddress(sellToken.value)
+    const buyTokenAddress = buyToken.value.trim()
+    const [sellDecimals, buyDecimals] = await Promise.all([
+      resolveDecimals(chain, sellTokenAddress),
+      resolveDecimals(chain, buyTokenAddress),
+    ])
+
+    const sellAmountWei = parseUnits(sellAmount.value, sellDecimals).toString()
+    quote.value = await api.swapQuote(chain, sellTokenAddress, buyTokenAddress, sellAmountWei, address)
+    buyAmountFormatted.value = formatUnits(quote.value.buy_amount, buyDecimals)
   } catch (err) {
     messages.push((err as Error).message, 'error')
   } finally {
@@ -123,7 +134,7 @@ async function submit() {
 
       <template v-if="quote">
         <v-alert type="info" variant="tonal" class="mb-4">
-          Estimated to receive: {{ quote.buy_amount }} (raw units) at price {{ quote.price }}
+          Estimated to receive: {{ buyAmountFormatted }} at price {{ quote.price }}
         </v-alert>
         <v-text-field v-model="keystorePassword" type="password" label="Keystore password" />
         <v-btn color="primary" block :loading="busy" @click="submit">Swap</v-btn>
