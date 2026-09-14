@@ -38,10 +38,43 @@ onMounted(async () => {
           :title="`${balance.balance} ${balance.symbol}`"
         />
       </v-list>
-      <v-btn class="mt-4 mr-2" color="primary" :to="`/accounts/${chain}/${address}/send`">Send</v-btn>
-      <v-btn class="mt-4 mr-2" variant="outlined" :to="`/accounts/${chain}/${address}/receive`">Receive</v-btn>
       <v-btn class="mt-4 mr-2" variant="outlined" :to="`/accounts/${chain}/${address}/swap`">Swap</v-btn>
       <v-btn class="mt-4" variant="outlined" :to="`/accounts/${chain}/${address}/transactions`">Transactions</v-btn>
+
+      <div class="account-footer-actions">
+        <v-btn
+          icon="mdi-tray-arrow-down"
+          color="receive"
+          size="large"
+          :to="`/accounts/${chain}/${address}/receive`"
+          aria-label="Receive crypto"
+        />
+        <v-btn
+          icon="mdi-tray-arrow-up"
+          color="send"
+          size="large"
+          :to="`/accounts/${chain}/${address}/send`"
+          aria-label="Send crypto"
+        />
+      </div>
+      <div style="height: 88px" />
     </template>
   </v-container>
 </template>
+
+<style scoped>
+.account-footer-actions {
+  position: fixed;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  pointer-events: none;
+}
+
+.account-footer-actions > * {
+  pointer-events: auto;
+}
+</style>

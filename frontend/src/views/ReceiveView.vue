@@ -31,9 +31,12 @@ async function copyAddress() {
 
     <v-img v-if="qrDataUrl" :src="qrDataUrl" width="280" height="280" />
 
-    <v-card class="pa-4 mt-4" max-width="480" @click="copyAddress" style="cursor: pointer">
-      <p class="text-body-2" style="word-break: break-all">{{ address }}</p>
-      <p class="text-caption text-medium-emphasis mt-1">Tap to copy</p>
+    <v-card class="pa-4 mt-4 d-flex align-center" max-width="480" @click="copyAddress" style="cursor: pointer">
+      <div>
+        <p class="text-body-2" style="word-break: break-all">{{ address }}</p>
+        <p class="text-caption text-medium-emphasis mt-1">Tap to copy</p>
+      </div>
+      <v-icon icon="mdi-content-copy" class="ml-4" aria-label="Copy address" />
     </v-card>
   </v-container>
 </template>

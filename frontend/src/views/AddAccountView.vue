@@ -19,18 +19,30 @@ const mnemonic = ref('')
 const privateKey = ref('')
 const keystoreFile = ref<File | null>(null)
 const busy = ref(false)
+const formValid = ref(false)
 
 const chains: ChainSlug[] = ['ethereum', 'polygon', 'arbitrum', 'base', 'optimism']
 
+const passwordRules = [
+  (v: string) => !!v || 'Password is required.',
+  (v: string) => v.length >= 8 || 'Password must be at least 8 characters long.',
+]
+const confirmPasswordRules = [
+  (v: string) => v === keystorePassword.value || 'Passwords do not match.',
+]
+const mnemonicRules = [
+  (v: string) => {
+    const wordCount = v.trim().split(/\s+/).filter(Boolean).length
+    return (
+      wordCount === 12 ||
+      wordCount === 24 ||
+      `Incorrect number of words (${wordCount}). Either 12 or 24 words are required.`
+    )
+  },
+]
+
 async function submit() {
-  if (keystorePassword.value.length < 8) {
-    messages.push('Use a keystore password of at least 8 characters.', 'warning')
-    return
-  }
-  if (keystorePassword.value !== confirmKeystorePassword.value) {
-    messages.push('Keystore passwords do not match.', 'error')
-    return
-  }
+  if (!formValid.value) return
 
   busy.value = true
   try {
@@ -79,21 +91,29 @@ function onKeystoreFileSelected(event: Event) {
     </v-tabs>
 
     <v-card class="pa-4 mt-4" max-width="480">
-      <v-text-field v-model="label" label="Label" />
-      <v-select v-model="chain" :items="chains" label="Chain" />
+      <v-form v-model="formValid">
+        <v-text-field v-model="label" label="Label" />
+        <v-select v-model="chain" :items="chains" label="Chain" />
 
-      <v-textarea v-if="mode === 'mnemonic'" v-model="mnemonic" label="Recovery phrase (mnemonic)" rows="2" />
-      <v-text-field v-if="mode === 'privateKey'" v-model="privateKey" type="password" label="Private key" />
-      <v-file-input v-if="mode === 'keystore'" label="Keystore JSON file" accept="application/json" @change="onKeystoreFileSelected" />
+        <v-textarea
+          v-if="mode === 'mnemonic'"
+          v-model="mnemonic"
+          label="Recovery phrase (mnemonic)"
+          rows="2"
+          :rules="mnemonicRules"
+        />
+        <v-text-field v-if="mode === 'privateKey'" v-model="privateKey" type="password" label="Private key" :rules="[(v: string) => !!v || 'Private key is required.']" />
+        <v-file-input v-if="mode === 'keystore'" label="Keystore JSON file" accept="application/json" :rules="[() => !!keystoreFile || 'Choose a keystore file.']" @change="onKeystoreFileSelected" />
 
-      <v-text-field v-model="keystorePassword" type="password" label="Keystore password" />
-      <v-text-field v-model="confirmKeystorePassword" type="password" label="Confirm keystore password" />
-      <p class="text-caption text-medium-emphasis">
-        This password protects this wallet's key inside your vault. It can be
-        different from your vault passphrase.
-      </p>
+        <v-text-field v-model="keystorePassword" type="password" label="Keystore password" :rules="passwordRules" />
+        <v-text-field v-model="confirmKeystorePassword" type="password" label="Confirm keystore password" :rules="confirmPasswordRules" />
+        <p class="text-caption text-medium-emphasis">
+          This password protects this wallet's key inside your vault. It can be
+          different from your vault passphrase.
+        </p>
 
-      <v-btn color="primary" block class="mt-2" :loading="busy" @click="submit">Add account</v-btn>
+        <v-btn color="primary" block class="mt-2" :disabled="!formValid" :loading="busy" @click="submit">Add account</v-btn>
+      </v-form>
     </v-card>
   </v-container>
 </template>
