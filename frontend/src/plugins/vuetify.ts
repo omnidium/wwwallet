@@ -22,6 +22,13 @@ export default createVuetify({
           link: '#0909c2',
           info: '#cba968',
         },
+        // Vuetify's default light-theme medium-emphasis-opacity (0.60) fails
+        // WCAG contrast for field labels against this app's field/surface
+        // colors — confirmed via a Lighthouse accessibility audit. Bumped
+        // until it clears 4.5:1.
+        variables: {
+          'medium-emphasis-opacity': 0.74,
+        },
       },
       dark: {
         dark: true,
