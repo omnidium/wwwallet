@@ -5,7 +5,7 @@ import { formatUnits, parseUnits } from 'ethers'
 import { api, type ChainSlug, type SwapQuote } from '@/services/api'
 import { useAccountsStore } from '@/stores/accounts'
 import { useMessagesStore } from '@/stores/messages'
-import { unlockWalletForSigning } from '@/services/wallet'
+import { isValidAddress, unlockWalletForSigning } from '@/services/wallet'
 import { encodeApprove } from '@/services/erc20'
 
 const NATIVE_SENTINEL = 'ETH'
@@ -43,12 +43,16 @@ const keystorePassword = ref('')
 const quote = ref<SwapQuote | null>(null)
 const buyAmountFormatted = ref('')
 const busy = ref(false)
+const quoteFormValid = ref(false)
+
+const sellTokenRules = [
+  (v: string) => v.trim().toUpperCase() === NATIVE_SENTINEL || isValidAddress(v.trim()) || 'Enter a valid token address, or ETH for native.',
+]
+const buyTokenRules = [(v: string) => isValidAddress(v.trim()) || 'Enter a valid buy token address.']
+const sellAmountRules = [(v: string) => (!!v && Number(v) > 0) || 'Enter an amount greater than zero.']
 
 async function getQuote() {
-  if (!buyToken.value.trim() || !sellAmount.value || Number(sellAmount.value) <= 0) {
-    messages.push('Enter a buy token address and an amount.', 'warning')
-    return
-  }
+  if (!quoteFormValid.value) return
   busy.value = true
   try {
     const sellTokenAddress = toApiTokenAddress(sellToken.value)
@@ -126,17 +130,19 @@ async function submit() {
     <p class="text-medium-emphasis mb-4">From {{ account?.label ?? address }} ({{ chain }})</p>
 
     <v-card class="pa-4" max-width="480">
-      <v-text-field v-model="sellToken" label="Sell token (address, or ETH for native)" />
-      <v-text-field v-model="buyToken" label="Buy token address" />
-      <v-text-field v-model="sellAmount" label="Sell amount" type="number" min="0" step="any" />
+      <v-form v-model="quoteFormValid">
+        <v-text-field v-model="sellToken" label="Sell token (address, or ETH for native)" :rules="sellTokenRules" />
+        <v-text-field v-model="buyToken" label="Buy token address" :rules="buyTokenRules" />
+        <v-text-field v-model="sellAmount" label="Sell amount" type="number" min="0" step="any" :rules="sellAmountRules" />
 
-      <v-btn variant="outlined" block class="mb-4" :loading="busy" @click="getQuote">Get quote</v-btn>
+        <v-btn variant="outlined" block class="mb-4" :disabled="!quoteFormValid" :loading="busy" @click="getQuote">Get quote</v-btn>
+      </v-form>
 
       <template v-if="quote">
         <v-alert type="info" variant="tonal" class="mb-4">
           Estimated to receive: {{ buyAmountFormatted }} at price {{ quote.price }}
         </v-alert>
-        <v-text-field v-model="keystorePassword" type="password" label="Keystore password" />
+        <v-text-field v-model="keystorePassword" type="password" label="Keystore password" :rules="[(v: string) => !!v || 'Keystore password is required.']" />
         <v-btn color="primary" block :loading="busy" @click="submit">Swap</v-btn>
       </template>
     </v-card>
