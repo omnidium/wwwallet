@@ -9,7 +9,15 @@ import { unlockWalletForSigning } from '@/services/wallet'
 import { encodeApprove } from '@/services/erc20'
 
 const NATIVE_SENTINEL = 'ETH'
+// The pseudo-address DEX aggregators (including 0x's Swap API) use to mean
+// "the chain's native currency" — there's no real ERC-20 contract for it.
+const NATIVE_PSEUDO_ADDRESS = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
 const MAX_UINT256 = (2n ** 256n - 1n).toString()
+
+function toApiTokenAddress(input: string): string {
+  const trimmed = input.trim()
+  return trimmed.toUpperCase() === NATIVE_SENTINEL ? NATIVE_PSEUDO_ADDRESS : trimmed
+}
 
 const route = useRoute()
 const router = useRouter()
@@ -35,7 +43,13 @@ async function getQuote() {
   busy.value = true
   try {
     const sellAmountWei = parseUnits(sellAmount.value, 18).toString()
-    quote.value = await api.swapQuote(chain, sellToken.value.trim(), buyToken.value.trim(), sellAmountWei, address)
+    quote.value = await api.swapQuote(
+      chain,
+      toApiTokenAddress(sellToken.value),
+      buyToken.value.trim(),
+      sellAmountWei,
+      address,
+    )
   } catch (err) {
     messages.push((err as Error).message, 'error')
   } finally {
