@@ -39,7 +39,6 @@ const account = accounts.findAccount(chain, address)
 const sellToken = ref(NATIVE_SENTINEL)
 const buyToken = ref('')
 const sellAmount = ref('')
-const keystorePassword = ref('')
 const quote = ref<SwapQuote | null>(null)
 const buyAmountFormatted = ref('')
 const busy = ref(false)
@@ -77,7 +76,7 @@ async function submit() {
 
   busy.value = true
   try {
-    const wallet = await unlockWalletForSigning(account, keystorePassword.value)
+    const wallet = await unlockWalletForSigning(account)
 
     if (sellToken.value !== NATIVE_SENTINEL) {
       const { amount: currentAllowance } = await api.allowance(
@@ -142,7 +141,6 @@ async function submit() {
         <v-alert type="info" variant="tonal" class="mb-4">
           Estimated to receive: {{ buyAmountFormatted }} at price {{ quote.price }}
         </v-alert>
-        <v-text-field v-model="keystorePassword" type="password" label="Keystore password" :rules="[(v: string) => !!v || 'Keystore password is required.']" />
         <v-btn color="primary" block :loading="busy" @click="submit">Swap</v-btn>
       </template>
     </v-card>

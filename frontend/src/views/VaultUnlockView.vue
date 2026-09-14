@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { availableUnlockMethods } from '@/crypto/vault'
+import { normalizeMnemonic } from '@/services/mnemonic'
 
 const vault = useVaultStore()
 const messages = useMessagesStore()
@@ -27,7 +28,7 @@ onMounted(async () => {
 async function submitPassphrase() {
   busy.value = true
   try {
-    await vault.unlockWithPassphrase(passphrase.value)
+    await vault.unlockWithPassphrase(normalizeMnemonic(passphrase.value))
     router.push('/')
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -88,11 +89,12 @@ async function submitTotp() {
 
       <template v-if="showPassphraseField">
         <v-card-text>
-          <v-text-field
+          <v-textarea
             v-model="passphrase"
-            type="password"
-            label="Recovery passphrase"
-            @keyup.enter="submitPassphrase"
+            label="Recovery phrase (24 words)"
+            rows="2"
+            auto-grow
+            autofocus
           />
         </v-card-text>
         <v-card-actions>
@@ -101,7 +103,7 @@ async function submitTotp() {
       </template>
       <v-card-actions v-else-if="hasPasskeyWrap || hasTotpWrap">
         <v-btn variant="text" size="small" block @click="showPassphraseField = true">
-          Use recovery passphrase instead
+          Use recovery phrase instead
         </v-btn>
       </v-card-actions>
     </v-card>

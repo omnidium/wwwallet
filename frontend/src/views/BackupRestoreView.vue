@@ -21,7 +21,7 @@ async function backupToDrive() {
 async function restoreFromDrive() {
   try {
     await vault.restoreFromDrive()
-    messages.push('Restored from Google Drive. Unlock with your passphrase to continue.', 'success')
+    messages.push('Restored from Google Drive. Unlock with your recovery phrase to continue.', 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -41,7 +41,7 @@ async function onFileSelected(event: Event) {
   if (!file) return
   try {
     await vault.restoreFromFile(file)
-    messages.push('Restored from file. Unlock with your passphrase to continue.', 'success')
+    messages.push('Restored from file. Unlock with your recovery phrase to continue.', 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')

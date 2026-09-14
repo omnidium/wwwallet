@@ -5,14 +5,16 @@ import QRCode from 'qrcode'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { PrfNotSupportedError } from '@/services/webauthnLocal'
+import { generateRecoveryMnemonic, recoveryMnemonicWords } from '@/services/mnemonic'
 
 const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()
 
-const step = ref<'passphrase' | 'extras'>('passphrase')
-const passphrase = ref('')
-const confirmPassphrase = ref('')
+const step = ref<'recoveryPhrase' | 'extras'>('recoveryPhrase')
+const recoveryPhrase = ref(generateRecoveryMnemonic())
+const recoveryPhraseWords = ref(recoveryMnemonicWords(recoveryPhrase.value))
+const savedAck = ref(false)
 const totpUri = ref('')
 const totpQrDataUrl = ref('')
 const totpCode = ref('')
@@ -20,17 +22,19 @@ const restoreFileInput = ref<HTMLInputElement | null>(null)
 const passkeyUnsupported = ref(false)
 const skipWarningOpen = ref(false)
 
-const passphraseRules = [
-  (v: string) => v.length >= 12 || 'Use a passphrase of at least 12 characters.',
-]
-const confirmPassphraseRules = [
-  (v: string) => v === passphrase.value || 'Passphrases do not match.',
-]
+async function copyRecoveryPhrase() {
+  try {
+    await navigator.clipboard.writeText(recoveryPhrase.value)
+    messages.push('Recovery phrase copied.', 'success')
+  } catch {
+    messages.push('Could not copy automatically — select and copy the words manually.', 'warning')
+  }
+}
 
 async function createVault() {
-  if (passphrase.value.length < 12 || passphrase.value !== confirmPassphrase.value) return
+  if (!savedAck.value) return
   try {
-    await vault.createVault(passphrase.value)
+    await vault.createVault(recoveryPhrase.value)
     step.value = 'extras'
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -40,7 +44,7 @@ async function createVault() {
 async function restoreFromDrive() {
   try {
     await vault.restoreFromDrive()
-    messages.push('Restored from Google Drive. Enter your passphrase to unlock.', 'success')
+    messages.push('Restored from Google Drive. Enter your recovery phrase to unlock.', 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -52,7 +56,7 @@ async function onRestoreFileSelected(event: Event) {
   if (!file) return
   try {
     await vault.restoreFromFile(file)
-    messages.push('Restored from file. Enter your passphrase to unlock.', 'success')
+    messages.push('Restored from file. Enter your recovery phrase to unlock.', 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -96,23 +100,37 @@ function finish() {
 <template>
   <v-container class="fill-height d-flex align-center justify-center">
     <v-card width="480" class="pa-4">
-      <template v-if="step === 'passphrase'">
+      <template v-if="step === 'recoveryPhrase'">
         <v-card-title>Create your wallet</v-card-title>
         <v-card-text>
-          This is your <strong>recovery passphrase</strong>. It encrypts everything on this
+          This is your <strong>recovery phrase</strong>. It encrypts everything on this
           device and is the only way back in if you ever lose access to a passkey or
-          authenticator app — including restoring a backup on a new device. Store it
-          somewhere safe, offline. You won't need to type it day-to-day once quick unlock
-          is set up on the next screen.
+          authenticator app — including restoring a backup on a new device. Write it down
+          or copy it somewhere safe, offline. You won't need it day-to-day once quick
+          unlock is set up on the next screen, and wwwallet will never show it to you again.
         </v-card-text>
         <v-card-text>
-          <v-form>
-            <v-text-field v-model="passphrase" type="password" label="Recovery passphrase" :rules="passphraseRules" />
-            <v-text-field v-model="confirmPassphrase" type="password" label="Confirm recovery passphrase" :rules="confirmPassphraseRules" />
-          </v-form>
+          <v-sheet class="pa-3" rounded="lg" color="surface-variant" variant="tonal" data-testid="recovery-phrase">
+            <v-row dense no-gutters>
+              <v-col v-for="(word, i) in recoveryPhraseWords" :key="i" cols="6" sm="4" class="pa-1">
+                <span class="text-caption text-medium-emphasis mr-1">{{ i + 1 }}.</span>
+                <span class="font-weight-medium" data-testid="recovery-phrase-word">{{ word }}</span>
+              </v-col>
+            </v-row>
+          </v-sheet>
+          <v-btn class="mt-3" variant="outlined" block prepend-icon="mdi-content-copy" @click="copyRecoveryPhrase">
+            Copy recovery phrase
+          </v-btn>
+          <v-checkbox
+            v-model="savedAck"
+            class="mt-2"
+            density="compact"
+            hide-details
+            label="I've saved my recovery phrase somewhere safe"
+          />
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block @click="createVault">Create vault</v-btn>
+          <v-btn color="primary" block :disabled="!savedAck" @click="createVault">Create vault</v-btn>
         </v-card-actions>
 
         <v-divider class="my-4" />
@@ -137,7 +155,7 @@ function finish() {
         <v-card-title>Set up quick unlock</v-card-title>
         <v-card-text class="text-body-2 text-medium-emphasis">
           Use Face ID/Touch ID or an authenticator app to unlock day-to-day, instead of
-          your recovery passphrase. Set up at least one for the best experience.
+          your recovery phrase. Set up at least one for the best experience.
         </v-card-text>
         <v-card-text>
           <v-btn
@@ -187,7 +205,7 @@ function finish() {
         <v-card-title>Skip quick unlock?</v-card-title>
         <v-card-text>
           Without a passkey or authenticator app, you'll enter your full recovery
-          passphrase every time you open wwwallet. You can set this up later from Settings.
+          phrase every time you open wwwallet. You can set this up later from Settings.
         </v-card-text>
         <v-card-actions>
           <v-btn variant="text" @click="skipWarningOpen = false">Go back</v-btn>

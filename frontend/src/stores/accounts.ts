@@ -7,8 +7,8 @@ export interface WalletAccount {
   address: string
   label: string
   chain: ChainSlug
-  /** ethers v6 encrypted keystore JSON — lives only inside the vault, never sent to the backend. */
-  encryptedKeystore: string
+  /** Raw hex private key — lives only inside the encrypted vault blob, never sent to the backend. */
+  privateKey: string
 }
 
 export const useAccountsStore = defineStore('accounts', () => {

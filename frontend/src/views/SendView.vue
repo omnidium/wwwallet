@@ -23,7 +23,6 @@ const account = accounts.findAccount(chain, address)
 
 const to = ref('')
 const amount = ref('')
-const keystorePassword = ref('')
 const busy = ref(false)
 const scannerOpen = ref(false)
 const formValid = ref(false)
@@ -75,7 +74,7 @@ async function submit() {
     const valueWei = parseUnits(amount.value, 18).toString()
     const prep = await api.transactionPrep(chain, address, to.value.trim(), valueWei)
 
-    const wallet = await unlockWalletForSigning(account, keystorePassword.value)
+    const wallet = await unlockWalletForSigning(account)
     const signedTx = await wallet.signTransaction({
       to: to.value.trim(),
       value: valueWei,
@@ -122,7 +121,6 @@ async function submit() {
         </v-chip-group>
 
         <v-text-field v-model="amount" label="Amount" type="number" min="0" step="any" :rules="amountRules" />
-        <v-text-field v-model="keystorePassword" type="password" label="Keystore password" :rules="[(v: string) => !!v || 'Keystore password is required.']" />
 
         <v-btn color="primary" block class="mt-2" :disabled="!formValid" :loading="busy" @click="submit">Send</v-btn>
       </v-form>

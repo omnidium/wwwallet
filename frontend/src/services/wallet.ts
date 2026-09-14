@@ -3,61 +3,55 @@ import type { ChainSlug } from './api'
 import type { WalletAccount } from '@/stores/accounts'
 
 /**
- * Wallets are ethers v6 encrypted keystores (Web3 Secret Storage v3, scrypt-derived
- * AES key) — the same proven format the original app used. The keystore's own
- * password is independent of the vault passphrase; the vault encrypts the
- * keystore blob again at rest, so unlocking the vault alone is not enough to
- * spend funds without also knowing the keystore password.
+ * Account private keys are stored as plain hex, protected only by the vault's
+ * own encryption (master key, unlocked via passkey/TOTP/recovery phrase — see
+ * crypto/vault.ts) — there's no separate per-account keystore password to
+ * type. That used to be an ethers Web3 Secret Storage keystore requiring its
+ * own scrypt password, which meant a second secret to remember just to spend
+ * funds; the vault unlock is now the only gate, matching how the passkey/TOTP
+ * redesign already treats "vault unlocked" as sufficient authorization.
  */
-export async function createWallet(
-  label: string,
-  chain: ChainSlug,
-  keystorePassword: string,
-): Promise<WalletAccount> {
+export async function createWallet(label: string, chain: ChainSlug): Promise<WalletAccount> {
   const wallet = HDNodeWallet.createRandom()
-  const encryptedKeystore = await wallet.encrypt(keystorePassword)
-  return { address: wallet.address, label, chain, encryptedKeystore }
+  return { address: wallet.address, label, chain, privateKey: wallet.privateKey }
 }
 
 export async function importFromMnemonic(
   label: string,
   chain: ChainSlug,
   mnemonic: string,
-  keystorePassword: string,
 ): Promise<WalletAccount> {
   const wallet = HDNodeWallet.fromPhrase(mnemonic.trim())
-  const encryptedKeystore = await wallet.encrypt(keystorePassword)
-  return { address: wallet.address, label, chain, encryptedKeystore }
+  return { address: wallet.address, label, chain, privateKey: wallet.privateKey }
 }
 
 export async function importFromPrivateKey(
   label: string,
   chain: ChainSlug,
   privateKey: string,
-  keystorePassword: string,
 ): Promise<WalletAccount> {
   const wallet = new Wallet(privateKey.trim())
-  const encryptedKeystore = await wallet.encrypt(keystorePassword)
-  return { address: wallet.address, label, chain, encryptedKeystore }
+  return { address: wallet.address, label, chain, privateKey: wallet.privateKey }
 }
 
+/**
+ * A keystore JSON file has its own password baked in by whatever tool created
+ * it (e.g. MetaMask, geth) — that's an inherent property of the file being
+ * imported, not a new app password, so there's no way around asking for it
+ * once, here, to decrypt the file.
+ */
 export async function importFromKeystoreJson(
   label: string,
   chain: ChainSlug,
   keystoreJson: string,
-  keystorePassword: string,
+  filePassword: string,
 ): Promise<WalletAccount> {
-  // Round-trips through ethers to validate the file and normalize on our own
-  // encryption before storing it, rather than trusting an arbitrary uploaded blob.
-  const wallet = await Wallet.fromEncryptedJson(keystoreJson, keystorePassword)
-  const encryptedKeystore = await wallet.encrypt(keystorePassword)
-  return { address: wallet.address, label, chain, encryptedKeystore }
+  const wallet = await Wallet.fromEncryptedJson(keystoreJson, filePassword)
+  return { address: wallet.address, label, chain, privateKey: wallet.privateKey }
 }
 
-/** Decrypts a stored keystore to get a signer — needed only at the moment of signing a transaction. */
-export async function unlockWalletForSigning(account: WalletAccount, keystorePassword: string): Promise<Wallet> {
-  const wallet = await Wallet.fromEncryptedJson(account.encryptedKeystore, keystorePassword)
-  return wallet as Wallet
+export async function unlockWalletForSigning(account: WalletAccount): Promise<Wallet> {
+  return new Wallet(account.privateKey)
 }
 
 export function isValidAddress(address: string): boolean {

@@ -37,7 +37,6 @@ const router = createRouter({
       name: 'backup-restore',
       component: () => import('../views/BackupRestoreView.vue'),
     },
-    { path: '/settings', name: 'settings', component: () => import('../views/SettingsView.vue') },
     {
       path: '/accounts/:chain/:address/transactions',
       name: 'transactions',

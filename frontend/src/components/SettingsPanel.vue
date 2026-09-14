@@ -8,6 +8,8 @@ import { useMessagesStore } from '@/stores/messages'
 import { getStoredTheme, setStoredTheme, type ThemeName } from '@/services/theme'
 import { PrfNotSupportedError } from '@/services/webauthnLocal'
 
+const emit = defineEmits<{ close: [] }>()
+
 const settings = useSettingsLocaleStore()
 const vault = useVaultStore()
 const messages = useMessagesStore()
@@ -69,15 +71,18 @@ async function performRemove(method: 'passkeyPrf' | 'totp') {
 </script>
 
 <template>
-  <v-container>
+  <div class="pa-4">
     <v-row justify="space-between" align="center" no-gutters>
       <h1 class="text-h5">Settings</h1>
-      <v-btn
-        :icon="isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"
-        variant="text"
-        aria-label="Toggle theme"
-        @click="toggleTheme"
-      />
+      <div>
+        <v-btn
+          :icon="isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"
+          variant="text"
+          aria-label="Toggle theme"
+          @click="toggleTheme"
+        />
+        <v-btn icon="mdi-close" variant="text" aria-label="Close settings" @click="emit('close')" />
+      </div>
     </v-row>
 
     <v-select
@@ -97,13 +102,13 @@ async function performRemove(method: 'passkeyPrf' | 'totp') {
     />
 
     <v-list class="mt-4" rounded="lg">
-      <v-list-item to="/backup-restore" title="Backup &amp; restore" prepend-icon="mdi-cloud-upload" append-icon="mdi-chevron-right" />
-      <v-list-item to="/payees" title="Payees" prepend-icon="mdi-account" append-icon="mdi-chevron-right" />
+      <v-list-item to="/backup-restore" title="Backup &amp; restore" prepend-icon="mdi-cloud-upload" append-icon="mdi-chevron-right" @click="emit('close')" />
+      <v-list-item to="/payees" title="Payees" prepend-icon="mdi-account" append-icon="mdi-chevron-right" @click="emit('close')" />
     </v-list>
 
     <h2 class="text-h6 mt-6">Security</h2>
     <p class="text-caption text-medium-emphasis mb-2">
-      Your recovery passphrase is never stored anywhere it could be shown back to you —
+      Your recovery phrase is never stored anywhere it could be shown back to you —
       keep it somewhere safe. Use the options below for everyday unlock.
     </p>
 
@@ -144,7 +149,7 @@ async function performRemove(method: 'passkeyPrf' | 'totp') {
       <v-card>
         <v-card-title>Remove your only quick unlock method?</v-card-title>
         <v-card-text>
-          You'll need your full recovery passphrase every time you unlock wwwallet until
+          You'll need your full recovery phrase every time you unlock wwwallet until
           you set up another method.
         </v-card-text>
         <v-card-actions>
@@ -154,5 +159,5 @@ async function performRemove(method: 'passkeyPrf' | 'totp') {
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-container>
+  </div>
 </template>
