@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "cbor-x": "^1.6.6",
     "dexie": "^4.4.6",
     "ethers": "^6.17.0",
     "hash-wasm": "^4.12.0",

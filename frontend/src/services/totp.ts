@@ -20,3 +20,9 @@ export function verifyTotpCode(secretBase32: string, code: string): boolean {
   const totp = new TOTP({ secret: Secret.fromBase32(secretBase32) })
   return totp.validate({ token: code, window: 1 }) !== null
 }
+
+/** Raw secret bytes, for deriving a vault-unlock key from — see crypto/vault.ts. */
+export function totpSecretBytes(secretBase32: string): Uint8Array<ArrayBuffer> {
+  const { bytes } = Secret.fromBase32(secretBase32)
+  return new Uint8Array(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer)
+}

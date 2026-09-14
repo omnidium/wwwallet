@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import QRCode from 'qrcode'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
+import { PrfNotSupportedError } from '@/services/webauthnLocal'
 
 const vault = useVaultStore()
 const messages = useMessagesStore()
@@ -12,18 +14,21 @@ const step = ref<'passphrase' | 'extras'>('passphrase')
 const passphrase = ref('')
 const confirmPassphrase = ref('')
 const totpUri = ref('')
+const totpQrDataUrl = ref('')
 const totpCode = ref('')
 const restoreFileInput = ref<HTMLInputElement | null>(null)
+const passkeyUnsupported = ref(false)
+const skipWarningOpen = ref(false)
+
+const passphraseRules = [
+  (v: string) => v.length >= 12 || 'Use a passphrase of at least 12 characters.',
+]
+const confirmPassphraseRules = [
+  (v: string) => v === passphrase.value || 'Passphrases do not match.',
+]
 
 async function createVault() {
-  if (passphrase.value.length < 12) {
-    messages.push('Use a passphrase of at least 12 characters.', 'warning')
-    return
-  }
-  if (passphrase.value !== confirmPassphrase.value) {
-    messages.push('Passphrases do not match.', 'error')
-    return
-  }
+  if (passphrase.value.length < 12 || passphrase.value !== confirmPassphrase.value) return
   try {
     await vault.createVault(passphrase.value)
     step.value = 'extras'
@@ -57,23 +62,33 @@ async function onRestoreFileSelected(event: Event) {
 async function addPasskey() {
   try {
     await vault.registerPasskey('wwwallet')
-    messages.push('Passkey registered for local unlock.', 'success')
+    messages.push('Face ID / Touch ID unlock is ready.', 'success')
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    if (err instanceof PrfNotSupportedError) {
+      passkeyUnsupported.value = true
+      messages.push(err.message, 'warning')
+    } else {
+      messages.push((err as Error).message, 'error')
+    }
   }
 }
 
 async function startTotpEnrollment() {
-  const { provisioningUri } = await vault.enrollTotp()
+  const { provisioningUri } = vault.enrollTotp()
   totpUri.value = provisioningUri
+  totpQrDataUrl.value = await QRCode.toDataURL(provisioningUri, { width: 220, margin: 1 })
 }
 
 async function confirmTotp() {
   const ok = await vault.confirmTotpEnrollment(totpCode.value)
-  messages.push(ok ? 'TOTP enabled.' : 'Incorrect code — try again.', ok ? 'success' : 'error')
+  messages.push(ok ? 'Authenticator app unlock is ready.' : 'Incorrect code — try again.', ok ? 'success' : 'error')
 }
 
 function finish() {
+  if (!vault.hasPasskey && !vault.totpEnabled) {
+    skipWarningOpen.value = true
+    return
+  }
   router.push('/')
 }
 </script>
@@ -84,13 +99,17 @@ function finish() {
       <template v-if="step === 'passphrase'">
         <v-card-title>Create your wallet</v-card-title>
         <v-card-text>
-          This passphrase encrypts everything on this device — wallets, payees, and
-          settings. It is never sent anywhere. Losing it without a backup means
-          permanent loss, same as any self-custody wallet.
+          This is your <strong>recovery passphrase</strong>. It encrypts everything on this
+          device and is the only way back in if you ever lose access to a passkey or
+          authenticator app — including restoring a backup on a new device. Store it
+          somewhere safe, offline. You won't need to type it day-to-day once quick unlock
+          is set up on the next screen.
         </v-card-text>
         <v-card-text>
-          <v-text-field v-model="passphrase" type="password" label="Passphrase" />
-          <v-text-field v-model="confirmPassphrase" type="password" label="Confirm passphrase" />
+          <v-form>
+            <v-text-field v-model="passphrase" type="password" label="Recovery passphrase" :rules="passphraseRules" />
+            <v-text-field v-model="confirmPassphrase" type="password" label="Confirm recovery passphrase" :rules="confirmPassphraseRules" />
+          </v-form>
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block @click="createVault">Create vault</v-btn>
@@ -115,25 +134,45 @@ function finish() {
       </template>
 
       <template v-else>
-        <v-card-title>Optional: local unlock &amp; backup codes</v-card-title>
+        <v-card-title>Set up quick unlock</v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis">
+          Use Face ID/Touch ID or an authenticator app to unlock day-to-day, instead of
+          your recovery passphrase. Set up at least one for the best experience.
+        </v-card-text>
         <v-card-text>
-          <v-btn class="mb-4" variant="outlined" block @click="addPasskey" :disabled="vault.hasPasskey">
-            {{ vault.hasPasskey ? 'Passkey registered' : 'Register a local passkey' }}
+          <v-btn
+            class="mb-4"
+            variant="outlined"
+            block
+            prepend-icon="mdi-fingerprint"
+            @click="addPasskey"
+            :disabled="vault.hasPasskey || passkeyUnsupported"
+          >
+            {{ vault.hasPasskey ? 'Face ID / Touch ID enabled' : 'Enable Face ID / Touch ID' }}
           </v-btn>
+          <p v-if="passkeyUnsupported" class="text-caption text-error mb-4">
+            Not supported on this device or browser — use an authenticator app instead.
+          </p>
 
           <v-btn
             v-if="!totpUri"
             variant="outlined"
             block
+            prepend-icon="mdi-cellphone-key"
             @click="startTotpEnrollment"
             :disabled="vault.totpEnabled"
           >
-            {{ vault.totpEnabled ? 'TOTP enabled' : 'Enable authenticator codes (TOTP)' }}
+            {{ vault.totpEnabled ? 'Authenticator app enabled' : 'Set up an authenticator app' }}
           </v-btn>
           <template v-else>
-            <p class="text-caption mb-2">Add this to your authenticator app:</p>
-            <p class="text-caption text-medium-emphasis mb-2" style="word-break: break-all">{{ totpUri }}</p>
-            <v-text-field v-model="totpCode" label="Enter the 6-digit code" class="mt-2" />
+            <p class="text-caption mb-2">Scan this with your authenticator app:</p>
+            <div class="d-flex justify-center mb-2">
+              <v-img v-if="totpQrDataUrl" :src="totpQrDataUrl" width="220" height="220" />
+            </div>
+            <p class="text-caption text-medium-emphasis mb-2" style="word-break: break-all">
+              Can't scan? Enter this manually: {{ totpUri }}
+            </p>
+            <v-text-field v-model="totpCode" label="Enter the 6-digit code" maxlength="6" inputmode="numeric" class="mt-2" />
             <v-btn variant="outlined" block @click="confirmTotp">Confirm code</v-btn>
           </template>
         </v-card-text>
@@ -142,5 +181,20 @@ function finish() {
         </v-card-actions>
       </template>
     </v-card>
+
+    <v-dialog v-model="skipWarningOpen" max-width="420">
+      <v-card>
+        <v-card-title>Skip quick unlock?</v-card-title>
+        <v-card-text>
+          Without a passkey or authenticator app, you'll enter your full recovery
+          passphrase every time you open wwwallet. You can set this up later from Settings.
+        </v-card-text>
+        <v-card-actions>
+          <v-btn variant="text" @click="skipWarningOpen = false">Go back</v-btn>
+          <v-spacer />
+          <v-btn color="primary" @click="router.push('/')">Continue anyway</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>

@@ -1,5 +1,12 @@
-export async function importAesKey(rawKeyBytes: Uint8Array<ArrayBuffer>): Promise<CryptoKey> {
-  return crypto.subtle.importKey('raw', rawKeyBytes, 'AES-GCM', false, ['encrypt', 'decrypt'])
+export async function importAesKey(
+  rawKeyBytes: Uint8Array<ArrayBuffer>,
+  extractable = false,
+): Promise<CryptoKey> {
+  return crypto.subtle.importKey('raw', rawKeyBytes, 'AES-GCM', extractable, ['encrypt', 'decrypt'])
+}
+
+export async function exportAesKeyBytes(key: CryptoKey): Promise<Uint8Array<ArrayBuffer>> {
+  return new Uint8Array(await crypto.subtle.exportKey('raw', key))
 }
 
 export function generateIv(): Uint8Array<ArrayBuffer> {

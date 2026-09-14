@@ -1,12 +1,30 @@
 import { db } from './db'
-import { parseAttestationObject } from '@/crypto/webauthnCose'
-import { derToRawEcdsaSignature } from '@/crypto/ecdsaDer'
 
 const CREDENTIAL_ID = 'default' as const
 const RP_NAME = 'wwwallet'
 
+/** Minimal typing for the PRF extension — not yet in every TS lib.dom version. */
+interface PrfExtensionResults {
+  prf?: { enabled?: boolean; results?: { first?: ArrayBuffer } }
+}
+
+export class PrfNotSupportedError extends Error {
+  constructor() {
+    super(
+      'This device or browser does not support passwordless passkey unlock (WebAuthn PRF). ' +
+        'Set up an authenticator app instead.',
+    )
+    this.name = 'PrfNotSupportedError'
+  }
+}
+
 export async function hasLocalPasskey(): Promise<boolean> {
   return (await db.localWebAuthnCredential.get(CREDENTIAL_ID)) !== undefined
+}
+
+export async function localPasskeyCredentialId(): Promise<Uint8Array<ArrayBuffer> | null> {
+  const stored = await db.localWebAuthnCredential.get(CREDENTIAL_ID)
+  return stored ? new Uint8Array(stored.credentialId) : null
 }
 
 function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
@@ -14,15 +32,25 @@ function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
 }
 
 /**
- * Registers a device-bound platform authenticator credential for a purely
- * local unlock gate — there is no remote relying party. Only the public key
- * is ever stored (in IndexedDB, on-device); it is never sent anywhere.
+ * Registers a device-bound platform authenticator and, in the same flow,
+ * confirms it supports the WebAuthn PRF extension — the only way a passkey
+ * can produce real key material rather than just proving "some credential
+ * exists". Throws `PrfNotSupportedError` rather than registering a passkey
+ * that can't actually unlock anything.
+ *
+ * Returns the raw PRF secret for this registration so the caller (the vault
+ * store) can immediately wrap the vault's master key with it — the same
+ * secret is deterministically reproducible on future unlocks by evaluating
+ * PRF with the same `prfSalt` against the same credential.
  */
-export async function registerLocalPasskey(displayName: string): Promise<void> {
+export async function registerLocalPasskeyWithPrf(
+  displayName: string,
+): Promise<{ credentialId: Uint8Array<ArrayBuffer>; prfSalt: Uint8Array<ArrayBuffer>; prfSecret: ArrayBuffer }> {
   if (!navigator.credentials) throw new Error('WebAuthn is not available in this browser')
 
   const challenge = crypto.getRandomValues(new Uint8Array(32))
   const userId = crypto.getRandomValues(new Uint8Array(16))
+  const prfSalt = crypto.getRandomValues(new Uint8Array(32))
 
   const credential = (await navigator.credentials.create({
     publicKey: {
@@ -37,56 +65,51 @@ export async function registerLocalPasskey(displayName: string): Promise<void> {
       },
       attestation: 'none',
       timeout: 60_000,
+      extensions: { prf: {} } as AuthenticationExtensionsClientInputs,
     },
   })) as PublicKeyCredential | null
   if (!credential) throw new Error('passkey registration was cancelled')
 
-  const response = credential.response as AuthenticatorAttestationResponse
-  const { credentialId, publicKeyJwk, algorithm } = parseAttestationObject(response.attestationObject)
+  const credentialId = new Uint8Array(credential.rawId)
+  const createResults = credential.getClientExtensionResults() as PrfExtensionResults
 
-  await db.localWebAuthnCredential.put({
-    id: CREDENTIAL_ID,
-    credentialId: toArrayBuffer(credentialId),
-    publicKey: publicKeyJwk,
-    algorithm,
-  })
+  // Some authenticators only confirm PRF support on `create()` without
+  // returning a usable secret yet — a follow-up `get()` evaluates it for real.
+  let prfSecret = createResults.prf?.results?.first
+  if (!prfSecret) {
+    if (createResults.prf?.enabled === false) throw new PrfNotSupportedError()
+    prfSecret = await evaluatePrf(credentialId, prfSalt)
+  }
+  if (!prfSecret) throw new PrfNotSupportedError()
+
+  await db.localWebAuthnCredential.put({ id: CREDENTIAL_ID, credentialId: toArrayBuffer(credentialId) })
+
+  return { credentialId, prfSalt, prfSecret }
 }
 
-/**
- * Verifies a fresh assertion against the locally stored public key. This is a
- * real cryptographic check (unlike checking merely that "some credential
- * exists"), just verified on-device instead of by a remote relying party.
- */
-export async function verifyLocalPasskey(): Promise<boolean> {
-  const stored = await db.localWebAuthnCredential.get(CREDENTIAL_ID)
-  if (!stored) return false
+/** Evaluates PRF against the stored credential — returns the same secret every time for the same salt. */
+export async function unlockPasskeyPrfSecret(
+  credentialId: Uint8Array,
+  prfSalt: Uint8Array,
+): Promise<ArrayBuffer> {
+  const secret = await evaluatePrf(credentialId, prfSalt)
+  if (!secret) throw new Error('passkey did not return a PRF secret')
+  return secret
+}
 
+async function evaluatePrf(credentialId: Uint8Array, prfSalt: Uint8Array): Promise<ArrayBuffer | undefined> {
   const challenge = crypto.getRandomValues(new Uint8Array(32))
   const assertion = (await navigator.credentials.get({
     publicKey: {
       challenge,
-      allowCredentials: [{ type: 'public-key', id: stored.credentialId }],
+      allowCredentials: [{ type: 'public-key', id: toArrayBuffer(credentialId) }],
       userVerification: 'required',
       timeout: 60_000,
+      extensions: { prf: { eval: { first: toArrayBuffer(prfSalt) } } } as AuthenticationExtensionsClientInputs,
     },
   })) as PublicKeyCredential | null
-  if (!assertion) return false
+  if (!assertion) throw new Error('passkey unlock was cancelled')
 
-  const response = assertion.response as AuthenticatorAssertionResponse
-  const key = await crypto.subtle.importKey(
-    'jwk',
-    stored.publicKey,
-    { name: 'ECDSA', namedCurve: 'P-256' },
-    false,
-    ['verify'],
-  )
-
-  const clientDataHash = await crypto.subtle.digest('SHA-256', response.clientDataJSON)
-  const signedData = new Uint8Array(response.authenticatorData.byteLength + clientDataHash.byteLength)
-  signedData.set(new Uint8Array(response.authenticatorData), 0)
-  signedData.set(new Uint8Array(clientDataHash), response.authenticatorData.byteLength)
-
-  const rawSignature = derToRawEcdsaSignature(new Uint8Array(response.signature))
-
-  return crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, key, rawSignature, signedData)
+  const results = assertion.getClientExtensionResults() as PrfExtensionResults
+  return results.prf?.results?.first
 }
