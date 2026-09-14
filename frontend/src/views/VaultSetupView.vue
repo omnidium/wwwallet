@@ -13,6 +13,7 @@ const passphrase = ref('')
 const confirmPassphrase = ref('')
 const totpUri = ref('')
 const totpCode = ref('')
+const restoreFileInput = ref<HTMLInputElement | null>(null)
 
 async function createVault() {
   if (passphrase.value.length < 12) {
@@ -26,6 +27,28 @@ async function createVault() {
   try {
     await vault.createVault(passphrase.value)
     step.value = 'extras'
+  } catch (err) {
+    messages.push((err as Error).message, 'error')
+  }
+}
+
+async function restoreFromDrive() {
+  try {
+    await vault.restoreFromDrive()
+    messages.push('Restored from Google Drive. Enter your passphrase to unlock.', 'success')
+    router.push({ name: 'vault-unlock' })
+  } catch (err) {
+    messages.push((err as Error).message, 'error')
+  }
+}
+
+async function onRestoreFileSelected(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  try {
+    await vault.restoreFromFile(file)
+    messages.push('Restored from file. Enter your passphrase to unlock.', 'success')
+    router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
   }
@@ -71,6 +94,23 @@ function finish() {
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block @click="createVault">Create vault</v-btn>
+        </v-card-actions>
+
+        <v-divider class="my-4" />
+
+        <v-card-text class="text-subtitle-2 pb-0">Already have a backup?</v-card-text>
+        <v-card-actions class="flex-column">
+          <v-btn variant="outlined" block @click="restoreFromDrive">Restore from Google Drive</v-btn>
+          <v-btn variant="outlined" block class="mt-2" @click="restoreFileInput?.click()">
+            Restore from local file
+          </v-btn>
+          <input
+            ref="restoreFileInput"
+            type="file"
+            accept="application/json"
+            hidden
+            @change="onRestoreFileSelected"
+          />
         </v-card-actions>
       </template>
 

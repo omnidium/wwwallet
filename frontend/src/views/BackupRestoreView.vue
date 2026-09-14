@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
-import { importEncryptedVaultBlob } from '@/crypto/vault'
 
 const vault = useVaultStore()
 const messages = useMessagesStore()
+const router = useRouter()
 const fileInput = ref<HTMLInputElement | null>(null)
 
 async function backupToDrive() {
@@ -21,6 +22,7 @@ async function restoreFromDrive() {
   try {
     await vault.restoreFromDrive()
     messages.push('Restored from Google Drive. Unlock with your passphrase to continue.', 'success')
+    router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
   }
@@ -38,8 +40,9 @@ async function onFileSelected(event: Event) {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (!file) return
   try {
-    await importEncryptedVaultBlob(file)
+    await vault.restoreFromFile(file)
     messages.push('Restored from file. Unlock with your passphrase to continue.', 'success')
+    router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
   }

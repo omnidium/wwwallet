@@ -129,6 +129,7 @@ export const useVaultStore = defineStore('vault', () => {
     const blob = await restoreFromGoogleDrive()
     await importEncryptedVaultBlob(blob)
     await refreshFlags()
+    lock()
   }
 
   async function backupToFile(): Promise<void> {
@@ -139,6 +140,7 @@ export const useVaultStore = defineStore('vault', () => {
   async function restoreFromFile(file: File): Promise<void> {
     await importEncryptedVaultBlob(file)
     await refreshFlags()
+    lock()
   }
 
   return {
