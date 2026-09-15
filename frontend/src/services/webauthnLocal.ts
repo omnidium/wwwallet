@@ -12,7 +12,7 @@ export class PrfNotSupportedError extends Error {
   constructor() {
     super(
       'This device or browser does not support passwordless passkey unlock (WebAuthn PRF). ' +
-        'Set up an authenticator app instead.',
+        "You can still unlock with your recovery phrase, or try a different device/browser.",
     )
     this.name = 'PrfNotSupportedError'
   }

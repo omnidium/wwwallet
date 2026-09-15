@@ -106,7 +106,7 @@ function onKeystoreFileSelected(event: Event) {
         </template>
         <p v-else class="text-caption text-medium-emphasis">
           No password needed — this account is protected by your vault's own unlock
-          (Face ID/Touch ID, authenticator app, or recovery phrase).
+          (Face ID/Touch ID or recovery phrase).
         </p>
 
         <v-btn color="primary" block class="mt-2" :disabled="!formValid" :loading="busy" @click="submit">Add account</v-btn>
