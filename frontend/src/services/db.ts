@@ -1,11 +1,9 @@
 import Dexie, { type EntityTable } from 'dexie'
-import type { KdfParams } from '@/crypto/kdf'
 
 /** One way to recover the vault's random master key. A vault can have several. */
 type KeyWrap =
-  | { method: 'passphrase'; salt: ArrayBuffer; kdfParams: KdfParams; iv: ArrayBuffer; wrappedKey: ArrayBuffer }
+  | { method: 'mnemonic'; iv: ArrayBuffer; wrappedKey: ArrayBuffer }
   | { method: 'passkeyPrf'; credentialId: ArrayBuffer; prfSalt: ArrayBuffer; iv: ArrayBuffer; wrappedKey: ArrayBuffer }
-  | { method: 'totp'; iv: ArrayBuffer; wrappedKey: ArrayBuffer }
 
 interface CacheEntry {
   key: string
@@ -16,8 +14,8 @@ interface CacheEntry {
 /**
  * Encrypted vault blob. `ciphertext`/`iv` are opaque to everything except the
  * random master key, which is itself only recoverable via one of `wraps`
- * (passphrase, passkey, or TOTP — see crypto/vault.ts). Nothing in this table
- * is ever sent to the backend.
+ * (recovery mnemonic or passkey — see crypto/vault.ts). Nothing in this
+ * table is ever sent to the backend.
  */
 interface VaultRecord {
   id: 'default'
@@ -38,22 +36,10 @@ interface LocalWebAuthnCredential {
   credentialId: ArrayBuffer
 }
 
-/**
- * The enrolled TOTP secret, stored outside the encrypted vault (unlike
- * everything else in it) because it must be readable *before* unlock to
- * derive the `totp` wrap's key — see crypto/vault.ts. Same trust tier as the
- * passkey's public key above: local-only, never exported with backups.
- */
-interface TotpFactor {
-  id: 'default'
-  secretBase32: string
-}
-
 const db = new Dexie('wwwallet') as Dexie & {
   cache: EntityTable<CacheEntry, 'key'>
   vault: EntityTable<VaultRecord, 'id'>
   localWebAuthnCredential: EntityTable<LocalWebAuthnCredential, 'id'>
-  totpFactor: EntityTable<TotpFactor, 'id'>
 }
 
 db.version(1).stores({
@@ -63,5 +49,15 @@ db.version(1).stores({
   totpFactor: 'id',
 })
 
-export type { CacheEntry, VaultRecord, LocalWebAuthnCredential, TotpFactor, KeyWrap }
+// TOTP-based unlock is gone: its wrap key had to be derived from the raw
+// enrolled secret (not the live 6-digit code) to work before the vault was
+// decrypted, which meant that secret had to sit in plaintext locally —
+// anyone with local storage access could unwrap the vault without ever
+// touching an authenticator app. Dropping the table, not just the code path,
+// so that secret can't linger on-disk for anyone still on version 1.
+db.version(2).stores({
+  totpFactor: null,
+})
+
+export type { CacheEntry, VaultRecord, LocalWebAuthnCredential, KeyWrap }
 export { db }

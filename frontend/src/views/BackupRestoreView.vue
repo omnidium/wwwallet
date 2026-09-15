@@ -8,6 +8,8 @@ const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()
 const fileInput = ref<HTMLInputElement | null>(null)
+const restoreWarningOpen = ref(false)
+let pendingRestore: (() => void) | null = null
 
 async function backupToDrive() {
   try {
@@ -47,6 +49,20 @@ async function onFileSelected(event: Event) {
     messages.push((err as Error).message, 'error')
   }
 }
+
+// Restoring overwrites the vault that's currently active on this device, so
+// both paths get a confirmation first rather than replacing everything the
+// instant a file is picked or a Drive backup is found.
+function confirmRestore(action: () => void) {
+  pendingRestore = action
+  restoreWarningOpen.value = true
+}
+
+function proceedWithRestore() {
+  restoreWarningOpen.value = false
+  pendingRestore?.()
+  pendingRestore = null
+}
 </script>
 
 <template>
@@ -63,17 +79,33 @@ async function onFileSelected(event: Event) {
         <v-card class="pa-4">
           <v-card-title class="text-subtitle-1">Google Drive</v-card-title>
           <v-btn class="mb-2" block variant="outlined" @click="backupToDrive">Back up now</v-btn>
-          <v-btn block variant="outlined" @click="restoreFromDrive">Restore latest backup</v-btn>
+          <v-btn block variant="outlined" @click="confirmRestore(restoreFromDrive)">Restore latest backup</v-btn>
         </v-card>
       </v-col>
       <v-col cols="12" md="6">
         <v-card class="pa-4">
           <v-card-title class="text-subtitle-1">Local file</v-card-title>
           <v-btn class="mb-2" block variant="outlined" @click="backupToFile">Download backup file</v-btn>
-          <v-btn block variant="outlined" @click="fileInput?.click()">Restore from file</v-btn>
+          <v-btn block variant="outlined" @click="confirmRestore(() => fileInput?.click())">Restore from file</v-btn>
           <input ref="fileInput" type="file" accept="application/json" hidden @change="onFileSelected" />
         </v-card>
       </v-col>
     </v-row>
+
+    <v-dialog v-model="restoreWarningOpen" max-width="420">
+      <v-card>
+        <v-card-title>Replace your current wallet?</v-card-title>
+        <v-card-text>
+          Restoring overwrites everything currently in this vault — accounts, payees,
+          and settings — with what's in the backup, and removes any passkey set up on
+          this device (you'll re-enable it after unlocking). This can't be undone.
+        </v-card-text>
+        <v-card-actions>
+          <v-btn variant="text" @click="restoreWarningOpen = false">Cancel</v-btn>
+          <v-spacer />
+          <v-btn color="error" @click="proceedWithRestore">Replace it</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>

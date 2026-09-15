@@ -1,13 +1,14 @@
 use std::rc::Rc;
 
 use worker::kv::KvStore;
+use worker::RateLimiter;
 
 use crate::alchemy::AlchemyProvider;
 use crate::cache::{
     self, ADDRESS_ACTIVITY_TTL, CONTRACT_ABI_TTL, FX_RATES_TTL, TOKEN_METADATA_TTL,
 };
 use crate::chain::ChainId;
-use crate::error::ProviderResult;
+use crate::error::{ProviderError, ProviderResult};
 use crate::etherscan::EtherscanProvider;
 use crate::ethplorer::EthplorerProvider;
 use crate::fxrate::FrankfurterProvider;
@@ -44,10 +45,17 @@ pub struct ProviderRegistry {
     allowance: Rc<dyn AllowanceProvider>,
     swap: Rc<dyn SwapQuoteProvider>,
     kv: KvStore,
+    rate_limiter_default: RateLimiter,
+    rate_limiter_broadcast: RateLimiter,
 }
 
 impl ProviderRegistry {
-    pub fn new(config: ProviderConfig, kv: KvStore) -> Self {
+    pub fn new(
+        config: ProviderConfig,
+        kv: KvStore,
+        rate_limiter_default: RateLimiter,
+        rate_limiter_broadcast: RateLimiter,
+    ) -> Self {
         let alchemy = Rc::new(AlchemyProvider::new(config.alchemy_api_key));
         Self {
             activity: alchemy.clone(),
@@ -59,7 +67,46 @@ impl ProviderRegistry {
             fx: Rc::new(FrankfurterProvider::new()),
             swap: Rc::new(ZeroExProvider::new(config.zerox_api_key)),
             kv,
+            rate_limiter_default,
+            rate_limiter_broadcast,
         }
+    }
+
+    /// Every route on this backend proxies to a metered third-party API paid
+    /// for by this deployment's own keys, and CORS (checked below, in the
+    /// router) only stops *browsers* on other origins from reading the
+    /// response — it does nothing to stop a direct HTTP client, so without
+    /// this, anyone who finds the Worker URL could run up the provider bill
+    /// or exhaust free-tier quotas for every real user.
+    ///
+    /// Uses Cloudflare's Rate Limiting binding rather than a KV-backed
+    /// counter deliberately: KV is only eventually consistent (~60s
+    /// propagation), and an earlier version of this confirmed a rapid burst
+    /// of reads can each see the same pre-write count and never throttle at
+    /// all. This binding is built for exactly this instead — Cloudflare
+    /// documents it as itself "permissive, eventually consistent, and
+    /// intentionally...not an accurate accounting system" (local per-colo
+    /// counters, not a global atomic one), confirmed live: a slow trickle of
+    /// requests never tripped it, but a genuinely concurrent burst reliably
+    /// did. That's the right tradeoff for deterring scripted abuse — it isn't
+    /// trying to be a precise quota.
+    pub async fn check_rate_limit(&self, client_ip: &str, route: &str) -> ProviderResult<()> {
+        let outcome = self.rate_limiter_default.limit(format!("{route}:{client_ip}")).await?;
+        if !outcome.success {
+            return Err(ProviderError::RateLimited);
+        }
+        Ok(())
+    }
+
+    /// Broadcasting costs real gas-network RPC quota and, unlike the read
+    /// routes, turns this backend into a relay for transactions that have
+    /// nothing to do with wwwallet — kept on its own, much tighter budget.
+    pub async fn check_broadcast_rate_limit(&self, client_ip: &str) -> ProviderResult<()> {
+        let outcome = self.rate_limiter_broadcast.limit(client_ip.to_string()).await?;
+        if !outcome.success {
+            return Err(ProviderError::RateLimited);
+        }
+        Ok(())
     }
 
     pub async fn address_activity(

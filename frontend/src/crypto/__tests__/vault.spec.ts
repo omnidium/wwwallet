@@ -2,10 +2,10 @@ import { describe, expect, it, beforeEach } from 'vitest'
 import 'fake-indexeddb/auto'
 import {
   createVault,
-  unlockWithPassphrase,
-  unlockWithTotp,
+  unlockWithMnemonic,
+  unlockWithPasskey,
   saveVault,
-  addTotpWrap,
+  addPasskeyWrap,
   removeWrap,
   exportEncryptedVaultBlob,
   importEncryptedVaultBlob,
@@ -16,35 +16,38 @@ import {
 } from '../vault'
 import { db } from '@/services/db'
 
-const FAST_KDF_PARAMS = { memoryKiB: 8, iterations: 1, parallelism: 1 }
-const TOTP_SECRET = 'JBSWY3DPEHPK3PXP'
+const RECOVERY_PHRASE =
+  'correct horse battery staple correct horse battery staple correct horse battery staple'
+const FAKE_CREDENTIAL_ID = new Uint8Array([1, 2, 3, 4])
+const FAKE_PRF_SALT = new Uint8Array([5, 6, 7, 8])
+const FAKE_PRF_SECRET = new Uint8Array(32).fill(9).buffer
 
 describe('vault encryption round-trip', () => {
   beforeEach(async () => {
     await db.vault.clear()
   })
 
-  it('creates a vault and unlocks it with the correct passphrase', async () => {
+  it('creates a vault and unlocks it with the correct recovery phrase', async () => {
     const data: VaultData = {
       wallets: [{ address: '0xabc', label: 'Main', chain: 'ethereum', privateKey: '0x' + '1'.repeat(64) }],
       payees: [],
       settings: { locale: 'en', currency: 'USD' },
     }
-    await createVault('correct horse battery staple', data, FAST_KDF_PARAMS)
+    await createVault(RECOVERY_PHRASE, data)
 
-    const { data: decrypted } = await unlockWithPassphrase('correct horse battery staple')
+    const { data: decrypted } = await unlockWithMnemonic(RECOVERY_PHRASE)
     expect(decrypted).toEqual(data)
   })
 
-  it('rejects the wrong passphrase', async () => {
-    await createVault('correct horse battery staple', { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } }, FAST_KDF_PARAMS)
+  it('rejects the wrong recovery phrase', async () => {
+    await createVault(RECOVERY_PHRASE, { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } })
 
-    await expect(unlockWithPassphrase('wrong passphrase')).rejects.toBeInstanceOf(VaultUnlockError)
+    await expect(unlockWithMnemonic('wrong recovery phrase entirely')).rejects.toBeInstanceOf(VaultUnlockError)
   })
 
   it('persists updates made after unlock', async () => {
     const initial: VaultData = { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } }
-    const key = await createVault('correct horse battery staple', initial, FAST_KDF_PARAMS)
+    const key = await createVault(RECOVERY_PHRASE, initial)
 
     const updated: VaultData = {
       ...initial,
@@ -52,39 +55,44 @@ describe('vault encryption round-trip', () => {
     }
     await saveVault(key, updated)
 
-    const { data } = await unlockWithPassphrase('correct horse battery staple')
+    const { data } = await unlockWithMnemonic(RECOVERY_PHRASE)
     expect(data.payees).toHaveLength(1)
   })
 
-  it('unlocks with TOTP once enrolled, independently of the passphrase', async () => {
+  it('unlocks with a passkey once enrolled, independently of the recovery phrase', async () => {
     const initial: VaultData = { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } }
-    const key = await createVault('correct horse battery staple', initial, FAST_KDF_PARAMS)
-    await addTotpWrap(key, TOTP_SECRET)
+    const key = await createVault(RECOVERY_PHRASE, initial)
+    await addPasskeyWrap(key, FAKE_CREDENTIAL_ID, FAKE_PRF_SALT, FAKE_PRF_SECRET)
 
-    expect(await availableUnlockMethods()).toEqual(expect.arrayContaining(['passphrase', 'totp']))
+    expect(await availableUnlockMethods()).toEqual(expect.arrayContaining(['mnemonic', 'passkeyPrf']))
 
-    const { data } = await unlockWithTotp(TOTP_SECRET)
+    const { data } = await unlockWithPasskey(FAKE_PRF_SECRET)
     expect(data).toEqual(initial)
   })
 
-  it('rejects TOTP unlock once the wrap has been removed', async () => {
-    const key = await createVault('correct horse battery staple', { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } }, FAST_KDF_PARAMS)
-    await addTotpWrap(key, TOTP_SECRET)
-    await removeWrap('totp')
+  it('rejects passkey unlock once the wrap has been removed', async () => {
+    const key = await createVault(RECOVERY_PHRASE, { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } })
+    await addPasskeyWrap(key, FAKE_CREDENTIAL_ID, FAKE_PRF_SALT, FAKE_PRF_SECRET)
+    await removeWrap('passkeyPrf')
 
-    await expect(unlockWithTotp(TOTP_SECRET)).rejects.toBeInstanceOf(UnlockMethodNotEnrolledError)
+    await expect(unlockWithPasskey(FAKE_PRF_SECRET)).rejects.toBeInstanceOf(UnlockMethodNotEnrolledError)
   })
 
-  it('only carries the passphrase wrap through export/import, not TOTP', async () => {
-    const key = await createVault('correct horse battery staple', { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } }, FAST_KDF_PARAMS)
-    await addTotpWrap(key, TOTP_SECRET)
+  it('only carries the recovery-phrase wrap through export/import, not the passkey', async () => {
+    const key = await createVault(RECOVERY_PHRASE, { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } })
+    await addPasskeyWrap(key, FAKE_CREDENTIAL_ID, FAKE_PRF_SALT, FAKE_PRF_SECRET)
 
     const blob = await exportEncryptedVaultBlob()
     await db.vault.clear()
     await importEncryptedVaultBlob(blob)
 
-    expect(await availableUnlockMethods()).toEqual(['passphrase'])
-    const { data } = await unlockWithPassphrase('correct horse battery staple')
+    expect(await availableUnlockMethods()).toEqual(['mnemonic'])
+    const { data } = await unlockWithMnemonic(RECOVERY_PHRASE)
     expect(data.wallets).toEqual([])
+  })
+
+  it('rejects a corrupted or non-backup file on import', async () => {
+    const bogus = new Blob([JSON.stringify({ not: 'a backup' })], { type: 'application/json' })
+    await expect(importEncryptedVaultBlob(bogus)).rejects.toThrow('not a valid wwwallet backup')
   })
 })

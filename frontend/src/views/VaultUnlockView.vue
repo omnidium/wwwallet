@@ -4,31 +4,32 @@ import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { availableUnlockMethods } from '@/crypto/vault'
-import { normalizeMnemonic } from '@/services/mnemonic'
+import { isValidRecoveryMnemonic, normalizeMnemonic } from '@/services/mnemonic'
 
 const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()
 
-const passphrase = ref('')
-const totpCode = ref('')
-const showPassphraseField = ref(false)
+const recoveryPhrase = ref('')
+const showRecoveryPhraseField = ref(false)
 const hasPasskeyWrap = ref(false)
-const hasTotpWrap = ref(false)
 const busy = ref(false)
+
+const recoveryPhraseRules = [
+  (v: string) => !v || isValidRecoveryMnemonic(v) || "That doesn't look like a valid recovery phrase.",
+]
 
 onMounted(async () => {
   const methods = await availableUnlockMethods()
   hasPasskeyWrap.value = methods.includes('passkeyPrf')
-  hasTotpWrap.value = methods.includes('totp')
-  // Neither quick-unlock method is set up — the passphrase is the only option, so show it directly.
-  if (!hasPasskeyWrap.value && !hasTotpWrap.value) showPassphraseField.value = true
+  // No quick-unlock method is set up — the recovery phrase is the only option, so show it directly.
+  if (!hasPasskeyWrap.value) showRecoveryPhraseField.value = true
 })
 
-async function submitPassphrase() {
+async function submitRecoveryPhrase() {
   busy.value = true
   try {
-    await vault.unlockWithPassphrase(normalizeMnemonic(passphrase.value))
+    await vault.unlockWithMnemonic(normalizeMnemonic(recoveryPhrase.value))
     router.push('/')
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -48,20 +49,6 @@ async function submitPasskey() {
     busy.value = false
   }
 }
-
-async function submitTotp() {
-  if (totpCode.value.length !== 6) return
-  busy.value = true
-  try {
-    await vault.unlockWithTotp(totpCode.value)
-    router.push('/')
-  } catch (err) {
-    messages.push((err as Error).message, 'error')
-    totpCode.value = ''
-  } finally {
-    busy.value = false
-  }
-}
 </script>
 
 <template>
@@ -75,34 +62,23 @@ async function submitTotp() {
         </v-btn>
       </v-card-text>
 
-      <v-card-text v-if="hasTotpWrap">
-        <p class="text-body-2 mb-2">Enter your authenticator app code</p>
-        <v-text-field
-          v-model="totpCode"
-          label="6-digit code"
-          maxlength="6"
-          inputmode="numeric"
-          autofocus
-          @update:model-value="submitTotp"
-        />
-      </v-card-text>
-
-      <template v-if="showPassphraseField">
+      <template v-if="showRecoveryPhraseField">
         <v-card-text>
           <v-textarea
-            v-model="passphrase"
+            v-model="recoveryPhrase"
             label="Recovery phrase (24 words)"
             rows="2"
             auto-grow
             autofocus
+            :rules="recoveryPhraseRules"
           />
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block :loading="busy" @click="submitPassphrase">Unlock</v-btn>
+          <v-btn color="primary" block :loading="busy" @click="submitRecoveryPhrase">Unlock</v-btn>
         </v-card-actions>
       </template>
-      <v-card-actions v-else-if="hasPasskeyWrap || hasTotpWrap">
-        <v-btn variant="text" size="small" block @click="showPassphraseField = true">
+      <v-card-actions v-else>
+        <v-btn variant="text" size="small" block @click="showRecoveryPhraseField = true">
           Use recovery phrase instead
         </v-btn>
       </v-card-actions>

@@ -4,12 +4,15 @@ import { useTheme } from 'vuetify'
 import { RouterView, useRoute } from 'vue-router'
 import { useMessagesStore } from '@/stores/messages'
 import { getStoredTheme } from '@/services/theme'
+import { useIdleLock } from '@/composables/useIdleLock'
 import SettingsPanel from '@/components/SettingsPanel.vue'
 
 const messages = useMessagesStore()
 const theme = useTheme()
 const route = useRoute()
 const settingsOpen = ref(false)
+
+useIdleLock()
 
 onMounted(() => {
   theme.global.name.value = getStoredTheme()

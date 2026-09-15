@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import QRCode from 'qrcode'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { PrfNotSupportedError } from '@/services/webauthnLocal'
 import { generateRecoveryMnemonic, recoveryMnemonicWords } from '@/services/mnemonic'
+
+const CLIPBOARD_CLEAR_MS = 45_000
 
 const vault = useVaultStore()
 const messages = useMessagesStore()
@@ -15,9 +16,6 @@ const step = ref<'recoveryPhrase' | 'extras'>('recoveryPhrase')
 const recoveryPhrase = ref(generateRecoveryMnemonic())
 const recoveryPhraseWords = ref(recoveryMnemonicWords(recoveryPhrase.value))
 const savedAck = ref(false)
-const totpUri = ref('')
-const totpQrDataUrl = ref('')
-const totpCode = ref('')
 const restoreFileInput = ref<HTMLInputElement | null>(null)
 const passkeyUnsupported = ref(false)
 const skipWarningOpen = ref(false)
@@ -25,7 +23,17 @@ const skipWarningOpen = ref(false)
 async function copyRecoveryPhrase() {
   try {
     await navigator.clipboard.writeText(recoveryPhrase.value)
-    messages.push('Recovery phrase copied.', 'success')
+    messages.push("Recovery phrase copied — it'll be cleared from your clipboard in 45s.", 'success')
+    setTimeout(async () => {
+      try {
+        // Only clear it if it's still what we put there — don't clobber
+        // something else the user copied in the meantime.
+        const current = await navigator.clipboard.readText()
+        if (current === recoveryPhrase.value) await navigator.clipboard.writeText('')
+      } catch {
+        // Clipboard read access can be denied/unsupported — nothing to do then.
+      }
+    }, CLIPBOARD_CLEAR_MS)
   } catch {
     messages.push('Could not copy automatically — select and copy the words manually.', 'warning')
   }
@@ -77,19 +85,8 @@ async function addPasskey() {
   }
 }
 
-async function startTotpEnrollment() {
-  const { provisioningUri } = vault.enrollTotp()
-  totpUri.value = provisioningUri
-  totpQrDataUrl.value = await QRCode.toDataURL(provisioningUri, { width: 220, margin: 1 })
-}
-
-async function confirmTotp() {
-  const ok = await vault.confirmTotpEnrollment(totpCode.value)
-  messages.push(ok ? 'Authenticator app unlock is ready.' : 'Incorrect code — try again.', ok ? 'success' : 'error')
-}
-
 function finish() {
-  if (!vault.hasPasskey && !vault.totpEnabled) {
+  if (!vault.hasPasskey) {
     skipWarningOpen.value = true
     return
   }
@@ -104,10 +101,10 @@ function finish() {
         <v-card-title>Create your wallet</v-card-title>
         <v-card-text>
           This is your <strong>recovery phrase</strong>. It encrypts everything on this
-          device and is the only way back in if you ever lose access to a passkey or
-          authenticator app — including restoring a backup on a new device. Write it down
-          or copy it somewhere safe, offline. You won't need it day-to-day once quick
-          unlock is set up on the next screen, and wwwallet will never show it to you again.
+          device and is the only way back in if you ever lose access to your passkey —
+          including restoring a backup on a new device. Write it down or copy it
+          somewhere safe, offline. You won't need it day-to-day once quick unlock is set
+          up on the next screen, and wwwallet will never show it to you again.
         </v-card-text>
         <v-card-text>
           <v-sheet class="pa-3" rounded="lg" color="surface-variant" variant="tonal" data-testid="recovery-phrase">
@@ -154,8 +151,7 @@ function finish() {
       <template v-else>
         <v-card-title>Set up quick unlock</v-card-title>
         <v-card-text class="text-body-2 text-medium-emphasis">
-          Use Face ID/Touch ID or an authenticator app to unlock day-to-day, instead of
-          your recovery phrase. Set up at least one for the best experience.
+          Use Face ID or Touch ID to unlock day-to-day, instead of your recovery phrase.
         </v-card-text>
         <v-card-text>
           <v-btn
@@ -169,30 +165,9 @@ function finish() {
             {{ vault.hasPasskey ? 'Face ID / Touch ID enabled' : 'Enable Face ID / Touch ID' }}
           </v-btn>
           <p v-if="passkeyUnsupported" class="text-caption text-error mb-4">
-            Not supported on this device or browser — use an authenticator app instead.
+            Not supported on this device or browser — you can still unlock with your
+            recovery phrase, or try again later from Settings.
           </p>
-
-          <v-btn
-            v-if="!totpUri"
-            variant="outlined"
-            block
-            prepend-icon="mdi-cellphone-key"
-            @click="startTotpEnrollment"
-            :disabled="vault.totpEnabled"
-          >
-            {{ vault.totpEnabled ? 'Authenticator app enabled' : 'Set up an authenticator app' }}
-          </v-btn>
-          <template v-else>
-            <p class="text-caption mb-2">Scan this with your authenticator app:</p>
-            <div class="d-flex justify-center mb-2">
-              <v-img v-if="totpQrDataUrl" :src="totpQrDataUrl" width="220" height="220" />
-            </div>
-            <p class="text-caption text-medium-emphasis mb-2" style="word-break: break-all">
-              Can't scan? Enter this manually: {{ totpUri }}
-            </p>
-            <v-text-field v-model="totpCode" label="Enter the 6-digit code" maxlength="6" inputmode="numeric" class="mt-2" />
-            <v-btn variant="outlined" block @click="confirmTotp">Confirm code</v-btn>
-          </template>
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block @click="finish">Done</v-btn>
@@ -204,8 +179,8 @@ function finish() {
       <v-card>
         <v-card-title>Skip quick unlock?</v-card-title>
         <v-card-text>
-          Without a passkey or authenticator app, you'll enter your full recovery
-          phrase every time you open wwwallet. You can set this up later from Settings.
+          Without a passkey, you'll enter your full recovery phrase every time you open
+          wwwallet. You can set this up later from Settings.
         </v-card-text>
         <v-card-actions>
           <v-btn variant="text" @click="skipWarningOpen = false">Go back</v-btn>

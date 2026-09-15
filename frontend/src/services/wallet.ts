@@ -4,11 +4,11 @@ import type { WalletAccount } from '@/stores/accounts'
 
 /**
  * Account private keys are stored as plain hex, protected only by the vault's
- * own encryption (master key, unlocked via passkey/TOTP/recovery phrase — see
+ * own encryption (master key, unlocked via passkey or recovery phrase — see
  * crypto/vault.ts) — there's no separate per-account keystore password to
  * type. That used to be an ethers Web3 Secret Storage keystore requiring its
  * own scrypt password, which meant a second secret to remember just to spend
- * funds; the vault unlock is now the only gate, matching how the passkey/TOTP
+ * funds; the vault unlock is now the only gate, matching how the passwordless
  * redesign already treats "vault unlocked" as sufficient authorization.
  */
 export async function createWallet(label: string, chain: ChainSlug): Promise<WalletAccount> {

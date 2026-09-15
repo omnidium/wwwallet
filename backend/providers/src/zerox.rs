@@ -2,7 +2,7 @@ use async_trait::async_trait;
 use serde::Deserialize;
 
 use crate::chain::ChainId;
-use crate::error::ProviderResult;
+use crate::error::{ProviderError, ProviderResult};
 use crate::http;
 use crate::traits::SwapQuoteProvider;
 use crate::types::SwapQuote;
@@ -57,13 +57,17 @@ impl SwapQuoteProvider for ZeroExProvider {
         sell_amount_wei: &str,
         taker_address: &str,
     ) -> ProviderResult<SwapQuote> {
-        let chain_id = chain.eip155_id();
-        let url = format!(
-            "{ZEROX_BASE_URL}/swap/allowance-holder/quote?chainId={chain_id}&sellToken={sell_token}&buyToken={buy_token}&sellAmount={sell_amount_wei}&taker={taker_address}",
-        );
+        let mut url = url::Url::parse(&format!("{ZEROX_BASE_URL}/swap/allowance-holder/quote"))
+            .map_err(|e| ProviderError::InvalidInput(e.to_string()))?;
+        url.query_pairs_mut()
+            .append_pair("chainId", &chain.eip155_id().to_string())
+            .append_pair("sellToken", sell_token)
+            .append_pair("buyToken", buy_token)
+            .append_pair("sellAmount", sell_amount_wei)
+            .append_pair("taker", taker_address);
 
         let quote: ZeroExQuoteResponse = http::get_json_with_headers(
-            &url,
+            url.as_str(),
             &[("0x-api-key", &self.api_key), ("0x-version", "v2")],
         )
         .await?;

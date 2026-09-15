@@ -17,3 +17,31 @@ CORS_ALLOWED_ORIGINS = "https://wwwallet.me,https://www.wwwallet.me,https://main
 [[kv_namespaces]]
 binding = "CACHE"
 id = "d55b9cdf94e74f2c820845159cca7528"
+
+# Every route here is an unauthenticated proxy in front of metered third-party
+# APIs paid for by this deployment's own keys — CORS only stops browsers on
+# other origins from reading the response, not a direct HTTP client, so
+# without a real limiter anyone who finds this Worker's URL could run up the
+# provider bill or exhaust free-tier quotas for every real user. Cloudflare's
+# Rate Limiting binding (not KV) is used deliberately: KV is only eventually
+# consistent (~60s propagation) and reads can serve a stale pre-write value on
+# rapid repeats, which a first attempt at this confirmed doesn't actually
+# throttle a fast burst — this binding is atomic and purpose-built for it.
+# `namespace_id` is just a locally-unique small integer per binding, chosen by
+# us — it's not a KV namespace and doesn't need to be created beforehand.
+[[ratelimits]]
+name = "RATE_LIMITER_DEFAULT"
+namespace_id = "1001"
+[ratelimits.simple]
+limit = 30
+period = 60
+
+# Broadcasting costs real gas-network RPC quota and, unlike the read routes,
+# turns this backend into a relay for transactions that have nothing to do
+# with wwwallet — kept much tighter.
+[[ratelimits]]
+name = "RATE_LIMITER_BROADCAST"
+namespace_id = "1002"
+[ratelimits.simple]
+limit = 5
+period = 60

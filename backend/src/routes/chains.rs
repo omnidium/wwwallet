@@ -1,4 +1,5 @@
 use axum::extract::{Path, State};
+use axum::http::HeaderMap;
 use axum::Json;
 use serde::{Deserialize, Serialize};
 
@@ -8,6 +9,16 @@ use wwwallet_providers::types::{
     AddressActivity, ContractAbi, FxRates, SwapQuote, TokenMetadata, TransactionPrep,
 };
 use wwwallet_providers::ChainId;
+
+fn client_ip(headers: &HeaderMap) -> &str {
+    // Set by Cloudflare's edge itself from the real TCP connection — any
+    // client-supplied copy of this header is stripped/overwritten before the
+    // Worker ever sees the request, so it can't be spoofed.
+    headers
+        .get("cf-connecting-ip")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("unknown")
+}
 
 fn parse_chain(slug: &str) -> Result<ChainId, ApiError> {
     ChainId::from_slug(slug).ok_or_else(|| ApiError::BadRequest(format!("unknown chain '{slug}'")))
@@ -26,8 +37,13 @@ fn validate_address(address: &str) -> Result<(), ApiError> {
 #[worker::send]
 pub async fn address_activity(
     State(state): State<AppState>,
+    headers: HeaderMap,
     Path((chain, address)): Path<(String, String)>,
 ) -> Result<Json<AddressActivity>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "address_activity")
+        .await?;
     let chain = parse_chain(&chain)?;
     validate_address(&address)?;
     Ok(Json(
@@ -38,8 +54,13 @@ pub async fn address_activity(
 #[worker::send]
 pub async fn token_metadata(
     State(state): State<AppState>,
+    headers: HeaderMap,
     Path((chain, address)): Path<(String, String)>,
 ) -> Result<Json<TokenMetadata>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "token_metadata")
+        .await?;
     let chain = parse_chain(&chain)?;
     validate_address(&address)?;
     Ok(Json(state.providers.token_metadata(chain, &address).await?))
@@ -48,8 +69,13 @@ pub async fn token_metadata(
 #[worker::send]
 pub async fn contract_abi(
     State(state): State<AppState>,
+    headers: HeaderMap,
     Path((chain, address)): Path<(String, String)>,
 ) -> Result<Json<ContractAbi>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "contract_abi")
+        .await?;
     let chain = parse_chain(&chain)?;
     validate_address(&address)?;
     Ok(Json(state.providers.contract_abi(chain, &address).await?))
@@ -68,9 +94,14 @@ pub struct BroadcastResponse {
 #[worker::send]
 pub async fn broadcast_transaction(
     State(state): State<AppState>,
+    headers: HeaderMap,
     Path(chain): Path<String>,
     Json(body): Json<BroadcastRequest>,
 ) -> Result<Json<BroadcastResponse>, ApiError> {
+    state
+        .providers
+        .check_broadcast_rate_limit(client_ip(&headers))
+        .await?;
     let chain = parse_chain(&chain)?;
     let raw = body.raw_transaction.trim();
     if !raw.starts_with("0x") || raw.len() < 4 || !raw[2..].chars().all(|c| c.is_ascii_hexdigit()) {
@@ -93,9 +124,14 @@ pub struct TxPrepQuery {
 #[worker::send]
 pub async fn transaction_prep(
     State(state): State<AppState>,
+    headers: HeaderMap,
     Path((chain, from)): Path<(String, String)>,
     axum::extract::Query(query): axum::extract::Query<TxPrepQuery>,
 ) -> Result<Json<TransactionPrep>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "transaction_prep")
+        .await?;
     let chain = parse_chain(&chain)?;
     validate_address(&from)?;
     validate_address(&query.to)?;
@@ -117,9 +153,14 @@ pub struct AllowanceQuery {
 #[worker::send]
 pub async fn allowance(
     State(state): State<AppState>,
+    headers: HeaderMap,
     Path(chain): Path<String>,
     axum::extract::Query(query): axum::extract::Query<AllowanceQuery>,
 ) -> Result<Json<AllowanceResponse>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "allowance")
+        .await?;
     let chain = parse_chain(&chain)?;
     validate_address(&query.token)?;
     validate_address(&query.owner)?;
@@ -148,9 +189,14 @@ pub struct SwapQuoteQuery {
 #[worker::send]
 pub async fn swap_quote(
     State(state): State<AppState>,
+    headers: HeaderMap,
     Path(chain): Path<String>,
     axum::extract::Query(query): axum::extract::Query<SwapQuoteQuery>,
 ) -> Result<Json<SwapQuote>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "swap_quote")
+        .await?;
     let chain = parse_chain(&chain)?;
     validate_address(&query.taker_address)?;
     if query.sell_token.is_empty()
@@ -184,8 +230,13 @@ pub struct FxQuery {
 #[worker::send]
 pub async fn fx_rates(
     State(state): State<AppState>,
+    headers: HeaderMap,
     axum::extract::Query(query): axum::extract::Query<FxQuery>,
 ) -> Result<Json<FxRates>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "fx_rates")
+        .await?;
     let base = query.base.unwrap_or_else(|| "USD".to_string());
     if base.len() != 3 || !base.chars().all(|c| c.is_ascii_alphabetic()) {
         return Err(ApiError::BadRequest(

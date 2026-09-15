@@ -12,7 +12,6 @@ const NATIVE_SENTINEL = 'ETH'
 // The pseudo-address DEX aggregators (including 0x's Swap API) use to mean
 // "the chain's native currency" — there's no real ERC-20 contract for it.
 const NATIVE_PSEUDO_ADDRESS = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
-const MAX_UINT256 = (2n ** 256n - 1n).toString()
 
 function toApiTokenAddress(input: string): string {
   const trimmed = input.trim()
@@ -90,7 +89,10 @@ async function submit() {
         const approveTx = await wallet.signTransaction({
           to: sellToken.value,
           value: '0',
-          data: encodeApprove(quote.value.allowance_target, MAX_UINT256),
+          // Exactly what this swap needs, not an unlimited/infinite approval —
+          // if the swap contract is ever compromised later, it can only ever
+          // move up to this leftover amount, not the account's full balance.
+          data: encodeApprove(quote.value.allowance_target, quote.value.sell_amount),
           nonce: approvePrep.nonce,
           gasLimit: approvePrep.gas_limit,
           gasPrice: approvePrep.gas_price,
@@ -140,6 +142,9 @@ async function submit() {
       <template v-if="quote">
         <v-alert type="info" variant="tonal" class="mb-4">
           Estimated to receive: {{ buyAmountFormatted }} at price {{ quote.price }}
+          <p class="text-caption mt-2 mb-0" style="word-break: break-all">
+            You're signing a transaction to contract {{ quote.to }} (via the 0x aggregator).
+          </p>
         </v-alert>
         <v-btn color="primary" block :loading="busy" @click="submit">Swap</v-btn>
       </template>

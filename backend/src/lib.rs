@@ -37,13 +37,15 @@ async fn fetch(
 
 fn build_provider_registry(env: &Env) -> worker::Result<ProviderRegistry> {
     let kv = env.kv("CACHE")?;
+    let rate_limiter_default = env.rate_limiter("RATE_LIMITER_DEFAULT")?;
+    let rate_limiter_broadcast = env.rate_limiter("RATE_LIMITER_BROADCAST")?;
     let config = ProviderConfig {
         alchemy_api_key: env.secret("ALCHEMY_API_KEY")?.to_string(),
         ethplorer_api_key: env.secret("ETHPLORER_API_KEY")?.to_string(),
         etherscan_api_key: env.secret("ETHERSCAN_API_KEY")?.to_string(),
         zerox_api_key: env.secret("ZEROX_API_KEY")?.to_string(),
     };
-    Ok(ProviderRegistry::new(config, kv))
+    Ok(ProviderRegistry::new(config, kv, rate_limiter_default, rate_limiter_broadcast))
 }
 
 fn build_cors_layer(env: &Env) -> CorsLayer {

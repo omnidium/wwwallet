@@ -8,6 +8,8 @@ pub enum ProviderError {
     Unavailable,
     #[error("invalid input: {0}")]
     InvalidInput(String),
+    #[error("rate limit exceeded")]
+    RateLimited,
 }
 
 pub type ProviderResult<T> = Result<T, ProviderError>;
