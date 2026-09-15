@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, watch, nextTick, onBeforeUnmount } from 'vue'
+import { useI18n } from 'vue-i18n'
 import QrScanner from 'qr-scanner'
 
+const { t } = useI18n()
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits<{
   'update:modelValue': [boolean]
@@ -38,7 +40,7 @@ async function startScanning() {
     )
     await scanner.start()
   } catch {
-    error.value = 'Camera access failed. Check permissions and try again.'
+    error.value = t('qrScanner.cameraError')
   }
 }
 
@@ -58,14 +60,14 @@ onBeforeUnmount(stopScanning)
 <template>
   <v-dialog :model-value="modelValue" @update:model-value="close" max-width="480">
     <v-card>
-      <v-card-title>Scan address QR code</v-card-title>
+      <v-card-title>{{ t('qrScanner.title') }}</v-card-title>
       <v-card-text>
         <v-alert v-if="error" type="error" variant="tonal" class="mb-2">{{ error }}</v-alert>
         <video ref="videoEl" style="width: 100%" />
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn variant="text" @click="close">Cancel</v-btn>
+        <v-btn variant="text" @click="close">{{ t('common.cancel') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -1,1 +1,252 @@
-export default {}
+export default {
+  common: {
+    cancel: 'Abbrechen',
+    save: 'Speichern',
+    done: 'Fertig',
+    goBack: 'Zurück',
+    label: 'Bezeichnung',
+    chain: 'Kette',
+    address: 'Adresse',
+  },
+  nav: {
+    settings: 'Einstellungen',
+    accounts: 'Konten',
+    dismiss: 'Schließen',
+  },
+  accounts: {
+    title: 'Konten',
+    addAccount: 'Konto hinzufügen',
+    empty: 'Noch keine Konten. Fügen Sie eines hinzu, um loszulegen.',
+  },
+  accountDetail: {
+    swap: 'Tauschen',
+    transactions: 'Transaktionen',
+    receiveAria: 'Kryptowährung empfangen',
+    sendAria: 'Kryptowährung senden',
+  },
+  addAccount: {
+    title: 'Konto hinzufügen',
+    tabCreate: 'Neu erstellen',
+    tabMnemonic: 'Import-Mnemonik',
+    tabPrivateKey: 'Privaten Schlüssel importieren',
+    tabKeystore: 'Keystore-Datei importieren',
+    mnemonicLabel: 'Wiederherstellungsphrase (Mnemonik)',
+    privateKeyLabel: 'Privater Schlüssel',
+    keystoreFileLabel: 'JSON-Datei des Keystores',
+    filePasswordLabel: 'Das Passwort für diese Datei',
+    filePasswordHint:
+      'Das Passwort, mit dem diese Keystore-Datei ursprünglich verschlüsselt wurde – kein neues Passwort. Nach dem Import müssen Sie lediglich Ihren Tresor entsperren.',
+    noPasswordHint:
+      'Es ist kein Passwort erforderlich – dieses Konto wird durch die Entsperrmethode Ihres Tresors (Face ID/Touch ID oder Wiederherstellungsphrase) geschützt.',
+    submit: 'Konto hinzufügen',
+  },
+  send: {
+    title: 'Senden',
+    fromLabel: 'Von {label} ({chain})',
+    recipientLabel: 'Empfängeradresse',
+    scanQrAria: 'QR-Code scannen',
+    amountLabel: 'Betrag',
+    submit: 'Senden',
+  },
+  receive: {
+    title: 'Empfangen',
+    defaultAccountLabel: 'Konto',
+    tapToCopy: 'Zum Kopieren antippen',
+    copyAria: 'Adresse kopieren',
+  },
+  swap: {
+    title: 'Tauschen',
+    sellTokenLabel: 'Token verkaufen (Adresse oder ETH für native Token)',
+    buyTokenLabel: 'Adresse zum Kauf von Token',
+    sellAmountLabel: 'Verkaufsbetrag',
+    getQuote: 'Angebot anfordern',
+    estimateText: 'Voraussichtlicher Erlös: {amount} zum Preis von {price}',
+    signingNotice: 'Sie signieren eine Transaktion an {address} (über den 0x-Aggregator).',
+    submit: 'Tauschen',
+  },
+  payees: {
+    title: 'Zahlungsempfänger',
+    add: 'Empfänger hinzufügen',
+    empty: 'Es gibt noch keine Zahlungsempfänger.',
+    deleteAria: '{label} löschen',
+    labelField: 'Bezeichnung',
+    addressField: 'Adresse',
+  },
+  backup: {
+    title: 'Sicherung und Wiederherstellung',
+    intro:
+      'Backups werden auf diesem Gerät verschlüsselt, bevor sie es überhaupt verlassen. Der Server von wwwallet ist dabei zu keinem Zeitpunkt beteiligt – bei der Wiederherstellung auf einem neuen Gerät wird direkt mit Google kommuniziert oder eine lokale Datei gelesen.',
+    googleDriveTitle: 'Google Drive',
+    backUpNow: 'Jetzt sichern',
+    restoreLatest: 'Letzte Sicherung wiederherstellen',
+    localFileTitle: 'Lokale Datei',
+    downloadBackup: 'Sicherungsdatei herunterladen',
+    restoreFromFile: 'Aus Datei wiederherstellen',
+    replaceTitle: 'Möchtest du deine derzeitige Geldbörse austauschen?',
+    replaceBody:
+      'Durch die Wiederherstellung werden alle derzeit in diesem Tresor gespeicherten Daten – Konten, Zahlungsempfänger und Einstellungen – durch den Inhalt der Sicherung überschrieben, und alle auf diesem Gerät eingerichteten Passwörter werden gelöscht (Sie können diese nach dem Entsperren wieder aktivieren). Dieser Vorgang kann nicht rückgängig gemacht werden.',
+    replaceConfirm: 'Ersetze es',
+  },
+  vaultSetup: {
+    createTitle: 'Erstellen Sie Ihre Geldbörse',
+    recoveryExplainer:
+      'Dies ist Ihr {phrase}. Er verschlüsselt alle Daten auf diesem Gerät und ist der einzige Weg zurück, falls Sie jemals den Zugriff auf Ihren Passkey verlieren sollten – auch bei der Wiederherstellung eines Backups auf einem neuen Gerät. Schreibe ihn auf oder speichere ihn an einem sicheren Ort offline. Sobald die Schnellentsperrung auf dem nächsten Bildschirm eingerichtet ist, wirst du ihn im Alltag nicht mehr benötigen, und wwwallet wird ihn dir nie wieder anzeigen.',
+    recoveryExplainerPhrase: 'Wiederherstellungsphrase',
+    copyRecoveryPhrase: 'Wiederherstellungsphrase kopieren',
+    savedAckLabel: 'Ich habe meine Wiederherstellungsphrase an einem sicheren Ort aufbewahrt',
+    createVault: 'Tresor erstellen',
+    haveBackup: 'Hast du schon ein Backup?',
+    restoreFromDrive: 'Aus Google Drive wiederherstellen',
+    restoreFromLocalFile: 'Aus lokaler Datei wiederherstellen',
+    quickUnlockTitle: 'Schnellentsperrung einrichten',
+    quickUnlockBody:
+      'Verwenden Sie im Alltag Face ID oder Touch ID zum Entsperren, anstatt Ihrer Wiederherstellungsphrase.',
+    enablePasskey: 'Face ID / Touch ID aktivieren',
+    passkeyEnabledLabel: 'Face ID / Touch ID aktiviert',
+    passkeyUnsupportedNote:
+      'Auf diesem Gerät oder in diesem Browser nicht unterstützt – Sie können das Gerät dennoch mit Ihrer Wiederherstellungsphrase entsperren oder es später über die Einstellungen erneut versuchen.',
+    skipTitle: '„Schnellentsperren“ überspringen?',
+    skipBody:
+      'Ohne Passwort müssen Sie bei jedem Öffnen von wwwallet Ihre vollständige Wiederherstellungsphrase eingeben. Sie können dies später in den Einstellungen einrichten.',
+    continueAnyway: 'Trotzdem weitermachen',
+  },
+  vaultUnlock: {
+    title: 'wwwallet freischalten',
+    unlockWithPasskey: 'Mit Face ID / Touch ID entsperren',
+    recoveryPhraseLabel: 'Wiederherstellungsphrase (24 Wörter)',
+    unlock: 'Entsperren',
+    useRecoveryInstead: 'Verwenden Sie stattdessen die Wiederherstellungsphrase',
+  },
+  settings: {
+    title: 'Einstellungen',
+    toggleThemeAria: 'Design umschalten',
+    closeAria: 'Einstellungen schließen',
+    lockNow: 'Jetzt sperren',
+    languageLabel: 'Sprache',
+    currencyLabel: 'Währung',
+    securityTitle: 'Sicherheit',
+    securityIntro:
+      'Ihre Wiederherstellungsphrase wird niemals an einem Ort gespeichert, an dem sie Ihnen angezeigt werden könnte – bewahren Sie sie an einem sicheren Ort auf. Face ID / Touch ID ist die schnellste Methode zum täglichen Entsperren; wwwallet sperrt sich außerdem automatisch, wenn es einige Minuten lang nicht benutzt wird.',
+    passkeyLabel: 'Face ID / Touch ID',
+    passkeyEnabled: 'Aktiviert',
+    passkeyNotSetUp: 'Nicht eingerichtet',
+    remove: 'Entfernen',
+    enable: 'Aktivieren',
+    removePasskeyTitle: 'Face ID / Touch ID zur Entsperrung deaktivieren?',
+    removePasskeyBody:
+      'Sie benötigen jedes Mal Ihre vollständige Wiederherstellungsphrase, wenn Sie wwwallet entsperren, bis Sie wieder einen Passkey eingerichtet haben.',
+    removeAnyway: 'Trotzdem entfernen',
+  },
+  transactions: {
+    title: 'Transaktionen',
+    empty: 'Es wurden keine Transaktionen gefunden.',
+    visitAccountFirst: 'Rufen Sie zunächst ein Konto auf, um dessen Transaktionsverlauf zu laden.',
+  },
+  token: {
+    defaultLabel: 'Token',
+  },
+  qrScanner: {
+    title: 'QR-Code scannen',
+    cameraError:
+      'Der Zugriff auf die Kamera ist fehlgeschlagen. Überprüfen Sie die Berechtigungen und versuchen Sie es erneut.',
+  },
+  validation: {
+    amountGreaterThanZero: 'Geben Sie einen Betrag größer als Null ein.',
+    insufficientBalance:
+      'Der zu überweisende Betrag übersteigt den Kontostand des Absenderkontos (einschließlich Überweisungsgebühr).',
+    invalidRecipientAddress: 'Geben Sie eine gültige Empfängeradresse ein.',
+    validTokenOrEth: 'Geben Sie eine gültige Token-Adresse ein oder „ETH“ für native Token.',
+    validBuyToken: 'Geben Sie eine gültige Adresse für den Kauf-Token ein.',
+    labelRequired: 'Die Angabe des Labels ist erforderlich.',
+    validAddress: 'Geben Sie eine gültige Adresse ein.',
+    filePasswordRequired: 'Für diese Datei ist ein Passwort erforderlich.',
+    mnemonicWordCount:
+      'Falsche Wortanzahl ({count}). Es sind entweder 12 oder 24 Wörter erforderlich.',
+    privateKeyRequired: 'Ein privater Schlüssel ist erforderlich.',
+    keystoreFileRequired: 'Wählen Sie eine Keystore-Datei aus.',
+    recoveryPhraseFormat: 'Das sieht nicht nach einer gültigen Wiederherstellungsphrase aus.',
+  },
+  msg: {
+    account: {
+      added: 'Konto hinzugefügt.',
+    },
+    address: {
+      copied: 'Adresse kopiert.',
+    },
+    qr: {
+      noAddress: 'Der QR-Code enthielt keine erkennbare Adresse.',
+    },
+    send: {
+      success: 'Gesendet. Transaktions-Hash: {hash}',
+    },
+    swap: {
+      approvalSubmitted:
+        'Genehmigung eingereicht. Warte, bis sie bestätigt ist, und tausche dann erneut.',
+      success: 'Swap übermittelt. Transaktions-Hash: {hash}',
+    },
+    backup: {
+      driveSuccess: 'Auf Google Drive gesichert.',
+    },
+    restore: {
+      driveSuccess:
+        'Aus Google Drive wiederhergestellt. Entsperren Sie das Gerät mit Ihrer Wiederherstellungsphrase, um fortzufahren.',
+      fileSuccess:
+        'Aus der Datei wiederhergestellt. Entsperren Sie das Gerät mit Ihrer Wiederherstellungsphrase, um fortzufahren.',
+      driveSuccessSetup:
+        'Aus Google Drive wiederhergestellt. Geben Sie Ihre Wiederherstellungsphrase ein, um die Sperre aufzuheben.',
+      fileSuccessSetup:
+        'Aus einer Sicherungsdatei wiederhergestellt. Geben Sie Ihre Wiederherstellungsphrase ein, um die Sperre aufzuheben.',
+    },
+    recoveryPhrase: {
+      copied:
+        'Wiederherstellungsphrase kopiert – sie wird in 45 Sekunden aus Ihrer Zwischenablage gelöscht.',
+      copyFailed:
+        'Das Kopieren konnte nicht automatisch durchgeführt werden – wählen Sie die Wörter aus und kopieren Sie sie manuell.',
+    },
+    passkey: {
+      ready: 'Die Entsperrung per Face ID / Touch ID ist bereit.',
+    },
+  },
+  errors: {
+    unknown: 'Es ist ein unbekannter Fehler aufgetreten.',
+    requestFailed: 'Die Anfrage an {path} ist mit {status} fehlgeschlagen',
+    webauthnUnavailable: 'WebAuthn ist in diesem Browser nicht verfügbar.',
+    passkeyRegistrationCancelled: 'Die Registrierung des Passworts wurde storniert.',
+    passkeyNoPrfSecret: 'Der Passkey hat kein PRF-Geheimnis zurückgegeben.',
+    passkeyUnlockCancelled: 'Die Entsperrung per Passwort wurde abgebrochen',
+    prfNotSupported:
+      'Dieses Gerät oder dieser Browser unterstützt die passwortlose Entsperrung per Passkey (WebAuthn PRF) nicht. Sie können das Gerät weiterhin mit Ihrer Wiederherstellungsphrase entsperren oder es mit einem anderen Gerät bzw. Browser versuchen.',
+    googleDriveNotConfigured:
+      'Die Google Drive-Sicherung ist nicht konfiguriert (VITE_GOOGLE_CLIENT_ID fehlt)',
+    gisLoadFailed: 'Google Identity Services konnte nicht geladen werden',
+    googleSignInCancelled: 'Die Google-Anmeldung wurde abgebrochen',
+    googleDriveSearchFailed: 'Die Suche in Google Drive ist fehlgeschlagen',
+    googleDriveUploadFailed:
+      'Das Hochladen der Sicherungskopie auf Google Drive ist fehlgeschlagen.',
+    googleDriveNoBackup: 'In diesem Google-Konto wurde kein Backup gefunden.',
+    googleDriveDownloadFailed:
+      'Das Herunterladen der Sicherungskopie von Google Drive ist fehlgeschlagen.',
+    noVaultOnDevice: 'Auf diesem Gerät ist kein Tresor vorhanden.',
+    cannotSaveNoVault: 'Speichern nicht möglich: Es gibt noch keinen Tresor.',
+    noRecoveryWrapToExport:
+      'Der Tresor enthält keine Wiederherstellungsphrase, die exportiert werden könnte.',
+    invalidBackupFile: 'Diese Datei ist keine gültige wwwallet-Sicherung.',
+    vaultUnlockFailed: 'Falsche Wiederherstellungsphrase oder beschädigter Tresor.',
+    unlockMethodNotEnrolled: '{method} ist für diesen Tresor nicht eingerichtet.',
+    passkeyNotSetUp: 'Für diesen Tresor wurde kein Passkey eingerichtet.',
+    vaultLocked: 'Der Tresor ist verschlossen.',
+    chooseKeystoreFile: 'Wählen Sie eine Keystore-Datei aus',
+  },
+  currency: {
+    USD: 'US-Dollar',
+    EUR: 'Euro',
+    GBP: 'Britisches Pfund',
+    AUD: 'Australischer Dollar',
+    CAD: 'Kanadischer Dollar',
+    JPY: 'Japanischer Yen',
+    CHF: 'Schweizer Franken',
+    CNH: 'Yuan',
+    SEK: 'Schwedische Krone',
+    NZD: 'Neuseeland-Dollar',
+  },
+}

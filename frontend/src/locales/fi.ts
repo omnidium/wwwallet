@@ -1,1 +1,243 @@
-export default {}
+export default {
+  common: {
+    cancel: 'Peruuta',
+    save: 'Tallenna',
+    done: 'Valmis',
+    goBack: 'Palaa takaisin',
+    label: 'Etiketti',
+    chain: 'Ketju',
+    address: 'Osoite',
+  },
+  nav: {
+    settings: 'Asetukset',
+    accounts: 'Tilit',
+    dismiss: 'Hylkää',
+  },
+  accounts: {
+    title: 'Tilit',
+    addAccount: 'Lisää tili',
+    empty: 'Tilejä ei vielä ole. Lisää tili, jotta pääset alkuun.',
+  },
+  accountDetail: {
+    swap: 'Vaihda',
+    transactions: 'Tapahtumat',
+    receiveAria: 'Vastaanota kryptovaluuttaa',
+    sendAria: 'Lähetä kryptovaluuttaa',
+  },
+  addAccount: {
+    title: 'Lisää tili',
+    tabCreate: 'Luo uusi',
+    tabMnemonic: 'Tuonnin muistisääntö',
+    tabPrivateKey: 'Tuo yksityinen avain',
+    tabKeystore: 'Tuo avainvarastotiedosto',
+    mnemonicLabel: 'Palautuslause (muistisääntö)',
+    privateKeyLabel: 'Yksityinen avain',
+    keystoreFileLabel: 'Keystore-JSON-tiedosto',
+    filePasswordLabel: 'Tämän tiedoston salasana',
+    filePasswordHint:
+      'Salasana, jolla tämä avainvarastotiedosto on alun perin salattu – ei uusi salasana. Kun tiedosto on tuotu, sinun tarvitsee vain avata salaus.',
+    noPasswordHint:
+      'Salasanaa ei tarvita — tätä tiliä suojaa säilytyslokerosi oma avausmenetelmä (Face ID/Touch ID tai palautuslause).',
+    submit: 'Lisää tili',
+  },
+  send: {
+    title: 'Lähetä',
+    fromLabel: 'Lähettäjä: {label} ({chain})',
+    recipientLabel: 'Vastaanottajan osoite',
+    scanQrAria: 'Skannaa QR-koodi',
+    amountLabel: 'Määrä',
+    submit: 'Lähetä',
+  },
+  receive: {
+    title: 'Vastaanota',
+    defaultAccountLabel: 'Tili',
+    tapToCopy: 'Napauta kopioidaksesi',
+    copyAria: 'Kopioi osoite',
+  },
+  swap: {
+    title: 'Vaihto',
+    sellTokenLabel: 'Myy token (osoite tai ETH, jos kyseessä on natiivitoken)',
+    buyTokenLabel: 'Tokenin ostosoite',
+    sellAmountLabel: 'Myyntimäärä',
+    getQuote: 'Pyydä tarjous',
+    estimateText: 'Arvioitu saatu summa: {amount} hintaan {price}',
+    signingNotice:
+      'Olet allekirjoittamassa tapahtumaa, joka koskee {address}:ta (0x-aggregaattorin kautta).',
+    submit: 'Vaihda',
+  },
+  payees: {
+    title: 'Maksunsaajat',
+    add: 'Lisää maksunsaaja',
+    empty: 'Maksunsaajia ei ole vielä.',
+    deleteAria: 'Poista {label}',
+    labelField: 'Etiketti',
+    addressField: 'Osoite',
+  },
+  backup: {
+    title: 'Varmuuskopiointi ja palautus',
+    intro:
+      'Varmuuskopiot salataan tällä laitteella ennen kuin ne siirretään laitteelta pois. wwwalletin palvelinta ei käytetä lainkaan — palautus uudelle laitteelle tapahtuu suoraan Googlen kautta tai lukemalla paikallista tiedostoa.',
+    googleDriveTitle: 'Google Drive',
+    backUpNow: 'Tee varmuuskopio nyt',
+    restoreLatest: 'Palauta uusin varmuuskopio',
+    localFileTitle: 'Paikallinen tiedosto',
+    downloadBackup: 'Lataa varmuuskopiotiedosto',
+    restoreFromFile: 'Palauta tiedostosta',
+    replaceTitle: 'Haluatko vaihtaa nykyisen lompakkosi?',
+    replaceBody:
+      'Palautus korvaa kaikki tällä hetkellä tässä tallennustilassa olevat tiedot – tilit, maksunsaajat ja asetukset – varmuuskopion sisällöllä ja poistaa laitteelle määritetyn salasanan (voit ottaa sen uudelleen käyttöön lukituksen avaamisen jälkeen). Tätä ei voi peruuttaa.',
+    replaceConfirm: 'Vaihda se',
+  },
+  vaultSetup: {
+    createTitle: 'Luo lompakkosi',
+    recoveryExplainer:
+      'Tämä on sinun {phrase}. Se salaa kaiken tällä laitteella, ja se on ainoa tapa päästä takaisin laitteeseen, jos menetät joskus pääsykoodisi – myös varmuuskopion palauttaminen uudelle laitteelle. Kirjoita se muistiin tai kopioi se johonkin turvalliseen paikkaan, offline-tilassa. Et tarvitse sitä päivittäisessä käytössä, kun pikaluvun avaus on määritetty seuraavalla näytöllä, eikä wwwallet näytä sitä sinulle enää koskaan.',
+    recoveryExplainerPhrase: 'palautuslause',
+    copyRecoveryPhrase: 'Kopioi palautuslause',
+    savedAckLabel: 'Olen tallentanut palautuslauseeni turvalliseen paikkaan',
+    createVault: 'Luo säilytystila',
+    haveBackup: 'Onko sinulla jo varmuuskopio?',
+    restoreFromDrive: 'Palauta Google Drivesta',
+    restoreFromLocalFile: 'Palauta paikallisesta tiedostosta',
+    quickUnlockTitle: 'Nopean lukituksen avaamisen määrittäminen',
+    quickUnlockBody:
+      'Käytä Face ID:tä tai Touch ID:tä laitteen lukituksen avaamiseen päivittäin palautuslauseen sijaan.',
+    enablePasskey: 'Ota Face ID / Touch ID käyttöön',
+    passkeyEnabledLabel: 'Face ID / Touch ID käytössä',
+    passkeyUnsupportedNote:
+      'Tätä laitetta tai selainta ei tueta — voit silti avata lukituksen palautuslauseellasi tai yrittää myöhemmin uudelleen Asetuksista.',
+    skipTitle: 'Ohitetaanko pikaluvun avaus?',
+    skipBody:
+      'Ilman salasanaa joudut syöttämään koko palautuslauseen joka kerta, kun avaat wwwallet-sovelluksen. Voit määrittää tämän myöhemmin Asetukset-valikosta.',
+    continueAnyway: 'Jatka silti',
+  },
+  vaultUnlock: {
+    title: 'Avaa wwwallet',
+    unlockWithPasskey: 'Avaa lukitus Face ID:llä / Touch ID:llä',
+    recoveryPhraseLabel: 'Palautuslause (24 sanaa)',
+    unlock: 'Avaa lukitus',
+    useRecoveryInstead: 'Käytä sen sijaan palautuslauseita',
+  },
+  settings: {
+    title: 'Asetukset',
+    toggleThemeAria: 'Vaihda teemaa',
+    closeAria: 'Sulje asetukset',
+    lockNow: 'Lukitse nyt',
+    languageLabel: 'Kieli',
+    currencyLabel: 'Valuutta',
+    securityTitle: 'Turvallisuus',
+    securityIntro:
+      'Palautuslauseesi ei tallenneta mihinkään, mistä se voitaisiin näyttää sinulle – säilytä se turvallisessa paikassa. Face ID / Touch ID on nopein tapa avata laite päivittäisessä käytössä; wwwallet lukittuu myös automaattisesti, kun sitä ei ole käytetty muutamaan minuuttiin.',
+    passkeyLabel: 'Face ID / Touch ID',
+    passkeyEnabled: 'Käytössä',
+    passkeyNotSetUp: 'Ei määritetty',
+    remove: 'Poista',
+    enable: 'Ota käyttöön',
+    removePasskeyTitle: 'Poistetaanko Face ID- tai Touch ID -lukituksen avaus?',
+    removePasskeyBody:
+      'Tarvitset koko palautuslauseesi joka kerta, kun avaat wwwallet-sovelluksen, kunnes olet määrittänyt salasanan uudelleen.',
+    removeAnyway: 'Poista joka tapauksessa',
+  },
+  transactions: {
+    title: 'Tapahtumat',
+    empty: 'Tapahtumia ei löytynyt.',
+    visitAccountFirst: 'Käy ensin tilillä, jotta sen tapahtumahistoria latautuu.',
+  },
+  token: {
+    defaultLabel: 'Tunnus',
+  },
+  qrScanner: {
+    title: 'Skannaa osoitteen QR-koodi',
+    cameraError: 'Kameran käyttö epäonnistui. Tarkista käyttöoikeudet ja yritä uudelleen.',
+  },
+  validation: {
+    amountGreaterThanZero: 'Syötä nollasta suurempi luku.',
+    insufficientBalance:
+      'Lähetettävä summa on suurempi kuin lähettäjän tilin saldo (mukaan lukien siirtomaksu).',
+    invalidRecipientAddress: 'Syötä kelvollinen vastaanottajan osoite.',
+    validTokenOrEth: 'Syötä kelvollinen token-osoite tai ETH, jos kyseessä on alkuperäinen token.',
+    validBuyToken: 'Syötä kelvollinen ostotunnuksen osoite.',
+    labelRequired: 'Kuvaus on pakollinen.',
+    validAddress: 'Syötä kelvollinen osoite.',
+    filePasswordRequired: 'Tämän tiedoston avaamiseen tarvitaan salasana.',
+    mnemonicWordCount: 'Sanojen määrä on virheellinen ({count}). Vaaditaan joko 12 tai 24 sanaa.',
+    privateKeyRequired: 'Yksityinen avain vaaditaan.',
+    keystoreFileRequired: 'Valitse avainvarastotiedosto.',
+    recoveryPhraseFormat: 'Tuo ei näytä kelvolliselta palautuslauseelta.',
+  },
+  msg: {
+    account: {
+      added: 'Tili lisätty.',
+    },
+    address: {
+      copied: 'Osoite kopioitu.',
+    },
+    qr: {
+      noAddress: 'QR-koodissa ei ollut tunnistettavaa osoitetta.',
+    },
+    send: {
+      success: 'Lähetetty. Tapahtuman hajautusarvo: {hash}',
+    },
+    swap: {
+      approvalSubmitted:
+        'Hyväksyntä on lähetetty. Odota, kunnes se vahvistetaan, ja vaihda sitten uudelleen.',
+      success: 'Vaihto lähetetty. Tapahtuman hajautusarvo: {hash}',
+    },
+    backup: {
+      driveSuccess: 'Varmuuskopioitu Google Driveen.',
+    },
+    restore: {
+      driveSuccess: 'Palautettu Google Drivesta. Avaa lukitus palautuslauseellasi jatkaaksesi.',
+      fileSuccess: 'Palautettu tiedostosta. Avaa lukitus palautuslauseellasi jatkaaksesi.',
+      driveSuccessSetup: 'Palautettu Google Drivesta. Syötä palautuslause avataksesi lukituksen.',
+      fileSuccessSetup: 'Palautettu tiedostosta. Syötä palautuslause avataksesi lukituksen.',
+    },
+    recoveryPhrase: {
+      copied: 'Palautuslause on kopioitu — se poistetaan leikepöydältäsi 45 sekunnin kuluttua.',
+      copyFailed:
+        'Kopiointia ei voitu suorittaa automaattisesti — valitse ja kopioi sanat manuaalisesti.',
+    },
+    passkey: {
+      ready: 'Face ID- ja Touch ID -lukituksen avaus on valmis.',
+    },
+  },
+  errors: {
+    unknown: 'Tapahtui tuntematon virhe',
+    requestFailed: '{path}-pyyntö epäonnistui virheen {status} vuoksi',
+    webauthnUnavailable: 'WebAuthn ei ole käytettävissä tässä selaimessa',
+    passkeyRegistrationCancelled: 'salasanan rekisteröinti peruutettiin',
+    passkeyNoPrfSecret: 'salasana ei paljastanut PRF-salaisuutta',
+    passkeyUnlockCancelled: 'salasanan avaaminen peruutettiin',
+    prfNotSupported:
+      'Tämä laite tai selain ei tue salasanatonta avaamista avainlauseella (WebAuthn PRF). Voit silti avata laitteen palautuslauseella tai kokeilla toista laitetta tai selainta.',
+    googleDriveNotConfigured:
+      'Google Drive -varmuuskopiointia ei ole määritetty (VITE_GOOGLE_CLIENT_ID puuttuu)',
+    gisLoadFailed: 'Google Identity Services -palvelua ei voitu ladata',
+    googleSignInCancelled: 'Google-kirjautuminen peruutettiin',
+    googleDriveSearchFailed: 'Google Driven haku epäonnistui',
+    googleDriveUploadFailed: 'Varmuuskopion lataaminen Google Driveen epäonnistui',
+    googleDriveNoBackup: 'tästä Google-tilistä ei löytynyt varmuuskopiota',
+    googleDriveDownloadFailed: 'Varmuuskopion lataaminen Google Drivesta epäonnistui',
+    noVaultOnDevice: 'Tässä laitteessa ei ole tallennustilaa',
+    cannotSaveNoVault: 'Tallennus epäonnistui: tallennustilaa ei ole vielä olemassa',
+    noRecoveryWrapToExport: 'vaultissa ei ole vientiin tarkoitettua palautuslauseen kiertoa',
+    invalidBackupFile: 'Tämä tiedosto ei ole kelvollinen wwwallet-varmuuskopio.',
+    vaultUnlockFailed: 'Virheellinen palautuslause tai vioittunut tallennustila.',
+    unlockMethodNotEnrolled: '{method}:ta ei ole määritetty tälle säilytystilalle.',
+    passkeyNotSetUp: 'Tälle tallelokerolle ei ole määritetty salasanaa.',
+    vaultLocked: 'holvi on lukittu',
+    chooseKeystoreFile: 'valitse avainvarastotiedosto',
+  },
+  currency: {
+    USD: 'Yhdysvaltain dollari',
+    EUR: 'Euro',
+    GBP: 'Englannin punta',
+    AUD: 'Australian dollari',
+    CAD: 'Kanadan dollari',
+    JPY: 'Japanin jeni',
+    CHF: 'Sveitsin frangi',
+    CNH: 'Yuan',
+    SEK: 'Ruotsin kruunu',
+    NZD: 'Uuden-Seelannin dollari',
+  },
+}

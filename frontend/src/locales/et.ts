@@ -1,1 +1,242 @@
-export default {}
+export default {
+  common: {
+    cancel: 'Tühista',
+    save: 'Salvesta',
+    done: 'Valmis',
+    goBack: 'Tagasi',
+    label: 'Silt',
+    chain: 'Ahel',
+    address: 'Aadress',
+  },
+  nav: {
+    settings: 'Seaded',
+    accounts: 'Kontod',
+    dismiss: 'Sulge',
+  },
+  accounts: {
+    title: 'Kontod',
+    addAccount: 'Lisa konto',
+    empty: 'Kontosid pole veel. Lisa üks, et alustada.',
+  },
+  accountDetail: {
+    swap: 'Vahetus',
+    transactions: 'Tehingud',
+    receiveAria: 'Krüptovaluuta vastuvõtmine',
+    sendAria: 'Saada krüptovaluuta',
+  },
+  addAccount: {
+    title: 'Lisa konto',
+    tabCreate: 'Loo uus',
+    tabMnemonic: 'Mnemoonika importimine',
+    tabPrivateKey: 'Privaatvõtme importimine',
+    tabKeystore: 'Keystore-faili importimine',
+    mnemonicLabel: 'Taastamislause (mnemonika)',
+    privateKeyLabel: 'Privaatvõti',
+    keystoreFileLabel: 'Võtmehoidla JSON-fail',
+    filePasswordLabel: 'Selle faili parool',
+    filePasswordHint:
+      'Parool, millega see võtmehoidlafail algselt krüpteeriti – mitte uus parool. Pärast importimist peate vaid oma hoiukoha lukust lahti tegema.',
+    noPasswordHint:
+      'Parooli pole vaja – seda kontot kaitseb teie hoiukasti enda avamismeetod (Face ID/Touch ID või taastamislause).',
+    submit: 'Lisa konto',
+  },
+  send: {
+    title: 'Saada',
+    fromLabel: 'Allikas: {label} ({chain})',
+    recipientLabel: 'Saaja aadress',
+    scanQrAria: 'Skanni QR-kood',
+    amountLabel: 'Summa',
+    submit: 'Saada',
+  },
+  receive: {
+    title: 'Võta vastu',
+    defaultAccountLabel: 'Konto',
+    tapToCopy: 'Kopige puudutades',
+    copyAria: 'Kopeeri aadress',
+  },
+  swap: {
+    title: 'Vahetus',
+    sellTokenLabel: 'Müü tokenit (aadress või ETH, kui tegemist on platvormi omaga)',
+    buyTokenLabel: "Token'i aadressi ostmine",
+    sellAmountLabel: 'Müügisumma',
+    getQuote: 'Küsi hinnapakkumist',
+    estimateText: 'Eeldatav saadav summa: {amount} hinnaga {price}',
+    signingNotice: 'Sa allkirjastad tehingut {address}-ga (0x-agregaatori kaudu).',
+    submit: 'Vahetus',
+  },
+  payees: {
+    title: 'Saajad',
+    add: 'Lisa makse saaja',
+    empty: 'Saajaid pole veel.',
+    deleteAria: 'Kustuta {label}',
+    labelField: 'Silt',
+    addressField: 'Aadress',
+  },
+  backup: {
+    title: 'Varundamine ja taastamine',
+    intro:
+      'Varukoopiad krüpteeritakse selles seadmes enne, kui need sealt üldse väljuvad. wwwallet’i serverit ei kaasata kunagi – taastamine uues seadmes toimub otse Google’iga suheldes või kohalikust failist lugedes.',
+    googleDriveTitle: 'Google Drive',
+    backUpNow: 'Tee kohe varukoopia',
+    restoreLatest: 'Taasta viimane varukoopia',
+    localFileTitle: 'Kohalik fail',
+    downloadBackup: 'Lae varukoopiafail alla',
+    restoreFromFile: 'Taasta failist',
+    replaceTitle: 'Kas soovite oma praeguse rahakoti välja vahetada?',
+    replaceBody:
+      'Taastamine asendab kogu selles hoiukambris hetkel oleva sisu – kontod, makse saajad ja seaded – varukoopia sisuga ning eemaldab kõik sellel seadmel seadistatud paroolid (saate need pärast lukustuse avamist uuesti aktiveerida). Seda toimingut ei saa tagasi võtta.',
+    replaceConfirm: 'Vaheta see välja',
+  },
+  vaultSetup: {
+    createTitle: 'Loo oma rahakott',
+    recoveryExplainer:
+      'See on sinu {phrase}. See krüpteerib kõik selle seadme andmed ja on ainus viis seadmesse tagasi pääsemiseks, kui peaksid kunagi oma parooli kaotama – sealhulgas varukoopia taastamisel uuele seadmele. Kirjuta see üles või kopeeri kuhugi turvalisse kohta, mis on võrguväliselt kättesaadav. Kui järgmisel ekraanil on kiiravamine seadistatud, ei vaja sa seda igapäevaselt enam ja wwwallet ei näita seda sulle enam kunagi.',
+    recoveryExplainerPhrase: 'taastamissõnad',
+    copyRecoveryPhrase: 'Kopeeri taastamislause',
+    savedAckLabel: 'Olen oma taastamislause turvalisse kohta salvestanud',
+    createVault: 'Loo hoiukamber',
+    haveBackup: 'Kas sul on juba varukoopia olemas?',
+    restoreFromDrive: 'Taasta Google Drive’ist',
+    restoreFromLocalFile: 'Taasta kohalikust failist',
+    quickUnlockTitle: 'Kiiravamise seadistamine',
+    quickUnlockBody:
+      'Kasuta igapäevaseks lukust avamiseks Face ID-d või Touch ID-d, mitte taastusfraasi.',
+    enablePasskey: 'Luba Face ID / Touch ID',
+    passkeyEnabledLabel: 'Face ID / Touch ID on aktiveeritud',
+    passkeyUnsupportedNote:
+      'Seda seadet või brauserit ei toetata — saad ikkagi lukustuse avada taastamislause abil või proovida hiljem uuesti menüüs „Seaded”.',
+    skipTitle: 'Kiiravamist vahele jätta?',
+    skipBody:
+      'Ilma pääsukoodita pead sisestama iga kord, kui avad wwwallet, oma täieliku taastamislause. Selle saad hiljem seadistada menüüs „Seaded”.',
+    continueAnyway: 'Jätka ikkagi',
+  },
+  vaultUnlock: {
+    title: 'wwwallet avamine',
+    unlockWithPasskey: 'Ava Face ID / Touch ID abil',
+    recoveryPhraseLabel: 'Taastamislause (24 sõna)',
+    unlock: 'Ava',
+    useRecoveryInstead: 'Kasuta selle asemel taastamislauset',
+  },
+  settings: {
+    title: 'Seaded',
+    toggleThemeAria: 'Teema vahetamine',
+    closeAria: 'Sulge seaded',
+    lockNow: 'Lukusta kohe',
+    languageLabel: 'Keel',
+    currencyLabel: 'Valuuta',
+    securityTitle: 'Turvalisus',
+    securityIntro:
+      'Teie taastamislause ei salvestata kunagi kuhugi, kust seda teile näidataks – hoidke seda turvalises kohas. Face ID / Touch ID on kiireim viis igapäevaseks lukust avamiseks; wwwallet lukustub ka ise automaatselt mõne minuti pärast, kui seda ei kasutata.',
+    passkeyLabel: 'Face ID / Touch ID',
+    passkeyEnabled: 'Lülitatud sisse',
+    passkeyNotSetUp: 'Ei ole seadistatud',
+    remove: 'Eemalda',
+    enable: 'Luba',
+    removePasskeyTitle: 'Kas eemaldada Face ID / Touch ID lukustuse avamine?',
+    removePasskeyBody:
+      'Kuni uue parooli seadistamiseni peate wwwallet’i lukust lahtimurdmiseks iga kord sisestama kogu taastamislause.',
+    removeAnyway: 'Kustuta ikkagi',
+  },
+  transactions: {
+    title: 'Tehingud',
+    empty: 'Tehinguid ei leitud.',
+    visitAccountFirst: 'Külasta kõigepealt kontot, et laadida selle tehingute ajalugu.',
+  },
+  token: {
+    defaultLabel: 'Token',
+  },
+  qrScanner: {
+    title: 'Skaneeri aadressi QR-kood',
+    cameraError: 'Kaamerale juurdepääs ebaõnnestus. Kontrolli õigusi ja proovi uuesti.',
+  },
+  validation: {
+    amountGreaterThanZero: 'Sisestage nullist suurem summa.',
+    insufficientBalance: 'Saadetav summa ületab saatja konto saldo (sh tehingutasu).',
+    invalidRecipientAddress: 'Sisestage kehtiv saaja aadress.',
+    validTokenOrEth: 'Sisestage kehtiv tokeni aadress või „ETH”, kui kasutate algset valuutat.',
+    validBuyToken: 'Sisestage kehtiv ostutokeni aadress.',
+    labelRequired: 'Silt on kohustuslik.',
+    validAddress: 'Sisestage kehtiv aadress.',
+    filePasswordRequired: 'Selle faili avamiseks on vaja parooli.',
+    mnemonicWordCount: 'Ebaõige sõnade arv ({count}). Nõutav on kas 12 või 24 sõna.',
+    privateKeyRequired: 'Vaja on privaatvõtit.',
+    keystoreFileRequired: 'Valige võtmehoidla fail.',
+    recoveryPhraseFormat: 'See ei tundu olevat kehtiv taastamislause.',
+  },
+  msg: {
+    account: {
+      added: 'Konto on lisatud.',
+    },
+    address: {
+      copied: 'Aadress on kopeeritud.',
+    },
+    qr: {
+      noAddress: 'QR-kood ei sisaldanud äratuntavat aadressi.',
+    },
+    send: {
+      success: 'Saadetud. Tehingu hash: {hash}',
+    },
+    swap: {
+      approvalSubmitted:
+        'Heakskiit on esitatud. Oota, kuni see kinnitatakse, ja vaheta siis uuesti.',
+      success: 'Vahetus on esitatud. Tehingu hash: {hash}',
+    },
+    backup: {
+      driveSuccess: 'Varundatud Google Drive’i.',
+    },
+    restore: {
+      driveSuccess: 'Taastatud Google Drive’ist. Jätkamiseks avage see oma taastamislause abil.',
+      fileSuccess: 'Taastatud failist. Jätkamiseks avage seade oma taastusfraasiga.',
+      driveSuccessSetup:
+        'Taastatud Google Drive’ist. Sisesta taastamislause, et lukustus eemaldada.',
+      fileSuccessSetup: 'Taastatud failist. Sisesta taastamislause, et lukustus tühistada.',
+    },
+    recoveryPhrase: {
+      copied: 'Taastamislause on kopeeritud — see kustutatakse su lõikelaudalt 45 sekundi pärast.',
+      copyFailed:
+        'Automaatset kopeerimist ei õnnestunud – vali sõnad välja ja kopeeri need käsitsi.',
+    },
+    passkey: {
+      ready: 'Face ID / Touch ID abil lukustuse avamine on valmis.',
+    },
+  },
+  errors: {
+    unknown: 'Tekkis tundmatu viga',
+    requestFailed: '{path}-le esitatud päring ebaõnnestus veaga {status}',
+    webauthnUnavailable: 'WebAuthn ei ole selles brauseris saadaval',
+    passkeyRegistrationCancelled: 'salasõna registreerimine tühistati',
+    passkeyNoPrfSecret: 'passkey ei andnud tagasi PRF-salasõna',
+    passkeyUnlockCancelled: 'salasõna abil avamine tühistati',
+    prfNotSupported:
+      'See seade või brauser ei toeta paroolivaba avamist võtme abil (WebAuthn PRF). Saad end siiski avada taastamislause abil või proovida teist seadet/brauserit.',
+    googleDriveNotConfigured:
+      'Google Drive’i varundust ei ole seadistatud (puudub VITE_GOOGLE_CLIENT_ID)',
+    gisLoadFailed: 'Google’i identiteediteenuste laadimine ebaõnnestus',
+    googleSignInCancelled: 'Google’i sisselogimine tühistati',
+    googleDriveSearchFailed: 'Google Drive’i otsing ebaõnnestus',
+    googleDriveUploadFailed: 'varukoopia üleslaadimine Google Drive’i ebaõnnestus',
+    googleDriveNoBackup: 'selles Google’i kontos ei leitud ühtegi varukoopiat',
+    googleDriveDownloadFailed: 'Google Drive’ist varukoopia allalaadimine ebaõnnestus',
+    noVaultOnDevice: 'selles seadmes pole hoiukambrit',
+    cannotSaveNoVault: 'Salvestamine ei õnnestu: hoiukambrit pole veel olemas',
+    noRecoveryWrapToExport: 'vaultil puudub eksportimiseks vajalik taastamislause',
+    invalidBackupFile: 'See fail ei ole kehtiv wwwallet-varukoopia.',
+    vaultUnlockFailed: 'Vale taastamislause või rikutud hoiukamber.',
+    unlockMethodNotEnrolled: '{method} pole selle hoiukambri jaoks seadistatud.',
+    passkeyNotSetUp: 'Selle hoiukambri jaoks pole parooli määratud.',
+    vaultLocked: 'seif on lukus',
+    chooseKeystoreFile: 'valige võtmehoidla fail',
+  },
+  currency: {
+    USD: 'USA dollar',
+    EUR: 'euro',
+    GBP: 'Naelsterling',
+    AUD: 'Austraalia dollar',
+    CAD: 'Kanada dollar',
+    JPY: 'Jaapani jeen',
+    CHF: 'Šveitsi frank',
+    CNH: 'jüaan',
+    SEK: 'Rootsi kroon',
+    NZD: 'Uus-Meremaa dollar',
+  },
+}

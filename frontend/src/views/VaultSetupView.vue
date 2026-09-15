@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
@@ -8,6 +9,7 @@ import { generateRecoveryMnemonic, recoveryMnemonicWords } from '@/services/mnem
 
 const CLIPBOARD_CLEAR_MS = 45_000
 
+const { t } = useI18n()
 const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()
@@ -23,7 +25,7 @@ const skipWarningOpen = ref(false)
 async function copyRecoveryPhrase() {
   try {
     await navigator.clipboard.writeText(recoveryPhrase.value)
-    messages.push("Recovery phrase copied — it'll be cleared from your clipboard in 45s.", 'success')
+    messages.push(t('msg.recoveryPhrase.copied'), 'success')
     setTimeout(async () => {
       try {
         // Only clear it if it's still what we put there — don't clobber
@@ -35,7 +37,7 @@ async function copyRecoveryPhrase() {
       }
     }, CLIPBOARD_CLEAR_MS)
   } catch {
-    messages.push('Could not copy automatically — select and copy the words manually.', 'warning')
+    messages.push(t('msg.recoveryPhrase.copyFailed'), 'warning')
   }
 }
 
@@ -52,7 +54,7 @@ async function createVault() {
 async function restoreFromDrive() {
   try {
     await vault.restoreFromDrive()
-    messages.push('Restored from Google Drive. Enter your recovery phrase to unlock.', 'success')
+    messages.push(t('msg.restore.driveSuccessSetup'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -64,7 +66,7 @@ async function onRestoreFileSelected(event: Event) {
   if (!file) return
   try {
     await vault.restoreFromFile(file)
-    messages.push('Restored from file. Enter your recovery phrase to unlock.', 'success')
+    messages.push(t('msg.restore.fileSuccessSetup'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -74,7 +76,7 @@ async function onRestoreFileSelected(event: Event) {
 async function addPasskey() {
   try {
     await vault.registerPasskey('wwwallet')
-    messages.push('Face ID / Touch ID unlock is ready.', 'success')
+    messages.push(t('msg.passkey.ready'), 'success')
   } catch (err) {
     if (err instanceof PrfNotSupportedError) {
       passkeyUnsupported.value = true
@@ -98,13 +100,11 @@ function finish() {
   <v-container class="fill-height d-flex align-center justify-center">
     <v-card width="480" class="pa-4">
       <template v-if="step === 'recoveryPhrase'">
-        <v-card-title>Create your wallet</v-card-title>
+        <v-card-title>{{ t('vaultSetup.createTitle') }}</v-card-title>
         <v-card-text>
-          This is your <strong>recovery phrase</strong>. It encrypts everything on this
-          device and is the only way back in if you ever lose access to your passkey —
-          including restoring a backup on a new device. Write it down or copy it
-          somewhere safe, offline. You won't need it day-to-day once quick unlock is set
-          up on the next screen, and wwwallet will never show it to you again.
+          <i18n-t keypath="vaultSetup.recoveryExplainer" tag="span">
+            <template #phrase><strong>{{ t('vaultSetup.recoveryExplainerPhrase') }}</strong></template>
+          </i18n-t>
         </v-card-text>
         <v-card-text>
           <v-sheet class="pa-3" rounded="lg" color="surface-variant" variant="tonal" data-testid="recovery-phrase">
@@ -116,27 +116,27 @@ function finish() {
             </v-row>
           </v-sheet>
           <v-btn class="mt-3" variant="outlined" block prepend-icon="mdi-content-copy" @click="copyRecoveryPhrase">
-            Copy recovery phrase
+            {{ t('vaultSetup.copyRecoveryPhrase') }}
           </v-btn>
           <v-checkbox
             v-model="savedAck"
             class="mt-2"
             density="compact"
             hide-details
-            label="I've saved my recovery phrase somewhere safe"
+            :label="t('vaultSetup.savedAckLabel')"
           />
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block :disabled="!savedAck" @click="createVault">Create vault</v-btn>
+          <v-btn color="primary" block :disabled="!savedAck" @click="createVault">{{ t('vaultSetup.createVault') }}</v-btn>
         </v-card-actions>
 
         <v-divider class="my-4" />
 
-        <v-card-text class="text-subtitle-2 pb-0">Already have a backup?</v-card-text>
+        <v-card-text class="text-subtitle-2 pb-0">{{ t('vaultSetup.haveBackup') }}</v-card-text>
         <v-card-actions class="flex-column">
-          <v-btn variant="outlined" block @click="restoreFromDrive">Restore from Google Drive</v-btn>
+          <v-btn variant="outlined" block @click="restoreFromDrive">{{ t('vaultSetup.restoreFromDrive') }}</v-btn>
           <v-btn variant="outlined" block class="mt-2" @click="restoreFileInput?.click()">
-            Restore from local file
+            {{ t('vaultSetup.restoreFromLocalFile') }}
           </v-btn>
           <input
             ref="restoreFileInput"
@@ -149,9 +149,9 @@ function finish() {
       </template>
 
       <template v-else>
-        <v-card-title>Set up quick unlock</v-card-title>
+        <v-card-title>{{ t('vaultSetup.quickUnlockTitle') }}</v-card-title>
         <v-card-text class="text-body-2 text-medium-emphasis">
-          Use Face ID or Touch ID to unlock day-to-day, instead of your recovery phrase.
+          {{ t('vaultSetup.quickUnlockBody') }}
         </v-card-text>
         <v-card-text>
           <v-btn
@@ -162,30 +162,28 @@ function finish() {
             @click="addPasskey"
             :disabled="vault.hasPasskey || passkeyUnsupported"
           >
-            {{ vault.hasPasskey ? 'Face ID / Touch ID enabled' : 'Enable Face ID / Touch ID' }}
+            {{ vault.hasPasskey ? t('vaultSetup.passkeyEnabledLabel') : t('vaultSetup.enablePasskey') }}
           </v-btn>
           <p v-if="passkeyUnsupported" class="text-caption text-error mb-4">
-            Not supported on this device or browser — you can still unlock with your
-            recovery phrase, or try again later from Settings.
+            {{ t('vaultSetup.passkeyUnsupportedNote') }}
           </p>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block @click="finish">Done</v-btn>
+          <v-btn color="primary" block @click="finish">{{ t('common.done') }}</v-btn>
         </v-card-actions>
       </template>
     </v-card>
 
     <v-dialog v-model="skipWarningOpen" max-width="420">
       <v-card>
-        <v-card-title>Skip quick unlock?</v-card-title>
+        <v-card-title>{{ t('vaultSetup.skipTitle') }}</v-card-title>
         <v-card-text>
-          Without a passkey, you'll enter your full recovery phrase every time you open
-          wwwallet. You can set this up later from Settings.
+          {{ t('vaultSetup.skipBody') }}
         </v-card-text>
         <v-card-actions>
-          <v-btn variant="text" @click="skipWarningOpen = false">Go back</v-btn>
+          <v-btn variant="text" @click="skipWarningOpen = false">{{ t('common.goBack') }}</v-btn>
           <v-spacer />
-          <v-btn color="primary" @click="router.push('/')">Continue anyway</v-btn>
+          <v-btn color="primary" @click="router.push('/')">{{ t('vaultSetup.continueAnyway') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

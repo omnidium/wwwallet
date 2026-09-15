@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { usePayeesStore } from '@/stores/payees'
 import { isValidAddress } from '@/services/wallet'
 import type { ChainSlug } from '@/services/api'
 
+const { t } = useI18n()
 const payees = usePayeesStore()
 
 const dialogOpen = ref(false)
@@ -13,8 +15,8 @@ const address = ref('')
 const chain = ref<ChainSlug>('ethereum')
 const chains: ChainSlug[] = ['ethereum', 'polygon', 'arbitrum', 'base', 'optimism']
 
-const labelRules = [(v: string) => !!v.trim() || 'Label is required.']
-const addressRules = [(v: string) => isValidAddress(v.trim()) || 'Enter a valid address.']
+const labelRules = [(v: string) => !!v.trim() || t('validation.labelRequired')]
+const addressRules = [(v: string) => isValidAddress(v.trim()) || t('validation.validAddress')]
 
 function openDialog() {
   label.value = ''
@@ -42,35 +44,35 @@ async function remove(id: string) {
 <template>
   <v-container>
     <v-row justify="space-between" align="center">
-      <h1 class="text-h5">Payees</h1>
-      <v-btn color="primary" @click="openDialog">Add payee</v-btn>
+      <h1 class="text-h5">{{ t('payees.title') }}</h1>
+      <v-btn color="primary" @click="openDialog">{{ t('payees.add') }}</v-btn>
     </v-row>
 
     <v-alert v-if="payees.payees.length === 0" type="info" variant="tonal" class="mt-4">
-      No payees yet.
+      {{ t('payees.empty') }}
     </v-alert>
     <v-list v-else>
       <v-list-item v-for="payee in payees.payees" :key="payee.id" :title="payee.label" :subtitle="`${payee.address} (${payee.chain})`">
         <template #append>
-          <v-btn icon="mdi-delete" variant="text" :aria-label="`Delete ${payee.label}`" @click="remove(payee.id)" />
+          <v-btn icon="mdi-delete" variant="text" :aria-label="t('payees.deleteAria', { label: payee.label })" @click="remove(payee.id)" />
         </template>
       </v-list-item>
     </v-list>
 
     <v-dialog v-model="dialogOpen" max-width="480">
       <v-card class="pa-4">
-        <v-card-title>Add payee</v-card-title>
+        <v-card-title>{{ t('payees.add') }}</v-card-title>
         <v-card-text>
           <v-form v-model="formValid">
-            <v-text-field v-model="label" label="Label" :rules="labelRules" />
-            <v-text-field v-model="address" label="Address" :rules="addressRules" />
-            <v-select v-model="chain" :items="chains" label="Chain" />
+            <v-text-field v-model="label" :label="t('payees.labelField')" :rules="labelRules" />
+            <v-text-field v-model="address" :label="t('payees.addressField')" :rules="addressRules" />
+            <v-select v-model="chain" :items="chains" :label="t('common.chain')" />
           </v-form>
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn variant="text" @click="dialogOpen = false">Cancel</v-btn>
-          <v-btn color="primary" :disabled="!formValid" @click="save">Save</v-btn>
+          <v-btn variant="text" @click="dialogOpen = false">{{ t('common.cancel') }}</v-btn>
+          <v-btn color="primary" :disabled="!formValid" @click="save">{{ t('common.save') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { formatUnits, parseUnits } from 'ethers'
 import { api, type ChainSlug, type SwapQuote } from '@/services/api'
@@ -26,6 +27,7 @@ async function resolveDecimals(chain: ChainSlug, tokenAddress: string): Promise<
   return metadata.decimals ?? 18
 }
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const accounts = useAccountsStore()
@@ -44,10 +46,10 @@ const busy = ref(false)
 const quoteFormValid = ref(false)
 
 const sellTokenRules = [
-  (v: string) => v.trim().toUpperCase() === NATIVE_SENTINEL || isValidAddress(v.trim()) || 'Enter a valid token address, or ETH for native.',
+  (v: string) => v.trim().toUpperCase() === NATIVE_SENTINEL || isValidAddress(v.trim()) || t('validation.validTokenOrEth'),
 ]
-const buyTokenRules = [(v: string) => isValidAddress(v.trim()) || 'Enter a valid buy token address.']
-const sellAmountRules = [(v: string) => (!!v && Number(v) > 0) || 'Enter an amount greater than zero.']
+const buyTokenRules = [(v: string) => isValidAddress(v.trim()) || t('validation.validBuyToken')]
+const sellAmountRules = [(v: string) => (!!v && Number(v) > 0) || t('validation.amountGreaterThanZero')]
 
 async function getQuote() {
   if (!quoteFormValid.value) return
@@ -99,7 +101,7 @@ async function submit() {
           chainId: approvePrep.chain_id,
         })
         await api.broadcastTransaction(chain, approveTx)
-        messages.push('Approval submitted. Wait for it to confirm, then swap again.', 'info')
+        messages.push(t('msg.swap.approvalSubmitted'), 'info')
         return
       }
     }
@@ -115,7 +117,7 @@ async function submit() {
       chainId: prep.chain_id,
     })
     const { transaction_hash } = await api.broadcastTransaction(chain, signedTx)
-    messages.push(`Swap submitted. Transaction hash: ${transaction_hash}`, 'success')
+    messages.push(t('msg.swap.success', { hash: transaction_hash }), 'success')
     router.push(`/accounts/${chain}/${address}`)
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -127,26 +129,26 @@ async function submit() {
 
 <template>
   <v-container>
-    <h1 class="text-h5">Swap</h1>
-    <p class="text-medium-emphasis mb-4">From {{ account?.label ?? address }} ({{ chain }})</p>
+    <h1 class="text-h5">{{ t('swap.title') }}</h1>
+    <p class="text-medium-emphasis mb-4">{{ t('send.fromLabel', { label: account?.label ?? address, chain }) }}</p>
 
     <v-card class="pa-4" max-width="480">
       <v-form v-model="quoteFormValid">
-        <v-text-field v-model="sellToken" label="Sell token (address, or ETH for native)" :rules="sellTokenRules" />
-        <v-text-field v-model="buyToken" label="Buy token address" :rules="buyTokenRules" />
-        <v-text-field v-model="sellAmount" label="Sell amount" type="number" min="0" step="any" :rules="sellAmountRules" />
+        <v-text-field v-model="sellToken" :label="t('swap.sellTokenLabel')" :rules="sellTokenRules" />
+        <v-text-field v-model="buyToken" :label="t('swap.buyTokenLabel')" :rules="buyTokenRules" />
+        <v-text-field v-model="sellAmount" :label="t('swap.sellAmountLabel')" type="number" min="0" step="any" :rules="sellAmountRules" />
 
-        <v-btn variant="outlined" block class="mb-4" :disabled="!quoteFormValid" :loading="busy" @click="getQuote">Get quote</v-btn>
+        <v-btn variant="outlined" block class="mb-4" :disabled="!quoteFormValid" :loading="busy" @click="getQuote">{{ t('swap.getQuote') }}</v-btn>
       </v-form>
 
       <template v-if="quote">
         <v-alert type="info" variant="tonal" class="mb-4">
-          Estimated to receive: {{ buyAmountFormatted }} at price {{ quote.price }}
+          {{ t('swap.estimateText', { amount: buyAmountFormatted, price: quote.price }) }}
           <p class="text-caption mt-2 mb-0" style="word-break: break-all">
-            You're signing a transaction to contract {{ quote.to }} (via the 0x aggregator).
+            {{ t('swap.signingNotice', { address: quote.to }) }}
           </p>
         </v-alert>
-        <v-btn color="primary" block :loading="busy" @click="submit">Swap</v-btn>
+        <v-btn color="primary" block :loading="busy" @click="submit">{{ t('swap.submit') }}</v-btn>
       </template>
     </v-card>
   </v-container>

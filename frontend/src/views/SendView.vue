@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { parseUnits } from 'ethers'
 import { api, type ChainSlug } from '@/services/api'
@@ -10,6 +11,7 @@ import { useChainDataStore } from '@/stores/chainData'
 import { isValidAddress, unlockWalletForSigning } from '@/services/wallet'
 import QrScannerDialog from '@/components/QrScannerDialog.vue'
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const accounts = useAccountsStore()
@@ -36,13 +38,13 @@ const nativeBalance = computed(() => {
 })
 
 const amountRules = [
-  (v: string) => (!!v && Number(v) > 0) || 'Enter an amount greater than zero.',
+  (v: string) => (!!v && Number(v) > 0) || t('validation.amountGreaterThanZero'),
   (v: string) =>
     nativeBalance.value === null ||
     Number(v) <= nativeBalance.value ||
-    'Amount to send is more than the FROM account balance (including transaction fee).',
+    t('validation.insufficientBalance'),
 ]
-const addressRules = [(v: string) => isValidAddress(v.trim()) || 'Enter a valid recipient address.']
+const addressRules = [(v: string) => isValidAddress(v.trim()) || t('validation.invalidRecipientAddress')]
 
 onMounted(async () => {
   try {
@@ -60,7 +62,7 @@ function pickPayee(payeeAddress: string) {
 function onQrDecoded(data: string) {
   const match = data.match(/0x[a-fA-F0-9]{40}/)
   if (!match) {
-    messages.push('QR code did not contain a recognizable address.', 'warning')
+    messages.push(t('msg.qr.noAddress'), 'warning')
     return
   }
   to.value = match[0]
@@ -85,7 +87,7 @@ async function submit() {
     })
 
     const { transaction_hash } = await api.broadcastTransaction(chain, signedTx)
-    messages.push(`Sent. Transaction hash: ${transaction_hash}`, 'success')
+    messages.push(t('msg.send.success', { hash: transaction_hash }), 'success')
     router.push(`/accounts/${chain}/${address}`)
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -97,17 +99,17 @@ async function submit() {
 
 <template>
   <v-container>
-    <h1 class="text-h5">Send</h1>
-    <p class="text-medium-emphasis mb-4">From {{ account?.label ?? address }} ({{ chain }})</p>
+    <h1 class="text-h5">{{ t('send.title') }}</h1>
+    <p class="text-medium-emphasis mb-4">{{ t('send.fromLabel', { label: account?.label ?? address, chain }) }}</p>
 
     <v-card class="pa-4" max-width="480">
       <v-form v-model="formValid">
-        <v-text-field v-model="to" label="Recipient address" :rules="addressRules">
+        <v-text-field v-model="to" :label="t('send.recipientLabel')" :rules="addressRules">
           <template #append-inner>
             <v-icon
               icon="mdi-qrcode-scan"
               role="button"
-              aria-label="Scan QR code"
+              :aria-label="t('send.scanQrAria')"
               style="cursor: pointer"
               @click="scannerOpen = true"
             />
@@ -120,9 +122,9 @@ async function submit() {
           </v-chip>
         </v-chip-group>
 
-        <v-text-field v-model="amount" label="Amount" type="number" min="0" step="any" :rules="amountRules" />
+        <v-text-field v-model="amount" :label="t('send.amountLabel')" type="number" min="0" step="any" :rules="amountRules" />
 
-        <v-btn color="primary" block class="mt-2" :disabled="!formValid" :loading="busy" @click="submit">Send</v-btn>
+        <v-btn color="primary" block class="mt-2" :disabled="!formValid" :loading="busy" @click="submit">{{ t('send.submit') }}</v-btn>
       </v-form>
     </v-card>
 

@@ -1,1 +1,243 @@
-export default {}
+export default {
+  common: {
+    cancel: 'Prekliči',
+    save: 'Shrani',
+    done: 'Končano',
+    goBack: 'Nazaj',
+    label: 'Oznaka',
+    chain: 'Veriga',
+    address: 'Naslov',
+  },
+  nav: {
+    settings: 'Nastavitve',
+    accounts: 'Računi',
+    dismiss: 'Zavrni',
+  },
+  accounts: {
+    title: 'Računi',
+    addAccount: 'Dodaj račun',
+    empty: 'Še ni nobenega računa. Dodajte enega, da lahko začnete.',
+  },
+  accountDetail: {
+    swap: 'Zamenjava',
+    transactions: 'Transakcije',
+    receiveAria: 'Prejmi kriptovaluto',
+    sendAria: 'Pošlji kriptovaluto',
+  },
+  addAccount: {
+    title: 'Dodaj račun',
+    tabCreate: 'Ustvari novo',
+    tabMnemonic: 'Uvoz mnemonika',
+    tabPrivateKey: 'Uvoz zasebnega ključa',
+    tabKeystore: 'Uvozi datoteko s ključnico',
+    mnemonicLabel: 'Obnovitvena fraza (mnemonična fraza)',
+    privateKeyLabel: 'Zasebni ključ',
+    keystoreFileLabel: 'JSON-datoteka s ključnico',
+    filePasswordLabel: 'Geslo za to datoteko',
+    filePasswordHint:
+      'Geslo, s katerim je bila ta datoteka s ključnico prvotno šifrirana – ne novo geslo. Po uvozu boste morali le odkleniti svoj trezor.',
+    noPasswordHint:
+      'Geslo ni potrebno — ta račun je zaščiten z načinom odklepanja vašega trezorja (Face ID/Touch ID ali obnovitvena fraza).',
+    submit: 'Dodaj račun',
+  },
+  send: {
+    title: 'Pošlji',
+    fromLabel: 'Od {label} ({chain})',
+    recipientLabel: 'Naslov prejemnika',
+    scanQrAria: 'Poskeniraj QR-kodo',
+    amountLabel: 'Znesek',
+    submit: 'Pošlji',
+  },
+  receive: {
+    title: 'Prejmi',
+    defaultAccountLabel: 'Račun',
+    tapToCopy: 'Tapni za kopiranje',
+    copyAria: 'Kopiraj naslov',
+  },
+  swap: {
+    title: 'Zamenjava',
+    sellTokenLabel: 'Prodaja tokena (naslov ali ETH za lastni token)',
+    buyTokenLabel: 'Naslov za nakup tokena',
+    sellAmountLabel: 'Znesek prodaje',
+    getQuote: 'Pridobite ponudbo',
+    estimateText: 'Predvideni prihodek: {amount} po ceni {price}',
+    signingNotice:
+      'Podpisujete transakcijo za sklenitev pogodbe z {address} (prek agregatorja 0x).',
+    submit: 'Zamenjava',
+  },
+  payees: {
+    title: 'Prejemniki plačil',
+    add: 'Dodaj prejemnika plačila',
+    empty: 'Zaenkrat še ni prejemnikov plačil.',
+    deleteAria: 'Izbriši {label}',
+    labelField: 'Oznaka',
+    addressField: 'Naslov',
+  },
+  backup: {
+    title: 'Varnostno kopiranje in obnovitev',
+    intro:
+      'Varnostne kopije se na tej napravi šifrirajo, še preden jo zapustijo. Strežnik wwwallet ni nikoli vključen v ta proces – pri obnovitvi na novi napravi se vzpostavi neposredna povezava z Googlom ali se prebere lokalna datoteka.',
+    googleDriveTitle: 'Google Drive',
+    backUpNow: 'Naredi varnostno kopijo zdaj',
+    restoreLatest: 'Obnovi najnovejšo varnostno kopijo',
+    localFileTitle: 'Lokalna datoteka',
+    downloadBackup: 'Prenesi varnostno kopijo',
+    restoreFromFile: 'Obnovi iz datoteke',
+    replaceTitle: 'Želite zamenjati svojo trenutno denarnico?',
+    replaceBody:
+      'Obnova bo vse trenutno vsebovano v tem trezoru – račune, prejemnike plačil in nastavitve – nadomestila z vsebino varnostne kopije ter odstranila morebitno geslo, nastavljeno na tej napravi (to boste ponovno omogočili po odklepanju). Te dejavnosti ni mogoče razveljaviti.',
+    replaceConfirm: 'Zamenjaj ga',
+  },
+  vaultSetup: {
+    createTitle: 'Ustvarite svoj denarnik',
+    recoveryExplainer:
+      'To je vaš {phrase}. Šifrira vse na tej napravi in je edini način za ponovni dostop, če kdaj izgubite dostop do gesla – vključno z obnovitvijo varnostne kopije na novi napravi. Zapišite si ga ali ga shranite na varno mesto brez internetne povezave. Ko boste na naslednjem zaslonu nastavili hitro odklepanje, ga v vsakdanjem življenju ne boste več potrebovali, wwwallet pa vam ga ne bo nikoli več prikazal.',
+    recoveryExplainerPhrase: 'varnostna fraza',
+    copyRecoveryPhrase: 'Kopiraj obnovitveno geslo',
+    savedAckLabel: 'Svojo geslo za obnovitev sem shranil na varno mesto',
+    createVault: 'Ustvari trezor',
+    haveBackup: 'Imate že varnostno kopijo?',
+    restoreFromDrive: 'Obnovi iz Google Drive',
+    restoreFromLocalFile: 'Obnovi iz lokalne datoteke',
+    quickUnlockTitle: 'Nastavi hitro odklepanje',
+    quickUnlockBody:
+      'Za vsakodnevno odklepanje uporabljajte Face ID ali Touch ID namesto svoje geselske fraze.',
+    enablePasskey: 'Vklopi Face ID / Touch ID',
+    passkeyEnabledLabel: 'Podpira Face ID / Touch ID',
+    passkeyUnsupportedNote:
+      'Na tej napravi ali v tem brskalniku to ni podprto — še vedno se lahko odkleneš s svojo obnovitveno frazo ali poskusiš kasneje v nastavitvah.',
+    skipTitle: 'Preskoči hitro odklepanje?',
+    skipBody:
+      'Brez gesla boste morali vsakič, ko odprete aplikacijo wwwallet, vnesti celotno obnovitveno frazo. To lahko nastavite kasneje v nastavitvah.',
+    continueAnyway: 'Kljub temu nadaljuj',
+  },
+  vaultUnlock: {
+    title: 'Odkleni wwwallet',
+    unlockWithPasskey: 'Odkleni z Face ID / Touch ID',
+    recoveryPhraseLabel: 'Geslo za obnovitev (24 besed)',
+    unlock: 'Odkleni',
+    useRecoveryInstead: 'Namesto tega uporabite obnovitveno frazo',
+  },
+  settings: {
+    title: 'Nastavitve',
+    toggleThemeAria: 'Preklopi temo',
+    closeAria: 'Zapri nastavitve',
+    lockNow: 'Zakleni zdaj',
+    languageLabel: 'Jezik',
+    currencyLabel: 'Valuta',
+    securityTitle: 'Varnost',
+    securityIntro:
+      'Vaša obnovitvena fraza ni nikjer shranjena tako, da bi vam jo lahko prikazali – shranite jo na varno mesto. Face ID / Touch ID je najhitrejši način za vsakodnevno odklepanje; wwwallet se po nekaj minutah nedejavnosti samodejno zaklene.',
+    passkeyLabel: 'Face ID / Touch ID',
+    passkeyEnabled: 'Omogočeno',
+    passkeyNotSetUp: 'Ni nastavljeno',
+    remove: 'Odstrani',
+    enable: 'Omogoči',
+    removePasskeyTitle: 'Odstraniti odklepanje s Face ID / Touch ID?',
+    removePasskeyBody:
+      'Vsakič, ko boste odklenili wwwallet, boste potrebovali celotno obnovitveno frazo, dokler ne boste ponovno nastavili gesla.',
+    removeAnyway: 'Kljub temu odstrani',
+  },
+  transactions: {
+    title: 'Transakcije',
+    empty: 'Transakcij ni bilo najdenih.',
+    visitAccountFirst: 'Najprej obiščite račun, da naložite njegovo zgodovino transakcij.',
+  },
+  token: {
+    defaultLabel: 'Žeton',
+  },
+  qrScanner: {
+    title: 'Poskeniraj QR-kodo naslova',
+    cameraError: 'Dostop do kamere ni uspel. Preverite dovoljenja in poskusite znova.',
+  },
+  validation: {
+    amountGreaterThanZero: 'Vnesite znesek, večji od nič.',
+    insufficientBalance:
+      'Znesek za nakazilo presega stanje na izhodnem računu (vključno s provizijo za transakcijo).',
+    invalidRecipientAddress: 'Vnesite veljaven naslov prejemnika.',
+    validTokenOrEth: 'Vnesite veljaven naslov žetona ali ETH za nativni žeton.',
+    validBuyToken: 'Vnesite veljaven naslov za nakup žetona.',
+    labelRequired: 'Oznaka je obvezna.',
+    validAddress: 'Vnesite veljaven naslov.',
+    filePasswordRequired: 'Za to datoteko je potrebno geslo.',
+    mnemonicWordCount: 'Nepravilno število besed ({count}). Zahteva se 12 ali 24 besed.',
+    privateKeyRequired: 'Potreben je zasebni ključ.',
+    keystoreFileRequired: 'Izberite datoteko s ključi.',
+    recoveryPhraseFormat: 'To ne izgleda kot veljavna gesla za obnovitev.',
+  },
+  msg: {
+    account: {
+      added: 'Račun je bil dodan.',
+    },
+    address: {
+      copied: 'Naslov je bil kopiran.',
+    },
+    qr: {
+      noAddress: 'QR-koda ni vsebovala prepoznavnega naslova.',
+    },
+    send: {
+      success: 'Poslano. Hash transakcije: {hash}',
+    },
+    swap: {
+      approvalSubmitted:
+        'Zahtevek za odobritev je bil poslan. Počakajte na potrditev, nato pa ponovno zamenjajte.',
+      success: 'Zamenjava je bila poslana. Hash transakcije: {hash}',
+    },
+    backup: {
+      driveSuccess: 'Varnostna kopija je shranjena v Google Drive.',
+    },
+    restore: {
+      driveSuccess: 'Obnovljeno iz Google Drive. Za nadaljevanje odkleni z geslom za obnovitev.',
+      fileSuccess: 'Obnovljeno iz datoteke. Za nadaljevanje odkleni z obnovitveno frazo.',
+      driveSuccessSetup:
+        'Obnovljeno iz Google Drive. Za odklepanje vnesite svojo obnovitveno frazo.',
+      fileSuccessSetup: 'Obnovljeno iz datoteke. Za odklepanje vnesite svojo obnovitveno frazo.',
+    },
+    recoveryPhrase: {
+      copied: 'Geslo za obnovitev je bilo kopirano — v 45 sekundah bo izbrisano iz odložišča.',
+      copyFailed: 'Samodejno kopiranje ni uspelo — besede izberite in skopirajte ročno.',
+    },
+    passkey: {
+      ready: 'Odklepanje s Face ID / Touch ID je pripravljeno.',
+    },
+  },
+  errors: {
+    unknown: 'Prišlo je do neznane napake',
+    requestFailed: 'zahteva za {path} ni uspela zaradi {status}',
+    webauthnUnavailable: 'WebAuthn v tem brskalniku ni na voljo',
+    passkeyRegistrationCancelled: 'registracija gesla je bila preklicana',
+    passkeyNoPrfSecret: 'passkey ni vrnil skrivnega ključa PRF',
+    passkeyUnlockCancelled: 'odklepanje s ključem je bilo preklicano',
+    prfNotSupported:
+      'Ta naprava ali brskalnik ne podpira odklepanja brez gesla s ključem (WebAuthn PRF). Še vedno lahko odkleneš z obnovitveno frazo ali poskusiš z drugo napravo/brskalnikom.',
+    googleDriveNotConfigured:
+      'Varnostna kopija v Google Drive ni nastavljena (manjka VITE_GOOGLE_CLIENT_ID)',
+    gisLoadFailed: 'ni uspelo naložiti storitev Google Identity Services',
+    googleSignInCancelled: 'Prijava v Google je bila preklicana',
+    googleDriveSearchFailed: 'Iskanje v Google Drive ni uspelo',
+    googleDriveUploadFailed: 'prenos varnostne kopije na Google Drive ni uspel',
+    googleDriveNoBackup: 'v tem Google računu ni bilo najdenih varnostnih kopij',
+    googleDriveDownloadFailed: 'Prenos varnostne kopije iz Google Drive ni uspel',
+    noVaultOnDevice: 'na tej napravi ni trezorja',
+    cannotSaveNoVault: 'shranjevanje ni mogoče: trezor še ne obstaja',
+    noRecoveryWrapToExport: 'trezor nima zaporedja za obnovo, ki bi ga bilo mogoče izvoziti',
+    invalidBackupFile: 'Ta datoteka ni veljavna varnostna kopija wwwallet.',
+    vaultUnlockFailed: 'Nepravilna obnovitvena fraza ali poškodovan trezor.',
+    unlockMethodNotEnrolled: '{method} ni nastavljen za ta trezor.',
+    passkeyNotSetUp: 'Za ta trezor ni nastavljen dostopni ključ.',
+    vaultLocked: 'trezor je zaklenjen',
+    chooseKeystoreFile: 'izberite datoteko s ključi',
+  },
+  currency: {
+    USD: 'ameriški dolar',
+    EUR: 'evro',
+    GBP: 'britanski funt',
+    AUD: 'avstralski dolar',
+    CAD: 'kanadski dolar',
+    JPY: 'japonski jen',
+    CHF: 'švicarski frank',
+    CNH: 'juan',
+    SEK: 'švedska krona',
+    NZD: 'novozelandski dolar',
+  },
+}

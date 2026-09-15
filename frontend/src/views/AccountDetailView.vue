@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useChainDataStore } from '@/stores/chainData'
 import { useMessagesStore } from '@/stores/messages'
 import { useAccountsStore } from '@/stores/accounts'
 import type { ChainSlug } from '@/services/api'
 
+const { t } = useI18n()
 const route = useRoute()
 const chainData = useChainDataStore()
 const messages = useMessagesStore()
@@ -38,8 +40,8 @@ onMounted(async () => {
           :title="`${balance.balance} ${balance.symbol}`"
         />
       </v-list>
-      <v-btn class="mt-4 mr-2" variant="outlined" :to="`/accounts/${chain}/${address}/swap`">Swap</v-btn>
-      <v-btn class="mt-4" variant="outlined" :to="`/accounts/${chain}/${address}/transactions`">Transactions</v-btn>
+      <v-btn class="mt-4 mr-2" variant="outlined" :to="`/accounts/${chain}/${address}/swap`">{{ t('accountDetail.swap') }}</v-btn>
+      <v-btn class="mt-4" variant="outlined" :to="`/accounts/${chain}/${address}/transactions`">{{ t('accountDetail.transactions') }}</v-btn>
 
       <div class="account-footer-actions">
         <v-btn
@@ -48,7 +50,7 @@ onMounted(async () => {
           size="large"
           rounded="circle"
           :to="`/accounts/${chain}/${address}/receive`"
-          aria-label="Receive crypto"
+          :aria-label="t('accountDetail.receiveAria')"
         />
         <v-btn
           icon="mdi-tray-arrow-up"
@@ -56,7 +58,7 @@ onMounted(async () => {
           size="large"
           rounded="circle"
           :to="`/accounts/${chain}/${address}/send`"
-          aria-label="Send crypto"
+          :aria-label="t('accountDetail.sendAria')"
         />
       </div>
       <div style="height: 88px" />

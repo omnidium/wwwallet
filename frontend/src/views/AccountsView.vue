@@ -1,20 +1,22 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { useAccountsStore } from '@/stores/accounts'
 
+const { t } = useI18n()
 const accounts = useAccountsStore()
 </script>
 
 <template>
   <v-container>
     <v-row justify="space-between" align="center">
-      <h1 class="text-h5">Accounts</h1>
+      <h1 class="text-h5">{{ t('accounts.title') }}</h1>
       <v-btn color="primary" to="/accounts/new">
-        Add account
+        {{ t('accounts.addAccount') }}
       </v-btn>
     </v-row>
 
     <v-alert v-if="accounts.accounts.length === 0" type="info" variant="tonal" class="mt-4">
-      No accounts yet. Add one to get started.
+      {{ t('accounts.empty') }}
     </v-alert>
 
     <v-list v-else>

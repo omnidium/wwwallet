@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import { useTheme } from 'vuetify'
+import { useI18n } from 'vue-i18n'
 import { RouterView, useRoute } from 'vue-router'
 import { useMessagesStore } from '@/stores/messages'
 import { getStoredTheme } from '@/services/theme'
 import { useIdleLock } from '@/composables/useIdleLock'
 import SettingsPanel from '@/components/SettingsPanel.vue'
 
+const { t } = useI18n()
 const messages = useMessagesStore()
 const theme = useTheme()
 const route = useRoute()
@@ -28,9 +30,9 @@ watch(() => route.fullPath, () => {
 <template>
   <v-app>
     <v-app-bar flat>
-      <v-btn variant="text" icon="mdi-cog" aria-label="Settings" @click="settingsOpen = true" />
+      <v-btn variant="text" icon="mdi-cog" :aria-label="t('nav.settings')" @click="settingsOpen = true" />
       <v-app-bar-title>wwwallet</v-app-bar-title>
-      <v-btn to="/" variant="text" icon="mdi-wallet" aria-label="Accounts" />
+      <v-btn to="/" variant="text" icon="mdi-wallet" :aria-label="t('nav.accounts')" />
     </v-app-bar>
 
     <v-navigation-drawer
@@ -60,7 +62,13 @@ watch(() => route.fullPath, () => {
       {{ message.text }}
 
       <template #actions>
-        <v-btn icon="mdi-close" variant="text" density="comfortable" @click="messages.dismiss(message.id)" />
+        <v-btn
+          icon="mdi-close"
+          variant="text"
+          density="comfortable"
+          :aria-label="t('nav.dismiss')"
+          @click="messages.dismiss(message.id)"
+        />
       </template>
     </v-snackbar>
   </v-app>

@@ -1,3 +1,4 @@
+import { i18n } from '@/i18n'
 import { db, type VaultRecord, type KeyWrap } from '@/services/db'
 import { deriveWrapKeyFromBytes } from './kdf'
 import { decrypt, encrypt, exportAesKeyBytes, generateIv, importAesKey } from './aesGcm'
@@ -28,14 +29,14 @@ function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
 
 export class VaultUnlockError extends Error {
   constructor() {
-    super('Incorrect recovery phrase or corrupted vault.')
+    super(i18n.global.t('errors.vaultUnlockFailed'))
     this.name = 'VaultUnlockError'
   }
 }
 
 export class UnlockMethodNotEnrolledError extends Error {
   constructor(method: string) {
-    super(`${method} is not set up for this vault.`)
+    super(i18n.global.t('errors.unlockMethodNotEnrolled', { method }))
     this.name = 'UnlockMethodNotEnrolledError'
   }
 }
@@ -116,7 +117,7 @@ export async function createVault(mnemonic: string, initialData: VaultData): Pro
 
 export async function unlockWithMnemonic(mnemonic: string): Promise<{ key: CryptoKey; data: VaultData }> {
   const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error('no vault exists on this device')
+  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
   const wrap = record.wraps.find((w) => w.method === 'mnemonic')
   if (!wrap || wrap.method !== 'mnemonic') throw new UnlockMethodNotEnrolledError('Recovery phrase')
 
@@ -135,7 +136,7 @@ export async function unlockWithMnemonic(mnemonic: string): Promise<{ key: Crypt
 /** `prfSecret` is the raw PRF output already obtained via services/webauthnLocal.ts. */
 export async function unlockWithPasskey(prfSecret: ArrayBuffer): Promise<{ key: CryptoKey; data: VaultData }> {
   const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error('no vault exists on this device')
+  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
   const wrap = record.wraps.find((w) => w.method === 'passkeyPrf')
   if (!wrap || wrap.method !== 'passkeyPrf') throw new UnlockMethodNotEnrolledError('Passkey')
 
@@ -158,7 +159,7 @@ export async function addPasskeyWrap(
   prfSecret: ArrayBuffer,
 ): Promise<void> {
   const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error('no vault exists on this device')
+  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
 
   const masterKeyBytes = await exportAesKeyBytes(masterKey)
   const kek = await deriveWrapKeyFromBytes(prfSecret, PASSKEY_HKDF_INFO)
@@ -179,13 +180,13 @@ export async function addPasskeyWrap(
 /** The recovery-mnemonic wrap can never be removed — it's the only universal recovery method. */
 export async function removeWrap(method: 'passkeyPrf'): Promise<void> {
   const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error('no vault exists on this device')
+  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
   await db.vault.put({ ...record, wraps: record.wraps.filter((w) => w.method !== method), updatedAt: Date.now() })
 }
 
 export async function saveVault(key: CryptoKey, data: VaultData): Promise<void> {
   const existing = await db.vault.get(VAULT_ID)
-  if (!existing) throw new Error('cannot save: no vault exists yet')
+  if (!existing) throw new Error(i18n.global.t('errors.cannotSaveNoVault'))
 
   const iv = generateIv()
   const plaintext = new TextEncoder().encode(JSON.stringify(data))
@@ -210,9 +211,9 @@ function isByteArrayLike(value: unknown): value is number[] {
  */
 export async function exportEncryptedVaultBlob(): Promise<Blob> {
   const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error('no vault exists on this device')
+  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
   const mnemonicWrap = record.wraps.find((w) => w.method === 'mnemonic')
-  if (!mnemonicWrap) throw new Error('vault has no recovery-phrase wrap to export')
+  if (!mnemonicWrap) throw new Error(i18n.global.t('errors.noRecoveryWrapToExport'))
 
   const payload = {
     version: 2,
@@ -231,7 +232,7 @@ export async function importEncryptedVaultBlob(blob: Blob): Promise<void> {
   try {
     payload = JSON.parse(await blob.text())
   } catch {
-    throw new Error('This file is not a valid wwwallet backup.')
+    throw new Error(i18n.global.t('errors.invalidBackupFile'))
   }
 
   if (
@@ -241,7 +242,7 @@ export async function importEncryptedVaultBlob(blob: Blob): Promise<void> {
     !isByteArrayLike(payload.mnemonicWrap?.iv) ||
     !isByteArrayLike(payload.mnemonicWrap?.wrappedKey)
   ) {
-    throw new Error('This file is not a valid wwwallet backup.')
+    throw new Error(i18n.global.t('errors.invalidBackupFile'))
   }
 
   const record: VaultRecord = {

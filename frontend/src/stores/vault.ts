@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+import { i18n } from '@/i18n'
 import {
   addPasskeyWrap,
   createVault as createVaultRecord,
@@ -80,7 +81,7 @@ export const useVaultStore = defineStore('vault', () => {
 
   async function unlockWithPasskey(): Promise<void> {
     const meta = await passkeyWrapMeta()
-    if (!meta) throw new Error('Passkey is not set up for this vault.')
+    if (!meta) throw new Error(i18n.global.t('errors.passkeyNotSetUp'))
     const prfSecret = await unlockPasskeyPrfSecret(meta.credentialId, meta.prfSalt)
     const { key, data } = await unlockWithPasskeyRecord(prfSecret)
     sessionKey = key
@@ -88,18 +89,29 @@ export const useVaultStore = defineStore('vault', () => {
     isUnlocked.value = true
   }
 
+  // Wipes decrypted wallet data (private keys included) out of the other
+  // Pinia stores. Locking only ever cleared `sessionKey` and `isUnlocked`
+  // before this — the accounts/payees data loaded by `loadIntoStores` stayed
+  // sitting in memory (reachable via Vue devtools, or any injected script)
+  // even after the vault was "locked" and the UI had moved to the unlock screen.
+  function clearStores(): void {
+    useAccountsStore().accounts = []
+    usePayeesStore().payees = []
+  }
+
   function lock(): void {
     sessionKey = null
     isUnlocked.value = false
+    clearStores()
   }
 
   async function persist(): Promise<void> {
-    if (!sessionKey) throw new Error('vault is locked')
+    if (!sessionKey) throw new Error(i18n.global.t('errors.vaultLocked'))
     await saveVaultRecord(sessionKey, collectFromStores())
   }
 
   async function registerPasskey(displayName: string): Promise<void> {
-    if (!sessionKey) throw new Error('vault is locked')
+    if (!sessionKey) throw new Error(i18n.global.t('errors.vaultLocked'))
     const { credentialId, prfSalt, prfSecret } = await registerLocalPasskeyWithPrf(displayName)
     await addPasskeyWrap(sessionKey, credentialId, prfSalt, prfSecret)
     hasPasskey.value = true

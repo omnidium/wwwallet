@@ -2,6 +2,8 @@
 // backend is never involved. Requires a public OAuth 2.0 Client ID (no secret)
 // with the Drive API enabled, set as VITE_GOOGLE_CLIENT_ID.
 
+import { i18n } from '@/i18n'
+
 declare global {
   interface Window {
     google?: {
@@ -30,14 +32,14 @@ function loadGisScript(): Promise<void> {
     const script = document.createElement('script')
     script.src = 'https://accounts.google.com/gsi/client'
     script.onload = () => resolve()
-    script.onerror = () => reject(new Error('failed to load Google Identity Services'))
+    script.onerror = () => reject(new Error(i18n.global.t('errors.gisLoadFailed')))
     document.head.appendChild(script)
   })
   return gisScriptPromise
 }
 
 async function getAccessToken(): Promise<string> {
-  if (!CLIENT_ID) throw new Error('Google Drive backup is not configured (VITE_GOOGLE_CLIENT_ID missing)')
+  if (!CLIENT_ID) throw new Error(i18n.global.t('errors.googleDriveNotConfigured'))
   await loadGisScript()
   return new Promise((resolve, reject) => {
     const client = window.google!.accounts.oauth2.initTokenClient({
@@ -45,7 +47,7 @@ async function getAccessToken(): Promise<string> {
       scope: SCOPE,
       callback: (response) => {
         if (response.access_token) resolve(response.access_token)
-        else reject(new Error(response.error ?? 'Google sign-in was cancelled'))
+        else reject(new Error(response.error ?? i18n.global.t('errors.googleSignInCancelled')))
       },
     })
     client.requestAccessToken()
@@ -59,7 +61,7 @@ async function findBackupFileId(accessToken: string): Promise<string | null> {
   url.searchParams.set('fields', 'files(id)')
 
   const res = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}` } })
-  if (!res.ok) throw new Error('failed to search Google Drive')
+  if (!res.ok) throw new Error(i18n.global.t('errors.googleDriveSearchFailed'))
   const body = (await res.json()) as { files?: { id: string }[] }
   return body.files?.[0]?.id ?? null
 }
@@ -82,17 +84,17 @@ export async function backupToGoogleDrive(blob: Blob): Promise<void> {
     headers: { Authorization: `Bearer ${accessToken}` },
     body: form,
   })
-  if (!res.ok) throw new Error('failed to upload backup to Google Drive')
+  if (!res.ok) throw new Error(i18n.global.t('errors.googleDriveUploadFailed'))
 }
 
 export async function restoreFromGoogleDrive(): Promise<Blob> {
   const accessToken = await getAccessToken()
   const fileId = await findBackupFileId(accessToken)
-  if (!fileId) throw new Error('no backup found in this Google account')
+  if (!fileId) throw new Error(i18n.global.t('errors.googleDriveNoBackup'))
 
   const res = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
     headers: { Authorization: `Bearer ${accessToken}` },
   })
-  if (!res.ok) throw new Error('failed to download backup from Google Drive')
+  if (!res.ok) throw new Error(i18n.global.t('errors.googleDriveDownloadFailed'))
   return res.blob()
 }

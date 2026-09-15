@@ -1,1 +1,242 @@
-export default {}
+export default {
+  common: {
+    cancel: '취소',
+    save: '저장',
+    done: '완료',
+    goBack: '뒤로 가기',
+    label: '라벨',
+    chain: '체인',
+    address: '주소',
+  },
+  nav: {
+    settings: '설정',
+    accounts: '계정',
+    dismiss: '닫기',
+  },
+  accounts: {
+    title: '계정',
+    addAccount: '계정 추가',
+    empty: '아직 계정이 없습니다. 시작하려면 계정을 하나 추가하세요.',
+  },
+  accountDetail: {
+    swap: '스왑',
+    transactions: '거래 내역',
+    receiveAria: '암호화폐 수령',
+    sendAria: '암호화폐 보내기',
+  },
+  addAccount: {
+    title: '계정 추가',
+    tabCreate: '새로 만들기',
+    tabMnemonic: '임포트 니모닉',
+    tabPrivateKey: '개인 키 가져오기',
+    tabKeystore: '키스토어 파일 가져오기',
+    mnemonicLabel: '복구 문구 (기억 장치)',
+    privateKeyLabel: '개인 키',
+    keystoreFileLabel: '키스토어 JSON 파일',
+    filePasswordLabel: '이 파일의 암호',
+    filePasswordHint:
+      '이 키스토어 파일을 처음에 암호화할 때 사용했던 비밀번호입니다. 새로운 비밀번호가 아닙니다. 일단 가져오기만 하면, 금고를 잠금 해제하기만 하면 됩니다.',
+    noPasswordHint:
+      '비밀번호가 필요하지 않습니다. 이 계정은 금고 자체의 잠금 해제 방식(Face ID/Touch ID 또는 복구 문구)으로 보호됩니다.',
+    submit: '계정 추가',
+  },
+  send: {
+    title: '보내기',
+    fromLabel: '{label} ({chain}) 님의 글',
+    recipientLabel: '수신인 주소',
+    scanQrAria: 'QR 코드를 스캔하세요',
+    amountLabel: '금액',
+    submit: '보내기',
+  },
+  receive: {
+    title: '수신',
+    defaultAccountLabel: '계정',
+    tapToCopy: '탭하여 복사하세요',
+    copyAria: '주소 복사',
+  },
+  swap: {
+    title: '스왑',
+    sellTokenLabel: '토큰 판매 (주소 또는 네이티브 토큰의 경우 ETH)',
+    buyTokenLabel: '토큰 구매 주소',
+    sellAmountLabel: '판매 금액',
+    getQuote: '견적 받기',
+    estimateText: '예상 수령액: {amount} (단가 {price} 기준)',
+    signingNotice: '{address}와 거래 계약을 체결하고 있습니다(0x 애그리게이터를 통해).',
+    submit: '스왑',
+  },
+  payees: {
+    title: '수취인',
+    add: '수취인 추가',
+    empty: '아직 수취인이 없습니다.',
+    deleteAria: '{label} 삭제',
+    labelField: '라벨',
+    addressField: '주소',
+  },
+  backup: {
+    title: '백업 및 복원',
+    intro:
+      '이 기기에서 백업 데이터는 기기를 떠나기 전에 암호화됩니다. wwwallet의 서버는 이 과정에 전혀 관여하지 않으며, 새 기기에서 복원할 때는 Google과 직접 통신하거나 로컬 파일을 읽습니다.',
+    googleDriveTitle: '구글 드라이브',
+    backUpNow: '지금 백업하세요',
+    restoreLatest: '최신 백업 복원',
+    localFileTitle: '로컬 파일',
+    downloadBackup: '백업 파일 다운로드',
+    restoreFromFile: '파일에서 복원',
+    replaceTitle: '지금 사용 중인 지갑을 교체하시겠습니까?',
+    replaceBody:
+      '복원하면 이 볼트에 현재 저장된 모든 내용(계정, 수취인, 설정 등)이 백업된 내용으로 덮어쓰게 되며, 이 기기에 설정된 모든 패스키가 삭제됩니다(잠금 해제를 한 후 다시 활성화할 수 있습니다). 이 작업은 되돌릴 수 없습니다.',
+    replaceConfirm: '그것을 바꾸세요',
+  },
+  vaultSetup: {
+    createTitle: '지갑 만들기',
+    recoveryExplainer:
+      '이것이 바로 여러분의 {phrase}입니다. 이 기능은 기기에 저장된 모든 데이터를 암호화하며, 패스키에 대한 접근 권한을 상실했을 때(새로운 기기에서 백업을 복원하는 경우를 포함하여) 다시 기기에 접근할 수 있는 유일한 방법입니다. 이 패스키를 적어 두거나, 오프라인 상태의 안전한 곳에 복사해 두세요. 다음 화면에서 빠른 잠금 해제가 설정되면 일상적으로 이 패스키를 사용할 일은 없으며, wwwallet은 이 패스키를 다시는 표시하지 않을 것입니다.',
+    recoveryExplainerPhrase: '복구 문구',
+    copyRecoveryPhrase: '복구 문구 복사',
+    savedAckLabel: '복구 문구를 안전한 곳에 보관해 두었습니다',
+    createVault: '볼트 생성',
+    haveBackup: '이미 백업본이 있으신가요?',
+    restoreFromDrive: 'Google 드라이브에서 복원',
+    restoreFromLocalFile: '로컬 파일에서 복원',
+    quickUnlockTitle: '빠른 잠금 해제 설정하기',
+    quickUnlockBody: '복구 문구 대신 Face ID나 Touch ID를 사용하여 일상적으로 잠금을 해제하세요.',
+    enablePasskey: 'Face ID / Touch ID 활성화',
+    passkeyEnabledLabel: 'Face ID / Touch ID 지원',
+    passkeyUnsupportedNote:
+      '이 기기나 브라우저에서는 지원되지 않습니다. 복구 문구를 사용하여 잠금을 해제하거나, 나중에 ‘설정’에서 다시 시도해 보세요.',
+    skipTitle: '빠른 잠금 해제를 건너뛰시겠습니까?',
+    skipBody:
+      '패스키가 없으면 wwwallet을 열 때마다 복구 문구를 전부 입력해야 합니다. 이 설정은 나중에 ‘설정’에서 변경할 수 있습니다.',
+    continueAnyway: '어쨌든 계속하기',
+  },
+  vaultUnlock: {
+    title: 'wwwallet 잠금 해제',
+    unlockWithPasskey: 'Face ID/Touch ID로 잠금 해제',
+    recoveryPhraseLabel: '복구 문구 (24단어)',
+    unlock: '잠금 해제',
+    useRecoveryInstead: '대신 복구 문구를 사용하세요',
+  },
+  settings: {
+    title: '설정',
+    toggleThemeAria: '테마 전환',
+    closeAria: '설정 닫기',
+    lockNow: '지금 잠그기',
+    languageLabel: '언어',
+    currencyLabel: '통화',
+    securityTitle: '보안',
+    securityIntro:
+      '복구 문구는 사용자에게 다시 표시될 수 있는 곳에는 절대 저장되지 않으므로, 안전한 곳에 보관하시기 바랍니다. Face ID/Touch ID는 일상적인 잠금 해제를 위한 빠른 방법이며, wwwallet은 몇 분 동안 사용하지 않으면 자동으로 잠기게 됩니다.',
+    passkeyLabel: 'Face ID / Touch ID',
+    passkeyEnabled: '활성화됨',
+    passkeyNotSetUp: '설정되지 않음',
+    remove: '제거',
+    enable: '활성화',
+    removePasskeyTitle: 'Face ID/Touch ID 잠금 해제를 비활성화하시겠습니까?',
+    removePasskeyBody:
+      '패스키를 다시 설정할 때까지는 wwwallet의 잠금을 해제할 때마다 전체 복구 문구를 입력해야 합니다.',
+    removeAnyway: '어쨌든 삭제하기',
+  },
+  transactions: {
+    title: '거래 내역',
+    empty: '해당 거래가 없습니다.',
+    visitAccountFirst: '먼저 계좌를 방문하여 거래 내역을 불러오세요.',
+  },
+  token: {
+    defaultLabel: '토큰',
+  },
+  qrScanner: {
+    title: '주소 QR 코드를 스캔하세요',
+    cameraError: '카메라에 접근하지 못했습니다. 권한을 확인한 후 다시 시도하십시오.',
+  },
+  validation: {
+    amountGreaterThanZero: '0보다 큰 숫자를 입력하세요.',
+    insufficientBalance: '송금할 금액이 송금인 계좌의 잔액(거래 수수료 포함)을 초과합니다.',
+    invalidRecipientAddress: '유효한 수신자 주소를 입력하십시오.',
+    validTokenOrEth: '유효한 토큰 주소를 입력하거나, 기본값인 ETH를 입력하세요.',
+    validBuyToken: '유효한 토큰 구매 주소를 입력하세요.',
+    labelRequired: '라벨은 필수 항목입니다.',
+    validAddress: '유효한 주소를 입력해 주세요.',
+    filePasswordRequired: '이 파일을 열려면 비밀번호가 필요합니다.',
+    mnemonicWordCount:
+      '단어 수가 잘못되었습니다 ({count}). 12단어 또는 24단어 중 하나를 입력해야 합니다.',
+    privateKeyRequired: '개인 키가 필요합니다.',
+    keystoreFileRequired: '키스토어 파일을 선택하십시오.',
+    recoveryPhraseFormat: '그건 유효한 복구 문구로 보이지 않습니다.',
+  },
+  msg: {
+    account: {
+      added: '계정이 추가되었습니다.',
+    },
+    address: {
+      copied: '주소가 복사되었습니다.',
+    },
+    qr: {
+      noAddress: 'QR 코드에는 식별 가능한 주소가 포함되어 있지 않았습니다.',
+    },
+    send: {
+      success: '전송됨. 거래 해시: {hash}',
+    },
+    swap: {
+      approvalSubmitted:
+        '승인 요청을 제출했습니다. 확인이 완료될 때까지 기다린 다음, 다시 교체하세요.',
+      success: '스왑이 제출되었습니다. 거래 해시: {hash}',
+    },
+    backup: {
+      driveSuccess: 'Google 드라이브에 백업되었습니다.',
+    },
+    restore: {
+      driveSuccess:
+        'Google 드라이브에서 복원되었습니다. 계속하려면 복구 문구를 사용하여 잠금을 해제하세요.',
+      fileSuccess: '파일에서 복원되었습니다. 계속하려면 복구 문구를 입력하여 잠금을 해제하세요.',
+      driveSuccessSetup:
+        'Google 드라이브에서 복원되었습니다. 잠금을 해제하려면 복구 문구를 입력하세요.',
+      fileSuccessSetup: '파일에서 복원되었습니다. 잠금을 해제하려면 복구 문구를 입력하세요.',
+    },
+    recoveryPhrase: {
+      copied: '복구 문구가 복사되었습니다. 45초 후에 클립보드에서 삭제됩니다.',
+      copyFailed: '자동으로 복사할 수 없습니다. 단어를 직접 선택하여 복사해 주세요.',
+    },
+    passkey: {
+      ready: 'Face ID/Touch ID 잠금 해제가 준비되었습니다.',
+    },
+  },
+  errors: {
+    unknown: '알 수 없는 오류가 발생했습니다.',
+    requestFailed: '{path}에 대한 요청이 {status} 오류로 실패했습니다.',
+    webauthnUnavailable: '이 브라우저에서는 WebAuthn을 사용할 수 없습니다.',
+    passkeyRegistrationCancelled: '패스키 등록이 취소되었습니다.',
+    passkeyNoPrfSecret: '패스키가 PRF 비밀값을 반환하지 않았습니다',
+    passkeyUnlockCancelled: '패스키 잠금 해제가 취소되었습니다.',
+    prfNotSupported:
+      '이 기기 또는 브라우저는 비밀번호 없는 패스키 잠금 해제(WebAuthn PRF)를 지원하지 않습니다. 복구 문구를 사용하여 잠금을 해제하거나, 다른 기기나 브라우저를 사용해 보시기 바랍니다.',
+    googleDriveNotConfigured:
+      'Google 드라이브 백업이 설정되어 있지 않습니다 (VITE_GOOGLE_CLIENT_ID가 없습니다).',
+    gisLoadFailed: 'Google Identity Services를 불러오는 데 실패했습니다.',
+    googleSignInCancelled: 'Google 로그인이 취소되었습니다.',
+    googleDriveSearchFailed: 'Google 드라이브 검색에 실패했습니다',
+    googleDriveUploadFailed: 'Google 드라이브에 백업을 업로드하지 못했습니다.',
+    googleDriveNoBackup: '이 Google 계정에서 백업이 발견되지 않았습니다.',
+    googleDriveDownloadFailed: 'Google 드라이브에서 백업을 다운로드하지 못했습니다.',
+    noVaultOnDevice: '이 장치에는 볼트가 없습니다.',
+    cannotSaveNoVault: '저장할 수 없습니다: 아직 볼트가 없습니다',
+    noRecoveryWrapToExport: 'vault에는 내보낼 수 있는 복구 문구가 없습니다.',
+    invalidBackupFile: '이 파일은 유효한 wwwallet 백업 파일이 아닙니다.',
+    vaultUnlockFailed: '복구 문구가 잘못되었거나 볼트가 손상되었습니다.',
+    unlockMethodNotEnrolled: '이 볼트에는 {method}이 설정되어 있지 않습니다.',
+    passkeyNotSetUp: '이 금고에는 패스키가 설정되어 있지 않습니다.',
+    vaultLocked: '금고가 잠겨 있습니다',
+    chooseKeystoreFile: '키스토어 파일을 선택하세요',
+  },
+  currency: {
+    USD: '미국 달러',
+    EUR: '유로',
+    GBP: '영국 파운드',
+    AUD: '호주 달러',
+    CAD: '캐나다 달러',
+    JPY: '일본 엔',
+    CHF: '스위스 프랑',
+    CNH: '위안',
+    SEK: '스웨덴 크로나',
+    NZD: '뉴질랜드 달러',
+  },
+}

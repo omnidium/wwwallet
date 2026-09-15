@@ -1,1 +1,244 @@
-export default {}
+export default {
+  common: {
+    cancel: 'Annuleren',
+    save: 'Opslaan',
+    done: 'Klaar',
+    goBack: 'Terug',
+    label: 'Etiket',
+    chain: 'Ketting',
+    address: 'Adres',
+  },
+  nav: {
+    settings: 'Instellingen',
+    accounts: 'Rekeningen',
+    dismiss: 'Sluiten',
+  },
+  accounts: {
+    title: 'Rekeningen',
+    addAccount: 'Account toevoegen',
+    empty: 'Er zijn nog geen accounts. Voeg er een toe om aan de slag te gaan.',
+  },
+  accountDetail: {
+    swap: 'Ruilen',
+    transactions: 'Transacties',
+    receiveAria: 'Crypto ontvangen',
+    sendAria: 'Crypto versturen',
+  },
+  addAccount: {
+    title: 'Account toevoegen',
+    tabCreate: 'Nieuw aanmaken',
+    tabMnemonic: 'Mnemoniek importeren',
+    tabPrivateKey: 'Privésleutel importeren',
+    tabKeystore: 'Keystore-bestand importeren',
+    mnemonicLabel: 'Herstelzin (geheugensteun)',
+    privateKeyLabel: 'Privé-sleutel',
+    keystoreFileLabel: 'JSON-bestand met sleutelverzameling',
+    filePasswordLabel: 'Het wachtwoord van dit bestand',
+    filePasswordHint:
+      'Het wachtwoord waarmee dit keystore-bestand oorspronkelijk is versleuteld — geen nieuw wachtwoord. Zodra het is geïmporteerd, hoef je alleen nog maar je kluis te ontgrendelen.',
+    noPasswordHint:
+      'Er is geen wachtwoord nodig — dit account wordt beveiligd door de ontgrendelingsmethode van je kluis (Face ID/Touch ID of herstelzin).',
+    submit: 'Account toevoegen',
+  },
+  send: {
+    title: 'Verzenden',
+    fromLabel: 'Van {label} ({chain})',
+    recipientLabel: 'Adres van de ontvanger',
+    scanQrAria: 'Scan de QR-code',
+    amountLabel: 'Bedrag',
+    submit: 'Verzenden',
+  },
+  receive: {
+    title: 'Ontvangen',
+    defaultAccountLabel: 'Account',
+    tapToCopy: 'Tik om te kopiëren',
+    copyAria: 'Adres kopiëren',
+  },
+  swap: {
+    title: 'Ruilen',
+    sellTokenLabel: 'Token verkopen (adres, of ETH voor native)',
+    buyTokenLabel: 'Adres voor het kopen van tokens',
+    sellAmountLabel: 'Verkoopbedrag',
+    getQuote: 'Vraag een offerte aan',
+    estimateText: 'Geschatte opbrengst: {amount} tegen een prijs van {price}',
+    signingNotice:
+      'Je ondertekent een transactie om een contract af te sluiten met {address} (via de 0x-aggregator).',
+    submit: 'Ruilen',
+  },
+  payees: {
+    title: 'Begunstigden',
+    add: 'Begunstigde toevoegen',
+    empty: 'Er zijn nog geen begunstigden.',
+    deleteAria: 'Verwijderen {label}',
+    labelField: 'Etiket',
+    addressField: 'Adres',
+  },
+  backup: {
+    title: 'Back-up en herstel',
+    intro:
+      'Back-ups worden op dit apparaat versleuteld voordat ze het apparaat verlaten. De server van wwwallet speelt hierbij geen rol — bij het herstellen op een nieuw apparaat wordt rechtstreeks contact gemaakt met Google of wordt een lokaal bestand gelezen.',
+    googleDriveTitle: 'Google Drive',
+    backUpNow: 'Maak nu een back-up',
+    restoreLatest: 'Laatste back-up terugzetten',
+    localFileTitle: 'Lokaal bestand',
+    downloadBackup: 'Back-upbestand downloaden',
+    restoreFromFile: 'Terugzetten vanuit bestand',
+    replaceTitle: 'Wil je je huidige portemonnee vervangen?',
+    replaceBody:
+      'Als je een back-up terugzet, wordt alles wat momenteel in deze kluis staat — rekeningen, begunstigden en instellingen — overschreven door de inhoud van de back-up, en wordt elke op dit apparaat ingestelde toegangscode verwijderd (je kunt deze na het ontgrendelen weer inschakelen). Dit kan niet ongedaan worden gemaakt.',
+    replaceConfirm: 'Vervang het',
+  },
+  vaultSetup: {
+    createTitle: 'Maak je portemonnee aan',
+    recoveryExplainer:
+      "Dit is je {phrase}. Het versleutelt alles op dit apparaat en is de enige manier om weer toegang te krijgen als je ooit je toegangscode kwijtraakt — ook als je een back-up op een nieuw apparaat wilt herstellen. Schrijf het op of sla het op een veilige plek offline op. Je hebt het in het dagelijks gebruik niet meer nodig zodra 'snel ontgrendelen’ op het volgende scherm is ingesteld, en wwwallet zal het je nooit meer tonen.",
+    recoveryExplainerPhrase: 'herstelzin',
+    copyRecoveryPhrase: 'Kopieer de herstelzin',
+    savedAckLabel: 'Ik heb mijn herstelzin op een veilige plek bewaard',
+    createVault: 'Kluis aanmaken',
+    haveBackup: 'Heb je al een back-up?',
+    restoreFromDrive: 'Terugzetten vanuit Google Drive',
+    restoreFromLocalFile: 'Terugzetten vanuit een lokaal bestand',
+    quickUnlockTitle: 'Snel ontgrendelen instellen',
+    quickUnlockBody:
+      'Gebruik Face ID of Touch ID om je toestel dagelijks te ontgrendelen, in plaats van je herstelzin.',
+    enablePasskey: 'Face ID / Touch ID inschakelen',
+    passkeyEnabledLabel: 'Face ID / Touch ID ingeschakeld',
+    passkeyUnsupportedNote:
+      'Wordt niet ondersteund op dit apparaat of in deze browser — je kunt nog steeds ontgrendelen met je herstelzin, of het later opnieuw proberen via ‘Instellingen’.',
+    skipTitle: "'Snel ontgrendelen' overslaan?",
+    skipBody:
+      'Zonder toegangscode moet je elke keer dat je wwwallet opent je volledige herstelzin invoeren. Je kunt dit later instellen via ‘Instellingen’.',
+    continueAnyway: 'Toch doorgaan',
+  },
+  vaultUnlock: {
+    title: 'wwwallet ontgrendelen',
+    unlockWithPasskey: 'Ontgrendelen met Face ID / Touch ID',
+    recoveryPhraseLabel: 'Herstelzin (24 woorden)',
+    unlock: 'Ontgrendelen',
+    useRecoveryInstead: 'Gebruik in plaats daarvan de herstelzin',
+  },
+  settings: {
+    title: 'Instellingen',
+    toggleThemeAria: 'Thema wisselen',
+    closeAria: 'Instellingen sluiten',
+    lockNow: 'Nu vergrendelen',
+    languageLabel: 'Taal',
+    currencyLabel: 'Valuta',
+    securityTitle: 'Beveiliging',
+    securityIntro:
+      'Je herstelzin wordt nooit opgeslagen op een plek waar deze aan jou kan worden getoond — bewaar hem op een veilige plek. Face ID / Touch ID is de snelste manier om je apparaat dagelijks te ontgrendelen; wwwallet vergrendelt zichzelf ook automatisch na een paar minuten inactiviteit.',
+    passkeyLabel: 'Face ID / Touch ID',
+    passkeyEnabled: 'Ingeschakeld',
+    passkeyNotSetUp: 'Nog niet ingesteld',
+    remove: 'Verwijderen',
+    enable: 'Inschakelen',
+    removePasskeyTitle: 'Face ID / Touch ID-ontgrendeling verwijderen?',
+    removePasskeyBody:
+      'Je hebt je volledige herstelzin nodig telkens wanneer je wwwallet ontgrendelt, totdat je weer een toegangscode instelt.',
+    removeAnyway: 'Toch verwijderen',
+  },
+  transactions: {
+    title: 'Transacties',
+    empty: 'Er zijn geen transacties gevonden.',
+    visitAccountFirst: 'Ga eerst naar een rekening om de transactiegeschiedenis ervan te laden.',
+  },
+  token: {
+    defaultLabel: 'Token',
+  },
+  qrScanner: {
+    title: 'Scan de QR-code van het adres',
+    cameraError:
+      'Toegang tot de camera is mislukt. Controleer de machtigingen en probeer het opnieuw.',
+  },
+  validation: {
+    amountGreaterThanZero: 'Voer een getal groter dan nul in.',
+    insufficientBalance:
+      'Het over te maken bedrag is hoger dan het saldo op de verzendende rekening (inclusief transactiekosten).',
+    invalidRecipientAddress: 'Voer een geldig e-mailadres van de ontvanger in.',
+    validTokenOrEth: 'Voer een geldig tokenadres in, of ETH voor het native token.',
+    validBuyToken: 'Voer een geldig adres voor het aankooptoken in.',
+    labelRequired: 'Het label is verplicht.',
+    validAddress: 'Voer een geldig adres in.',
+    filePasswordRequired: 'Voor dit bestand is een wachtwoord vereist.',
+    mnemonicWordCount: 'Onjuist aantal woorden ({count}). Er zijn 12 of 24 woorden vereist.',
+    privateKeyRequired: 'Een privésleutel is vereist.',
+    keystoreFileRequired: 'Kies een keystore-bestand.',
+    recoveryPhraseFormat: 'Dat lijkt geen geldige herstelzin te zijn.',
+  },
+  msg: {
+    account: {
+      added: 'Account toegevoegd.',
+    },
+    address: {
+      copied: 'Adres gekopieerd.',
+    },
+    qr: {
+      noAddress: 'De QR-code bevatte geen herkenbaar adres.',
+    },
+    send: {
+      success: 'Verzonden. Transactie-hash: {hash}',
+    },
+    swap: {
+      approvalSubmitted:
+        'Goedkeuring ingediend. Wacht tot deze is bevestigd en wissel dan opnieuw.',
+      success: 'Ruil ingediend. Transactie-hash: {hash}',
+    },
+    backup: {
+      driveSuccess: 'Er is een back-up gemaakt op Google Drive.',
+    },
+    restore: {
+      driveSuccess: 'Hersteld vanuit Google Drive. Ontgrendel met je herstelzin om door te gaan.',
+      fileSuccess: 'Hersteld vanuit het bestand. Ontgrendel met je herstelzin om door te gaan.',
+      driveSuccessSetup: 'Hersteld vanuit Google Drive. Voer je herstelzin in om te ontgrendelen.',
+      fileSuccessSetup: 'Hersteld vanuit een bestand. Voer je herstelzin in om te ontgrendelen.',
+    },
+    recoveryPhrase: {
+      copied: 'Herstelzin gekopieerd — deze wordt over 45 seconden uit je klembord verwijderd.',
+      copyFailed:
+        'Het kopiëren is niet automatisch gelukt — selecteer de woorden en kopieer ze handmatig.',
+    },
+    passkey: {
+      ready: 'Ontgrendelen met Face ID / Touch ID is klaar.',
+    },
+  },
+  errors: {
+    unknown: 'Er is een onbekende fout opgetreden',
+    requestFailed: 'Het verzoek aan {path} is mislukt met {status}',
+    webauthnUnavailable: 'WebAuthn is niet beschikbaar in deze browser',
+    passkeyRegistrationCancelled: 'De registratie van de toegangscode is geannuleerd',
+    passkeyNoPrfSecret: 'passkey heeft geen PRF-geheim geretourneerd',
+    passkeyUnlockCancelled: 'Het ontgrendelen met de toegangscode is geannuleerd',
+    prfNotSupported:
+      'Dit apparaat of deze browser ondersteunt het ontgrendelen met een wachtwoordloze passkey (WebAuthn PRF) niet. Je kunt nog steeds ontgrendelen met je herstelzin, of een ander apparaat of een andere browser gebruiken.',
+    googleDriveNotConfigured:
+      'De back-up via Google Drive is niet geconfigureerd (VITE_GOOGLE_CLIENT_ID ontbreekt)',
+    gisLoadFailed: 'Google Identity Services kon niet worden geladen',
+    googleSignInCancelled: 'Het inloggen bij Google is geannuleerd',
+    googleDriveSearchFailed: 'het zoeken in Google Drive is mislukt',
+    googleDriveUploadFailed: 'Het is niet gelukt om de back-up naar Google Drive te uploaden',
+    googleDriveNoBackup: 'Er is geen back-up gevonden in dit Google-account',
+    googleDriveDownloadFailed: 'Het is niet gelukt om de back-up van Google Drive te downloaden',
+    noVaultOnDevice: 'Er is geen kluis op dit apparaat',
+    cannotSaveNoVault: 'kan niet opslaan: er bestaat nog geen kluis',
+    noRecoveryWrapToExport: 'vault heeft geen herstelzin die kan worden geëxporteerd',
+    invalidBackupFile: 'Dit bestand is geen geldige back-up van wwwallet.',
+    vaultUnlockFailed: 'Onjuiste herstelzin of beschadigde kluis.',
+    unlockMethodNotEnrolled: '{method} is niet ingesteld voor deze kluis.',
+    passkeyNotSetUp: 'Er is geen toegangscode ingesteld voor deze kluis.',
+    vaultLocked: 'de kluis is op slot',
+    chooseKeystoreFile: 'kies een keystore-bestand',
+  },
+  currency: {
+    USD: 'Amerikaanse dollar',
+    EUR: 'Euro',
+    GBP: 'Britse pond',
+    AUD: 'Australische dollar',
+    CAD: 'Canadese dollar',
+    JPY: 'Japanse yen',
+    CHF: 'Zwitserse frank',
+    CNH: 'Yuan',
+    SEK: 'Zweedse kroon',
+    NZD: 'Nieuw-Zeelandse dollar',
+  },
+}

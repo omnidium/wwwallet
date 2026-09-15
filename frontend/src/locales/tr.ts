@@ -1,1 +1,242 @@
-export default {}
+export default {
+  common: {
+    cancel: 'İptal et',
+    save: 'Kaydet',
+    done: 'Tamam',
+    goBack: 'Geri dön',
+    label: 'Etiket',
+    chain: 'Zincir',
+    address: 'Adres',
+  },
+  nav: {
+    settings: 'Ayarlar',
+    accounts: 'Hesaplar',
+    dismiss: 'Kapat',
+  },
+  accounts: {
+    title: 'Hesaplar',
+    addAccount: 'Hesap ekle',
+    empty: 'Henüz hesap yok. Başlamak için bir hesap ekleyin.',
+  },
+  accountDetail: {
+    swap: 'Değiştir',
+    transactions: 'İşlemler',
+    receiveAria: 'Kripto para alın',
+    sendAria: 'Kripto para gönder',
+  },
+  addAccount: {
+    title: 'Hesap ekle',
+    tabCreate: 'Yeni oluştur',
+    tabMnemonic: 'İçe aktarma kısayolu',
+    tabPrivateKey: 'Özel anahtarı içe aktar',
+    tabKeystore: 'Anahtar deposu dosyasını içe aktar',
+    mnemonicLabel: 'Geri yükleme ifadesi (anma ifadesi)',
+    privateKeyLabel: 'Özel anahtar',
+    keystoreFileLabel: 'Anahtar deposu JSON dosyası',
+    filePasswordLabel: 'Bu dosyanın şifresi',
+    filePasswordHint:
+      'Bu anahtar deposu dosyasının başlangıçta şifrelenmesinde kullanılan şifre — yeni bir şifre değil. Dosya içe aktarıldıktan sonra, tek yapmanız gereken kasayı kilidini açmak olacaktır.',
+    noPasswordHint:
+      'Şifre gerekmez — bu hesap, kasanızın kendi kilit açma yöntemi (Face ID/Touch ID veya kurtarma ifadesi) ile korunmaktadır.',
+    submit: 'Hesap ekle',
+  },
+  send: {
+    title: 'Gönder',
+    fromLabel: "{label}'dan ({chain})",
+    recipientLabel: 'Alıcının adresi',
+    scanQrAria: 'QR kodunu tarayın',
+    amountLabel: 'Miktar',
+    submit: 'Gönder',
+  },
+  receive: {
+    title: 'Al',
+    defaultAccountLabel: 'Hesap',
+    tapToCopy: 'Kopyalamak için dokunun',
+    copyAria: 'Adresi kopyala',
+  },
+  swap: {
+    title: 'Değiştir',
+    sellTokenLabel: 'Token sat (adres veya yerel token için ETH)',
+    buyTokenLabel: 'Token satın alma adresi',
+    sellAmountLabel: 'Satış tutarı',
+    getQuote: 'Fiyat teklifi al',
+    estimateText: 'Tahmini alım tutarı: {amount}, fiyat {price}',
+    signingNotice: '{address} ile bir işlem imzalıyorsunuz (0x toplayıcı aracılığıyla).',
+    submit: 'Değiştir',
+  },
+  payees: {
+    title: 'Alıcılar',
+    add: 'Alıcı ekle',
+    empty: 'Henüz herhangi bir alıcı yok.',
+    deleteAria: "{label}'yi sil",
+    labelField: 'Etiket',
+    addressField: 'Adres',
+  },
+  backup: {
+    title: 'Yedekleme ve geri yükleme',
+    intro:
+      'Yedeklemeler, bu cihazdan ayrılmadan önce cihazda şifrelenir. wwwallet’in sunucusu bu sürece hiçbir şekilde dahil olmaz — yeni bir cihaza geri yükleme işlemi sırasında doğrudan Google ile iletişim kurulur ya da yerel bir dosya okunur.',
+    googleDriveTitle: 'Google Drive',
+    backUpNow: 'Şimdi yedekle',
+    restoreLatest: 'En son yedeği geri yükle',
+    localFileTitle: 'Yerel dosya',
+    downloadBackup: 'Yedekleme dosyasını indir',
+    restoreFromFile: 'Dosyadan geri yükle',
+    replaceTitle: 'Mevcut cüzdanınızı değiştirmek ister misiniz?',
+    replaceBody:
+      'Geri yükleme işlemi, bu kasada bulunan her şeyi — hesapları, ödeme alıcılarını ve ayarları — yedeklemedeki verilerle üzerine yazar ve bu cihazda ayarlanmış olan tüm şifreleri siler (kilidi açtıktan sonra şifreyi yeniden etkinleştirebilirsiniz). Bu işlem geri alınamaz.',
+    replaceConfirm: 'Bunu değiştirin',
+  },
+  vaultSetup: {
+    createTitle: 'Cüzdanınızı oluşturun',
+    recoveryExplainer:
+      "Bu, sizin {phrase}'nizdir. Bu cihazdaki her şeyi şifreler ve şifre anahtarınıza erişiminizi kaybederseniz geriye dönmenin tek yoludur — yeni bir cihazda yedeği geri yüklemek de dahil. Bunu bir yere yazın veya çevrimdışı olarak güvenli bir yere kaydedin. Bir sonraki ekranda hızlı kilit açma ayarlandıktan sonra günlük kullanımda buna ihtiyacınız olmayacak ve wwwallet size bunu bir daha asla göstermeyecektir.",
+    recoveryExplainerPhrase: 'geri yükleme ifadesi',
+    copyRecoveryPhrase: 'Geri yükleme ifadesini kopyala',
+    savedAckLabel: 'Geri alma ifadesini güvenli bir yere kaydettim',
+    createVault: 'Kasa oluştur',
+    haveBackup: 'Zaten bir yedeğiniz var mı?',
+    restoreFromDrive: "Google Drive'dan geri yükle",
+    restoreFromLocalFile: 'Yerel dosyadan geri yükle',
+    quickUnlockTitle: 'Hızlı kilit açma özelliğini ayarla',
+    quickUnlockBody:
+      'Günlük kullanımda, kurtarma ifadesi yerine Face ID veya Touch ID’yi kullanarak cihazın kilidini açın.',
+    enablePasskey: "Face ID / Touch ID'yi etkinleştir",
+    passkeyEnabledLabel: 'Face ID / Touch ID özelliği etkin',
+    passkeyUnsupportedNote:
+      "Bu cihazda veya tarayıcıda desteklenmiyor — yine de kurtarma ifadenizle kilidi açabilir veya Ayarlar'dan daha sonra tekrar deneyebilirsiniz.",
+    skipTitle: 'Hızlı kilit açmayı atlamak mı?',
+    skipBody:
+      'Eşleme anahtarı olmadan, wwwallet’i her açtığınızda kurtarma ifadesinin tamamını girmelisiniz. Bunu daha sonra Ayarlar bölümünden ayarlayabilirsiniz.',
+    continueAnyway: 'Yine de devam et',
+  },
+  vaultUnlock: {
+    title: "wwwallet'in kilidini aç",
+    unlockWithPasskey: 'Face ID / Touch ID ile kilidi aç',
+    recoveryPhraseLabel: 'Geri alma ifadesi (24 kelime)',
+    unlock: 'Kilidi aç',
+    useRecoveryInstead: 'Bunun yerine kurtarma ifadesini kullanın',
+  },
+  settings: {
+    title: 'Ayarlar',
+    toggleThemeAria: 'Temayı değiştir',
+    closeAria: 'Ayarları kapat',
+    lockNow: 'Şimdi kilitle',
+    languageLabel: 'Dil',
+    currencyLabel: 'Para birimi',
+    securityTitle: 'Güvenlik',
+    securityIntro:
+      'Geri alma ifadeniz, size gösterilebilecek hiçbir yerde saklanmaz — bunu güvenli bir yerde saklayın. Face ID / Touch ID, günlük kilit açma işlemleri için en hızlı yoldur; wwwallet ayrıca birkaç dakika boyunca herhangi bir işlem yapılmadığında otomatik olarak kilitlenir.',
+    passkeyLabel: 'Face ID / Touch ID',
+    passkeyEnabled: 'Etkinleştirildi',
+    passkeyNotSetUp: 'Ayarlanmamış',
+    remove: 'Kaldır',
+    enable: 'Etkinleştir',
+    removePasskeyTitle: 'Face ID / Touch ID kilidini kaldırmak mı?',
+    removePasskeyBody:
+      'Yeniden bir şifre belirleyene kadar, wwwallet’in kilidini her açtığınızda tam kurtarma ifadesine ihtiyacınız olacak.',
+    removeAnyway: 'Yine de sil',
+  },
+  transactions: {
+    title: 'İşlemler',
+    empty: 'Herhangi bir işlem bulunamadı.',
+    visitAccountFirst: 'Öncelikle bir hesaba girerek işlem geçmişini görüntüleyin.',
+  },
+  token: {
+    defaultLabel: 'Jeton',
+  },
+  qrScanner: {
+    title: 'Adresin QR kodunu tarayın',
+    cameraError: 'Kamera erişimi başarısız oldu. İzinleri kontrol edin ve tekrar deneyin.',
+  },
+  validation: {
+    amountGreaterThanZero: 'Sıfırdan büyük bir tutar girin.',
+    insufficientBalance:
+      'Gönderilecek tutar, KAYNAK hesabındaki bakiyeden (işlem ücreti dahil) daha fazla.',
+    invalidRecipientAddress: 'Geçerli bir alıcı adresi girin.',
+    validTokenOrEth: "Geçerli bir token adresi girin ya da yerel birim olarak ETH'yi seçin.",
+    validBuyToken: 'Geçerli bir satın alma jetonu adresi girin.',
+    labelRequired: 'Etiket girilmesi zorunludur.',
+    validAddress: 'Geçerli bir adres girin.',
+    filePasswordRequired: 'Bu dosya için şifre gereklidir.',
+    mnemonicWordCount: 'Kelime sayısı yanlış ({count}). 12 ya da 24 kelime girilmesi gerekiyor.',
+    privateKeyRequired: 'Özel anahtar gereklidir.',
+    keystoreFileRequired: 'Bir anahtar deposu dosyası seçin.',
+    recoveryPhraseFormat: 'Bu, geçerli bir kurtarma ifadesine benzemiyor.',
+  },
+  msg: {
+    account: {
+      added: 'Hesap eklendi.',
+    },
+    address: {
+      copied: 'Adres kopyalandı.',
+    },
+    qr: {
+      noAddress: 'QR kodunda tanınabilir bir adres bulunmuyordu.',
+    },
+    send: {
+      success: "Gönderildi. İşlem hash'i: {hash}",
+    },
+    swap: {
+      approvalSubmitted: 'Onay gönderildi. Onaylanmasını bekleyin, ardından tekrar değiştirin.',
+      success: "Takas gönderildi. İşlem hash'i: {hash}",
+    },
+    backup: {
+      driveSuccess: "Google Drive'a yedeklendi.",
+    },
+    restore: {
+      driveSuccess:
+        "Google Drive'dan geri yüklendi. Devam etmek için kurtarma ifadesini kullanarak kilidi açın.",
+      fileSuccess: 'Dosyadan geri yüklendi. Devam etmek için kurtarma ifadesinizle kilidi açın.',
+      driveSuccessSetup:
+        "Google Drive'dan geri yüklendi. Kilidi açmak için kurtarma ifadesini girin.",
+      fileSuccessSetup: 'Dosyadan geri yüklendi. Kilidi açmak için kurtarma ifadesini girin.',
+    },
+    recoveryPhrase: {
+      copied: 'Kurtarma ifadesi kopyalandı — 45 saniye içinde panonuzdan silinecek.',
+      copyFailed: 'Otomatik olarak kopyalanamadı — kelimeleri seçip manuel olarak kopyalayın.',
+    },
+    passkey: {
+      ready: 'Face ID / Touch ID ile kilit açma işlemi hazır.',
+    },
+  },
+  errors: {
+    unknown: 'Bilinmeyen bir hata oluştu',
+    requestFailed: "{path}'a yapılan istek, {status} hatası nedeniyle başarısız oldu",
+    webauthnUnavailable: 'WebAuthn bu tarayıcıda kullanılamıyor',
+    passkeyRegistrationCancelled: 'şifre kaydı iptal edildi',
+    passkeyNoPrfSecret: 'passkey, bir PRF sırrı döndürmedi',
+    passkeyUnlockCancelled: 'Şifreyle kilit açma işlemi iptal edildi',
+    prfNotSupported:
+      'Bu cihaz veya tarayıcı, şifresiz erişim anahtarı ile kilit açma özelliğini (WebAuthn PRF) desteklemiyor. Yine de kurtarma ifadesiyle kilidi açabilir veya farklı bir cihaz/tarayıcı deneyebilirsiniz.',
+    googleDriveNotConfigured:
+      'Google Drive yedeklemesi yapılandırılmamış (VITE_GOOGLE_CLIENT_ID eksik)',
+    gisLoadFailed: 'Google Kimlik Hizmetleri yüklenemedi',
+    googleSignInCancelled: 'Google ile oturum açma işlemi iptal edildi',
+    googleDriveSearchFailed: "Google Drive'da arama yapılamadı",
+    googleDriveUploadFailed: 'Yedeklemeyi Google Drive’a yükleme işlemi başarısız oldu',
+    googleDriveNoBackup: 'Bu Google hesabında yedek bulunamadı',
+    googleDriveDownloadFailed: "Google Drive'dan yedekleme dosyası indirilemedi",
+    noVaultOnDevice: 'Bu cihazda herhangi bir kasa bulunmamaktadır',
+    cannotSaveNoVault: 'kaydedilemiyor: henüz bir kasa yok',
+    noRecoveryWrapToExport: "vault'ta dışa aktarılacak kurtarma ifadesi satır sonu yoktur",
+    invalidBackupFile: 'Bu dosya geçerli bir wwwallet yedeği değildir.',
+    vaultUnlockFailed: 'Yanlış kurtarma ifadesi veya bozuk kasa.',
+    unlockMethodNotEnrolled: '{method} bu kasada yapılandırılmamıştır.',
+    passkeyNotSetUp: 'Bu kasa için şifre ayarlanmamıştır.',
+    vaultLocked: 'kasada kilitli',
+    chooseKeystoreFile: 'bir anahtar deposu dosyası seçin',
+  },
+  currency: {
+    USD: 'ABD doları',
+    EUR: 'Euro',
+    GBP: 'İngiliz sterlini',
+    AUD: 'Avustralya doları',
+    CAD: 'Kanada doları',
+    JPY: 'Japon yeni',
+    CHF: 'İsviçre frangı',
+    CNH: 'Yuan',
+    SEK: 'İsveç kronu',
+    NZD: 'Yeni Zelanda doları',
+  },
+}

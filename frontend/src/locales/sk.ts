@@ -1,1 +1,243 @@
-export default {}
+export default {
+  common: {
+    cancel: 'Zrušiť',
+    save: 'Uložiť',
+    done: 'Hotovo',
+    goBack: 'Späť',
+    label: 'Názov',
+    chain: 'Reťaz',
+    address: 'Adresa',
+  },
+  nav: {
+    settings: 'Nastavenia',
+    accounts: 'Účty',
+    dismiss: 'Zavrieť',
+  },
+  accounts: {
+    title: 'Účty',
+    addAccount: 'Pridať účet',
+    empty: 'Zatiaľ nemáte žiadny účet. Pridajte si ho a začnite.',
+  },
+  accountDetail: {
+    swap: 'Výmena',
+    transactions: 'Transakcie',
+    receiveAria: 'Prijímať kryptomeny',
+    sendAria: 'Poslať kryptomenu',
+  },
+  addAccount: {
+    title: 'Pridať účet',
+    tabCreate: 'Vytvoriť nový',
+    tabMnemonic: 'Mnemonika importu',
+    tabPrivateKey: 'Načítať súkromný kľúč',
+    tabKeystore: 'Načítať súbor úložiska kľúčov',
+    mnemonicLabel: 'Obnovovacia fráza (mnemotechnická pomôcka)',
+    privateKeyLabel: 'Súkromný kľúč',
+    keystoreFileLabel: 'Súbor JSON s úložiskom kľúčov',
+    filePasswordLabel: 'Heslo k tomuto súboru',
+    filePasswordHint:
+      'Heslo, ktorým bol tento súbor úschovne kľúčov pôvodne zašifrovaný – nie nové heslo. Po importe už stačí len odomknúť vašu úschovňu.',
+    noPasswordHint:
+      'Heslo nie je potrebné – tento účet je chránený vlastným spôsobom odomknutia vášho trezoru (Face ID/Touch ID alebo obnovovacia fráza).',
+    submit: 'Pridať účet',
+  },
+  send: {
+    title: 'Odoslať',
+    fromLabel: 'Od {label} ({chain})',
+    recipientLabel: 'Adresa príjemcu',
+    scanQrAria: 'Naskenujte QR kód',
+    amountLabel: 'Suma',
+    submit: 'Odoslať',
+  },
+  receive: {
+    title: 'Prijímať',
+    defaultAccountLabel: 'Účet',
+    tapToCopy: 'Kliknutím skopírujete',
+    copyAria: 'Skopírovať adresu',
+  },
+  swap: {
+    title: 'Výmena',
+    sellTokenLabel: 'Predaj tokenu (adresa alebo ETH v prípade natívneho tokenu)',
+    buyTokenLabel: 'Adresa na nákup tokenu',
+    sellAmountLabel: 'Predajná suma',
+    getQuote: 'Vyžiadať cenovú ponuku',
+    estimateText: 'Predpokladaná suma: {amount} pri cene {price}',
+    signingNotice: 'Podpisujete transakciu na zmluvu {address} (prostredníctvom agregátora 0x).',
+    submit: 'Výmena',
+  },
+  payees: {
+    title: 'Príjemcovia platieb',
+    add: 'Pridať príjemcu platby',
+    empty: 'Zatiaľ nie sú žiadni príjemcovia platieb.',
+    deleteAria: 'Odstrániť {label}',
+    labelField: 'Názov',
+    addressField: 'Adresa',
+  },
+  backup: {
+    title: 'Zálohovanie a obnovenie',
+    intro:
+      'Zálohy sa na tomto zariadení zašifrujú ešte predtým, ako z neho odídu. Server wwwallet sa do tohto procesu nikdy nezapája – pri obnove na novom zariadení sa komunikuje priamo s Googlem alebo sa načítava lokálny súbor.',
+    googleDriveTitle: 'Google Drive',
+    backUpNow: 'Zálohujte teraz',
+    restoreLatest: 'Obnoviť najnovšiu zálohu',
+    localFileTitle: 'Miestny súbor',
+    downloadBackup: 'Stiahnuť záložný súbor',
+    restoreFromFile: 'Obnoviť zo súboru',
+    replaceTitle: 'Chcete vymeniť svoju súčasnú peňaženku?',
+    replaceBody:
+      'Obnovenie prepíše všetko, čo sa momentálne nachádza v tomto trezore – účty, príjemcovia platieb a nastavenia – obsahom zálohy a odstráni akýkoľvek prístupový kód nastavený na tomto zariadení (po odomknutí ho budete musieť znovu aktivovať). Túto akciu nie je možné vrátiť späť.',
+    replaceConfirm: 'Vymeň to',
+  },
+  vaultSetup: {
+    createTitle: 'Vytvorte si peňaženku',
+    recoveryExplainer:
+      'Toto je váš {phrase}. Šifruje všetko v tomto zariadení a je to jediný spôsob, ako sa dostať späť, ak niekedy stratíte prístup k svojmu prístupovému kľúču — vrátane obnovenia zálohy na novom zariadení. Zapíšte si ho alebo si ho skopírujte na bezpečné miesto offline. Po nastavení rýchleho odomknutia na ďalšej obrazovke ho nebudete v bežnom používaní potrebovať a aplikácia wwwallet vám ho už nikdy nezobrazí.',
+    recoveryExplainerPhrase: 'obnovovacia fráza',
+    copyRecoveryPhrase: 'Skopírujte obnovovaciu frázu',
+    savedAckLabel: 'Svoju obnovovaciu frázu som si uložil na bezpečné miesto',
+    createVault: 'Vytvoriť trezor',
+    haveBackup: 'Máte už zálohu?',
+    restoreFromDrive: 'Obnoviť z Google Drive',
+    restoreFromLocalFile: 'Obnoviť z lokálneho súboru',
+    quickUnlockTitle: 'Nastaviť rýchle odomknutie',
+    quickUnlockBody:
+      'Na každodenné odomknutie používajte Face ID alebo Touch ID namiesto obnovovacej frázy.',
+    enablePasskey: 'Aktivovať Face ID / Touch ID',
+    passkeyEnabledLabel: 'Podpora Face ID / Touch ID',
+    passkeyUnsupportedNote:
+      'Táto funkcia nie je na tomto zariadení ani v tomto prehliadači podporovaná — stále sa však môžete odomknúť pomocou obnovovacej frázy alebo to neskôr skúsiť znova v Nastaveniach.',
+    skipTitle: 'Preskočiť rýchle odomknutie?',
+    skipBody:
+      'Bez prístupového kľúča budete musieť pri každom otvorení aplikácie wwwallet zadať celú obnovovaciu frázu. Túto funkciu si môžete nastaviť neskôr v nastaveniach.',
+    continueAnyway: 'Pokračovať aj tak',
+  },
+  vaultUnlock: {
+    title: 'Odomknúť wwwallet',
+    unlockWithPasskey: 'Odomknúť pomocou Face ID / Touch ID',
+    recoveryPhraseLabel: 'Obnovovacia fráza (24 slov)',
+    unlock: 'Odomknúť',
+    useRecoveryInstead: 'Použite namiesto toho obnovovaciu frázu',
+  },
+  settings: {
+    title: 'Nastavenia',
+    toggleThemeAria: 'Zmeniť vzhľad',
+    closeAria: 'Zatvoriť nastavenia',
+    lockNow: 'Zamknúť teraz',
+    languageLabel: 'Jazyk',
+    currencyLabel: 'Mena',
+    securityTitle: 'Bezpečnosť',
+    securityIntro:
+      'Vaša obnovovacia fráza sa nikdy neukladá na žiadnom mieste, kde by sa vám mohla zobraziť – uchovávajte ju na bezpečnom mieste. Funkcia Face ID / Touch ID je rýchly spôsob každodenného odomknutia; aplikácia wwwallet sa tiež automaticky uzamkne po niekoľkých minútach nečinnosti.',
+    passkeyLabel: 'Face ID / Touch ID',
+    passkeyEnabled: 'Zapnuté',
+    passkeyNotSetUp: 'Nenastavené',
+    remove: 'Odstrániť',
+    enable: 'Zapnúť',
+    removePasskeyTitle: 'Odstrániť odomknutie pomocou Face ID / Touch ID?',
+    removePasskeyBody:
+      'Kým si opäť nenastavíte prístupový kód, budete potrebovať úplnú obnovovaciu frázu zakaždým, keď budete odomykať aplikáciu wwwallet.',
+    removeAnyway: 'Odstrániť aj tak',
+  },
+  transactions: {
+    title: 'Transakcie',
+    empty: 'Nenašli sa žiadne transakcie.',
+    visitAccountFirst: 'Najprv navštívte účet, aby sa načítala história transakcií.',
+  },
+  token: {
+    defaultLabel: 'Token',
+  },
+  qrScanner: {
+    title: 'Naskenujte QR kód s adresou',
+    cameraError: 'Prístup k kamere sa nepodaril. Skontrolujte oprávnenia a skúste to znova.',
+  },
+  validation: {
+    amountGreaterThanZero: 'Zadajte hodnotu väčšiu ako nula.',
+    insufficientBalance:
+      'Suma na odoslanie presahuje zostatok na odosielateľskom účte (vrátane transakčného poplatku).',
+    invalidRecipientAddress: 'Zadajte platnú adresu príjemcu.',
+    validTokenOrEth: 'Zadajte platnú adresu tokenu alebo ETH v prípade natívneho tokenu.',
+    validBuyToken: 'Zadajte platnú adresu pre nákup tokenov.',
+    labelRequired: 'Názov je povinný.',
+    validAddress: 'Zadajte platnú adresu.',
+    filePasswordRequired: 'Na otvorenie tohto súboru je potrebné zadať heslo.',
+    mnemonicWordCount: 'Nesprávny počet slov ({count}). Je potrebných buď 12, alebo 24 slov.',
+    privateKeyRequired: 'Je potrebný súkromný kľúč.',
+    keystoreFileRequired: 'Vyberte súbor s kľúčami.',
+    recoveryPhraseFormat: 'To nevyzerá ako platná obnovenia fráza.',
+  },
+  msg: {
+    account: {
+      added: 'Účet bol pridaný.',
+    },
+    address: {
+      copied: 'Adresa bola skopírovaná.',
+    },
+    qr: {
+      noAddress: 'QR kód neobsahoval rozpoznateľnú adresu.',
+    },
+    send: {
+      success: 'Odoslané. Hash transakcie: {hash}',
+    },
+    swap: {
+      approvalSubmitted:
+        'Žiadosť o schválenie bola odoslaná. Počkajte na potvrdenie a potom znovu vymeňte.',
+      success: 'Výmena bola odoslaná. Hash transakcie: {hash}',
+    },
+    backup: {
+      driveSuccess: 'Zálohované na Google Drive.',
+    },
+    restore: {
+      driveSuccess:
+        'Obnovené z Google Drive. Ak chcete pokračovať, odomknite pomocou obnovovacej frázy.',
+      fileSuccess:
+        'Obnovené zo súboru. Ak chcete pokračovať, odomknite zariadenie pomocou obnovovacej frázy.',
+      driveSuccessSetup: 'Obnovené z Google Drive. Na odomknutie zadajte svoju obnovovaciu frázu.',
+      fileSuccessSetup: 'Obnovené zo súboru. Zadajte svoju obnovovaciu frázu na odomknutie.',
+    },
+    recoveryPhrase: {
+      copied: 'Obnovovacia fráza bola skopírovaná — za 45 sekúnd sa vymaže zo schránky.',
+      copyFailed: 'Automatické kopírovanie sa nepodarilo – vyberte a skopírujte slová ručne.',
+    },
+    passkey: {
+      ready: 'Odomknutie pomocou Face ID / Touch ID je pripravené.',
+    },
+  },
+  errors: {
+    unknown: 'Došlo k neznámej chybe',
+    requestFailed: 'Žiadosť o {path} zlyhala s chybou {status}',
+    webauthnUnavailable: 'WebAuthn nie je v tomto prehliadači k dispozícii',
+    passkeyRegistrationCancelled: 'Registrácia prístupového kľúča bola zrušená',
+    passkeyNoPrfSecret: 'prístupový kľúč nevrátil tajný kód PRF',
+    passkeyUnlockCancelled: 'Odblokovanie pomocou prístupového kľúča bolo zrušené',
+    prfNotSupported:
+      'Toto zariadenie alebo prehliadač nepodporuje odomknutie pomocou kľúča bez hesla (WebAuthn PRF). Stále sa však môžete odomknúť pomocou obnovovacej frázy alebo vyskúšať iné zariadenie/prehliadač.',
+    googleDriveNotConfigured:
+      'Zálohovanie na Google Drive nie je nakonfigurované (chýba VITE_GOOGLE_CLIENT_ID)',
+    gisLoadFailed: 'Nepodarilo sa načítať služby Google Identity Services',
+    googleSignInCancelled: 'Prihlásenie cez Google bolo zrušené',
+    googleDriveSearchFailed: 'nepodarilo sa vyhľadať na Google Drive',
+    googleDriveUploadFailed: 'nepodarilo sa nahrať zálohu na Google Drive',
+    googleDriveNoBackup: 'V tomto účte Google sa nenašla žiadna záloha',
+    googleDriveDownloadFailed: 'Nepodarilo sa stiahnuť zálohu z Google Drive',
+    noVaultOnDevice: 'Na tomto zariadení neexistuje žiadna úschovňa',
+    cannotSaveNoVault: 'nie je možné uložiť: trezor ešte neexistuje',
+    noRecoveryWrapToExport: 'trezor nemá žiadny zoznam na export',
+    invalidBackupFile: 'Tento súbor nie je platnou zálohou programu wwwallet.',
+    vaultUnlockFailed: 'Nesprávna obnovená fráza alebo poškodený trezor.',
+    unlockMethodNotEnrolled: '{method} nie je pre tento trezor nastavené.',
+    passkeyNotSetUp: 'Pre tento trezor nie je nastavený prístupový kľúč.',
+    vaultLocked: 'trezor je zamknutý',
+    chooseKeystoreFile: 'vyberte súbor úložiska kľúčov',
+  },
+  currency: {
+    USD: 'americký dolár',
+    EUR: 'Euro',
+    GBP: 'libra šterlingová',
+    AUD: 'austrálsky dolár',
+    CAD: 'kanadský dolár',
+    JPY: 'japonský jen',
+    CHF: 'švajčiarsky frank',
+    CNH: 'juan',
+    SEK: 'Švédska koruna',
+    NZD: 'novozélandský dolár',
+  },
+}

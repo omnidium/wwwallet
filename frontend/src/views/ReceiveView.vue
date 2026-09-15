@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import QRCode from 'qrcode'
 import { useAccountsStore } from '@/stores/accounts'
 import { useMessagesStore } from '@/stores/messages'
 import type { ChainSlug } from '@/services/api'
 
+const { t } = useI18n()
 const route = useRoute()
 const accounts = useAccountsStore()
 const messages = useMessagesStore()
@@ -20,23 +22,23 @@ onMounted(async () => {
 
 async function copyAddress() {
   await navigator.clipboard.writeText(address)
-  messages.push('Address copied.', 'success')
+  messages.push(t('msg.address.copied'), 'success')
 }
 </script>
 
 <template>
   <v-container class="d-flex flex-column align-center">
-    <h1 class="text-h5">Receive</h1>
-    <p class="text-medium-emphasis mb-4">{{ account?.label ?? 'Account' }} ({{ chain }})</p>
+    <h1 class="text-h5">{{ t('receive.title') }}</h1>
+    <p class="text-medium-emphasis mb-4">{{ account?.label ?? t('receive.defaultAccountLabel') }} ({{ chain }})</p>
 
     <v-img v-if="qrDataUrl" :src="qrDataUrl" width="280" height="280" />
 
     <v-card class="pa-4 mt-4 d-flex align-center" max-width="480" @click="copyAddress" style="cursor: pointer">
       <div>
         <p class="text-body-2" style="word-break: break-all">{{ address }}</p>
-        <p class="text-caption text-medium-emphasis mt-1">Tap to copy</p>
+        <p class="text-caption text-medium-emphasis mt-1">{{ t('receive.tapToCopy') }}</p>
       </div>
-      <v-icon icon="mdi-content-copy" class="ml-4" aria-label="Copy address" />
+      <v-icon icon="mdi-content-copy" class="ml-4" :aria-label="t('receive.copyAria')" />
     </v-card>
   </v-container>
 </template>

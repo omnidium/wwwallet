@@ -14,7 +14,10 @@
     "lint": "run-s \"lint:*\"",
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache",
-    "format": "prettier --write --experimental-cli src/"
+    "format": "prettier --write --experimental-cli src/",
+    "sync-locales": "node scripts/sync-locales.mjs",
+    "sync-locales:dry-run": "node scripts/sync-locales.mjs --dry-run",
+    "preflight": "run-s type-check sync-locales build"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",

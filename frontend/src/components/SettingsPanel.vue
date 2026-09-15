@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useTheme } from 'vuetify'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { useVaultStore } from '@/stores/vault'
@@ -10,6 +11,7 @@ import { PrfNotSupportedError } from '@/services/webauthnLocal'
 
 const emit = defineEmits<{ close: [] }>()
 
+const { t } = useI18n()
 const settings = useSettingsLocaleStore()
 const vault = useVaultStore()
 const messages = useMessagesStore()
@@ -30,7 +32,7 @@ function toggleTheme() {
 async function addPasskey() {
   try {
     await vault.registerPasskey('wwwallet')
-    messages.push('Face ID / Touch ID unlock is ready.', 'success')
+    messages.push(t('msg.passkey.ready'), 'success')
   } catch (err) {
     messages.push(
       err instanceof PrfNotSupportedError ? err.message : (err as Error).message,
@@ -51,32 +53,37 @@ async function performRemovePasskey() {
 function lockNow() {
   vault.lock()
   emit('close')
-  router.push('/')
+  // Named route, not '/': if the drawer is opened from the accounts list
+  // (the common case — that's the landing page), pushing '/' while already
+  // on '/' is a same-location no-op in vue-router, so the router guard never
+  // re-runs and the screen doesn't actually redirect to the unlock view
+  // until some later click triggers a real navigation.
+  router.push({ name: 'vault-unlock' })
 }
 </script>
 
 <template>
   <div class="pa-4">
     <v-row justify="space-between" align="center" no-gutters>
-      <h1 class="text-h5">Settings</h1>
+      <h1 class="text-h5">{{ t('settings.title') }}</h1>
       <div>
         <v-btn
           :icon="isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"
           variant="text"
-          aria-label="Toggle theme"
+          :aria-label="t('settings.toggleThemeAria')"
           @click="toggleTheme"
         />
-        <v-btn icon="mdi-close" variant="text" aria-label="Close settings" @click="emit('close')" />
+        <v-btn icon="mdi-close" variant="text" :aria-label="t('settings.closeAria')" @click="emit('close')" />
       </div>
     </v-row>
 
     <v-btn class="mt-4" color="error" variant="outlined" block prepend-icon="mdi-lock" @click="lockNow">
-      Lock now
+      {{ t('settings.lockNow') }}
     </v-btn>
 
     <v-select
       class="mt-4"
-      label="Language"
+      :label="t('settings.languageLabel')"
       :items="settings.languages"
       item-title="name"
       item-value="id"
@@ -85,46 +92,45 @@ function lockNow() {
     />
     <v-select
       class="mt-4"
-      label="Currency"
+      :label="t('settings.currencyLabel')"
       :items="settings.currencies"
       v-model="settings.currency"
     />
 
     <v-list class="mt-4" rounded="lg">
-      <v-list-item to="/backup-restore" title="Backup &amp; restore" prepend-icon="mdi-cloud-upload" append-icon="mdi-chevron-right" @click="emit('close')" />
-      <v-list-item to="/payees" title="Payees" prepend-icon="mdi-account" append-icon="mdi-chevron-right" @click="emit('close')" />
+      <v-list-item to="/backup-restore" :title="t('backup.title')" prepend-icon="mdi-cloud-upload" append-icon="mdi-chevron-right" @click="emit('close')" />
+      <v-list-item to="/payees" :title="t('payees.title')" prepend-icon="mdi-account" append-icon="mdi-chevron-right" @click="emit('close')" />
     </v-list>
 
-    <h2 class="text-h6 mt-6">Security</h2>
+    <h2 class="text-h6 mt-6">{{ t('settings.securityTitle') }}</h2>
     <p class="text-caption text-medium-emphasis mb-2">
-      Your recovery phrase is never stored anywhere it could be shown back to you —
-      keep it somewhere safe. Face ID / Touch ID is the fast path for everyday unlock;
-      wwwallet also locks itself automatically after a few minutes of inactivity.
+      {{ t('settings.securityIntro') }}
     </p>
 
     <v-card class="pa-4 mt-2">
       <div class="d-flex align-center">
         <v-icon icon="mdi-fingerprint" class="mr-3" />
         <div class="flex-grow-1">
-          <p class="text-body-2">Face ID / Touch ID</p>
-          <p class="text-caption text-medium-emphasis">{{ vault.hasPasskey ? 'Enabled' : 'Not set up' }}</p>
+          <p class="text-body-2">{{ t('settings.passkeyLabel') }}</p>
+          <p class="text-caption text-medium-emphasis">
+            {{ vault.hasPasskey ? t('settings.passkeyEnabled') : t('settings.passkeyNotSetUp') }}
+          </p>
         </div>
-        <v-btn v-if="vault.hasPasskey" variant="text" color="error" @click="requestRemovePasskey">Remove</v-btn>
-        <v-btn v-else variant="outlined" @click="addPasskey">Enable</v-btn>
+        <v-btn v-if="vault.hasPasskey" variant="text" color="error" @click="requestRemovePasskey">{{ t('settings.remove') }}</v-btn>
+        <v-btn v-else variant="outlined" @click="addPasskey">{{ t('settings.enable') }}</v-btn>
       </div>
     </v-card>
 
     <v-dialog v-model="removePasskeyWarningOpen" max-width="420">
       <v-card>
-        <v-card-title>Remove Face ID / Touch ID unlock?</v-card-title>
+        <v-card-title>{{ t('settings.removePasskeyTitle') }}</v-card-title>
         <v-card-text>
-          You'll need your full recovery phrase every time you unlock wwwallet until you
-          set up a passkey again.
+          {{ t('settings.removePasskeyBody') }}
         </v-card-text>
         <v-card-actions>
-          <v-btn variant="text" @click="removePasskeyWarningOpen = false">Cancel</v-btn>
+          <v-btn variant="text" @click="removePasskeyWarningOpen = false">{{ t('common.cancel') }}</v-btn>
           <v-spacer />
-          <v-btn color="error" @click="performRemovePasskey">Remove anyway</v-btn>
+          <v-btn color="error" @click="performRemovePasskey">{{ t('settings.removeAnyway') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

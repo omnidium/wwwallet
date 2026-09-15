@@ -1,3 +1,5 @@
+import { i18n } from '@/i18n'
+
 const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8787'
 
 async function getJson<T>(path: string, query?: Record<string, string>): Promise<T> {
@@ -6,7 +8,7 @@ async function getJson<T>(path: string, query?: Record<string, string>): Promise
   const res = await fetch(url)
   if (!res.ok) {
     const body = await res.json().catch(() => ({}))
-    throw new Error(body.error ?? `request to ${path} failed with ${res.status}`)
+    throw new Error(body.error ?? i18n.global.t('errors.requestFailed', { path, status: res.status }))
   }
   return res.json() as Promise<T>
 }
@@ -19,7 +21,7 @@ async function postJson<T>(path: string, payload: unknown): Promise<T> {
   })
   if (!res.ok) {
     const body = await res.json().catch(() => ({}))
-    throw new Error(body.error ?? `request to ${path} failed with ${res.status}`)
+    throw new Error(body.error ?? i18n.global.t('errors.requestFailed', { path, status: res.status }))
   }
   return res.json() as Promise<T>
 }

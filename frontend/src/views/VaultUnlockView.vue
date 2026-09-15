@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { availableUnlockMethods } from '@/crypto/vault'
 import { isValidRecoveryMnemonic, normalizeMnemonic } from '@/services/mnemonic'
 
+const { t } = useI18n()
 const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()
@@ -16,7 +18,7 @@ const hasPasskeyWrap = ref(false)
 const busy = ref(false)
 
 const recoveryPhraseRules = [
-  (v: string) => !v || isValidRecoveryMnemonic(v) || "That doesn't look like a valid recovery phrase.",
+  (v: string) => !v || isValidRecoveryMnemonic(v) || t('validation.recoveryPhraseFormat'),
 ]
 
 onMounted(async () => {
@@ -54,11 +56,11 @@ async function submitPasskey() {
 <template>
   <v-container class="fill-height d-flex align-center justify-center">
     <v-card width="400" class="pa-4">
-      <v-card-title>Unlock wwwallet</v-card-title>
+      <v-card-title>{{ t('vaultUnlock.title') }}</v-card-title>
 
       <v-card-text v-if="hasPasskeyWrap">
         <v-btn color="primary" block :loading="busy" prepend-icon="mdi-fingerprint" @click="submitPasskey">
-          Unlock with Face ID / Touch ID
+          {{ t('vaultUnlock.unlockWithPasskey') }}
         </v-btn>
       </v-card-text>
 
@@ -66,7 +68,7 @@ async function submitPasskey() {
         <v-card-text>
           <v-textarea
             v-model="recoveryPhrase"
-            label="Recovery phrase (24 words)"
+            :label="t('vaultUnlock.recoveryPhraseLabel')"
             rows="2"
             auto-grow
             autofocus
@@ -74,12 +76,12 @@ async function submitPasskey() {
           />
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block :loading="busy" @click="submitRecoveryPhrase">Unlock</v-btn>
+          <v-btn color="primary" block :loading="busy" @click="submitRecoveryPhrase">{{ t('vaultUnlock.unlock') }}</v-btn>
         </v-card-actions>
       </template>
       <v-card-actions v-else>
         <v-btn variant="text" size="small" block @click="showRecoveryPhraseField = true">
-          Use recovery phrase instead
+          {{ t('vaultUnlock.useRecoveryInstead') }}
         </v-btn>
       </v-card-actions>
     </v-card>

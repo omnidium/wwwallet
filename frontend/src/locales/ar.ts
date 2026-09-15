@@ -1,1 +1,242 @@
-export default {}
+export default {
+  common: {
+    cancel: 'إلغاء',
+    save: 'حفظ',
+    done: 'تم',
+    goBack: 'العودة',
+    label: 'التسمية',
+    chain: 'سلسلة',
+    address: 'العنوان',
+  },
+  nav: {
+    settings: 'الإعدادات',
+    accounts: 'الحسابات',
+    dismiss: 'إغلاق',
+  },
+  accounts: {
+    title: 'الحسابات',
+    addAccount: 'إضافة حساب',
+    empty: 'لا توجد حسابات حتى الآن. أضف حسابًا لتبدأ.',
+  },
+  accountDetail: {
+    swap: 'المبادلة',
+    transactions: 'المعاملات',
+    receiveAria: 'تلقي عملات مشفرة',
+    sendAria: 'إرسال عملة مشفرة',
+  },
+  addAccount: {
+    title: 'إضافة حساب',
+    tabCreate: 'إنشاء جديد',
+    tabMnemonic: 'استيراد رمز تذكيري',
+    tabPrivateKey: 'استيراد المفتاح الخاص',
+    tabKeystore: 'استيراد ملف مخزن المفاتيح',
+    mnemonicLabel: 'عبارة الاسترداد (الرمز التذكيري)',
+    privateKeyLabel: 'المفتاح الخاص',
+    keystoreFileLabel: 'ملف JSON لمخزن المفاتيح',
+    filePasswordLabel: 'كلمة مرور هذا الملف',
+    filePasswordHint:
+      'كلمة المرور التي تم تشفير ملف مخزن المفاتيح هذا بها في الأصل — وليست كلمة مرور جديدة. وبمجرد استيراده، كل ما عليك هو إلغاء قفل خزانتك.',
+    noPasswordHint:
+      'لا حاجة إلى كلمة مرور — فهذا الحساب محمي بوسيلة فتح الخزينة الخاصة بك (Face ID/Touch ID أو عبارة الاسترداد).',
+    submit: 'إضافة حساب',
+  },
+  send: {
+    title: 'إرسال',
+    fromLabel: 'من {label} ({chain})',
+    recipientLabel: 'عنوان المستلم',
+    scanQrAria: 'امسح رمز الاستجابة السريعة',
+    amountLabel: 'المبلغ',
+    submit: 'إرسال',
+  },
+  receive: {
+    title: 'استلام',
+    defaultAccountLabel: 'الحساب',
+    tapToCopy: 'انقر للنسخ',
+    copyAria: 'نسخ العنوان',
+  },
+  swap: {
+    title: 'المبادلة',
+    sellTokenLabel: 'بيع التوكن (العنوان، أو ETH بالنسبة للتوكن الأصلي)',
+    buyTokenLabel: 'عنوان شراء التوكن',
+    sellAmountLabel: 'مبلغ البيع',
+    getQuote: 'احصل على عرض أسعار',
+    estimateText: 'المبلغ المتوقع استلامه: {amount} بسعر {price}',
+    signingNotice: 'أنت تقوم بالتوقيع على معاملة مع {address} (عبر أداة التجميع 0x).',
+    submit: 'المبادلة',
+  },
+  payees: {
+    title: 'المستفيدون',
+    add: 'إضافة مستفيد',
+    empty: 'لا يوجد مستفيدون حتى الآن.',
+    deleteAria: 'حذف {label}',
+    labelField: 'التسمية',
+    addressField: 'العنوان',
+  },
+  backup: {
+    title: 'النسخ الاحتياطي والاستعادة',
+    intro:
+      'يتم تشفير النسخ الاحتياطية على هذا الجهاز قبل أن تغادره بأي شكل من الأشكال. ولا يتدخل خادم wwwallet أبدًا — فعملية الاستعادة على جهاز جديد تتم عن طريق الاتصال مباشرةً بـ Google أو قراءة ملف محلي.',
+    googleDriveTitle: 'جوجل درايف',
+    backUpNow: 'قم بعمل نسخة احتياطية الآن',
+    restoreLatest: 'استعادة أحدث نسخة احتياطية',
+    localFileTitle: 'ملف محلي',
+    downloadBackup: 'تنزيل ملف النسخة الاحتياطية',
+    restoreFromFile: 'الاستعادة من ملف',
+    replaceTitle: 'هل تريد استبدال محفظتك الحالية؟',
+    replaceBody:
+      'ستؤدي عملية الاستعادة إلى استبدال كل ما يوجد حاليًا في هذا الخزينة — الحسابات والمستفيدين والإعدادات — بالمحتويات الموجودة في النسخة الاحتياطية، كما ستؤدي إلى إزالة أي مفتاح مرور تم إعداده على هذا الجهاز (ستقوم بإعادة تفعيله بعد إلغاء القفل). ولا يمكن التراجع عن هذه العملية.',
+    replaceConfirm: 'استبدله',
+  },
+  vaultSetup: {
+    createTitle: 'أنشئ محفظتك',
+    recoveryExplainer:
+      'هذا هو {phrase} الخاص بك. فهو يقوم بتشفير كل شيء على هذا الجهاز، وهو الطريقة الوحيدة لاستعادة الوصول في حال فقدت مفتاحك السري — بما في ذلك استعادة نسخة احتياطية على جهاز جديد. قم بتدوينها أو نسخها في مكان آمن، دون اتصال بالإنترنت. لن تحتاج إليها في الاستخدام اليومي بمجرد إعداد ميزة «الفتح السريع» في الشاشة التالية، ولن يعرضها لك wwwallet أبدًا مرة أخرى.',
+    recoveryExplainerPhrase: 'عبارة الاسترداد',
+    copyRecoveryPhrase: 'نسخ عبارة الاسترداد',
+    savedAckLabel: 'لقد احتفظت بعبارة الاسترداد في مكان آمن',
+    createVault: 'إنشاء خزينة',
+    haveBackup: 'هل لديك نسخة احتياطية بالفعل؟',
+    restoreFromDrive: 'الاستعادة من Google Drive',
+    restoreFromLocalFile: 'الاستعادة من ملف محلي',
+    quickUnlockTitle: 'تعيين ميزة «الفتح السريع»',
+    quickUnlockBody:
+      'استخدم ميزة «Face ID» أو «Touch ID» لفتح الجهاز في الاستخدام اليومي، بدلاً من عبارة الاستعادة.',
+    enablePasskey: 'تمكين Face ID / Touch ID',
+    passkeyEnabledLabel: 'يدعم ميزة Face ID / Touch ID',
+    passkeyUnsupportedNote:
+      'غير مدعوم على هذا الجهاز أو المتصفح — لا يزال بإمكانك إلغاء القفل باستخدام عبارة الاسترداد، أو إعادة المحاولة لاحقًا من «الإعدادات».',
+    skipTitle: 'هل تريد تخطي "الفتح السريع"؟',
+    skipBody:
+      'بدون مفتاح المرور، سيتعين عليك إدخال عبارة الاسترداد الكاملة في كل مرة تفتح فيها تطبيق wwwallet. يمكنك إعداد ذلك لاحقًا من خلال «الإعدادات».',
+    continueAnyway: 'استمر على أي حال',
+  },
+  vaultUnlock: {
+    title: 'إلغاء قفل wwwallet',
+    unlockWithPasskey: 'فتح القفل باستخدام Face ID / Touch ID',
+    recoveryPhraseLabel: 'عبارة الاسترداد (24 كلمة)',
+    unlock: 'فتح',
+    useRecoveryInstead: 'استخدم عبارة الاسترداد بدلاً من ذلك',
+  },
+  settings: {
+    title: 'الإعدادات',
+    toggleThemeAria: 'تبديل السمة',
+    closeAria: 'إغلاق الإعدادات',
+    lockNow: 'قفل الآن',
+    languageLabel: 'اللغة',
+    currencyLabel: 'العملة',
+    securityTitle: 'الأمن',
+    securityIntro:
+      'لا يتم تخزين عبارة الاسترداد الخاصة بك أبدًا في أي مكان يمكن أن تُعرض عليك — احتفظ بها في مكان آمن. تُعد ميزة «Face ID» / «Touch ID» الطريقة الأسرع لفتح القفل يوميًّا؛ كما أن wwwallet تُغلق نفسها تلقائيًّا بعد بضع دقائق من عدم النشاط.',
+    passkeyLabel: 'Face ID / Touch ID',
+    passkeyEnabled: 'ممكّن',
+    passkeyNotSetUp: 'لم يتم الإعداد',
+    remove: 'إزالة',
+    enable: 'تمكين',
+    removePasskeyTitle: 'إلغاء فتح القفل باستخدام Face ID / Touch ID؟',
+    removePasskeyBody:
+      'ستحتاج إلى عبارة الاسترداد الكاملة في كل مرة تقوم فيها بإلغاء قفل wwwallet حتى تقوم بإعداد مفتاح مرور جديد.',
+    removeAnyway: 'حذف على أي حال',
+  },
+  transactions: {
+    title: 'المعاملات',
+    empty: 'لم يتم العثور على أي معاملات.',
+    visitAccountFirst: 'قم بزيارة الحساب أولاً لتحميل سجل معاملاته.',
+  },
+  token: {
+    defaultLabel: 'الرمز الرمزي',
+  },
+  qrScanner: {
+    title: 'امسح رمز الاستجابة السريعة (QR) الخاص بالعنوان',
+    cameraError: 'فشل الوصول إلى الكاميرا. تحقق من الأذونات وحاول مرة أخرى.',
+  },
+  validation: {
+    amountGreaterThanZero: 'أدخل مبلغًا أكبر من الصفر.',
+    insufficientBalance:
+      'المبلغ المراد إرساله يزيد عن رصيد الحساب المرسل منه (بما في ذلك رسوم المعاملة).',
+    invalidRecipientAddress: 'أدخل عنوان مستلم صالحًا.',
+    validTokenOrEth: 'أدخل عنوان توكن صالحًا، أو ETH إذا كان التوكن أصليًّا.',
+    validBuyToken: 'أدخل عنوانًا صالحًا لرمز الشراء.',
+    labelRequired: 'يجب إدخال العنوان.',
+    validAddress: 'أدخل عنوانًا صحيحًا.',
+    filePasswordRequired: 'يلزم إدخال كلمة مرور هذا الملف.',
+    mnemonicWordCount: 'عدد الكلمات غير صحيح ({count}). يجب أن يكون العدد 12 أو 24 كلمة.',
+    privateKeyRequired: 'يلزم وجود مفتاح خاص.',
+    keystoreFileRequired: 'اختر ملف مخزن المفاتيح.',
+    recoveryPhraseFormat: 'لا تبدو هذه عبارة استرداد صالحة.',
+  },
+  msg: {
+    account: {
+      added: 'تمت إضافة الحساب.',
+    },
+    address: {
+      copied: 'تم نسخ العنوان.',
+    },
+    qr: {
+      noAddress: 'لم يحتوِ رمز الاستجابة السريعة على عنوان يمكن التعرف عليه.',
+    },
+    send: {
+      success: 'تم الإرسال. هاش المعاملة: {hash}',
+    },
+    swap: {
+      approvalSubmitted: 'تم تقديم طلب الموافقة. انتظر حتى يتم تأكيده، ثم قم بالتبديل مرة أخرى.',
+      success: 'تم إرسال عملية المبادلة. هاش المعاملة: {hash}',
+    },
+    backup: {
+      driveSuccess: 'تم النسخ الاحتياطي إلى Google Drive.',
+    },
+    restore: {
+      driveSuccess:
+        'تم استعادتها من Google Drive. قم بإلغاء القفل باستخدام عبارة الاسترداد الخاصة بك للمتابعة.',
+      fileSuccess:
+        'تم استعادته من الملف. قم بإلغاء القفل باستخدام عبارة الاسترداد الخاصة بك للمتابعة.',
+      driveSuccessSetup: 'تم استعادتها من Google Drive. أدخل عبارة الاسترداد لفتحها.',
+      fileSuccessSetup: 'تم استعادتها من الملف. أدخل عبارة الاسترداد لفتح القفل.',
+    },
+    recoveryPhrase: {
+      copied: 'تم نسخ عبارة الاسترداد — سيتم مسحها من الحافظة خلال 45 ثانية.',
+      copyFailed: 'تعذر النسخ تلقائيًّا — يرجى تحديد الكلمات ونسخها يدويًّا.',
+    },
+    passkey: {
+      ready: 'أصبح فتح القفل باستخدام Face ID / Touch ID جاهزًا.',
+    },
+  },
+  errors: {
+    unknown: 'حدث خطأ غير معروف',
+    requestFailed: 'فشل طلب {path} بسبب {status}',
+    webauthnUnavailable: 'WebAuthn غير متاح في هذا المتصفح',
+    passkeyRegistrationCancelled: 'تم إلغاء تسجيل مفتاح المرور',
+    passkeyNoPrfSecret: 'لم يُرجع «passkey» سر PRF',
+    passkeyUnlockCancelled: 'تم إلغاء فتح القفل باستخدام مفتاح المرور',
+    prfNotSupported:
+      'هذا الجهاز أو المتصفح لا يدعم فتح القفل باستخدام مفتاح المرور بدون كلمة مرور (WebAuthn PRF). لا يزال بإمكانك فتح القفل باستخدام عبارة الاسترداد الخاصة بك، أو تجربة جهاز/متصفح آخر.',
+    googleDriveNotConfigured:
+      'لم يتم تكوين النسخ الاحتياطي على Google Drive (الرقم التعريفي VITE_GOOGLE_CLIENT_ID مفقود)',
+    gisLoadFailed: 'فشل تحميل خدمات الهوية من Google',
+    googleSignInCancelled: 'تم إلغاء تسجيل الدخول إلى Google',
+    googleDriveSearchFailed: 'فشل البحث في Google Drive',
+    googleDriveUploadFailed: 'فشل تحميل النسخة الاحتياطية إلى Google Drive',
+    googleDriveNoBackup: 'لم يتم العثور على نسخة احتياطية في حساب Google هذا',
+    googleDriveDownloadFailed: 'فشل تنزيل النسخة الاحتياطية من Google Drive',
+    noVaultOnDevice: 'لا يوجد خزينة على هذا الجهاز',
+    cannotSaveNoVault: 'يتعذر الحفظ: لا يوجد خزينة حتى الآن',
+    noRecoveryWrapToExport: 'لا يحتوي «vault» على عبارة استرداد قابلة للتصدير',
+    invalidBackupFile: 'هذا الملف ليس نسخة احتياطية صالحة لـ wwwallet.',
+    vaultUnlockFailed: 'عبارة الاسترداد غير صحيحة أو الخزينة تالفة.',
+    unlockMethodNotEnrolled: 'لم يتم إعداد {method} لهذا الخزنة.',
+    passkeyNotSetUp: 'لم يتم إعداد مفتاح المرور لهذا الخزنة.',
+    vaultLocked: 'الخزنة مغلقة',
+    chooseKeystoreFile: 'اختر ملف مخزن المفاتيح',
+  },
+  currency: {
+    USD: 'الدولار الأمريكي',
+    EUR: 'اليورو',
+    GBP: 'الجنيه الإسترليني',
+    AUD: 'الدولار الأسترالي',
+    CAD: 'الدولار الكندي',
+    JPY: 'الين الياباني',
+    CHF: 'الفرنك السويسري',
+    CNH: 'اليوان',
+    SEK: 'الكرونة السويدية',
+    NZD: 'الدولار النيوزيلندي',
+  },
+}

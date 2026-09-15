@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 
+const { t } = useI18n()
 const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()
@@ -14,7 +16,7 @@ let pendingRestore: (() => void) | null = null
 async function backupToDrive() {
   try {
     await vault.backupToDrive()
-    messages.push('Backed up to Google Drive.', 'success')
+    messages.push(t('msg.backup.driveSuccess'), 'success')
   } catch (err) {
     messages.push((err as Error).message, 'error')
   }
@@ -23,7 +25,7 @@ async function backupToDrive() {
 async function restoreFromDrive() {
   try {
     await vault.restoreFromDrive()
-    messages.push('Restored from Google Drive. Unlock with your recovery phrase to continue.', 'success')
+    messages.push(t('msg.restore.driveSuccess'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -43,7 +45,7 @@ async function onFileSelected(event: Event) {
   if (!file) return
   try {
     await vault.restoreFromFile(file)
-    messages.push('Restored from file. Unlock with your recovery phrase to continue.', 'success')
+    messages.push(t('msg.restore.fileSuccess'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
@@ -67,26 +69,24 @@ function proceedWithRestore() {
 
 <template>
   <v-container>
-    <h1 class="text-h5">Backup &amp; restore</h1>
+    <h1 class="text-h5">{{ t('backup.title') }}</h1>
     <v-alert type="info" variant="tonal" class="my-4">
-      Backups are encrypted on this device before they ever leave it. wwwallet's
-      server is never involved — restoring on a new device talks directly to
-      Google or reads a local file.
+      {{ t('backup.intro') }}
     </v-alert>
 
     <v-row>
       <v-col cols="12" md="6">
         <v-card class="pa-4">
-          <v-card-title class="text-subtitle-1">Google Drive</v-card-title>
-          <v-btn class="mb-2" block variant="outlined" @click="backupToDrive">Back up now</v-btn>
-          <v-btn block variant="outlined" @click="confirmRestore(restoreFromDrive)">Restore latest backup</v-btn>
+          <v-card-title class="text-subtitle-1">{{ t('backup.googleDriveTitle') }}</v-card-title>
+          <v-btn class="mb-2" block variant="outlined" @click="backupToDrive">{{ t('backup.backUpNow') }}</v-btn>
+          <v-btn block variant="outlined" @click="confirmRestore(restoreFromDrive)">{{ t('backup.restoreLatest') }}</v-btn>
         </v-card>
       </v-col>
       <v-col cols="12" md="6">
         <v-card class="pa-4">
-          <v-card-title class="text-subtitle-1">Local file</v-card-title>
-          <v-btn class="mb-2" block variant="outlined" @click="backupToFile">Download backup file</v-btn>
-          <v-btn block variant="outlined" @click="confirmRestore(() => fileInput?.click())">Restore from file</v-btn>
+          <v-card-title class="text-subtitle-1">{{ t('backup.localFileTitle') }}</v-card-title>
+          <v-btn class="mb-2" block variant="outlined" @click="backupToFile">{{ t('backup.downloadBackup') }}</v-btn>
+          <v-btn block variant="outlined" @click="confirmRestore(() => fileInput?.click())">{{ t('backup.restoreFromFile') }}</v-btn>
           <input ref="fileInput" type="file" accept="application/json" hidden @change="onFileSelected" />
         </v-card>
       </v-col>
@@ -94,16 +94,14 @@ function proceedWithRestore() {
 
     <v-dialog v-model="restoreWarningOpen" max-width="420">
       <v-card>
-        <v-card-title>Replace your current wallet?</v-card-title>
+        <v-card-title>{{ t('backup.replaceTitle') }}</v-card-title>
         <v-card-text>
-          Restoring overwrites everything currently in this vault — accounts, payees,
-          and settings — with what's in the backup, and removes any passkey set up on
-          this device (you'll re-enable it after unlocking). This can't be undone.
+          {{ t('backup.replaceBody') }}
         </v-card-text>
         <v-card-actions>
-          <v-btn variant="text" @click="restoreWarningOpen = false">Cancel</v-btn>
+          <v-btn variant="text" @click="restoreWarningOpen = false">{{ t('common.cancel') }}</v-btn>
           <v-spacer />
-          <v-btn color="error" @click="proceedWithRestore">Replace it</v-btn>
+          <v-btn color="error" @click="proceedWithRestore">{{ t('backup.replaceConfirm') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

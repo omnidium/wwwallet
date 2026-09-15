@@ -1,3 +1,4 @@
+import { i18n } from '@/i18n'
 import { db } from './db'
 
 const CREDENTIAL_ID = 'default' as const
@@ -10,10 +11,7 @@ interface PrfExtensionResults {
 
 export class PrfNotSupportedError extends Error {
   constructor() {
-    super(
-      'This device or browser does not support passwordless passkey unlock (WebAuthn PRF). ' +
-        "You can still unlock with your recovery phrase, or try a different device/browser.",
-    )
+    super(i18n.global.t('errors.prfNotSupported'))
     this.name = 'PrfNotSupportedError'
   }
 }
@@ -46,7 +44,7 @@ function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
 export async function registerLocalPasskeyWithPrf(
   displayName: string,
 ): Promise<{ credentialId: Uint8Array<ArrayBuffer>; prfSalt: Uint8Array<ArrayBuffer>; prfSecret: ArrayBuffer }> {
-  if (!navigator.credentials) throw new Error('WebAuthn is not available in this browser')
+  if (!navigator.credentials) throw new Error(i18n.global.t('errors.webauthnUnavailable'))
 
   const challenge = crypto.getRandomValues(new Uint8Array(32))
   const userId = crypto.getRandomValues(new Uint8Array(16))
@@ -68,7 +66,7 @@ export async function registerLocalPasskeyWithPrf(
       extensions: { prf: {} } as AuthenticationExtensionsClientInputs,
     },
   })) as PublicKeyCredential | null
-  if (!credential) throw new Error('passkey registration was cancelled')
+  if (!credential) throw new Error(i18n.global.t('errors.passkeyRegistrationCancelled'))
 
   const credentialId = new Uint8Array(credential.rawId)
   const createResults = credential.getClientExtensionResults() as PrfExtensionResults
@@ -93,7 +91,7 @@ export async function unlockPasskeyPrfSecret(
   prfSalt: Uint8Array,
 ): Promise<ArrayBuffer> {
   const secret = await evaluatePrf(credentialId, prfSalt)
-  if (!secret) throw new Error('passkey did not return a PRF secret')
+  if (!secret) throw new Error(i18n.global.t('errors.passkeyNoPrfSecret'))
   return secret
 }
 
@@ -108,7 +106,7 @@ async function evaluatePrf(credentialId: Uint8Array, prfSalt: Uint8Array): Promi
       extensions: { prf: { eval: { first: toArrayBuffer(prfSalt) } } } as AuthenticationExtensionsClientInputs,
     },
   })) as PublicKeyCredential | null
-  if (!assertion) throw new Error('passkey unlock was cancelled')
+  if (!assertion) throw new Error(i18n.global.t('errors.passkeyUnlockCancelled'))
 
   const results = assertion.getClientExtensionResults() as PrfExtensionResults
   return results.prf?.results?.first

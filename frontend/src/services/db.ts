@@ -59,5 +59,19 @@ db.version(2).stores({
   totpFactor: null,
 })
 
+// Fires when something outside this connection — another tab with a newer
+// app version, or DevTools' "Clear site data" — needs this database deleted
+// or upgraded, which IndexedDB can't do while a connection is still open.
+// Without this, the open connection is left pointing at a database that no
+// longer matches on-disk reality: the current route stays rendered exactly
+// as it was (e.g. still showing "Unlock" after storage was cleared), and
+// only the *next* navigation's fresh `db.vault.get(...)` call notices
+// anything changed. Closing and reloading immediately keeps the app from
+// ever rendering against a state it knows is already stale.
+db.on('versionchange', () => {
+  db.close()
+  window.location.reload()
+})
+
 export type { CacheEntry, VaultRecord, LocalWebAuthnCredential, KeyWrap }
 export { db }
