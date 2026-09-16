@@ -8,13 +8,22 @@ import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { toHumanAmount, convertUsd, formatFiat } from '@/services/money'
 import { tokenUrl } from '@/services/blockExplorer'
+import { groupTransactionsByDate } from '@/services/transactionGrouping'
+import { DUST_THRESHOLD_USD } from '@/config/appSettings'
+import type { Transaction } from '@/services/api'
 import InfoTooltip from '@/components/InfoTooltip.vue'
+import TransactionRow from '@/components/TransactionRow.vue'
+import TransactionDetailDialog from '@/components/TransactionDetailDialog.vue'
 
 const { t, locale } = useI18n({ useScope: 'global' })
 const route = useRoute()
 const messages = useMessagesStore()
 const chainData = useChainDataStore()
 const settingsLocale = useSettingsLocaleStore()
+
+const hideDustTxns = ref(false)
+const detailTransaction = ref<Transaction | null>(null)
+const detailOpen = ref(false)
 
 const chain = route.params.chain as ChainSlug
 const address = route.params.address as string
@@ -70,6 +79,26 @@ const totalFormatted = computed(() => {
     locale.value,
   )
 })
+
+const tokenTransactions = computed(() => {
+  if (!holderAddress) return []
+  const activity = chainData.activityByAddress[chainData.keyFor(chain, holderAddress)]
+  return (
+    activity?.transactions.filter((t) => t.contract_address?.toLowerCase() === address.toLowerCase()) ?? []
+  )
+})
+const visibleTokenTransactions = computed(() => {
+  if (!hideDustTxns.value) return tokenTransactions.value
+  const priceUsd = metadata.value?.usd_price
+  if (priceUsd == null) return tokenTransactions.value
+  return tokenTransactions.value.filter((t) => Number(t.value) * priceUsd >= DUST_THRESHOLD_USD)
+})
+const transactionGroups = computed(() => groupTransactionsByDate(visibleTokenTransactions.value, locale.value))
+
+function openTransaction(txn: Transaction) {
+  detailTransaction.value = txn
+  detailOpen.value = true
+}
 </script>
 
 <template>
@@ -122,5 +151,34 @@ const totalFormatted = computed(() => {
         <span class="font-weight-bold">{{ totalFormatted }}</span>
       </div>
     </v-card>
+
+    <template v-if="holderAddress">
+      <h2 class="text-h6 mt-6 mb-2">{{ t('transactions.title') }}</h2>
+      <v-card class="pa-2">
+        <v-switch
+          v-model="hideDustTxns"
+          :label="t('accountCard.hideDustTxns')"
+          density="compact"
+          hide-details
+          color="primary"
+          class="dust-toggle"
+        />
+        <template v-for="group in transactionGroups" :key="group.dateLabel">
+          <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
+          <TransactionRow
+            v-for="txn in group.transactions"
+            :key="txn.hash"
+            :transaction="txn"
+            :my-address="holderAddress"
+            @click="openTransaction(txn)"
+          />
+        </template>
+        <p v-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
+          {{ t('transactions.empty') }}
+        </p>
+      </v-card>
+    </template>
+
+    <TransactionDetailDialog v-model="detailOpen" :chain="chain" :transaction="detailTransaction" />
   </div>
 </template>

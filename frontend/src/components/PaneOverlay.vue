@@ -20,7 +20,10 @@ function close() {
         size="small"
         :aria-label="t('common.close')"
         @click="close"
-      />
+      >
+        <v-icon />
+        <v-tooltip activator="parent" location="bottom">{{ t('common.close') }}</v-tooltip>
+      </v-btn>
       <slot />
     </div>
   </div>

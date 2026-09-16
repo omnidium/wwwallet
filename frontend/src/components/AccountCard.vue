@@ -9,9 +9,11 @@ import { useMessagesStore } from '@/stores/messages'
 import { toHumanAmount, convertUsd, formatFiat } from '@/services/money'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
 import type { Transaction } from '@/services/api'
+import { DUST_THRESHOLD_USD } from '@/config/appSettings'
 import EditAccountDialog from '@/components/EditAccountDialog.vue'
 import HideAccountConfirmDialog from '@/components/HideAccountConfirmDialog.vue'
 import SecretRevealDialog from '@/components/SecretRevealDialog.vue'
+import TransactionRow from '@/components/TransactionRow.vue'
 
 const props = defineProps<{ account: WalletAccount; eligibleTransferSiblings: WalletAccount[] }>()
 const emit = defineEmits<{
@@ -27,6 +29,8 @@ const messages = useMessagesStore()
 
 const expandedTxns = ref(false)
 const expandedTokens = ref(false)
+const hideDustTxns = ref(false)
+const hideDustTokens = ref(false)
 const justCopied = ref(false)
 const editOpen = ref(false)
 const hideOpen = ref(false)
@@ -84,9 +88,27 @@ const tokenFiatTotal = computed(() =>
     ? formatFiat(convertUsd(tokenFiatUsdTotal.value, settingsLocale.currency, chainData.fxRates), settingsLocale.currency, locale.value)
     : null,
 )
+// The total above always reflects every token held; only the row list below
+// (what's actually rendered) responds to the dust toggle.
+const visibleTokenRows = computed(() =>
+  hideDustTokens.value
+    ? tokenRows.value.filter((r) => r.usd === null || r.usd >= DUST_THRESHOLD_USD)
+    : tokenRows.value,
+)
 
+// Only native-asset transfers — a token's own transfers show on that
+// token's own detail page instead, alongside the rest of its history.
+const nativeTransactions = computed(
+  () => activity.value?.transactions.filter((t) => t.contract_address === null) ?? [],
+)
+const visibleNativeTransactions = computed(() => {
+  if (!hideDustTxns.value) return nativeTransactions.value
+  const priceUsd = chainData.nativePriceUsdByChain[props.account.chain]
+  if (priceUsd === undefined) return nativeTransactions.value
+  return nativeTransactions.value.filter((t) => Number(t.value) * priceUsd >= DUST_THRESHOLD_USD)
+})
 const transactionGroups = computed(() =>
-  groupTransactionsByDate(activity.value?.transactions ?? [], locale.value),
+  groupTransactionsByDate(visibleNativeTransactions.value, locale.value),
 )
 
 // Lazy-load token metadata the first time the token row actually appears.
@@ -120,25 +142,39 @@ async function toggleShow() {
           <v-icon v-bind="activatorProps" icon="mdi-content-copy" size="small" class="mr-2" role="button" @click="copyAddress" />
         </template>
       </v-tooltip>
-      <v-icon
-        icon="mdi-qrcode"
-        size="small"
-        class="mr-2"
-        role="button"
-        :aria-label="t('accountCard.viewQr')"
-        @click="$router.push(`/accounts/${account.chain}/${account.address}/receive`)"
-      />
-      <v-icon
-        icon="mdi-send"
-        size="small"
-        class="mr-2"
-        role="button"
-        :aria-label="t('accountCard.send')"
-        @click="$router.push(`/accounts/${account.chain}/${account.address}/send`)"
-      />
+      <v-tooltip :text="t('accountCard.viewQr')" location="top">
+        <template #activator="{ props: activatorProps }">
+          <v-icon
+            v-bind="activatorProps"
+            icon="mdi-qrcode"
+            size="small"
+            class="mr-2"
+            role="button"
+            :aria-label="t('accountCard.viewQr')"
+            @click="$router.push(`/accounts/${account.chain}/${account.address}/receive`)"
+          />
+        </template>
+      </v-tooltip>
+      <v-tooltip :text="t('accountCard.send')" location="top">
+        <template #activator="{ props: activatorProps }">
+          <v-icon
+            v-bind="activatorProps"
+            icon="mdi-send"
+            size="small"
+            class="mr-2"
+            role="button"
+            :aria-label="t('accountCard.send')"
+            @click="$router.push(`/accounts/${account.chain}/${account.address}/send`)"
+          />
+        </template>
+      </v-tooltip>
       <v-menu>
         <template #activator="{ props: menuProps }">
-          <v-icon v-bind="menuProps" icon="mdi-dots-horizontal" role="button" :aria-label="t('accountCard.moreActions')" />
+          <v-tooltip :text="t('accountCard.moreActions')" location="top">
+            <template #activator="{ props: tooltipProps }">
+              <v-icon v-bind="{ ...menuProps, ...tooltipProps }" icon="mdi-dots-horizontal" role="button" :aria-label="t('accountCard.moreActions')" />
+            </template>
+          </v-tooltip>
         </template>
         <v-list density="compact">
           <v-list-item :title="t('accountCard.swap')" prepend-icon="mdi-swap-vertical-bold" @click="$router.push(`/accounts/${account.chain}/${account.address}/swap`)" />
@@ -169,27 +205,42 @@ async function toggleShow() {
           ({{ nativeBalance.toFixed(5) }} {{ nativeSymbol }})
         </span>
       </div>
-      <v-icon :icon="expandedTxns ? 'mdi-chevron-up' : 'mdi-chevron-down'" />
-      <v-icon
-        v-if="eligibleTransferSiblings.length > 0"
-        icon="mdi-swap-horizontal"
-        class="transfer-handle ml-2"
-        role="button"
-        :aria-label="t('accountCard.transfer')"
-        @click.stop
-        @pointerdown="emit('transferPointerdown', $event)"
-      />
+      <v-tooltip :text="expandedTxns ? t('accountCard.hideTransactions') : t('accountCard.showTransactions')" location="top">
+        <template #activator="{ props: activatorProps }">
+          <v-icon v-bind="activatorProps" :icon="expandedTxns ? 'mdi-chevron-up' : 'mdi-chevron-down'" />
+        </template>
+      </v-tooltip>
+      <v-tooltip v-if="eligibleTransferSiblings.length > 0" :text="t('accountCard.transfer')" location="top">
+        <template #activator="{ props: activatorProps }">
+          <v-icon
+            v-bind="activatorProps"
+            icon="mdi-swap-horizontal"
+            class="transfer-handle ml-2"
+            role="button"
+            :aria-label="t('accountCard.transfer')"
+            @click.stop
+            @pointerdown="emit('transferPointerdown', $event)"
+          />
+        </template>
+      </v-tooltip>
     </div>
 
     <div v-if="expandedTxns" class="expanded-list pa-2">
+      <v-switch
+        v-model="hideDustTxns"
+        :label="t('accountCard.hideDustTxns')"
+        density="compact"
+        hide-details
+        color="primary"
+        class="dust-toggle"
+      />
       <template v-for="group in transactionGroups" :key="group.dateLabel">
         <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
-        <v-list-item
+        <TransactionRow
           v-for="txn in group.transactions"
           :key="txn.hash"
-          :title="`${txn.value} ${txn.asset}`"
-          :subtitle="txn.hash"
-          density="compact"
+          :transaction="txn"
+          :my-address="account.address"
           @click="emit('openTransaction', txn)"
         />
       </template>
@@ -202,12 +253,24 @@ async function toggleShow() {
       <v-icon icon="mdi-cash-multiple" class="mr-2" />
       <span class="balance-figure">{{ tokenFiatTotal }}</span>
       <v-spacer />
-      <v-icon :icon="expandedTokens ? 'mdi-chevron-up' : 'mdi-chevron-down'" />
+      <v-tooltip :text="expandedTokens ? t('accountCard.hideTokens') : t('accountCard.showTokens')" location="top">
+        <template #activator="{ props: activatorProps }">
+          <v-icon v-bind="activatorProps" :icon="expandedTokens ? 'mdi-chevron-up' : 'mdi-chevron-down'" />
+        </template>
+      </v-tooltip>
     </div>
 
     <div v-if="expandedTokens" class="expanded-list pa-2">
+      <v-switch
+        v-model="hideDustTokens"
+        :label="t('accountCard.hideDustTokens')"
+        density="compact"
+        hide-details
+        color="primary"
+        class="dust-toggle"
+      />
       <v-list-item
-        v-for="tokenRow in tokenRows"
+        v-for="tokenRow in visibleTokenRows"
         :key="tokenRow.contractAddress"
         :to="`/tokens/${account.chain}/${tokenRow.contractAddress}?holder=${account.address}`"
         density="compact"

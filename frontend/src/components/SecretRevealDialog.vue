@@ -128,7 +128,10 @@ async function copySecret() {
         <v-card-text>
           <div class="d-flex align-center">
             <p class="secret-text">{{ secret }}</p>
-            <v-icon icon="mdi-content-copy" class="ml-2" role="button" :aria-label="t('secretReveal.copy')" @click="copySecret" />
+            <span class="ml-2">
+              <v-icon icon="mdi-content-copy" role="button" :aria-label="t('secretReveal.copy')" @click="copySecret" />
+              <v-tooltip activator="parent" location="top">{{ t('secretReveal.copy') }}</v-tooltip>
+            </span>
           </div>
         </v-card-text>
         <v-card-actions>

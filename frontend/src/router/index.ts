@@ -27,6 +27,7 @@ const router = createRouter({
       component: () => import('../views/SwapView.vue'),
     },
     { path: '/payees', name: 'payees', component: () => import('../views/PayeesView.vue') },
+    { path: '/security', name: 'security', component: () => import('../views/SecurityView.vue') },
     {
       path: '/backup-restore',
       name: 'backup-restore',

@@ -40,6 +40,7 @@ watch(() => route.fullPath, () => {
   <v-app>
     <button class="floating-settings-btn" :aria-label="t('nav.settings')" @click="settingsOpen = true">
       <v-icon icon="mdi-cog" />
+      <v-tooltip activator="parent" location="bottom">{{ t('nav.settings') }}</v-tooltip>
     </button>
 
     <v-navigation-drawer
@@ -83,7 +84,10 @@ watch(() => route.fullPath, () => {
           density="comfortable"
           :aria-label="t('nav.dismiss')"
           @click="messages.dismiss(message.id)"
-        />
+        >
+          <v-icon />
+          <v-tooltip activator="parent" location="top">{{ t('nav.dismiss') }}</v-tooltip>
+        </v-btn>
       </template>
     </v-snackbar>
   </v-app>

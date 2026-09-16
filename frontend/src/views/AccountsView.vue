@@ -141,7 +141,7 @@ onUnmounted(() => {
 
 <template>
   <div class="connectivity-badge" role="status" :aria-label="connectionTooltip">
-    <v-icon :icon="connected ? 'mdi-circle' : 'mdi-circle-outline'" :color="connected ? 'success' : 'grey'" size="small" />
+    <v-icon :icon="connected ? 'mdi-circle' : 'mdi-circle-outline'" :color="connected ? 'success' : 'grey'" size="xs" />
     <v-tooltip activator="parent" location="bottom">{{ connectionTooltip }}</v-tooltip>
   </div>
 
@@ -152,8 +152,11 @@ onUnmounted(() => {
         <p class="grow">{{ t('accounts.backupReminder') }}</p>
       </div>
       <v-btn class="mt-3" variant="outlined" to="/backup-restore">{{ t('backup.backUpNow') }}</v-btn>
-      <v-icon icon="mdi-close" size="small" class="dismiss-btn" role="button" :aria-label="t('common.close')"
-        @click="backupDismissed = true" />
+      <span class="dismiss-btn">
+        <v-icon icon="mdi-close" size="small" role="button" :aria-label="t('common.close')"
+          @click="backupDismissed = true" />
+        <v-tooltip activator="parent" location="top">{{ t('common.close') }}</v-tooltip>
+      </span>
     </v-card>
 
     <v-alert v-if="accounts.accounts.length === 0" type="info" variant="tonal" class="mt-4">
@@ -164,6 +167,7 @@ onUnmounted(() => {
       <div v-for="account in visibleAccounts" :key="account.address" :data-address="account.address">
         <div class="drag-handle-row">
           <v-icon icon="mdi-drag-horizontal-variant" class="drag-handle" size="small" />
+          <v-tooltip activator="parent" location="top">{{ t('accountCard.dragToReorder') }}</v-tooltip>
         </div>
         <AccountCard :account="account" :eligible-transfer-siblings="eligibleTransferSiblings(account)"
           @transfer-pointerdown="(e) => dragToTransfer.onPointerDown(e, account, accounts.accounts)"
@@ -173,7 +177,10 @@ onUnmounted(() => {
 
     <div class="add-account-row">
       <v-btn icon="mdi-plus" size="large" rounded="circle" color="primary" variant="tonal" to="/accounts/new"
-        :aria-label="t('accounts.addAccount')" />
+        :aria-label="t('accounts.addAccount')">
+        <v-icon />
+        <v-tooltip activator="parent" location="top">{{ t('accounts.addAccount') }}</v-tooltip>
+      </v-btn>
     </div>
 
     <template v-if="hiddenAccounts.length > 0">

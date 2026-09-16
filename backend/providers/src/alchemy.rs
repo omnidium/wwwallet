@@ -160,6 +160,11 @@ impl ActivityProvider for AlchemyProvider {
                             .and_then(Value::as_str)
                             .unwrap_or("")
                             .to_string(),
+                        contract_address: t
+                            .get("rawContract")
+                            .and_then(|c| c.get("address"))
+                            .and_then(Value::as_str)
+                            .map(str::to_string),
                         block_number: t
                             .get("blockNum")
                             .and_then(Value::as_str)

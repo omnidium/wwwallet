@@ -16,6 +16,8 @@ pub struct Transaction {
     pub to: Option<String>,
     pub value: String,
     pub asset: String,
+    /// The ERC-20 contract this transfer moved, or None for a native transfer.
+    pub contract_address: Option<String>,
     pub block_number: Option<u64>,
     pub timestamp: Option<String>,
     pub status: TransactionStatus,

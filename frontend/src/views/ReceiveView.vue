@@ -38,7 +38,10 @@ async function copyAddress() {
         <p class="text-body-2" style="word-break: break-all">{{ address }}</p>
         <p class="text-caption text-medium-emphasis mt-1">{{ t('receive.tapToCopy') }}</p>
       </div>
-      <v-icon icon="mdi-content-copy" class="ml-4" :aria-label="t('receive.copyAria')" />
+      <span class="ml-4">
+        <v-icon icon="mdi-content-copy" :aria-label="t('receive.copyAria')" />
+        <v-tooltip activator="parent" location="top">{{ t('receive.copyAria') }}</v-tooltip>
+      </span>
     </v-card>
   </div>
 </template>

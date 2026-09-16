@@ -64,6 +64,15 @@ body {
 
 .account-card {
   background: linear-gradient(160deg, rgba(var(--v-theme-surface), 1), rgba(var(--v-theme-surface-variant), 1));
+  /* 30% narrower than the full container width, per request — kept full-width
+   * below 700px instead of compounding with the viewport's own narrowness. */
+  max-width: 70%;
+}
+
+@media (max-width: 700px) {
+  .account-card {
+    max-width: 100%;
+  }
 }
 
 .balance-row {
@@ -85,6 +94,33 @@ body {
   cursor: grab;
 }
 
+.dust-toggle {
+  flex: none;
+  margin: 0 0 0.25em;
+  padding: 0 0.5em;
+}
+
+/* TransactionRow.vue */
+
+.txn-row {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.txn-row:hover {
+  background-color: rgba(var(--v-theme-on-surface), 0.04);
+}
+
+.txn-row-counterparty {
+  font-family: monospace;
+}
+
+.txn-row-amount {
+  white-space: nowrap;
+}
+
 .expanded-list {
   max-height: 45vh;
   overflow-y: auto;
@@ -103,11 +139,13 @@ body {
   width: 100%;
   border-collapse: collapse;
 }
+
 .txn-details td {
   padding: 0.35em 0;
   word-break: break-all;
   vertical-align: top;
 }
+
 .txn-details td:first-child {
   padding-right: 1em;
   white-space: nowrap;
@@ -116,7 +154,7 @@ body {
 
 /* TransactionReviewDialog.vue */
 
-.review-row + .review-row {
+.review-row+.review-row {
   border-top: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
 }
 
@@ -193,16 +231,11 @@ body {
   top: 16px;
   right: 16px;
   z-index: 1005;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(var(--v-theme-surface), 0.85);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .add-account-row {
@@ -213,7 +246,7 @@ body {
 
 /* TokenDetailView.vue */
 
-.detail-row + .detail-row {
+.detail-row+.detail-row {
   border-top: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
 }
 

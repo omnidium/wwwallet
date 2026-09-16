@@ -39,6 +39,7 @@ export interface Transaction {
   to: string | null
   value: string
   asset: string
+  contract_address: string | null
   block_number: number | null
   timestamp: string | null
   status: TransactionStatus

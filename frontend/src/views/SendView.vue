@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { formatUnits, parseUnits } from 'ethers'
@@ -44,7 +44,22 @@ const nativeSymbol = computed(
     )?.symbol ?? '',
 )
 
-const relevantPayees = payees.payees.filter((p) => p.chain === chain)
+const relevantPayees = computed(() => payees.payees.filter((p) => p.chain === chain))
+const payeeItems = computed(() =>
+  relevantPayees.value.map((p) => ({ title: `${p.label} — ${p.address}`, value: p.address })),
+)
+// A picker separate from `to` itself: v-combobox validates against its own
+// displayed text (the item's title), not the transformed model, so binding
+// it directly to `to` broke address validation the instant a payee was
+// picked. This stays a one-shot selector that copies the resolved address
+// into the real field, then resets — `to` (and its validation) never sees
+// anything but a plain address string.
+const payeePicker = ref<string | null>(null)
+watch(payeePicker, (selectedAddress) => {
+  if (!selectedAddress) return
+  to.value = selectedAddress
+  payeePicker.value = null
+})
 
 const nativeBalance = computed(() => {
   const activity = chainData.activityByAddress[chainData.keyFor(chain, address)]
@@ -87,10 +102,6 @@ function formatAmountRow(weiValue: bigint): { value: string; sub?: string } {
     locale.value,
   )
   return { value: fiat, sub: nativeStr }
-}
-
-function pickPayee(payeeAddress: string) {
-  to.value = payeeAddress
 }
 
 /** Handles both a bare address and an EIP-681 "ethereum:0x...@chainId" URI. */
@@ -180,21 +191,30 @@ async function confirmSend() {
       <v-form v-model="formValid">
         <v-text-field v-model="to" :label="t('send.recipientLabel')" :rules="addressRules">
           <template #append-inner>
-            <v-icon
-              icon="mdi-qrcode-scan"
-              role="button"
-              :aria-label="t('send.scanQrAria')"
-              style="cursor: pointer"
-              @click="scannerOpen = true"
-            />
+            <span>
+              <v-icon
+                icon="mdi-qrcode-scan"
+                role="button"
+                :aria-label="t('send.scanQrAria')"
+                style="cursor: pointer"
+                @click="scannerOpen = true"
+              />
+              <v-tooltip activator="parent" location="top">{{ t('send.scanQrAria') }}</v-tooltip>
+            </span>
           </template>
         </v-text-field>
 
-        <v-chip-group v-if="relevantPayees.length" class="mb-2">
-          <v-chip v-for="payee in relevantPayees" :key="payee.id" size="small" @click="pickPayee(payee.address)">
-            {{ payee.label }}
-          </v-chip>
-        </v-chip-group>
+        <v-autocomplete
+          v-if="relevantPayees.length"
+          v-model="payeePicker"
+          :items="payeeItems"
+          item-title="title"
+          item-value="value"
+          :label="t('send.pickPayeeLabel')"
+          density="compact"
+          clearable
+          class="mb-2"
+        />
 
         <v-text-field v-model="amount" :label="t('send.amountLabel')" type="number" min="0" step="any" :rules="amountRules" />
 

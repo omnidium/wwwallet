@@ -18,3 +18,6 @@ export const SNACKBAR_DEFAULT_TIMEOUT_MS = 5000
 
 /** How often the accounts screen silently re-fetches balances/prices/activity in the background. */
 export const ACCOUNT_AUTO_REFRESH_MS = 10_000
+
+/** Below this fiat value, a token balance or transaction is considered dust and can be filtered out. */
+export const DUST_THRESHOLD_USD = 0.01
