@@ -1,6 +1,6 @@
 import { HDNodeWallet, Wallet, isAddress } from 'ethers'
 import type { ChainSlug } from './api'
-import type { WalletAccount } from '@/stores/accounts'
+import type { NewWalletAccount } from '@/stores/accounts'
 
 /**
  * Account private keys are stored as plain hex, protected only by the vault's
@@ -11,27 +11,42 @@ import type { WalletAccount } from '@/stores/accounts'
  * funds; the vault unlock is now the only gate, matching how the passwordless
  * redesign already treats "vault unlocked" as sufficient authorization.
  */
-export async function createWallet(label: string, chain: ChainSlug): Promise<WalletAccount> {
+export async function createWallet(label: string, chain: ChainSlug): Promise<NewWalletAccount> {
   const wallet = HDNodeWallet.createRandom()
-  return { address: wallet.address, label, chain, privateKey: wallet.privateKey }
+  return {
+    address: wallet.address,
+    label,
+    chain,
+    privateKey: wallet.privateKey,
+    hasMnemonic: true,
+    mnemonic: wallet.mnemonic?.phrase,
+  }
 }
 
 export async function importFromMnemonic(
   label: string,
   chain: ChainSlug,
   mnemonic: string,
-): Promise<WalletAccount> {
-  const wallet = HDNodeWallet.fromPhrase(mnemonic.trim())
-  return { address: wallet.address, label, chain, privateKey: wallet.privateKey }
+): Promise<NewWalletAccount> {
+  const trimmed = mnemonic.trim()
+  const wallet = HDNodeWallet.fromPhrase(trimmed)
+  return {
+    address: wallet.address,
+    label,
+    chain,
+    privateKey: wallet.privateKey,
+    hasMnemonic: true,
+    mnemonic: trimmed,
+  }
 }
 
 export async function importFromPrivateKey(
   label: string,
   chain: ChainSlug,
   privateKey: string,
-): Promise<WalletAccount> {
+): Promise<NewWalletAccount> {
   const wallet = new Wallet(privateKey.trim())
-  return { address: wallet.address, label, chain, privateKey: wallet.privateKey }
+  return { address: wallet.address, label, chain, privateKey: wallet.privateKey, hasMnemonic: false }
 }
 
 /**
@@ -45,12 +60,12 @@ export async function importFromKeystoreJson(
   chain: ChainSlug,
   keystoreJson: string,
   filePassword: string,
-): Promise<WalletAccount> {
+): Promise<NewWalletAccount> {
   const wallet = await Wallet.fromEncryptedJson(keystoreJson, filePassword)
-  return { address: wallet.address, label, chain, privateKey: wallet.privateKey }
+  return { address: wallet.address, label, chain, privateKey: wallet.privateKey, hasMnemonic: false }
 }
 
-export async function unlockWalletForSigning(account: WalletAccount): Promise<Wallet> {
+export async function unlockWalletForSigning(account: NewWalletAccount): Promise<Wallet> {
   return new Wallet(account.privateKey)
 }
 

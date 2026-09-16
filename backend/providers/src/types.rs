@@ -42,6 +42,17 @@ pub struct TokenMetadata {
     pub symbol: Option<String>,
     pub decimals: Option<u8>,
     pub logo_url: Option<String>,
+    /// USD price per token, when the metadata source has market data for it
+    /// (Ethplorer only returns this for tokens with a live market — see
+    /// ethplorer.rs). `None` rather than 0 for "no price available", since a
+    /// real zero-value token is a different thing from an unpriced one.
+    pub usd_price: Option<f64>,
+}
+
+/// A chain's native currency price (ETH, MATIC, ...) in USD. See coingecko.rs.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct NativePrice {
+    pub usd: f64,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

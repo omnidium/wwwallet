@@ -23,6 +23,8 @@ interface VaultRecord {
   iv: ArrayBuffer
   wraps: KeyWrap[]
   updatedAt: number
+  /** Undefined means "never backed up" — drives the Accounts screen's backup reminder. */
+  lastBackupAt?: number
 }
 
 /**

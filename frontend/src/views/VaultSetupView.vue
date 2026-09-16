@@ -6,8 +6,7 @@ import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { PrfNotSupportedError } from '@/services/webauthnLocal'
 import { generateRecoveryMnemonic, recoveryMnemonicWords } from '@/services/mnemonic'
-
-const CLIPBOARD_CLEAR_MS = 45_000
+import { copyWithAutoClear } from '@/services/clipboard'
 
 const { t } = useI18n()
 const vault = useVaultStore()
@@ -24,18 +23,8 @@ const skipWarningOpen = ref(false)
 
 async function copyRecoveryPhrase() {
   try {
-    await navigator.clipboard.writeText(recoveryPhrase.value)
+    await copyWithAutoClear(recoveryPhrase.value)
     messages.push(t('msg.recoveryPhrase.copied'), 'success')
-    setTimeout(async () => {
-      try {
-        // Only clear it if it's still what we put there — don't clobber
-        // something else the user copied in the meantime.
-        const current = await navigator.clipboard.readText()
-        if (current === recoveryPhrase.value) await navigator.clipboard.writeText('')
-      } catch {
-        // Clipboard read access can be denied/unsupported — nothing to do then.
-      }
-    }, CLIPBOARD_CLEAR_MS)
   } catch {
     messages.push(t('msg.recoveryPhrase.copyFailed'), 'warning')
   }

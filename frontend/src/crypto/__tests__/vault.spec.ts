@@ -29,7 +29,17 @@ describe('vault encryption round-trip', () => {
 
   it('creates a vault and unlocks it with the correct recovery phrase', async () => {
     const data: VaultData = {
-      wallets: [{ address: '0xabc', label: 'Main', chain: 'ethereum', privateKey: '0x' + '1'.repeat(64) }],
+      wallets: [
+        {
+          address: '0xabc',
+          label: 'Main',
+          chain: 'ethereum',
+          privateKey: '0x' + '1'.repeat(64),
+          isDefault: true,
+          visible: true,
+          hasMnemonic: false,
+        },
+      ],
       payees: [],
       settings: { locale: 'en', currency: 'USD' },
     }

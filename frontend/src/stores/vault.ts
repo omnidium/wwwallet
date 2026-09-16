@@ -6,9 +6,11 @@ import {
   addPasskeyWrap,
   createVault as createVaultRecord,
   exportEncryptedVaultBlob,
+  getLastBackupAt,
   hasVault as hasVaultRecord,
   importEncryptedVaultBlob,
   passkeyWrapMeta,
+  recordBackup,
   removeWrap,
   saveVault as saveVaultRecord,
   unlockWithPasskey as unlockWithPasskeyRecord,
@@ -35,6 +37,7 @@ export const useVaultStore = defineStore('vault', () => {
   const isUnlocked = ref(false)
   const hasVault = ref(false)
   const hasPasskey = ref(false)
+  const lastBackupAt = ref<number | null>(null)
 
   // Held only in memory for the unlocked session — never persisted.
   let sessionKey: CryptoKey | null = null
@@ -42,6 +45,7 @@ export const useVaultStore = defineStore('vault', () => {
   async function refreshFlags() {
     hasVault.value = await hasVaultRecord()
     hasPasskey.value = await hasLocalPasskey()
+    lastBackupAt.value = await getLastBackupAt()
   }
   refreshFlags()
 
@@ -127,6 +131,8 @@ export const useVaultStore = defineStore('vault', () => {
   async function backupToDrive(): Promise<void> {
     const blob = await exportEncryptedVaultBlob()
     await backupToGoogleDrive(blob)
+    await recordBackup()
+    lastBackupAt.value = Date.now()
   }
 
   // Only the recovery-phrase wrap travels with a backup (see crypto/vault.ts) —
@@ -147,6 +153,8 @@ export const useVaultStore = defineStore('vault', () => {
   async function backupToFile(): Promise<void> {
     const blob = await exportEncryptedVaultBlob()
     downloadEncryptedVaultBlob(blob)
+    await recordBackup()
+    lastBackupAt.value = Date.now()
   }
 
   async function restoreFromFile(file: File): Promise<void> {
@@ -160,6 +168,7 @@ export const useVaultStore = defineStore('vault', () => {
     isUnlocked,
     hasVault,
     hasPasskey,
+    lastBackupAt,
     createVault,
     unlockWithMnemonic,
     unlockWithPasskey,

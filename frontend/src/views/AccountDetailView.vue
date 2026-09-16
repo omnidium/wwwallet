@@ -30,7 +30,7 @@ onMounted(async () => {
     <h1 class="text-h5">{{ account?.label ?? address }}</h1>
     <p class="text-medium-emphasis" style="word-break: break-all">{{ address }} ({{ chain }})</p>
 
-    <v-progress-linear v-if="chainData.loading" indeterminate class="my-4" />
+    <v-progress-linear v-if="chainData.isLoading(chain, address)" indeterminate class="my-4" />
 
     <template v-else>
       <v-list>

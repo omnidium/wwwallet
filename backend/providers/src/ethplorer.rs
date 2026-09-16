@@ -55,6 +55,12 @@ impl TokenMetadataProvider for EthplorerProvider {
                 .get("image")
                 .and_then(Value::as_str)
                 .map(|p| format!("https://ethplorer.io{p}")),
+            // Ethplorer returns `"price": false` when there's no market data —
+            // `.as_f64()` on a JSON bool yields None for free, no extra branch needed.
+            usd_price: resp
+                .get("price")
+                .and_then(|p| p.get("rate"))
+                .and_then(Value::as_f64),
         })
     }
 }

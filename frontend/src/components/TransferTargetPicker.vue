@@ -1,0 +1,66 @@
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import type { WalletAccount } from '@/stores/accounts'
+
+defineProps<{
+  open: boolean
+  targets: WalletAccount[]
+  hoveredAddress: string | null
+}>()
+
+const { t } = useI18n()
+</script>
+
+<template>
+  <div v-if="open" class="transfer-target-picker">
+    <p class="text-h6 text-center mb-4">{{ t('transferPicker.title') }}</p>
+    <div class="tiles">
+      <v-card
+        v-for="target in targets"
+        :key="target.address"
+        :data-drop-address="target.address"
+        class="tile pa-3 text-center"
+        :class="{ 'tile-hovered': hoveredAddress === target.address }"
+        variant="tonal"
+      >
+        <v-icon icon="mdi-wallet" size="large" class="mb-1" />
+        <p class="text-body-2 text-truncate">{{ target.label }}</p>
+      </v-card>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.transfer-target-picker {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2em;
+  background: rgba(var(--v-theme-surface), 0.95);
+  backdrop-filter: blur(0.2em);
+  /* The pointer stays captured by the drag source the whole gesture — this
+   * overlay never receives its own pointer events, only document.elementFromPoint()
+   * hit-testing during the drag (see useDragToTransfer), which pointer-events:none
+   * would break entirely. Nothing behind this full-screen overlay is reachable
+   * anyway, so leaving hit-testing enabled here doesn't risk stray clicks. */
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+}
+
+.tile {
+  width: 130px;
+  border: 2px dashed transparent;
+}
+
+.tile-hovered {
+  border-color: rgb(var(--v-theme-primary));
+}
+</style>

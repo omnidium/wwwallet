@@ -55,12 +55,17 @@ export interface TokenMetadata {
   symbol: string | null
   decimals: number | null
   logo_url: string | null
+  usd_price: number | null
 }
 
 export interface FxRates {
   base: string
   rates: Record<string, number>
   as_of_unix: number
+}
+
+export interface NativePrice {
+  usd: number
 }
 
 export interface TransactionPrep {
@@ -89,6 +94,7 @@ export const api = {
     getJson<AddressActivity>(`/api/v1/chains/${chain}/address/${encodeURIComponent(address)}`),
   tokenMetadata: (chain: ChainSlug, address: string) =>
     getJson<TokenMetadata>(`/api/v1/chains/${chain}/token/${encodeURIComponent(address)}`),
+  nativePrice: (chain: ChainSlug) => getJson<NativePrice>(`/api/v1/chains/${chain}/native-price`),
   fxRates: (base = 'USD') => getJson<FxRates>('/api/v1/fx-rates', { base }),
   broadcastTransaction: (chain: ChainSlug, rawTransaction: string) =>
     postJson<{ transaction_hash: string }>(`/api/v1/chains/${chain}/broadcast`, {

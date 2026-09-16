@@ -5,19 +5,21 @@ use worker::RateLimiter;
 
 use crate::alchemy::AlchemyProvider;
 use crate::cache::{
-    self, ADDRESS_ACTIVITY_TTL, CONTRACT_ABI_TTL, FX_RATES_TTL, TOKEN_METADATA_TTL,
+    self, ADDRESS_ACTIVITY_TTL, CONTRACT_ABI_TTL, FX_RATES_TTL, NATIVE_PRICE_TTL,
+    TOKEN_METADATA_TTL,
 };
 use crate::chain::ChainId;
+use crate::coingecko::CoinGeckoProvider;
 use crate::error::{ProviderError, ProviderResult};
 use crate::etherscan::EtherscanProvider;
 use crate::ethplorer::EthplorerProvider;
 use crate::fxrate::FrankfurterProvider;
 use crate::traits::{
-    AbiProvider, ActivityProvider, AllowanceProvider, FxRateProvider, SwapQuoteProvider,
-    TokenMetadataProvider, TransactionBroadcaster, TransactionPrepProvider,
+    AbiProvider, ActivityProvider, AllowanceProvider, FxRateProvider, NativePriceProvider,
+    SwapQuoteProvider, TokenMetadataProvider, TransactionBroadcaster, TransactionPrepProvider,
 };
 use crate::types::{
-    AddressActivity, ContractAbi, FxRates, SwapQuote, TokenMetadata, TransactionPrep,
+    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPrep,
 };
 use crate::zerox::ZeroExProvider;
 
@@ -44,6 +46,7 @@ pub struct ProviderRegistry {
     tx_prep: Rc<dyn TransactionPrepProvider>,
     allowance: Rc<dyn AllowanceProvider>,
     swap: Rc<dyn SwapQuoteProvider>,
+    native_price: Rc<dyn NativePriceProvider>,
     kv: KvStore,
     rate_limiter_default: RateLimiter,
     rate_limiter_broadcast: RateLimiter,
@@ -66,6 +69,7 @@ impl ProviderRegistry {
             abi: Rc::new(EtherscanProvider::new(config.etherscan_api_key)),
             fx: Rc::new(FrankfurterProvider::new()),
             swap: Rc::new(ZeroExProvider::new(config.zerox_api_key)),
+            native_price: Rc::new(CoinGeckoProvider::new()),
             kv,
             rate_limiter_default,
             rate_limiter_broadcast,
@@ -149,6 +153,14 @@ impl ProviderRegistry {
         let base = base.to_uppercase();
         let key = format!("fx:{base}");
         cache::get_or_fetch(&self.kv, &key, FX_RATES_TTL, || self.fx.latest_rates(&base)).await
+    }
+
+    pub async fn native_price(&self, chain: ChainId) -> ProviderResult<NativePrice> {
+        let key = format!("native-price:{chain:?}");
+        cache::get_or_fetch(&self.kv, &key, NATIVE_PRICE_TTL, || {
+            self.native_price.native_price(chain)
+        })
+        .await
     }
 
     /// Never cached — this is a write, not a read.

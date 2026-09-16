@@ -3,7 +3,7 @@ use async_trait::async_trait;
 use crate::chain::ChainId;
 use crate::error::ProviderResult;
 use crate::types::{
-    AddressActivity, ContractAbi, FxRates, SwapQuote, TokenMetadata, TransactionPrep,
+    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPrep,
 };
 
 /// Fetches native + token balances and recent transactions for an address.
@@ -48,6 +48,15 @@ pub trait AbiProvider {
 pub trait FxRateProvider {
     fn name(&self) -> &'static str;
     async fn latest_rates(&self, base: &str) -> ProviderResult<FxRates>;
+}
+
+/// Fetches a chain's native currency price in USD. Backed by CoinGecko.
+/// Deliberately separate from FxRateProvider: that's fiat-to-fiat only (via
+/// Frankfurter), which has no notion of a crypto asset price at all.
+#[async_trait(?Send)]
+pub trait NativePriceProvider {
+    fn name(&self) -> &'static str;
+    async fn native_price(&self, chain: ChainId) -> ProviderResult<NativePrice>;
 }
 
 /// Relays an already-signed raw transaction to the network. The backend never

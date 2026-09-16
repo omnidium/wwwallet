@@ -47,6 +47,8 @@ const amountRules = [
 const addressRules = [(v: string) => isValidAddress(v.trim()) || t('validation.invalidRecipientAddress')]
 
 onMounted(async () => {
+  // Prefilled by the drag-to-transfer gesture on the Accounts screen.
+  if (typeof route.query.to === 'string') to.value = route.query.to
   try {
     await chainData.loadAddressActivity(chain, address)
   } catch {

@@ -23,6 +23,17 @@ export async function hasVault(): Promise<boolean> {
   return (await db.vault.get(VAULT_ID)) !== undefined
 }
 
+export async function recordBackup(): Promise<void> {
+  const record = await db.vault.get(VAULT_ID)
+  if (!record) return
+  await db.vault.put({ ...record, lastBackupAt: Date.now() })
+}
+
+export async function getLastBackupAt(): Promise<number | null> {
+  const record = await db.vault.get(VAULT_ID)
+  return record?.lastBackupAt ?? null
+}
+
 function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
   return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer
 }

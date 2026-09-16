@@ -13,6 +13,8 @@ pub const ADDRESS_ACTIVITY_TTL: u64 = 20;
 pub const TOKEN_METADATA_TTL: u64 = 60 * 60;
 pub const CONTRACT_ABI_TTL: u64 = 60 * 60 * 24;
 pub const FX_RATES_TTL: u64 = 60 * 30;
+// Much shorter than FX_RATES_TTL: crypto prices move far faster than forex.
+pub const NATIVE_PRICE_TTL: u64 = 60 * 5;
 
 /// Reads `key` from KV; on a miss, calls `fetch`, stores the result with the
 /// given TTL (best-effort — a KV write failure doesn't fail the request),

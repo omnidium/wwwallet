@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 use crate::error::ApiError;
 use crate::state::AppState;
 use wwwallet_providers::types::{
-    AddressActivity, ContractAbi, FxRates, SwapQuote, TokenMetadata, TransactionPrep,
+    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPrep,
 };
 use wwwallet_providers::ChainId;
 
@@ -64,6 +64,20 @@ pub async fn token_metadata(
     let chain = parse_chain(&chain)?;
     validate_address(&address)?;
     Ok(Json(state.providers.token_metadata(chain, &address).await?))
+}
+
+#[worker::send]
+pub async fn native_price(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path(chain): Path<String>,
+) -> Result<Json<NativePrice>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "native_price")
+        .await?;
+    let chain = parse_chain(&chain)?;
+    Ok(Json(state.providers.native_price(chain).await?))
 }
 
 #[worker::send]
