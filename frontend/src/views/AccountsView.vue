@@ -6,12 +6,11 @@ import Sortable from 'sortablejs'
 import { useAccountsStore, type WalletAccount } from '@/stores/accounts'
 import { useChainDataStore } from '@/stores/chainData'
 import { useVaultStore } from '@/stores/vault'
-import { useMessagesStore } from '@/stores/messages'
 import type { ChainSlug, Transaction } from '@/services/api'
 import { useDefaultAccountFallback } from '@/composables/useDefaultAccountFallback'
 import { useDragToTransfer } from '@/composables/useDragToTransfer'
 import { useBackupReminderDismissed } from '@/composables/useBackupReminder'
-import { BACKUP_REMINDER_FIRST_MS, BACKUP_REMINDER_RECURRING_MS } from '@/config/appSettings'
+import { BACKUP_REMINDER_FIRST_MS, BACKUP_REMINDER_RECURRING_MS, ACCOUNT_AUTO_REFRESH_MS } from '@/config/appSettings'
 import AccountCard from '@/components/AccountCard.vue'
 import TransferTargetPicker from '@/components/TransferTargetPicker.vue'
 import TransactionDetailDialog from '@/components/TransactionDetailDialog.vue'
@@ -21,19 +20,27 @@ const router = useRouter()
 const accounts = useAccountsStore()
 const chainData = useChainDataStore()
 const vault = useVaultStore()
-const messages = useMessagesStore()
 const { reconcile } = useDefaultAccountFallback()
 const dragToTransfer = useDragToTransfer(router)
 const backupDismissed = useBackupReminderDismissed()
 
-const online = ref(navigator.onLine)
-const refreshing = ref(false)
+const browserOnline = ref(navigator.onLine)
+const backendReachable = ref(true)
 const showHidden = ref(false)
 const visibleListEl = ref<HTMLElement | null>(null)
 const detailTransaction = ref<Transaction | null>(null)
 const detailChain = ref<ChainSlug>('ethereum')
 const detailOpen = ref(false)
 let sortable: Sortable | null = null
+let refreshInFlight = false
+let refreshIntervalId: ReturnType<typeof setInterval> | undefined
+
+const connected = computed(() => browserOnline.value && backendReachable.value)
+const connectionTooltip = computed(() => {
+  if (!browserOnline.value) return t('accounts.offlineNoNetwork')
+  if (!backendReachable.value) return t('accounts.offlineServerUnreachable')
+  return t('accounts.online')
+})
 
 const visibleAccounts = computed(() => accounts.accounts.filter((a) => a.visible))
 const hiddenAccounts = computed(() => accounts.accounts.filter((a) => !a.visible))
@@ -68,18 +75,23 @@ async function loadAllData() {
 }
 
 async function refresh() {
-  refreshing.value = true
+  if (refreshInFlight) return
+  refreshInFlight = true
   try {
     await loadAllData()
-  } catch (err) {
-    messages.push((err as Error).message, 'error')
+    backendReachable.value = true
+  } catch {
+    // Silent: the connectivity badge already surfaces this, and toasting on
+    // every failed 10s auto-refresh during an outage would spam the user.
+    backendReachable.value = false
   } finally {
-    refreshing.value = false
+    refreshInFlight = false
   }
 }
 
 function updateOnlineStatus() {
-  online.value = navigator.onLine
+  browserOnline.value = navigator.onLine
+  if (browserOnline.value) void refresh()
 }
 
 function initSortable() {
@@ -107,7 +119,8 @@ onMounted(async () => {
   window.addEventListener('offline', updateOnlineStatus)
   await nextTick()
   initSortable()
-  await loadAllData()
+  await refresh()
+  refreshIntervalId = setInterval(refresh, ACCOUNT_AUTO_REFRESH_MS)
 })
 
 watch(
@@ -121,21 +134,18 @@ watch(
 onUnmounted(() => {
   window.removeEventListener('online', updateOnlineStatus)
   window.removeEventListener('offline', updateOnlineStatus)
+  clearInterval(refreshIntervalId)
   sortable?.destroy()
 })
 </script>
 
 <template>
-  <v-container>
-    <div class="floating-header d-flex align-center mb-2">
-      <h1 class="text-h5 grow">{{ t('accounts.title') }}</h1>
-      <v-icon :icon="online ? 'mdi-circle' : 'mdi-circle-outline'" :color="online ? 'success' : 'grey'" size="x-small"
-        class="mr-3" :aria-label="online ? t('accounts.online') : t('accounts.offline')" />
-      <v-btn icon="mdi-refresh" variant="text" :loading="refreshing" :aria-label="t('accounts.refresh')"
-        @click="refresh" />
-      <v-btn color="primary" to="/accounts/new">{{ t('accounts.addAccount') }}</v-btn>
-    </div>
+  <div class="connectivity-badge" role="status" :aria-label="connectionTooltip">
+    <v-icon :icon="connected ? 'mdi-circle' : 'mdi-circle-outline'" :color="connected ? 'success' : 'grey'" size="small" />
+    <v-tooltip activator="parent" location="bottom">{{ connectionTooltip }}</v-tooltip>
+  </div>
 
+  <v-container>
     <v-card v-if="showBackupReminder" class="pa-4 mb-4 backup-reminder position-relative">
       <div class="d-flex align-center">
         <v-icon icon="mdi-shield-alert-outline" class="mr-3" />
@@ -159,6 +169,11 @@ onUnmounted(() => {
           @transfer-pointerdown="(e) => dragToTransfer.onPointerDown(e, account, accounts.accounts)"
           @open-transaction="(txn) => openTransaction(account.chain, txn)" />
       </div>
+    </div>
+
+    <div class="add-account-row">
+      <v-btn icon="mdi-plus" size="large" rounded="circle" color="primary" variant="tonal" to="/accounts/new"
+        :aria-label="t('accounts.addAccount')" />
     </div>
 
     <template v-if="hiddenAccounts.length > 0">

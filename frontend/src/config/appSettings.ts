@@ -15,3 +15,6 @@ export const BACKUP_REMINDER_RECURRING_MS = 182 * 24 * 60 * 60 * 1000
 
 /** Default auto-dismiss timeout for a toast, in ms. -1 means it stays until manually dismissed or updated. */
 export const SNACKBAR_DEFAULT_TIMEOUT_MS = 5000
+
+/** How often the accounts screen silently re-fetches balances/prices/activity in the background. */
+export const ACCOUNT_AUTO_REFRESH_MS = 10_000
