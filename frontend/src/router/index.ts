@@ -12,11 +12,6 @@ const router = createRouter({
       component: () => import('../views/AddAccountView.vue'),
     },
     {
-      path: '/accounts/:chain/:address',
-      name: 'account-detail',
-      component: () => import('../views/AccountDetailView.vue'),
-    },
-    {
       path: '/accounts/:chain/:address/send',
       name: 'send',
       component: () => import('../views/SendView.vue'),

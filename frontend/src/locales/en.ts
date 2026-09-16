@@ -8,6 +8,7 @@ export default {
     label: 'Label',
     chain: 'Chain',
     address: 'Address',
+    review: 'Review',
   },
   nav: {
     settings: 'Settings',
@@ -25,16 +26,12 @@ export default {
     viewHidden: 'View hidden accounts',
     hideHidden: 'Hide hidden accounts',
   },
-  accountDetail: {
-    swap: 'Swap',
-    transactions: 'Transactions',
-    receiveAria: 'Receive crypto',
-    sendAria: 'Send crypto',
-  },
   accountCard: {
     copyAddress: 'Copy the address',
     copied: 'Copied!',
     viewQr: 'View QR code',
+    send: 'Send',
+    swap: 'Swap',
     moreActions: 'More actions',
     edit: 'Edit account details',
     hide: 'Hide account',
@@ -80,6 +77,18 @@ export default {
   },
   transferPicker: {
     title: 'Drop on an account to transfer',
+  },
+  review: {
+    title: 'Confirm transaction',
+    from: 'From',
+    to: 'To',
+    chain: 'Chain',
+    amount: 'Amount',
+    fee: 'Fee',
+    total: 'Total',
+    sell: 'Sell',
+    buy: 'Buy',
+    price: 'Price',
   },
   addAccount: {
     title: 'Add account',
@@ -201,6 +210,13 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
+    decimals: 'Decimals',
+    price: 'Price',
+    priceTooltip: 'Price of 1 {symbol} token in USD',
+    amount: 'Amount',
+    amountTooltip: 'Amount of {symbol} tokens held',
+    total: 'Total',
+    totalTooltip: 'Total value of tokens held in local currency',
   },
   qrScanner: {
     title: 'Scan address QR code',
@@ -232,11 +248,19 @@ export default {
       noAddress: 'QR code did not contain a recognizable address.',
     },
     send: {
+      submitting: 'Submitting transaction…',
+      waiting: 'Waiting for transaction to complete…',
       success: 'Sent. Transaction hash: {hash}',
+      failed: 'Transaction failed. Hash: {hash}',
+      stillPending: "Still pending — it hasn't been confirmed yet. Hash: {hash}",
     },
     swap: {
       approvalSubmitted: 'Approval submitted. Wait for it to confirm, then swap again.',
+      submitting: 'Submitting transaction…',
+      waiting: 'Waiting for transaction to complete…',
       success: 'Swap submitted. Transaction hash: {hash}',
+      failed: 'Swap failed. Hash: {hash}',
+      stillPending: "Still pending — it hasn't been confirmed yet. Hash: {hash}",
     },
     backup: {
       driveSuccess: 'Backed up to Google Drive.',

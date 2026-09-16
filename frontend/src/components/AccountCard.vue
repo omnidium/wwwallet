@@ -122,11 +122,20 @@ async function toggleShow() {
         :aria-label="t('accountCard.viewQr')"
         @click="$router.push(`/accounts/${account.chain}/${account.address}/receive`)"
       />
+      <v-icon
+        icon="mdi-send"
+        size="small"
+        class="mr-2"
+        role="button"
+        :aria-label="t('accountCard.send')"
+        @click="$router.push(`/accounts/${account.chain}/${account.address}/send`)"
+      />
       <v-menu>
         <template #activator="{ props: menuProps }">
           <v-icon v-bind="menuProps" icon="mdi-dots-horizontal" role="button" :aria-label="t('accountCard.moreActions')" />
         </template>
         <v-list density="compact">
+          <v-list-item :title="t('accountCard.swap')" prepend-icon="mdi-swap-vertical-bold" @click="$router.push(`/accounts/${account.chain}/${account.address}/swap`)" />
           <v-list-item :title="t('accountCard.edit')" prepend-icon="mdi-pencil" @click="editOpen = true" />
           <v-list-item
             v-if="account.visible"
@@ -194,7 +203,7 @@ async function toggleShow() {
       <v-list-item
         v-for="tokenRow in tokenRows"
         :key="tokenRow.contractAddress"
-        :to="`/tokens/${account.chain}/${tokenRow.contractAddress}`"
+        :to="`/tokens/${account.chain}/${tokenRow.contractAddress}?holder=${account.address}`"
         density="compact"
       >
         <template #prepend>

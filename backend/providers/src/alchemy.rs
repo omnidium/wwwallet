@@ -6,6 +6,7 @@ use crate::error::{ProviderError, ProviderResult};
 use crate::http;
 use crate::traits::{
     ActivityProvider, AllowanceProvider, TransactionBroadcaster, TransactionPrepProvider,
+    TransactionStatusProvider,
 };
 use crate::types::{AddressActivity, Balance, Transaction, TransactionPrep, TransactionStatus};
 
@@ -201,6 +202,34 @@ impl TransactionBroadcaster for AlchemyProvider {
             .as_str()
             .map(str::to_string)
             .ok_or_else(|| ProviderError::Upstream("unexpected broadcast response shape".into()))
+    }
+}
+
+#[async_trait(?Send)]
+impl TransactionStatusProvider for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn transaction_status(
+        &self,
+        chain: ChainId,
+        transaction_hash: &str,
+    ) -> ProviderResult<TransactionStatus> {
+        let receipt = self
+            .rpc_call(chain, "eth_getTransactionReceipt", json!([transaction_hash]))
+            .await?;
+        // No receipt yet means not yet mined, not an error — eth_getTransactionReceipt
+        // returns a JSON-RPC `null` result (not a missing field) while pending.
+        if receipt.is_null() {
+            return Ok(TransactionStatus::Pending);
+        }
+        let status_hex = receipt.get("status").and_then(Value::as_str).unwrap_or("0x1");
+        Ok(if status_hex == "0x0" {
+            TransactionStatus::Failed
+        } else {
+            TransactionStatus::Success
+        })
     }
 }
 

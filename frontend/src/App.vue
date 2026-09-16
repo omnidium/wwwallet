@@ -54,7 +54,7 @@ watch(() => route.fullPath, () => {
       :key="message.id"
       :model-value="true"
       :color="message.severity"
-      :timeout="5000"
+      :timeout="message.timeout"
       location="bottom"
       @update:model-value="messages.dismiss(message.id)"
     >

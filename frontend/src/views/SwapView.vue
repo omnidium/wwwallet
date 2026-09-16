@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { formatUnits, parseUnits } from 'ethers'
 import { api, type ChainSlug, type SwapQuote } from '@/services/api'
 import { useAccountsStore } from '@/stores/accounts'
 import { useMessagesStore } from '@/stores/messages'
+import { useChainDataStore } from '@/stores/chainData'
+import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { isValidAddress, unlockWalletForSigning } from '@/services/wallet'
 import { encodeApprove } from '@/services/erc20'
+import { convertUsd, formatFiat } from '@/services/money'
+import { waitForTransactionConfirmation } from '@/services/transactionStatus'
+import TransactionReviewDialog, { type ReviewRow } from '@/components/TransactionReviewDialog.vue'
 
 const NATIVE_SENTINEL = 'ETH'
 // The pseudo-address DEX aggregators (including 0x's Swap API) use to mean
@@ -27,11 +32,13 @@ async function resolveDecimals(chain: ChainSlug, tokenAddress: string): Promise<
   return metadata.decimals ?? 18
 }
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const accounts = useAccountsStore()
 const messages = useMessagesStore()
+const chainData = useChainDataStore()
+const settingsLocale = useSettingsLocaleStore()
 
 const chain = route.params.chain as ChainSlug
 const address = route.params.address as string
@@ -44,6 +51,29 @@ const quote = ref<SwapQuote | null>(null)
 const buyAmountFormatted = ref('')
 const busy = ref(false)
 const quoteFormValid = ref(false)
+const reviewOpen = ref(false)
+const reviewRows = ref<ReviewRow[]>([])
+
+function formatNativeFee(feeWei: bigint): { value: string; sub?: string } {
+  const human = Number(formatUnits(feeWei, 18))
+  const nativeStr = `${human.toFixed(6)} ${chain === 'polygon' ? 'MATIC' : 'ETH'}`
+  const priceUsd = chainData.nativePriceUsdByChain[chain]
+  if (priceUsd === undefined) return { value: nativeStr }
+  const fiat = formatFiat(
+    convertUsd(human * priceUsd, settingsLocale.currency, chainData.fxRates),
+    settingsLocale.currency,
+    locale.value,
+  )
+  return { value: fiat, sub: nativeStr }
+}
+
+onMounted(async () => {
+  try {
+    await Promise.all([chainData.loadNativePrice(chain), chainData.loadFxRates()])
+  } catch {
+    // The fee row in the review step just falls back to a native-only amount.
+  }
+})
 
 const sellTokenRules = [
   (v: string) => v.trim().toUpperCase() === NATIVE_SENTINEL || isValidAddress(v.trim()) || t('validation.validTokenOrEth'),
@@ -72,13 +102,11 @@ async function getQuote() {
   }
 }
 
-async function submit() {
+async function onSwapClick() {
   if (!account || !quote.value) return
 
   busy.value = true
   try {
-    const wallet = await unlockWalletForSigning(account)
-
     if (sellToken.value !== NATIVE_SENTINEL) {
       const { amount: currentAllowance } = await api.allowance(
         chain,
@@ -87,6 +115,7 @@ async function submit() {
         quote.value.allowance_target,
       )
       if (BigInt(currentAllowance) < BigInt(quote.value.sell_amount)) {
+        const wallet = await unlockWalletForSigning(account)
         const approvePrep = await api.transactionPrep(chain, address, sellToken.value, '0')
         const approveTx = await wallet.signTransaction({
           to: sellToken.value,
@@ -106,6 +135,34 @@ async function submit() {
       }
     }
 
+    openReview()
+  } catch (err) {
+    messages.push((err as Error).message, 'error')
+  } finally {
+    busy.value = false
+  }
+}
+
+function openReview() {
+  if (!quote.value) return
+  const feeWei = BigInt(quote.value.gas_price) * BigInt(quote.value.estimated_gas)
+  reviewRows.value = [
+    { label: t('review.sell'), value: `${sellAmount.value} ${sellToken.value.trim()}` },
+    { label: t('review.buy'), value: `${buyAmountFormatted.value} ${buyToken.value.trim()}` },
+    { label: t('review.chain'), value: chain },
+    { label: t('review.price'), value: quote.value.price },
+    { label: t('review.fee'), ...formatNativeFee(feeWei) },
+  ]
+  reviewOpen.value = true
+}
+
+async function confirmSwap() {
+  if (!account || !quote.value) return
+
+  busy.value = true
+  const msgId = messages.push(t('msg.swap.submitting'), 'info', -1)
+  try {
+    const wallet = await unlockWalletForSigning(account)
     const prep = await api.transactionPrep(chain, address, quote.value.to, quote.value.value)
     const signedTx = await wallet.signTransaction({
       to: quote.value.to,
@@ -117,11 +174,21 @@ async function submit() {
       chainId: prep.chain_id,
     })
     const { transaction_hash } = await api.broadcastTransaction(chain, signedTx)
-    messages.push(t('msg.swap.success', { hash: transaction_hash }), 'success')
+    reviewOpen.value = false
+    busy.value = false
     router.push(`/accounts/${chain}/${address}`)
+
+    messages.update(msgId, t('msg.swap.waiting'), 'info', -1)
+    const status = await waitForTransactionConfirmation(chain, transaction_hash)
+    if (status === 'success') {
+      messages.update(msgId, t('msg.swap.success', { hash: transaction_hash }), 'success')
+    } else if (status === 'failed') {
+      messages.update(msgId, t('msg.swap.failed', { hash: transaction_hash }), 'error')
+    } else {
+      messages.update(msgId, t('msg.swap.stillPending', { hash: transaction_hash }), 'warning')
+    }
   } catch (err) {
-    messages.push((err as Error).message, 'error')
-  } finally {
+    messages.update(msgId, (err as Error).message, 'error')
     busy.value = false
   }
 }
@@ -148,8 +215,17 @@ async function submit() {
             {{ t('swap.signingNotice', { address: quote.to }) }}
           </p>
         </v-alert>
-        <v-btn color="primary" block :loading="busy" @click="submit">{{ t('swap.submit') }}</v-btn>
+        <v-btn color="primary" block :loading="busy" @click="onSwapClick">{{ t('swap.submit') }}</v-btn>
       </template>
     </v-card>
+
+    <TransactionReviewDialog
+      v-model="reviewOpen"
+      :title="t('review.title')"
+      :rows="reviewRows"
+      :confirm-label="t('swap.submit')"
+      :busy="busy"
+      @confirm="confirmSwap"
+    />
   </v-container>
 </template>

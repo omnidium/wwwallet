@@ -41,7 +41,7 @@ export interface Transaction {
   asset: string
   block_number: number | null
   timestamp: string | null
-  status: 'success' | 'failed' | 'pending'
+  status: TransactionStatus
 }
 
 export interface AddressActivity {
@@ -75,6 +75,8 @@ export interface TransactionPrep {
   chain_id: number
 }
 
+export type TransactionStatus = 'success' | 'failed' | 'pending'
+
 export interface SwapQuote {
   to: string
   data: string
@@ -100,6 +102,8 @@ export const api = {
     postJson<{ transaction_hash: string }>(`/api/v1/chains/${chain}/broadcast`, {
       raw_transaction: rawTransaction,
     }),
+  transactionStatus: (chain: ChainSlug, hash: string) =>
+    getJson<{ status: TransactionStatus }>(`/api/v1/chains/${chain}/tx-status/${encodeURIComponent(hash)}`),
   transactionPrep: (chain: ChainSlug, from: string, to: string, valueWei: string) =>
     getJson<TransactionPrep>(`/api/v1/chains/${chain}/tx-prep/${encodeURIComponent(from)}`, {
       to,

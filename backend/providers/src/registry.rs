@@ -17,9 +17,11 @@ use crate::fxrate::FrankfurterProvider;
 use crate::traits::{
     AbiProvider, ActivityProvider, AllowanceProvider, FxRateProvider, NativePriceProvider,
     SwapQuoteProvider, TokenMetadataProvider, TransactionBroadcaster, TransactionPrepProvider,
+    TransactionStatusProvider,
 };
 use crate::types::{
     AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPrep,
+    TransactionStatus,
 };
 use crate::zerox::ZeroExProvider;
 
@@ -43,6 +45,7 @@ pub struct ProviderRegistry {
     abi: Rc<dyn AbiProvider>,
     fx: Rc<dyn FxRateProvider>,
     broadcaster: Rc<dyn TransactionBroadcaster>,
+    tx_status: Rc<dyn TransactionStatusProvider>,
     tx_prep: Rc<dyn TransactionPrepProvider>,
     allowance: Rc<dyn AllowanceProvider>,
     swap: Rc<dyn SwapQuoteProvider>,
@@ -63,6 +66,7 @@ impl ProviderRegistry {
         Self {
             activity: alchemy.clone(),
             broadcaster: alchemy.clone(),
+            tx_status: alchemy.clone(),
             allowance: alchemy.clone(),
             tx_prep: alchemy,
             tokens: Rc::new(EthplorerProvider::new(config.ethplorer_api_key)),
@@ -170,6 +174,16 @@ impl ProviderRegistry {
         raw_transaction_hex: &str,
     ) -> ProviderResult<String> {
         self.broadcaster.broadcast(chain, raw_transaction_hex).await
+    }
+
+    /// Never cached — polled repeatedly while a transaction is pending, so a
+    /// cached "pending" would never let the client see it flip to mined.
+    pub async fn transaction_status(
+        &self,
+        chain: ChainId,
+        transaction_hash: &str,
+    ) -> ProviderResult<TransactionStatus> {
+        self.tx_status.transaction_status(chain, transaction_hash).await
     }
 
     /// Never cached — nonce/gas price must always be fresh.

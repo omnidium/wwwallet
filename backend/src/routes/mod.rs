@@ -32,6 +32,10 @@ pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
             "/api/v1/chains/:chain/broadcast",
             post(chains::broadcast_transaction),
         )
+        .route(
+            "/api/v1/chains/:chain/tx-status/:hash",
+            get(chains::transaction_status),
+        )
         .route("/api/v1/chains/:chain/allowance", get(chains::allowance))
         .route("/api/v1/chains/:chain/swap-quote", get(chains::swap_quote))
         .route("/api/v1/fx-rates", get(chains::fx_rates))

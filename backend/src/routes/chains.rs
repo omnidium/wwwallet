@@ -7,6 +7,7 @@ use crate::error::ApiError;
 use crate::state::AppState;
 use wwwallet_providers::types::{
     AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPrep,
+    TransactionStatus,
 };
 use wwwallet_providers::ChainId;
 
@@ -125,6 +126,37 @@ pub async fn broadcast_transaction(
     }
     let transaction_hash = state.providers.broadcast_transaction(chain, raw).await?;
     Ok(Json(BroadcastResponse { transaction_hash }))
+}
+
+#[derive(Serialize)]
+pub struct TransactionStatusResponse {
+    status: TransactionStatus,
+}
+
+fn validate_tx_hash(hash: &str) -> Result<(), ApiError> {
+    let is_hex_hash = hash.len() == 66
+        && hash.starts_with("0x")
+        && hash[2..].chars().all(|c| c.is_ascii_hexdigit());
+    if !is_hex_hash {
+        return Err(ApiError::BadRequest("invalid transaction hash format".to_string()));
+    }
+    Ok(())
+}
+
+#[worker::send]
+pub async fn transaction_status(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path((chain, hash)): Path<(String, String)>,
+) -> Result<Json<TransactionStatusResponse>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "transaction_status")
+        .await?;
+    let chain = parse_chain(&chain)?;
+    validate_tx_hash(&hash)?;
+    let status = state.providers.transaction_status(chain, &hash).await?;
+    Ok(Json(TransactionStatusResponse { status }))
 }
 
 #[derive(Deserialize)]
@@ -282,6 +314,14 @@ mod tests {
     fn parse_chain_accepts_known_slugs_and_rejects_unknown_ones() {
         assert!(parse_chain("ethereum").is_ok());
         assert!(parse_chain("dogecoin").is_err());
+    }
+
+    #[test]
+    fn validate_tx_hash_accepts_well_formed_and_rejects_malformed_hashes() {
+        let hash = format!("0x{}", "a".repeat(64));
+        assert!(validate_tx_hash(&hash).is_ok());
+        assert!(validate_tx_hash("0x123").is_err());
+        assert!(validate_tx_hash(&"a".repeat(66)).is_err());
     }
 
     fn is_valid_raw_tx(raw: &str) -> bool {

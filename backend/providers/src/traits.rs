@@ -4,6 +4,7 @@ use crate::chain::ChainId;
 use crate::error::ProviderResult;
 use crate::types::{
     AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPrep,
+    TransactionStatus,
 };
 
 /// Fetches native + token balances and recent transactions for an address.
@@ -66,6 +67,20 @@ pub trait NativePriceProvider {
 pub trait TransactionBroadcaster {
     fn name(&self) -> &'static str;
     async fn broadcast(&self, chain: ChainId, raw_transaction_hex: &str) -> ProviderResult<String>;
+}
+
+/// Polls the network for whether a broadcast transaction has been mined yet,
+/// and if so, whether it succeeded. Deliberately separate from
+/// TransactionBroadcaster (one-shot write vs. repeated read) even though
+/// Alchemy backs both today.
+#[async_trait(?Send)]
+pub trait TransactionStatusProvider {
+    fn name(&self) -> &'static str;
+    async fn transaction_status(
+        &self,
+        chain: ChainId,
+        transaction_hash: &str,
+    ) -> ProviderResult<TransactionStatus>;
 }
 
 /// Supplies everything the client needs to build and sign a transaction
