@@ -44,8 +44,14 @@ const nativeSymbol = computed(
   () => activity.value?.balances.find((b) => b.contract_address === null)?.symbol ?? '',
 )
 const fiatTotal = computed(() => {
+  if (nativeBalance.value === null) return null
+  // A confirmed zero balance is worth zero in any currency — no need to wait
+  // on this chain's native price to say so, and it would otherwise show a
+  // bare "—" next to an already-visible "0.00000 ETH" if the price hadn't
+  // loaded yet (or failed to).
+  if (nativeBalance.value === 0) return formatFiat(0, settingsLocale.currency, locale.value)
   const priceUsd = chainData.nativePriceUsdByChain[props.account.chain]
-  if (nativeBalance.value === null || priceUsd === undefined) return null
+  if (priceUsd === undefined) return null
   const usd = nativeBalance.value * priceUsd
   return formatFiat(convertUsd(usd, settingsLocale.currency, chainData.fxRates), settingsLocale.currency, locale.value)
 })

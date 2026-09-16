@@ -8,6 +8,7 @@ import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { getStoredTheme, setStoredTheme, type ThemeName } from '@/services/theme'
 import { PrfNotSupportedError } from '@/services/webauthnLocal'
+import { clearLastActivity } from '@/services/lastActivity'
 
 const emit = defineEmits<{ close: [] }>()
 
@@ -52,6 +53,10 @@ async function performRemovePasskey() {
 
 function lockNow() {
   vault.lock()
+  // An explicit lock, unlike an idle timeout, shouldn't leave a "just active"
+  // timestamp behind — that would make VaultUnlockView immediately auto-fire
+  // the passkey prompt again and defeat the point of locking on purpose.
+  clearLastActivity()
   emit('close')
   // Named route, not '/': if the drawer is opened from the accounts list
   // (the common case — that's the landing page), pushing '/' while already

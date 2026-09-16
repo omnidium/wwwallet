@@ -6,6 +6,8 @@ import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { availableUnlockMethods } from '@/crypto/vault'
 import { isValidRecoveryMnemonic, normalizeMnemonic } from '@/services/mnemonic'
+import { getLastActivityAt } from '@/services/lastActivity'
+import { AUTO_LOCK_MS } from '@/config/appSettings'
 
 const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
@@ -24,8 +26,22 @@ const recoveryPhraseRules = [
 onMounted(async () => {
   const methods = await availableUnlockMethods()
   hasPasskeyWrap.value = methods.includes('passkeyPrf')
-  // No quick-unlock method is set up — the recovery phrase is the only option, so show it directly.
-  if (!hasPasskeyWrap.value) showRecoveryPhraseField.value = true
+  if (!hasPasskeyWrap.value) {
+    // No quick-unlock method is set up — the recovery phrase is the only option, so show it directly.
+    showRecoveryPhraseField.value = true
+    return
+  }
+  const lastActivityAt = getLastActivityAt()
+  // Landing here shortly after real activity (e.g. a plain page refresh)
+  // isn't the same as coming back after a genuine absence — fire the
+  // passkey prompt immediately instead of waiting for a manual tap, using
+  // the same grace period as the idle-lock timeout itself. This still
+  // requires the actual biometric gesture; it only skips a redundant click.
+  // An explicit "Lock now" clears the persisted timestamp precisely so it
+  // doesn't trigger this.
+  if (lastActivityAt !== null && Date.now() - lastActivityAt < AUTO_LOCK_MS) {
+    await submitPasskey()
+  }
 })
 
 async function submitRecoveryPhrase() {
