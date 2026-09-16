@@ -234,33 +234,3 @@ async function toggleShow() {
     />
   </v-card>
 </template>
-
-<style scoped>
-.account-card {
-  background: linear-gradient(160deg, rgba(var(--v-theme-surface), 1), rgba(var(--v-theme-surface-variant), 1));
-}
-
-.balance-row {
-  cursor: pointer;
-  border-top: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
-}
-
-.balance-row:hover {
-  background-color: rgba(var(--v-theme-on-surface), 0.04);
-}
-
-.balance-figure {
-  font-size: 1.8em;
-  font-weight: 600;
-}
-
-.transfer-handle {
-  touch-action: none;
-  cursor: grab;
-}
-
-.expanded-list {
-  max-height: 45vh;
-  overflow-y: auto;
-}
-</style>

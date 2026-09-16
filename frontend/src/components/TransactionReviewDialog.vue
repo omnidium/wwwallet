@@ -47,9 +47,3 @@ const { t } = useI18n()
     </v-card>
   </v-dialog>
 </template>
-
-<style scoped>
-.review-row + .review-row {
-  border-top: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
-}
-</style>

@@ -23,6 +23,8 @@ interface VaultRecord {
   iv: ArrayBuffer
   wraps: KeyWrap[]
   updatedAt: number
+  /** When this vault was first set up on this device — drives the backup reminder's initial delay. */
+  createdAt: number
   /** Undefined means "never backed up" — drives the Accounts screen's backup reminder. */
   lastBackupAt?: number
 }

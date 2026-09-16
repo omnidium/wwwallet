@@ -63,7 +63,11 @@ export async function registerLocalPasskeyWithPrf(
       },
       attestation: 'none',
       timeout: 60_000,
-      extensions: { prf: {} } as AuthenticationExtensionsClientInputs,
+      // Evaluating PRF right here, not just probing for support, lets browsers
+      // that implement PRF-at-creation return the derived secret in this same
+      // response — skipping the second navigator.credentials.get() ceremony
+      // (and its own biometric prompt) that evaluatePrf() below exists for.
+      extensions: { prf: { eval: { first: toArrayBuffer(prfSalt) } } } as AuthenticationExtensionsClientInputs,
     },
   })) as PublicKeyCredential | null
   if (!credential) throw new Error(i18n.global.t('errors.passkeyRegistrationCancelled'))

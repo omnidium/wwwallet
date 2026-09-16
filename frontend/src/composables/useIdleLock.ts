@@ -1,14 +1,9 @@
 import { onMounted, onUnmounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
+import { AUTO_LOCK_MS, IDLE_POLL_MS } from '@/config/appSettings'
 
-const IDLE_LOCK_MS = 5 * 60 * 1000
 const ACTIVITY_EVENTS = ['pointerdown', 'keydown', 'wheel', 'touchstart'] as const
-// Wall-clock deltas rather than a single long-lived timer, since browsers
-// throttle/pause timers in backgrounded tabs — a naive 5-minute setTimeout
-// might not fire promptly right when it matters (someone re-opening the tab
-// after walking away). Polling is cheap and self-corrects on every check.
-const POLL_MS = 15_000
 
 /**
  * Locks the vault after a period of no user interaction, so an unlocked
@@ -29,9 +24,13 @@ export function useIdleLock(): void {
 
   function checkIdle() {
     if (!vault.isUnlocked) return
-    if (Date.now() - lastActivity >= IDLE_LOCK_MS) {
+    if (Date.now() - lastActivity >= AUTO_LOCK_MS) {
       vault.lock()
-      router.push('/')
+      // Named route, not '/' — see the identical note in SettingsPanel.vue's
+      // lockNow(): pushing '/' while already on '/' is a same-location no-op
+      // in vue-router, so idle-locking from the accounts screen itself would
+      // otherwise never actually navigate to the unlock screen.
+      router.push({ name: 'vault-unlock' })
     }
   }
 
@@ -45,7 +44,12 @@ export function useIdleLock(): void {
   onMounted(() => {
     for (const event of ACTIVITY_EVENTS) window.addEventListener(event, noteActivity, { passive: true })
     document.addEventListener('visibilitychange', checkIdle)
-    intervalId = setInterval(checkIdle, POLL_MS)
+    // Wall-clock deltas rather than a single long-lived timer, since browsers
+    // throttle/pause timers in backgrounded tabs — a naive setTimeout for
+    // AUTO_LOCK_MS might not fire promptly right when it matters (someone
+    // re-opening the tab after walking away). Polling is cheap and
+    // self-corrects on every check.
+    intervalId = setInterval(checkIdle, IDLE_POLL_MS)
   })
 
   onUnmounted(() => {

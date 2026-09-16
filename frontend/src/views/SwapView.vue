@@ -195,7 +195,7 @@ async function confirmSwap() {
 </script>
 
 <template>
-  <v-container>
+  <div>
     <h1 class="text-h5">{{ t('swap.title') }}</h1>
     <p class="text-medium-emphasis mb-4">{{ t('send.fromLabel', { label: account?.label ?? address, chain }) }}</p>
 
@@ -227,5 +227,5 @@ async function confirmSwap() {
       :busy="busy"
       @confirm="confirmSwap"
     />
-  </v-container>
+  </div>
 </template>

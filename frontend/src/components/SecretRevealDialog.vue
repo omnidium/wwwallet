@@ -139,10 +139,3 @@ async function copySecret() {
     </v-card>
   </v-dialog>
 </template>
-
-<style scoped>
-.secret-text {
-  word-break: break-all;
-  font-family: monospace;
-}
-</style>

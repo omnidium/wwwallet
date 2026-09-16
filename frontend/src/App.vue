@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useTheme } from 'vuetify'
 import { useI18n } from 'vue-i18n'
 import { RouterView, useRoute } from 'vue-router'
@@ -7,12 +7,21 @@ import { useMessagesStore } from '@/stores/messages'
 import { getStoredTheme } from '@/services/theme'
 import { useIdleLock } from '@/composables/useIdleLock'
 import SettingsPanel from '@/components/SettingsPanel.vue'
+import AccountsView from '@/views/AccountsView.vue'
+import PaneOverlay from '@/components/PaneOverlay.vue'
 
 const { t } = useI18n()
 const messages = useMessagesStore()
 const theme = useTheme()
 const route = useRoute()
 const settingsOpen = ref(false)
+
+// vault-setup in particular can flip vault.isUnlocked to true *before*
+// navigating away (creating the vault happens on step 1 of 2, both on this
+// same route) — gating on the route rather than just isUnlocked keeps these
+// two screens full-page throughout, instead of briefly wrapping the
+// still-showing setup pane in a PaneOverlay with AccountsView visible behind it.
+const isPreAuthRoute = computed(() => route.name === 'vault-unlock' || route.name === 'vault-setup')
 
 useIdleLock()
 
@@ -29,11 +38,9 @@ watch(() => route.fullPath, () => {
 
 <template>
   <v-app>
-    <v-app-bar flat>
-      <v-btn variant="text" icon="mdi-cog" :aria-label="t('nav.settings')" @click="settingsOpen = true" />
-      <v-app-bar-title>wwwallet</v-app-bar-title>
-      <v-btn to="/" variant="text" icon="mdi-wallet" :aria-label="t('nav.accounts')" />
-    </v-app-bar>
+    <button class="floating-settings-btn" :aria-label="t('nav.settings')" @click="settingsOpen = true">
+      <v-icon icon="mdi-cog" />
+    </button>
 
     <v-navigation-drawer
       v-model="settingsOpen"
@@ -42,11 +49,19 @@ watch(() => route.fullPath, () => {
       width="340"
       class="settings-drawer"
     >
-      <SettingsPanel @close="settingsOpen = false" />
+      <div class="settings-drawer-inner">
+        <SettingsPanel @close="settingsOpen = false" />
+      </div>
     </v-navigation-drawer>
 
     <v-main>
-      <RouterView />
+      <template v-if="!isPreAuthRoute">
+        <AccountsView />
+        <PaneOverlay v-if="route.path !== '/'">
+          <RouterView />
+        </PaneOverlay>
+      </template>
+      <RouterView v-else />
     </v-main>
 
     <v-snackbar
@@ -73,22 +88,3 @@ watch(() => route.fullPath, () => {
     </v-snackbar>
   </v-app>
 </template>
-
-<style>
-/* Floating, translucent panel instead of an edge-to-edge drawer — matches the
- * old app's slide-in settings pane. Overrides Vuetify's inline positioning
- * styles (hence !important), since v-navigation-drawer computes top/height
- * itself based on the surrounding layout. */
-.settings-drawer {
-  top: 16px !important;
-  left: 16px !important;
-  height: calc(100% - 32px) !important;
-  max-width: calc(100vw - 32px);
-  border-radius: 16px !important;
-  background: rgba(var(--v-theme-surface), 0.85) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  backdrop-filter: blur(14px) !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  overflow-y: auto;
-}
-</style>

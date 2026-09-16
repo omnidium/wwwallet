@@ -1,4 +1,4 @@
-const CLIPBOARD_CLEAR_MS = 45_000
+import { CLIPBOARD_CLEAR_MS } from '@/config/appSettings'
 
 /**
  * Copies `text` to the clipboard, then clears it again after 45s — used for

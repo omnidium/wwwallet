@@ -11,11 +11,10 @@ import type { ChainSlug, Transaction } from '@/services/api'
 import { useDefaultAccountFallback } from '@/composables/useDefaultAccountFallback'
 import { useDragToTransfer } from '@/composables/useDragToTransfer'
 import { useBackupReminderDismissed } from '@/composables/useBackupReminder'
+import { BACKUP_REMINDER_FIRST_MS, BACKUP_REMINDER_RECURRING_MS } from '@/config/appSettings'
 import AccountCard from '@/components/AccountCard.vue'
 import TransferTargetPicker from '@/components/TransferTargetPicker.vue'
 import TransactionDetailDialog from '@/components/TransactionDetailDialog.vue'
-
-const BACKUP_REMINDER_THRESHOLD_MS = 30 * 24 * 60 * 60 * 1000
 
 const { t } = useI18n()
 const router = useRouter()
@@ -39,11 +38,12 @@ let sortable: Sortable | null = null
 const visibleAccounts = computed(() => accounts.accounts.filter((a) => a.visible))
 const hiddenAccounts = computed(() => accounts.accounts.filter((a) => !a.visible))
 
-const showBackupReminder = computed(
-  () =>
-    !backupDismissed.value &&
-    (vault.lastBackupAt === null || Date.now() - vault.lastBackupAt > BACKUP_REMINDER_THRESHOLD_MS),
-)
+const showBackupReminder = computed(() => {
+  if (backupDismissed.value || vault.createdAt === null) return false
+  return vault.lastBackupAt === null
+    ? Date.now() - vault.createdAt > BACKUP_REMINDER_FIRST_MS
+    : Date.now() - vault.lastBackupAt > BACKUP_REMINDER_RECURRING_MS
+})
 
 function eligibleTransferSiblings(account: WalletAccount): WalletAccount[] {
   return accounts.accounts.filter(
@@ -128,32 +128,22 @@ onUnmounted(() => {
 <template>
   <v-container>
     <div class="floating-header d-flex align-center mb-2">
-      <h1 class="text-h5 flex-grow-1">{{ t('accounts.title') }}</h1>
-      <v-icon
-        :icon="online ? 'mdi-circle' : 'mdi-circle-outline'"
-        :color="online ? 'success' : 'grey'"
-        size="x-small"
-        class="mr-3"
-        :aria-label="online ? t('accounts.online') : t('accounts.offline')"
-      />
-      <v-btn icon="mdi-refresh" variant="text" :loading="refreshing" :aria-label="t('accounts.refresh')" @click="refresh" />
+      <h1 class="text-h5 grow">{{ t('accounts.title') }}</h1>
+      <v-icon :icon="online ? 'mdi-circle' : 'mdi-circle-outline'" :color="online ? 'success' : 'grey'" size="x-small"
+        class="mr-3" :aria-label="online ? t('accounts.online') : t('accounts.offline')" />
+      <v-btn icon="mdi-refresh" variant="text" :loading="refreshing" :aria-label="t('accounts.refresh')"
+        @click="refresh" />
       <v-btn color="primary" to="/accounts/new">{{ t('accounts.addAccount') }}</v-btn>
     </div>
 
     <v-card v-if="showBackupReminder" class="pa-4 mb-4 backup-reminder position-relative">
       <div class="d-flex align-center">
         <v-icon icon="mdi-shield-alert-outline" class="mr-3" />
-        <p class="flex-grow-1">{{ t('accounts.backupReminder') }}</p>
+        <p class="grow">{{ t('accounts.backupReminder') }}</p>
       </div>
       <v-btn class="mt-3" variant="outlined" to="/backup-restore">{{ t('backup.backUpNow') }}</v-btn>
-      <v-icon
-        icon="mdi-close"
-        size="small"
-        class="dismiss-btn"
-        role="button"
-        :aria-label="t('common.close')"
-        @click="backupDismissed = true"
-      />
+      <v-icon icon="mdi-close" size="small" class="dismiss-btn" role="button" :aria-label="t('common.close')"
+        @click="backupDismissed = true" />
     </v-card>
 
     <v-alert v-if="accounts.accounts.length === 0" type="info" variant="tonal" class="mt-4">
@@ -165,12 +155,9 @@ onUnmounted(() => {
         <div class="drag-handle-row">
           <v-icon icon="mdi-drag-horizontal-variant" class="drag-handle" size="small" />
         </div>
-        <AccountCard
-          :account="account"
-          :eligible-transfer-siblings="eligibleTransferSiblings(account)"
+        <AccountCard :account="account" :eligible-transfer-siblings="eligibleTransferSiblings(account)"
           @transfer-pointerdown="(e) => dragToTransfer.onPointerDown(e, account, accounts.accounts)"
-          @open-transaction="(txn) => openTransaction(account.chain, txn)"
-        />
+          @open-transaction="(txn) => openTransaction(account.chain, txn)" />
       </div>
     </div>
 
@@ -179,54 +166,14 @@ onUnmounted(() => {
         {{ showHidden ? t('accounts.hideHidden') : t('accounts.viewHidden') }}
       </p>
       <div v-if="showHidden">
-        <AccountCard
-          v-for="account in hiddenAccounts"
-          :key="account.address"
-          :account="account"
+        <AccountCard v-for="account in hiddenAccounts" :key="account.address" :account="account"
           :eligible-transfer-siblings="eligibleTransferSiblings(account)"
-          @open-transaction="(txn) => openTransaction(account.chain, txn)"
-        />
+          @open-transaction="(txn) => openTransaction(account.chain, txn)" />
       </div>
     </template>
 
     <TransactionDetailDialog v-model="detailOpen" :chain="detailChain" :transaction="detailTransaction" />
-    <TransferTargetPicker
-      :open="dragToTransfer.pickerOpen.value"
-      :targets="dragToTransfer.targets.value"
-      :hovered-address="dragToTransfer.hoveredAddress.value"
-    />
+    <TransferTargetPicker :open="dragToTransfer.pickerOpen.value" :targets="dragToTransfer.targets.value"
+      :hovered-address="dragToTransfer.hoveredAddress.value" />
   </v-container>
 </template>
-
-<style scoped>
-.backup-reminder {
-  background-color: rgba(var(--v-theme-warning), 0.12);
-}
-
-.dismiss-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  cursor: pointer;
-}
-
-.drag-handle-row {
-  display: flex;
-  justify-content: center;
-  opacity: 0.4;
-}
-
-.drag-handle {
-  cursor: move;
-}
-
-.hidden-toggle {
-  cursor: pointer;
-  text-align: center;
-  padding-bottom: 1em;
-}
-
-.hidden-toggle:hover {
-  opacity: 0.7;
-}
-</style>

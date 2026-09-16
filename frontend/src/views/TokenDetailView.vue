@@ -73,7 +73,7 @@ const totalFormatted = computed(() => {
 </script>
 
 <template>
-  <v-container>
+  <div>
     <v-progress-linear v-if="loading" indeterminate class="mb-4" />
 
     <div class="d-flex align-center mb-4">
@@ -122,11 +122,5 @@ const totalFormatted = computed(() => {
         <span class="font-weight-bold">{{ totalFormatted }}</span>
       </div>
     </v-card>
-  </v-container>
+  </div>
 </template>
-
-<style scoped>
-.detail-row + .detail-row {
-  border-top: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
-}
-</style>

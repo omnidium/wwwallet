@@ -42,7 +42,7 @@ async function remove(id: string) {
 </script>
 
 <template>
-  <v-container>
+  <div>
     <v-row justify="space-between" align="center">
       <h1 class="text-h5">{{ t('payees.title') }}</h1>
       <v-btn color="primary" @click="openDialog">{{ t('payees.add') }}</v-btn>
@@ -76,5 +76,5 @@ async function remove(id: string) {
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-container>
+  </div>
 </template>

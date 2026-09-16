@@ -34,6 +34,11 @@ export async function getLastBackupAt(): Promise<number | null> {
   return record?.lastBackupAt ?? null
 }
 
+export async function getCreatedAt(): Promise<number | null> {
+  const record = await db.vault.get(VAULT_ID)
+  return record?.createdAt ?? null
+}
+
 function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
   return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer
 }
@@ -121,6 +126,7 @@ export async function createVault(mnemonic: string, initialData: VaultData): Pro
     iv: toArrayBuffer(dataIv),
     wraps: [{ method: 'mnemonic', iv: toArrayBuffer(wrapIv), wrappedKey }],
     updatedAt: Date.now(),
+    createdAt: Date.now(),
   }
   await db.vault.put(record)
   return masterKey
@@ -268,6 +274,9 @@ export async function importEncryptedVaultBlob(blob: Blob): Promise<void> {
       },
     ],
     updatedAt: Date.now(),
+    // Not carried over from the backup, same reasoning as lastBackupAt below:
+    // from this device's perspective the vault is newly set up here today.
+    createdAt: Date.now(),
   }
   await db.vault.put(record)
 }

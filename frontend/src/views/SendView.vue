@@ -172,7 +172,7 @@ async function confirmSend() {
 </script>
 
 <template>
-  <v-container>
+  <div>
     <h1 class="text-h5">{{ t('send.title') }}</h1>
     <p class="text-medium-emphasis mb-4">{{ t('send.fromLabel', { label: account?.label ?? address, chain }) }}</p>
 
@@ -211,5 +211,5 @@ async function confirmSend() {
       :busy="busy"
       @confirm="confirmSend"
     />
-  </v-container>
+  </div>
 </template>

@@ -71,7 +71,7 @@ function onKeystoreFileSelected(event: Event) {
 </script>
 
 <template>
-  <v-container>
+  <div>
     <h1 class="text-h5">{{ t('addAccount.title') }}</h1>
 
     <v-tabs v-model="mode" class="mt-4">
@@ -108,5 +108,5 @@ function onKeystoreFileSelected(event: Event) {
         <v-btn color="primary" block class="mt-2" :disabled="!formValid" :loading="busy" @click="submit">{{ t('addAccount.submit') }}</v-btn>
       </v-form>
     </v-card>
-  </v-container>
+  </div>
 </template>

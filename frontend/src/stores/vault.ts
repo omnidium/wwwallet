@@ -6,6 +6,7 @@ import {
   addPasskeyWrap,
   createVault as createVaultRecord,
   exportEncryptedVaultBlob,
+  getCreatedAt,
   getLastBackupAt,
   hasVault as hasVaultRecord,
   importEncryptedVaultBlob,
@@ -38,6 +39,7 @@ export const useVaultStore = defineStore('vault', () => {
   const hasVault = ref(false)
   const hasPasskey = ref(false)
   const lastBackupAt = ref<number | null>(null)
+  const createdAt = ref<number | null>(null)
 
   // Held only in memory for the unlocked session — never persisted.
   let sessionKey: CryptoKey | null = null
@@ -46,6 +48,7 @@ export const useVaultStore = defineStore('vault', () => {
     hasVault.value = await hasVaultRecord()
     hasPasskey.value = await hasLocalPasskey()
     lastBackupAt.value = await getLastBackupAt()
+    createdAt.value = await getCreatedAt()
   }
   refreshFlags()
 
@@ -74,6 +77,7 @@ export const useVaultStore = defineStore('vault', () => {
     loadIntoStores(data)
     isUnlocked.value = true
     hasVault.value = true
+    createdAt.value = Date.now()
   }
 
   async function unlockWithMnemonic(recoveryMnemonic: string): Promise<void> {
@@ -169,6 +173,7 @@ export const useVaultStore = defineStore('vault', () => {
     hasVault,
     hasPasskey,
     lastBackupAt,
+    createdAt,
     createVault,
     unlockWithMnemonic,
     unlockWithPasskey,

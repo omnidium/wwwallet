@@ -29,38 +29,3 @@ const { t } = useI18n()
     </div>
   </div>
 </template>
-
-<style scoped>
-.transfer-target-picker {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2em;
-  background: rgba(var(--v-theme-surface), 0.95);
-  backdrop-filter: blur(0.2em);
-  /* The pointer stays captured by the drag source the whole gesture — this
-   * overlay never receives its own pointer events, only document.elementFromPoint()
-   * hit-testing during the drag (see useDragToTransfer), which pointer-events:none
-   * would break entirely. Nothing behind this full-screen overlay is reachable
-   * anyway, so leaving hit-testing enabled here doesn't risk stray clicks. */
-}
-
-.tiles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1em;
-  justify-content: center;
-}
-
-.tile {
-  width: 130px;
-  border: 2px dashed transparent;
-}
-
-.tile-hovered {
-  border-color: rgb(var(--v-theme-primary));
-}
-</style>

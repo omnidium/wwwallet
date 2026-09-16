@@ -68,7 +68,7 @@ function proceedWithRestore() {
 </script>
 
 <template>
-  <v-container>
+  <div>
     <h1 class="text-h5">{{ t('backup.title') }}</h1>
     <v-alert type="info" variant="tonal" class="my-4">
       {{ t('backup.intro') }}
@@ -105,5 +105,5 @@ function proceedWithRestore() {
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-container>
+  </div>
 </template>

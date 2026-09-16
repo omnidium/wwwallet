@@ -12,7 +12,6 @@ export default {
   },
   nav: {
     settings: 'Settings',
-    accounts: 'Accounts',
     dismiss: 'Dismiss',
   },
   accounts: {

@@ -74,20 +74,3 @@ const { t } = useI18n()
     </v-card>
   </v-dialog>
 </template>
-
-<style scoped>
-.txn-details {
-  width: 100%;
-  border-collapse: collapse;
-}
-.txn-details td {
-  padding: 0.35em 0;
-  word-break: break-all;
-  vertical-align: top;
-}
-.txn-details td:first-child {
-  padding-right: 1em;
-  white-space: nowrap;
-  color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
-}
-</style>

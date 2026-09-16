@@ -27,7 +27,7 @@ async function copyAddress() {
 </script>
 
 <template>
-  <v-container class="d-flex flex-column align-center">
+  <div class="d-flex flex-column align-center">
     <h1 class="text-h5">{{ t('receive.title') }}</h1>
     <p class="text-medium-emphasis mb-4">{{ account?.label ?? t('receive.defaultAccountLabel') }} ({{ chain }})</p>
 
@@ -40,5 +40,5 @@ async function copyAddress() {
       </div>
       <v-icon icon="mdi-content-copy" class="ml-4" :aria-label="t('receive.copyAria')" />
     </v-card>
-  </v-container>
+  </div>
 </template>

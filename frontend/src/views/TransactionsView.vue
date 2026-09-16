@@ -13,7 +13,7 @@ const activity = chainData.activityByAddress[chainData.keyFor(chain, address)]
 </script>
 
 <template>
-  <v-container>
+  <div>
     <h1 class="text-h5">{{ t('transactions.title') }}</h1>
     <template v-if="activity">
       <v-list v-if="activity.transactions.length">
@@ -31,5 +31,5 @@ const activity = chainData.activityByAddress[chainData.keyFor(chain, address)]
     <v-alert v-else type="info" variant="tonal" class="mt-4">
       {{ t('transactions.visitAccountFirst') }}
     </v-alert>
-  </v-container>
+  </div>
 </template>
