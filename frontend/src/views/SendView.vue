@@ -15,7 +15,7 @@ import { waitForTransactionConfirmation } from '@/services/transactionStatus'
 import QrScannerDialog from '@/components/QrScannerDialog.vue'
 import TransactionReviewDialog, { type ReviewRow } from '@/components/TransactionReviewDialog.vue'
 
-const { t, locale } = useI18n()
+const { t, locale } = useI18n({ useScope: 'global' })
 const route = useRoute()
 const router = useRouter()
 const accounts = useAccountsStore()

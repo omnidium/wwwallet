@@ -11,7 +11,7 @@ import { PrfNotSupportedError } from '@/services/webauthnLocal'
 
 const emit = defineEmits<{ close: [] }>()
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const settings = useSettingsLocaleStore()
 const vault = useVaultStore()
 const messages = useMessagesStore()
@@ -24,7 +24,7 @@ const removePasskeyWarningOpen = ref(false)
 function toggleTheme() {
   isDark.value = !isDark.value
   const next: ThemeName = isDark.value ? 'dark' : 'light'
-  theme.global.name.value = next
+  theme.change(next)
   setStoredTheme(next)
   if (navigator.vibrate) navigator.vibrate(5)
 }

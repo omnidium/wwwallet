@@ -18,7 +18,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const messages = useMessagesStore()
 
 type Stage = 'warning' | 'reauth' | 'reveal'

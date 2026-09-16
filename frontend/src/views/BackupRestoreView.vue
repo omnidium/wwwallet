@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()

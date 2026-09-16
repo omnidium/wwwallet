@@ -7,7 +7,7 @@ import { useMessagesStore } from '@/stores/messages'
 import { availableUnlockMethods } from '@/crypto/vault'
 import { isValidRecoveryMnemonic, normalizeMnemonic } from '@/services/mnemonic'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()

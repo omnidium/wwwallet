@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { useChainDataStore } from '@/stores/chainData'
 import type { ChainSlug } from '@/services/api'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const route = useRoute()
 const chainData = useChainDataStore()
 const chain = route.params.chain as ChainSlug

@@ -3,7 +3,7 @@ import { ref, watch, nextTick, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import QrScanner from 'qr-scanner'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits<{
   'update:modelValue': [boolean]

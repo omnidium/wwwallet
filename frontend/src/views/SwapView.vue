@@ -32,7 +32,7 @@ async function resolveDecimals(chain: ChainSlug, tokenAddress: string): Promise<
   return metadata.decimals ?? 18
 }
 
-const { t, locale } = useI18n()
+const { t, locale } = useI18n({ useScope: 'global' })
 const route = useRoute()
 const router = useRouter()
 const accounts = useAccountsStore()

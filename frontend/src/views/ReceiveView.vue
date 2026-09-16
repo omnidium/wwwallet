@@ -7,7 +7,7 @@ import { useAccountsStore } from '@/stores/accounts'
 import { useMessagesStore } from '@/stores/messages'
 import type { ChainSlug } from '@/services/api'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const route = useRoute()
 const accounts = useAccountsStore()
 const messages = useMessagesStore()

@@ -7,7 +7,7 @@ import { useAccountsStore } from '@/stores/accounts'
 const props = defineProps<{ modelValue: boolean; account: WalletAccount | null }>()
 const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const accounts = useAccountsStore()
 const label = ref('')
 const setAsDefault = ref(false)

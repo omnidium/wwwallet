@@ -8,7 +8,7 @@ import { PrfNotSupportedError } from '@/services/webauthnLocal'
 import { generateRecoveryMnemonic, recoveryMnemonicWords } from '@/services/mnemonic'
 import { copyWithAutoClear } from '@/services/clipboard'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()
@@ -91,13 +91,13 @@ function finish() {
       <template v-if="step === 'recoveryPhrase'">
         <v-card-title>{{ t('vaultSetup.createTitle') }}</v-card-title>
         <v-card-text>
-          <i18n-t keypath="vaultSetup.recoveryExplainer" tag="span">
+          <i18n-t keypath="vaultSetup.recoveryExplainer" tag="span" scope="global">
             <template #phrase><strong>{{ t('vaultSetup.recoveryExplainerPhrase') }}</strong></template>
           </i18n-t>
         </v-card-text>
         <v-card-text>
           <v-sheet class="pa-3" rounded="lg" color="surface-variant" variant="tonal" data-testid="recovery-phrase">
-            <v-row dense no-gutters>
+            <v-row density="compact" no-gutters>
               <v-col v-for="(word, i) in recoveryPhraseWords" :key="i" cols="6" sm="4" class="pa-1">
                 <span class="text-caption text-medium-emphasis mr-1">{{ i + 1 }}.</span>
                 <span class="font-weight-medium" data-testid="recovery-phrase-word">{{ word }}</span>

@@ -10,7 +10,7 @@ import { toHumanAmount, convertUsd, formatFiat } from '@/services/money'
 import { tokenUrl } from '@/services/blockExplorer'
 import InfoTooltip from '@/components/InfoTooltip.vue'
 
-const { t, locale } = useI18n()
+const { t, locale } = useI18n({ useScope: 'global' })
 const route = useRoute()
 const messages = useMessagesStore()
 const chainData = useChainDataStore()

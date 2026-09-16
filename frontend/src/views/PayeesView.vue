@@ -5,7 +5,7 @@ import { usePayeesStore } from '@/stores/payees'
 import { isValidAddress } from '@/services/wallet'
 import type { ChainSlug } from '@/services/api'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const payees = usePayeesStore()
 
 const dialogOpen = ref(false)

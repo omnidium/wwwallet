@@ -10,7 +10,7 @@ import SettingsPanel from '@/components/SettingsPanel.vue'
 import AccountsView from '@/views/AccountsView.vue'
 import PaneOverlay from '@/components/PaneOverlay.vue'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const messages = useMessagesStore()
 const theme = useTheme()
 const route = useRoute()
@@ -26,7 +26,7 @@ const isPreAuthRoute = computed(() => route.name === 'vault-unlock' || route.nam
 useIdleLock()
 
 onMounted(() => {
-  theme.global.name.value = getStoredTheme()
+  theme.change(getStoredTheme())
 })
 
 // Navigating away (e.g. tapping "Payees" inside the panel) should close it

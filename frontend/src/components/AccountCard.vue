@@ -19,7 +19,7 @@ const emit = defineEmits<{
   openTransaction: [Transaction]
 }>()
 
-const { t, locale } = useI18n()
+const { t, locale } = useI18n({ useScope: 'global' })
 const accounts = useAccountsStore()
 const chainData = useChainDataStore()
 const settingsLocale = useSettingsLocaleStore()

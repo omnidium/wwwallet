@@ -16,7 +16,7 @@ import AccountCard from '@/components/AccountCard.vue'
 import TransferTargetPicker from '@/components/TransferTargetPicker.vue'
 import TransactionDetailDialog from '@/components/TransactionDetailDialog.vue'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const router = useRouter()
 const accounts = useAccountsStore()
 const chainData = useChainDataStore()

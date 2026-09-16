@@ -7,7 +7,7 @@ import { useMessagesStore } from '@/stores/messages'
 import { createWallet, importFromKeystoreJson, importFromMnemonic, importFromPrivateKey } from '@/services/wallet'
 import type { ChainSlug } from '@/services/api'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const accounts = useAccountsStore()
 const messages = useMessagesStore()
 const router = useRouter()

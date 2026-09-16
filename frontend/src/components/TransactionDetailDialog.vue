@@ -10,7 +10,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -19,52 +19,54 @@ const { t } = useI18n()
       <v-card-title>{{ t('transactionDetail.title') }}</v-card-title>
       <v-card-text>
         <table class="txn-details">
-          <tr>
-            <td>{{ t('transactionDetail.hash') }}</td>
-            <td>
-              <a :href="txnUrl(props.chain, transaction.hash)" target="_blank" rel="noopener noreferrer">{{
-                transaction.hash
-              }}</a>
-            </td>
-          </tr>
-          <tr>
-            <td>{{ t('transactionDetail.status') }}</td>
-            <td>
-              <span :style="{ color: transaction.status === 'success' ? 'green' : transaction.status === 'failed' ? 'red' : undefined }">
-                {{ t(`transactionDetail.status_${transaction.status}`) }}
-              </span>
-            </td>
-          </tr>
-          <tr v-if="transaction.timestamp">
-            <td>{{ t('transactionDetail.timestamp') }}</td>
-            <td>{{ new Date(transaction.timestamp).toLocaleString() }}</td>
-          </tr>
-          <tr>
-            <td colspan="2"><v-divider class="my-2" /></td>
-          </tr>
-          <tr>
-            <td>{{ t('transactionDetail.from') }}</td>
-            <td>
-              <a :href="addressUrl(props.chain, transaction.from)" target="_blank" rel="noopener noreferrer">{{
-                transaction.from
-              }}</a>
-            </td>
-          </tr>
-          <tr v-if="transaction.to">
-            <td>{{ t('transactionDetail.to') }}</td>
-            <td>
-              <a :href="addressUrl(props.chain, transaction.to)" target="_blank" rel="noopener noreferrer">{{
-                transaction.to
-              }}</a>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2"><v-divider class="my-2" /></td>
-          </tr>
-          <tr>
-            <td>{{ t('transactionDetail.amount') }}</td>
-            <td>{{ transaction.value }} {{ transaction.asset }}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>{{ t('transactionDetail.hash') }}</td>
+              <td>
+                <a :href="txnUrl(props.chain, transaction.hash)" target="_blank" rel="noopener noreferrer">{{
+                  transaction.hash
+                }}</a>
+              </td>
+            </tr>
+            <tr>
+              <td>{{ t('transactionDetail.status') }}</td>
+              <td>
+                <span :style="{ color: transaction.status === 'success' ? 'green' : transaction.status === 'failed' ? 'red' : undefined }">
+                  {{ t(`transactionDetail.status_${transaction.status}`) }}
+                </span>
+              </td>
+            </tr>
+            <tr v-if="transaction.timestamp">
+              <td>{{ t('transactionDetail.timestamp') }}</td>
+              <td>{{ new Date(transaction.timestamp).toLocaleString() }}</td>
+            </tr>
+            <tr>
+              <td colspan="2"><v-divider class="my-2" /></td>
+            </tr>
+            <tr>
+              <td>{{ t('transactionDetail.from') }}</td>
+              <td>
+                <a :href="addressUrl(props.chain, transaction.from)" target="_blank" rel="noopener noreferrer">{{
+                  transaction.from
+                }}</a>
+              </td>
+            </tr>
+            <tr v-if="transaction.to">
+              <td>{{ t('transactionDetail.to') }}</td>
+              <td>
+                <a :href="addressUrl(props.chain, transaction.to)" target="_blank" rel="noopener noreferrer">{{
+                  transaction.to
+                }}</a>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"><v-divider class="my-2" /></td>
+            </tr>
+            <tr>
+              <td>{{ t('transactionDetail.amount') }}</td>
+              <td>{{ transaction.value }} {{ transaction.asset }}</td>
+            </tr>
+          </tbody>
         </table>
       </v-card-text>
       <v-card-actions>
