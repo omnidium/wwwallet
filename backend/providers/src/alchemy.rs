@@ -43,6 +43,49 @@ impl AlchemyProvider {
             .ok_or_else(|| ProviderError::Upstream("missing result field".into()))
     }
 
+    /// A swap emits two transfer legs (token sold, token bought) under one tx
+    /// hash. Groups by hash and merges an exact one-sent/one-received pair of
+    /// different assets into a single Transaction carrying both legs;
+    /// anything else (a plain single-leg transfer, or a multi-hop swap with
+    /// more than two legs) is left as separate entries rather than guessing
+    /// which legs belong together.
+    fn merge_swap_legs(transactions: Vec<Transaction>, address: &str) -> Vec<Transaction> {
+        let address_lower = address.to_lowercase();
+        let mut by_hash: std::collections::HashMap<String, Vec<Transaction>> =
+            std::collections::HashMap::new();
+        for t in transactions {
+            by_hash.entry(t.hash.clone()).or_default().push(t);
+        }
+        let mut merged = Vec::new();
+        for (_, legs) in by_hash {
+            if let [a, b] = &legs[..] {
+                let a_sent = a.from.to_lowercase() == address_lower;
+                let b_sent = b.from.to_lowercase() == address_lower;
+                let a_received = a.to.as_deref().map(str::to_lowercase).as_deref() == Some(&address_lower);
+                let b_received = b.to.as_deref().map(str::to_lowercase).as_deref() == Some(&address_lower);
+                if a_sent && b_received && !b_sent && a.asset != b.asset {
+                    let mut outgoing = a.clone();
+                    outgoing.counter_asset = Some(b.asset.clone());
+                    outgoing.counter_value = Some(b.value.clone());
+                    outgoing.counter_contract_address = b.contract_address.clone();
+                    merged.push(outgoing);
+                    continue;
+                }
+                if b_sent && a_received && !a_sent && a.asset != b.asset {
+                    let mut outgoing = b.clone();
+                    outgoing.counter_asset = Some(a.asset.clone());
+                    outgoing.counter_value = Some(a.value.clone());
+                    outgoing.counter_contract_address = a.contract_address.clone();
+                    merged.push(outgoing);
+                    continue;
+                }
+            }
+            merged.extend(legs);
+        }
+        merged.sort_by_key(|t| std::cmp::Reverse(t.block_number));
+        merged
+    }
+
     fn hex_to_decimal_string(hex: &str) -> String {
         let trimmed = hex.trim_start_matches("0x");
         u128::from_str_radix(trimmed, 16)
@@ -175,12 +218,14 @@ impl ActivityProvider for AlchemyProvider {
                             .and_then(Value::as_str)
                             .map(str::to_string),
                         status: TransactionStatus::Success,
+                        counter_asset: None,
+                        counter_value: None,
+                        counter_contract_address: None,
                     });
                 }
             }
         }
-        transactions.sort_by_key(|t| std::cmp::Reverse(t.block_number));
-        transactions.dedup_by(|a, b| a.hash == b.hash);
+        let transactions = Self::merge_swap_legs(transactions, address);
 
         Ok(AddressActivity {
             balances,
@@ -343,5 +388,72 @@ mod tests {
     #[test]
     fn pad_address_for_abi_rejects_malformed_addresses() {
         assert!(AlchemyProvider::pad_address_for_abi("0x123").is_err());
+    }
+
+    fn sample_leg(hash: &str, from: &str, to: &str, asset: &str) -> Transaction {
+        Transaction {
+            hash: hash.to_string(),
+            from: from.to_string(),
+            to: Some(to.to_string()),
+            value: "1".to_string(),
+            asset: asset.to_string(),
+            contract_address: None,
+            block_number: Some(1),
+            timestamp: None,
+            status: TransactionStatus::Success,
+            counter_asset: None,
+            counter_value: None,
+            counter_contract_address: None,
+        }
+    }
+
+    #[test]
+    fn merge_swap_legs_combines_a_matching_sent_and_received_pair() {
+        const ME: &str = "0xMe";
+        const ROUTER: &str = "0xRouter";
+        let legs = vec![
+            sample_leg("0xhash1", ME, ROUTER, "USDC"),
+            sample_leg("0xhash1", ROUTER, ME, "ETH"),
+        ];
+
+        let merged = AlchemyProvider::merge_swap_legs(legs, ME);
+
+        assert_eq!(merged.len(), 1);
+        assert_eq!(merged[0].asset, "USDC");
+        assert_eq!(merged[0].counter_asset.as_deref(), Some("ETH"));
+    }
+
+    #[test]
+    fn merge_swap_legs_leaves_a_single_leg_transfer_unchanged() {
+        const ME: &str = "0xMe";
+        let legs = vec![sample_leg("0xhash1", ME, "0xSomeoneElse", "ETH")];
+
+        let merged = AlchemyProvider::merge_swap_legs(legs, ME);
+
+        assert_eq!(merged.len(), 1);
+        assert!(merged[0].counter_asset.is_none());
+    }
+
+    #[test]
+    fn merge_swap_legs_leaves_same_asset_pairs_and_multi_leg_hashes_unmerged() {
+        const ME: &str = "0xMe";
+        // Same asset both legs (e.g. an internal transfer quirk, not a swap).
+        let same_asset = vec![
+            sample_leg("0xhash1", ME, "0xA", "ETH"),
+            sample_leg("0xhash1", "0xA", ME, "ETH"),
+        ];
+        assert!(AlchemyProvider::merge_swap_legs(same_asset, ME)
+            .iter()
+            .all(|t| t.counter_asset.is_none()));
+
+        // Three legs under one hash — not a simple one-out/one-in pair.
+        let three_legs = vec![
+            sample_leg("0xhash2", ME, "0xA", "USDC"),
+            sample_leg("0xhash2", "0xA", ME, "ETH"),
+            sample_leg("0xhash2", "0xA", ME, "DAI"),
+        ];
+        let merged = AlchemyProvider::merge_swap_legs(three_legs, ME);
+        assert_eq!(merged.len(), 3);
+        assert!(merged.iter().all(|t| t.counter_asset.is_none()));
     }
 }

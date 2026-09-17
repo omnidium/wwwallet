@@ -102,7 +102,7 @@ function openTransaction(txn: Transaction) {
 </script>
 
 <template>
-  <div>
+  <div class="token-detail-view">
     <v-progress-linear v-if="loading" indeterminate class="mb-4" />
 
     <div class="d-flex align-center mb-4">
@@ -154,28 +154,31 @@ function openTransaction(txn: Transaction) {
 
     <template v-if="holderAddress">
       <h2 class="text-h6 mt-6 mb-2">{{ t('transactions.title') }}</h2>
-      <v-card class="pa-2">
-        <v-switch
-          v-model="hideDustTxns"
-          :label="t('accountCard.hideDustTxns')"
-          density="compact"
-          hide-details
-          color="primary"
-          class="dust-toggle"
-        />
-        <template v-for="group in transactionGroups" :key="group.dateLabel">
-          <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
-          <TransactionRow
-            v-for="txn in group.transactions"
-            :key="txn.hash"
-            :transaction="txn"
-            :my-address="holderAddress"
-            @click="openTransaction(txn)"
+      <v-card class="pa-2 token-detail-txn-card" max-width="480">
+        <div class="expanded-list pa-2">
+          <v-switch
+            v-model="hideDustTxns"
+            :label="t('accountCard.hideDustTxns')"
+            density="compact"
+            hide-details
+            color="primary"
+            class="dust-toggle"
           />
-        </template>
-        <p v-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
-          {{ t('transactions.empty') }}
-        </p>
+          <template v-for="group in transactionGroups" :key="group.dateLabel">
+            <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
+            <TransactionRow
+              v-for="txn in group.transactions"
+              :key="txn.hash"
+              :transaction="txn"
+              :my-address="holderAddress"
+              :chain="chain"
+              @click="openTransaction(txn)"
+            />
+          </template>
+          <p v-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
+            {{ t('transactions.empty') }}
+          </p>
+        </div>
       </v-card>
     </template>
 

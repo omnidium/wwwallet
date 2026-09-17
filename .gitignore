@@ -30,3 +30,7 @@ backend/.dev.vars
 ssl/
 *service-account*.json
 google_api.json
+*.sh
+
+# Playwright MCP tool output (screenshots/console logs from live manual testing)
+.playwright-mcp/

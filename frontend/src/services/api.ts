@@ -43,6 +43,10 @@ export interface Transaction {
   block_number: number | null
   timestamp: string | null
   status: TransactionStatus
+  /** Set when this is a same-hash swap: the received leg, alongside the sent leg above. */
+  counter_asset: string | null
+  counter_value: string | null
+  counter_contract_address: string | null
 }
 
 export interface AddressActivity {
@@ -105,10 +109,11 @@ export const api = {
     }),
   transactionStatus: (chain: ChainSlug, hash: string) =>
     getJson<{ status: TransactionStatus }>(`/api/v1/chains/${chain}/tx-status/${encodeURIComponent(hash)}`),
-  transactionPrep: (chain: ChainSlug, from: string, to: string, valueWei: string) =>
+  transactionPrep: (chain: ChainSlug, from: string, to: string, valueWei: string, data?: string) =>
     getJson<TransactionPrep>(`/api/v1/chains/${chain}/tx-prep/${encodeURIComponent(from)}`, {
       to,
       value: valueWei,
+      ...(data ? { data } : {}),
     }),
   allowance: (chain: ChainSlug, token: string, owner: string, spender: string) =>
     getJson<{ amount: string }>(`/api/v1/chains/${chain}/allowance`, { token, owner, spender }),

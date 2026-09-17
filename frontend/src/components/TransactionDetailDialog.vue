@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import type { ChainSlug, Transaction } from '@/services/api'
 import { txnUrl, addressUrl } from '@/services/blockExplorer'
+import { addressDisplayLabel } from '@/services/addressLabel'
 
 const props = defineProps<{
   modelValue: boolean
@@ -47,7 +48,7 @@ const { t } = useI18n({ useScope: 'global' })
               <td>{{ t('transactionDetail.from') }}</td>
               <td>
                 <a :href="addressUrl(props.chain, transaction.from)" target="_blank" rel="noopener noreferrer">{{
-                  transaction.from
+                  addressDisplayLabel(props.chain, transaction.from)
                 }}</a>
               </td>
             </tr>
@@ -55,7 +56,7 @@ const { t } = useI18n({ useScope: 'global' })
               <td>{{ t('transactionDetail.to') }}</td>
               <td>
                 <a :href="addressUrl(props.chain, transaction.to)" target="_blank" rel="noopener noreferrer">{{
-                  transaction.to
+                  addressDisplayLabel(props.chain, transaction.to)
                 }}</a>
               </td>
             </tr>
@@ -63,8 +64,12 @@ const { t } = useI18n({ useScope: 'global' })
               <td colspan="2"><v-divider class="my-2" /></td>
             </tr>
             <tr>
-              <td>{{ t('transactionDetail.amount') }}</td>
+              <td>{{ transaction.counter_asset != null ? t('transactionDetail.sold') : t('transactionDetail.amount') }}</td>
               <td>{{ transaction.value }} {{ transaction.asset }}</td>
+            </tr>
+            <tr v-if="transaction.counter_asset != null">
+              <td>{{ t('transactionDetail.bought') }}</td>
+              <td>{{ transaction.counter_value }} {{ transaction.counter_asset }}</td>
             </tr>
           </tbody>
         </table>

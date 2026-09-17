@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import Sortable from 'sortablejs'
 import { useAccountsStore, type WalletAccount } from '@/stores/accounts'
+import { usePayeesStore } from '@/stores/payees'
 import { useChainDataStore } from '@/stores/chainData'
 import { useVaultStore } from '@/stores/vault'
 import type { ChainSlug, Transaction } from '@/services/api'
@@ -14,10 +15,12 @@ import { BACKUP_REMINDER_FIRST_MS, BACKUP_REMINDER_RECURRING_MS, ACCOUNT_AUTO_RE
 import AccountCard from '@/components/AccountCard.vue'
 import TransferTargetPicker from '@/components/TransferTargetPicker.vue'
 import TransactionDetailDialog from '@/components/TransactionDetailDialog.vue'
+import AppTooltip from '@/components/AppTooltip.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const router = useRouter()
 const accounts = useAccountsStore()
+const payees = usePayeesStore()
 const chainData = useChainDataStore()
 const vault = useVaultStore()
 const { reconcile } = useDefaultAccountFallback()
@@ -51,12 +54,6 @@ const showBackupReminder = computed(() => {
     ? Date.now() - vault.createdAt > BACKUP_REMINDER_FIRST_MS
     : Date.now() - vault.lastBackupAt > BACKUP_REMINDER_RECURRING_MS
 })
-
-function eligibleTransferSiblings(account: WalletAccount): WalletAccount[] {
-  return accounts.accounts.filter(
-    (a) => a.chain === account.chain && a.visible && a.address !== account.address,
-  )
-}
 
 function openTransaction(chain: ChainSlug, txn: Transaction) {
   detailChain.value = chain
@@ -140,23 +137,28 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="connectivity-badge" role="status" :aria-label="connectionTooltip">
-    <v-icon :icon="connected ? 'mdi-circle' : 'mdi-circle-outline'" :color="connected ? 'success' : 'grey'" size="xs" />
-    <v-tooltip activator="parent" location="bottom">{{ connectionTooltip }}</v-tooltip>
-  </div>
+  <AppTooltip :text="connectionTooltip" location="bottom">
+    <template #default="{ activatorProps }">
+      <div v-bind="activatorProps" class="connectivity-badge" role="status" :aria-label="connectionTooltip">
+        <v-icon :icon="connected ? 'mdi-circle' : 'mdi-circle-outline'" :color="connected ? 'success' : 'grey'"
+          size="xs" />
+      </div>
+    </template>
+  </AppTooltip>
 
-  <v-container>
+  <v-container class="pt-16">
     <v-card v-if="showBackupReminder" class="pa-4 mb-4 backup-reminder position-relative">
       <div class="d-flex align-center">
         <v-icon icon="mdi-shield-alert-outline" class="mr-3" />
         <p class="grow">{{ t('accounts.backupReminder') }}</p>
       </div>
       <v-btn class="mt-3" variant="outlined" to="/backup-restore">{{ t('backup.backUpNow') }}</v-btn>
-      <span class="dismiss-btn">
-        <v-icon icon="mdi-close" size="small" role="button" :aria-label="t('common.close')"
-          @click="backupDismissed = true" />
-        <v-tooltip activator="parent" location="top">{{ t('common.close') }}</v-tooltip>
-      </span>
+      <AppTooltip :text="t('common.close')">
+        <template #default="{ activatorProps }">
+          <v-icon v-bind="activatorProps" icon="mdi-close" size="small" class="dismiss-btn" role="button"
+            :aria-label="t('common.close')" @click="backupDismissed = true" />
+        </template>
+      </AppTooltip>
     </v-card>
 
     <v-alert v-if="accounts.accounts.length === 0" type="info" variant="tonal" class="mt-4">
@@ -165,22 +167,19 @@ onUnmounted(() => {
 
     <div ref="visibleListEl">
       <div v-for="account in visibleAccounts" :key="account.address" :data-address="account.address">
-        <div class="drag-handle-row">
-          <v-icon icon="mdi-drag-horizontal-variant" class="drag-handle" size="small" />
-          <v-tooltip activator="parent" location="top">{{ t('accountCard.dragToReorder') }}</v-tooltip>
-        </div>
-        <AccountCard :account="account" :eligible-transfer-siblings="eligibleTransferSiblings(account)"
-          @transfer-pointerdown="(e) => dragToTransfer.onPointerDown(e, account, accounts.accounts)"
+        <AccountCard :account="account" reorderable
+          @transfer-pointerdown="(e) => dragToTransfer.onPointerDown(e, account, accounts.accounts, payees.payees)"
           @open-transaction="(txn) => openTransaction(account.chain, txn)" />
       </div>
     </div>
 
     <div class="add-account-row">
-      <v-btn icon="mdi-plus" size="large" rounded="circle" color="primary" variant="tonal" to="/accounts/new"
-        :aria-label="t('accounts.addAccount')">
-        <v-icon />
-        <v-tooltip activator="parent" location="top">{{ t('accounts.addAccount') }}</v-tooltip>
-      </v-btn>
+      <AppTooltip :text="t('accounts.addAccount')">
+        <template #default="{ activatorProps }">
+          <v-btn v-bind="activatorProps" icon="mdi-plus" size="large" rounded="circle" color="primary" variant="tonal"
+            to="/accounts/new" :aria-label="t('accounts.addAccount')" />
+        </template>
+      </AppTooltip>
     </div>
 
     <template v-if="hiddenAccounts.length > 0">
@@ -189,7 +188,6 @@ onUnmounted(() => {
       </p>
       <div v-if="showHidden">
         <AccountCard v-for="account in hiddenAccounts" :key="account.address" :account="account"
-          :eligible-transfer-siblings="eligibleTransferSiblings(account)"
           @open-transaction="(txn) => openTransaction(account.chain, txn)" />
       </div>
     </template>

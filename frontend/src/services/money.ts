@@ -15,3 +15,18 @@ export function convertUsd(usdAmount: number, currency: string, fxRates: FxRates
 export function formatFiat(amount: number, currency: string, locale: string): string {
   return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(amount)
 }
+
+/** The bare symbol ('$', '€', ...) for a currency code, without formatting a number. */
+export function currencySymbol(currency: string, locale: string): string {
+  const part = new Intl.NumberFormat(locale, { style: 'currency', currency })
+    .formatToParts(0)
+    .find((p) => p.type === 'currency')
+  return part?.value ?? currency
+}
+
+/** Inverse of `convertUsd` — a display-currency amount back to USD. */
+export function convertToUsd(displayAmount: number, currency: string, fxRates: FxRates | null): number {
+  if (currency === 'USD' || !fxRates) return displayAmount
+  const rate = fxRates.rates[currency]
+  return rate ? displayAmount / rate : displayAmount
+}

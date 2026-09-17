@@ -21,11 +21,6 @@ const router = createRouter({
       name: 'receive',
       component: () => import('../views/ReceiveView.vue'),
     },
-    {
-      path: '/accounts/:chain/:address/swap',
-      name: 'swap',
-      component: () => import('../views/SwapView.vue'),
-    },
     { path: '/payees', name: 'payees', component: () => import('../views/PayeesView.vue') },
     { path: '/security', name: 'security', component: () => import('../views/SecurityView.vue') },
     {

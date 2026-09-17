@@ -3,17 +3,33 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { formatUnits, parseUnits } from 'ethers'
-import { api, type ChainSlug, type TransactionPrep } from '@/services/api'
+import {
+  api,
+  type ChainSlug,
+  type Transaction,
+  type TransactionPrep,
+  type SwapQuote,
+} from '@/services/api'
 import { useAccountsStore } from '@/stores/accounts'
 import { usePayeesStore } from '@/stores/payees'
 import { useMessagesStore } from '@/stores/messages'
 import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { isValidAddress, unlockWalletForSigning } from '@/services/wallet'
-import { convertUsd, formatFiat } from '@/services/money'
+import { encodeApprove, encodeTransfer } from '@/services/erc20'
+import {
+  toHumanAmount,
+  convertUsd,
+  convertToUsd,
+  formatFiat,
+  currencySymbol,
+} from '@/services/money'
+import { truncateAddress } from '@/services/format'
+import { addressDisplayLabel } from '@/services/addressLabel'
 import { waitForTransactionConfirmation } from '@/services/transactionStatus'
 import QrScannerDialog from '@/components/QrScannerDialog.vue'
 import TransactionReviewDialog, { type ReviewRow } from '@/components/TransactionReviewDialog.vue'
+import AppTooltip from '@/components/AppTooltip.vue'
 
 const { t, locale } = useI18n({ useScope: 'global' })
 const route = useRoute()
@@ -28,72 +44,604 @@ const chain = route.params.chain as ChainSlug
 const address = route.params.address as string
 const account = accounts.findAccount(chain, address)
 
-const to = ref('')
-const amount = ref('')
-const busy = ref(false)
-const scannerOpen = ref(false)
-const formValid = ref(false)
-const reviewOpen = ref(false)
-const reviewRows = ref<ReviewRow[]>([])
-const preparedTx = ref<{ prep: TransactionPrep; valueWei: string; to: string } | null>(null)
+const activeTab = ref<'send' | 'swap'>('send')
 
-const nativeSymbol = computed(
-  () =>
-    chainData.activityByAddress[chainData.keyFor(chain, address)]?.balances.find(
-      (b) => b.contract_address === null,
-    )?.symbol ?? '',
-)
-
-const relevantPayees = computed(() => payees.payees.filter((p) => p.chain === chain))
-const payeeItems = computed(() =>
-  relevantPayees.value.map((p) => ({ title: `${p.label} — ${p.address}`, value: p.address })),
-)
-// A picker separate from `to` itself: v-combobox validates against its own
-// displayed text (the item's title), not the transformed model, so binding
-// it directly to `to` broke address validation the instant a payee was
-// picked. This stays a one-shot selector that copies the resolved address
-// into the real field, then resets — `to` (and its validation) never sees
-// anything but a plain address string.
-const payeePicker = ref<string | null>(null)
-watch(payeePicker, (selectedAddress) => {
-  if (!selectedAddress) return
-  to.value = selectedAddress
-  payeePicker.value = null
+onMounted(async () => {
+  // Prefilled by the drag-to-transfer gesture on the Accounts screen. Dropping
+  // onto one of the user's own accounts or a payee keeps the To field as a
+  // pulldown (so it still shows a name, matching the From field) — only an
+  // arbitrary/QR-scanned address falls back to the plain text field, since
+  // that isn't in the pulldown's option list.
+  if (typeof route.query.to === 'string') {
+    const droppedAddress = route.query.to
+    if (route.query.toKind === 'account' || route.query.toKind === 'payee') {
+      toSelectedAddress.value = droppedAddress
+    } else {
+      to.value = droppedAddress
+      toMode.value = 'scanned'
+    }
+  }
+  // Every account's balance is shown in the From/To pulldowns, not just the
+  // one this panel was opened from, so all of them need loading up front —
+  // same pattern as AccountsView's own initial load.
+  const chains = new Set(accounts.accounts.map((a) => a.chain))
+  try {
+    await Promise.all([
+      chainData.loadFxRates(),
+      ...[...chains].map((c) => chainData.loadNativePrice(c)),
+      ...accounts.accounts.map((a) => chainData.loadAddressActivity(a.chain, a.address)),
+    ])
+  } catch {
+    // Balances/fiat rows just won't be available for inline checks.
+  }
 })
 
-const nativeBalance = computed(() => {
-  const activity = chainData.activityByAddress[chainData.keyFor(chain, address)]
-  const native = activity?.balances.find((b) => b.contract_address === null)
-  return native ? Number(native.balance) : null
+// There's no standalone per-account route to return to — account cards live
+// directly on the accounts list — so closing this panel (via Cancel or after
+// a send/swap) always means going back there. Pushing to a fabricated
+// `/accounts/:chain/:address` (with no matching route) used to leave
+// PaneOverlay's "path !== '/'" check satisfied with nothing for RouterView to
+// render, showing an empty floating pane with just its own close button.
+function closePanel() {
+  router.push('/')
+}
+
+/* ------------------------------- Send tab ------------------------------- */
+
+interface TokenOption {
+  key: string
+  symbol: string
+  contractAddress: string | null
+  decimals: number
+  rawBalance: string
+  logoUrl: string | null
+  usdPrice: number | null
+}
+
+const sendFromAddress = ref(address)
+const sendFromAccount = computed(
+  () => accounts.accounts.find((a) => a.address === sendFromAddress.value) ?? account,
+)
+// The account itself carries its chain — switching From to an account on a
+// different chain switches everything else (tokens, recipients, prep calls)
+// with it, instead of freezing on the chain the panel was opened from.
+const sendChain = computed(() => sendFromAccount.value?.chain ?? chain)
+
+const to = ref('')
+const toWasFromQr = ref(false)
+// 'select' shows a From-style pulldown of same-chain accounts; a successful
+// QR scan switches to 'scanned', showing the full decoded address as plain
+// text instead (per the requested behavior) until cleared back.
+const toMode = ref<'select' | 'scanned'>('select')
+const toSelectedAddress = ref<string | null>(null)
+const scannerOpen = ref(false)
+const amount = ref('')
+const amountMode = ref<'token' | 'fiat'>('token')
+// Set by the Max link, cleared on any manual edit or token change. A native
+// send with this set recomputes its value from a fresh fee estimate right
+// before building the transaction, instead of reusing the number Max
+// displayed — that number was itself computed from an earlier, separate
+// prep call, and gas price drifting between the two (however slightly) is
+// exactly what "insufficient funds for gas * price + value" off by a tiny
+// amount means: the balance was already fully committed to value + the old
+// fee estimate, leaving nothing for the new, real one.
+const sendMaxIntent = ref(false)
+const selectedTokenKey = ref('native')
+const sendBusy = ref(false)
+const sendFormValid = ref(false)
+const sendReviewOpen = ref(false)
+const sendReviewRows = ref<ReviewRow[]>([])
+const addPayeeOpen = ref(false)
+const addPayeeLabel = ref('')
+
+const activity = computed(
+  () => chainData.activityByAddress[chainData.keyFor(sendChain.value, sendFromAddress.value)],
+)
+
+const tokenOptions = computed<TokenOption[]>(() =>
+  (activity.value?.balances ?? []).map((b) => {
+    if (b.contract_address === null) {
+      return {
+        key: 'native',
+        symbol: b.symbol,
+        contractAddress: null,
+        decimals: b.decimals,
+        rawBalance: b.balance,
+        logoUrl: null,
+        usdPrice: chainData.nativePriceUsdByChain[sendChain.value] ?? null,
+      }
+    }
+    const metadata =
+      chainData.tokenMetadataByKey[chainData.keyFor(sendChain.value, b.contract_address)]
+    return {
+      key: b.contract_address,
+      symbol: metadata?.symbol ?? b.symbol,
+      contractAddress: b.contract_address,
+      decimals: metadata?.decimals ?? b.decimals,
+      rawBalance: b.balance,
+      logoUrl: metadata?.logo_url ?? null,
+      usdPrice: metadata?.usd_price ?? null,
+    }
+  }),
+)
+const selectedToken = computed(
+  () =>
+    tokenOptions.value.find((tok) => tok.key === selectedTokenKey.value) ??
+    tokenOptions.value[0] ??
+    null,
+)
+
+// Lazy-load metadata (symbol/decimals/logo/price) for every held ERC-20 token —
+// same pattern as AccountCard.vue.
+watch(
+  () => activity.value?.balances ?? [],
+  (balances) => {
+    for (const b of balances) {
+      if (!b.contract_address) continue
+      const key = chainData.keyFor(sendChain.value, b.contract_address)
+      if (!chainData.tokenMetadataByKey[key])
+        void chainData.loadTokenMetadata(sendChain.value, b.contract_address)
+    }
+  },
+  { immediate: true },
+)
+
+/** "<Label> <fiat balance> (<native balance> <SYMBOL>)" — same shape for From and To. */
+function accountOptionLabel(acc: { label: string; chain: ChainSlug; address: string }): string {
+  const activityForAcc = chainData.activityByAddress[chainData.keyFor(acc.chain, acc.address)]
+  const native = activityForAcc?.balances.find((b) => b.contract_address === null)
+  if (!native) return acc.label
+  const humanAmount = toHumanAmount(native.balance, native.decimals)
+  const priceUsd = chainData.nativePriceUsdByChain[acc.chain]
+  const fiatStr =
+    priceUsd != null
+      ? formatFiat(
+          convertUsd(humanAmount * priceUsd, settingsLocale.currency, chainData.fxRates),
+          settingsLocale.currency,
+          locale.value,
+        )
+      : '—'
+  return `${acc.label} ${fiatStr} (${humanAmount.toFixed(5)} ${native.symbol})`
+}
+
+const fromAccountOptions = computed(() =>
+  accounts.accounts.map((a) => ({ address: a.address, title: accountOptionLabel(a) })),
+)
+// Same shape as fromAccountOptions, plus payees — accountOptionLabel already
+// degrades to a plain label when there's no loaded balance for an address,
+// which is always the case for a payee (their balances aren't tracked), so
+// they show up as just their name rather than the raw address.
+const toAccountOptions = computed(() => [
+  ...accounts.accounts
+    .filter((a) => a.chain === sendChain.value && a.address !== sendFromAddress.value)
+    .map((a) => ({ address: a.address, title: accountOptionLabel(a) })),
+  ...payees.payees
+    .filter((p) => p.chain === sendChain.value)
+    .map((p) => ({ address: p.address, title: accountOptionLabel(p) })),
+])
+
+watch(toSelectedAddress, (selectedAddress) => {
+  if (!selectedAddress) return
+  to.value = selectedAddress
+  toWasFromQr.value = false
+})
+
+function clearScannedTo() {
+  to.value = ''
+  toWasFromQr.value = false
+  toSelectedAddress.value = null
+  toMode.value = 'select'
+}
+
+/** Bound to the amount field instead of a plain v-model so a manual edit can clear sendMaxIntent. */
+function onAmountInput(value: string) {
+  amount.value = value
+  sendMaxIntent.value = false
+}
+
+watch(selectedTokenKey, () => {
+  sendMaxIntent.value = false
+})
+
+const tokenUnitsAmount = computed<number | null>(() => {
+  if (!amount.value) return null
+  const num = Number(amount.value)
+  if (Number.isNaN(num)) return null
+  if (amountMode.value === 'token') return num
+  const price = selectedToken.value?.usdPrice ?? null
+  if (!price) return null
+  return convertToUsd(num, settingsLocale.currency, chainData.fxRates) / price
+})
+const selectedTokenBalance = computed(() => {
+  const tok = selectedToken.value
+  return tok ? Number(formatUnits(tok.rawBalance, tok.decimals)) : null
 })
 
 const amountRules = [
-  (v: string) => (!!v && Number(v) > 0) || t('validation.amountGreaterThanZero'),
-  (v: string) =>
-    nativeBalance.value === null ||
-    Number(v) <= nativeBalance.value ||
+  () =>
+    (tokenUnitsAmount.value !== null && tokenUnitsAmount.value > 0) ||
+    t('validation.amountGreaterThanZero'),
+  () =>
+    selectedTokenBalance.value === null ||
+    tokenUnitsAmount.value === null ||
+    tokenUnitsAmount.value <= selectedTokenBalance.value ||
     t('validation.insufficientBalance'),
 ]
-const addressRules = [(v: string) => isValidAddress(v.trim()) || t('validation.invalidRecipientAddress')]
+const addressRules = [
+  (v: string) => isValidAddress(v.trim()) || t('validation.invalidRecipientAddress'),
+]
 
-onMounted(async () => {
-  // Prefilled by the drag-to-transfer gesture on the Accounts screen.
-  if (typeof route.query.to === 'string') to.value = route.query.to
-  try {
-    await chainData.loadAddressActivity(chain, address)
-  } catch {
-    // Balance just won't be available for the inline insufficient-funds check.
-  }
-  try {
-    await Promise.all([chainData.loadNativePrice(chain), chainData.loadFxRates()])
-  } catch {
-    // Fiat rows in the review step just fall back to native-only amounts.
-  }
+// ETH's conventional single-glyph symbol, the way '$'/'€' represent a fiat
+// currency — no other token has an equivalent glyph, so those show their
+// plain code (e.g. "USDC") instead, same as the fiat side falling back to
+// the currency's own symbol.
+const ETH_SYMBOL_GLYPH = 'Ξ'
+
+const unitSymbolDisplay = computed(() => {
+  if (amountMode.value === 'fiat') return currencySymbol(settingsLocale.currency, locale.value)
+  const symbol = selectedToken.value?.symbol ?? ''
+  return symbol.toUpperCase() === 'ETH' ? ETH_SYMBOL_GLYPH : symbol
 })
 
-function formatAmountRow(weiValue: bigint): { value: string; sub?: string } {
-  const human = Number(formatUnits(weiValue, 18))
-  const nativeStr = `${human.toFixed(6)} ${nativeSymbol.value}`
+const amountFieldLabel = computed(() =>
+  t('send.amountInLabel', {
+    unit:
+      amountMode.value === 'token' ? (selectedToken.value?.symbol ?? '') : settingsLocale.currency,
+  }),
+)
+
+function toggleAmountMode() {
+  const price = selectedToken.value?.usdPrice ?? null
+  const current = Number(amount.value)
+  if (price && amount.value && !Number.isNaN(current) && current > 0) {
+    if (amountMode.value === 'token') {
+      amount.value = convertUsd(
+        current * price,
+        settingsLocale.currency,
+        chainData.fxRates,
+      ).toFixed(2)
+    } else {
+      amount.value = (
+        convertToUsd(current, settingsLocale.currency, chainData.fxRates) / price
+      ).toFixed(6)
+    }
+  }
+  amountMode.value = amountMode.value === 'token' ? 'fiat' : 'token'
+}
+
+async function setMaxAmount() {
+  const token = selectedToken.value
+  if (!token) return
+
+  let maxTokenAmount: string
+  if (token.contractAddress !== null) {
+    maxTokenAmount = formatUnits(token.rawBalance, token.decimals)
+  } else {
+    sendBusy.value = true
+    try {
+      const toForEstimate = isValidAddress(to.value.trim())
+        ? to.value.trim()
+        : sendFromAddress.value
+      const prep = await api.transactionPrep(
+        sendChain.value,
+        sendFromAddress.value,
+        toForEstimate,
+        '0',
+      )
+      const feeWei = BigInt(prep.gas_price) * BigInt(prep.gas_limit)
+      const balanceWei = BigInt(token.rawBalance)
+      maxTokenAmount = formatUnits(balanceWei > feeWei ? balanceWei - feeWei : 0n, token.decimals)
+    } catch (err) {
+      messages.push((err as Error).message, 'error')
+      return
+    } finally {
+      sendBusy.value = false
+    }
+  }
+
+  // Respect whichever unit is currently displayed — only convert to fiat when
+  // a usable price is actually available, otherwise fall back to the token
+  // amount rather than silently doing nothing.
+  if (amountMode.value === 'fiat' && token.usdPrice != null) {
+    amount.value = convertUsd(
+      Number(maxTokenAmount) * token.usdPrice,
+      settingsLocale.currency,
+      chainData.fxRates,
+    ).toFixed(2)
+  } else {
+    amount.value = maxTokenAmount
+  }
+  // The displayed number above is only a preview — openSendReview recomputes
+  // the actual native-send value from a fresh fee estimate rather than
+  // trusting this one (see sendMaxIntent's declaration for why).
+  sendMaxIntent.value = true
+}
+
+/** Handles both a bare address and an EIP-681 "ethereum:0x...@chainId" URI. */
+function onQrDecoded(data: string) {
+  const match = data.match(/0x[a-fA-F0-9]{40}/)
+  if (!match) {
+    messages.push(t('msg.qr.noAddress'), 'warning')
+    return
+  }
+  const scannedAddress = match[0]
+  // A scan of an address that's already a saved payee shows their name via
+  // the pulldown, same as picking them directly — only a genuinely new
+  // address falls back to the raw-text field (and offers to save it after).
+  const knownPayee = payees.payees.find(
+    (p) => p.chain === sendChain.value && p.address.toLowerCase() === scannedAddress.toLowerCase(),
+  )
+  if (knownPayee) {
+    toSelectedAddress.value = knownPayee.address
+    toMode.value = 'select'
+    return
+  }
+  to.value = scannedAddress
+  toWasFromQr.value = true
+  toMode.value = 'scanned'
+}
+
+function formatAmountRow(
+  humanAmount: number,
+  symbol: string,
+  usdPrice: number | null,
+): { value: string; sub?: string } {
+  const nativeStr = `${humanAmount.toFixed(6)} ${symbol}`
+  if (usdPrice === null) return { value: nativeStr }
+  const fiat = formatFiat(
+    convertUsd(humanAmount * usdPrice, settingsLocale.currency, chainData.fxRates),
+    settingsLocale.currency,
+    locale.value,
+  )
+  return { value: fiat, sub: nativeStr }
+}
+
+const preparedSend = ref<{
+  prep: TransactionPrep
+  to: string
+  value: string
+  data?: string
+} | null>(null)
+
+async function openSendReview() {
+  const token = selectedToken.value
+  const fromAccount = sendFromAccount.value
+  if (!fromAccount || !sendFormValid.value || !token || tokenUnitsAmount.value === null) return
+
+  sendBusy.value = true
+  try {
+    const toAddress = to.value.trim()
+
+    let prep: TransactionPrep
+    let txTo: string
+    let txValue: string
+    let txData: string | undefined
+    // What actually gets sent for the review/total rows — usually just
+    // tokenUnitsAmount, but a max native send overrides it below once the
+    // real fee is known.
+    let finalHumanAmount = tokenUnitsAmount.value
+    if (token.contractAddress === null) {
+      txTo = toAddress
+      if (sendMaxIntent.value) {
+        // Estimate with value=0 rather than a near-full balance: gas cost for
+        // a plain transfer doesn't depend on the value anyway, and estimating
+        // with the real (stale) max amount is exactly how this went wrong —
+        // the fee is derived from THIS call, so it can never drift from what
+        // actually gets signed below.
+        prep = await api.transactionPrep(sendChain.value, fromAccount.address, txTo, '0')
+        const feeWei = BigInt(prep.gas_price) * BigInt(prep.gas_limit)
+        const balanceWei = BigInt(token.rawBalance)
+        const valueWei = balanceWei > feeWei ? balanceWei - feeWei : 0n
+        txValue = valueWei.toString()
+        finalHumanAmount = Number(formatUnits(valueWei, token.decimals))
+      } else {
+        txValue = parseUnits(
+          tokenUnitsAmount.value.toFixed(token.decimals),
+          token.decimals,
+        ).toString()
+        prep = await api.transactionPrep(sendChain.value, fromAccount.address, txTo, txValue)
+      }
+    } else {
+      txTo = token.contractAddress
+      txValue = '0'
+      const valueWei = parseUnits(
+        tokenUnitsAmount.value.toFixed(token.decimals),
+        token.decimals,
+      ).toString()
+      txData = encodeTransfer(toAddress, valueWei)
+      prep = await api.transactionPrep(sendChain.value, fromAccount.address, txTo, txValue, txData)
+    }
+    preparedSend.value = { prep, to: txTo, value: txValue, data: txData }
+
+    const feeWei = BigInt(prep.gas_price) * BigInt(prep.gas_limit)
+    const native = tokenOptions.value.find((tok) => tok.contractAddress === null)
+
+    // Gas is always paid in the chain's native asset, separate from whatever
+    // token is actually being sent — amountRules only validates the token
+    // amount itself, so an ERC-20 send with plenty of token balance but no
+    // ETH for gas would otherwise sail through to an opaque broadcast
+    // failure instead of being caught here, before review.
+    const requiredNativeWei = token.contractAddress === null ? BigInt(txValue) + feeWei : feeWei
+    if (native && requiredNativeWei > BigInt(native.rawBalance)) {
+      messages.push(t('validation.insufficientGas'), 'error')
+      return
+    }
+
+    const rows: ReviewRow[] = [
+      { label: t('review.from'), value: addressDisplayLabel(sendChain.value, fromAccount.address) },
+      { label: t('review.to'), value: addressDisplayLabel(sendChain.value, toAddress) },
+      { label: t('review.chain'), value: sendChain.value },
+      {
+        label: t('review.amount'),
+        ...formatAmountRow(finalHumanAmount, token.symbol, token.usdPrice),
+      },
+      {
+        label: t('review.fee'),
+        ...formatAmountRow(
+          Number(formatUnits(feeWei, 18)),
+          native?.symbol ?? '',
+          native?.usdPrice ?? null,
+        ),
+      },
+    ]
+    // Combining amount + fee into one "total" only makes sense when they're
+    // the same asset (a native send) — an ERC-20 send debits the fee from a
+    // separate native balance entirely.
+    if (token.contractAddress === null) {
+      const totalWei = BigInt(txValue) + feeWei
+      rows.push({
+        label: t('review.total'),
+        bold: true,
+        ...formatAmountRow(
+          Number(formatUnits(totalWei, 18)),
+          native?.symbol ?? '',
+          native?.usdPrice ?? null,
+        ),
+      })
+    }
+    sendReviewRows.value = rows
+    sendReviewOpen.value = true
+  } catch (err) {
+    messages.push((err as Error).message, 'error')
+  } finally {
+    sendBusy.value = false
+  }
+}
+
+async function confirmSend() {
+  const fromAccount = sendFromAccount.value
+  if (!fromAccount || !preparedSend.value) return
+  const { prep, to: txTo, value: txValue, data: txData } = preparedSend.value
+  const toAddress = to.value.trim()
+  const txChain = sendChain.value
+
+  sendBusy.value = true
+  const msgId = messages.push(t('msg.send.submitting'), 'info', -1)
+  try {
+    const wallet = await unlockWalletForSigning(fromAccount)
+    const signedTx = await wallet.signTransaction({
+      to: txTo,
+      value: txValue,
+      ...(txData ? { data: txData } : {}),
+      nonce: prep.nonce,
+      gasLimit: prep.gas_limit,
+      gasPrice: prep.gas_price,
+      chainId: prep.chain_id,
+    })
+
+    const { transaction_hash } = await api.broadcastTransaction(txChain, signedTx)
+    sendReviewOpen.value = false
+    sendBusy.value = false
+
+    // Indexers only report a transaction once it's mined, so without this it
+    // simply wouldn't appear anywhere until confirmed — insert it locally,
+    // on both ends if the recipient is one of the user's own accounts, so it
+    // shows up immediately as pending.
+    const toOwnAccount = accounts.accounts.some(
+      (a) => a.chain === txChain && a.address.toLowerCase() === toAddress.toLowerCase(),
+    )
+    const token = selectedToken.value
+    if (token && tokenUnitsAmount.value !== null) {
+      const pendingTxn: Transaction = {
+        hash: transaction_hash,
+        from: fromAccount.address,
+        to: toAddress,
+        value: tokenUnitsAmount.value.toString(),
+        asset: token.symbol,
+        contract_address: token.contractAddress,
+        block_number: null,
+        timestamp: null,
+        status: 'pending',
+        counter_asset: null,
+        counter_value: null,
+        counter_contract_address: null,
+      }
+      chainData.prependTransaction(txChain, fromAccount.address, pendingTxn)
+      if (toOwnAccount) chainData.prependTransaction(txChain, toAddress, pendingTxn)
+    }
+
+    const alreadyPayee = payees.payees.some(
+      (p) => p.chain === txChain && p.address.toLowerCase() === toAddress.toLowerCase(),
+    )
+    if (toWasFromQr.value && !alreadyPayee) {
+      addPayeeLabel.value = ''
+      addPayeeOpen.value = true
+    } else {
+      closePanel()
+    }
+
+    // Polling continues regardless of navigation — the messages store is
+    // global, so the toast keeps updating regardless of the active view.
+    messages.update(msgId, t('msg.send.waiting'), 'info', -1)
+    const status = await waitForTransactionConfirmation(txChain, transaction_hash)
+    if (status === 'success') {
+      messages.update(msgId, t('msg.send.success', { hash: transaction_hash }), 'success')
+    } else if (status === 'failed') {
+      messages.update(msgId, t('msg.send.failed', { hash: transaction_hash }), 'error')
+    } else {
+      messages.update(msgId, t('msg.send.stillPending', { hash: transaction_hash }), 'warning')
+    }
+    // Refreshes both the transaction list (replacing the pending placeholder
+    // with the real, mined entry) and balances, regardless of outcome — a
+    // failed send still spent gas.
+    void chainData.loadAddressActivity(txChain, fromAccount.address)
+    if (toOwnAccount) void chainData.loadAddressActivity(txChain, toAddress)
+  } catch (err) {
+    messages.update(msgId, (err as Error).message, 'error')
+    sendBusy.value = false
+  }
+}
+
+async function saveScannedPayee() {
+  const trimmed = to.value.trim()
+  await payees.addPayee({
+    id: crypto.randomUUID(),
+    label: addPayeeLabel.value.trim() || truncateAddress(trimmed),
+    address: trimmed,
+    chain: sendChain.value,
+  })
+  addPayeeOpen.value = false
+  closePanel()
+}
+
+function skipAddPayee() {
+  addPayeeOpen.value = false
+  closePanel()
+}
+
+/* ------------------------------- Swap tab -------------------------------- */
+
+const NATIVE_SENTINEL = 'ETH'
+// The pseudo-address DEX aggregators (including 0x's Swap API) use to mean
+// "the chain's native currency" — there's no real ERC-20 contract for it.
+const NATIVE_PSEUDO_ADDRESS = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+
+function toApiTokenAddress(input: string): string {
+  const trimmed = input.trim()
+  return trimmed.toUpperCase() === NATIVE_SENTINEL ? NATIVE_PSEUDO_ADDRESS : trimmed
+}
+
+// The pseudo-address has no real contract, so there's no metadata to look up —
+// every supported chain's native currency uses 18 decimals.
+async function resolveDecimals(tokenAddress: string): Promise<number> {
+  if (tokenAddress === NATIVE_PSEUDO_ADDRESS) return 18
+  const metadata = await api.tokenMetadata(chain, tokenAddress)
+  return metadata.decimals ?? 18
+}
+
+const sellToken = ref(NATIVE_SENTINEL)
+const buyToken = ref('')
+const sellAmount = ref('')
+const quote = ref<SwapQuote | null>(null)
+const buyAmountFormatted = ref('')
+const swapBusy = ref(false)
+const quoteFormValid = ref(false)
+const swapReviewOpen = ref(false)
+const swapReviewRows = ref<ReviewRow[]>([])
+
+function formatNativeFee(feeWei: bigint): { value: string; sub?: string } {
+  const human = Number(formatUnits(feeWei, 18))
+  const nativeStr = `${human.toFixed(6)} ${chain === 'polygon' ? 'MATIC' : 'ETH'}`
   const priceUsd = chainData.nativePriceUsdByChain[chain]
   if (priceUsd === undefined) return { value: nativeStr }
   const fiat = formatFiat(
@@ -104,80 +652,146 @@ function formatAmountRow(weiValue: bigint): { value: string; sub?: string } {
   return { value: fiat, sub: nativeStr }
 }
 
-/** Handles both a bare address and an EIP-681 "ethereum:0x...@chainId" URI. */
-function onQrDecoded(data: string) {
-  const match = data.match(/0x[a-fA-F0-9]{40}/)
-  if (!match) {
-    messages.push(t('msg.qr.noAddress'), 'warning')
-    return
-  }
-  to.value = match[0]
-}
+const sellTokenRules = [
+  (v: string) =>
+    v.trim().toUpperCase() === NATIVE_SENTINEL ||
+    isValidAddress(v.trim()) ||
+    t('validation.validTokenOrEth'),
+]
+const buyTokenRules = [(v: string) => isValidAddress(v.trim()) || t('validation.validBuyToken')]
+const sellAmountRules = [
+  (v: string) => (!!v && Number(v) > 0) || t('validation.amountGreaterThanZero'),
+]
 
-async function openReview() {
-  if (!account || !formValid.value) return
-
-  busy.value = true
+async function getQuote() {
+  if (!quoteFormValid.value) return
+  swapBusy.value = true
   try {
-    const valueWei = parseUnits(amount.value, 18).toString()
-    const toAddress = to.value.trim()
-    const prep = await api.transactionPrep(chain, address, toAddress, valueWei)
-    preparedTx.value = { prep, valueWei, to: toAddress }
+    const sellTokenAddress = toApiTokenAddress(sellToken.value)
+    const buyTokenAddress = buyToken.value.trim()
+    const [sellDecimals, buyDecimals] = await Promise.all([
+      resolveDecimals(sellTokenAddress),
+      resolveDecimals(buyTokenAddress),
+    ])
 
-    const feeWei = BigInt(prep.gas_price) * BigInt(prep.gas_limit)
-    const totalWei = BigInt(valueWei) + feeWei
-    reviewRows.value = [
-      { label: t('review.from'), value: account.label },
-      { label: t('review.to'), value: toAddress },
-      { label: t('review.chain'), value: chain },
-      { label: t('review.amount'), ...formatAmountRow(BigInt(valueWei)) },
-      { label: t('review.fee'), ...formatAmountRow(feeWei) },
-      { label: t('review.total'), bold: true, ...formatAmountRow(totalWei) },
-    ]
-    reviewOpen.value = true
+    const sellAmountWei = parseUnits(sellAmount.value, sellDecimals).toString()
+    quote.value = await api.swapQuote(
+      chain,
+      sellTokenAddress,
+      buyTokenAddress,
+      sellAmountWei,
+      address,
+    )
+    buyAmountFormatted.value = formatUnits(quote.value.buy_amount, buyDecimals)
   } catch (err) {
     messages.push((err as Error).message, 'error')
   } finally {
-    busy.value = false
+    swapBusy.value = false
   }
 }
 
-async function confirmSend() {
-  if (!account || !preparedTx.value) return
-  const { prep, valueWei, to: toAddress } = preparedTx.value
+async function onSwapClick() {
+  if (!account || !quote.value) return
 
-  busy.value = true
-  const msgId = messages.push(t('msg.send.submitting'), 'info', -1)
+  swapBusy.value = true
+  try {
+    if (sellToken.value !== NATIVE_SENTINEL) {
+      const { amount: currentAllowance } = await api.allowance(
+        chain,
+        sellToken.value,
+        address,
+        quote.value.allowance_target,
+      )
+      if (BigInt(currentAllowance) < BigInt(quote.value.sell_amount)) {
+        const wallet = await unlockWalletForSigning(account)
+        const approvePrep = await api.transactionPrep(chain, address, sellToken.value, '0')
+        const approveTx = await wallet.signTransaction({
+          to: sellToken.value,
+          value: '0',
+          // Exactly what this swap needs, not an unlimited/infinite approval —
+          // if the swap contract is ever compromised later, it can only ever
+          // move up to this leftover amount, not the account's full balance.
+          data: encodeApprove(quote.value.allowance_target, quote.value.sell_amount),
+          nonce: approvePrep.nonce,
+          gasLimit: approvePrep.gas_limit,
+          gasPrice: approvePrep.gas_price,
+          chainId: approvePrep.chain_id,
+        })
+        await api.broadcastTransaction(chain, approveTx)
+        messages.push(t('msg.swap.approvalSubmitted'), 'info')
+        return
+      }
+    }
+
+    openSwapReview()
+  } catch (err) {
+    messages.push((err as Error).message, 'error')
+  } finally {
+    swapBusy.value = false
+  }
+}
+
+function openSwapReview() {
+  if (!quote.value) return
+  const feeWei = BigInt(quote.value.gas_price) * BigInt(quote.value.estimated_gas)
+
+  // quote.value.value is only nonzero when selling native ETH (an ERC-20
+  // sale attaches no value) — either way, the fee itself is always paid in
+  // ETH regardless of what's being swapped, so both need covering.
+  const requiredNativeWei = BigInt(quote.value.value) + feeWei
+  const nativeBalance = chainData.activityByAddress[chainData.keyFor(chain, address)]?.balances.find(
+    (b) => b.contract_address === null,
+  )
+  if (nativeBalance && requiredNativeWei > BigInt(nativeBalance.balance)) {
+    messages.push(t('validation.insufficientGas'), 'error')
+    return
+  }
+
+  swapReviewRows.value = [
+    { label: t('review.sell'), value: `${sellAmount.value} ${sellToken.value.trim()}` },
+    { label: t('review.buy'), value: `${buyAmountFormatted.value} ${buyToken.value.trim()}` },
+    { label: t('review.chain'), value: chain },
+    { label: t('review.price'), value: quote.value.price },
+    { label: t('review.fee'), ...formatNativeFee(feeWei) },
+  ]
+  swapReviewOpen.value = true
+}
+
+async function confirmSwap() {
+  if (!account || !quote.value) return
+
+  swapBusy.value = true
+  const msgId = messages.push(t('msg.swap.submitting'), 'info', -1)
   try {
     const wallet = await unlockWalletForSigning(account)
+    const prep = await api.transactionPrep(chain, address, quote.value.to, quote.value.value)
     const signedTx = await wallet.signTransaction({
-      to: toAddress,
-      value: valueWei,
+      to: quote.value.to,
+      data: quote.value.data,
+      value: quote.value.value,
       nonce: prep.nonce,
       gasLimit: prep.gas_limit,
       gasPrice: prep.gas_price,
       chainId: prep.chain_id,
     })
-
     const { transaction_hash } = await api.broadcastTransaction(chain, signedTx)
-    reviewOpen.value = false
-    busy.value = false
-    router.push(`/accounts/${chain}/${address}`)
+    swapReviewOpen.value = false
+    swapBusy.value = false
+    closePanel()
 
-    // Polling continues after navigating away — the messages store is
-    // global, so the toast keeps updating regardless of the active view.
-    messages.update(msgId, t('msg.send.waiting'), 'info', -1)
+    messages.update(msgId, t('msg.swap.waiting'), 'info', -1)
     const status = await waitForTransactionConfirmation(chain, transaction_hash)
     if (status === 'success') {
-      messages.update(msgId, t('msg.send.success', { hash: transaction_hash }), 'success')
+      messages.update(msgId, t('msg.swap.success', { hash: transaction_hash }), 'success')
     } else if (status === 'failed') {
-      messages.update(msgId, t('msg.send.failed', { hash: transaction_hash }), 'error')
+      messages.update(msgId, t('msg.swap.failed', { hash: transaction_hash }), 'error')
     } else {
-      messages.update(msgId, t('msg.send.stillPending', { hash: transaction_hash }), 'warning')
+      messages.update(msgId, t('msg.swap.stillPending', { hash: transaction_hash }), 'warning')
     }
+    void chainData.loadAddressActivity(chain, address)
   } catch (err) {
     messages.update(msgId, (err as Error).message, 'error')
-    busy.value = false
+    swapBusy.value = false
   }
 }
 </script>
@@ -185,51 +799,209 @@ async function confirmSend() {
 <template>
   <div>
     <h1 class="text-h5">{{ t('send.title') }}</h1>
-    <p class="text-medium-emphasis mb-4">{{ t('send.fromLabel', { label: account?.label ?? address, chain }) }}</p>
 
-    <v-card class="pa-4" max-width="480">
-      <v-form v-model="formValid">
-        <v-text-field v-model="to" :label="t('send.recipientLabel')" :rules="addressRules">
-          <template #append-inner>
-            <span>
-              <v-icon
-                icon="mdi-qrcode-scan"
-                role="button"
-                :aria-label="t('send.scanQrAria')"
-                style="cursor: pointer"
-                @click="scannerOpen = true"
+    <v-tabs v-model="activeTab" class="mb-4">
+      <v-tab value="send">{{ t('send.tabSend') }}</v-tab>
+      <v-tab value="swap">{{ t('send.tabSwap') }}</v-tab>
+    </v-tabs>
+
+    <v-window v-model="activeTab">
+      <v-window-item value="send">
+        <v-card class="pa-4" max-width="480">
+          <v-select
+            v-model="sendFromAddress"
+            :items="fromAccountOptions"
+            item-title="title"
+            item-value="address"
+            :label="t('send.fromLabel')"
+          />
+          <v-form v-model="sendFormValid">
+            <div class="d-flex align-center" style="gap: 0.5em">
+              <v-select
+                v-if="toMode === 'select'"
+                v-model="toSelectedAddress"
+                :items="toAccountOptions"
+                item-title="title"
+                item-value="address"
+                :label="t('send.recipientLabel')"
+                class="flex-grow-1"
               />
-              <v-tooltip activator="parent" location="top">{{ t('send.scanQrAria') }}</v-tooltip>
-            </span>
+              <v-text-field
+                v-else
+                v-model="to"
+                :label="t('send.recipientLabel')"
+                :rules="addressRules"
+                class="flex-grow-1"
+                clearable
+                @click:clear="clearScannedTo"
+              />
+              <AppTooltip :text="t('send.scanQrAria')">
+                <template #default="{ activatorProps }">
+                  <v-btn
+                    v-bind="activatorProps"
+                    icon="mdi-qrcode-scan"
+                    variant="tonal"
+                    density="comfortable"
+                    :aria-label="t('send.scanQrAria')"
+                    @click="scannerOpen = true"
+                  />
+                </template>
+              </AppTooltip>
+            </div>
+
+            <v-select
+              v-model="selectedTokenKey"
+              :items="tokenOptions"
+              item-title="symbol"
+              item-value="key"
+              :label="t('send.tokenLabel')"
+              density="compact"
+            >
+              <template #item="{ props: itemProps, item }">
+                <v-list-item v-bind="itemProps">
+                  <template #prepend>
+                    <v-avatar v-if="item.logoUrl" :image="item.logoUrl" size="20" />
+                    <v-icon v-else icon="mdi-cash" size="20" />
+                  </template>
+                </v-list-item>
+              </template>
+            </v-select>
+
+            <v-text-field
+              :model-value="amount"
+              @update:model-value="onAmountInput"
+              :label="amountFieldLabel"
+              type="number"
+              min="0"
+              step="any"
+              :rules="amountRules"
+            >
+              <template #prepend-inner>
+                <AppTooltip
+                  :text="t('send.toggleAmountUnitAria', { currency: settingsLocale.currency })"
+                >
+                  <template #default="{ activatorProps }">
+                    <a
+                      v-bind="activatorProps"
+                      href="#"
+                      class="text-body-2"
+                      @click.prevent="toggleAmountMode"
+                    >
+                      {{ unitSymbolDisplay }}
+                    </a>
+                  </template>
+                </AppTooltip>
+              </template>
+              <template #append-inner>
+                <a href="#" class="text-body-2" @click.prevent="setMaxAmount">{{
+                  t('send.maxLabel')
+                }}</a>
+              </template>
+            </v-text-field>
+
+            <div class="d-flex mt-2" style="gap: 0.5em">
+              <v-btn class="flex-grow-1" variant="text" @click="closePanel">{{
+                t('common.cancel')
+              }}</v-btn>
+              <v-btn
+                class="flex-grow-1"
+                color="primary"
+                :disabled="!sendFormValid"
+                :loading="sendBusy"
+                @click="openSendReview"
+                >{{ t('common.review') }}</v-btn
+              >
+            </div>
+          </v-form>
+        </v-card>
+      </v-window-item>
+
+      <v-window-item value="swap">
+        <v-card class="pa-4" max-width="480">
+          <v-text-field
+            :model-value="`${account?.label ?? ''} — ${truncateAddress(address)}`"
+            :label="t('send.fromLabel')"
+            readonly
+          />
+
+          <v-form v-model="quoteFormValid">
+            <v-text-field
+              v-model="sellToken"
+              :label="t('swap.sellTokenLabel')"
+              :rules="sellTokenRules"
+            />
+            <v-text-field
+              v-model="buyToken"
+              :label="t('swap.buyTokenLabel')"
+              :rules="buyTokenRules"
+            />
+            <v-text-field
+              v-model="sellAmount"
+              :label="t('swap.sellAmountLabel')"
+              type="number"
+              min="0"
+              step="any"
+              :rules="sellAmountRules"
+            />
+
+            <v-btn
+              variant="outlined"
+              block
+              class="mb-4"
+              :disabled="!quoteFormValid"
+              :loading="swapBusy"
+              @click="getQuote"
+              >{{ t('swap.getQuote') }}</v-btn
+            >
+          </v-form>
+
+          <template v-if="quote">
+            <v-alert type="info" variant="tonal" class="mb-4">
+              {{ t('swap.estimateText', { amount: buyAmountFormatted, price: quote.price }) }}
+              <p class="text-caption mt-2 mb-0" style="word-break: break-all">
+                {{ t('swap.signingNotice', { address: quote.to }) }}
+              </p>
+            </v-alert>
+            <v-btn color="primary" block :loading="swapBusy" @click="onSwapClick">{{
+              t('swap.submit')
+            }}</v-btn>
           </template>
-        </v-text-field>
-
-        <v-autocomplete
-          v-if="relevantPayees.length"
-          v-model="payeePicker"
-          :items="payeeItems"
-          item-title="title"
-          item-value="value"
-          :label="t('send.pickPayeeLabel')"
-          density="compact"
-          clearable
-          class="mb-2"
-        />
-
-        <v-text-field v-model="amount" :label="t('send.amountLabel')" type="number" min="0" step="any" :rules="amountRules" />
-
-        <v-btn color="primary" block class="mt-2" :disabled="!formValid" :loading="busy" @click="openReview">{{ t('common.review') }}</v-btn>
-      </v-form>
-    </v-card>
+        </v-card>
+      </v-window-item>
+    </v-window>
 
     <QrScannerDialog v-model="scannerOpen" @decoded="onQrDecoded" />
+
     <TransactionReviewDialog
-      v-model="reviewOpen"
+      v-model="sendReviewOpen"
       :title="t('review.title')"
-      :rows="reviewRows"
+      :rows="sendReviewRows"
       :confirm-label="t('send.submit')"
-      :busy="busy"
+      :busy="sendBusy"
       @confirm="confirmSend"
     />
+    <TransactionReviewDialog
+      v-model="swapReviewOpen"
+      :title="t('review.title')"
+      :rows="swapReviewRows"
+      :confirm-label="t('swap.submit')"
+      :busy="swapBusy"
+      @confirm="confirmSwap"
+    />
+
+    <v-dialog v-model="addPayeeOpen" max-width="420" persistent>
+      <v-card class="pa-4">
+        <v-card-title>{{ t('send.addPayeeTitle') }}</v-card-title>
+        <v-card-text>
+          <p class="text-body-2 mb-3">{{ t('send.addPayeePrompt') }}</p>
+          <v-text-field v-model="addPayeeLabel" :label="t('send.addPayeeLabelField')" />
+        </v-card-text>
+        <v-card-actions>
+          <v-btn variant="text" @click="skipAddPayee">{{ t('send.addPayeeSkip') }}</v-btn>
+          <v-spacer />
+          <v-btn color="primary" @click="saveScannedPayee">{{ t('send.addPayeeSave') }}</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>

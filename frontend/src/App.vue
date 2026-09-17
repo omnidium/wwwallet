@@ -9,6 +9,7 @@ import { useIdleLock } from '@/composables/useIdleLock'
 import SettingsPanel from '@/components/SettingsPanel.vue'
 import AccountsView from '@/views/AccountsView.vue'
 import PaneOverlay from '@/components/PaneOverlay.vue'
+import AppTooltip from '@/components/AppTooltip.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const messages = useMessagesStore()
@@ -38,10 +39,13 @@ watch(() => route.fullPath, () => {
 
 <template>
   <v-app>
-    <button class="floating-settings-btn" :aria-label="t('nav.settings')" @click="settingsOpen = true">
-      <v-icon icon="mdi-cog" />
-      <v-tooltip activator="parent" location="bottom">{{ t('nav.settings') }}</v-tooltip>
-    </button>
+    <AppTooltip v-if="!settingsOpen" :text="t('nav.settings')" location="bottom">
+      <template #default="{ activatorProps }">
+        <button v-bind="activatorProps" class="floating-settings-btn" :aria-label="t('nav.settings')" @click="settingsOpen = true">
+          <v-icon icon="mdi-cog" />
+        </button>
+      </template>
+    </AppTooltip>
 
     <v-navigation-drawer
       v-model="settingsOpen"
@@ -78,16 +82,18 @@ watch(() => route.fullPath, () => {
       {{ message.text }}
 
       <template #actions>
-        <v-btn
-          icon="mdi-close"
-          variant="text"
-          density="comfortable"
-          :aria-label="t('nav.dismiss')"
-          @click="messages.dismiss(message.id)"
-        >
-          <v-icon />
-          <v-tooltip activator="parent" location="top">{{ t('nav.dismiss') }}</v-tooltip>
-        </v-btn>
+        <AppTooltip :text="t('nav.dismiss')">
+          <template #default="{ activatorProps }">
+            <v-btn
+              v-bind="activatorProps"
+              icon="mdi-close"
+              variant="text"
+              density="comfortable"
+              :aria-label="t('nav.dismiss')"
+              @click="messages.dismiss(message.id)"
+            />
+          </template>
+        </AppTooltip>
       </template>
     </v-snackbar>
   </v-app>

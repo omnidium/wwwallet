@@ -9,6 +9,39 @@ body {
   font-family: 'Manrope', Roboto, 'Helvetica Neue', sans-serif;
 }
 
+/* Amount fields use type="number" for the numeric keyboard/validation, but
+ * not for its native step buttons — those only step by whole units, useless
+ * for crypto-precision amounts, and crowd the custom prepend/append content
+ * (unit toggle, Max link) already occupying that side of the field. */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* AppTooltip.vue */
+
+/* Deliberately the opposite polarity of the surrounding theme (dark bubble on
+ * a light page and vice versa) rather than reusing the theme's own
+ * surface-variant token, which follows normal polarity and would blend in.
+ * Targets .v-overlay__content specifically — the small floating bubble —
+ * not the outer .app-tooltip/.v-overlay wrapper, which is an invisible,
+ * full-size positioning container and must stay transparent. */
+.app-tooltip.v-overlay .v-overlay__content {
+  background: #333333 !important;
+  color: #ffffff !important;
+}
+
+:root.v-theme--dark .app-tooltip.v-overlay .v-overlay__content {
+  background: #e0e0e0 !important;
+  color: #1a1a1a !important;
+}
+
 /* App.vue */
 
 /* Floating, translucent panel instead of an edge-to-edge drawer — matches the
@@ -26,6 +59,11 @@ body {
 .settings-drawer {
   background: transparent !important;
   box-shadow: none !important;
+  /* Vuetify draws a thin themed divider along the drawer's trailing edge by
+   * default — with a transparent background that shows up as a lone
+   * semi-transparent line/frame floating over the page, since there's no
+   * solid drawer surface behind it to anchor it against. */
+  border: none !important;
 }
 
 .settings-drawer-inner {
@@ -63,10 +101,12 @@ body {
 /* AccountCard.vue */
 
 .account-card {
+  position: relative;
   background: linear-gradient(160deg, rgba(var(--v-theme-surface), 1), rgba(var(--v-theme-surface-variant), 1));
   /* 30% narrower than the full container width, per request — kept full-width
    * below 700px instead of compounding with the viewport's own narrowness. */
   max-width: 70%;
+  margin-inline: auto;
 }
 
 @media (max-width: 700px) {
@@ -74,6 +114,27 @@ body {
     max-width: 100%;
   }
 }
+
+/* Reorder-drag handle — lives inside the card itself (rather than a sibling
+ * row above it) specifically so it's always positioned relative to the
+ * card's own box, matching the old app's top-left-corner overlap regardless
+ * of how the card itself is sized/centered in its container. */
+.drag-handle-row {
+  position: absolute;
+  /* Inside the card's own box, not poking above it — v-card clips overflow
+   * for its rounded corners, so a negative offset here got clipped away. */
+  top: 0em;
+  left: 0em;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.account-name {
+  font-size: 1.5rem;
+  font-family: 'Manrope', sans-serif;
+  margin: .5rem;
+}
+
 
 .balance-row {
   cursor: pointer;
@@ -89,6 +150,8 @@ body {
   font-weight: 600;
 }
 
+/* Send icon — also the long-press drag-to-transfer handle. touch-action:none
+ * stops the browser's own touch-scroll gesture from hijacking the hold. */
 .transfer-handle {
   touch-action: none;
   cursor: grab;
@@ -177,11 +240,18 @@ body {
    * anyway, so leaving hit-testing enabled here doesn't risk stray clicks. */
 }
 
+.tile-groups {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .tiles {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   justify-content: center;
+  align-content: flex-start;
 }
 
 .tile {
@@ -206,14 +276,16 @@ body {
   cursor: pointer;
 }
 
-.drag-handle-row {
-  display: flex;
-  justify-content: center;
-  opacity: 0.4;
+.drag-handle {
+  display: block;
+  width: 30px;
+  height: 30px;
+  cursor: move;
 }
 
-.drag-handle {
-  cursor: move;
+/* The SVG's fill is hardcoded black — invert it to read against a dark background. */
+:root.v-theme--dark .drag-handle {
+  filter: invert(1);
 }
 
 .hidden-toggle {
@@ -271,7 +343,10 @@ body {
 
 .pane-card {
   position: relative;
-  width: 100%;
+  /* Shrink to the actual content's width instead of always claiming the
+   * full 60vw — a narrow pane (e.g. token detail, now width-capped itself)
+   * would otherwise sit in a much wider card than it needs. */
+  width: fit-content;
   max-width: 60vw;
   max-height: 90vh;
   overflow-y: auto;
@@ -290,4 +365,49 @@ body {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
+}
+
+/* TokenDetailView.vue */
+
+/* .pane-card sizes itself to its widest child (width: fit-content) — when
+ * that's wider than this view's own 480px-capped content (e.g. a wide
+ * translated title), the content needs to center itself in the extra space
+ * rather than sitting flush left. Also caps this view's own height to
+ * exactly the vertical budget .pane-card leaves after its 1.5em top+bottom
+ * padding, so the transactions card below (flex: 1, its own overflow-y:auto)
+ * is what scrolls — not .pane-card itself — instead of the two scrollbars
+ * fighting for the same overflow.
+ */
+.token-detail-view {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(90vh - 3em);
+  min-height: 0;
+}
+
+.token-detail-view>* {
+  flex: none;
+  margin-inline: auto;
+}
+
+.token-detail-txn-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.token-detail-txn-card .expanded-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+}
+
+/* AddAccountView.vue */
+
+/* Same fit-content-parent issue as .token-detail-view above — a wide tab bar
+ * can leave this narrower, max-width-capped form card sitting flush left
+ * instead of centered in the pane. */
+.add-account-card {
+  margin-inline: auto;
 }

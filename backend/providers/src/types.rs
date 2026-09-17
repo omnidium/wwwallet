@@ -21,6 +21,15 @@ pub struct Transaction {
     pub block_number: Option<u64>,
     pub timestamp: Option<String>,
     pub status: TransactionStatus,
+    /// Set when this transaction is a same-hash swap (one leg sent, one leg
+    /// received): the asset/value/contract of the *received* leg, alongside
+    /// the fields above describing the *sent* leg.
+    #[serde(default)]
+    pub counter_asset: Option<String>,
+    #[serde(default)]
+    pub counter_value: Option<String>,
+    #[serde(default)]
+    pub counter_contract_address: Option<String>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]

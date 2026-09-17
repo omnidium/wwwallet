@@ -6,6 +6,7 @@ import QRCode from 'qrcode'
 import { useAccountsStore } from '@/stores/accounts'
 import { useMessagesStore } from '@/stores/messages'
 import type { ChainSlug } from '@/services/api'
+import AppTooltip from '@/components/AppTooltip.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const route = useRoute()
@@ -38,10 +39,11 @@ async function copyAddress() {
         <p class="text-body-2" style="word-break: break-all">{{ address }}</p>
         <p class="text-caption text-medium-emphasis mt-1">{{ t('receive.tapToCopy') }}</p>
       </div>
-      <span class="ml-4">
-        <v-icon icon="mdi-content-copy" :aria-label="t('receive.copyAria')" />
-        <v-tooltip activator="parent" location="top">{{ t('receive.copyAria') }}</v-tooltip>
-      </span>
+      <AppTooltip :text="t('receive.copyAria')">
+        <template #default="{ activatorProps }">
+          <v-icon v-bind="activatorProps" icon="mdi-content-copy" class="ml-4" :aria-label="t('receive.copyAria')" />
+        </template>
+      </AppTooltip>
     </v-card>
   </div>
 </template>

@@ -7,6 +7,7 @@ import { hasLocalPasskey } from '@/services/webauthnLocal'
 import { isValidRecoveryMnemonic, normalizeMnemonic } from '@/services/mnemonic'
 import { copyWithAutoClear } from '@/services/clipboard'
 import { useMessagesStore } from '@/stores/messages'
+import AppTooltip from '@/components/AppTooltip.vue'
 
 const props = defineProps<{
   modelValue: boolean
@@ -128,10 +129,11 @@ async function copySecret() {
         <v-card-text>
           <div class="d-flex align-center">
             <p class="secret-text">{{ secret }}</p>
-            <span class="ml-2">
-              <v-icon icon="mdi-content-copy" role="button" :aria-label="t('secretReveal.copy')" @click="copySecret" />
-              <v-tooltip activator="parent" location="top">{{ t('secretReveal.copy') }}</v-tooltip>
-            </span>
+            <AppTooltip :text="t('secretReveal.copy')">
+              <template #default="{ activatorProps }">
+                <v-icon v-bind="activatorProps" icon="mdi-content-copy" class="ml-2" role="button" :aria-label="t('secretReveal.copy')" @click="copySecret" />
+              </template>
+            </AppTooltip>
           </div>
         </v-card-text>
         <v-card-actions>

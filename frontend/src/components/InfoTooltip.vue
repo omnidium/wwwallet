@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import AppTooltip from '@/components/AppTooltip.vue'
+
 defineProps<{ text: string }>()
 </script>
 
 <template>
-  <v-tooltip :text="text" location="top">
-    <template #activator="{ props: activatorProps }">
+  <AppTooltip :text="text">
+    <template #default="{ activatorProps }">
       <v-icon v-bind="activatorProps" icon="mdi-information-outline" size="small" class="ml-1" />
     </template>
-  </v-tooltip>
+  </AppTooltip>
 </template>

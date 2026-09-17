@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { usePayeesStore } from '@/stores/payees'
 import { isValidAddress } from '@/services/wallet'
 import type { ChainSlug } from '@/services/api'
+import AppTooltip from '@/components/AppTooltip.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const payees = usePayeesStore()
@@ -54,10 +55,11 @@ async function remove(id: string) {
     <v-list v-else>
       <v-list-item v-for="payee in payees.payees" :key="payee.id" :title="payee.label" :subtitle="`${payee.address} (${payee.chain})`">
         <template #append>
-          <v-btn icon="mdi-delete" variant="text" :aria-label="t('payees.deleteAria', { label: payee.label })" @click="remove(payee.id)">
-            <v-icon />
-            <v-tooltip activator="parent" location="top">{{ t('payees.deleteAria', { label: payee.label }) }}</v-tooltip>
-          </v-btn>
+          <AppTooltip :text="t('payees.deleteAria', { label: payee.label })">
+            <template #default="{ activatorProps }">
+              <v-btn v-bind="activatorProps" icon="mdi-delete" variant="text" :aria-label="t('payees.deleteAria', { label: payee.label })" @click="remove(payee.id)" />
+            </template>
+          </AppTooltip>
         </template>
       </v-list-item>
     </v-list>

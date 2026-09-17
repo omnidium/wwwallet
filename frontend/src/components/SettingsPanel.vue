@@ -7,6 +7,7 @@ import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { useVaultStore } from '@/stores/vault'
 import { getStoredTheme, setStoredTheme, type ThemeName } from '@/services/theme'
 import { clearLastActivity } from '@/services/lastActivity'
+import AppTooltip from '@/components/AppTooltip.vue'
 
 const emit = defineEmits<{ close: [] }>()
 
@@ -46,19 +47,22 @@ function lockNow() {
     <v-row justify="space-between" align="center" no-gutters>
       <h1 class="text-h5">{{ t('settings.title') }}</h1>
       <div>
-        <v-btn
-          :icon="isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"
-          variant="text"
-          :aria-label="t('settings.toggleThemeAria')"
-          @click="toggleTheme"
-        >
-          <v-icon />
-          <v-tooltip activator="parent" location="bottom">{{ t('settings.toggleThemeAria') }}</v-tooltip>
-        </v-btn>
-        <v-btn icon="mdi-close" variant="text" :aria-label="t('settings.closeAria')" @click="emit('close')">
-          <v-icon />
-          <v-tooltip activator="parent" location="bottom">{{ t('settings.closeAria') }}</v-tooltip>
-        </v-btn>
+        <AppTooltip :text="t('settings.toggleThemeAria')" location="bottom">
+          <template #default="{ activatorProps }">
+            <v-btn
+              v-bind="activatorProps"
+              :icon="isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"
+              variant="text"
+              :aria-label="t('settings.toggleThemeAria')"
+              @click="toggleTheme"
+            />
+          </template>
+        </AppTooltip>
+        <AppTooltip :text="t('settings.closeAria')" location="bottom">
+          <template #default="{ activatorProps }">
+            <v-btn v-bind="activatorProps" icon="mdi-close" variant="text" :aria-label="t('settings.closeAria')" @click="emit('close')" />
+          </template>
+        </AppTooltip>
       </div>
     </v-row>
 

@@ -81,7 +81,7 @@ function onKeystoreFileSelected(event: Event) {
       <v-tab value="keystore">{{ t('addAccount.tabKeystore') }}</v-tab>
     </v-tabs>
 
-    <v-card class="pa-4 mt-4" max-width="480">
+    <v-card class="pa-4 mt-4 add-account-card" max-width="480">
       <v-form v-model="formValid">
         <v-text-field v-model="label" :label="t('common.label')" />
         <v-select v-model="chain" :items="chains" :label="t('common.chain')" />
