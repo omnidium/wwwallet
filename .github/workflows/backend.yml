@@ -5,6 +5,7 @@ on:
     paths: ["backend/**", "Cargo.toml", "Cargo.lock", ".github/workflows/backend.yml"]
   pull_request:
     paths: ["backend/**", "Cargo.toml", "Cargo.lock", ".github/workflows/backend.yml"]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -36,7 +37,7 @@ jobs:
 
   deploy:
     needs: [test, build-worker]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
