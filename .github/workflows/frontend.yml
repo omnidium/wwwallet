@@ -26,6 +26,8 @@ jobs:
       - run: npx vitest run
       - run: npx playwright install --with-deps chromium
       - run: npm run build
+        env:
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
       - run: npx playwright test
 
   deploy:
@@ -43,7 +45,14 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
       - run: npm ci
+      # VITE_* vars are baked in at build time, not read at runtime — this
+      # repo's real value only ever lived in a gitignored .env.production,
+      # which a local `wrangler pages deploy` (this project's only deploy
+      # path before this workflow existed) picked up automatically. CI has
+      # no such file, so it must come from a secret instead.
       - run: npm run build
+        env:
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
       # The Cloudflare Pages project's configured production branch is
       # "master", a name predating this repo's switch to "main" — pinning
       # --branch here keeps deploys landing in Production regardless of
