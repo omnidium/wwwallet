@@ -128,6 +128,32 @@ watch(
   },
 )
 
+// AccountsView stays mounted for the app's whole lifetime (see App.vue) — its
+// own onMounted-driven load only ever runs once, and the periodic refresh
+// below is 10 minutes out. Without this, an account added or imported via
+// AddAccountView (which just pushes into the store and navigates back here)
+// would show no balance/activity at all until that refresh fires or the page
+// is manually reloaded.
+watch(
+  () => accounts.accounts.map((a) => `${a.chain}:${a.address}`),
+  async (_addresses, previousAddresses) => {
+    const previous = new Set(previousAddresses ?? [])
+    const added = accounts.accounts.filter((a) => !previous.has(`${a.chain}:${a.address}`))
+    if (added.length === 0) return
+    try {
+      await Promise.all([
+        ...[...new Set(added.map((a) => a.chain))]
+          .filter((chain) => chainData.nativePriceUsdByChain[chain] === undefined)
+          .map((chain) => chainData.loadNativePrice(chain)),
+        ...added.map((a) => chainData.loadAddressActivity(a.chain, a.address)),
+      ])
+    } catch {
+      // Silent, same reasoning as refresh() below — the connectivity badge
+      // already surfaces this, and the next periodic refresh will retry.
+    }
+  },
+)
+
 onUnmounted(() => {
   window.removeEventListener('online', updateOnlineStatus)
   window.removeEventListener('offline', updateOnlineStatus)
