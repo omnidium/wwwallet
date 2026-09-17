@@ -31,32 +31,35 @@ async function createVaultSkippingQuickUnlock(page: Page): Promise<string> {
   return recoveryPhrase
 }
 
-// test('create a vault, add a wallet, and confirm it survives a reload', async ({ page }) => {
-//   await page.goto('/')
-//   await expect(page).toHaveURL(/\/vault\/setup$/)
+async function addAccount(page: Page, label: string) {
+  await page.getByRole('link', { name: 'Add account' }).click()
+  await expect(page).toHaveURL(/\/accounts\/new$/)
 
-//   const recoveryPhrase = await createVaultSkippingQuickUnlock(page)
+  await page.getByRole('textbox', { name: 'Label' }).fill(label)
+  await page.getByRole('button', { name: 'Add account' }).click()
 
-//   await page.getByRole('link', { name: 'Add account' }).click()
-//   await expect(page).toHaveURL(/\/accounts\/new$/)
+  await expect(page).toHaveURL(/\/$/)
+}
 
-//   await page.getByRole('textbox', { name: 'Label' }).fill('E2E Test Wallet')
-//   await page.getByRole('button', { name: 'Add account' }).click()
+test('create a vault, add a wallet, and confirm it survives a reload', async ({ page }) => {
+  await page.goto('/')
+  await expect(page).toHaveURL(/\/vault\/setup$/)
 
-//   await expect(page).toHaveURL(/\/$/)
-//   const accountLink = page.getByRole('link', { name: /E2E Test Wallet/ })
-//   await expect(accountLink).toBeVisible()
+  const recoveryPhrase = await createVaultSkippingQuickUnlock(page)
 
-//   // Reload: the vault must lock (session key is memory-only) and require the recovery phrase again.
-//   await page.reload()
-//   await expect(page).toHaveURL(/\/vault\/unlock$/)
+  await addAccount(page, 'E2E Test Wallet')
+  await expect(page.getByText('E2E Test Wallet')).toBeVisible()
 
-//   await page.getByRole('textbox', { name: 'Recovery phrase (24 words)' }).fill(recoveryPhrase)
-//   await page.getByRole('button', { name: 'Unlock' }).click()
+  // Reload: the vault must lock (session key is memory-only) and require the recovery phrase again.
+  await page.reload()
+  await expect(page).toHaveURL(/\/vault\/unlock$/)
 
-//   await expect(page).toHaveURL(/\/$/)
-//   await expect(page.getByRole('link', { name: /E2E Test Wallet/ })).toBeVisible()
-// })
+  await page.getByRole('textbox', { name: 'Recovery phrase (24 words)' }).fill(recoveryPhrase)
+  await page.getByRole('button', { name: 'Unlock' }).click()
+
+  await expect(page).toHaveURL(/\/$/)
+  await expect(page.getByText('E2E Test Wallet')).toBeVisible()
+})
 
 test('rejects the wrong recovery phrase on unlock', async ({ page }) => {
   await page.goto('/')
@@ -74,19 +77,38 @@ test('rejects the wrong recovery phrase on unlock', async ({ page }) => {
   await expect(page).toHaveURL(/\/vault\/unlock$/)
 })
 
-// test('account detail page shows send/receive/swap/transactions actions', async ({ page }) => {
-//   await page.goto('/')
-//   await createVaultSkippingQuickUnlock(page)
+// The app has no per-account detail page anymore — Send/Receive/Transactions
+// are all reachable straight from the account card on the persistent
+// Accounts screen (App.vue keeps AccountsView mounted and layers other
+// routes over it in a floating PaneOverlay instead of navigating away from
+// it), and Swap lives as a second tab inside the same Send panel rather than
+// its own destination.
+test('account card exposes send, receive, and transactions actions', async ({ page }) => {
+  await page.goto('/')
+  await createVaultSkippingQuickUnlock(page)
+  await addAccount(page, 'E2E Test Wallet')
 
-//   await page.getByRole('link', { name: 'Add account' }).click()
-//   await expect(page).toHaveURL(/\/accounts\/new$/)
-//   await page.getByRole('textbox', { name: 'Label' }).fill('E2E Test Wallet')
-//   await page.getByRole('button', { name: 'Add account' }).click()
-//   await expect(page).toHaveURL(/\/$/)
+  // Both routes render inside the same floating PaneOverlay, which has its
+  // own "Close" button — scoped to it since the persistent settings gear
+  // behind it (App.vue) has an unrelated, similarly-named "Close settings" button.
+  const pane = page.locator('.pane-card')
 
-//   await page.getByRole('link', { name: /E2E Test Wallet/ }).click()
-//   await expect(page.getByRole('link', { name: 'Send crypto' })).toBeVisible()
-//   await expect(page.getByRole('link', { name: 'Receive crypto' })).toBeVisible()
-//   await expect(page.getByRole('link', { name: 'Swap' })).toBeVisible()
-//   await expect(page.getByRole('link', { name: 'Transactions' })).toBeVisible()
-// })
+  await page.getByRole('button', { name: /^Send/ }).click()
+  await expect(page).toHaveURL(/\/send$/)
+  await expect(page.getByRole('heading', { name: 'Send', level: 1 })).toBeVisible()
+  await expect(page.getByRole('tab', { name: 'Swap' })).toBeVisible()
+  await pane.getByRole('button', { name: 'Close' }).click()
+  await expect(page).toHaveURL(/\/$/)
+
+  await page.getByRole('button', { name: 'View QR code' }).click()
+  await expect(page).toHaveURL(/\/receive$/)
+  await expect(page.getByRole('heading', { name: 'Receive', level: 1 })).toBeVisible()
+  await pane.getByRole('button', { name: 'Close' }).click()
+  await expect(page).toHaveURL(/\/$/)
+
+  // Transactions expand inline on the card itself rather than navigating
+  // anywhere — the row toggling this has no accessible name of its own
+  // (only its chevron icon does), so it's targeted by its structural class.
+  await page.locator('.balance-row').first().click()
+  await expect(page.getByText('No transactions found.')).toBeVisible()
+})

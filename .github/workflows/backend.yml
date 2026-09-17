@@ -33,3 +33,23 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: cargo install worker-build
       - run: cd backend && worker-build --release
+
+  deploy:
+    needs: [test, build-worker]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo install worker-build
+      # wrangler.toml's [build] command runs worker-build itself as part of
+      # `wrangler deploy` — this step just needs the binary on PATH.
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: backend
+          command: deploy
