@@ -41,14 +41,13 @@ pub async fn address_activity(
     headers: HeaderMap,
     Path((chain, address)): Path<(String, String)>,
 ) -> Result<Json<AddressActivity>, ApiError> {
-    state
-        .providers
-        .check_rate_limit(client_ip(&headers), "address_activity")
-        .await?;
     let chain = parse_chain(&chain)?;
     validate_address(&address)?;
     Ok(Json(
-        state.providers.address_activity(chain, &address).await?,
+        state
+            .providers
+            .address_activity(chain, &address, client_ip(&headers))
+            .await?,
     ))
 }
 
@@ -58,13 +57,14 @@ pub async fn token_metadata(
     headers: HeaderMap,
     Path((chain, address)): Path<(String, String)>,
 ) -> Result<Json<TokenMetadata>, ApiError> {
-    state
-        .providers
-        .check_rate_limit(client_ip(&headers), "token_metadata")
-        .await?;
     let chain = parse_chain(&chain)?;
     validate_address(&address)?;
-    Ok(Json(state.providers.token_metadata(chain, &address).await?))
+    Ok(Json(
+        state
+            .providers
+            .token_metadata(chain, &address, client_ip(&headers))
+            .await?,
+    ))
 }
 
 #[worker::send]
@@ -73,12 +73,8 @@ pub async fn native_price(
     headers: HeaderMap,
     Path(chain): Path<String>,
 ) -> Result<Json<NativePrice>, ApiError> {
-    state
-        .providers
-        .check_rate_limit(client_ip(&headers), "native_price")
-        .await?;
     let chain = parse_chain(&chain)?;
-    Ok(Json(state.providers.native_price(chain).await?))
+    Ok(Json(state.providers.native_price(chain, client_ip(&headers)).await?))
 }
 
 #[worker::send]
@@ -87,13 +83,14 @@ pub async fn contract_abi(
     headers: HeaderMap,
     Path((chain, address)): Path<(String, String)>,
 ) -> Result<Json<ContractAbi>, ApiError> {
-    state
-        .providers
-        .check_rate_limit(client_ip(&headers), "contract_abi")
-        .await?;
     let chain = parse_chain(&chain)?;
     validate_address(&address)?;
-    Ok(Json(state.providers.contract_abi(chain, &address).await?))
+    Ok(Json(
+        state
+            .providers
+            .contract_abi(chain, &address, client_ip(&headers))
+            .await?,
+    ))
 }
 
 #[derive(Deserialize)]
@@ -263,6 +260,7 @@ pub async fn swap_quote(
                 &query.buy_token,
                 &query.sell_amount,
                 &query.taker_address,
+                client_ip(&headers),
             )
             .await?,
     ))
@@ -279,17 +277,13 @@ pub async fn fx_rates(
     headers: HeaderMap,
     axum::extract::Query(query): axum::extract::Query<FxQuery>,
 ) -> Result<Json<FxRates>, ApiError> {
-    state
-        .providers
-        .check_rate_limit(client_ip(&headers), "fx_rates")
-        .await?;
     let base = query.base.unwrap_or_else(|| "USD".to_string());
     if base.len() != 3 || !base.chars().all(|c| c.is_ascii_alphabetic()) {
         return Err(ApiError::BadRequest(
             "base must be a 3-letter currency code".to_string(),
         ));
     }
-    Ok(Json(state.providers.fx_rates(&base).await?))
+    Ok(Json(state.providers.fx_rates(&base, client_ip(&headers)).await?))
 }
 
 #[cfg(test)]

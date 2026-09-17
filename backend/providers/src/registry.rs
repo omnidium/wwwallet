@@ -117,14 +117,25 @@ impl ProviderRegistry {
         Ok(())
     }
 
+    /// `client_ip` is only ever consulted inside the `get_or_fetch` closure
+    /// below — i.e. only on an actual cache miss that's about to spend a
+    /// metered upstream call. A cache hit costs the paid third-party API
+    /// nothing, so it shouldn't spend any of this budget either; the
+    /// original version rate-limited every incoming request regardless of
+    /// whether it would hit the cache, which meant a wallet holding many
+    /// tokens (each a distinct cache key, so no cache hit is possible on a
+    /// first load) could exhaust the whole budget without a single one of
+    /// those requests ever reaching Ethplorer.
     pub async fn address_activity(
         &self,
         chain: ChainId,
         address: &str,
+        client_ip: &str,
     ) -> ProviderResult<AddressActivity> {
         let key = format!("activity:{chain:?}:{}", address.to_lowercase());
-        cache::get_or_fetch(&self.kv, &key, ADDRESS_ACTIVITY_TTL, || {
-            self.activity.address_activity(chain, address)
+        cache::get_or_fetch(&self.kv, &key, ADDRESS_ACTIVITY_TTL, || async {
+            self.check_rate_limit(client_ip, "address_activity").await?;
+            self.activity.address_activity(chain, address).await
         })
         .await
     }
@@ -133,10 +144,12 @@ impl ProviderRegistry {
         &self,
         chain: ChainId,
         contract_address: &str,
+        client_ip: &str,
     ) -> ProviderResult<TokenMetadata> {
         let key = format!("token:{chain:?}:{}", contract_address.to_lowercase());
-        cache::get_or_fetch(&self.kv, &key, TOKEN_METADATA_TTL, || {
-            self.tokens.token_metadata(chain, contract_address)
+        cache::get_or_fetch(&self.kv, &key, TOKEN_METADATA_TTL, || async {
+            self.check_rate_limit(client_ip, "token_metadata").await?;
+            self.tokens.token_metadata(chain, contract_address).await
         })
         .await
     }
@@ -145,24 +158,31 @@ impl ProviderRegistry {
         &self,
         chain: ChainId,
         contract_address: &str,
+        client_ip: &str,
     ) -> ProviderResult<ContractAbi> {
         let key = format!("abi:{chain:?}:{}", contract_address.to_lowercase());
-        cache::get_or_fetch(&self.kv, &key, CONTRACT_ABI_TTL, || {
-            self.abi.contract_abi(chain, contract_address)
+        cache::get_or_fetch(&self.kv, &key, CONTRACT_ABI_TTL, || async {
+            self.check_rate_limit(client_ip, "contract_abi").await?;
+            self.abi.contract_abi(chain, contract_address).await
         })
         .await
     }
 
-    pub async fn fx_rates(&self, base: &str) -> ProviderResult<FxRates> {
+    pub async fn fx_rates(&self, base: &str, client_ip: &str) -> ProviderResult<FxRates> {
         let base = base.to_uppercase();
         let key = format!("fx:{base}");
-        cache::get_or_fetch(&self.kv, &key, FX_RATES_TTL, || self.fx.latest_rates(&base)).await
+        cache::get_or_fetch(&self.kv, &key, FX_RATES_TTL, || async {
+            self.check_rate_limit(client_ip, "fx_rates").await?;
+            self.fx.latest_rates(&base).await
+        })
+        .await
     }
 
-    pub async fn native_price(&self, chain: ChainId) -> ProviderResult<NativePrice> {
+    pub async fn native_price(&self, chain: ChainId, client_ip: &str) -> ProviderResult<NativePrice> {
         let key = format!("native-price:{chain:?}");
-        cache::get_or_fetch(&self.kv, &key, NATIVE_PRICE_TTL, || {
-            self.native_price.native_price(chain)
+        cache::get_or_fetch(&self.kv, &key, NATIVE_PRICE_TTL, || async {
+            self.check_rate_limit(client_ip, "native_price").await?;
+            self.native_price.native_price(chain).await
         })
         .await
     }
@@ -217,14 +237,15 @@ impl ProviderRegistry {
         buy_token: &str,
         sell_amount_wei: &str,
         taker_address: &str,
+        client_ip: &str,
     ) -> ProviderResult<SwapQuote> {
         let mut quote = self
             .swap
             .quote(chain, sell_token, buy_token, sell_amount_wei, taker_address)
             .await?;
 
-        let sell_decimals = self.token_decimals(chain, sell_token).await;
-        let buy_decimals = self.token_decimals(chain, buy_token).await;
+        let sell_decimals = self.token_decimals(chain, sell_token, client_ip).await;
+        let buy_decimals = self.token_decimals(chain, buy_token, client_ip).await;
         quote.price = human_readable_price(
             &quote.sell_amount,
             sell_decimals,
@@ -239,12 +260,12 @@ impl ProviderRegistry {
     /// contract, so it has no on-chain metadata to look up). Falls back to 18
     /// (the overwhelmingly common case) if metadata lookup fails — this only
     /// feeds a display estimate, so it's not worth failing the whole quote over.
-    async fn token_decimals(&self, chain: ChainId, token_address: &str) -> u8 {
+    async fn token_decimals(&self, chain: ChainId, token_address: &str, client_ip: &str) -> u8 {
         const NATIVE_PSEUDO_ADDRESS: &str = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
         if token_address.eq_ignore_ascii_case(NATIVE_PSEUDO_ADDRESS) {
             return 18;
         }
-        self.token_metadata(chain, token_address)
+        self.token_metadata(chain, token_address, client_ip)
             .await
             .ok()
             .and_then(|meta| meta.decimals)

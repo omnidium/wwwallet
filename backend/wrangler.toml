@@ -29,11 +29,17 @@ id = "d55b9cdf94e74f2c820845159cca7528"
 # throttle a fast burst — this binding is atomic and purpose-built for it.
 # `namespace_id` is just a locally-unique small integer per binding, chosen by
 # us — it's not a KV namespace and doesn't need to be created beforehand.
+#
+# This budget is now spent only on genuine cache misses (see registry.rs) —
+# an address holding many tokens (airdropped dust included) can easily need
+# 50-100+ distinct, never-before-cached token-metadata lookups on its very
+# first load, all of which are legitimate, so 30/60s left real wallets stuck
+# retrying indefinitely. Raised well above that for headroom on a cold start.
 [[ratelimits]]
 name = "RATE_LIMITER_DEFAULT"
 namespace_id = "1001"
 [ratelimits.simple]
-limit = 30
+limit = 120
 period = 60
 
 # Broadcasting costs real gas-network RPC quota and, unlike the read routes,
