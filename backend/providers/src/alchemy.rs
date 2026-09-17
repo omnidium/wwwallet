@@ -167,6 +167,15 @@ impl ActivityProvider for AlchemyProvider {
         // truncated the visible history at whatever date the oldest 25(ish)
         // transfers happened to reach, hiding everything more recent than
         // that — exactly backwards from what a transaction list should show.
+        //
+        // maxCount is Alchemy's own per-call maximum (0x3e8 = 1000) — even
+        // that isn't a true guarantee of complete history for a very active
+        // address (confirmed live: one real address had 1000+ toAddress
+        // transfers alone, more than fits in a single page), but it's the
+        // most this backend can show without real cursor-based pagination
+        // across pageKey-linked calls, which doesn't exist yet. For the
+        // overwhelming majority of addresses — far less active than that
+        // one — this simply returns their entire history in one call.
         let transfers_params = |direction: &str| {
             json!([{
                 "fromBlock": "0x0",
@@ -175,7 +184,7 @@ impl ActivityProvider for AlchemyProvider {
                 "category": ["external", "erc20"],
                 "withMetadata": true,
                 "order": "desc",
-                "maxCount": "0x64",
+                "maxCount": "0x3e8",
             }])
         };
 
