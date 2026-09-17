@@ -48,9 +48,19 @@ jobs:
       - run: cargo install worker-build
       # wrangler.toml's [build] command runs worker-build itself as part of
       # `wrangler deploy` — this step just needs the binary on PATH.
+      #
+      # wranglerVersion is pinned deliberately: this action's own "is a newer
+      # wrangler available" check can fail in CI's sandboxed network (no
+      # confirmation prompt available), and it then silently falls back to a
+      # much older bundled default (3.90.0) instead of erroring. That old
+      # version doesn't understand this repo's [[ratelimits]] wrangler.toml
+      # block at all ("Unexpected fields found... ratelimits") and just drops
+      # it — deploying a Worker with no RATE_LIMITER_DEFAULT/_BROADCAST
+      # binding, which then 500s on every request that checks it.
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: backend
+          wranglerVersion: '4.131.1'
           command: deploy

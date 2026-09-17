@@ -59,9 +59,13 @@ jobs:
       # "master", a name predating this repo's switch to "main" — pinning
       # --branch here keeps deploys landing in Production regardless of
       # what this repo's own default branch is called.
+      # wranglerVersion pinned for the same reason as backend.yml — this
+      # action's own update-check can silently fall back to an old bundled
+      # wrangler in CI's sandboxed network instead of erroring.
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: frontend
+          wranglerVersion: '4.131.1'
           command: pages deploy dist --project-name=wwwallet --branch=master
