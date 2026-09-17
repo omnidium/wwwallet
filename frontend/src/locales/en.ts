@@ -221,6 +221,17 @@ export default {
     removePasskeyBody:
       "You'll need your full recovery phrase every time you unlock wwwallet until you set up a passkey again.",
     removeAnyway: 'Remove anyway',
+    dangerZoneTitle: 'Danger zone',
+    deleteWalletLabel: 'Delete wallet from this device',
+    deleteWalletDescription:
+      'Permanently erase your encrypted vault, private keys, and quick-unlock passkey from this device.',
+    deleteWalletButton: 'Delete',
+    deleteWalletTitle: 'Delete this wallet from this device?',
+    deleteWalletBody:
+      'This permanently erases your encrypted vault and private keys from this device. There is no undo — without your recovery phrase, or a Google Drive or file backup, any funds in these accounts are lost forever.',
+    deleteWalletNeverBackedUp: 'You have never backed up this wallet.',
+    deleteWalletAckLabel: 'I have my recovery phrase saved somewhere safe and understand this cannot be undone',
+    deleteWalletConfirm: 'Delete wallet',
   },
   transactions: {
     title: 'Transactions',

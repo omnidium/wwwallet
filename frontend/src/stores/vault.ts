@@ -5,6 +5,7 @@ import { i18n } from '@/i18n'
 import {
   addPasskeyWrap,
   createVault as createVaultRecord,
+  deleteVault as deleteVaultRecord,
   exportEncryptedVaultBlob,
   getCreatedAt,
   getLastBackupAt,
@@ -113,6 +114,25 @@ export const useVaultStore = defineStore('vault', () => {
     clearStores()
   }
 
+  /**
+   * Irreversible. Erases the encrypted vault, the local passkey binding, and
+   * the provider-response cache from this device — the caller is responsible
+   * for gating this behind an explicit "I have a backup" acknowledgment,
+   * since nothing here can undo it.
+   */
+  async function deleteFromDevice(): Promise<void> {
+    await deleteVaultRecord()
+    await db.localWebAuthnCredential.delete('default')
+    await db.cache.clear()
+    sessionKey = null
+    isUnlocked.value = false
+    hasVault.value = false
+    hasPasskey.value = false
+    lastBackupAt.value = null
+    createdAt.value = null
+    clearStores()
+  }
+
   async function persist(): Promise<void> {
     if (!sessionKey) throw new Error(i18n.global.t('errors.vaultLocked'))
     await saveVaultRecord(sessionKey, collectFromStores())
@@ -178,6 +198,7 @@ export const useVaultStore = defineStore('vault', () => {
     unlockWithMnemonic,
     unlockWithPasskey,
     lock,
+    deleteFromDevice,
     persist,
     registerPasskey,
     removePasskey,

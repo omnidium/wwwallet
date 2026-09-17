@@ -23,6 +23,11 @@ export async function hasVault(): Promise<boolean> {
   return (await db.vault.get(VAULT_ID)) !== undefined
 }
 
+/** Irreversible: the only way back in afterward is restoring from a backup made before this ran. */
+export async function deleteVault(): Promise<void> {
+  await db.vault.delete(VAULT_ID)
+}
+
 export async function recordBackup(): Promise<void> {
   const record = await db.vault.get(VAULT_ID)
   if (!record) return
