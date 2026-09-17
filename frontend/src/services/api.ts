@@ -2,19 +2,22 @@ import { i18n } from '@/i18n'
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8787'
 
-// The backend's rate limiter is sized for a slow trickle, not a burst — a
-// wallet with many held tokens can still legitimately produce one request
-// per token (see the concurrency-limited caller in AccountCard.vue). A 429
-// here is expected to be transient, not a real failure, so retry a couple
-// times with a short backoff instead of leaving that one item stuck blank
-// until the user manually reloads. No Retry-After header is sent, so this
-// backoff length is just a reasonable guess, not a computed wait time.
-const RATE_LIMIT_RETRY_DELAYS_MS = [1000, 3000]
+// Retried rather than surfaced immediately: 429 is our own rate limiter
+// (sized for a slow trickle — a wallet with many held tokens can legitimately
+// fire one request per token, see the concurrency-limited caller in
+// AccountCard.vue), and 502/503/504 are the backend's own upstream calls
+// (e.g. Ethplorer's free-tier API, which has its own separate, tighter rate
+// limit we don't control) failing transiently. Confirmed live: a token
+// metadata request that 502'd succeeded on a plain retry moments later. No
+// Retry-After header is sent, so this backoff length is a reasonable guess,
+// not a computed wait time.
+const TRANSIENT_STATUSES = new Set([429, 502, 503, 504])
+const TRANSIENT_RETRY_DELAYS_MS = [1000, 3000]
 
 async function fetchWithRetry(input: string | URL, init?: RequestInit): Promise<Response> {
   let res = await fetch(input, init)
-  for (const delayMs of RATE_LIMIT_RETRY_DELAYS_MS) {
-    if (res.status !== 429) break
+  for (const delayMs of TRANSIENT_RETRY_DELAYS_MS) {
+    if (!TRANSIENT_STATUSES.has(res.status)) break
     await new Promise((resolve) => setTimeout(resolve, delayMs))
     res = await fetch(input, init)
   }

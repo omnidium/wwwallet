@@ -160,6 +160,13 @@ impl ActivityProvider for AlchemyProvider {
             }
         }
 
+        // Without an explicit order, Alchemy defaults to ascending (oldest
+        // first) from fromBlock — combined with maxCount, that returned the
+        // OLDEST maxCount transfers ever made, not the most recent ones. For
+        // any address with more history than maxCount, this silently
+        // truncated the visible history at whatever date the oldest 25(ish)
+        // transfers happened to reach, hiding everything more recent than
+        // that — exactly backwards from what a transaction list should show.
         let transfers_params = |direction: &str| {
             json!([{
                 "fromBlock": "0x0",
@@ -167,7 +174,8 @@ impl ActivityProvider for AlchemyProvider {
                 direction: address,
                 "category": ["external", "erc20"],
                 "withMetadata": true,
-                "maxCount": "0x19",
+                "order": "desc",
+                "maxCount": "0x64",
             }])
         };
 
