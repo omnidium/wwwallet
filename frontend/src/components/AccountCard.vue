@@ -8,6 +8,7 @@ import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { toHumanAmount, convertUsd, formatFiat } from '@/services/money'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
+import { mapWithConcurrency } from '@/services/concurrencyLimit'
 import type { Transaction } from '@/services/api'
 import { DUST_THRESHOLD_USD } from '@/config/appSettings'
 import EditAccountDialog from '@/components/EditAccountDialog.vue'
@@ -117,11 +118,24 @@ const transactionGroups = computed(() =>
 )
 
 // Lazy-load token metadata the first time the token row actually appears.
+// Concurrency-limited rather than firing one request per held token all at
+// once — the backend's rate limiter is sized for a slow trickle, and a
+// long-lived address can easily hold 50+ tokens (airdropped dust included),
+// which blew straight through it and left most of them permanently
+// unlabeled until a manual reload happened to land in a fresh rate-limit
+// window.
 watch(tokenBalances, (balances) => {
-  for (const b of balances) {
-    const key = chainData.keyFor(props.account.chain, b.contract_address!)
-    if (!chainData.tokenMetadataByKey[key]) void chainData.loadTokenMetadata(props.account.chain, b.contract_address!)
-  }
+  const missing = balances.filter(
+    (b) => !chainData.tokenMetadataByKey[chainData.keyFor(props.account.chain, b.contract_address!)],
+  )
+  void mapWithConcurrency(missing, 4, async (b) => {
+    try {
+      await chainData.loadTokenMetadata(props.account.chain, b.contract_address!)
+    } catch {
+      // Best-effort — a token that fails to resolve just stays unlabeled;
+      // it's retried the next time this watcher fires (e.g. a refresh).
+    }
+  })
 })
 
 async function copyAddress() {

@@ -78,6 +78,10 @@ input[type='number'] {
   overflow-y: auto;
 }
 
+.passphrase_box {
+  border: 1px solid rgba(var(--v-border-color));
+}
+
 .floating-settings-btn {
   position: fixed;
   top: 16px;

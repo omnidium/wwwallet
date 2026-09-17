@@ -96,27 +96,26 @@ function finish() {
           </i18n-t>
         </v-card-text>
         <v-card-text>
-          <v-sheet class="pa-3" rounded="lg" color="surface-variant" variant="tonal" data-testid="recovery-phrase">
+          <v-sheet class="passphrase_box pa-3" rounded="lg" color="surface" variant="tonal"
+            data-testid="recovery-phrase">
             <v-row density="compact" no-gutters>
               <v-col v-for="(word, i) in recoveryPhraseWords" :key="i" cols="6" sm="4" class="pa-1">
-                <span class="text-caption text-medium-emphasis mr-1">{{ i + 1 }}.</span>
-                <span class="font-weight-medium" data-testid="recovery-phrase-word">{{ word }}</span>
+                <!-- <span class="text-caption text-medium-emphasis mr-1">{{ i + 1 }}.</span> -->
+                <span color="surface-variant" class="text-caption font-weight-medium"
+                  data-testid="recovery-phrase-word">{{ word
+                  }}</span>
               </v-col>
             </v-row>
           </v-sheet>
           <v-btn class="mt-3" variant="outlined" block prepend-icon="mdi-content-copy" @click="copyRecoveryPhrase">
             {{ t('vaultSetup.copyRecoveryPhrase') }}
           </v-btn>
-          <v-checkbox
-            v-model="savedAck"
-            class="mt-2"
-            density="compact"
-            hide-details
-            :label="t('vaultSetup.savedAckLabel')"
-          />
+          <v-checkbox v-model="savedAck" class="mt-2" density="compact" hide-details
+            :label="t('vaultSetup.savedAckLabel')" />
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block :disabled="!savedAck" @click="createVault">{{ t('vaultSetup.createVault') }}</v-btn>
+          <v-btn color="primary" block :disabled="!savedAck" @click="createVault">{{ t('vaultSetup.createVault')
+            }}</v-btn>
         </v-card-actions>
 
         <v-divider class="my-4" />
@@ -127,13 +126,7 @@ function finish() {
           <v-btn variant="outlined" block class="mt-2" @click="restoreFileInput?.click()">
             {{ t('vaultSetup.restoreFromLocalFile') }}
           </v-btn>
-          <input
-            ref="restoreFileInput"
-            type="file"
-            accept="application/json"
-            hidden
-            @change="onRestoreFileSelected"
-          />
+          <input ref="restoreFileInput" type="file" accept="application/json" hidden @change="onRestoreFileSelected" />
         </v-card-actions>
       </template>
 
@@ -143,14 +136,8 @@ function finish() {
           {{ t('vaultSetup.quickUnlockBody') }}
         </v-card-text>
         <v-card-text>
-          <v-btn
-            class="mb-4"
-            variant="outlined"
-            block
-            prepend-icon="mdi-fingerprint"
-            @click="addPasskey"
-            :disabled="vault.hasPasskey || passkeyUnsupported"
-          >
+          <v-btn class="mb-4" variant="outlined" block prepend-icon="mdi-fingerprint" @click="addPasskey"
+            :disabled="vault.hasPasskey || passkeyUnsupported">
             {{ vault.hasPasskey ? t('vaultSetup.passkeyEnabledLabel') : t('vaultSetup.enablePasskey') }}
           </v-btn>
           <p v-if="passkeyUnsupported" class="text-caption text-error mb-4">
