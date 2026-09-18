@@ -209,6 +209,7 @@ export default {
     lockNow: 'Lock now',
     languageLabel: 'Language',
     currencyLabel: 'Currency',
+    transactionBatchSizeLabel: 'Transactions per load',
     securityTitle: 'Security',
     securityIntro:
       'Your recovery phrase is never stored anywhere it could be shown back to you — keep it somewhere safe. Face ID / Touch ID is the fast path for everyday unlock; wwwallet also locks itself automatically after a few minutes of inactivity.',

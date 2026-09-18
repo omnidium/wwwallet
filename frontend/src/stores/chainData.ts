@@ -9,6 +9,7 @@ import {
   type TokenMetadata,
 } from '@/services/api'
 import { cachedFetch } from '@/services/cachedFetch'
+import { DEFAULT_TRANSACTION_BATCH_SIZE } from '@/config/appSettings'
 
 /**
  * Refreshes matching transactions in place (e.g. a status flip from pending
@@ -42,9 +43,21 @@ export const useChainDataStore = defineStore('chainData', () => {
   // clearing the one flag independently regardless of the others.
   const loadingKeys = ref<Set<string>>(new Set())
   const loadingMoreKeys = ref<Set<string>>(new Set())
+  // Not a ref: purely an internal dedup map, never read reactively (UI binds
+  // to loadingMoreKeys/isLoadingMore instead). Keyed the same as everything
+  // else here — see loadMoreTransactions for why this exists.
+  const inFlightLoadMore: Record<string, Promise<void>> = {}
+  // Persisted (see stores/vault.ts) — how many transactions a single
+  // "load more" batch (see useTransactionBatchLoader) tries to surface
+  // before stopping, user-configurable from Settings.
+  const transactionBatchSize = ref(DEFAULT_TRANSACTION_BATCH_SIZE)
 
   function keyFor(chain: ChainSlug, address: string) {
     return `${chain}:${address.toLowerCase()}`
+  }
+
+  function setTransactionBatchSize(size: number) {
+    transactionBatchSize.value = size
   }
 
   function isLoading(chain: ChainSlug, address: string): boolean {
@@ -95,31 +108,45 @@ export const useChainDataStore = defineStore('chainData', () => {
   }
 
   /**
-   * Fetches the next older batch of transactions past whatever's already
+   * Fetches the next older page of transactions past whatever's already
    * loaded for this address, using the opaque cursor the last load returned.
-   * No-ops if that address was never loaded, has no more history, or a call
-   * is already in flight (guards against a scroll handler firing repeatedly
-   * before the first fetch resolves).
+   * No-ops if that address was never loaded or has no more history.
+   *
+   * Safe to call concurrently for the same address: rather than the first
+   * caller silently winning and every other simultaneous caller no-op'ing
+   * (which used to make a batch-loading loop think a page had already been
+   * fetched when really nothing had happened yet), every caller while a
+   * fetch is in flight awaits that same fetch instead of racing it or
+   * dropping their own request on the floor.
    */
   async function loadMoreTransactions(chain: ChainSlug, address: string) {
     const key = keyFor(chain, address)
+    const inFlight = inFlightLoadMore[key]
+    if (inFlight) return inFlight
+
     const existing = activityByAddress.value[key]
-    if (!existing || existing.next_cursor == null || loadingMoreKeys.value.has(key)) return
-    loadingMoreKeys.value.add(key)
-    try {
-      const page = await api.transactionPage(chain, address, existing.next_cursor)
-      // Re-read after the await — the account (or its cached activity) may
-      // have been reloaded or removed while this request was in flight.
-      const current = activityByAddress.value[key]
-      if (!current) return
-      activityByAddress.value[key] = {
-        ...current,
-        transactions: appendOlderPage(current.transactions, page.transactions),
-        next_cursor: page.next_cursor,
+    if (!existing || existing.next_cursor == null) return
+
+    const fetchPromise = (async () => {
+      loadingMoreKeys.value.add(key)
+      try {
+        const page = await api.transactionPage(chain, address, existing.next_cursor)
+        // Re-read after the await — the account (or its cached activity) may
+        // have been reloaded or removed while this request was in flight.
+        const current = activityByAddress.value[key]
+        if (!current) return
+        activityByAddress.value[key] = {
+          ...current,
+          transactions: appendOlderPage(current.transactions, page.transactions),
+          next_cursor: page.next_cursor,
+        }
+      } finally {
+        loadingMoreKeys.value.delete(key)
+        delete inFlightLoadMore[key]
       }
-    } finally {
-      loadingMoreKeys.value.delete(key)
-    }
+    })()
+    inFlightLoadMore[key] = fetchPromise
+    return fetchPromise
   }
 
   async function loadFxRates(base = 'USD') {
@@ -171,6 +198,8 @@ export const useChainDataStore = defineStore('chainData', () => {
     fxRates,
     nativePriceUsdByChain,
     tokenMetadataByKey,
+    transactionBatchSize,
+    setTransactionBatchSize,
     isLoading,
     isLoadingMore,
     hasMoreTransactions,

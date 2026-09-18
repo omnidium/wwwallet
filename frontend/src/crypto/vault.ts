@@ -9,7 +9,9 @@ import type { Payee } from '@/stores/payees'
 export interface VaultData {
   wallets: WalletAccount[]
   payees: Payee[]
-  settings: { locale: string; currency: string }
+  // Optional: a vault backed up before this setting existed won't have it —
+  // callers fall back to a default rather than treating it as required.
+  settings: { locale: string; currency: string; transactionBatchSize?: number }
 }
 
 const VAULT_ID = 'default' as const

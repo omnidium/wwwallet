@@ -21,3 +21,13 @@ export const ACCOUNT_AUTO_REFRESH_MS = 10 * 60_000
 
 /** Below this fiat value, a token balance or transaction is considered dust and can be filtered out. */
 export const DUST_THRESHOLD_USD = 0.01
+
+/**
+ * How many transactions a single infinite-scroll "load more" batch tries to
+ * surface before stopping (see useTransactionBatchLoader) — user-configurable
+ * from Settings, this is just the default for a vault that's never set one.
+ */
+export const DEFAULT_TRANSACTION_BATCH_SIZE = 50
+
+/** Preset choices offered for the transaction batch size setting. */
+export const TRANSACTION_BATCH_SIZE_OPTIONS = [25, 50, 100, 200]

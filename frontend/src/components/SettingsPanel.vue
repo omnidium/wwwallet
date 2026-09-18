@@ -5,8 +5,10 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { useVaultStore } from '@/stores/vault'
+import { useChainDataStore } from '@/stores/chainData'
 import { getStoredTheme, setStoredTheme, type ThemeName } from '@/services/theme'
 import { clearLastActivity } from '@/services/lastActivity'
+import { TRANSACTION_BATCH_SIZE_OPTIONS } from '@/config/appSettings'
 import AppTooltip from '@/components/AppTooltip.vue'
 
 const emit = defineEmits<{ close: [] }>()
@@ -14,9 +16,15 @@ const emit = defineEmits<{ close: [] }>()
 const { t } = useI18n({ useScope: 'global' })
 const settings = useSettingsLocaleStore()
 const vault = useVaultStore()
+const chainData = useChainDataStore()
 const theme = useTheme()
 const router = useRouter()
 const isDark = ref(getStoredTheme() === 'dark')
+
+function setTransactionBatchSize(size: number) {
+  chainData.setTransactionBatchSize(size)
+  void vault.persist()
+}
 
 function toggleTheme() {
   isDark.value = !isDark.value
@@ -84,6 +92,13 @@ function lockNow() {
       :label="t('settings.currencyLabel')"
       :items="settings.currencies"
       v-model="settings.currency"
+    />
+    <v-select
+      class="mt-4"
+      :label="t('settings.transactionBatchSizeLabel')"
+      :items="TRANSACTION_BATCH_SIZE_OPTIONS"
+      :model-value="chainData.transactionBatchSize"
+      @update:model-value="setTransactionBatchSize"
     />
 
     <v-list class="mt-4" rounded="lg">

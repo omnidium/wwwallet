@@ -30,9 +30,15 @@ import { db } from '@/services/db'
 import { useAccountsStore } from '@/stores/accounts'
 import { usePayeesStore } from '@/stores/payees'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
+import { useChainDataStore } from '@/stores/chainData'
+import { DEFAULT_TRANSACTION_BATCH_SIZE } from '@/config/appSettings'
 
 function emptyVaultData(): VaultData {
-  return { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } }
+  return {
+    wallets: [],
+    payees: [],
+    settings: { locale: 'en', currency: 'USD', transactionBatchSize: DEFAULT_TRANSACTION_BATCH_SIZE },
+  }
 }
 
 export const useVaultStore = defineStore('vault', () => {
@@ -59,6 +65,7 @@ export const useVaultStore = defineStore('vault', () => {
     const settings = useSettingsLocaleStore()
     settings.locale = data.settings.locale
     settings.currency = data.settings.currency
+    useChainDataStore().transactionBatchSize = data.settings.transactionBatchSize ?? DEFAULT_TRANSACTION_BATCH_SIZE
   }
 
   function collectFromStores(): VaultData {
@@ -68,6 +75,7 @@ export const useVaultStore = defineStore('vault', () => {
       settings: {
         locale: useSettingsLocaleStore().locale,
         currency: useSettingsLocaleStore().currency,
+        transactionBatchSize: useChainDataStore().transactionBatchSize,
       },
     }
   }
