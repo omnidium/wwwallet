@@ -9,6 +9,7 @@ import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { toHumanAmount, convertUsd, formatFiat } from '@/services/money'
 import { tokenUrl } from '@/services/blockExplorer'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
+import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import { DUST_THRESHOLD_USD } from '@/config/appSettings'
 import type { Transaction } from '@/services/api'
 import InfoTooltip from '@/components/InfoTooltip.vue'
@@ -95,6 +96,24 @@ const visibleTokenTransactions = computed(() => {
 })
 const transactionGroups = computed(() => groupTransactionsByDate(visibleTokenTransactions.value, locale.value))
 
+// This page relies on the outer page scroll (see the `.token-detail-txn-card
+// .expanded-list` CSS override removing the usual internal max-height), so
+// there's no container element to hand useInfiniteScroll — it falls back to
+// listening on the window. Chains for the same reason AccountCard does: a
+// fetched page can be entirely other-token/native transfers, which wouldn't
+// grow this token-only list at all.
+const MAX_CHAINED_LOAD_MORE = 5
+async function loadMoreTokenTransactions() {
+  if (!holderAddress) return
+  for (let i = 0; i < MAX_CHAINED_LOAD_MORE; i++) {
+    if (!chainData.hasMoreTransactions(chain, holderAddress) || chainData.isLoadingMore(chain, holderAddress)) return
+    const before = tokenTransactions.value.length
+    await chainData.loadMoreTransactions(chain, holderAddress)
+    if (tokenTransactions.value.length > before) return
+  }
+}
+useInfiniteScroll(() => void loadMoreTokenTransactions())
+
 function openTransaction(txn: Transaction) {
   detailTransaction.value = txn
   detailOpen.value = true
@@ -178,6 +197,9 @@ function openTransaction(txn: Transaction) {
           <p v-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
             {{ t('transactions.empty') }}
           </p>
+          <div v-if="holderAddress && chainData.isLoadingMore(chain, holderAddress)" class="d-flex justify-center pa-2">
+            <v-progress-circular indeterminate size="20" width="2" color="primary" />
+          </div>
         </div>
       </v-card>
     </template>

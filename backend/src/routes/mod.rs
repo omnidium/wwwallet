@@ -13,6 +13,10 @@ pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
             get(chains::address_activity),
         )
         .route(
+            "/api/v1/chains/:chain/address/:address/transactions/more",
+            post(chains::transaction_page),
+        )
+        .route(
             "/api/v1/chains/:chain/token/:address",
             get(chains::token_metadata),
         )

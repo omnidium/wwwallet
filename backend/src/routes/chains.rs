@@ -6,8 +6,8 @@ use serde::{Deserialize, Serialize};
 use crate::error::ApiError;
 use crate::state::AppState;
 use wwwallet_providers::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPrep,
-    TransactionStatus,
+    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPage,
+    TransactionPrep, TransactionStatus,
 };
 use wwwallet_providers::ChainId;
 
@@ -47,6 +47,31 @@ pub async fn address_activity(
         state
             .providers
             .address_activity(chain, &address, client_ip(&headers))
+            .await?,
+    ))
+}
+
+#[derive(Deserialize)]
+pub struct TransactionPageRequest {
+    /// Opaque — round-tripped verbatim from a previous `next_cursor`. Never
+    /// inspected or constructed by this handler; a malformed one is rejected
+    /// by the provider that owns its shape.
+    cursor: serde_json::Value,
+}
+
+#[worker::send]
+pub async fn transaction_page(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path((chain, address)): Path<(String, String)>,
+    Json(body): Json<TransactionPageRequest>,
+) -> Result<Json<TransactionPage>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    validate_address(&address)?;
+    Ok(Json(
+        state
+            .providers
+            .transaction_page(chain, &address, body.cursor, client_ip(&headers))
             .await?,
     ))
 }

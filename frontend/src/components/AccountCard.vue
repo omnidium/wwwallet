@@ -9,6 +9,7 @@ import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { toHumanAmount, convertUsd, formatFiat } from '@/services/money'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
 import { mapWithConcurrency } from '@/services/concurrencyLimit'
+import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import type { Transaction } from '@/services/api'
 import { DUST_THRESHOLD_USD } from '@/config/appSettings'
 import EditAccountDialog from '@/components/EditAccountDialog.vue'
@@ -117,6 +118,25 @@ const transactionGroups = computed(() =>
   groupTransactionsByDate(visibleNativeTransactions.value, locale.value),
 )
 
+// The backend pages mix every asset type together, so a page can easily
+// contain zero native transfers for an address that mostly holds/moves
+// tokens — a single loadMore wouldn't grow the visible (native-only) list at
+// all even though there's more history to look through. Chains automatically
+// (capped, so a pathological token-only address can't spin forever) until a
+// page actually adds a visible row or history genuinely runs out.
+const MAX_CHAINED_LOAD_MORE = 5
+const expandedListEl = ref<HTMLElement | null>(null)
+async function loadMoreNativeTransactions() {
+  const { chain, address } = props.account
+  for (let i = 0; i < MAX_CHAINED_LOAD_MORE; i++) {
+    if (!chainData.hasMoreTransactions(chain, address) || chainData.isLoadingMore(chain, address)) return
+    const before = nativeTransactions.value.length
+    await chainData.loadMoreTransactions(chain, address)
+    if (nativeTransactions.value.length > before) return
+  }
+}
+useInfiniteScroll(() => void loadMoreNativeTransactions(), expandedListEl)
+
 // Lazy-load token metadata the first time the token row actually appears.
 // Concurrency-limited rather than firing one request per held token all at
 // once — the backend's rate limiter is sized for a slow trickle, and a
@@ -222,7 +242,7 @@ async function toggleShow() {
       </AppTooltip>
     </div>
 
-    <div v-if="expandedTxns" class="expanded-list pa-2">
+    <div v-if="expandedTxns" ref="expandedListEl" class="expanded-list pa-2">
       <v-switch v-model="hideDustTxns" :label="t('accountCard.hideDustTxns')" density="compact" hide-details
         color="primary" class="dust-toggle" />
       <template v-for="group in transactionGroups" :key="group.dateLabel">
@@ -233,6 +253,9 @@ async function toggleShow() {
       <p v-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
         {{ t('transactions.empty') }}
       </p>
+      <div v-if="chainData.isLoadingMore(account.chain, account.address)" class="d-flex justify-center pa-2">
+        <v-progress-circular indeterminate size="20" width="2" color="primary" />
+      </div>
     </div>
 
     <div v-if="tokenFiatTotal" class="balance-row token-row pa-3 d-flex align-center"

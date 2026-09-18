@@ -1,4 +1,5 @@
 use async_trait::async_trait;
+use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 
 use crate::chain::ChainId;
@@ -8,7 +9,64 @@ use crate::traits::{
     ActivityProvider, AllowanceProvider, TransactionBroadcaster, TransactionPrepProvider,
     TransactionStatusProvider,
 };
-use crate::types::{AddressActivity, Balance, Transaction, TransactionPrep, TransactionStatus};
+use crate::types::{
+    AddressActivity, Balance, Transaction, TransactionPage, TransactionPrep, TransactionStatus,
+};
+
+/// How many raw transfers to ask Alchemy for per direction (sent/received) on
+/// each page fetch. Kept modest (rather than the 1000-per-call ceiling used
+/// pre-pagination) because a page's leftover, not-yet-returned transfers ride
+/// along inside the opaque cursor sent back to the client — a huge per-fetch
+/// size would make that cursor huge too.
+const TRANSACTION_PAGE_SIZE: usize = 25;
+
+/// Per-direction (sent/received) pagination state threaded through Alchemy's
+/// own `pageKey` continuation token.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+struct DirectionCursor {
+    page_key: Option<String>,
+    /// True once Alchemy stopped returning a `pageKey` for this direction —
+    /// i.e. every transfer that direction will ever have is already either in
+    /// `buffer` or already handed to the client.
+    exhausted: bool,
+}
+
+/// Alchemy-specific continuation token round-tripped opaquely through
+/// `AddressActivity::next_cursor` / `TransactionPage::next_cursor`. Not part
+/// of the public API contract — the HTTP layer and other providers only ever
+/// see this as a `serde_json::Value` blob.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+struct ActivityCursor {
+    from: DirectionCursor,
+    to: DirectionCursor,
+    /// Raw transfers already fetched from Alchemy but not yet handed to the
+    /// client (sorted newest-first, not yet swap-merged) — carried across
+    /// page requests so a swap's two legs (one from each direction) have a
+    /// chance to land in the buffer together before either is returned. A
+    /// swap whose two legs end up split across a page boundary anyway (rare —
+    /// needs the address's sent- and received-transfer histories to be
+    /// heavily imbalanced in volume) simply renders as two separate,
+    /// unmerged entries instead of one combined row.
+    buffer: Vec<Transaction>,
+    /// The block height resolved on the very first page fetch, reused as
+    /// every later page's `toBlock` instead of a live "latest" — without
+    /// this, new blocks mined while the user scrolls would shift every
+    /// direction's pagination window, causing skipped or duplicated
+    /// transactions at page seams.
+    pinned_to_block: Option<String>,
+}
+
+impl ActivityCursor {
+    /// `None` once every direction is exhausted and nothing is left buffered
+    /// — i.e. the client has now seen this address's entire history.
+    fn into_next_cursor(self) -> Option<Value> {
+        if self.buffer.is_empty() && self.from.exhausted && self.to.exhausted {
+            None
+        } else {
+            serde_json::to_value(&self).ok()
+        }
+    }
+}
 
 pub struct AlchemyProvider {
     api_key: String,
@@ -109,6 +167,106 @@ impl AlchemyProvider {
         }
         Ok(format!("{trimmed:0>64}"))
     }
+
+    fn parse_transfer(t: &Value) -> Transaction {
+        Transaction {
+            hash: t.get("hash").and_then(Value::as_str).unwrap_or_default().to_string(),
+            from: t.get("from").and_then(Value::as_str).unwrap_or_default().to_string(),
+            to: t.get("to").and_then(Value::as_str).map(str::to_string),
+            value: t.get("value").map(|v| v.to_string()).unwrap_or_else(|| "0".to_string()),
+            asset: t.get("asset").and_then(Value::as_str).unwrap_or("").to_string(),
+            contract_address: t
+                .get("rawContract")
+                .and_then(|c| c.get("address"))
+                .and_then(Value::as_str)
+                .map(str::to_string),
+            block_number: t
+                .get("blockNum")
+                .and_then(Value::as_str)
+                .and_then(|h| u64::from_str_radix(h.trim_start_matches("0x"), 16).ok()),
+            timestamp: t
+                .get("metadata")
+                .and_then(|m| m.get("blockTimestamp"))
+                .and_then(Value::as_str)
+                .map(str::to_string),
+            status: TransactionStatus::Success,
+            counter_asset: None,
+            counter_value: None,
+            counter_contract_address: None,
+        }
+    }
+
+    /// Tops up whichever direction(s) aren't yet exhausted with one more page
+    /// of raw transfers each, then extracts the newest `TRANSACTION_PAGE_SIZE`
+    /// (post swap-merge) as the page to hand back, leaving the remainder
+    /// buffered in the returned cursor for the next call.
+    ///
+    /// A single one-shot fetch per direction is always enough to make
+    /// progress: fetching `TRANSACTION_PAGE_SIZE` raw transfers from even one
+    /// still-active direction already meets that size on its own (before
+    /// accounting for anything merged away or already buffered), so there's
+    /// no need for a top-up loop.
+    async fn fetch_transaction_page(
+        &self,
+        chain: ChainId,
+        address: &str,
+        mut cursor: ActivityCursor,
+    ) -> ProviderResult<(Vec<Transaction>, ActivityCursor)> {
+        if cursor.pinned_to_block.is_none() {
+            let latest = self.rpc_call(chain, "eth_blockNumber", json!([])).await?;
+            cursor.pinned_to_block = latest.as_str().map(str::to_string);
+        }
+        let to_block = cursor.pinned_to_block.clone().unwrap_or_else(|| "latest".to_string());
+
+        for (direction, state) in [("fromAddress", &mut cursor.from), ("toAddress", &mut cursor.to)] {
+            if state.exhausted {
+                continue;
+            }
+            let mut params = json!({
+                "fromBlock": "0x0",
+                "toBlock": to_block,
+                direction: address,
+                "category": ["external", "erc20"],
+                "withMetadata": true,
+                "order": "desc",
+                "maxCount": format!("0x{TRANSACTION_PAGE_SIZE:x}"),
+            });
+            if let Some(page_key) = &state.page_key {
+                params["pageKey"] = json!(page_key);
+            }
+            let resp = self
+                .rpc_call(chain, "alchemy_getAssetTransfers", json!([params]))
+                .await?;
+            if let Some(transfers) = resp.get("transfers").and_then(Value::as_array) {
+                cursor.buffer.extend(transfers.iter().map(Self::parse_transfer));
+            }
+            state.page_key = resp.get("pageKey").and_then(Value::as_str).map(str::to_string);
+            state.exhausted = state.page_key.is_none();
+        }
+
+        let (page, leftover) = Self::extract_page(std::mem::take(&mut cursor.buffer), address);
+        cursor.buffer = leftover;
+
+        Ok((page, cursor))
+    }
+
+    /// Swap-merges `buffer`, then splits it into the newest
+    /// `TRANSACTION_PAGE_SIZE` (the page to return) and everything else (to
+    /// keep buffered for the next page). A merged swap's two raw legs share
+    /// one hash, so filtering leftover by "hash not in the page" correctly
+    /// drops both legs together even though they only count once toward
+    /// `TRANSACTION_PAGE_SIZE`.
+    fn extract_page(buffer: Vec<Transaction>, address: &str) -> (Vec<Transaction>, Vec<Transaction>) {
+        let merged = Self::merge_swap_legs(buffer, address);
+        let page: Vec<Transaction> = merged.iter().take(TRANSACTION_PAGE_SIZE).cloned().collect();
+        let page_hashes: std::collections::HashSet<&str> =
+            page.iter().map(|t| t.hash.as_str()).collect();
+        let leftover = merged
+            .into_iter()
+            .filter(|t| !page_hashes.contains(t.hash.as_str()))
+            .collect();
+        (page, leftover)
+    }
 }
 
 #[async_trait(?Send)]
@@ -160,93 +318,29 @@ impl ActivityProvider for AlchemyProvider {
             }
         }
 
-        // Without an explicit order, Alchemy defaults to ascending (oldest
-        // first) from fromBlock — combined with maxCount, that returned the
-        // OLDEST maxCount transfers ever made, not the most recent ones. For
-        // any address with more history than maxCount, this silently
-        // truncated the visible history at whatever date the oldest 25(ish)
-        // transfers happened to reach, hiding everything more recent than
-        // that — exactly backwards from what a transaction list should show.
-        //
-        // maxCount is Alchemy's own per-call maximum (0x3e8 = 1000) — even
-        // that isn't a true guarantee of complete history for a very active
-        // address (confirmed live: one real address had 1000+ toAddress
-        // transfers alone, more than fits in a single page), but it's the
-        // most this backend can show without real cursor-based pagination
-        // across pageKey-linked calls, which doesn't exist yet. For the
-        // overwhelming majority of addresses — far less active than that
-        // one — this simply returns their entire history in one call.
-        let transfers_params = |direction: &str| {
-            json!([{
-                "fromBlock": "0x0",
-                "toBlock": "latest",
-                direction: address,
-                "category": ["external", "erc20"],
-                "withMetadata": true,
-                "order": "desc",
-                "maxCount": "0x3e8",
-            }])
-        };
-
-        let mut transactions = Vec::new();
-        for direction in ["fromAddress", "toAddress"] {
-            let resp = self
-                .rpc_call(
-                    chain,
-                    "alchemy_getAssetTransfers",
-                    transfers_params(direction),
-                )
-                .await?;
-            if let Some(transfers) = resp.get("transfers").and_then(Value::as_array) {
-                for t in transfers {
-                    transactions.push(Transaction {
-                        hash: t
-                            .get("hash")
-                            .and_then(Value::as_str)
-                            .unwrap_or_default()
-                            .to_string(),
-                        from: t
-                            .get("from")
-                            .and_then(Value::as_str)
-                            .unwrap_or_default()
-                            .to_string(),
-                        to: t.get("to").and_then(Value::as_str).map(str::to_string),
-                        value: t
-                            .get("value")
-                            .map(|v| v.to_string())
-                            .unwrap_or_else(|| "0".to_string()),
-                        asset: t
-                            .get("asset")
-                            .and_then(Value::as_str)
-                            .unwrap_or("")
-                            .to_string(),
-                        contract_address: t
-                            .get("rawContract")
-                            .and_then(|c| c.get("address"))
-                            .and_then(Value::as_str)
-                            .map(str::to_string),
-                        block_number: t
-                            .get("blockNum")
-                            .and_then(Value::as_str)
-                            .and_then(|h| u64::from_str_radix(h.trim_start_matches("0x"), 16).ok()),
-                        timestamp: t
-                            .get("metadata")
-                            .and_then(|m| m.get("blockTimestamp"))
-                            .and_then(Value::as_str)
-                            .map(str::to_string),
-                        status: TransactionStatus::Success,
-                        counter_asset: None,
-                        counter_value: None,
-                        counter_contract_address: None,
-                    });
-                }
-            }
-        }
-        let transactions = Self::merge_swap_legs(transactions, address);
+        let (transactions, cursor) = self
+            .fetch_transaction_page(chain, address, ActivityCursor::default())
+            .await?;
 
         Ok(AddressActivity {
             balances,
             transactions,
+            next_cursor: cursor.into_next_cursor(),
+        })
+    }
+
+    async fn transaction_page(
+        &self,
+        chain: ChainId,
+        address: &str,
+        cursor: Value,
+    ) -> ProviderResult<TransactionPage> {
+        let cursor: ActivityCursor = serde_json::from_value(cursor)
+            .map_err(|_| ProviderError::InvalidInput("invalid pagination cursor".into()))?;
+        let (transactions, cursor) = self.fetch_transaction_page(chain, address, cursor).await?;
+        Ok(TransactionPage {
+            transactions,
+            next_cursor: cursor.into_next_cursor(),
         })
     }
 }
@@ -472,5 +566,73 @@ mod tests {
         let merged = AlchemyProvider::merge_swap_legs(three_legs, ME);
         assert_eq!(merged.len(), 3);
         assert!(merged.iter().all(|t| t.counter_asset.is_none()));
+    }
+
+    fn sample_leg_at_block(hash: &str, from: &str, to: &str, asset: &str, block: u64) -> Transaction {
+        Transaction {
+            block_number: Some(block),
+            ..sample_leg(hash, from, to, asset)
+        }
+    }
+
+    #[test]
+    fn extract_page_returns_the_newest_page_size_items_and_buffers_the_rest() {
+        const ME: &str = "0xMe";
+        let buffer: Vec<Transaction> = (0..TRANSACTION_PAGE_SIZE as u64 + 10)
+            .map(|i| sample_leg_at_block(&format!("0xhash{i}"), "0xA", ME, "ETH", i))
+            .collect();
+
+        let (page, leftover) = AlchemyProvider::extract_page(buffer, ME);
+
+        assert_eq!(page.len(), TRANSACTION_PAGE_SIZE);
+        assert_eq!(leftover.len(), 10);
+        // Newest (highest block number) first, and none of the returned
+        // page's hashes should reappear in the leftover.
+        assert!(page.windows(2).all(|w| w[0].block_number >= w[1].block_number));
+        let page_hashes: std::collections::HashSet<&str> =
+            page.iter().map(|t| t.hash.as_str()).collect();
+        assert!(leftover.iter().all(|t| !page_hashes.contains(t.hash.as_str())));
+    }
+
+    #[test]
+    fn extract_page_keeps_a_merged_swaps_two_legs_together() {
+        const ME: &str = "0xMe";
+        const ROUTER: &str = "0xRouter";
+        let swap_block = TRANSACTION_PAGE_SIZE as u64 + 100;
+        let mut buffer = vec![
+            sample_leg_at_block("0xswap", ME, ROUTER, "USDC", swap_block),
+            sample_leg_at_block("0xswap", ROUTER, ME, "ETH", swap_block),
+        ];
+        // Pad past the page size with older, unrelated transfers so the swap
+        // pair's shared hash is the only thing standing between "both legs
+        // returned" and "both legs dropped as leftover".
+        buffer.extend((0..TRANSACTION_PAGE_SIZE as u64).map(|i| {
+            sample_leg_at_block(&format!("0xpad{i}"), "0xA", ME, "ETH", i)
+        }));
+
+        let (page, leftover) = AlchemyProvider::extract_page(buffer, ME);
+
+        assert_eq!(page.first().unwrap().hash, "0xswap");
+        assert_eq!(page.first().unwrap().counter_asset.as_deref(), Some("ETH"));
+        assert!(leftover.iter().all(|t| t.hash != "0xswap"));
+    }
+
+    #[test]
+    fn cursor_reports_done_only_once_both_directions_are_exhausted_and_drained() {
+        let mut cursor = ActivityCursor::default();
+        assert!(cursor.clone().into_next_cursor().is_some(), "fresh cursor still has work to do");
+
+        cursor.from.exhausted = true;
+        cursor.to.exhausted = true;
+        assert!(
+            cursor.clone().into_next_cursor().is_none(),
+            "both directions exhausted and buffer empty means there's nothing left"
+        );
+
+        cursor.buffer.push(sample_leg("0xleftover", "0xA", "0xMe", "ETH"));
+        assert!(
+            cursor.into_next_cursor().is_some(),
+            "still-buffered leftover means there's more to hand out even once both directions are exhausted"
+        );
     }
 }

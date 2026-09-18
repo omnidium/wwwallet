@@ -3,8 +3,8 @@ use async_trait::async_trait;
 use crate::chain::ChainId;
 use crate::error::ProviderResult;
 use crate::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPrep,
-    TransactionStatus,
+    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPage,
+    TransactionPrep, TransactionStatus,
 };
 
 /// Fetches native + token balances and recent transactions for an address.
@@ -20,6 +20,17 @@ pub trait ActivityProvider {
         chain: ChainId,
         address: &str,
     ) -> ProviderResult<AddressActivity>;
+
+    /// Continues transaction history past whatever `address_activity` (or a
+    /// previous call to this method) already returned, using the opaque
+    /// `cursor` it handed back as `next_cursor`. Does not re-fetch balances —
+    /// callers already have those from the initial `address_activity` call.
+    async fn transaction_page(
+        &self,
+        chain: ChainId,
+        address: &str,
+        cursor: serde_json::Value,
+    ) -> ProviderResult<TransactionPage>;
 }
 
 /// Fetches ERC-20 token metadata (name/symbol/decimals/logo). Backed by Ethplorer.

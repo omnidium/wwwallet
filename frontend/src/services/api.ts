@@ -71,9 +71,18 @@ export interface Transaction {
   counter_contract_address: string | null
 }
 
+/** Opaque — pass back verbatim to `transactionPage` to fetch older transactions. Never inspect its shape. */
+export type ActivityCursor = unknown
+
 export interface AddressActivity {
   balances: Balance[]
   transactions: Transaction[]
+  next_cursor: ActivityCursor | null
+}
+
+export interface TransactionPage {
+  transactions: Transaction[]
+  next_cursor: ActivityCursor | null
 }
 
 export interface TokenMetadata {
@@ -121,6 +130,11 @@ export type ChainSlug = 'ethereum' | 'polygon' | 'arbitrum' | 'base' | 'optimism
 export const api = {
   addressActivity: (chain: ChainSlug, address: string) =>
     getJson<AddressActivity>(`/api/v1/chains/${chain}/address/${encodeURIComponent(address)}`),
+  transactionPage: (chain: ChainSlug, address: string, cursor: ActivityCursor) =>
+    postJson<TransactionPage>(
+      `/api/v1/chains/${chain}/address/${encodeURIComponent(address)}/transactions/more`,
+      { cursor },
+    ),
   tokenMetadata: (chain: ChainSlug, address: string) =>
     getJson<TokenMetadata>(`/api/v1/chains/${chain}/token/${encodeURIComponent(address)}`),
   nativePrice: (chain: ChainSlug) => getJson<NativePrice>(`/api/v1/chains/${chain}/native-price`),

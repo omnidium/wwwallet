@@ -20,8 +20,8 @@ use crate::traits::{
     TransactionStatusProvider,
 };
 use crate::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPrep,
-    TransactionStatus,
+    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPage,
+    TransactionPrep, TransactionStatus,
 };
 use crate::zerox::ZeroExProvider;
 
@@ -138,6 +138,22 @@ impl ProviderRegistry {
             self.activity.address_activity(chain, address).await
         })
         .await
+    }
+
+    /// Never cached — each call continues a specific client's own in-progress
+    /// scroll via its opaque cursor, so there's no shared key to cache under
+    /// the way there is for the first page. Always spends the rate-limit
+    /// budget (unlike the cached methods above): every call here is by
+    /// definition a fresh upstream fetch.
+    pub async fn transaction_page(
+        &self,
+        chain: ChainId,
+        address: &str,
+        cursor: serde_json::Value,
+        client_ip: &str,
+    ) -> ProviderResult<TransactionPage> {
+        self.check_rate_limit(client_ip, "transaction_page").await?;
+        self.activity.transaction_page(chain, address, cursor).await
     }
 
     pub async fn token_metadata(

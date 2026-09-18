@@ -44,6 +44,21 @@ pub enum TransactionStatus {
 pub struct AddressActivity {
     pub balances: Vec<Balance>,
     pub transactions: Vec<Transaction>,
+    /// Opaque continuation token for fetching older transactions past this
+    /// batch — pass back verbatim to the transactions-page endpoint. `None`
+    /// means this is the address's entire history. Callers must not inspect
+    /// or construct this value; its shape is a private implementation detail
+    /// of whichever ActivityProvider produced it.
+    #[serde(default)]
+    pub next_cursor: Option<serde_json::Value>,
+}
+
+/// One page of older transactions, fetched via `ActivityProvider::transaction_page`.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionPage {
+    pub transactions: Vec<Transaction>,
+    #[serde(default)]
+    pub next_cursor: Option<serde_json::Value>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
