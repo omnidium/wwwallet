@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n'
 import type { ChainSlug, Transaction } from '@/services/api'
 import { txnUrl, addressUrl } from '@/services/blockExplorer'
 import { addressDisplayLabel } from '@/services/addressLabel'
+import { formatAmount } from '@/services/money'
 
 const props = defineProps<{
   modelValue: boolean
@@ -65,11 +66,11 @@ const { t } = useI18n({ useScope: 'global' })
             </tr>
             <tr>
               <td>{{ transaction.counter_asset != null ? t('transactionDetail.sold') : t('transactionDetail.amount') }}</td>
-              <td>{{ transaction.value }} {{ transaction.asset }}</td>
+              <td>{{ formatAmount(Number(transaction.value)) }} {{ transaction.asset }}</td>
             </tr>
             <tr v-if="transaction.counter_asset != null">
               <td>{{ t('transactionDetail.bought') }}</td>
-              <td>{{ transaction.counter_value }} {{ transaction.counter_asset }}</td>
+              <td>{{ formatAmount(Number(transaction.counter_value)) }} {{ transaction.counter_asset }}</td>
             </tr>
           </tbody>
         </table>

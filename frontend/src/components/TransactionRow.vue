@@ -3,6 +3,7 @@ import { computed, watch } from 'vue'
 import type { ChainSlug, Transaction } from '@/services/api'
 import { useChainDataStore } from '@/stores/chainData'
 import { addressDisplayLabel } from '@/services/addressLabel'
+import { formatAmount } from '@/services/money'
 
 const props = defineProps<{ transaction: Transaction; myAddress: string; chain: ChainSlug }>()
 defineEmits<{ click: [] }>()
@@ -46,13 +47,13 @@ watch(
     <div class="d-flex align-center">
       <v-avatar v-if="soldLogoUrl" :image="soldLogoUrl" size="20" class="mr-1" />
       <v-icon v-else icon="mdi-cash" size="20" class="mr-1" />
-      <span class="txn-row-amount text-send">−{{ transaction.value }} {{ transaction.asset }}</span>
+      <span class="txn-row-amount text-send">−{{ formatAmount(Number(transaction.value)) }} {{ transaction.asset }}</span>
     </div>
     <v-icon icon="mdi-arrow-right-thin" size="small" class="mx-2 text-medium-emphasis" />
     <div class="d-flex align-center">
       <v-avatar v-if="boughtLogoUrl" :image="boughtLogoUrl" size="20" class="mr-1" />
       <v-icon v-else icon="mdi-cash" size="20" class="mr-1" />
-      <span class="txn-row-amount text-receive">+{{ transaction.counter_value }} {{ transaction.counter_asset }}</span>
+      <span class="txn-row-amount text-receive">+{{ formatAmount(Number(transaction.counter_value)) }} {{ transaction.counter_asset }}</span>
     </div>
     <v-spacer />
     <span v-if="transaction.status !== 'success'" class="text-caption text-warning">
@@ -74,7 +75,7 @@ watch(
       {{ transaction.status }}
     </span>
     <span class="txn-row-amount font-weight-medium" :class="isOutgoing ? 'text-send' : 'text-receive'">
-      {{ isOutgoing ? '−' : '+' }}{{ transaction.value }} {{ transaction.asset }}
+      {{ isOutgoing ? '−' : '+' }}{{ formatAmount(Number(transaction.value)) }} {{ transaction.asset }}
     </span>
   </div>
 </template>

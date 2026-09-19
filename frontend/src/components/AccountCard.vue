@@ -6,7 +6,7 @@ import type { WalletAccount } from '@/stores/accounts'
 import { useAccountsStore } from '@/stores/accounts'
 import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
-import { toHumanAmount, convertUsd, formatFiat } from '@/services/money'
+import { toHumanAmount, convertUsd, formatFiat, formatAmount } from '@/services/money'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
 import { mapWithConcurrency } from '@/services/concurrencyLimit'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
@@ -222,7 +222,7 @@ async function toggleShow() {
       <div class="flex-grow-1">
         <span class="balance-figure">{{ fiatTotal ?? '—' }}</span>
         <span v-if="nativeBalance !== null" class="text-medium-emphasis ml-1">
-          ({{ nativeBalance.toFixed(5) }} {{ nativeSymbol }})
+          ({{ formatAmount(nativeBalance) }} {{ nativeSymbol }})
         </span>
       </div>
       <AppTooltip :text="expandedTxns ? t('accountCard.hideTransactions') : t('accountCard.showTransactions')">
@@ -269,7 +269,7 @@ async function toggleShow() {
           <v-avatar v-if="tokenRow.logoUrl" :image="tokenRow.logoUrl" size="24" />
           <v-icon v-else icon="mdi-cash" size="24" />
         </template>
-        <v-list-item-title>{{ tokenRow.name ?? tokenRow.symbol }} ({{ tokenRow.amount.toFixed(4) }} {{ tokenRow.symbol
+        <v-list-item-title>{{ tokenRow.name ?? tokenRow.symbol }} ({{ formatAmount(tokenRow.amount) }} {{ tokenRow.symbol
           }})</v-list-item-title>
         <template #append>
           <span v-if="tokenRow.fiat">{{ tokenRow.fiat }}</span>

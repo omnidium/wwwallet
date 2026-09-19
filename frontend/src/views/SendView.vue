@@ -23,6 +23,7 @@ import {
   convertToUsd,
   formatFiat,
   currencySymbol,
+  formatAmount,
 } from '@/services/money'
 import { truncateAddress } from '@/services/format'
 import { addressDisplayLabel } from '@/services/addressLabel'
@@ -201,7 +202,7 @@ function accountOptionLabel(acc: { label: string; chain: ChainSlug; address: str
           locale.value,
         )
       : '—'
-  return `${acc.label} ${fiatStr} (${humanAmount.toFixed(5)} ${native.symbol})`
+  return `${acc.label} ${fiatStr} (${formatAmount(humanAmount)} ${native.symbol})`
 }
 
 const fromAccountOptions = computed(() =>
@@ -386,7 +387,7 @@ function formatAmountRow(
   symbol: string,
   usdPrice: number | null,
 ): { value: string; sub?: string } {
-  const nativeStr = `${humanAmount.toFixed(6)} ${symbol}`
+  const nativeStr = `${formatAmount(humanAmount)} ${symbol}`
   if (usdPrice === null) return { value: nativeStr }
   const fiat = formatFiat(
     convertUsd(humanAmount * usdPrice, settingsLocale.currency, chainData.fxRates),
@@ -641,7 +642,7 @@ const swapReviewRows = ref<ReviewRow[]>([])
 
 function formatNativeFee(feeWei: bigint): { value: string; sub?: string } {
   const human = Number(formatUnits(feeWei, 18))
-  const nativeStr = `${human.toFixed(6)} ${chain === 'polygon' ? 'MATIC' : 'ETH'}`
+  const nativeStr = `${formatAmount(human)} ${chain === 'polygon' ? 'MATIC' : 'ETH'}`
   const priceUsd = chainData.nativePriceUsdByChain[chain]
   if (priceUsd === undefined) return { value: nativeStr }
   const fiat = formatFiat(
@@ -682,7 +683,7 @@ async function getQuote() {
       sellAmountWei,
       address,
     )
-    buyAmountFormatted.value = formatUnits(quote.value.buy_amount, buyDecimals)
+    buyAmountFormatted.value = formatAmount(Number(formatUnits(quote.value.buy_amount, buyDecimals)))
   } catch (err) {
     messages.push((err as Error).message, 'error')
   } finally {
@@ -957,7 +958,7 @@ async function confirmSwap() {
 
           <template v-if="quote">
             <v-alert type="info" variant="tonal" class="mb-4">
-              {{ t('swap.estimateText', { amount: buyAmountFormatted, price: quote.price }) }}
+              {{ t('swap.estimateText', { amount: buyAmountFormatted, price: formatAmount(Number(quote.price)) }) }}
               <p class="text-caption mt-2 mb-0" style="word-break: break-all">
                 {{ t('swap.signingNotice', { address: quote.to }) }}
               </p>

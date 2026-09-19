@@ -6,7 +6,7 @@ import { api, type ChainSlug, type TokenMetadata } from '@/services/api'
 import { useMessagesStore } from '@/stores/messages'
 import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
-import { toHumanAmount, convertUsd, formatFiat } from '@/services/money'
+import { toHumanAmount, convertUsd, formatFiat, formatAmount } from '@/services/money'
 import { tokenUrl } from '@/services/blockExplorer'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
@@ -152,7 +152,7 @@ function openTransaction(txn: Transaction) {
           {{ t('token.amount') }}
           <InfoTooltip :text="t('token.amountTooltip', { symbol: metadata?.symbol ?? '' })" />
         </span>
-        <span>{{ amountHeld.toFixed(5) }} {{ metadata?.symbol }}</span>
+        <span>{{ formatAmount(amountHeld) }} {{ metadata?.symbol }}</span>
       </div>
 
       <div v-if="totalFormatted" class="detail-row d-flex align-center justify-space-between py-2">
