@@ -127,20 +127,28 @@ const { loadNextBatch: loadNextTransactionBatch, isLoading: loadingMoreTxns } = 
 )
 useInfiniteScroll(() => void loadNextTransactionBatch(), expandedListEl)
 
-// Re-checks every held token's metadata on every periodic account refresh
-// (tokenBalances changes each time loadAddressActivity re-runs) — including
-// ones already resolved, since usd_price is live and needs to stay current,
-// not just newly-seen tokens' name/symbol/decimals/logo. Cheap for tokens
-// that don't actually need it yet: loadTokenMetadata's own cachedFetch skips
-// the network call entirely while its cached copy is still within
-// TOKEN_METADATA_MAX_AGE_MS. Concurrency-limited rather than firing one
-// request per held token all at once — the backend's rate limiter is sized
-// for a slow trickle, and a long-lived address can easily hold 50+ tokens
-// (airdropped dust included), which blew straight through it and left most
-// of them permanently unlabeled until a manual reload happened to land in a
-// fresh rate-limit window.
+// Re-checks token metadata on every periodic account refresh (tokenBalances
+// changes each time loadAddressActivity re-runs), but only for tokens not
+// yet resolved at all, or already known to carry a live usd_price — that
+// price is the one field in the metadata blob worth re-fetching for, and
+// most held tokens (airdropped dust especially) never have one, so there's
+// nothing to gain from re-asking for them forever once their first fetch
+// comes back priceless. Skipping those is what keeps this watcher's steady-
+// state request volume bounded for a long-lived address that can easily
+// hold 50+ tokens — re-checking literally everything every cycle blew
+// straight through the backend's rate limiter for exactly that kind of
+// address. Cheap either way for anything that doesn't actually need it yet:
+// loadTokenMetadata's own cachedFetch skips the network call entirely while
+// its cached copy is still within TOKEN_METADATA_MAX_AGE_MS. Concurrency-
+// limited rather than firing one request per held token all at once, for
+// the same reason.
 watch(tokenBalances, (balances) => {
-  void mapWithConcurrency(balances, 4, async (b) => {
+  const toFetch = balances.filter((b) => {
+    const key = chainData.keyFor(props.account.chain, b.contract_address!)
+    const existing = chainData.tokenMetadataByKey[key]
+    return !existing || existing.usd_price != null
+  })
+  void mapWithConcurrency(toFetch, 4, async (b) => {
     try {
       await chainData.loadTokenMetadata(props.account.chain, b.contract_address!)
     } catch {
