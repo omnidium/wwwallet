@@ -10,7 +10,7 @@ import {
 } from '@/services/api'
 import { cachedFetch } from '@/services/cachedFetch'
 import { db } from '@/services/db'
-import { DEFAULT_TRANSACTION_BATCH_SIZE } from '@/config/appSettings'
+import { DEFAULT_TRANSACTION_BATCH_SIZE, TOKEN_METADATA_MAX_AGE_MS } from '@/config/appSettings'
 
 /**
  * Refreshes matching transactions in place (e.g. a status flip from pending
@@ -215,6 +215,7 @@ export const useChainDataStore = defineStore('chainData', () => {
       `token-metadata:${key}`,
       () => api.tokenMetadata(chain, contractAddress),
       (fresh) => { tokenMetadataByKey.value[key] = fresh },
+      TOKEN_METADATA_MAX_AGE_MS,
     )
   }
 

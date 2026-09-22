@@ -23,6 +23,16 @@ export const ACCOUNT_AUTO_REFRESH_MS = 10 * 60_000
 export const DUST_THRESHOLD_USD = 0.01
 
 /**
+ * How long a cached token's name/symbol/decimals/logo is trusted before
+ * re-fetching — this data is effectively immutable once resolved, so there's
+ * no reason to re-hit the backend for it on every app load the way price or
+ * activity data needs to. A wallet holding many tokens re-requesting all of
+ * them on every hard refresh is what was driving repeated rate-limit/upstream
+ * errors for data that hadn't changed since the last successful fetch.
+ */
+export const TOKEN_METADATA_MAX_AGE_MS = 24 * 60 * 60 * 1000
+
+/**
  * How many transactions a single infinite-scroll "load more" batch tries to
  * surface before stopping (see useTransactionBatchLoader) — user-configurable
  * from Settings, this is just the default for a vault that's never set one.
