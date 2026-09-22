@@ -24,7 +24,7 @@ const messages = useMessagesStore()
 const chainData = useChainDataStore()
 const settingsLocale = useSettingsLocaleStore()
 
-const hideDustTxns = ref(false)
+const hideDustTxns = ref(true)
 const detailTransaction = ref<Transaction | null>(null)
 const detailOpen = ref(false)
 
@@ -108,7 +108,7 @@ const transactionGroups = computed(() => groupTransactionsByDate(visibleTokenTra
 const txnListEl = ref<HTMLElement | null>(null)
 const { loadNextBatch: loadNextTokenBatch, isLoading: loadingMoreTxns } = holderAddress
   ? useTransactionBatchLoader(chain, holderAddress, () => visibleTokenTransactions.value.length)
-  : { loadNextBatch: async () => {}, isLoading: ref(false) }
+  : { loadNextBatch: async () => { }, isLoading: ref(false) }
 useInfiniteScroll(() => void loadNextTokenBatch(), txnListEl)
 
 function openTransaction(txn: Transaction) {
@@ -121,7 +121,7 @@ function openTransaction(txn: Transaction) {
   <div class="token-detail-view">
     <v-progress-linear v-if="loading" indeterminate class="mb-4" />
 
-    <div class="d-flex align-center mb-4">
+    <div class="d-flex align-center mb-2">
       <v-avatar v-if="metadata?.logo_url" :image="metadata.logo_url" size="40" class="mr-3" />
       <v-icon v-else icon="mdi-cash-multiple" size="large" class="mr-3" />
       <h1 class="text-h5">
@@ -172,24 +172,12 @@ function openTransaction(txn: Transaction) {
       <h2 class="text-h6 mt-6 mb-2">{{ t('transactions.title') }}</h2>
       <v-card class="pa-2 token-detail-txn-card" max-width="480">
         <div ref="txnListEl" class="expanded-list pa-2">
-          <v-switch
-            v-model="hideDustTxns"
-            :label="t('accountCard.hideDustTxns')"
-            density="compact"
-            hide-details
-            color="primary"
-            class="dust-toggle"
-          />
+          <v-switch v-model="hideDustTxns" :label="t('accountCard.hideDustTxns')" density="compact" hide-details
+            color="primary" class="dust-toggle" />
           <template v-for="group in transactionGroups" :key="group.dateLabel">
             <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
-            <TransactionRow
-              v-for="txn in group.transactions"
-              :key="txn.hash"
-              :transaction="txn"
-              :my-address="holderAddress"
-              :chain="chain"
-              @click="openTransaction(txn)"
-            />
+            <TransactionRow v-for="txn in group.transactions" :key="txn.hash" :transaction="txn"
+              :my-address="holderAddress" :chain="chain" @click="openTransaction(txn)" />
           </template>
           <p v-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
             {{ t('transactions.empty') }}

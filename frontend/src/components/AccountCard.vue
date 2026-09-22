@@ -33,7 +33,7 @@ const settingsLocale = useSettingsLocaleStore()
 
 const expandedTxns = ref(false)
 const expandedTokens = ref(false)
-const hideDustTxns = ref(false)
+const hideDustTxns = ref(true)
 const hideUnknownTokens = ref(true)
 const justCopied = ref(false)
 const editOpen = ref(false)
@@ -176,55 +176,55 @@ async function toggleShow() {
         <template #default="{ activatorProps }">
           <img v-bind="activatorProps" src="/drag_dots.svg" :alt="t('accountCard.dragToReorder')" class="drag-handle" />
         </template>
-</AppTooltip>
-</div>
-<div class=" card-header d-flex align-center pa-4 pb-2">
-          <span v-if="account.isDefault" class="mr-1">*</span>
-          <p class="account-name flex-grow-0 text-truncate" style="cursor: pointer" @click="copyAddress">
-            {{ account.label }}
-          </p>
-          <AppTooltip :text="justCopied ? t('accountCard.copied') : t('accountCard.copyAddress')">
+      </AppTooltip>
+    </div>
+    <div class=" card-header d-flex align-center pa-4 pb-2">
+      <span v-if="account.isDefault" class="mr-1">*</span>
+      <p class="account-name flex-grow-0 text-truncate" style="cursor: pointer" @click="copyAddress">
+        {{ account.label }}
+      </p>
+      <AppTooltip :text="justCopied ? t('accountCard.copied') : t('accountCard.copyAddress')">
+        <template #default="{ activatorProps }">
+          <v-icon v-bind="activatorProps" icon="mdi-content-copy" size="large" class="mr-2 ml-5" role="button"
+            @click="copyAddress" />
+        </template>
+      </AppTooltip>
+      <AppTooltip :text="t('accountCard.viewQr')">
+        <template #default="{ activatorProps }">
+          <v-icon v-bind="activatorProps" icon="mdi-qrcode" size="large" class="mr-2" role="button"
+            :aria-label="t('accountCard.viewQr')"
+            @click="$router.push(`/accounts/${account.chain}/${account.address}/receive`)" />
+        </template>
+      </AppTooltip>
+      <p class="flex-grow-1"></p>
+      <AppTooltip :text="t('accountCard.send')">
+        <template #default="{ activatorProps }">
+          <v-icon v-bind="activatorProps" icon="mdi-send" size="large" class="mr-5 transfer-handle" role="button"
+            tabindex="0" aria-hidden="false" :aria-label="t('accountCard.send')"
+            @pointerdown="emit('transferPointerdown', $event)" @keydown.enter="goToSend"
+            @keydown.space.prevent="goToSend" />
+        </template>
+      </AppTooltip>
+      <v-menu>
+        <template #activator="{ props: menuProps }">
+          <AppTooltip :text="t('accountCard.moreActions')">
             <template #default="{ activatorProps }">
-              <v-icon v-bind="activatorProps" icon="mdi-content-copy" size="large" class="mr-2 ml-5" role="button"
-                @click="copyAddress" />
+              <v-icon v-bind="{ ...menuProps, ...activatorProps }" icon="mdi-dots-horizontal" role="button"
+                :aria-label="t('accountCard.moreActions')" />
             </template>
           </AppTooltip>
-          <AppTooltip :text="t('accountCard.viewQr')">
-            <template #default="{ activatorProps }">
-              <v-icon v-bind="activatorProps" icon="mdi-qrcode" size="large" class="mr-2" role="button"
-                :aria-label="t('accountCard.viewQr')"
-                @click="$router.push(`/accounts/${account.chain}/${account.address}/receive`)" />
-            </template>
-          </AppTooltip>
-          <p class="flex-grow-1"></p>
-          <AppTooltip :text="t('accountCard.send')">
-            <template #default="{ activatorProps }">
-              <v-icon v-bind="activatorProps" icon="mdi-send" size="large" class="mr-5 transfer-handle" role="button"
-                tabindex="0" aria-hidden="false" :aria-label="t('accountCard.send')"
-                @pointerdown="emit('transferPointerdown', $event)" @keydown.enter="goToSend"
-                @keydown.space.prevent="goToSend" />
-            </template>
-          </AppTooltip>
-          <v-menu>
-            <template #activator="{ props: menuProps }">
-              <AppTooltip :text="t('accountCard.moreActions')">
-                <template #default="{ activatorProps }">
-                  <v-icon v-bind="{ ...menuProps, ...activatorProps }" icon="mdi-dots-horizontal" role="button"
-                    :aria-label="t('accountCard.moreActions')" />
-                </template>
-              </AppTooltip>
-            </template>
-            <v-list density="compact">
-              <v-list-item :title="t('accountCard.edit')" prepend-icon="mdi-pencil" @click="editOpen = true" />
-              <v-list-item v-if="account.visible" :title="t('accountCard.hide')" prepend-icon="mdi-eye-off"
-                @click="hideOpen = true" />
-              <v-list-item v-else :title="t('accountCard.show')" prepend-icon="mdi-eye" @click="toggleShow" />
-              <v-list-item :title="t('accountCard.viewPrivateKey')" prepend-icon="mdi-key"
-                @click="revealPrivateKeyOpen = true" />
-              <v-list-item v-if="account.hasMnemonic" :title="t('accountCard.viewMnemonic')"
-                prepend-icon="mdi-format-list-numbered" @click="revealMnemonicOpen = true" />
-            </v-list>
-          </v-menu>
+        </template>
+        <v-list density="compact">
+          <v-list-item :title="t('accountCard.edit')" prepend-icon="mdi-pencil" @click="editOpen = true" />
+          <v-list-item v-if="account.visible" :title="t('accountCard.hide')" prepend-icon="mdi-eye-off"
+            @click="hideOpen = true" />
+          <v-list-item v-else :title="t('accountCard.show')" prepend-icon="mdi-eye" @click="toggleShow" />
+          <v-list-item :title="t('accountCard.viewPrivateKey')" prepend-icon="mdi-key"
+            @click="revealPrivateKeyOpen = true" />
+          <v-list-item v-if="account.hasMnemonic" :title="t('accountCard.viewMnemonic')"
+            prepend-icon="mdi-format-list-numbered" @click="revealMnemonicOpen = true" />
+        </v-list>
+      </v-menu>
     </div>
 
     <div class="balance-row pa-3 d-flex align-center" @click="expandedTxns = !expandedTxns">
@@ -279,7 +279,8 @@ async function toggleShow() {
           <v-avatar v-if="tokenRow.logoUrl" :image="tokenRow.logoUrl" size="24" />
           <v-icon v-else icon="mdi-cash" size="24" />
         </template>
-        <v-list-item-title>{{ tokenRow.name ?? tokenRow.symbol }} ({{ formatAmount(tokenRow.amount) }} {{ tokenRow.symbol
+        <v-list-item-title>{{ tokenRow.name ?? tokenRow.symbol }} ({{ formatAmount(tokenRow.amount) }} {{
+          tokenRow.symbol
           }})</v-list-item-title>
         <template #append>
           <span v-if="tokenRow.fiat">{{ tokenRow.fiat }}</span>
