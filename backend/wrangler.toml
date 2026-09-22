@@ -34,12 +34,15 @@ id = "d55b9cdf94e74f2c820845159cca7528"
 # an address holding many tokens (airdropped dust included) can easily need
 # 50-100+ distinct, never-before-cached token-metadata lookups on its very
 # first load, all of which are legitimate, so 30/60s left real wallets stuck
-# retrying indefinitely. Raised well above that for headroom on a cold start.
+# retrying indefinitely. A single wallet spanning several accounts, each
+# holding that many tokens, shares this one per-IP budget across all of them
+# (see check_rate_limit's key), so 120 still wasn't enough headroom in
+# practice — raised further for that case.
 [[ratelimits]]
 name = "RATE_LIMITER_DEFAULT"
 namespace_id = "1001"
 [ratelimits.simple]
-limit = 120
+limit = 300
 period = 60
 
 # Broadcasting costs real gas-network RPC quota and, unlike the read routes,
