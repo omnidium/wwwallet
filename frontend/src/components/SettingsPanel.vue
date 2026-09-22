@@ -20,6 +20,7 @@ const chainData = useChainDataStore()
 const theme = useTheme()
 const router = useRouter()
 const isDark = ref(getStoredTheme() === 'dark')
+const appVersion = __APP_VERSION__
 
 function setTransactionBatchSize(size: number) {
   chainData.setTransactionBatchSize(size)
@@ -106,5 +107,7 @@ function lockNow() {
       <v-list-item to="/payees" :title="t('payees.title')" prepend-icon="mdi-account" append-icon="mdi-chevron-right" @click="emit('close')" />
       <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock" append-icon="mdi-chevron-right" @click="emit('close')" />
     </v-list>
+
+    <p class="text-caption text-medium-emphasis text-center mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
   </div>
 </template>

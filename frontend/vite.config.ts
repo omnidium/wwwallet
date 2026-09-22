@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+import { execSync } from 'node:child_process'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -6,14 +7,34 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import vuetify from 'vite-plugin-vuetify'
 import { VitePWA } from 'vite-plugin-pwa'
 
+// The commit itself is the version — no separate number to bump, and it
+// points straight at exactly what's deployed for debugging. Falls back to
+// 'dev' outside a git checkout (e.g. a source tarball) rather than failing
+// the build over a version string nothing depends on functionally.
+function getAppVersion(): string {
+  try {
+    return execSync('git rev-parse --short HEAD').toString().trim()
+  } catch {
+    return 'dev'
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    __APP_VERSION__: JSON.stringify(getAppVersion()),
+  },
   plugins: [
     vue(),
     vueDevTools(),
     vuetify({ autoImport: true }),
     VitePWA({
       registerType: 'autoUpdate',
+      // We call registerSW ourselves (see services/pwaUpdate.ts) so it can
+      // also poll for updates on an interval, not just once per load —
+      // injecting the plugin's own default registration script alongside
+      // that would register the service worker twice.
+      injectRegister: false,
       includeAssets: ['favicon.ico', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-512-maskable.png'],
       manifest: {
         name: 'wwwallet',
