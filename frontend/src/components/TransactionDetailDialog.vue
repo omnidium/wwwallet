@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n'
 import type { ChainSlug, Transaction } from '@/services/api'
 import { txnUrl, addressUrl } from '@/services/blockExplorer'
 import { addressDisplayLabel } from '@/services/addressLabel'
+import { truncateAddress } from '@/services/format'
 import { formatAmount } from '@/services/money'
 
 const props = defineProps<{
@@ -26,7 +27,7 @@ const { t } = useI18n({ useScope: 'global' })
               <td>{{ t('transactionDetail.hash') }}</td>
               <td>
                 <a :href="txnUrl(props.chain, transaction.hash)" target="_blank" rel="noopener noreferrer">{{
-                  transaction.hash
+                  truncateAddress(transaction.hash)
                 }}</a>
               </td>
             </tr>

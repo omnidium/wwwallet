@@ -3,6 +3,7 @@ import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { WalletAccount } from '@/stores/accounts'
 import { useAccountsStore } from '@/stores/accounts'
+import { truncateAddress } from '@/services/format'
 
 const props = defineProps<{ modelValue: boolean; account: WalletAccount | null }>()
 const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
@@ -36,7 +37,7 @@ async function save() {
     <v-card v-if="account" class="pa-4">
       <v-card-title>{{ t('editAccount.title') }}</v-card-title>
       <v-card-text>
-        <p class="text-caption text-medium-emphasis mb-2" style="word-break: break-all">{{ account.address }}</p>
+        <p class="text-caption text-medium-emphasis mb-2">{{ truncateAddress(account.address) }}</p>
         <v-text-field v-model="label" :label="t('editAccount.labelField')" autofocus />
         <v-checkbox v-model="setAsDefault" :label="t('editAccount.setDefault')" density="compact" hide-details />
       </v-card-text>

@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePayeesStore } from '@/stores/payees'
 import { isValidAddress } from '@/services/wallet'
+import { truncateAddress } from '@/services/format'
 import type { ChainSlug } from '@/services/api'
 import AppTooltip from '@/components/AppTooltip.vue'
 
@@ -53,7 +54,7 @@ async function remove(id: string) {
       {{ t('payees.empty') }}
     </v-alert>
     <v-list v-else>
-      <v-list-item v-for="payee in payees.payees" :key="payee.id" :title="payee.label" :subtitle="`${payee.address} (${payee.chain})`">
+      <v-list-item v-for="payee in payees.payees" :key="payee.id" :title="payee.label" :subtitle="`${truncateAddress(payee.address)} (${payee.chain})`">
         <template #append>
           <AppTooltip :text="t('payees.deleteAria', { label: payee.label })">
             <template #default="{ activatorProps }">

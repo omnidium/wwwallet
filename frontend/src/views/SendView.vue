@@ -959,8 +959,8 @@ async function confirmSwap() {
           <template v-if="quote">
             <v-alert type="info" variant="tonal" class="mb-4">
               {{ t('swap.estimateText', { amount: buyAmountFormatted, price: formatAmount(Number(quote.price)) }) }}
-              <p class="text-caption mt-2 mb-0" style="word-break: break-all">
-                {{ t('swap.signingNotice', { address: quote.to }) }}
+              <p class="text-caption mt-2 mb-0">
+                {{ t('swap.signingNotice', { address: truncateAddress(quote.to) }) }}
               </p>
             </v-alert>
             <v-btn color="primary" block :loading="swapBusy" @click="onSwapClick">{{

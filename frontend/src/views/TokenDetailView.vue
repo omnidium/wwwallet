@@ -8,6 +8,7 @@ import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { toHumanAmount, convertUsd, formatFiat, formatAmount } from '@/services/money'
 import { tokenUrl } from '@/services/blockExplorer'
+import { truncateAddress } from '@/services/format'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import { useTransactionBatchLoader } from '@/composables/useTransactionBatchLoader'
@@ -132,8 +133,8 @@ function openTransaction(txn: Transaction) {
     <v-card class="pa-4" max-width="480">
       <div class="detail-row d-flex justify-space-between py-2">
         <span class="text-medium-emphasis">{{ t('common.address') }}</span>
-        <a :href="tokenUrl(chain, address)" target="_blank" rel="noopener noreferrer" style="word-break: break-all">
-          {{ address }}
+        <a :href="tokenUrl(chain, address)" target="_blank" rel="noopener noreferrer">
+          {{ truncateAddress(address) }}
         </a>
       </div>
 

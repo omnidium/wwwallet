@@ -2,6 +2,8 @@
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useChainDataStore } from '@/stores/chainData'
+import { truncateAddress } from '@/services/format'
+import { formatAmount } from '@/services/money'
 import type { ChainSlug } from '@/services/api'
 
 const { t } = useI18n({ useScope: 'global' })
@@ -20,8 +22,8 @@ const activity = chainData.activityByAddress[chainData.keyFor(chain, address)]
         <v-list-item
           v-for="txn in activity.transactions"
           :key="txn.hash"
-          :title="`${txn.value} ${txn.asset}`"
-          :subtitle="txn.hash"
+          :title="`${formatAmount(Number(txn.value))} ${txn.asset}`"
+          :subtitle="truncateAddress(txn.hash)"
           :prepend-icon="txn.from.toLowerCase() === address.toLowerCase() ? 'mdi-tray-arrow-up' : 'mdi-tray-arrow-down'"
           :base-color="txn.from.toLowerCase() === address.toLowerCase() ? 'send' : 'receive'"
         />
