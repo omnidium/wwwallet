@@ -11,6 +11,7 @@ const messages = useMessagesStore()
 const router = useRouter()
 const fileInput = ref<HTMLInputElement | null>(null)
 const restoreWarningOpen = ref(false)
+const restoring = ref(false)
 let pendingRestore: (() => void) | null = null
 
 async function backupToDrive() {
@@ -23,12 +24,15 @@ async function backupToDrive() {
 }
 
 async function restoreFromDrive() {
+  restoring.value = true
   try {
     await vault.restoreFromDrive()
     messages.push(t('msg.restore.driveSuccess'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
+  } finally {
+    restoring.value = false
   }
 }
 
@@ -43,12 +47,15 @@ async function backupToFile() {
 async function onFileSelected(event: Event) {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (!file) return
+  restoring.value = true
   try {
     await vault.restoreFromFile(file)
     messages.push(t('msg.restore.fileSuccess'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
+  } finally {
+    restoring.value = false
   }
 }
 
@@ -105,5 +112,12 @@ function proceedWithRestore() {
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-overlay :model-value="restoring" persistent class="d-flex align-center justify-center">
+      <div class="d-flex flex-column align-center">
+        <v-progress-circular indeterminate size="64" color="primary" class="mb-4" />
+        <p class="text-body-1">{{ t('backup.recovering') }}</p>
+      </div>
+    </v-overlay>
   </div>
 </template>

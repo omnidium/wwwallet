@@ -171,6 +171,7 @@ export default {
     replaceBody:
       "Restoring overwrites everything currently in this vault — accounts, payees, and settings — with what's in the backup, and removes any passkey set up on this device (you'll re-enable it after unlocking). This can't be undone.",
     replaceConfirm: 'Replace it',
+    recovering: 'Recovering wallet…',
   },
   vaultSetup: {
     createTitle: 'Create your wallet',

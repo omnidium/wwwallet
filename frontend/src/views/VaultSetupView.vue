@@ -20,6 +20,7 @@ const savedAck = ref(false)
 const restoreFileInput = ref<HTMLInputElement | null>(null)
 const passkeyUnsupported = ref(false)
 const skipWarningOpen = ref(false)
+const restoring = ref(false)
 
 async function copyRecoveryPhrase() {
   try {
@@ -41,24 +42,30 @@ async function createVault() {
 }
 
 async function restoreFromDrive() {
+  restoring.value = true
   try {
     await vault.restoreFromDrive()
     messages.push(t('msg.restore.driveSuccessSetup'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
+  } finally {
+    restoring.value = false
   }
 }
 
 async function onRestoreFileSelected(event: Event) {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (!file) return
+  restoring.value = true
   try {
     await vault.restoreFromFile(file)
     messages.push(t('msg.restore.fileSuccessSetup'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
     messages.push((err as Error).message, 'error')
+  } finally {
+    restoring.value = false
   }
 }
 
@@ -163,5 +170,12 @@ function finish() {
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-overlay :model-value="restoring" persistent class="d-flex align-center justify-center">
+      <div class="d-flex flex-column align-center">
+        <v-progress-circular indeterminate size="64" color="primary" class="mb-4" />
+        <p class="text-body-1">{{ t('backup.recovering') }}</p>
+      </div>
+    </v-overlay>
   </v-container>
 </template>
