@@ -5,8 +5,8 @@ use worker::RateLimiter;
 
 use crate::alchemy::AlchemyProvider;
 use crate::cache::{
-    self, ADDRESS_ACTIVITY_TTL, CONTRACT_ABI_TTL, FX_RATES_TTL, NATIVE_PRICE_TTL,
-    TOKEN_METADATA_TTL,
+    self, ADDRESS_ACTIVITY_TTL, CONTRACT_ABI_TTL, FX_RATES_STALE_TTL, FX_RATES_TTL,
+    NATIVE_PRICE_STALE_TTL, NATIVE_PRICE_TTL, TOKEN_METADATA_TTL,
 };
 use crate::chain::ChainId;
 use crate::coingecko::CoinGeckoProvider;
@@ -187,7 +187,7 @@ impl ProviderRegistry {
     pub async fn fx_rates(&self, base: &str, client_ip: &str) -> ProviderResult<FxRates> {
         let base = base.to_uppercase();
         let key = format!("fx:{base}");
-        cache::get_or_fetch(&self.kv, &key, FX_RATES_TTL, || async {
+        cache::get_or_fetch_with_stale_fallback(&self.kv, &key, FX_RATES_TTL, FX_RATES_STALE_TTL, || async {
             self.check_rate_limit(client_ip, "fx_rates").await?;
             self.fx.latest_rates(&base).await
         })
@@ -196,7 +196,7 @@ impl ProviderRegistry {
 
     pub async fn native_price(&self, chain: ChainId, client_ip: &str) -> ProviderResult<NativePrice> {
         let key = format!("native-price:{chain:?}");
-        cache::get_or_fetch(&self.kv, &key, NATIVE_PRICE_TTL, || async {
+        cache::get_or_fetch_with_stale_fallback(&self.kv, &key, NATIVE_PRICE_TTL, NATIVE_PRICE_STALE_TTL, || async {
             self.check_rate_limit(client_ip, "native_price").await?;
             self.native_price.native_price(chain).await
         })

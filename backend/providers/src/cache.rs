@@ -15,6 +15,14 @@ pub const CONTRACT_ABI_TTL: u64 = 60 * 60 * 24;
 pub const FX_RATES_TTL: u64 = 60 * 30;
 // Much shorter than FX_RATES_TTL: crypto prices move far faster than forex.
 pub const NATIVE_PRICE_TTL: u64 = 60 * 5;
+// How long a last-known-good price stays eligible as a fallback once its
+// normal TTL above has lapsed and a fresh fetch then fails (CoinGecko's and
+// Frankfurter's free tiers both do this occasionally, e.g. rate-limiting the
+// shared IP ranges Workers' outbound fetches come from) — see
+// `get_or_fetch_with_stale_fallback`. A day-old price is still far more
+// useful to show than a hard error breaking every fiat figure in the UI.
+pub const FX_RATES_STALE_TTL: u64 = 60 * 60 * 24;
+pub const NATIVE_PRICE_STALE_TTL: u64 = 60 * 60 * 24;
 
 /// Reads `key` from KV; on a miss, calls `fetch`, stores the result with the
 /// given TTL (best-effort — a KV write failure doesn't fail the request),
@@ -51,4 +59,52 @@ where
         }
     }
     Ok(fresh)
+}
+
+/// Like `get_or_fetch`, but on a fetch failure falls back to the last
+/// successfully-fetched value instead of propagating the error, as long as
+/// one was stored within `stale_ttl_secs` (tracked separately from `key`
+/// under its own, longer-lived entry so it survives past the normal TTL).
+/// Only worth the extra KV entry for feeds where "slightly stale" is clearly
+/// better than "briefly broken" — a price, not a balance or a transaction
+/// list, where staleness would actively mislead.
+pub async fn get_or_fetch_with_stale_fallback<T, F, Fut>(
+    kv: &KvStore,
+    key: &str,
+    ttl_secs: u64,
+    stale_ttl_secs: u64,
+    fetch: F,
+) -> ProviderResult<T>
+where
+    T: Serialize + DeserializeOwned,
+    F: FnOnce() -> Fut,
+    Fut: Future<Output = ProviderResult<T>>,
+{
+    if let Ok(Some(text)) = kv.get(key).text().await {
+        if let Ok(cached) = serde_json::from_str::<T>(&text) {
+            return Ok(cached);
+        }
+    }
+    let stale_key = format!("{key}:stale");
+    match fetch().await {
+        Ok(fresh) => {
+            if let Ok(json) = serde_json::to_string(&fresh) {
+                if let Ok(builder) = kv.put(key, json.as_str()) {
+                    let _ = builder.expiration_ttl(ttl_secs).execute().await;
+                }
+                if let Ok(builder) = kv.put(&stale_key, json.as_str()) {
+                    let _ = builder.expiration_ttl(stale_ttl_secs).execute().await;
+                }
+            }
+            Ok(fresh)
+        }
+        Err(err) => {
+            if let Ok(Some(text)) = kv.get(&stale_key).text().await {
+                if let Ok(cached) = serde_json::from_str::<T>(&text) {
+                    return Ok(cached);
+                }
+            }
+            Err(err)
+        }
+    }
 }
