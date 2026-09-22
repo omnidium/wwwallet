@@ -176,51 +176,75 @@ export async function unlockWithPasskey(prfSecret: ArrayBuffer): Promise<{ key: 
   }
 }
 
+/**
+ * The get-then-put here (and in removeWrap/saveVault below) must not have any
+ * non-database `await` between the read and the write: each Dexie call
+ * outside an explicit `db.transaction()` runs in its own IndexedDB
+ * transaction, so a get() and a later put() are otherwise two separate
+ * transactions with a gap between them wide enough for a *different* call to
+ * read the same pre-update record and write its own change back in between —
+ * whichever of the two put()s lands second wins outright, silently discarding
+ * the other's change. That's exactly how a passkey wrap added here could
+ * vanish again later: this used to read `record`, spend time on WebCrypto
+ * calls, and only then put() using that now-stale `record` — long enough for
+ * an unrelated persist() (any account/payee edit, a settings change) to land
+ * its own write in between and get overwritten right back out. Wrapping the
+ * get+put in one `db.transaction('rw', ...)` makes IndexedDB serialize it
+ * against any other transaction on this table instead, so the later one
+ * always builds on the earlier one's result rather than clobbering it.
+ */
 export async function addPasskeyWrap(
   masterKey: CryptoKey,
   credentialId: Uint8Array,
   prfSalt: Uint8Array,
   prfSecret: ArrayBuffer,
 ): Promise<void> {
-  const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
-
+  // WebCrypto work first — none of it depends on the current record, and an
+  // awaited non-IDB call inside the transaction below would let the browser
+  // auto-commit it early, breaking the atomicity this exists for.
   const masterKeyBytes = await exportAesKeyBytes(masterKey)
   const kek = await deriveWrapKeyFromBytes(prfSecret, PASSKEY_HKDF_INFO)
   const iv = generateIv()
   const wrappedKey = await wrapMasterKey(masterKeyBytes, kek, iv)
 
-  const wraps: KeyWrap[] = record.wraps.filter((w) => w.method !== 'passkeyPrf')
-  wraps.push({
-    method: 'passkeyPrf',
-    credentialId: toArrayBuffer(credentialId),
-    prfSalt: toArrayBuffer(prfSalt),
-    iv: toArrayBuffer(iv),
-    wrappedKey,
+  await db.transaction('rw', db.vault, async () => {
+    const record = await db.vault.get(VAULT_ID)
+    if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
+    const wraps: KeyWrap[] = record.wraps.filter((w) => w.method !== 'passkeyPrf')
+    wraps.push({
+      method: 'passkeyPrf',
+      credentialId: toArrayBuffer(credentialId),
+      prfSalt: toArrayBuffer(prfSalt),
+      iv: toArrayBuffer(iv),
+      wrappedKey,
+    })
+    await db.vault.put({ ...record, wraps, updatedAt: Date.now() })
   })
-  await db.vault.put({ ...record, wraps, updatedAt: Date.now() })
 }
 
 /** The recovery-mnemonic wrap can never be removed — it's the only universal recovery method. */
 export async function removeWrap(method: 'passkeyPrf'): Promise<void> {
-  const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
-  await db.vault.put({ ...record, wraps: record.wraps.filter((w) => w.method !== method), updatedAt: Date.now() })
+  await db.transaction('rw', db.vault, async () => {
+    const record = await db.vault.get(VAULT_ID)
+    if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
+    await db.vault.put({ ...record, wraps: record.wraps.filter((w) => w.method !== method), updatedAt: Date.now() })
+  })
 }
 
 export async function saveVault(key: CryptoKey, data: VaultData): Promise<void> {
-  const existing = await db.vault.get(VAULT_ID)
-  if (!existing) throw new Error(i18n.global.t('errors.cannotSaveNoVault'))
-
   const iv = generateIv()
   const plaintext = new TextEncoder().encode(JSON.stringify(data))
   const ciphertext = await encrypt(key, iv, plaintext)
 
-  await db.vault.put({
-    ...existing,
-    ciphertext,
-    iv: toArrayBuffer(iv),
-    updatedAt: Date.now(),
+  await db.transaction('rw', db.vault, async () => {
+    const existing = await db.vault.get(VAULT_ID)
+    if (!existing) throw new Error(i18n.global.t('errors.cannotSaveNoVault'))
+    await db.vault.put({
+      ...existing,
+      ciphertext,
+      iv: toArrayBuffer(iv),
+      updatedAt: Date.now(),
+    })
   })
 }
 

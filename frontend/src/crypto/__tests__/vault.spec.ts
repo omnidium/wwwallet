@@ -101,6 +101,30 @@ describe('vault encryption round-trip', () => {
     expect(data.wallets).toEqual([])
   })
 
+  it('keeps both changes when two vault updates race (no lost update)', async () => {
+    // Regression test: addPasskeyWrap/saveVault used to read the record,
+    // await some WebCrypto work, then put() using that now-stale read —
+    // two concurrent callers could each read the same "before" state and
+    // the one that put() last would silently wipe out whichever change the
+    // other one made. Both now wrap their get+put in one db.transaction so
+    // IndexedDB serializes them instead.
+    const initial: VaultData = { wallets: [], payees: [], settings: { locale: 'en', currency: 'USD' } }
+    const key = await createVault(RECOVERY_PHRASE, initial)
+    const updated: VaultData = {
+      ...initial,
+      payees: [{ id: '1', label: 'Alice', address: '0xdef', chain: 'ethereum' }],
+    }
+
+    await Promise.all([
+      saveVault(key, updated),
+      addPasskeyWrap(key, FAKE_CREDENTIAL_ID, FAKE_PRF_SALT, FAKE_PRF_SECRET),
+    ])
+
+    expect(await availableUnlockMethods()).toEqual(expect.arrayContaining(['mnemonic', 'passkeyPrf']))
+    const { data } = await unlockWithMnemonic(RECOVERY_PHRASE)
+    expect(data.payees).toHaveLength(1)
+  })
+
   it('rejects a corrupted or non-backup file on import', async () => {
     const bogus = new Blob([JSON.stringify({ not: 'a backup' })], { type: 'application/json' })
     await expect(importEncryptedVaultBlob(bogus)).rejects.toThrow('not a valid wwwallet backup')
