@@ -7,20 +7,26 @@ export function toHumanAmount(rawBalance: string, decimals: number): number {
 
 /**
  * Caps a raw crypto amount to at most 6 total digits for display — e.g.
- * 6994.597881346333 -> "6994.6", 0.0000000001 -> "0.000000" — by giving the
- * integer part as many digits as it needs and rounding the fraction down to
- * whatever's left of the budget. A full on-chain value can carry 18 decimals
- * worth of noise that was never meaningful to look at and, left unformatted,
- * is long enough to force transaction rows and tables wider than a phone
- * screen. Display-only: never call this on a value still headed into an
- * actual transaction amount (parseUnits, etc.), where the real precision
- * still matters.
+ * 6994.597881346333 -> "6994.6", 1.5 -> "1.5" (not "1.50000"), 0.0000000001
+ * -> "0" — by giving the integer part as many digits as it needs, rounding
+ * the fraction down to whatever's left of the 6-digit budget, then trimming
+ * any trailing zeros that budget left padded in (6 is a ceiling on precision
+ * shown, not a fixed width to fill). A full on-chain value can carry 18
+ * decimals worth of noise that was never meaningful to look at and, left
+ * unformatted, is long enough to force transaction rows and tables wider
+ * than a phone screen. Display-only: never call this on a value still headed
+ * into an actual transaction amount (parseUnits, etc.), where the real
+ * precision still matters.
  */
 export function formatAmount(value: number): string {
   if (!Number.isFinite(value)) return '0'
   const integerDigits = Math.abs(value) < 1 ? 0 : Math.floor(Math.log10(Math.abs(value))) + 1
   const decimals = Math.max(0, 6 - integerDigits)
-  return value.toFixed(decimals)
+  const fixed = value.toFixed(decimals)
+  // Only the fractional part should ever lose trailing zeros — decimals > 0
+  // guarantees `fixed` actually contains a '.', so this can never eat into
+  // the integer part (e.g. "100" must never become "1").
+  return decimals > 0 ? fixed.replace(/\.?0+$/, '') : fixed
 }
 
 /** `fxRates.base` is always 'USD' here (see chainData.loadFxRates), so `rates[currency]` is a direct USD -> currency multiplier. */
