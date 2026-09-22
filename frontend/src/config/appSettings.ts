@@ -23,14 +23,19 @@ export const ACCOUNT_AUTO_REFRESH_MS = 10 * 60_000
 export const DUST_THRESHOLD_USD = 0.01
 
 /**
- * How long a cached token's name/symbol/decimals/logo is trusted before
- * re-fetching — this data is effectively immutable once resolved, so there's
- * no reason to re-hit the backend for it on every app load the way price or
- * activity data needs to. A wallet holding many tokens re-requesting all of
- * them on every hard refresh is what was driving repeated rate-limit/upstream
- * errors for data that hadn't changed since the last successful fetch.
+ * How long a cached token's metadata (name/symbol/decimals/logo/usd_price) is
+ * trusted before re-fetching. Tied to ACCOUNT_AUTO_REFRESH_MS rather than
+ * something longer, since usd_price is the one field in there that's
+ * genuinely live and expected to move on the same cadence as the native
+ * asset's own price — a longer age would leave a held token's fiat value
+ * stale for hours between reloads even though it's cheap to keep current.
+ * The backend absorbs the resulting request volume: its own KV cache means
+ * most of these calls never reach the upstream provider at all, and a
+ * stale-on-error fallback covers the rest, so re-checking this often no
+ * longer risks the rate-limit/upstream errors an earlier version of this
+ * value was trying to avoid.
  */
-export const TOKEN_METADATA_MAX_AGE_MS = 24 * 60 * 60 * 1000
+export const TOKEN_METADATA_MAX_AGE_MS = ACCOUNT_AUTO_REFRESH_MS
 
 /**
  * How many transactions a single infinite-scroll "load more" batch tries to

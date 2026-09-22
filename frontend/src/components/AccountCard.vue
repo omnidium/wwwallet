@@ -127,18 +127,20 @@ const { loadNextBatch: loadNextTransactionBatch, isLoading: loadingMoreTxns } = 
 )
 useInfiniteScroll(() => void loadNextTransactionBatch(), expandedListEl)
 
-// Lazy-load token metadata the first time the token row actually appears.
-// Concurrency-limited rather than firing one request per held token all at
-// once — the backend's rate limiter is sized for a slow trickle, and a
-// long-lived address can easily hold 50+ tokens (airdropped dust included),
-// which blew straight through it and left most of them permanently
-// unlabeled until a manual reload happened to land in a fresh rate-limit
-// window.
+// Re-checks every held token's metadata on every periodic account refresh
+// (tokenBalances changes each time loadAddressActivity re-runs) — including
+// ones already resolved, since usd_price is live and needs to stay current,
+// not just newly-seen tokens' name/symbol/decimals/logo. Cheap for tokens
+// that don't actually need it yet: loadTokenMetadata's own cachedFetch skips
+// the network call entirely while its cached copy is still within
+// TOKEN_METADATA_MAX_AGE_MS. Concurrency-limited rather than firing one
+// request per held token all at once — the backend's rate limiter is sized
+// for a slow trickle, and a long-lived address can easily hold 50+ tokens
+// (airdropped dust included), which blew straight through it and left most
+// of them permanently unlabeled until a manual reload happened to land in a
+// fresh rate-limit window.
 watch(tokenBalances, (balances) => {
-  const missing = balances.filter(
-    (b) => !chainData.tokenMetadataByKey[chainData.keyFor(props.account.chain, b.contract_address!)],
-  )
-  void mapWithConcurrency(missing, 4, async (b) => {
+  void mapWithConcurrency(balances, 4, async (b) => {
     try {
       await chainData.loadTokenMetadata(props.account.chain, b.contract_address!)
     } catch {
