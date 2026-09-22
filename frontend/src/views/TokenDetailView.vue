@@ -97,15 +97,18 @@ const visibleTokenTransactions = computed(() => {
 })
 const transactionGroups = computed(() => groupTransactionsByDate(visibleTokenTransactions.value, locale.value))
 
-// This page relies on the outer page scroll (see the `.token-detail-txn-card
-// .expanded-list` CSS override removing the usual internal max-height), so
-// there's no container element to hand useInfiniteScroll — it falls back to
-// listening on the window. No-op when there's no holderAddress (a direct/deep
-// link with nothing loaded to page through in the first place).
+// This view is always rendered inside PaneOverlay's own scrolling
+// `.pane-card`, and `.token-detail-txn-card .expanded-list` (see the CSS)
+// is flex-bounded to the remaining space within it and scrolls internally —
+// it's never the window that scrolls, so useInfiniteScroll needs a ref to
+// that element rather than falling back to its window default. No-op when
+// there's no holderAddress (a direct/deep link with nothing loaded to page
+// through in the first place).
+const txnListEl = ref<HTMLElement | null>(null)
 const { loadNextBatch: loadNextTokenBatch, isLoading: loadingMoreTxns } = holderAddress
   ? useTransactionBatchLoader(chain, holderAddress, () => visibleTokenTransactions.value.length)
   : { loadNextBatch: async () => {}, isLoading: ref(false) }
-useInfiniteScroll(() => void loadNextTokenBatch())
+useInfiniteScroll(() => void loadNextTokenBatch(), txnListEl)
 
 function openTransaction(txn: Transaction) {
   detailTransaction.value = txn
@@ -167,7 +170,7 @@ function openTransaction(txn: Transaction) {
     <template v-if="holderAddress">
       <h2 class="text-h6 mt-6 mb-2">{{ t('transactions.title') }}</h2>
       <v-card class="pa-2 token-detail-txn-card" max-width="480">
-        <div class="expanded-list pa-2">
+        <div ref="txnListEl" class="expanded-list pa-2">
           <v-switch
             v-model="hideDustTxns"
             :label="t('accountCard.hideDustTxns')"
