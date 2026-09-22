@@ -6,7 +6,7 @@ use worker::RateLimiter;
 use crate::alchemy::AlchemyProvider;
 use crate::cache::{
     self, ADDRESS_ACTIVITY_TTL, CONTRACT_ABI_TTL, FX_RATES_STALE_TTL, FX_RATES_TTL,
-    NATIVE_PRICE_STALE_TTL, NATIVE_PRICE_TTL, TOKEN_METADATA_TTL,
+    NATIVE_PRICE_STALE_TTL, NATIVE_PRICE_TTL, TOKEN_METADATA_STALE_TTL, TOKEN_METADATA_TTL,
 };
 use crate::chain::ChainId;
 use crate::coingecko::CoinGeckoProvider;
@@ -163,10 +163,16 @@ impl ProviderRegistry {
         client_ip: &str,
     ) -> ProviderResult<TokenMetadata> {
         let key = format!("token:{chain:?}:{}", contract_address.to_lowercase());
-        cache::get_or_fetch(&self.kv, &key, TOKEN_METADATA_TTL, || async {
-            self.check_rate_limit(client_ip, "token_metadata").await?;
-            self.tokens.token_metadata(chain, contract_address).await
-        })
+        cache::get_or_fetch_with_stale_fallback(
+            &self.kv,
+            &key,
+            TOKEN_METADATA_TTL,
+            TOKEN_METADATA_STALE_TTL,
+            || async {
+                self.check_rate_limit(client_ip, "token_metadata").await?;
+                self.tokens.token_metadata(chain, contract_address).await
+            },
+        )
         .await
     }
 

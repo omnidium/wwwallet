@@ -23,6 +23,11 @@ pub const NATIVE_PRICE_TTL: u64 = 60 * 5;
 // useful to show than a hard error breaking every fiat figure in the UI.
 pub const FX_RATES_STALE_TTL: u64 = 60 * 60 * 24;
 pub const NATIVE_PRICE_STALE_TTL: u64 = 60 * 60 * 24;
+// Token metadata (name/symbol/decimals/logo) essentially never changes once
+// resolved, and Ethplorer's free tier is the flakiest upstream this backend
+// calls — a week-old fallback is still correct almost always, and far better
+// than a bare 429/502 breaking a whole account card's token list.
+pub const TOKEN_METADATA_STALE_TTL: u64 = 60 * 60 * 24 * 7;
 
 /// Reads `key` from KV; on a miss, calls `fetch`, stores the result with the
 /// given TTL (best-effort — a KV write failure doesn't fail the request),
