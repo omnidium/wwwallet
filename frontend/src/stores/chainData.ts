@@ -9,6 +9,7 @@ import {
   type TokenMetadata,
 } from '@/services/api'
 import { cachedFetch } from '@/services/cachedFetch'
+import { db } from '@/services/db'
 import { DEFAULT_TRANSACTION_BATCH_SIZE } from '@/config/appSettings'
 
 /**
@@ -31,6 +32,24 @@ function mergeFreshPage(existing: Transaction[], fresh: Transaction[]): Transact
 function appendOlderPage(existing: Transaction[], older: Transaction[]): Transaction[] {
   const existingHashes = new Set(existing.map((t) => t.hash))
   return [...existing, ...older.filter((t) => !existingHashes.has(t.hash))]
+}
+
+/**
+ * Persists the store's own merged view of an address's activity — deep
+ * scroll history and all — to the same on-disk cache key `cachedFetch` uses
+ * inside `loadAddressActivity`. Without this, `cachedFetch` only ever wrote
+ * the raw, page-one-only network response it fetched, so every background
+ * refresh quietly overwrote the on-disk cache back down to page one; the
+ * user's own further-scrolled history survived in memory for the rest of
+ * that session, but a full app reload (or reopening the installed PWA after
+ * it was evicted) would read that degraded page-one-only cache and it would
+ * look like the history had been wiped. Best-effort, same as every other
+ * cache write in this codebase — a write failure here just means the next
+ * cold start re-fetches page one instead of restoring deep history, not a
+ * broken app.
+ */
+function persistActivity(key: string, activity: AddressActivity) {
+  db.cache.put({ key: `chain-activity:${key}`, data: activity, fetchedAt: Date.now() }).catch(() => {})
 }
 
 export const useChainDataStore = defineStore('chainData', () => {
@@ -89,11 +108,13 @@ export const useChainDataStore = defineStore('chainData', () => {
       // replace it.
       const apply = (fresh: AddressActivity) => {
         const existing = activityByAddress.value[key]
-        activityByAddress.value[key] = {
+        const merged: AddressActivity = {
           balances: fresh.balances,
           transactions: existing ? mergeFreshPage(existing.transactions, fresh.transactions) : fresh.transactions,
           next_cursor: existing ? existing.next_cursor : fresh.next_cursor,
         }
+        activityByAddress.value[key] = merged
+        persistActivity(key, merged)
       }
       // cachedFetch resolves with whatever's cached on disk immediately for a
       // fast first paint, then revalidates in the background — without also
@@ -135,11 +156,13 @@ export const useChainDataStore = defineStore('chainData', () => {
         // have been reloaded or removed while this request was in flight.
         const current = activityByAddress.value[key]
         if (!current) return
-        activityByAddress.value[key] = {
+        const merged: AddressActivity = {
           ...current,
           transactions: appendOlderPage(current.transactions, page.transactions),
           next_cursor: page.next_cursor,
         }
+        activityByAddress.value[key] = merged
+        persistActivity(key, merged)
       } finally {
         loadingMoreKeys.value.delete(key)
         delete inFlightLoadMore[key]
@@ -178,10 +201,12 @@ export const useChainDataStore = defineStore('chainData', () => {
     const key = keyFor(chain, address)
     const existing = activityByAddress.value[key]
     if (!existing) return
-    activityByAddress.value[key] = {
+    const merged: AddressActivity = {
       ...existing,
       transactions: [txn, ...existing.transactions.filter((t) => t.hash !== txn.hash)],
     }
+    activityByAddress.value[key] = merged
+    persistActivity(key, merged)
   }
 
   async function loadTokenMetadata(chain: ChainSlug, contractAddress: string) {
