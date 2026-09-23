@@ -415,3 +415,21 @@ input[type='number'] {
 .add-account-card {
   margin-inline: auto;
 }
+
+/* SettingsPanel.vue */
+
+/* min-height rather than height: the panel's content can be taller than the
+ * drawer on a small screen, in which case this should scroll with the rest
+ * of it instead of clipping — height would cap it exactly at the drawer's
+ * size and force that clipping. mt-auto on .settings-version then only
+ * pushes it down to the bottom when there's actually spare room. */
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.settings-version {
+  margin-top: auto;
+  font-size: 0.7rem;
+}

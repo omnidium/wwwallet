@@ -52,7 +52,7 @@ function lockNow() {
 </script>
 
 <template>
-  <div class="pa-4">
+  <div class="pa-4 settings-panel">
     <v-row justify="space-between" align="center" no-gutters>
       <h1 class="text-h5">{{ t('settings.title') }}</h1>
       <div>
@@ -108,6 +108,6 @@ function lockNow() {
       <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock" append-icon="mdi-chevron-right" @click="emit('close')" />
     </v-list>
 
-    <p class="text-caption text-medium-emphasis text-center mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
+    <p class="settings-version text-medium-emphasis mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
   </div>
 </template>
