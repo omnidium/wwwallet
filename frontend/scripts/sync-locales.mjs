@@ -22,6 +22,13 @@
 //   node scripts/sync-locales.mjs             # sync every locale
 //   node scripts/sync-locales.mjs --dry-run   # report only, no writes/calls
 //   node scripts/sync-locales.mjs --langs=es,fr,de   # limit to these codes
+//   node scripts/sync-locales.mjs --check     # exit 1 if any locale is out
+//                                              # of sync with en.ts; used by
+//                                              # CI (see .github/workflows/
+//                                              # frontend.yml) — same as
+//                                              # --dry-run otherwise: no
+//                                              # writes, no DeepL calls, no
+//                                              # DEEPL_API_KEY needed.
 //
 // Requires DEEPL_API_KEY, either already in the environment or in a
 // gitignored frontend/.env.locales file (see .env.example). Get one at
@@ -58,7 +65,8 @@ const LOCALE_TO_DEEPL = {
 const LOCALE_CODES = Object.keys(LOCALE_TO_DEEPL)
 
 const args = process.argv.slice(2)
-const dryRun = args.includes('--dry-run')
+const checkMode = args.includes('--check')
+const dryRun = args.includes('--dry-run') || checkMode
 const langsArg = args.find((a) => a.startsWith('--langs='))
 const onlyLangs = langsArg ? new Set(langsArg.slice('--langs='.length).split(',')) : null
 
@@ -287,6 +295,23 @@ async function main() {
     console.error('\nFailed to sync:')
     for (const f of failures) console.error(`  ${f.code}: ${f.error}`)
     process.exit(1)
+  }
+
+  if (checkMode) {
+    const syncable = report.filter((r) => r.add || r.remove || r.retranslate)
+    if (syncable.length > 0 || needingReview.length > 0) {
+      console.error('\n✖ Locale files are out of sync with en.ts.')
+      if (syncable.length > 0) {
+        console.error('\n  Run this locally (needs DEEPL_API_KEY — see frontend/.env.example), then commit the result:')
+        console.error('\n    cd frontend && node scripts/sync-locales.mjs\n')
+      }
+      if (needingReview.length > 0) {
+        console.error('  The keysNeedingReview above were hand-edited and won\'t be touched by that command —')
+        console.error('  their English source changed since, so update those translations by hand instead.')
+      }
+      process.exit(1)
+    }
+    console.log('\n✓ All locales are in sync with en.ts.')
   }
 }
 
