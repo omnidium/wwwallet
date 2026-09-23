@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { ChainSlug, Transaction } from '@/services/api'
 import { useChainDataStore } from '@/stores/chainData'
 import { addressDisplayLabel } from '@/services/addressLabel'
@@ -8,6 +9,7 @@ import { formatAmount } from '@/services/money'
 const props = defineProps<{ transaction: Transaction; myAddress: string; chain: ChainSlug }>()
 defineEmits<{ click: [] }>()
 
+const { t } = useI18n({ useScope: 'global' })
 const chainData = useChainDataStore()
 
 const isOutgoing = computed(() => props.transaction.from.toLowerCase() === props.myAddress.toLowerCase())
@@ -57,7 +59,7 @@ watch(
     </div>
     <v-spacer />
     <span v-if="transaction.status !== 'success'" class="text-caption text-warning">
-      {{ transaction.status }}
+      {{ t(`transactionDetail.status_${transaction.status}`) }}
     </span>
   </div>
 
@@ -72,7 +74,7 @@ watch(
     </span>
     <v-spacer />
     <span v-if="transaction.status !== 'success'" class="text-caption text-warning mr-2">
-      {{ transaction.status }}
+      {{ t(`transactionDetail.status_${transaction.status}`) }}
     </span>
     <span class="txn-row-amount font-weight-medium" :class="isOutgoing ? 'text-send' : 'text-receive'">
       {{ isOutgoing ? '−' : '+' }}{{ formatAmount(Number(transaction.value)) }} {{ transaction.asset }}
