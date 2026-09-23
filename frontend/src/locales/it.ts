@@ -274,6 +274,15 @@ export default {
     passkeyNotSetUp: 'Per questo vault non è stata configurata alcuna passkey.',
     vaultLocked: 'la cassaforte è chiusa a chiave',
     chooseKeystoreFile: 'scegli un file keystore',
+    passkeyOperationFailed:
+      "L'operazione con la passkey non è andata a buon fine. Prova di nuovo oppure utilizza la tua frase di recupero.",
+    invalidMnemonic:
+      'Quella frase di recupero non è valida. Controlla attentamente le parole e riprova.',
+    invalidPrivateKey: 'Quella chiave privata non è valida.',
+    invalidKeystoreFile:
+      'Impossibile aprire questo file keystore: potrebbe essere danneggiato oppure la password potrebbe essere errata.',
+    networkFailed: 'Impossibile connettersi al server. Verifica la connessione e riprova.',
+    rateLimited: 'Troppe richieste: attendi qualche istante e riprova.',
   },
   currency: {
     USD: 'Dollaro statunitense',

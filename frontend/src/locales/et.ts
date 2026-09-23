@@ -271,6 +271,15 @@ export default {
     passkeyNotSetUp: 'Selle hoiukambri jaoks pole parooli määratud.',
     vaultLocked: 'seif on lukus',
     chooseKeystoreFile: 'valige võtmehoidla fail',
+    passkeyOperationFailed:
+      'Parooli sisestamine ebaõnnestus. Proovi uuesti või kasuta selle asemel taastamislauset.',
+    invalidMnemonic: 'See taastamissõna ei ole kehtiv. Kontrolli sõnu veel kord ja proovi uuesti.',
+    invalidPrivateKey: 'See privaatvõti ei ole kehtiv.',
+    invalidKeystoreFile:
+      'Seda võtmehoidja faili ei õnnestunud avada — see võib olla rikutud või parool võib olla vale.',
+    networkFailed:
+      'Serveriga ei õnnestunud ühendust luua. Kontrollige oma ühendust ja proovige uuesti.',
+    rateLimited: 'Liiga palju päringuid — palun oodake hetk ja proovige uuesti.',
   },
   currency: {
     USD: 'USA dollar',

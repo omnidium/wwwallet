@@ -282,6 +282,16 @@ export default {
     passkeyNotSetUp: 'Für diesen Tresor wurde kein Passkey eingerichtet.',
     vaultLocked: 'Der Tresor ist verschlossen.',
     chooseKeystoreFile: 'Wählen Sie eine Keystore-Datei aus',
+    passkeyOperationFailed:
+      'Die Passwort-Eingabe ist fehlgeschlagen. Versuchen Sie es erneut oder verwenden Sie stattdessen Ihre Wiederherstellungsphrase.',
+    invalidMnemonic:
+      'Dieser Wiederherstellungssatz ist ungültig. Überprüfen Sie die Eingabe noch einmal und versuchen Sie es erneut.',
+    invalidPrivateKey: 'Dieser private Schlüssel ist ungültig.',
+    invalidKeystoreFile:
+      'Diese Keystore-Datei konnte nicht geöffnet werden – möglicherweise ist sie beschädigt oder das Passwort ist falsch.',
+    networkFailed:
+      'Der Server konnte nicht erreicht werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.',
+    rateLimited: 'Zu viele Anfragen – bitte warten Sie einen Moment und versuchen Sie es erneut.',
   },
   currency: {
     USD: 'US-Dollar',

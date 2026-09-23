@@ -277,6 +277,15 @@ export default {
     passkeyNotSetUp: "La clé d'accès n'est pas configurée pour ce coffre-fort.",
     vaultLocked: 'le coffre-fort est fermé à clé',
     chooseKeystoreFile: 'Sélectionnez un fichier de stockage de clés',
+    passkeyOperationFailed:
+      "L'opération liée à la clé d'accès a échoué. Réessayez ou utilisez plutôt votre phrase de récupération.",
+    invalidMnemonic:
+      "Cette phrase de récupération n'est pas valide. Vérifiez bien les mots et réessayez.",
+    invalidPrivateKey: "Cette clé privée n'est pas valide.",
+    invalidKeystoreFile:
+      "Impossible d'ouvrir ce fichier de stockage de clés : il est peut-être endommagé ou le mot de passe est peut-être incorrect.",
+    networkFailed: "Impossible d'accéder au serveur. Vérifiez votre connexion et réessayez.",
+    rateLimited: 'Trop de requêtes — veuillez patienter un instant, puis réessayer.',
   },
   currency: {
     USD: 'dollar américain',

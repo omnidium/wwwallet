@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { api, type ChainSlug, type TokenMetadata } from '@/services/api'
 import { useMessagesStore } from '@/stores/messages'
+import { displayErrorMessage } from '@/services/errors'
 import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { toHumanAmount, convertUsd, formatFiat, formatAmount } from '@/services/money'
@@ -43,7 +44,7 @@ onMounted(async () => {
   try {
     metadata.value = await api.tokenMetadata(chain, address)
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     loading.value = false
   }

@@ -271,6 +271,15 @@ export default {
     passkeyNotSetUp: '이 금고에는 패스키가 설정되어 있지 않습니다.',
     vaultLocked: '금고가 잠겨 있습니다',
     chooseKeystoreFile: '키스토어 파일을 선택하세요',
+    passkeyOperationFailed:
+      '패스키 작업이 실패했습니다. 다시 시도하거나, 대신 복구 문구를 사용해 주세요.',
+    invalidMnemonic:
+      '해당 복구 문구가 유효하지 않습니다. 단어를 다시 한 번 확인한 후 다시 시도해 주세요.',
+    invalidPrivateKey: '해당 개인 키는 유효하지 않습니다.',
+    invalidKeystoreFile:
+      '이 키스토어 파일을 열 수 없습니다. 파일이 손상되었거나 비밀번호가 잘못되었을 수 있습니다.',
+    networkFailed: '서버에 연결할 수 없습니다. 연결 상태를 확인한 후 다시 시도해 주세요.',
+    rateLimited: '요청이 너무 많습니다. 잠시 기다린 후 다시 시도해 주세요.',
   },
   currency: {
     USD: '미국 달러',

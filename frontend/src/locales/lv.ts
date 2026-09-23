@@ -276,6 +276,16 @@ export default {
     passkeyNotSetUp: 'Šim seifam nav iestatīta piekļuves atslēga.',
     vaultLocked: 'seifs ir aizslēgts',
     chooseKeystoreFile: 'izvēlieties atslēgu krātuves failu',
+    passkeyOperationFailed:
+      'Piekļuves atslēgas ievadīšana neizdevās. Mēģiniet vēlreiz vai izmantojiet savu atjaunošanas frāzi.',
+    invalidMnemonic:
+      'Šī atjaunošanas frāze nav derīga. Pārbaudiet vārdus vēlreiz un mēģiniet vēlreiz.',
+    invalidPrivateKey: 'Šis privātais atslēgas kods nav derīgs.',
+    invalidKeystoreFile:
+      'Šo atslēgu krātuves failu neizdevās atvērt — iespējams, tas ir bojāts vai arī parole ir nepareiza.',
+    networkFailed:
+      'Neizdevās izveidot savienojumu ar serveri. Pārbaudiet savienojumu un mēģiniet vēlreiz.',
+    rateLimited: 'Pārāk daudz pieprasījumu — lūdzu, pagaidiet brīdi un mēģiniet vēlreiz.',
   },
   currency: {
     USD: 'ASV dolārs',

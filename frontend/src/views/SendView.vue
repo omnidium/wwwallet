@@ -28,6 +28,7 @@ import {
 import { truncateAddress } from '@/services/format'
 import { addressDisplayLabel } from '@/services/addressLabel'
 import { waitForTransactionConfirmation } from '@/services/transactionStatus'
+import { displayErrorMessage } from '@/services/errors'
 import QrScannerDialog from '@/components/QrScannerDialog.vue'
 import TransactionReviewDialog, { type ReviewRow } from '@/components/TransactionReviewDialog.vue'
 import AppTooltip from '@/components/AppTooltip.vue'
@@ -333,7 +334,7 @@ async function setMaxAmount() {
       const balanceWei = BigInt(token.rawBalance)
       maxTokenAmount = formatUnits(balanceWei > feeWei ? balanceWei - feeWei : 0n, token.decimals)
     } catch (err) {
-      messages.push((err as Error).message, 'error')
+      messages.push(displayErrorMessage(err), 'error')
       return
     } finally {
       sendBusy.value = false
@@ -503,7 +504,7 @@ async function openSendReview() {
     sendReviewRows.value = rows
     sendReviewOpen.value = true
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     sendBusy.value = false
   }
@@ -588,7 +589,7 @@ async function confirmSend() {
     void chainData.loadAddressActivity(txChain, fromAccount.address)
     if (toOwnAccount) void chainData.loadAddressActivity(txChain, toAddress)
   } catch (err) {
-    messages.update(msgId, (err as Error).message, 'error')
+    messages.update(msgId, displayErrorMessage(err), 'error')
     sendBusy.value = false
   }
 }
@@ -685,7 +686,7 @@ async function getQuote() {
     )
     buyAmountFormatted.value = formatAmount(Number(formatUnits(quote.value.buy_amount, buyDecimals)))
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     swapBusy.value = false
   }
@@ -726,7 +727,7 @@ async function onSwapClick() {
 
     openSwapReview()
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     swapBusy.value = false
   }
@@ -791,7 +792,7 @@ async function confirmSwap() {
     }
     void chainData.loadAddressActivity(chain, address)
   } catch (err) {
-    messages.update(msgId, (err as Error).message, 'error')
+    messages.update(msgId, displayErrorMessage(err), 'error')
     swapBusy.value = false
   }
 }

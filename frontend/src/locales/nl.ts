@@ -273,6 +273,16 @@ export default {
     passkeyNotSetUp: 'Er is geen toegangscode ingesteld voor deze kluis.',
     vaultLocked: 'de kluis is op slot',
     chooseKeystoreFile: 'kies een keystore-bestand',
+    passkeyOperationFailed:
+      'Het invoeren van de toegangscode is mislukt. Probeer het nog eens, of gebruik in plaats daarvan je herstelzin.',
+    invalidMnemonic:
+      'Die herstelzin is ongeldig. Controleer de woorden nog eens goed en probeer het opnieuw.',
+    invalidPrivateKey: 'Die privésleutel is ongeldig.',
+    invalidKeystoreFile:
+      'Dit keystore-bestand kon niet worden geopend — het is mogelijk beschadigd of het wachtwoord is onjuist.',
+    networkFailed:
+      'De server kon niet worden bereikt. Controleer je verbinding en probeer het opnieuw.',
+    rateLimited: 'Te veel verzoeken — wacht even en probeer het nog eens.',
   },
   currency: {
     USD: 'Amerikaanse dollar',

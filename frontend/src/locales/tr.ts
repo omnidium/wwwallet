@@ -271,6 +271,15 @@ export default {
     passkeyNotSetUp: 'Bu kasa için şifre ayarlanmamıştır.',
     vaultLocked: 'kasada kilitli',
     chooseKeystoreFile: 'bir anahtar deposu dosyası seçin',
+    passkeyOperationFailed:
+      'Şifre girişi başarısız oldu. Tekrar deneyin ya da bunun yerine kurtarma ifadesini kullanın.',
+    invalidMnemonic:
+      'Bu kurtarma ifadesi geçersiz. Kelimeleri tekrar kontrol edin ve yeniden deneyin.',
+    invalidPrivateKey: 'Bu özel anahtar geçerli değil.',
+    invalidKeystoreFile:
+      'Bu anahtar deposu dosyası açılamadı — dosya bozuk olabilir ya da şifre yanlış olabilir.',
+    networkFailed: 'Sunucuya ulaşılamadı. Bağlantınızı kontrol edin ve tekrar deneyin.',
+    rateLimited: 'Çok fazla istek var — lütfen bir süre bekleyin ve tekrar deneyin.',
   },
   currency: {
     USD: 'ABD doları',

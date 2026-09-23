@@ -273,6 +273,15 @@ export default {
     passkeyNotSetUp: 'Der er ikke oprettet en adgangskode til denne boks.',
     vaultLocked: 'Boks er låst',
     chooseKeystoreFile: 'Vælg en keystore-fil',
+    passkeyOperationFailed:
+      'Adgangskoden kunne ikke bruges. Prøv igen, eller brug i stedet din gendannelsesfrase.',
+    invalidMnemonic: 'Den gendannelsesfrase er ugyldig. Tjek ordene igen, og prøv endnu en gang.',
+    invalidPrivateKey: 'Den private nøgle er ugyldig.',
+    invalidKeystoreFile:
+      'Det var ikke muligt at åbne denne nøglefil — den er muligvis beskadiget, eller adgangskoden er måske forkert.',
+    networkFailed:
+      'Det var ikke muligt at oprette forbindelse til serveren. Kontroller din forbindelse, og prøv igen.',
+    rateLimited: 'Der er for mange anmodninger — vent et øjeblik, og prøv igen.',
   },
   currency: {
     USD: 'amerikansk dollar',

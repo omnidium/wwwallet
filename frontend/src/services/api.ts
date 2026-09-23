@@ -1,4 +1,4 @@
-import { i18n } from '@/i18n'
+import { translatedError } from './errors'
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8787'
 
@@ -14,24 +14,40 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8787'
 const TRANSIENT_STATUSES = new Set([429, 502, 503, 504])
 const TRANSIENT_RETRY_DELAYS_MS = [1000, 3000]
 
+// fetch() itself rejects (a native, untranslated TypeError) on a network
+// failure — offline, DNS, CORS — not just on a non-2xx response, so that's
+// caught here too rather than only guarding the status check below.
 async function fetchWithRetry(input: string | URL, init?: RequestInit): Promise<Response> {
-  let res = await fetch(input, init)
-  for (const delayMs of TRANSIENT_RETRY_DELAYS_MS) {
-    if (!TRANSIENT_STATUSES.has(res.status)) break
-    await new Promise((resolve) => setTimeout(resolve, delayMs))
-    res = await fetch(input, init)
+  try {
+    let res = await fetch(input, init)
+    for (const delayMs of TRANSIENT_RETRY_DELAYS_MS) {
+      if (!TRANSIENT_STATUSES.has(res.status)) break
+      await new Promise((resolve) => setTimeout(resolve, delayMs))
+      res = await fetch(input, init)
+    }
+    return res
+  } catch {
+    throw translatedError('errors.networkFailed')
   }
-  return res
+}
+
+// The backend's own error text (`body.error`) is never shown — it's a
+// hardcoded English string from a stateless Rust API with no i18n of its
+// own, so showing it as-is would leak untranslated text regardless of the
+// app's language. 429 gets its own message since "you're being rate
+// limited, wait and retry" is common and specific enough to be worth
+// distinguishing; anything else falls back to a generic translated message
+// that still names the failing path and status for support/debugging.
+function requestFailedError(path: string, status: number): Error {
+  if (status === 429) return translatedError('errors.rateLimited')
+  return translatedError('errors.requestFailed', { path, status })
 }
 
 async function getJson<T>(path: string, query?: Record<string, string>): Promise<T> {
   const url = new URL(`${BASE_URL}${path}`)
   if (query) for (const [key, value] of Object.entries(query)) url.searchParams.set(key, value)
   const res = await fetchWithRetry(url)
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}))
-    throw new Error(body.error ?? i18n.global.t('errors.requestFailed', { path, status: res.status }))
-  }
+  if (!res.ok) throw requestFailedError(path, res.status)
   return res.json() as Promise<T>
 }
 
@@ -41,10 +57,7 @@ async function postJson<T>(path: string, payload: unknown): Promise<T> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   })
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}))
-    throw new Error(body.error ?? i18n.global.t('errors.requestFailed', { path, status: res.status }))
-  }
+  if (!res.ok) throw requestFailedError(path, res.status)
   return res.json() as Promise<T>
 }
 

@@ -1,5 +1,6 @@
 import { i18n } from '@/i18n'
 import { db } from './db'
+import { TranslatedError, translatedError } from './errors'
 
 const CREDENTIAL_ID = 'default' as const
 const RP_NAME = 'wwwallet'
@@ -9,10 +10,32 @@ interface PrfExtensionResults {
   prf?: { enabled?: boolean; results?: { first?: ArrayBuffer } }
 }
 
-export class PrfNotSupportedError extends Error {
+export class PrfNotSupportedError extends TranslatedError {
   constructor() {
     super(i18n.global.t('errors.prfNotSupported'))
     this.name = 'PrfNotSupportedError'
+  }
+}
+
+/**
+ * `navigator.credentials.create/get` reject with a native DOMException on
+ * anything short of success — cancelling the prompt, letting it time out, or
+ * the browser refusing it outright (e.g. no user gesture) all land here as
+ * "NotAllowedError: The operation either timed out or was not allowed. ..."
+ * straight from the platform, in English regardless of the app's language.
+ * Wrapping every call site with this turns that into the same translated,
+ * per-operation message the existing null-result branches already use below
+ * (a null result is the rarer, spec-legal alternative to a rejection — both
+ * mean the same thing to the user) — anything that isn't the common
+ * "cancelled/timed out" case still gets a translated, if generic, fallback
+ * rather than that raw platform text.
+ */
+async function runCeremony<T>(promise: Promise<T>, cancelledKey: string): Promise<T> {
+  try {
+    return await promise
+  } catch (err) {
+    if (err instanceof DOMException && err.name === 'NotAllowedError') throw translatedError(cancelledKey)
+    throw translatedError('errors.passkeyOperationFailed')
   }
 }
 
@@ -44,33 +67,36 @@ function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
 export async function registerLocalPasskeyWithPrf(
   displayName: string,
 ): Promise<{ credentialId: Uint8Array<ArrayBuffer>; prfSalt: Uint8Array<ArrayBuffer>; prfSecret: ArrayBuffer }> {
-  if (!navigator.credentials) throw new Error(i18n.global.t('errors.webauthnUnavailable'))
+  if (!navigator.credentials) throw translatedError('errors.webauthnUnavailable')
 
   const challenge = crypto.getRandomValues(new Uint8Array(32))
   const userId = crypto.getRandomValues(new Uint8Array(16))
   const prfSalt = crypto.getRandomValues(new Uint8Array(32))
 
-  const credential = (await navigator.credentials.create({
-    publicKey: {
-      challenge,
-      rp: { name: RP_NAME, id: location.hostname },
-      user: { id: userId, name: displayName, displayName },
-      pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
-      authenticatorSelection: {
-        authenticatorAttachment: 'platform',
-        userVerification: 'required',
-        residentKey: 'preferred',
+  const credential = (await runCeremony(
+    navigator.credentials.create({
+      publicKey: {
+        challenge,
+        rp: { name: RP_NAME, id: location.hostname },
+        user: { id: userId, name: displayName, displayName },
+        pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
+        authenticatorSelection: {
+          authenticatorAttachment: 'platform',
+          userVerification: 'required',
+          residentKey: 'preferred',
+        },
+        attestation: 'none',
+        timeout: 60_000,
+        // Evaluating PRF right here, not just probing for support, lets browsers
+        // that implement PRF-at-creation return the derived secret in this same
+        // response — skipping the second navigator.credentials.get() ceremony
+        // (and its own biometric prompt) that evaluatePrf() below exists for.
+        extensions: { prf: { eval: { first: toArrayBuffer(prfSalt) } } } as AuthenticationExtensionsClientInputs,
       },
-      attestation: 'none',
-      timeout: 60_000,
-      // Evaluating PRF right here, not just probing for support, lets browsers
-      // that implement PRF-at-creation return the derived secret in this same
-      // response — skipping the second navigator.credentials.get() ceremony
-      // (and its own biometric prompt) that evaluatePrf() below exists for.
-      extensions: { prf: { eval: { first: toArrayBuffer(prfSalt) } } } as AuthenticationExtensionsClientInputs,
-    },
-  })) as PublicKeyCredential | null
-  if (!credential) throw new Error(i18n.global.t('errors.passkeyRegistrationCancelled'))
+    }),
+    'errors.passkeyRegistrationCancelled',
+  )) as PublicKeyCredential | null
+  if (!credential) throw translatedError('errors.passkeyRegistrationCancelled')
 
   const credentialId = new Uint8Array(credential.rawId)
   const createResults = credential.getClientExtensionResults() as PrfExtensionResults
@@ -95,22 +121,25 @@ export async function unlockPasskeyPrfSecret(
   prfSalt: Uint8Array,
 ): Promise<ArrayBuffer> {
   const secret = await evaluatePrf(credentialId, prfSalt)
-  if (!secret) throw new Error(i18n.global.t('errors.passkeyNoPrfSecret'))
+  if (!secret) throw translatedError('errors.passkeyNoPrfSecret')
   return secret
 }
 
 async function evaluatePrf(credentialId: Uint8Array, prfSalt: Uint8Array): Promise<ArrayBuffer | undefined> {
   const challenge = crypto.getRandomValues(new Uint8Array(32))
-  const assertion = (await navigator.credentials.get({
-    publicKey: {
-      challenge,
-      allowCredentials: [{ type: 'public-key', id: toArrayBuffer(credentialId) }],
-      userVerification: 'required',
-      timeout: 60_000,
-      extensions: { prf: { eval: { first: toArrayBuffer(prfSalt) } } } as AuthenticationExtensionsClientInputs,
-    },
-  })) as PublicKeyCredential | null
-  if (!assertion) throw new Error(i18n.global.t('errors.passkeyUnlockCancelled'))
+  const assertion = (await runCeremony(
+    navigator.credentials.get({
+      publicKey: {
+        challenge,
+        allowCredentials: [{ type: 'public-key', id: toArrayBuffer(credentialId) }],
+        userVerification: 'required',
+        timeout: 60_000,
+        extensions: { prf: { eval: { first: toArrayBuffer(prfSalt) } } } as AuthenticationExtensionsClientInputs,
+      },
+    }),
+    'errors.passkeyUnlockCancelled',
+  )) as PublicKeyCredential | null
+  if (!assertion) throw translatedError('errors.passkeyUnlockCancelled')
 
   const results = assertion.getClientExtensionResults() as PrfExtensionResults
   return results.prf?.results?.first

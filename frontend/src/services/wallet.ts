@@ -1,6 +1,7 @@
 import { HDNodeWallet, Wallet, isAddress } from 'ethers'
 import type { ChainSlug } from './api'
 import type { NewWalletAccount } from '@/stores/accounts'
+import { translatedError } from './errors'
 
 /**
  * Account private keys are stored as plain hex, protected only by the vault's
@@ -29,7 +30,15 @@ export async function importFromMnemonic(
   mnemonic: string,
 ): Promise<NewWalletAccount> {
   const trimmed = mnemonic.trim()
-  const wallet = HDNodeWallet.fromPhrase(trimmed)
+  // ethers throws its own untranslated error here (e.g. "invalid mnemonic")
+  // for a malformed phrase — every other validation-failure message in this
+  // app is translated, so this shouldn't be the one exception.
+  let wallet: HDNodeWallet
+  try {
+    wallet = HDNodeWallet.fromPhrase(trimmed)
+  } catch {
+    throw translatedError('errors.invalidMnemonic')
+  }
   return {
     address: wallet.address,
     label,
@@ -45,7 +54,12 @@ export async function importFromPrivateKey(
   chain: ChainSlug,
   privateKey: string,
 ): Promise<NewWalletAccount> {
-  const wallet = new Wallet(privateKey.trim())
+  let wallet: Wallet
+  try {
+    wallet = new Wallet(privateKey.trim())
+  } catch {
+    throw translatedError('errors.invalidPrivateKey')
+  }
   return { address: wallet.address, label, chain, privateKey: wallet.privateKey, hasMnemonic: false }
 }
 
@@ -61,7 +75,14 @@ export async function importFromKeystoreJson(
   keystoreJson: string,
   filePassword: string,
 ): Promise<NewWalletAccount> {
-  const wallet = await Wallet.fromEncryptedJson(keystoreJson, filePassword)
+  let wallet: Wallet
+  try {
+    wallet = (await Wallet.fromEncryptedJson(keystoreJson, filePassword)) as Wallet
+  } catch {
+    // Covers both a malformed keystore file and a wrong password — ethers
+    // doesn't distinguish the two in a way worth surfacing separately.
+    throw translatedError('errors.invalidKeystoreFile')
+  }
   return { address: wallet.address, label, chain, privateKey: wallet.privateKey, hasMnemonic: false }
 }
 

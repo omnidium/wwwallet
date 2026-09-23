@@ -1067,6 +1067,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Aún está pendiente; todavía no se ha confirmado. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "La operación con la clave de acceso ha fallado. Inténtalo de nuevo o utiliza tu frase de recuperación."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Esa frase de recuperación no es válida. Comprueba bien las palabras e inténtalo de nuevo."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Esa clave privada no es válida."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "No se ha podido abrir este archivo de almacén de claves; es posible que esté dañado o que la contraseña sea incorrecta."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "No se ha podido conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Demasiadas solicitudes: espera un momento e inténtalo de nuevo."
     }
   },
   "ar": {
@@ -2137,6 +2161,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "لا يزال الأمر قيد النظر — لم يتم تأكيده بعد. الهاش: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "فشلت عملية إدخال مفتاح المرور. حاول مرة أخرى، أو استخدم عبارة الاسترداد بدلاً من ذلك."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "عبارة الاسترداد هذه غير صالحة. تحقق جيدًا من الكلمات وحاول مرة أخرى."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "هذا المفتاح الخاص غير صالح."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "تعذر فتح ملف مخزن المفاتيح هذا — ربما يكون تالفًا، أو ربما تكون كلمة المرور خاطئة."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "تعذر الوصول إلى الخادم. يرجى التحقق من اتصالك ومحاولة الوصول مرة أخرى."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "عدد الطلبات كبير جدًّا — يرجى الانتظار قليلاً ثم المحاولة مرة أخرى."
     }
   },
   "bg": {
@@ -3207,6 +3255,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Все още е в процес на разглеждане — все още не е потвърдено. Хеш: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Операцията с паролата се провали. Опитайте отново или използвайте вместо това фразата си за възстановяване."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Тази фраза за възстановяване е невалидна. Проверете отново думите и опитайте още веднъж."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Този частен ключ не е валиден."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Не може да се отвори този файл с ключове — възможно е той да е повреден или паролата да е грешна."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Не може да се установи връзка със сървъра. Проверете връзката си и опитайте отново."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Прекалено много заявки — моля, изчакайте малко и опитайте отново."
     }
   },
   "cs": {
@@ -4277,6 +4349,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Stále nevyřešeno – zatím to nebylo potvrzeno. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Operace s přístupovým klíčem se nezdařila. Zkuste to znovu, případně použijte svou obnovovací frázi."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Tato obnovovací fráze není platná. Zkontrolujte, zda jste zadali správná slova, a zkuste to znovu."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Tento soukromý klíč není platný."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Tento soubor úložiště klíčů se nepodařilo otevřít – může být poškozený nebo může být zadáno nesprávné heslo."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Nelze se připojit k serveru. Zkontrolujte připojení a zkuste to znovu."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Příliš mnoho požadavků – počkejte prosím chvíli a zkuste to znovu."
     }
   },
   "da": {
@@ -5347,6 +5443,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Stadig uafklaret — det er endnu ikke blevet bekræftet. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Adgangskoden kunne ikke bruges. Prøv igen, eller brug i stedet din gendannelsesfrase."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Den gendannelsesfrase er ugyldig. Tjek ordene igen, og prøv endnu en gang."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Den private nøgle er ugyldig."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Det var ikke muligt at åbne denne nøglefil — den er muligvis beskadiget, eller adgangskoden er måske forkert."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Det var ikke muligt at oprette forbindelse til serveren. Kontroller din forbindelse, og prøv igen."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Der er for mange anmodninger — vent et øjeblik, og prøv igen."
     }
   },
   "de": {
@@ -6417,6 +6537,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Noch offen – es wurde noch nicht bestätigt. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Die Passwort-Eingabe ist fehlgeschlagen. Versuchen Sie es erneut oder verwenden Sie stattdessen Ihre Wiederherstellungsphrase."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Dieser Wiederherstellungssatz ist ungültig. Überprüfen Sie die Eingabe noch einmal und versuchen Sie es erneut."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Dieser private Schlüssel ist ungültig."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Diese Keystore-Datei konnte nicht geöffnet werden – möglicherweise ist sie beschädigt oder das Passwort ist falsch."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Der Server konnte nicht erreicht werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Zu viele Anfragen – bitte warten Sie einen Moment und versuchen Sie es erneut."
     }
   },
   "el": {
@@ -7487,6 +7631,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Εξακολουθεί να εκκρεμεί — δεν έχει επιβεβαιωθεί ακόμα. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Η διαδικασία εισαγωγής του κωδικού πρόσβασης απέτυχε. Προσπαθήστε ξανά ή χρησιμοποιήστε τη φράση ανάκτησης."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Αυτή η φράση ανάκτησης δεν είναι έγκυρη. Ελέγξτε ξανά τις λέξεις και δοκιμάστε ξανά."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Αυτό το ιδιωτικό κλειδί δεν είναι έγκυρο."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Δεν ήταν δυνατό να ανοίξει αυτό το αρχείο αποθήκευσης κλειδιών — ενδέχεται να είναι κατεστραμμένο ή ο κωδικός πρόσβασης να είναι λανθασμένος."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Δεν ήταν δυνατή η σύνδεση με τον διακομιστή. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Υπάρχουν πάρα πολλά αιτήματα — παρακαλώ περιμένετε λίγο και δοκιμάστε ξανά."
     }
   },
   "et": {
@@ -8557,6 +8725,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Veel lahtine — seda pole veel kinnitatud. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Parooli sisestamine ebaõnnestus. Proovi uuesti või kasuta selle asemel taastamislauset."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "See taastamissõna ei ole kehtiv. Kontrolli sõnu veel kord ja proovi uuesti."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "See privaatvõti ei ole kehtiv."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Seda võtmehoidja faili ei õnnestunud avada — see võib olla rikutud või parool võib olla vale."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Serveriga ei õnnestunud ühendust luua. Kontrollige oma ühendust ja proovige uuesti."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Liiga palju päringuid — palun oodake hetk ja proovige uuesti."
     }
   },
   "fi": {
@@ -9627,6 +9819,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Vielä avoinna — asiaa ei ole vielä vahvistettu. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Salasanan käyttö epäonnistui. Yritä uudelleen tai käytä sen sijaan palautuslauseitasi."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Tuo palautuslause ei ole kelvollinen. Tarkista sanat huolellisesti ja yritä uudelleen."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Tuo yksityinen avain ei ole kelvollinen."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Tätä avainvarastotiedostoa ei voitu avata — se saattaa olla vioittunut tai salasana saattaa olla väärä."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Palvelimeen ei saatu yhteyttä. Tarkista yhteys ja yritä uudelleen."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Liian monta pyyntöä — odota hetki ja yritä uudelleen."
     }
   },
   "fr": {
@@ -10697,6 +10913,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Toujours en attente — cela n'a pas encore été confirmé. Hash : {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "L'opération liée à la clé d'accès a échoué. Réessayez ou utilisez plutôt votre phrase de récupération."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Cette phrase de récupération n'est pas valide. Vérifiez bien les mots et réessayez."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Cette clé privée n'est pas valide."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Impossible d'ouvrir ce fichier de stockage de clés : il est peut-être endommagé ou le mot de passe est peut-être incorrect."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Impossible d'accéder au serveur. Vérifiez votre connexion et réessayez."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Trop de requêtes — veuillez patienter un instant, puis réessayer."
     }
   },
   "hu": {
@@ -11767,6 +12007,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Még függőben van – egyelőre nem erősítették meg. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "A jelszó beírása sikertelen volt. Próbáld meg újra, vagy használd helyette a helyreállítási kódot."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "A helyreállítási kifejezés érvénytelen. Ellenőrizze újra a szavakat, majd próbálja meg újra."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Ez a titkos kulcs érvénytelen."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Nem sikerült megnyitni ezt a kulcstárat – lehetséges, hogy sérült, vagy a jelszó helytelen."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Nem sikerült kapcsolatba lépni a szerverrel. Ellenőrizze az internetkapcsolatát, majd próbálja meg újra."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Túl sok kérés érkezett — kérjük, várjon egy pillanatot, majd próbálja meg újra."
     }
   },
   "id": {
@@ -12837,6 +13101,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Masih dalam proses — belum dikonfirmasi. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Proses memasukkan kata sandi gagal. Coba lagi, atau gunakan frasa pemulihan Anda sebagai gantinya."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Frasa pemulihan tersebut tidak valid. Periksa kembali kata-katanya dan coba lagi."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Kunci pribadi tersebut tidak valid."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Tidak dapat membuka berkas keystore ini — mungkin berkas tersebut rusak, atau kata sandinya salah."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Tidak dapat terhubung ke server. Periksa koneksi Anda, lalu coba lagi."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Terlalu banyak permintaan — mohon tunggu sebentar dan coba lagi."
     }
   },
   "it": {
@@ -13907,6 +14195,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Ancora in sospeso — non è stato ancora confermato. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "L'operazione con la passkey non è andata a buon fine. Prova di nuovo oppure utilizza la tua frase di recupero."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Quella frase di recupero non è valida. Controlla attentamente le parole e riprova."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Quella chiave privata non è valida."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Impossibile aprire questo file keystore: potrebbe essere danneggiato oppure la password potrebbe essere errata."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Impossibile connettersi al server. Verifica la connessione e riprova."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Troppe richieste: attendi qualche istante e riprova."
     }
   },
   "iw": {
@@ -14977,6 +15289,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "עדיין בהמתנה — הדבר טרם אושר. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "פעולת מפתח הגישה נכשלה. נסה שוב, או השתמש במקום זאת בביטוי השחזור שלך."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "משפט השחזור הזה אינו תקף. בדוק שוב את המילים ונסה שוב."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "המפתח הפרטי הזה אינו תקף."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "לא ניתן לפתוח את קובץ מאגר המפתחות הזה — ייתכן שהוא פגום, או שהסיסמה שגויה."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "לא ניתן היה להתחבר לשרת. בדוק את החיבור שלך ונסה שוב."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "מספר בקשות רב מדי — אנא המתן רגע ונסה שוב."
     }
   },
   "ja": {
@@ -16047,6 +16383,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "まだ未定です — まだ確認されていません。ハッシュ：{hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "パスキーの操作に失敗しました。もう一度試すか、代わりにリカバリーフレーズを使用してください。"
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "その復元フレーズは有効ではありません。入力内容を確認してから、もう一度お試しください。"
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "その秘密鍵は無効です。"
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "このキーストアファイルを開くことができませんでした。ファイルが破損しているか、パスワードが間違っている可能性があります。"
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "サーバーに接続できませんでした。接続状態を確認して、もう一度お試しください。"
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "リクエストが多すぎます。しばらくお待ちの上、再度お試しください。"
     }
   },
   "ko": {
@@ -17117,6 +17477,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "아직 미정입니다 — 아직 확인되지 않았습니다. 해시: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "패스키 작업이 실패했습니다. 다시 시도하거나, 대신 복구 문구를 사용해 주세요."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "해당 복구 문구가 유효하지 않습니다. 단어를 다시 한 번 확인한 후 다시 시도해 주세요."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "해당 개인 키는 유효하지 않습니다."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "이 키스토어 파일을 열 수 없습니다. 파일이 손상되었거나 비밀번호가 잘못되었을 수 있습니다."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "서버에 연결할 수 없습니다. 연결 상태를 확인한 후 다시 시도해 주세요."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "요청이 너무 많습니다. 잠시 기다린 후 다시 시도해 주세요."
     }
   },
   "lt": {
@@ -18187,6 +18571,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Dar nepatvirtinta — tai dar nėra patvirtinta. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Prieigos raktas neveikia. Bandykite dar kartą arba vietoj to naudokite atkūrimo frazę."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Ši atkūrimo frazė yra neteisinga. Dar kartą patikrinkite žodžius ir pabandykite iš naujo."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Tas privatusis raktas yra negaliojantis."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Nepavyko atidaryti šio raktų saugyklos failo — jis gali būti sugadintas arba įvestas neteisingas slaptažodis."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Nepavyko prisijungti prie serverio. Patikrinkite ryšį ir pabandykite dar kartą."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Per daug užklausų — prašome palaukti akimirką ir pabandyti dar kartą."
     }
   },
   "lv": {
@@ -19257,6 +19665,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Vēl nav izlemts — tas vēl nav apstiprināts. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Piekļuves atslēgas ievadīšana neizdevās. Mēģiniet vēlreiz vai izmantojiet savu atjaunošanas frāzi."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Šī atjaunošanas frāze nav derīga. Pārbaudiet vārdus vēlreiz un mēģiniet vēlreiz."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Šis privātais atslēgas kods nav derīgs."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Šo atslēgu krātuves failu neizdevās atvērt — iespējams, tas ir bojāts vai arī parole ir nepareiza."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Neizdevās izveidot savienojumu ar serveri. Pārbaudiet savienojumu un mēģiniet vēlreiz."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Pārāk daudz pieprasījumu — lūdzu, pagaidiet brīdi un mēģiniet vēlreiz."
     }
   },
   "nl": {
@@ -20327,6 +20759,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Nog in behandeling — het is nog niet bevestigd. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Het invoeren van de toegangscode is mislukt. Probeer het nog eens, of gebruik in plaats daarvan je herstelzin."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Die herstelzin is ongeldig. Controleer de woorden nog eens goed en probeer het opnieuw."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Die privésleutel is ongeldig."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Dit keystore-bestand kon niet worden geopend — het is mogelijk beschadigd of het wachtwoord is onjuist."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "De server kon niet worden bereikt. Controleer je verbinding en probeer het opnieuw."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Te veel verzoeken — wacht even en probeer het nog eens."
     }
   },
   "no": {
@@ -21397,6 +21853,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Fortsatt uavklart — det er ikke bekreftet ennå. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Passordet kunne ikke brukes. Prøv på nytt, eller bruk gjenopprettingsfrasen din i stedet."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Gjenopprettingsfrasen er ugyldig. Kontroller ordene nøye og prøv på nytt."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Den private nøkkelen er ikke gyldig."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Det var ikke mulig å åpne denne nøkkelarkivfilen — den kan være ødelagt, eller passordet kan være feil."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Det var ikke mulig å opprette kontakt med serveren. Sjekk nettforbindelsen din og prøv på nytt."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "For mange forespørsler — vent et øyeblikk og prøv på nytt."
     }
   },
   "pl": {
@@ -22467,6 +22947,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Wciąż w toku — nie zostało to jeszcze potwierdzone. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Operacja związana z hasłem dostępu nie powiodła się. Spróbuj ponownie lub użyj zamiast tego frazy odzyskiwania."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "To hasło odzyskiwania jest nieprawidłowe. Sprawdź jeszcze raz hasło i spróbuj ponownie."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Ten klucz prywatny jest nieprawidłowy."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Nie udało się otworzyć tego pliku magazynu kluczy — może być uszkodzony lub hasło może być nieprawidłowe."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Nie udało się nawiązać połączenia z serwerem. Sprawdź połączenie i spróbuj ponownie."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Zbyt wiele żądań — proszę chwilę poczekać i spróbować ponownie."
     }
   },
   "ro": {
@@ -23537,6 +24041,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Încă în așteptare — nu a fost confirmat încă. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Operațiunea cu parola de acces a eșuat. Încearcă din nou sau folosește fraza de recuperare."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Această frază de recuperare nu este validă. Verifică din nou cuvintele și încearcă din nou."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Cheia privată respectivă nu este validă."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Nu s-a putut deschide acest fișier keystore — este posibil să fie corupt sau parola să fie greșită."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Nu s-a putut stabili conexiunea cu serverul. Verificați conexiunea și încercați din nou."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Sunt prea multe solicitări — vă rugăm să așteptați puțin și să încercați din nou."
     }
   },
   "ru": {
@@ -24607,6 +25135,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Пока в процессе — пока не подтверждено. Хеш: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Ошибка при вводе пароля. Попробуйте еще раз или воспользуйтесь фразой для восстановления."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Эта фраза для восстановления доступа неверна. Проверьте введенные слова и попробуйте ещё раз."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Этот закрытый ключ недействителен."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Не удалось открыть этот файл хранилища ключей — возможно, он повреждён или введён неверный пароль."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Не удалось установить соединение с сервером. Проверьте подключение и попробуйте ещё раз."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Слишком много запросов — пожалуйста, подождите немного и попробуйте ещё раз."
     }
   },
   "sk": {
@@ -25677,6 +26229,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Stále je to v riešení — zatiaľ to nebolo potvrdené. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Operácia s prístupovým kľúčom zlyhala. Skúste to znovu alebo namiesto toho použite svoju obnovovaciu frázu."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Táto obnovovacia fráza nie je platná. Skontrolujte znenie a skúste to znova."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Tento súkromný kľúč nie je platný."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Tento súbor úložiska kľúčov sa nepodarilo otvoriť – môže byť poškodený alebo heslo môže byť nesprávne."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Nepodarilo sa nadviazať spojenie so serverom. Skontrolujte pripojenie a skúste to znova."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Príliš veľa požiadaviek – prosím, chvíľu počkajte a skúste to znova."
     }
   },
   "sl": {
@@ -26747,6 +27323,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Še vedno v postopku — še ni bilo potrjeno. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Izvedba gesla ni uspela. Poskusite znova ali namesto tega uporabite svojo obnovitveno frazo."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Ta geslo za obnovitev ni veljavno. Preverite besede in poskusite še enkrat."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Ta zasebni ključ ni veljaven."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Te datoteke s ključnico ni bilo mogoče odpreti – morda je poškodovana ali pa je geslo napačno."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Strežnika ni bilo mogoče doseči. Preverite povezavo in poskusite znova."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Preveč zahtevkov — počakajte trenutek in poskusite znova."
     }
   },
   "sv": {
@@ -27817,6 +28417,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Fortfarande oklart – det har inte bekräftats än. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Inloggningen misslyckades. Försök igen, eller använd din återställningsfras istället."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Återställningsfrasen är ogiltig. Kontrollera orden noga och försök igen."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Den privata nyckeln är ogiltig."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Det gick inte att öppna den här nyckelarkivfilen – den kan vara skadad eller så kan lösenordet vara fel."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Det gick inte att ansluta till servern. Kontrollera din anslutning och försök igen."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "För många förfrågningar – vänta ett ögonblick och försök igen."
     }
   },
   "tr": {
@@ -28887,6 +29511,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Hâlâ beklemede — henüz onaylanmadı. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Şifre girişi başarısız oldu. Tekrar deneyin ya da bunun yerine kurtarma ifadesini kullanın."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Bu kurtarma ifadesi geçersiz. Kelimeleri tekrar kontrol edin ve yeniden deneyin."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Bu özel anahtar geçerli değil."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Bu anahtar deposu dosyası açılamadı — dosya bozuk olabilir ya da şifre yanlış olabilir."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Sunucuya ulaşılamadı. Bağlantınızı kontrol edin ve tekrar deneyin."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Çok fazla istek var — lütfen bir süre bekleyin ve tekrar deneyin."
     }
   },
   "uk": {
@@ -29957,6 +30605,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Ще не вирішено — це ще не підтверджено. Хеш: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Операція з використанням пароля завершилася невдало. Спробуйте ще раз або скористайтеся фразою для відновлення."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Ця фраза для відновлення недійсна. Перевірте слова ще раз і спробуйте ще раз."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Цей приватний ключ є недійсним."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Не вдалося відкрити цей файл сховища ключів — можливо, він пошкоджений або введено неправильний пароль."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Не вдалося встановити з’єднання з сервером. Перевірте з’єднання та спробуйте ще раз."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Занадто багато запитів — будь ласка, зачекайте хвилину та спробуйте ще раз."
     }
   },
   "vi": {
@@ -31027,6 +31699,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "Vẫn đang chờ xử lý — vẫn chưa được xác nhận. Hash: {hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "Quá trình nhập mật khẩu đã thất bại. Hãy thử lại hoặc sử dụng cụm từ khôi phục thay thế."
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "Cụm từ khôi phục đó không hợp lệ. Hãy kiểm tra lại các từ và thử lại."
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "Khóa riêng tư đó không hợp lệ."
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "Không thể mở tệp kho khóa này — có thể tệp đã bị hỏng hoặc mật khẩu không chính xác."
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "Không thể kết nối với máy chủ. Vui lòng kiểm tra kết nối của bạn và thử lại."
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "Có quá nhiều yêu cầu — vui lòng đợi một lát rồi thử lại."
     }
   },
   "zh-CN": {
@@ -32097,6 +32793,30 @@
     "msg.swap.stillPending": {
       "enHash": "e1ee423b2ac4b427",
       "value": "仍在等待中——尚未得到确认。哈希值：{hash}"
+    },
+    "errors.passkeyOperationFailed": {
+      "enHash": "d3fc32abf86385bd",
+      "value": "密钥验证失败。请重试，或者改用恢复短语。"
+    },
+    "errors.invalidMnemonic": {
+      "enHash": "813227e3483b87f8",
+      "value": "该恢复短语无效。请仔细检查内容，然后重试。"
+    },
+    "errors.invalidPrivateKey": {
+      "enHash": "0a075e0f0cb27845",
+      "value": "该私钥无效。"
+    },
+    "errors.invalidKeystoreFile": {
+      "enHash": "0209ff644f91f04c",
+      "value": "无法打开此密钥库文件——该文件可能已损坏，或者密码可能有误。"
+    },
+    "errors.networkFailed": {
+      "enHash": "b298b2aa79073e08",
+      "value": "无法连接到服务器。请检查网络连接，然后重试。"
+    },
+    "errors.rateLimited": {
+      "enHash": "731f2f8039511400",
+      "value": "请求过多——请稍等片刻，然后重试。"
     }
   }
 }

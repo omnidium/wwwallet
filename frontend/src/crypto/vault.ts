@@ -3,6 +3,7 @@ import { db, type VaultRecord, type KeyWrap } from '@/services/db'
 import { deriveWrapKeyFromBytes } from './kdf'
 import { decrypt, encrypt, exportAesKeyBytes, generateIv, importAesKey } from './aesGcm'
 import { normalizeMnemonic } from '@/services/mnemonic'
+import { TranslatedError, translatedError } from '@/services/errors'
 import type { WalletAccount } from '@/stores/accounts'
 import type { Payee } from '@/stores/payees'
 
@@ -50,14 +51,14 @@ function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
   return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer
 }
 
-export class VaultUnlockError extends Error {
+export class VaultUnlockError extends TranslatedError {
   constructor() {
     super(i18n.global.t('errors.vaultUnlockFailed'))
     this.name = 'VaultUnlockError'
   }
 }
 
-export class UnlockMethodNotEnrolledError extends Error {
+export class UnlockMethodNotEnrolledError extends TranslatedError {
   constructor(method: string) {
     super(i18n.global.t('errors.unlockMethodNotEnrolled', { method }))
     this.name = 'UnlockMethodNotEnrolledError'
@@ -141,7 +142,7 @@ export async function createVault(mnemonic: string, initialData: VaultData): Pro
 
 export async function unlockWithMnemonic(mnemonic: string): Promise<{ key: CryptoKey; data: VaultData }> {
   const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
+  if (!record) throw translatedError('errors.noVaultOnDevice')
   const wrap = record.wraps.find((w) => w.method === 'mnemonic')
   if (!wrap || wrap.method !== 'mnemonic') throw new UnlockMethodNotEnrolledError('Recovery phrase')
 
@@ -160,7 +161,7 @@ export async function unlockWithMnemonic(mnemonic: string): Promise<{ key: Crypt
 /** `prfSecret` is the raw PRF output already obtained via services/webauthnLocal.ts. */
 export async function unlockWithPasskey(prfSecret: ArrayBuffer): Promise<{ key: CryptoKey; data: VaultData }> {
   const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
+  if (!record) throw translatedError('errors.noVaultOnDevice')
   const wrap = record.wraps.find((w) => w.method === 'passkeyPrf')
   if (!wrap || wrap.method !== 'passkeyPrf') throw new UnlockMethodNotEnrolledError('Passkey')
 
@@ -209,7 +210,7 @@ export async function addPasskeyWrap(
 
   await db.transaction('rw', db.vault, async () => {
     const record = await db.vault.get(VAULT_ID)
-    if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
+    if (!record) throw translatedError('errors.noVaultOnDevice')
     const wraps: KeyWrap[] = record.wraps.filter((w) => w.method !== 'passkeyPrf')
     wraps.push({
       method: 'passkeyPrf',
@@ -226,7 +227,7 @@ export async function addPasskeyWrap(
 export async function removeWrap(method: 'passkeyPrf'): Promise<void> {
   await db.transaction('rw', db.vault, async () => {
     const record = await db.vault.get(VAULT_ID)
-    if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
+    if (!record) throw translatedError('errors.noVaultOnDevice')
     await db.vault.put({ ...record, wraps: record.wraps.filter((w) => w.method !== method), updatedAt: Date.now() })
   })
 }
@@ -238,7 +239,7 @@ export async function saveVault(key: CryptoKey, data: VaultData): Promise<void> 
 
   await db.transaction('rw', db.vault, async () => {
     const existing = await db.vault.get(VAULT_ID)
-    if (!existing) throw new Error(i18n.global.t('errors.cannotSaveNoVault'))
+    if (!existing) throw translatedError('errors.cannotSaveNoVault')
     await db.vault.put({
       ...existing,
       ciphertext,
@@ -259,9 +260,9 @@ function isByteArrayLike(value: unknown): value is number[] {
  */
 export async function exportEncryptedVaultBlob(): Promise<Blob> {
   const record = await db.vault.get(VAULT_ID)
-  if (!record) throw new Error(i18n.global.t('errors.noVaultOnDevice'))
+  if (!record) throw translatedError('errors.noVaultOnDevice')
   const mnemonicWrap = record.wraps.find((w) => w.method === 'mnemonic')
-  if (!mnemonicWrap) throw new Error(i18n.global.t('errors.noRecoveryWrapToExport'))
+  if (!mnemonicWrap) throw translatedError('errors.noRecoveryWrapToExport')
 
   const payload = {
     version: 2,
@@ -280,7 +281,7 @@ export async function importEncryptedVaultBlob(blob: Blob): Promise<void> {
   try {
     payload = JSON.parse(await blob.text())
   } catch {
-    throw new Error(i18n.global.t('errors.invalidBackupFile'))
+    throw translatedError('errors.invalidBackupFile')
   }
 
   if (
@@ -290,7 +291,7 @@ export async function importEncryptedVaultBlob(blob: Blob): Promise<void> {
     !isByteArrayLike(payload.mnemonicWrap?.iv) ||
     !isByteArrayLike(payload.mnemonicWrap?.wrappedKey)
   ) {
-    throw new Error(i18n.global.t('errors.invalidBackupFile'))
+    throw translatedError('errors.invalidBackupFile')
   }
 
   const record: VaultRecord = {

@@ -266,6 +266,14 @@ export default {
     passkeyNotSetUp: 'Passkey אינו מוגדר עבור הכספת הזו.',
     vaultLocked: 'הכספת נעולה',
     chooseKeystoreFile: 'בחר קובץ מאגר מפתחות',
+    passkeyOperationFailed:
+      'פעולת מפתח הגישה נכשלה. נסה שוב, או השתמש במקום זאת בביטוי השחזור שלך.',
+    invalidMnemonic: 'משפט השחזור הזה אינו תקף. בדוק שוב את המילים ונסה שוב.',
+    invalidPrivateKey: 'המפתח הפרטי הזה אינו תקף.',
+    invalidKeystoreFile:
+      'לא ניתן לפתוח את קובץ מאגר המפתחות הזה — ייתכן שהוא פגום, או שהסיסמה שגויה.',
+    networkFailed: 'לא ניתן היה להתחבר לשרת. בדוק את החיבור שלך ונסה שוב.',
+    rateLimited: 'מספר בקשות רב מדי — אנא המתן רגע ונסה שוב.',
   },
   currency: {
     USD: 'דולר אמריקאי',

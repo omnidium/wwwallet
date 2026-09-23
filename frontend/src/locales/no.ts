@@ -275,6 +275,15 @@ export default {
     passkeyNotSetUp: 'Passordnøkkelen er ikke konfigurert for dette hvelvet.',
     vaultLocked: 'hvelvet er låst',
     chooseKeystoreFile: 'Velg en nøkkelarkivfil',
+    passkeyOperationFailed:
+      'Passordet kunne ikke brukes. Prøv på nytt, eller bruk gjenopprettingsfrasen din i stedet.',
+    invalidMnemonic: 'Gjenopprettingsfrasen er ugyldig. Kontroller ordene nøye og prøv på nytt.',
+    invalidPrivateKey: 'Den private nøkkelen er ikke gyldig.',
+    invalidKeystoreFile:
+      'Det var ikke mulig å åpne denne nøkkelarkivfilen — den kan være ødelagt, eller passordet kan være feil.',
+    networkFailed:
+      'Det var ikke mulig å opprette kontakt med serveren. Sjekk nettforbindelsen din og prøv på nytt.',
+    rateLimited: 'For mange forespørsler — vent et øyeblikk og prøv på nytt.',
   },
   currency: {
     USD: 'amerikansk dollar',

@@ -274,6 +274,15 @@ export default {
     passkeyNotSetUp: 'Pro tento trezor není nastaven přístupový kód.',
     vaultLocked: 'trezor je zamčený',
     chooseKeystoreFile: 'vyberte soubor úložiště klíčů',
+    passkeyOperationFailed:
+      'Operace s přístupovým klíčem se nezdařila. Zkuste to znovu, případně použijte svou obnovovací frázi.',
+    invalidMnemonic:
+      'Tato obnovovací fráze není platná. Zkontrolujte, zda jste zadali správná slova, a zkuste to znovu.',
+    invalidPrivateKey: 'Tento soukromý klíč není platný.',
+    invalidKeystoreFile:
+      'Tento soubor úložiště klíčů se nepodařilo otevřít – může být poškozený nebo může být zadáno nesprávné heslo.',
+    networkFailed: 'Nelze se připojit k serveru. Zkontrolujte připojení a zkuste to znovu.',
+    rateLimited: 'Příliš mnoho požadavků – počkejte prosím chvíli a zkuste to znovu.',
   },
   currency: {
     USD: 'americký dolar',

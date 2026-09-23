@@ -277,6 +277,15 @@ export default {
     passkeyNotSetUp: 'Kode akses belum diatur untuk brankas ini.',
     vaultLocked: 'brankasnya terkunci',
     chooseKeystoreFile: 'pilih berkas keystore',
+    passkeyOperationFailed:
+      'Proses memasukkan kata sandi gagal. Coba lagi, atau gunakan frasa pemulihan Anda sebagai gantinya.',
+    invalidMnemonic:
+      'Frasa pemulihan tersebut tidak valid. Periksa kembali kata-katanya dan coba lagi.',
+    invalidPrivateKey: 'Kunci pribadi tersebut tidak valid.',
+    invalidKeystoreFile:
+      'Tidak dapat membuka berkas keystore ini — mungkin berkas tersebut rusak, atau kata sandinya salah.',
+    networkFailed: 'Tidak dapat terhubung ke server. Periksa koneksi Anda, lalu coba lagi.',
+    rateLimited: 'Terlalu banyak permintaan — mohon tunggu sebentar dan coba lagi.',
   },
   currency: {
     USD: 'Dolar AS',

@@ -7,6 +7,7 @@ import { useMessagesStore } from '@/stores/messages'
 import { PrfNotSupportedError } from '@/services/webauthnLocal'
 import { generateRecoveryMnemonic, recoveryMnemonicWords } from '@/services/mnemonic'
 import { copyWithAutoClear } from '@/services/clipboard'
+import { displayErrorMessage } from '@/services/errors'
 
 const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
@@ -37,7 +38,7 @@ async function createVault() {
     await vault.createVault(recoveryPhrase.value)
     step.value = 'extras'
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   }
 }
 
@@ -48,7 +49,7 @@ async function restoreFromDrive() {
     messages.push(t('msg.restore.driveSuccessSetup'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     restoring.value = false
   }
@@ -63,7 +64,7 @@ async function onRestoreFileSelected(event: Event) {
     messages.push(t('msg.restore.fileSuccessSetup'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     restoring.value = false
   }
@@ -78,7 +79,7 @@ async function addPasskey() {
       passkeyUnsupported.value = true
       messages.push(err.message, 'warning')
     } else {
-      messages.push((err as Error).message, 'error')
+      messages.push(displayErrorMessage(err), 'error')
     }
   }
 }

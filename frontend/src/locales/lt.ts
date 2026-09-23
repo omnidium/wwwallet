@@ -274,6 +274,16 @@ export default {
     passkeyNotSetUp: 'Šiam seifui nėra nustatytas prieigos raktas.',
     vaultLocked: 'seifas užrakintas',
     chooseKeystoreFile: 'pasirinkite raktų saugyklos failą',
+    passkeyOperationFailed:
+      'Prieigos raktas neveikia. Bandykite dar kartą arba vietoj to naudokite atkūrimo frazę.',
+    invalidMnemonic:
+      'Ši atkūrimo frazė yra neteisinga. Dar kartą patikrinkite žodžius ir pabandykite iš naujo.',
+    invalidPrivateKey: 'Tas privatusis raktas yra negaliojantis.',
+    invalidKeystoreFile:
+      'Nepavyko atidaryti šio raktų saugyklos failo — jis gali būti sugadintas arba įvestas neteisingas slaptažodis.',
+    networkFailed:
+      'Nepavyko prisijungti prie serverio. Patikrinkite ryšį ir pabandykite dar kartą.',
+    rateLimited: 'Per daug užklausų — prašome palaukti akimirką ir pabandyti dar kartą.',
   },
   currency: {
     USD: 'JAV doleris',

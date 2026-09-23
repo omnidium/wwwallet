@@ -274,6 +274,15 @@ export default {
     passkeyNotSetUp: 'Passordnyckeln är inte konfigurerad för detta valv.',
     vaultLocked: 'valvet är låst',
     chooseKeystoreFile: 'välj en nyckelarkivfil',
+    passkeyOperationFailed:
+      'Inloggningen misslyckades. Försök igen, eller använd din återställningsfras istället.',
+    invalidMnemonic: 'Återställningsfrasen är ogiltig. Kontrollera orden noga och försök igen.',
+    invalidPrivateKey: 'Den privata nyckeln är ogiltig.',
+    invalidKeystoreFile:
+      'Det gick inte att öppna den här nyckelarkivfilen – den kan vara skadad eller så kan lösenordet vara fel.',
+    networkFailed:
+      'Det gick inte att ansluta till servern. Kontrollera din anslutning och försök igen.',
+    rateLimited: 'För många förfrågningar – vänta ett ögonblick och försök igen.',
   },
   currency: {
     USD: 'amerikansk dollar',

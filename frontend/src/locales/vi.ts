@@ -274,6 +274,14 @@ export default {
     passkeyNotSetUp: 'Mật khẩu chính chưa được thiết lập cho kho này.',
     vaultLocked: 'két sắt đã được khóa',
     chooseKeystoreFile: 'Chọn tệp kho khóa',
+    passkeyOperationFailed:
+      'Quá trình nhập mật khẩu đã thất bại. Hãy thử lại hoặc sử dụng cụm từ khôi phục thay thế.',
+    invalidMnemonic: 'Cụm từ khôi phục đó không hợp lệ. Hãy kiểm tra lại các từ và thử lại.',
+    invalidPrivateKey: 'Khóa riêng tư đó không hợp lệ.',
+    invalidKeystoreFile:
+      'Không thể mở tệp kho khóa này — có thể tệp đã bị hỏng hoặc mật khẩu không chính xác.',
+    networkFailed: 'Không thể kết nối với máy chủ. Vui lòng kiểm tra kết nối của bạn và thử lại.',
+    rateLimited: 'Có quá nhiều yêu cầu — vui lòng đợi một lát rồi thử lại.',
   },
   currency: {
     USD: 'Đồng đô la Mỹ',

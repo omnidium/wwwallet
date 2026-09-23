@@ -272,6 +272,14 @@ export default {
     passkeyNotSetUp: 'Za ta trezor ni nastavljen dostopni ključ.',
     vaultLocked: 'trezor je zaklenjen',
     chooseKeystoreFile: 'izberite datoteko s ključi',
+    passkeyOperationFailed:
+      'Izvedba gesla ni uspela. Poskusite znova ali namesto tega uporabite svojo obnovitveno frazo.',
+    invalidMnemonic: 'Ta geslo za obnovitev ni veljavno. Preverite besede in poskusite še enkrat.',
+    invalidPrivateKey: 'Ta zasebni ključ ni veljaven.',
+    invalidKeystoreFile:
+      'Te datoteke s ključnico ni bilo mogoče odpreti – morda je poškodovana ali pa je geslo napačno.',
+    networkFailed: 'Strežnika ni bilo mogoče doseči. Preverite povezavo in poskusite znova.',
+    rateLimited: 'Preveč zahtevkov — počakajte trenutek in poskusite znova.',
   },
   currency: {
     USD: 'ameriški dolar',

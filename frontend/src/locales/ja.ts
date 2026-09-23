@@ -274,6 +274,15 @@ export default {
     passkeyNotSetUp: 'このボールトではパスキーが設定されていません。',
     vaultLocked: '金庫は施錠されています',
     chooseKeystoreFile: 'キーストアファイルを選択してください',
+    passkeyOperationFailed:
+      'パスキーの操作に失敗しました。もう一度試すか、代わりにリカバリーフレーズを使用してください。',
+    invalidMnemonic:
+      'その復元フレーズは有効ではありません。入力内容を確認してから、もう一度お試しください。',
+    invalidPrivateKey: 'その秘密鍵は無効です。',
+    invalidKeystoreFile:
+      'このキーストアファイルを開くことができませんでした。ファイルが破損しているか、パスワードが間違っている可能性があります。',
+    networkFailed: 'サーバーに接続できませんでした。接続状態を確認して、もう一度お試しください。',
+    rateLimited: 'リクエストが多すぎます。しばらくお待ちの上、再度お試しください。',
   },
   currency: {
     USD: '米ドル',

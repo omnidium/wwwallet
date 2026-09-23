@@ -8,6 +8,7 @@ import { availableUnlockMethods } from '@/crypto/vault'
 import { isValidRecoveryMnemonic, normalizeMnemonic } from '@/services/mnemonic'
 import { getLastActivityAt } from '@/services/lastActivity'
 import { AUTO_LOCK_MS } from '@/config/appSettings'
+import { displayErrorMessage } from '@/services/errors'
 
 const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
@@ -50,7 +51,7 @@ async function submitRecoveryPhrase() {
     await vault.unlockWithMnemonic(normalizeMnemonic(recoveryPhrase.value))
     router.push('/')
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     busy.value = false
   }
@@ -62,7 +63,7 @@ async function submitPasskey() {
     await vault.unlockWithPasskey()
     router.push('/')
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     busy.value = false
   }

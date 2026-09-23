@@ -274,6 +274,16 @@ export default {
     passkeyNotSetUp: 'Dla tego sejfu nie skonfigurowano klucza dostępu.',
     vaultLocked: 'skarbiec jest zamknięty',
     chooseKeystoreFile: 'wybierz plik magazynu kluczy',
+    passkeyOperationFailed:
+      'Operacja związana z hasłem dostępu nie powiodła się. Spróbuj ponownie lub użyj zamiast tego frazy odzyskiwania.',
+    invalidMnemonic:
+      'To hasło odzyskiwania jest nieprawidłowe. Sprawdź jeszcze raz hasło i spróbuj ponownie.',
+    invalidPrivateKey: 'Ten klucz prywatny jest nieprawidłowy.',
+    invalidKeystoreFile:
+      'Nie udało się otworzyć tego pliku magazynu kluczy — może być uszkodzony lub hasło może być nieprawidłowe.',
+    networkFailed:
+      'Nie udało się nawiązać połączenia z serwerem. Sprawdź połączenie i spróbuj ponownie.',
+    rateLimited: 'Zbyt wiele żądań — proszę chwilę poczekać i spróbować ponownie.',
   },
   currency: {
     USD: 'dolar amerykański',

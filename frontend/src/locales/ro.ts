@@ -278,6 +278,17 @@ export default {
     passkeyNotSetUp: 'Cheia de acces nu este configurată pentru acest seif.',
     vaultLocked: 'seiful este încuiat',
     chooseKeystoreFile: 'alegeți un fișier de stocare a cheilor',
+    passkeyOperationFailed:
+      'Operațiunea cu parola de acces a eșuat. Încearcă din nou sau folosește fraza de recuperare.',
+    invalidMnemonic:
+      'Această frază de recuperare nu este validă. Verifică din nou cuvintele și încearcă din nou.',
+    invalidPrivateKey: 'Cheia privată respectivă nu este validă.',
+    invalidKeystoreFile:
+      'Nu s-a putut deschide acest fișier keystore — este posibil să fie corupt sau parola să fie greșită.',
+    networkFailed:
+      'Nu s-a putut stabili conexiunea cu serverul. Verificați conexiunea și încercați din nou.',
+    rateLimited:
+      'Sunt prea multe solicitări — vă rugăm să așteptați puțin și să încercați din nou.',
   },
   currency: {
     USD: 'dolarul american',

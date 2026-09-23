@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import { useAccountsStore } from '@/stores/accounts'
 import { useMessagesStore } from '@/stores/messages'
 import { createWallet, importFromKeystoreJson, importFromMnemonic, importFromPrivateKey } from '@/services/wallet'
+import { displayErrorMessage, translatedError } from '@/services/errors'
 import type { ChainSlug } from '@/services/api'
 
 const { t } = useI18n({ useScope: 'global' })
@@ -42,7 +43,7 @@ async function submit() {
     messages.push(t('msg.account.added'), 'success')
     router.push('/')
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     busy.value = false
   }
@@ -58,7 +59,7 @@ async function buildAccount() {
     case 'privateKey':
       return importFromPrivateKey(accountLabel, chain.value, privateKey.value)
     case 'keystore': {
-      if (!keystoreFile.value) throw new Error(t('errors.chooseKeystoreFile'))
+      if (!keystoreFile.value) throw translatedError('errors.chooseKeystoreFile')
       const json = await keystoreFile.value.text()
       return importFromKeystoreJson(accountLabel, chain.value, json, filePassword.value)
     }

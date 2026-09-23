@@ -342,6 +342,14 @@ export default {
     passkeyNotSetUp: 'Passkey is not set up for this vault.',
     vaultLocked: 'vault is locked',
     chooseKeystoreFile: 'choose a keystore file',
+    passkeyOperationFailed:
+      'The passkey operation failed. Try again, or use your recovery phrase instead.',
+    invalidMnemonic: 'That recovery phrase is not valid. Double-check the words and try again.',
+    invalidPrivateKey: 'That private key is not valid.',
+    invalidKeystoreFile:
+      'Could not open this keystore file — it may be corrupted, or the password may be wrong.',
+    networkFailed: 'Could not reach the server. Check your connection and try again.',
+    rateLimited: 'Too many requests — please wait a moment and try again.',
   },
   currency: {
     USD: 'US dollar',

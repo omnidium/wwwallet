@@ -276,6 +276,16 @@ export default {
     passkeyNotSetUp: 'Ehhez a tárolóhoz nincs beállítva jelszó.',
     vaultLocked: 'a széf zárva van',
     chooseKeystoreFile: 'Válasszon ki egy kulcstárat!',
+    passkeyOperationFailed:
+      'A jelszó beírása sikertelen volt. Próbáld meg újra, vagy használd helyette a helyreállítási kódot.',
+    invalidMnemonic:
+      'A helyreállítási kifejezés érvénytelen. Ellenőrizze újra a szavakat, majd próbálja meg újra.',
+    invalidPrivateKey: 'Ez a titkos kulcs érvénytelen.',
+    invalidKeystoreFile:
+      'Nem sikerült megnyitni ezt a kulcstárat – lehetséges, hogy sérült, vagy a jelszó helytelen.',
+    networkFailed:
+      'Nem sikerült kapcsolatba lépni a szerverrel. Ellenőrizze az internetkapcsolatát, majd próbálja meg újra.',
+    rateLimited: 'Túl sok kérés érkezett — kérjük, várjon egy pillanatot, majd próbálja meg újra.',
   },
   currency: {
     USD: 'amerikai dollár',

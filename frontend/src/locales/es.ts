@@ -279,6 +279,16 @@ export default {
     passkeyNotSetUp: 'No se ha configurado ninguna clave de acceso para esta caja fuerte.',
     vaultLocked: 'La cámara acorazada está cerrada con llave',
     chooseKeystoreFile: 'Selecciona un archivo de almacén de claves',
+    passkeyOperationFailed:
+      'La operación con la clave de acceso ha fallado. Inténtalo de nuevo o utiliza tu frase de recuperación.',
+    invalidMnemonic:
+      'Esa frase de recuperación no es válida. Comprueba bien las palabras e inténtalo de nuevo.',
+    invalidPrivateKey: 'Esa clave privada no es válida.',
+    invalidKeystoreFile:
+      'No se ha podido abrir este archivo de almacén de claves; es posible que esté dañado o que la contraseña sea incorrecta.',
+    networkFailed:
+      'No se ha podido conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.',
+    rateLimited: 'Demasiadas solicitudes: espera un momento e inténtalo de nuevo.',
   },
   currency: {
     USD: 'dólar estadounidense',

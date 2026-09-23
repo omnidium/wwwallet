@@ -261,6 +261,12 @@ export default {
     passkeyNotSetUp: '此保险库尚未设置密钥。',
     vaultLocked: '保险库已上锁',
     chooseKeystoreFile: '选择一个密钥库文件',
+    passkeyOperationFailed: '密钥验证失败。请重试，或者改用恢复短语。',
+    invalidMnemonic: '该恢复短语无效。请仔细检查内容，然后重试。',
+    invalidPrivateKey: '该私钥无效。',
+    invalidKeystoreFile: '无法打开此密钥库文件——该文件可能已损坏，或者密码可能有误。',
+    networkFailed: '无法连接到服务器。请检查网络连接，然后重试。',
+    rateLimited: '请求过多——请稍等片刻，然后重试。',
   },
   currency: {
     USD: '美元',

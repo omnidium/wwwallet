@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
-import { PrfNotSupportedError } from '@/services/webauthnLocal'
+import { displayErrorMessage } from '@/services/errors'
 
 const { t } = useI18n({ useScope: 'global' })
 const router = useRouter()
@@ -20,10 +20,7 @@ async function addPasskey() {
     await vault.registerPasskey('wwwallet')
     messages.push(t('msg.passkey.ready'), 'success')
   } catch (err) {
-    messages.push(
-      err instanceof PrfNotSupportedError ? err.message : (err as Error).message,
-      'error',
-    )
+    messages.push(displayErrorMessage(err), 'error')
   }
 }
 

@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
+import { displayErrorMessage } from '@/services/errors'
 
 const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
@@ -19,7 +20,7 @@ async function backupToDrive() {
     await vault.backupToDrive()
     messages.push(t('msg.backup.driveSuccess'), 'success')
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   }
 }
 
@@ -30,7 +31,7 @@ async function restoreFromDrive() {
     messages.push(t('msg.restore.driveSuccess'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     restoring.value = false
   }
@@ -40,7 +41,7 @@ async function backupToFile() {
   try {
     await vault.backupToFile()
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   }
 }
 
@@ -53,7 +54,7 @@ async function onFileSelected(event: Event) {
     messages.push(t('msg.restore.fileSuccess'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
-    messages.push((err as Error).message, 'error')
+    messages.push(displayErrorMessage(err), 'error')
   } finally {
     restoring.value = false
   }
