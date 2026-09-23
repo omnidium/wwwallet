@@ -422,11 +422,25 @@ input[type='number'] {
  * drawer on a small screen, in which case this should scroll with the rest
  * of it instead of clipping — height would cap it exactly at the drawer's
  * size and force that clipping. mt-auto on .settings-version then only
- * pushes it down to the bottom when there's actually spare room. */
+ * pushes it down to the bottom when there's actually spare room.
+ *
+ * Several Vuetify components (v-row, v-input/v-select among them) ship
+ * their own flex-grow, meant for sitting inside a v-container/v-col layout
+ * where growing to fill a column makes sense — inside this plain flex
+ * column instead, each one individually grabbed a share of the panel's
+ * entire leftover height, e.g. ballooning selects to 100+px tall instead of
+ * their compact ~40px, and stretching the title row into a huge gap above
+ * "Lock now". Only .settings-version, which asks for it explicitly via
+ * margin-top: auto, should actually consume that leftover space — every
+ * other direct child stays its own natural size regardless of what it is. */
 .settings-panel {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+}
+
+.settings-panel > * {
+  flex: none;
 }
 
 .settings-version {

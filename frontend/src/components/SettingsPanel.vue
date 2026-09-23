@@ -58,18 +58,14 @@ function lockNow() {
       <div>
         <AppTooltip :text="t('settings.toggleThemeAria')" location="bottom">
           <template #default="{ activatorProps }">
-            <v-btn
-              v-bind="activatorProps"
-              :icon="isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"
-              variant="text"
-              :aria-label="t('settings.toggleThemeAria')"
-              @click="toggleTheme"
-            />
+            <v-btn v-bind="activatorProps" :icon="isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"
+              variant="text" :aria-label="t('settings.toggleThemeAria')" @click="toggleTheme" />
           </template>
         </AppTooltip>
         <AppTooltip :text="t('settings.closeAria')" location="bottom">
           <template #default="{ activatorProps }">
-            <v-btn v-bind="activatorProps" icon="mdi-close" variant="text" :aria-label="t('settings.closeAria')" @click="emit('close')" />
+            <v-btn v-bind="activatorProps" icon="mdi-close" variant="text" :aria-label="t('settings.closeAria')"
+              @click="emit('close')" />
           </template>
         </AppTooltip>
       </div>
@@ -79,33 +75,22 @@ function lockNow() {
       {{ t('settings.lockNow') }}
     </v-btn>
 
-    <v-select
-      class="mt-4"
-      :label="t('settings.languageLabel')"
-      :items="settings.languages"
-      item-title="name"
-      item-value="id"
-      v-model="settings.locale"
-      @update:model-value="settings.setLocale"
-    />
-    <v-select
-      class="mt-4"
-      :label="t('settings.currencyLabel')"
-      :items="settings.currencies"
-      v-model="settings.currency"
-    />
-    <v-select
-      class="mt-4"
-      :label="t('settings.transactionBatchSizeLabel')"
-      :items="TRANSACTION_BATCH_SIZE_OPTIONS"
-      :model-value="chainData.transactionBatchSize"
-      @update:model-value="setTransactionBatchSize"
-    />
+    <v-select class="mt-4" density="compact" hide-details :label="t('settings.languageLabel')"
+      :items="settings.languages" item-title="name" item-value="id" v-model="settings.locale"
+      @update:model-value="settings.setLocale" />
+    <v-select class="mt-4" density="compact" hide-details :label="t('settings.currencyLabel')"
+      :items="settings.currencies" v-model="settings.currency" />
+    <v-select class="mt-4" density="compact" hide-details :label="t('settings.transactionBatchSizeLabel')"
+      :items="TRANSACTION_BATCH_SIZE_OPTIONS" :model-value="chainData.transactionBatchSize"
+      @update:model-value="setTransactionBatchSize" />
 
     <v-list class="mt-4" rounded="lg">
-      <v-list-item to="/backup-restore" :title="t('backup.title')" prepend-icon="mdi-cloud-upload" append-icon="mdi-chevron-right" @click="emit('close')" />
-      <v-list-item to="/payees" :title="t('payees.title')" prepend-icon="mdi-account" append-icon="mdi-chevron-right" @click="emit('close')" />
-      <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock" append-icon="mdi-chevron-right" @click="emit('close')" />
+      <v-list-item to="/backup-restore" :title="t('backup.title')" prepend-icon="mdi-cloud-upload"
+        append-icon="mdi-chevron-right" @click="emit('close')" />
+      <v-list-item to="/payees" :title="t('payees.title')" prepend-icon="mdi-account" append-icon="mdi-chevron-right"
+        @click="emit('close')" />
+      <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock"
+        append-icon="mdi-chevron-right" @click="emit('close')" />
     </v-list>
 
     <p class="settings-version text-medium-emphasis mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
