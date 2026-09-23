@@ -20,7 +20,8 @@ export default {
     online: 'Connected',
     offlineNoNetwork: 'No internet connection',
     offlineServerUnreachable: 'Can’t reach the server',
-    backupReminder: 'It has been a while since your last backup. Back up regularly, and whenever you make changes.',
+    backupReminder:
+      'It has been a while since your last backup. Back up regularly, and whenever you make changes.',
     viewHidden: 'View hidden accounts',
     hideHidden: 'Hide hidden accounts',
   },
@@ -128,7 +129,8 @@ export default {
     toggleAmountUnitAria: 'Toggle between token amount and {currency}',
     submit: 'Send',
     addPayeeTitle: 'Add this address as a payee?',
-    addPayeePrompt: "You scanned this address with a QR code. Save it as a payee so it's easy to send to again.",
+    addPayeePrompt:
+      "You scanned this address with a QR code. Save it as a payee so it's easy to send to again.",
     addPayeeLabelField: 'Label',
     addPayeeSave: 'Save',
     addPayeeSkip: 'Skip',
@@ -233,7 +235,8 @@ export default {
     deleteWalletBody:
       'This permanently erases your encrypted vault and private keys from this device. There is no undo — without your recovery phrase, or a Google Drive or file backup, any funds in these accounts are lost forever.',
     deleteWalletNeverBackedUp: 'You have never backed up this wallet.',
-    deleteWalletAckLabel: 'I have my recovery phrase saved somewhere safe and understand this cannot be undone',
+    deleteWalletAckLabel:
+      'I have my recovery phrase saved somewhere safe and understand this cannot be undone',
     deleteWalletConfirm: 'Delete wallet',
   },
   transactions: {
