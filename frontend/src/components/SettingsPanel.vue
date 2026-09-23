@@ -71,16 +71,12 @@ function lockNow() {
       </div>
     </v-row>
 
-    <v-btn class="mt-4" color="error" variant="outlined" block prepend-icon="mdi-lock" @click="lockNow">
-      {{ t('settings.lockNow') }}
-    </v-btn>
-
-    <v-select class="mt-4" density="compact" hide-details :label="t('settings.languageLabel')"
+    <v-select class="mt-4" density="default" hide-details :label="t('settings.languageLabel')"
       :items="settings.languages" item-title="name" item-value="id" v-model="settings.locale"
       @update:model-value="settings.setLocale" />
-    <v-select class="mt-4" density="compact" hide-details :label="t('settings.currencyLabel')"
+    <v-select class="mt-4" density="default" hide-details :label="t('settings.currencyLabel')"
       :items="settings.currencies" v-model="settings.currency" />
-    <v-select class="mt-4" density="compact" hide-details :label="t('settings.transactionBatchSizeLabel')"
+    <v-select class="mt-4" density="default" hide-details :label="t('settings.transactionBatchSizeLabel')"
       :items="TRANSACTION_BATCH_SIZE_OPTIONS" :model-value="chainData.transactionBatchSize"
       @update:model-value="setTransactionBatchSize" />
 
@@ -92,6 +88,10 @@ function lockNow() {
       <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock"
         append-icon="mdi-chevron-right" @click="emit('close')" />
     </v-list>
+
+    <v-btn class="mt-4" color="error" variant="outlined" block prepend-icon="mdi-lock" @click="lockNow">
+      {{ t('settings.lockNow') }}
+    </v-btn>
 
     <p class="settings-version text-medium-emphasis mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
   </div>
