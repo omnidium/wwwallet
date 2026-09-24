@@ -46,6 +46,10 @@ pub struct ProviderRegistry {
     abi: Rc<dyn AbiProvider>,
     fx: Rc<dyn FxRateProvider>,
     broadcaster: Rc<dyn TransactionBroadcaster>,
+    // Concrete (not just the trait object above) so prepare_transaction can
+    // also reach its transaction_count method — see that method's own docs
+    // for why the nonce has to come from here rather than from Alchemy.
+    public_rpc: Rc<PublicRpcProvider>,
     tx_status: Rc<dyn TransactionStatusProvider>,
     tx_prep: Rc<dyn TransactionPrepProvider>,
     allowance: Rc<dyn AllowanceProvider>,
@@ -64,10 +68,12 @@ impl ProviderRegistry {
         rate_limiter_broadcast: RateLimiter,
     ) -> Self {
         let alchemy = Rc::new(AlchemyProvider::new(config.alchemy_api_key));
+        let public_rpc = Rc::new(PublicRpcProvider::new());
         Self {
             activity: alchemy.clone(),
             // Deliberately not Alchemy — see PublicRpcProvider's docs.
-            broadcaster: Rc::new(PublicRpcProvider::new()),
+            broadcaster: public_rpc.clone(),
+            public_rpc,
             tx_status: alchemy.clone(),
             allowance: alchemy.clone(),
             tx_prep: alchemy,
@@ -239,7 +245,10 @@ impl ProviderRegistry {
         value_wei: &str,
         data: Option<&str>,
     ) -> ProviderResult<TransactionPrep> {
-        self.tx_prep.prepare(chain, from, to, value_wei, data).await
+        let mut prep = self.tx_prep.prepare(chain, from, to, value_wei, data).await?;
+        // Overrides Alchemy's own nonce — see PublicRpcProvider::transaction_count's docs.
+        prep.nonce = self.public_rpc.transaction_count(chain, from).await?;
+        Ok(prep)
     }
 
     /// Never cached — allowances can change at any time.

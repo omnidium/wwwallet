@@ -36,6 +36,52 @@ impl PublicRpcProvider {
             ChainId::Optimism => "https://optimism-rpc.publicnode.com",
         }
     }
+
+    async fn rpc_call(chain: ChainId, method: &str, params: Value) -> ProviderResult<Value> {
+        let body = json!({
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": method,
+            "params": params,
+        });
+        let resp: Value = http::post_json(Self::rpc_url(chain), &body).await?;
+        if let Some(err) = resp.get("error") {
+            return Err(ProviderError::Upstream(err.to_string()));
+        }
+        resp.get("result")
+            .cloned()
+            .ok_or_else(|| ProviderError::Upstream("missing result field".into()))
+    }
+
+    /// The pending-inclusive transaction count (nonce) for `address`, read
+    /// from the same network transactions actually get broadcast to.
+    ///
+    /// This deliberately does *not* go through Alchemy, even though that's
+    /// otherwise this crate's read-side provider for everything else:
+    /// Alchemy's own "pending" view includes transactions sitting in its
+    /// private MEV-protection relay (see this module's own docs) — including
+    /// ones that relay will never actually get included and that the public
+    /// network has never seen. Computing a nonce from that view counts a
+    /// transaction that's permanently stuck as "already used," which pushes
+    /// every subsequent transaction to a nonce that can never be mined
+    /// either (Ethereum requires strictly sequential nonces), permanently
+    /// blocking the account from sending anything else at all. Reading the
+    /// nonce from the same public network the broadcast actually reaches
+    /// keeps the two consistent, and lets a new transaction reuse — and so
+    /// legitimately replace — a nonce that only ever existed in a private
+    /// relay no public node ever saw.
+    pub async fn transaction_count(&self, chain: ChainId, address: &str) -> ProviderResult<u64> {
+        let result = Self::rpc_call(chain, "eth_getTransactionCount", json!([address, "pending"])).await?;
+        let hex = result
+            .as_str()
+            .ok_or_else(|| ProviderError::Upstream("unexpected transaction count response shape".into()))?;
+        parse_hex_u64(hex)
+    }
+}
+
+fn parse_hex_u64(hex: &str) -> ProviderResult<u64> {
+    u64::from_str_radix(hex.trim_start_matches("0x"), 16)
+        .map_err(|_| ProviderError::Upstream(format!("invalid transaction count hex: {hex}")))
 }
 
 impl Default for PublicRpcProvider {
@@ -51,18 +97,9 @@ impl TransactionBroadcaster for PublicRpcProvider {
     }
 
     async fn broadcast(&self, chain: ChainId, raw_transaction_hex: &str) -> ProviderResult<String> {
-        let body = json!({
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_sendRawTransaction",
-            "params": [raw_transaction_hex],
-        });
-        let resp: Value = http::post_json(Self::rpc_url(chain), &body).await?;
-        if let Some(err) = resp.get("error") {
-            return Err(ProviderError::Upstream(err.to_string()));
-        }
-        resp.get("result")
-            .and_then(Value::as_str)
+        let result = Self::rpc_call(chain, "eth_sendRawTransaction", json!([raw_transaction_hex])).await?;
+        result
+            .as_str()
             .map(str::to_string)
             .ok_or_else(|| ProviderError::Upstream("unexpected broadcast response shape".into()))
     }
@@ -84,5 +121,16 @@ mod tests {
         let urls: std::collections::HashSet<&str> =
             chains.iter().map(|c| PublicRpcProvider::rpc_url(*c)).collect();
         assert_eq!(urls.len(), chains.len());
+    }
+
+    #[test]
+    fn parse_hex_u64_reads_transaction_count_responses() {
+        assert_eq!(parse_hex_u64("0x0").unwrap(), 0);
+        assert_eq!(parse_hex_u64("0x2a").unwrap(), 42);
+    }
+
+    #[test]
+    fn parse_hex_u64_rejects_malformed_input() {
+        assert!(parse_hex_u64("not-hex").is_err());
     }
 }
