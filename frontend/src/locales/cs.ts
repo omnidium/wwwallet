@@ -316,6 +316,7 @@ export default {
     hideDustTxns: 'Skrýt transakce s hodnotou nižší než 0,01 $',
     hideUnknownTokens: 'Skrýt neznámé tokeny',
     dragToReorder: 'Přetažením změňte pořadí',
+    refresh: 'Obnovit tento účet',
   },
   editAccount: {
     title: 'Upravit účet',

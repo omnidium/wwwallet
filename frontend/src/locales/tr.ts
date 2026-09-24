@@ -313,6 +313,7 @@ export default {
     hideDustTxns: '0,01 doların altındaki işlemleri gizle',
     hideUnknownTokens: 'Bilinmeyen simgeleri gizle',
     dragToReorder: 'Sırayı değiştirmek için sürükleyin',
+    refresh: 'Bu hesabı yenile',
   },
   editAccount: {
     title: 'Hesabı düzenle',

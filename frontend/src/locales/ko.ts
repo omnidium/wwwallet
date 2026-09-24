@@ -313,6 +313,7 @@ export default {
     hideDustTxns: '0.01달러 미만의 거래 숨기기',
     hideUnknownTokens: '알 수 없는 토큰 숨기기',
     dragToReorder: '드래그하여 순서 변경',
+    refresh: '이 계정 새로 고침',
   },
   editAccount: {
     title: '계정 수정',

@@ -319,6 +319,7 @@ export default {
     hideDustTxns: 'Paslēpt darījumus, kuru summa ir mazāka par 0,01 dolāru',
     hideUnknownTokens: 'Paslēpt nezināmos simbolus',
     dragToReorder: 'Velciet, lai mainītu secību',
+    refresh: 'Atjaunināt šo kontu',
   },
   editAccount: {
     title: 'Rediģēt kontu',

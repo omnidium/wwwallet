@@ -313,6 +313,7 @@ export default {
     hideDustTxns: 'Skrij transakcije, manjše od 0,01 $',
     hideUnknownTokens: 'Skrij neznane žetone',
     dragToReorder: 'Povleci za preureditev',
+    refresh: 'Osveži ta račun',
   },
   editAccount: {
     title: 'Uredi račun',

@@ -317,6 +317,7 @@ export default {
     hideDustTxns: 'Skjul transaksjoner under 0,01 dollar',
     hideUnknownTokens: 'Skjul ukjente symboler',
     dragToReorder: 'Dra for å endre rekkefølgen',
+    refresh: 'Oppdater denne kontoen',
   },
   editAccount: {
     title: 'Rediger konto',

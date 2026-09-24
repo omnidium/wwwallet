@@ -319,6 +319,7 @@ export default {
     hideDustTxns: 'A 0,01 dollár alatti tranzakciók elrejtése',
     hideUnknownTokens: 'Ismeretlen tokenek elrejtése',
     dragToReorder: 'Húzással rendezhető át a sorrend',
+    refresh: 'A fiók frissítése',
   },
   editAccount: {
     title: 'Fiók szerkesztése',

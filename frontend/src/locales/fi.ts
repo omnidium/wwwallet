@@ -314,6 +314,7 @@ export default {
     hideDustTxns: 'Piilota alle 0,01 dollarin suuruisten tapahtumien tiedot',
     hideUnknownTokens: 'Piilota tuntemattomat tunnukset',
     dragToReorder: 'Vedä järjestystä muuttaaksesi',
+    refresh: 'Päivitä tämä tili',
   },
   editAccount: {
     title: 'Muokkaa tiliä',

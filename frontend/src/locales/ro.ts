@@ -322,6 +322,7 @@ export default {
     hideDustTxns: 'Ascunde tranzacțiile sub 0,01 dolari',
     hideUnknownTokens: 'Ascunde tokenurile necunoscute',
     dragToReorder: 'Trageți pentru a reordona',
+    refresh: 'Reîmprospătează acest cont',
   },
   editAccount: {
     title: 'Editează contul',

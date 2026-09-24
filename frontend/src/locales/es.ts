@@ -322,6 +322,7 @@ export default {
     hideDustTxns: 'Ocultar transacciones inferiores a 0,01 dólares',
     hideUnknownTokens: 'Ocultar tokens desconocidos',
     dragToReorder: 'Arrastra para cambiar el orden',
+    refresh: 'Actualizar esta cuenta',
   },
   editAccount: {
     title: 'Editar cuenta',

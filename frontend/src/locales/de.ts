@@ -325,6 +325,7 @@ export default {
     hideDustTxns: 'Transaktionen unter 0,01 $ ausblenden',
     hideUnknownTokens: 'Unbekannte Tokens ausblenden',
     dragToReorder: 'Zum Sortieren ziehen',
+    refresh: 'Dieses Konto aktualisieren',
   },
   editAccount: {
     title: 'Konto bearbeiten',

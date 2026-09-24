@@ -316,6 +316,7 @@ export default {
     hideDustTxns: 'Transacties onder $0,01 verbergen',
     hideUnknownTokens: 'Onbekende tokens verbergen',
     dragToReorder: 'Versleep om de volgorde te wijzigen',
+    refresh: 'Dit account vernieuwen',
   },
   editAccount: {
     title: 'Account bewerken',

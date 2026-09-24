@@ -320,6 +320,7 @@ export default {
     hideDustTxns: 'Приховати транзакції на суму менше 0,01 долара',
     hideUnknownTokens: 'Приховати невідомі токени',
     dragToReorder: 'Перетягніть, щоб змінити порядок',
+    refresh: 'Оновити цей обліковий запис',
   },
   editAccount: {
     title: 'Редагувати профіль',

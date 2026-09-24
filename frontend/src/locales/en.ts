@@ -29,6 +29,7 @@ export default {
     copyAddress: 'Copy the address',
     copied: 'Copied!',
     viewQr: 'View QR code',
+    refresh: 'Refresh this account',
     send: 'Send (drag to transfer to another account or payee)',
     moreActions: 'More actions',
     edit: 'Edit account details',

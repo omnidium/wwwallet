@@ -315,6 +315,7 @@ export default {
     hideDustTxns: 'Ẩn các giao dịch dưới 0,01 đô la',
     hideUnknownTokens: 'Ẩn các mã thông báo không xác định',
     dragToReorder: 'Kéo để sắp xếp lại thứ tự',
+    refresh: 'Làm mới tài khoản này',
   },
   editAccount: {
     title: 'Chỉnh sửa tài khoản',

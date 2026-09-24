@@ -316,6 +316,7 @@ export default {
     hideDustTxns: '0.01ドル未満の取引を非表示にする',
     hideUnknownTokens: '不明なトークンを非表示にする',
     dragToReorder: 'ドラッグして順序を変更してください',
+    refresh: 'このアカウントを更新する',
   },
   editAccount: {
     title: 'アカウントを編集する',

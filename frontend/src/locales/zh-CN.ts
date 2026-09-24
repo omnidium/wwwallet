@@ -300,6 +300,7 @@ export default {
     hideDustTxns: '隐藏金额低于 0.01 美元的交易',
     hideUnknownTokens: '隐藏未知令牌',
     dragToReorder: '拖动以重新排序',
+    refresh: '刷新此账户',
   },
   editAccount: {
     title: '编辑账户',

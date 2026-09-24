@@ -319,6 +319,7 @@ export default {
     hideDustTxns: 'Sembunyikan transaksi di bawah $0,01',
     hideUnknownTokens: 'Sembunyikan token yang tidak dikenal',
     dragToReorder: 'Seret untuk mengatur ulang urutannya',
+    refresh: 'Segarkan akun ini',
   },
   editAccount: {
     title: 'Edit akun',

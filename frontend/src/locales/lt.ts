@@ -317,6 +317,7 @@ export default {
     hideDustTxns: 'Paslėpti sandorius, kurių vertė mažesnė nei 0,01 dolerio',
     hideUnknownTokens: 'Paslėpti nežinomus žetonus',
     dragToReorder: 'Pervilkite, kad pakeistumėte tvarką',
+    refresh: 'Atnaujinti šią paskyrą',
   },
   editAccount: {
     title: 'Redaguoti paskyrą',

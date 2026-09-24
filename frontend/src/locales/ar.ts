@@ -312,6 +312,7 @@ export default {
     hideDustTxns: 'إخفاء المعاملات التي تقل قيمتها عن 0.01 دولار',
     hideUnknownTokens: 'إخفاء الرموز غير المعروفة',
     dragToReorder: 'اسحب لإعادة ترتيب العناصر',
+    refresh: 'تحديث هذا الحساب',
   },
   editAccount: {
     title: 'تعديل الحساب',

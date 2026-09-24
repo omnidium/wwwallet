@@ -313,6 +313,7 @@ export default {
     hideDustTxns: 'Peida tehingud, mille summa on alla 0,01 dollarit',
     hideUnknownTokens: 'Peida tundmatud märgid',
     dragToReorder: 'Lohistage, et järjestust muuta',
+    refresh: 'Värskenda seda kontot',
   },
   editAccount: {
     title: 'Muuda kontot',

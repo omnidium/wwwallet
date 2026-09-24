@@ -1091,6 +1091,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Demasiadas solicitudes: espera un momento e inténtalo de nuevo."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Actualizar esta cuenta"
     }
   },
   "ar": {
@@ -2185,6 +2189,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "عدد الطلبات كبير جدًّا — يرجى الانتظار قليلاً ثم المحاولة مرة أخرى."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "تحديث هذا الحساب"
     }
   },
   "bg": {
@@ -3279,6 +3287,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Прекалено много заявки — моля, изчакайте малко и опитайте отново."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Опресни този акаунт"
     }
   },
   "cs": {
@@ -4373,6 +4385,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Příliš mnoho požadavků – počkejte prosím chvíli a zkuste to znovu."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Obnovit tento účet"
     }
   },
   "da": {
@@ -5467,6 +5483,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Der er for mange anmodninger — vent et øjeblik, og prøv igen."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Opdater denne konto"
     }
   },
   "de": {
@@ -6561,6 +6581,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Zu viele Anfragen – bitte warten Sie einen Moment und versuchen Sie es erneut."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Dieses Konto aktualisieren"
     }
   },
   "el": {
@@ -7655,6 +7679,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Υπάρχουν πάρα πολλά αιτήματα — παρακαλώ περιμένετε λίγο και δοκιμάστε ξανά."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Ανανέωση αυτού του λογαριασμού"
     }
   },
   "et": {
@@ -8749,6 +8777,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Liiga palju päringuid — palun oodake hetk ja proovige uuesti."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Värskenda seda kontot"
     }
   },
   "fi": {
@@ -9843,6 +9875,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Liian monta pyyntöä — odota hetki ja yritä uudelleen."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Päivitä tämä tili"
     }
   },
   "fr": {
@@ -10937,6 +10973,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Trop de requêtes — veuillez patienter un instant, puis réessayer."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Actualiser ce compte"
     }
   },
   "hu": {
@@ -12031,6 +12071,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Túl sok kérés érkezett — kérjük, várjon egy pillanatot, majd próbálja meg újra."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "A fiók frissítése"
     }
   },
   "id": {
@@ -13125,6 +13169,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Terlalu banyak permintaan — mohon tunggu sebentar dan coba lagi."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Segarkan akun ini"
     }
   },
   "it": {
@@ -14219,6 +14267,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Troppe richieste: attendi qualche istante e riprova."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Aggiorna questo account"
     }
   },
   "iw": {
@@ -15313,6 +15365,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "מספר בקשות רב מדי — אנא המתן רגע ונסה שוב."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "רענן את החשבון הזה"
     }
   },
   "ja": {
@@ -16407,6 +16463,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "リクエストが多すぎます。しばらくお待ちの上、再度お試しください。"
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "このアカウントを更新する"
     }
   },
   "ko": {
@@ -17501,6 +17561,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "요청이 너무 많습니다. 잠시 기다린 후 다시 시도해 주세요."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "이 계정 새로 고침"
     }
   },
   "lt": {
@@ -18595,6 +18659,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Per daug užklausų — prašome palaukti akimirką ir pabandyti dar kartą."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Atnaujinti šią paskyrą"
     }
   },
   "lv": {
@@ -19689,6 +19757,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Pārāk daudz pieprasījumu — lūdzu, pagaidiet brīdi un mēģiniet vēlreiz."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Atjaunināt šo kontu"
     }
   },
   "nl": {
@@ -20783,6 +20855,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Te veel verzoeken — wacht even en probeer het nog eens."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Dit account vernieuwen"
     }
   },
   "no": {
@@ -21877,6 +21953,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "For mange forespørsler — vent et øyeblikk og prøv på nytt."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Oppdater denne kontoen"
     }
   },
   "pl": {
@@ -22971,6 +23051,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Zbyt wiele żądań — proszę chwilę poczekać i spróbować ponownie."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Odśwież to konto"
     }
   },
   "ro": {
@@ -24065,6 +24149,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Sunt prea multe solicitări — vă rugăm să așteptați puțin și să încercați din nou."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Reîmprospătează acest cont"
     }
   },
   "ru": {
@@ -25159,6 +25247,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Слишком много запросов — пожалуйста, подождите немного и попробуйте ещё раз."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Обновить эту учетную запись"
     }
   },
   "sk": {
@@ -26253,6 +26345,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Príliš veľa požiadaviek – prosím, chvíľu počkajte a skúste to znova."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Obnoviť tento účet"
     }
   },
   "sl": {
@@ -27347,6 +27443,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Preveč zahtevkov — počakajte trenutek in poskusite znova."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Osveži ta račun"
     }
   },
   "sv": {
@@ -28441,6 +28541,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "För många förfrågningar – vänta ett ögonblick och försök igen."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Uppdatera detta konto"
     }
   },
   "tr": {
@@ -29535,6 +29639,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Çok fazla istek var — lütfen bir süre bekleyin ve tekrar deneyin."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Bu hesabı yenile"
     }
   },
   "uk": {
@@ -30629,6 +30737,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Занадто багато запитів — будь ласка, зачекайте хвилину та спробуйте ще раз."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Оновити цей обліковий запис"
     }
   },
   "vi": {
@@ -31723,6 +31835,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "Có quá nhiều yêu cầu — vui lòng đợi một lát rồi thử lại."
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "Làm mới tài khoản này"
     }
   },
   "zh-CN": {
@@ -32817,6 +32933,10 @@
     "errors.rateLimited": {
       "enHash": "731f2f8039511400",
       "value": "请求过多——请稍等片刻，然后重试。"
+    },
+    "accountCard.refresh": {
+      "enHash": "59e6c3c99a23c02e",
+      "value": "刷新此账户"
     }
   }
 }

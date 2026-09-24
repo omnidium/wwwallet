@@ -320,6 +320,7 @@ export default {
     hideDustTxns: 'Скриване на транзакции под 0,01 долара',
     hideUnknownTokens: 'Скриване на неизвестни маркери',
     dragToReorder: 'Плъзнете, за да промените реда',
+    refresh: 'Опресни този акаунт',
   },
   editAccount: {
     title: 'Редактиране на профила',

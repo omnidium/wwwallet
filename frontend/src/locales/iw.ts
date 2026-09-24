@@ -307,6 +307,7 @@ export default {
     hideDustTxns: 'הסתר עסקאות בסכום הנמוך מ-0.01 דולר',
     hideUnknownTokens: 'הסתר אסימונים לא ידועים',
     dragToReorder: 'גרור כדי לשנות את הסדר',
+    refresh: 'רענן את החשבון הזה',
   },
   editAccount: {
     title: 'ערוך חשבון',

@@ -6,6 +6,8 @@ import type { WalletAccount } from '@/stores/accounts'
 import { useAccountsStore } from '@/stores/accounts'
 import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
+import { useMessagesStore } from '@/stores/messages'
+import { displayErrorMessage } from '@/services/errors'
 import { toHumanAmount, convertUsd, formatFiat, formatAmount } from '@/services/money'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
 import { mapWithConcurrency } from '@/services/concurrencyLimit'
@@ -31,6 +33,7 @@ const router = useRouter()
 const accounts = useAccountsStore()
 const chainData = useChainDataStore()
 const settingsLocale = useSettingsLocaleStore()
+const messages = useMessagesStore()
 
 const expandedTxns = ref(false)
 const expandedTokens = ref(false)
@@ -44,6 +47,23 @@ const revealMnemonicOpen = ref(false)
 
 function goToSend() {
   router.push(`/accounts/${props.account.chain}/${props.account.address}/send`)
+}
+
+// Re-fetches page one of this account's activity (balances + latest
+// transactions), merged with whatever's already loaded the same way the
+// periodic auto-refresh is — the token-metadata watcher below then re-checks
+// any held token's price as a side effect of tokenBalances changing, so a
+// single call here covers "this account + its tokens" as requested. Unlike
+// the silent background auto-refresh, a failure here is the direct result of
+// something the user just clicked, so it gets a toast instead of failing quietly.
+const refreshing = computed(() => chainData.isLoading(props.account.chain, props.account.address))
+async function refreshAccount() {
+  if (refreshing.value) return
+  try {
+    await chainData.loadAddressActivity(props.account.chain, props.account.address)
+  } catch (err) {
+    messages.push(displayErrorMessage(err), 'error')
+  }
 }
 
 const activity = computed(
@@ -203,6 +223,13 @@ function openInNewTab(url: string): void {
         </template>
       </AppTooltip>
       <p class="flex-grow-1"></p>
+      <AppTooltip :text="t('accountCard.refresh')">
+        <template #default="{ activatorProps }">
+          <v-icon v-bind="activatorProps" icon="mdi-refresh" size="large" class="mr-2"
+            :class="{ 'mdi-spin': refreshing }" role="button" :aria-label="t('accountCard.refresh')"
+            :aria-busy="refreshing" @click="refreshAccount" />
+        </template>
+      </AppTooltip>
       <AppTooltip :text="t('accountCard.send')">
         <template #default="{ activatorProps }">
           <v-icon v-bind="activatorProps" icon="mdi-send" size="large" class="mr-5 transfer-handle" role="button"
