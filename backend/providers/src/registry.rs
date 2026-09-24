@@ -14,6 +14,7 @@ use crate::error::{ProviderError, ProviderResult};
 use crate::etherscan::EtherscanProvider;
 use crate::ethplorer::EthplorerProvider;
 use crate::fxrate::FrankfurterProvider;
+use crate::public_rpc::PublicRpcProvider;
 use crate::traits::{
     AbiProvider, ActivityProvider, AllowanceProvider, FxRateProvider, NativePriceProvider,
     SwapQuoteProvider, TokenMetadataProvider, TransactionBroadcaster, TransactionPrepProvider,
@@ -65,7 +66,8 @@ impl ProviderRegistry {
         let alchemy = Rc::new(AlchemyProvider::new(config.alchemy_api_key));
         Self {
             activity: alchemy.clone(),
-            broadcaster: alchemy.clone(),
+            // Deliberately not Alchemy — see PublicRpcProvider's docs.
+            broadcaster: Rc::new(PublicRpcProvider::new()),
             tx_status: alchemy.clone(),
             allowance: alchemy.clone(),
             tx_prep: alchemy,
