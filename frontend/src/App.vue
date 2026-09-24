@@ -24,18 +24,7 @@ const settingsOpen = ref(false)
 // same route) — gating on the route rather than just isUnlocked keeps these
 // two screens full-page throughout, instead of briefly wrapping the
 // still-showing setup pane in a PaneOverlay with AccountsView visible behind it.
-//
-// backup-restore and security are also reachable while locked (see
-// router/index.ts's guard and each view's own v-if="vault.isUnlocked") for
-// restore-from-backup and delete-from-device — in that specific locked case
-// they need the same full-page treatment, rather than rendering underneath
-// an AccountsView that has nothing decrypted to show.
-const isPreAuthRoute = computed(
-  () =>
-    route.name === 'vault-unlock' ||
-    route.name === 'vault-setup' ||
-    (!vault.isUnlocked && (route.name === 'backup-restore' || route.name === 'security')),
-)
+const isPreAuthRoute = computed(() => route.name === 'vault-unlock' || route.name === 'vault-setup')
 
 useIdleLock()
 
@@ -74,7 +63,16 @@ watch(() => route.fullPath, () => {
 
     <v-main>
       <template v-if="!isPreAuthRoute">
-        <AccountsView />
+        <!--
+          Locked out but reachable anyway (backup-restore, security — see
+          router/index.ts's guard and each view's own v-if="vault.isUnlocked"
+          for why) have nothing decrypted for AccountsView to show, and it'd
+          fire its own data-loading side effects for a wallet that isn't
+          loaded — but they still get the normal floating-panel treatment via
+          PaneOverlay, which doesn't depend on AccountsView being there at
+          all, just over an empty background instead of the accounts list.
+        -->
+        <AccountsView v-if="vault.isUnlocked" />
         <PaneOverlay v-if="route.path !== '/'">
           <RouterView />
         </PaneOverlay>
