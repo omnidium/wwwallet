@@ -18,6 +18,7 @@ import HideAccountConfirmDialog from '@/components/HideAccountConfirmDialog.vue'
 import SecretRevealDialog from '@/components/SecretRevealDialog.vue'
 import TransactionRow from '@/components/TransactionRow.vue'
 import AppTooltip from '@/components/AppTooltip.vue'
+import { addressUrl } from '@/services/blockExplorer'
 
 const props = defineProps<{ account: WalletAccount; reorderable?: boolean }>()
 const emit = defineEmits<{
@@ -167,6 +168,10 @@ async function copyAddress() {
 async function toggleShow() {
   await accounts.setVisibility(props.account.chain, props.account.address, true)
 }
+
+function openInNewTab(url: string): void {
+  window.open(url, '_blank', 'noopener,noreferrer')
+}
 </script>
 
 <template>
@@ -180,7 +185,8 @@ async function toggleShow() {
     </div>
     <div class=" card-header d-flex align-center pa-4 pb-2">
       <span v-if="account.isDefault" class="mr-1">*</span>
-      <p class="account-name flex-grow-0 text-truncate" style="cursor: pointer" @click="copyAddress">
+      <p class="account-name flex-grow-0 text-truncate" style="cursor: pointer"
+        @click="openInNewTab(addressUrl(props.account.chain, props.account.address))">
         {{ account.label }}
       </p>
       <AppTooltip :text="justCopied ? t('accountCard.copied') : t('accountCard.copyAddress')">
