@@ -6,7 +6,13 @@ import { PWA_UPDATE_CHECK_INTERVAL_MS } from '@/config/appSettings'
  * version for as long as the app stays open, rather than only ever noticing
  * one on whatever schedule the browser happens to re-fetch sw.js on its own
  * (in practice: rarely, since nothing here was forcing a check). `immediate`
- * covers a fresh load/hard refresh; the interval covers a tab left open.
+ * covers a fresh load/hard refresh; the interval covers a tab left open and
+ * focused — but browsers heavily throttle or fully suspend timers in a
+ * backgrounded tab, which is exactly where a PWA spends most of its life
+ * (switched away from, or a phone screen locked). The visibilitychange
+ * listener is the part that actually matters in practice: it checks the
+ * instant the user comes back to the app, which is also the moment picking
+ * up a new version is least disruptive.
  *
  * registerType: 'autoUpdate' (see vite.config.ts) means the new service
  * worker itself skips waiting as soon as it's installed — the only piece
@@ -19,6 +25,9 @@ export function setupPwaUpdates(): void {
     onRegisteredSW(_url, registration) {
       if (!registration) return
       setInterval(() => void registration.update(), PWA_UPDATE_CHECK_INTERVAL_MS)
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') void registration.update()
+      })
     },
     onNeedRefresh() {
       void updateSW(true)
