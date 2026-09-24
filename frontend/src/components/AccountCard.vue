@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, mergeProps, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import type { WalletAccount } from '@/stores/accounts'
@@ -242,7 +242,7 @@ function openInNewTab(url: string): void {
         <template #activator="{ props: menuProps }">
           <AppTooltip :text="t('accountCard.moreActions')">
             <template #default="{ activatorProps }">
-              <v-icon v-bind="{ ...menuProps, ...activatorProps }" icon="mdi-dots-horizontal" role="button"
+              <v-icon v-bind="mergeProps(menuProps, activatorProps)" icon="mdi-dots-horizontal" role="button"
                 :aria-label="t('accountCard.moreActions')" />
             </template>
           </AppTooltip>
