@@ -1,10 +1,13 @@
 name: frontend
 
 on:
+  # Deliberately not path-filtered to frontend/**: the deployed frontend
+  # embeds the repo's current commit as its version (see vite.config.ts),
+  # and the backend deploys on every commit too (see backend.yml) — for that
+  # single version to mean anything for both, both must actually redeploy
+  # on every commit, not just when their own subtree changed.
   push:
-    paths: ["frontend/**", ".github/workflows/frontend.yml"]
   pull_request:
-    paths: ["frontend/**", ".github/workflows/frontend.yml"]
   workflow_dispatch:
 
 jobs:

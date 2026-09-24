@@ -1,10 +1,13 @@
 name: backend
 
 on:
+  # Deliberately not path-filtered to backend/**: the frontend embeds the
+  # repo's current commit as its version (see vite.config.ts) and now
+  # redeploys on every commit too (see frontend.yml) — for that single
+  # version to mean anything for both, both must actually redeploy on every
+  # commit, not just when their own subtree changed.
   push:
-    paths: ["backend/**", "Cargo.toml", "Cargo.lock", ".github/workflows/backend.yml"]
   pull_request:
-    paths: ["backend/**", "Cargo.toml", "Cargo.lock", ".github/workflows/backend.yml"]
   workflow_dispatch:
 
 jobs:
