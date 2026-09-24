@@ -68,31 +68,37 @@ function lockNow() {
       @update:model-value="settings.setLocale" />
 
     <!--
-      Everything below is hidden outright (not just disabled) while the vault
-      is locked — someone glancing at an unattended, locked device shouldn't
-      even see that these exist, let alone reach them. The gear button and
-      this drawer stay reachable from the vault-unlock screen itself (they're
-      outside App.vue's route-gated section), so this can't just rely on
-      "you had to get past unlock to open Settings" the way the rest of the
-      app does.
+      Everything below except Backup & Restore and Security is hidden
+      outright (not just disabled) while the vault is locked — someone
+      glancing at an unattended, locked device shouldn't even see that these
+      exist, let alone reach them. The gear button and this drawer stay
+      reachable from the vault-unlock screen itself (they're outside
+      App.vue's route-gated section), so this can't just rely on "you had to
+      get past unlock to open Settings" the way the rest of the app does.
+
+      Backup & Restore and Security stay visible even locked because restore
+      (from a file or Google Drive) and deleting the vault from this device
+      both need to work without unlocking first — that's the whole point of
+      either action. Each of those two views hides its own unlock-requiring
+      parts (backing up, passkey management) behind vault.isUnlocked itself;
+      see their own v-if for that.
     -->
-    <template v-if="vault.isUnlocked">
-      <v-select class="mt-4" density="default" hide-details :label="t('settings.currencyLabel')"
-        :items="settings.currencies" v-model="settings.currency" />
+    <v-select v-if="vault.isUnlocked" class="mt-4" density="default" hide-details :label="t('settings.currencyLabel')"
+      :items="settings.currencies" v-model="settings.currency" />
 
-      <v-list class="mt-4" rounded="lg">
-        <v-list-item to="/backup-restore" :title="t('backup.title')" prepend-icon="mdi-cloud-upload"
-          append-icon="mdi-chevron-right" @click="emit('close')" />
-        <v-list-item to="/payees" :title="t('payees.title')" prepend-icon="mdi-account" append-icon="mdi-chevron-right"
-          @click="emit('close')" />
-        <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock"
-          append-icon="mdi-chevron-right" @click="emit('close')" />
-      </v-list>
+    <v-list class="mt-4" rounded="lg">
+      <v-list-item to="/backup-restore" :title="t('backup.title')" prepend-icon="mdi-cloud-upload"
+        append-icon="mdi-chevron-right" @click="emit('close')" />
+      <v-list-item v-if="vault.isUnlocked" to="/payees" :title="t('payees.title')" prepend-icon="mdi-account"
+        append-icon="mdi-chevron-right" @click="emit('close')" />
+      <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock"
+        append-icon="mdi-chevron-right" @click="emit('close')" />
+    </v-list>
 
-      <v-btn class="mt-4" color="error" variant="outlined" block prepend-icon="mdi-lock" @click="lockNow">
-        {{ t('settings.lockNow') }}
-      </v-btn>
-    </template>
+    <v-btn v-if="vault.isUnlocked" class="mt-4" color="error" variant="outlined" block prepend-icon="mdi-lock"
+      @click="lockNow">
+      {{ t('settings.lockNow') }}
+    </v-btn>
 
     <p class="settings-version text-medium-emphasis mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
   </div>

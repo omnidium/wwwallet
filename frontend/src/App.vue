@@ -4,6 +4,7 @@ import { useTheme } from 'vuetify'
 import { useI18n } from 'vue-i18n'
 import { RouterView, useRoute } from 'vue-router'
 import { useMessagesStore } from '@/stores/messages'
+import { useVaultStore } from '@/stores/vault'
 import { getStoredTheme } from '@/services/theme'
 import { useIdleLock } from '@/composables/useIdleLock'
 import SettingsPanel from '@/components/SettingsPanel.vue'
@@ -13,6 +14,7 @@ import AppTooltip from '@/components/AppTooltip.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const messages = useMessagesStore()
+const vault = useVaultStore()
 const theme = useTheme()
 const route = useRoute()
 const settingsOpen = ref(false)
@@ -22,7 +24,18 @@ const settingsOpen = ref(false)
 // same route) — gating on the route rather than just isUnlocked keeps these
 // two screens full-page throughout, instead of briefly wrapping the
 // still-showing setup pane in a PaneOverlay with AccountsView visible behind it.
-const isPreAuthRoute = computed(() => route.name === 'vault-unlock' || route.name === 'vault-setup')
+//
+// backup-restore and security are also reachable while locked (see
+// router/index.ts's guard and each view's own v-if="vault.isUnlocked") for
+// restore-from-backup and delete-from-device — in that specific locked case
+// they need the same full-page treatment, rather than rendering underneath
+// an AccountsView that has nothing decrypted to show.
+const isPreAuthRoute = computed(
+  () =>
+    route.name === 'vault-unlock' ||
+    route.name === 'vault-setup' ||
+    (!vault.isUnlocked && (route.name === 'backup-restore' || route.name === 'security')),
+)
 
 useIdleLock()
 

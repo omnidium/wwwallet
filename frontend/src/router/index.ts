@@ -53,6 +53,12 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
   if (to.name === 'vault-unlock' || to.name === 'vault-setup') return true
+  // Restoring (from a file or Google Drive) and deleting the vault from this
+  // device both need to work without unlocking first — that's the point of
+  // either action — so these two routes are reachable regardless of
+  // isUnlocked. Each view itself hides whichever of its own actions do still
+  // need an unlocked session (see their own v-if="vault.isUnlocked").
+  if (to.name === 'backup-restore' || to.name === 'security') return true
 
   const vault = useVaultStore()
   if (vault.isUnlocked) return true

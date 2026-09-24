@@ -86,14 +86,14 @@ function proceedWithRestore() {
       <v-col cols="12" md="6">
         <v-card class="pa-4">
           <v-card-title class="text-subtitle-1">{{ t('backup.googleDriveTitle') }}</v-card-title>
-          <v-btn class="mb-2" block variant="outlined" @click="backupToDrive">{{ t('backup.backUpNow') }}</v-btn>
+          <v-btn v-if="vault.isUnlocked" class="mb-2" block variant="outlined" @click="backupToDrive">{{ t('backup.backUpNow') }}</v-btn>
           <v-btn block variant="outlined" @click="confirmRestore(restoreFromDrive)">{{ t('backup.restoreLatest') }}</v-btn>
         </v-card>
       </v-col>
       <v-col cols="12" md="6">
         <v-card class="pa-4">
           <v-card-title class="text-subtitle-1">{{ t('backup.localFileTitle') }}</v-card-title>
-          <v-btn class="mb-2" block variant="outlined" @click="backupToFile">{{ t('backup.downloadBackup') }}</v-btn>
+          <v-btn v-if="vault.isUnlocked" class="mb-2" block variant="outlined" @click="backupToFile">{{ t('backup.downloadBackup') }}</v-btn>
           <v-btn block variant="outlined" @click="confirmRestore(() => fileInput?.click())">{{ t('backup.restoreFromFile') }}</v-btn>
           <input ref="fileInput" type="file" accept="application/json" hidden @change="onFileSelected" />
         </v-card>

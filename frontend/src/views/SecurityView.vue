@@ -52,33 +52,38 @@ async function performDeleteWallet() {
       {{ t('settings.securityIntro') }}
     </p>
 
-    <v-card class="pa-4 mt-2">
-      <div class="d-flex align-center">
-        <v-icon icon="mdi-fingerprint" class="mr-3" />
-        <div class="flex-grow-1">
-          <p class="text-body-2">{{ t('settings.passkeyLabel') }}</p>
-          <p class="text-caption text-medium-emphasis">
-            {{ vault.hasPasskey ? t('settings.passkeyEnabled') : t('settings.passkeyNotSetUp') }}
-          </p>
+    <!-- Managing a passkey needs the unlocked session key (see stores/vault.ts's
+         registerPasskey/removePasskey) — unlike the danger zone below, there's
+         no locked-safe version of this to offer. -->
+    <template v-if="vault.isUnlocked">
+      <v-card class="pa-4 mt-2">
+        <div class="d-flex align-center">
+          <v-icon icon="mdi-fingerprint" class="mr-3" />
+          <div class="flex-grow-1">
+            <p class="text-body-2">{{ t('settings.passkeyLabel') }}</p>
+            <p class="text-caption text-medium-emphasis">
+              {{ vault.hasPasskey ? t('settings.passkeyEnabled') : t('settings.passkeyNotSetUp') }}
+            </p>
+          </div>
+          <v-btn v-if="vault.hasPasskey" variant="text" color="error" @click="requestRemovePasskey">{{ t('settings.remove') }}</v-btn>
+          <v-btn v-else variant="outlined" @click="addPasskey">{{ t('settings.enable') }}</v-btn>
         </div>
-        <v-btn v-if="vault.hasPasskey" variant="text" color="error" @click="requestRemovePasskey">{{ t('settings.remove') }}</v-btn>
-        <v-btn v-else variant="outlined" @click="addPasskey">{{ t('settings.enable') }}</v-btn>
-      </div>
-    </v-card>
-
-    <v-dialog v-model="removePasskeyWarningOpen" max-width="420">
-      <v-card>
-        <v-card-title>{{ t('settings.removePasskeyTitle') }}</v-card-title>
-        <v-card-text>
-          {{ t('settings.removePasskeyBody') }}
-        </v-card-text>
-        <v-card-actions>
-          <v-btn variant="text" @click="removePasskeyWarningOpen = false">{{ t('common.cancel') }}</v-btn>
-          <v-spacer />
-          <v-btn color="error" @click="performRemovePasskey">{{ t('settings.removeAnyway') }}</v-btn>
-        </v-card-actions>
       </v-card>
-    </v-dialog>
+
+      <v-dialog v-model="removePasskeyWarningOpen" max-width="420">
+        <v-card>
+          <v-card-title>{{ t('settings.removePasskeyTitle') }}</v-card-title>
+          <v-card-text>
+            {{ t('settings.removePasskeyBody') }}
+          </v-card-text>
+          <v-card-actions>
+            <v-btn variant="text" @click="removePasskeyWarningOpen = false">{{ t('common.cancel') }}</v-btn>
+            <v-spacer />
+            <v-btn color="error" @click="performRemovePasskey">{{ t('settings.removeAnyway') }}</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </template>
 
     <h2 class="text-subtitle-1 text-error mt-6">{{ t('settings.dangerZoneTitle') }}</h2>
     <v-card class="pa-4 mt-2" variant="outlined">
