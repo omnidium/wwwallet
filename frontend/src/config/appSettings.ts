@@ -45,7 +45,7 @@ export const TOKEN_METADATA_MAX_AGE_MS = ACCOUNT_AUTO_REFRESH_MS
  * surface before stopping (see useTransactionBatchLoader) — user-configurable
  * from Settings, this is just the default for a vault that's never set one.
  */
-export const DEFAULT_TRANSACTION_BATCH_SIZE = 50
+export const DEFAULT_TRANSACTION_BATCH_SIZE = 200
 
 /** Preset choices offered for the transaction batch size setting. */
 export const TRANSACTION_BATCH_SIZE_OPTIONS = [25, 50, 100, 200]

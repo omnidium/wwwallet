@@ -76,9 +76,9 @@ function lockNow() {
       @update:model-value="settings.setLocale" />
     <v-select class="mt-4" density="default" hide-details :label="t('settings.currencyLabel')"
       :items="settings.currencies" v-model="settings.currency" />
-    <v-select class="mt-4" density="default" hide-details :label="t('settings.transactionBatchSizeLabel')"
+    <!-- <v-select class="mt-4" density="default" hide-details :label="t('settings.transactionBatchSizeLabel')"
       :items="TRANSACTION_BATCH_SIZE_OPTIONS" :model-value="chainData.transactionBatchSize"
-      @update:model-value="setTransactionBatchSize" />
+      @update:model-value="setTransactionBatchSize" /> -->
 
     <v-list class="mt-4" rounded="lg">
       <v-list-item to="/backup-restore" :title="t('backup.title')" prepend-icon="mdi-cloud-upload"
