@@ -85,6 +85,7 @@ export default {
     deleteAria: 'מחק {label}',
     labelField: 'תווית',
     addressField: 'כתובת',
+    edit: 'ערוך מקבל תשלום',
   },
   backup: {
     title: 'גיבוי ושחזור',

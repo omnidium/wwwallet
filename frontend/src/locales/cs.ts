@@ -85,6 +85,7 @@ export default {
     deleteAria: 'Odstranit {label}',
     labelField: 'Štítek',
     addressField: 'Adresa',
+    edit: 'Upravit příjemce platby',
   },
   backup: {
     title: 'Zálohování a obnovení',

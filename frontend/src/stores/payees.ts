@@ -24,5 +24,12 @@ export const usePayeesStore = defineStore('payees', () => {
     await useVaultStore().persist()
   }
 
-  return { payees, addPayee, removePayee }
+  async function updatePayee(id: string, patch: Omit<Payee, 'id'>): Promise<void> {
+    const payee = payees.value.find((p) => p.id === id)
+    if (!payee) return
+    Object.assign(payee, patch)
+    await useVaultStore().persist()
+  }
+
+  return { payees, addPayee, removePayee, updatePayee }
 })

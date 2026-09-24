@@ -85,6 +85,7 @@ export default {
     deleteAria: 'Ištrinti {label}',
     labelField: 'Etiketė',
     addressField: 'Adresas',
+    edit: 'Redaguoti gavėją',
   },
   backup: {
     title: 'Atsarginės kopijos ir atkūrimas',

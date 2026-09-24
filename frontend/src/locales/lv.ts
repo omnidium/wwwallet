@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Dzēst {label}',
     labelField: 'Etiķete',
     addressField: 'Adrese',
+    edit: 'Rediģēt maksājuma saņēmēju',
   },
   backup: {
     title: 'Datu dublēšana un atjaunošana',

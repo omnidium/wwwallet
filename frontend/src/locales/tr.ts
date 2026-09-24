@@ -85,6 +85,7 @@ export default {
     deleteAria: "{label}'yi sil",
     labelField: 'Etiket',
     addressField: 'Adres',
+    edit: 'Alıcıyı düzenle',
   },
   backup: {
     title: 'Yedekleme ve geri yükleme',

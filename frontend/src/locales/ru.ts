@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Удалить {label}',
     labelField: 'Этикетка',
     addressField: 'Адрес',
+    edit: 'Изменить получателя платежа',
   },
   backup: {
     title: 'Резервное копирование и восстановление',

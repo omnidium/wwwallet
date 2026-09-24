@@ -85,6 +85,7 @@ export default {
     deleteAria: 'Slet {label}',
     labelField: 'Etiket',
     addressField: 'Adresse',
+    edit: 'Rediger modtager',
   },
   backup: {
     title: 'Sikkerhedskopiering og gendannelse',

@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Poista {label}',
     labelField: 'Etiketti',
     addressField: 'Osoite',
+    edit: 'Muokkaa maksunsaajaa',
   },
   backup: {
     title: 'Varmuuskopiointi ja palautus',

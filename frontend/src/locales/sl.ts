@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Izbriši {label}',
     labelField: 'Oznaka',
     addressField: 'Naslov',
+    edit: 'Uredi prejemnika plačila',
   },
   backup: {
     title: 'Varnostno kopiranje in obnovitev',

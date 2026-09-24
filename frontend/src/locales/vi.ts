@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Xóa {label}',
     labelField: 'Nhãn',
     addressField: 'Địa chỉ',
+    edit: 'Chỉnh sửa người nhận thanh toán',
   },
   backup: {
     title: 'Sao lưu và khôi phục',

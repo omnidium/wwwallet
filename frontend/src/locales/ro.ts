@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Șterge {label}',
     labelField: 'Etichetă',
     addressField: 'Adresă',
+    edit: 'Editează beneficiarul plății',
   },
   backup: {
     title: 'Copiere de rezervă și restaurare',

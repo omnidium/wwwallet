@@ -85,6 +85,7 @@ export default {
     deleteAria: 'Ta bort {label}',
     labelField: 'Etikett',
     addressField: 'Adress',
+    edit: 'Redigera betalningsmottagare',
   },
   backup: {
     title: 'Säkerhetskopiering och återställning',

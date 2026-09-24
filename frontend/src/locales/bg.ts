@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Изтрий {label}',
     labelField: 'Етикет',
     addressField: 'Адрес',
+    edit: 'Редактиране на получателя',
   },
   backup: {
     title: 'Архивиране и възстановяване',

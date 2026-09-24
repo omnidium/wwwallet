@@ -86,6 +86,7 @@ export default {
     deleteAria: '{label} törlése',
     labelField: 'Címke',
     addressField: 'Cím',
+    edit: 'A kedvezményezett szerkesztése',
   },
   backup: {
     title: 'Biztonsági mentés és visszaállítás',

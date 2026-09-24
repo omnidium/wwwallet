@@ -83,6 +83,7 @@ export default {
     deleteAria: '删除 {label}',
     labelField: '标签',
     addressField: '地址',
+    edit: '编辑收款人',
   },
   backup: {
     title: '备份与还原',

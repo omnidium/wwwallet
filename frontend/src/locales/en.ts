@@ -155,6 +155,7 @@ export default {
   payees: {
     title: 'Payees',
     add: 'Add payee',
+    edit: 'Edit payee',
     empty: 'No payees yet.',
     deleteAria: 'Delete {label}',
     labelField: 'Label',

@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Usuń {label}',
     labelField: 'Etykieta',
     addressField: 'Adres',
+    edit: 'Edytuj odbiorcę płatności',
   },
   backup: {
     title: 'Tworzenie kopii zapasowych i przywracanie danych',

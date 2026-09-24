@@ -85,6 +85,7 @@ export default {
     deleteAria: '{label} を削除',
     labelField: 'ラベル',
     addressField: '住所',
+    edit: '受取人の編集',
   },
   backup: {
     title: 'バックアップと復元',

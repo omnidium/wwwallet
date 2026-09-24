@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Slett {label}',
     labelField: 'Etikett',
     addressField: 'Adresse',
+    edit: 'Rediger betalingsmottaker',
   },
   backup: {
     title: 'Sikkerhetskopiering og gjenoppretting',

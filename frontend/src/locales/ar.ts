@@ -85,6 +85,7 @@ export default {
     deleteAria: 'حذف {label}',
     labelField: 'التسمية',
     addressField: 'العنوان',
+    edit: 'تعديل المستفيد',
   },
   backup: {
     title: 'النسخ الاحتياطي والاستعادة',

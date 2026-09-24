@@ -86,6 +86,7 @@ export default {
     deleteAria: 'Hapus {label}',
     labelField: 'Label',
     addressField: 'Alamat',
+    edit: 'Edit penerima pembayaran',
   },
   backup: {
     title: 'Pencadangan & pemulihan',

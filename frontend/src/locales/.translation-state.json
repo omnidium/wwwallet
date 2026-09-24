@@ -1095,6 +1095,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Actualizar esta cuenta"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Editar beneficiario"
     }
   },
   "ar": {
@@ -2193,6 +2197,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "تحديث هذا الحساب"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "تعديل المستفيد"
     }
   },
   "bg": {
@@ -3291,6 +3299,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Опресни този акаунт"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Редактиране на получателя"
     }
   },
   "cs": {
@@ -4389,6 +4401,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Obnovit tento účet"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Upravit příjemce platby"
     }
   },
   "da": {
@@ -5487,6 +5503,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Opdater denne konto"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Rediger modtager"
     }
   },
   "de": {
@@ -6585,6 +6605,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Dieses Konto aktualisieren"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Empfänger bearbeiten"
     }
   },
   "el": {
@@ -7683,6 +7707,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Ανανέωση αυτού του λογαριασμού"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Επεξεργασία δικαιούχου"
     }
   },
   "et": {
@@ -8781,6 +8809,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Värskenda seda kontot"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Muuda makse saajat"
     }
   },
   "fi": {
@@ -9879,6 +9911,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Päivitä tämä tili"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Muokkaa maksunsaajaa"
     }
   },
   "fr": {
@@ -10977,6 +11013,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Actualiser ce compte"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Modifier le bénéficiaire"
     }
   },
   "hu": {
@@ -12075,6 +12115,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "A fiók frissítése"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "A kedvezményezett szerkesztése"
     }
   },
   "id": {
@@ -13173,6 +13217,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Segarkan akun ini"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Edit penerima pembayaran"
     }
   },
   "it": {
@@ -14271,6 +14319,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Aggiorna questo account"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Modifica beneficiario"
     }
   },
   "iw": {
@@ -15369,6 +15421,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "רענן את החשבון הזה"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "ערוך מקבל תשלום"
     }
   },
   "ja": {
@@ -16467,6 +16523,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "このアカウントを更新する"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "受取人の編集"
     }
   },
   "ko": {
@@ -17565,6 +17625,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "이 계정 새로 고침"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "수취인 정보 수정"
     }
   },
   "lt": {
@@ -18663,6 +18727,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Atnaujinti šią paskyrą"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Redaguoti gavėją"
     }
   },
   "lv": {
@@ -19761,6 +19829,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Atjaunināt šo kontu"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Rediģēt maksājuma saņēmēju"
     }
   },
   "nl": {
@@ -20859,6 +20931,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Dit account vernieuwen"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Begunstigde bewerken"
     }
   },
   "no": {
@@ -21957,6 +22033,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Oppdater denne kontoen"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Rediger betalingsmottaker"
     }
   },
   "pl": {
@@ -23055,6 +23135,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Odśwież to konto"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Edytuj odbiorcę płatności"
     }
   },
   "ro": {
@@ -24153,6 +24237,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Reîmprospătează acest cont"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Editează beneficiarul plății"
     }
   },
   "ru": {
@@ -25251,6 +25339,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Обновить эту учетную запись"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Изменить получателя платежа"
     }
   },
   "sk": {
@@ -26349,6 +26441,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Obnoviť tento účet"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Upraviť príjemcu platby"
     }
   },
   "sl": {
@@ -27447,6 +27543,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Osveži ta račun"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Uredi prejemnika plačila"
     }
   },
   "sv": {
@@ -28545,6 +28645,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Uppdatera detta konto"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Redigera betalningsmottagare"
     }
   },
   "tr": {
@@ -29643,6 +29747,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Bu hesabı yenile"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Alıcıyı düzenle"
     }
   },
   "uk": {
@@ -30741,6 +30849,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Оновити цей обліковий запис"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Редагувати отримувача платежу"
     }
   },
   "vi": {
@@ -31839,6 +31951,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "Làm mới tài khoản này"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "Chỉnh sửa người nhận thanh toán"
     }
   },
   "zh-CN": {
@@ -32937,6 +33053,10 @@
     "accountCard.refresh": {
       "enHash": "59e6c3c99a23c02e",
       "value": "刷新此账户"
+    },
+    "payees.edit": {
+      "enHash": "1223ca09580659ff",
+      "value": "编辑收款人"
     }
   }
 }

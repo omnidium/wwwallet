@@ -85,6 +85,7 @@ export default {
     deleteAria: 'Διαγραφή {label}',
     labelField: 'Ετικέτα',
     addressField: 'Διεύθυνση',
+    edit: 'Επεξεργασία δικαιούχου',
   },
   backup: {
     title: 'Δημιουργία αντιγράφων ασφαλείας και επαναφορά',

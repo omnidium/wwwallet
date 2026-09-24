@@ -85,6 +85,7 @@ export default {
     deleteAria: '{label} löschen',
     labelField: 'Bezeichnung',
     addressField: 'Adresse',
+    edit: 'Empfänger bearbeiten',
   },
   backup: {
     title: 'Sicherung und Wiederherstellung',

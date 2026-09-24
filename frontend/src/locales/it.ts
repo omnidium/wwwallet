@@ -85,6 +85,7 @@ export default {
     deleteAria: 'Elimina {label}',
     labelField: 'Etichetta',
     addressField: 'Indirizzo',
+    edit: 'Modifica beneficiario',
   },
   backup: {
     title: 'Backup e ripristino',

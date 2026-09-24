@@ -85,6 +85,7 @@ export default {
     deleteAria: 'Kustuta {label}',
     labelField: 'Silt',
     addressField: 'Aadress',
+    edit: 'Muuda makse saajat',
   },
   backup: {
     title: 'Varundamine ja taastamine',

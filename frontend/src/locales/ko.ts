@@ -85,6 +85,7 @@ export default {
     deleteAria: '{label} 삭제',
     labelField: '라벨',
     addressField: '주소',
+    edit: '수취인 정보 수정',
   },
   backup: {
     title: '백업 및 복원',
