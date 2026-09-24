@@ -33,8 +33,13 @@ export default defineConfig({
       // We call registerSW ourselves (see services/pwaUpdate.ts) so it can
       // also poll for updates on an interval, not just once per load —
       // injecting the plugin's own default registration script alongside
-      // that would register the service worker twice.
-      injectRegister: false,
+      // that would register the service worker twice. Must be `null`, not
+      // `false`: the plugin only bakes the unconditional self.skipWaiting()
+      // + clientsClaim() into the generated sw.js for registerType
+      // 'autoUpdate' when injectRegister is 'auto' or null — `false` skips
+      // that too, leaving the new worker stuck waiting forever and the
+      // periodic update check with nothing to actually apply.
+      injectRegister: null,
       includeAssets: ['favicon.ico', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-512-maskable.png'],
       manifest: {
         name: 'wwwallet',
