@@ -286,6 +286,7 @@ export default {
     networkFailed:
       'Serveriga ei õnnestunud ühendust luua. Kontrollige oma ühendust ja proovige uuesti.',
     rateLimited: 'Liiga palju päringuid — palun oodake hetk ja proovige uuesti.',
+    noLiquidity: 'Seda tokenite paari ei saa hetkel vahetada — proovi mõnda teist tokenit.',
   },
   currency: {
     USD: 'USA dollar',

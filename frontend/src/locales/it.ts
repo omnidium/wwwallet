@@ -289,6 +289,7 @@ export default {
       'Impossibile aprire questo file keystore: potrebbe essere danneggiato oppure la password potrebbe essere errata.',
     networkFailed: 'Impossibile connettersi al server. Verifica la connessione e riprova.',
     rateLimited: 'Troppe richieste: attendi qualche istante e riprova.',
+    noLiquidity: 'Al momento questa coppia di token non è negoziabile: prova con un altro token.',
   },
   currency: {
     USD: 'Dollaro statunitense',

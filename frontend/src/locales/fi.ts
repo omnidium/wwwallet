@@ -287,6 +287,7 @@ export default {
       'Tätä avainvarastotiedostoa ei voitu avata — se saattaa olla vioittunut tai salasana saattaa olla väärä.',
     networkFailed: 'Palvelimeen ei saatu yhteyttä. Tarkista yhteys ja yritä uudelleen.',
     rateLimited: 'Liian monta pyyntöä — odota hetki ja yritä uudelleen.',
+    noLiquidity: 'Tätä token-paria ei voi tällä hetkellä vaihtaa — kokeile toista tokenia.',
   },
   currency: {
     USD: 'Yhdysvaltain dollari',

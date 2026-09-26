@@ -292,6 +292,8 @@ export default {
       'Tidak dapat membuka berkas keystore ini — mungkin berkas tersebut rusak, atau kata sandinya salah.',
     networkFailed: 'Tidak dapat terhubung ke server. Periksa koneksi Anda, lalu coba lagi.',
     rateLimited: 'Terlalu banyak permintaan — mohon tunggu sebentar dan coba lagi.',
+    noLiquidity:
+      'Pasangan token ini saat ini tidak dapat diperdagangkan — coba gunakan token lain.',
   },
   currency: {
     USD: 'Dolar AS',

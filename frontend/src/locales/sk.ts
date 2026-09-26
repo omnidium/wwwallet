@@ -287,6 +287,7 @@ export default {
     networkFailed:
       'Nepodarilo sa nadviazať spojenie so serverom. Skontrolujte pripojenie a skúste to znova.',
     rateLimited: 'Príliš veľa požiadaviek – prosím, chvíľu počkajte a skúste to znova.',
+    noLiquidity: 'Táto dvojica tokenov sa momentálne nedá obchodovať — skúste iný token.',
   },
   currency: {
     USD: 'americký dolár',

@@ -295,6 +295,8 @@ export default {
       'Nu s-a putut stabili conexiunea cu serverul. Verificați conexiunea și încercați din nou.',
     rateLimited:
       'Sunt prea multe solicitări — vă rugăm să așteptați puțin și să încercați din nou.',
+    noLiquidity:
+      'Această pereche de tokenuri nu poate fi tranzacționată în acest moment — încearcă un alt token.',
   },
   currency: {
     USD: 'dolarul american',

@@ -290,6 +290,7 @@ export default {
     networkFailed:
       'Nepavyko prisijungti prie serverio. Patikrinkite ryšį ir pabandykite dar kartą.',
     rateLimited: 'Per daug užklausų — prašome palaukti akimirką ir pabandyti dar kartą.',
+    noLiquidity: 'Šiuo metu šia žetonų pora prekiauti negalima – pabandykite kitą žetoną.',
   },
   currency: {
     USD: 'JAV doleris',

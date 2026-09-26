@@ -273,6 +273,7 @@ export default {
     invalidKeystoreFile: '无法打开此密钥库文件——该文件可能已损坏，或者密码可能有误。',
     networkFailed: '无法连接到服务器。请检查网络连接，然后重试。',
     rateLimited: '请求过多——请稍等片刻，然后重试。',
+    noLiquidity: '该代币对目前无法交易——请尝试其他代币。',
   },
   currency: {
     USD: '美元',

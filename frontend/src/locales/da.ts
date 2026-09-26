@@ -288,6 +288,7 @@ export default {
     networkFailed:
       'Det var ikke muligt at oprette forbindelse til serveren. Kontroller din forbindelse, og prøv igen.',
     rateLimited: 'Der er for mange anmodninger — vent et øjeblik, og prøv igen.',
+    noLiquidity: 'Dette tokenpar kan ikke handles i øjeblikket — prøv et andet token.',
   },
   currency: {
     USD: 'amerikansk dollar',

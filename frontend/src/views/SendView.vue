@@ -649,14 +649,18 @@ const swapTokenOptions = computed<TokenOption[]>(() =>
   }),
 )
 const swapHeldTokens = computed<HeldToken[]>(() =>
-  swapTokenOptions.value.map((t) => ({
-    address: t.contractAddress,
-    symbol: t.symbol,
-    name: t.symbol,
-    decimals: t.decimals,
-    logoUrl: t.logoUrl,
-    balance: Number(formatUnits(t.rawBalance, t.decimals)),
-  })),
+  swapTokenOptions.value.map((t) => {
+    const balance = Number(formatUnits(t.rawBalance, t.decimals))
+    return {
+      address: t.contractAddress,
+      symbol: t.symbol,
+      name: t.symbol,
+      decimals: t.decimals,
+      logoUrl: t.logoUrl,
+      balance,
+      usdValue: t.usdPrice != null ? balance * t.usdPrice : null,
+    }
+  }),
 )
 
 // Same lazy-metadata pattern as the Send tab's own watch above, but scoped to

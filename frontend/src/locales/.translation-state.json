@@ -1119,6 +1119,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "La venta y la compra de tokens deben ser distintas."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Este par de tokens no se puede negociar en este momento; prueba con otro token."
     }
   },
   "ar": {
@@ -2241,6 +2245,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "يجب أن يكون بيع التوكنات وشرائها أمرين مختلفين."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "هذا الزوج من التوكنات غير قابل للتداول في الوقت الحالي — جرب توكنًا آخر."
     }
   },
   "bg": {
@@ -3363,6 +3371,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Продажбата и покупката на токени трябва да са различни."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "В момента тази двойка токени не може да се търгува — опитайте с друг токен."
     }
   },
   "cs": {
@@ -4485,6 +4497,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Tokeny určené k prodeji a k nákupu se musí lišit."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Tuto dvojici tokenů momentálně nelze obchodovat – zkuste jiný token."
     }
   },
   "da": {
@@ -5607,6 +5623,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Salg og køb af tokens skal være to forskellige ting."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Dette tokenpar kan ikke handles i øjeblikket — prøv et andet token."
     }
   },
   "de": {
@@ -6729,6 +6749,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Der Verkauf und der Kauf von Token müssen unterschiedlich sein."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Dieses Token-Paar kann derzeit nicht gehandelt werden – versuche es mit einem anderen Token."
     }
   },
   "el": {
@@ -7851,6 +7875,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Η πώληση και η αγορά token πρέπει να είναι διαφορετικές."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Αυτό το ζεύγος token δεν είναι διαθέσιμο προς διαπραγμάτευση αυτή τη στιγμή — δοκιμάστε ένα διαφορετικό token."
     }
   },
   "et": {
@@ -8973,6 +9001,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Müügi- ja ostutokenid peavad olema erinevad."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Seda tokenite paari ei saa hetkel vahetada — proovi mõnda teist tokenit."
     }
   },
   "fi": {
@@ -10095,6 +10127,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Tokenien myynti ja ostaminen on erotettava toisistaan."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Tätä token-paria ei voi tällä hetkellä vaihtaa — kokeile toista tokenia."
     }
   },
   "fr": {
@@ -11217,6 +11253,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Les opérations de vente et d'achat de jetons doivent être distinctes."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Cette paire de jetons n'est pas négociable pour le moment — essayez un autre jeton."
     }
   },
   "hu": {
@@ -12339,6 +12379,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "A tokenek eladásának és vásárlásának külön kell lennie."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Ez a tokenpár jelenleg nem kereskedhető — próbálj ki egy másik tokent."
     }
   },
   "id": {
@@ -13461,6 +13505,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Penjualan dan pembelian token harus berbeda."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Pasangan token ini saat ini tidak dapat diperdagangkan — coba gunakan token lain."
     }
   },
   "it": {
@@ -14583,6 +14631,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "La vendita e l'acquisto di token devono essere distinti."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Al momento questa coppia di token non è negoziabile: prova con un altro token."
     }
   },
   "iw": {
@@ -15705,6 +15757,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "המכירה והרכישה של אסימונים חייבות להיות שונות זו מזו."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "צמד האסימונים הזה אינו ניתן למסחר כרגע — נסה אסימון אחר."
     }
   },
   "ja": {
@@ -16827,6 +16883,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "トークンの売却と購入は区別する必要があります。"
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "現在、このトークンペアは取引できません。別のトークンを試してみてください。"
     }
   },
   "ko": {
@@ -17949,6 +18009,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "토큰 매도와 매수는 서로 달라야 합니다."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "현재 이 토큰 쌍은 거래할 수 없습니다. 다른 토큰을 사용해 보세요."
     }
   },
   "lt": {
@@ -19071,6 +19135,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Žetonų pardavimas ir pirkimas turi skirtis."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Šiuo metu šia žetonų pora prekiauti negalima – pabandykite kitą žetoną."
     }
   },
   "lv": {
@@ -20193,6 +20261,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Žetonu pārdošanas un pirkšanas cenām jābūt atšķirīgām."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Šo žetonu pāri pašlaik nevar tirgot — izmēģiniet citu žetonu."
     }
   },
   "nl": {
@@ -21315,6 +21387,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Het verkopen en kopen van tokens moet verschillend zijn."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Dit tokenpaar kan momenteel niet worden verhandeld — probeer een ander token."
     }
   },
   "no": {
@@ -22437,6 +22513,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Salg og kjøp av tokens må skilles fra hverandre."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Dette tokenparet kan ikke handles for øyeblikket — prøv et annet token."
     }
   },
   "pl": {
@@ -23559,6 +23639,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Tokeny przeznaczone do sprzedaży i do zakupu muszą się od siebie różnić."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Ta para tokenów nie jest obecnie dostępna do handlu — spróbuj innego tokena."
     }
   },
   "ro": {
@@ -24681,6 +24765,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Vânzarea și cumpărarea de tokenuri trebuie să fie procese distincte."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Această pereche de tokenuri nu poate fi tranzacționată în acest moment — încearcă un alt token."
     }
   },
   "ru": {
@@ -25803,6 +25891,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Цена продажи и цена покупки токенов должны различаться."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Эта пара токенов в данный момент недоступна для торговли — попробуйте выбрать другой токен."
     }
   },
   "sk": {
@@ -26925,6 +27017,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Predaj a nákup tokenov sa musia líšiť."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Táto dvojica tokenov sa momentálne nedá obchodovať — skúste iný token."
     }
   },
   "sl": {
@@ -28047,6 +28143,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Prodaja in nakup žetonov morata biti različna."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Ta par tokenov trenutno ni na voljo za trgovanje — poskusite z drugim tokenom."
     }
   },
   "sv": {
@@ -29169,6 +29269,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Försäljning och köp av tokens måste ske på olika sätt."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Det här tokenparet går inte att handla just nu – prova ett annat token."
     }
   },
   "tr": {
@@ -30291,6 +30395,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Satış ve alım işlemlerinde kullanılan tokenlar farklı olmalıdır."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Bu token çifti şu anda işlem görmüyor — başka bir token deneyin."
     }
   },
   "uk": {
@@ -31413,6 +31521,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Операції з продажу та купівлі токенів мають відрізнятися."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Ця пара токенів наразі недоступна для торгівлі — спробуйте інший токен."
     }
   },
   "vi": {
@@ -32535,6 +32647,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "Việc bán và mua token phải khác nhau."
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "Hiện tại, cặp token này không thể giao dịch được — hãy thử một token khác."
     }
   },
   "zh-CN": {
@@ -33657,6 +33773,10 @@
     "validation.sameTokenSwap": {
       "enHash": "e0540eed713cb2d4",
       "value": "代币的卖出和买入必须有所不同。"
+    },
+    "errors.noLiquidity": {
+      "enHash": "caed1a7dbee820bd",
+      "value": "该代币对目前无法交易——请尝试其他代币。"
     }
   }
 }

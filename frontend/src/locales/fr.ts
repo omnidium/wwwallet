@@ -292,6 +292,8 @@ export default {
       "Impossible d'ouvrir ce fichier de stockage de clés : il est peut-être endommagé ou le mot de passe est peut-être incorrect.",
     networkFailed: "Impossible d'accéder au serveur. Vérifiez votre connexion et réessayez.",
     rateLimited: 'Trop de requêtes — veuillez patienter un instant, puis réessayer.',
+    noLiquidity:
+      "Cette paire de jetons n'est pas négociable pour le moment — essayez un autre jeton.",
   },
   currency: {
     USD: 'dollar américain',

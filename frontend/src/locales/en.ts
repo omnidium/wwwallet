@@ -357,6 +357,7 @@ export default {
       'Could not open this keystore file — it may be corrupted, or the password may be wrong.',
     networkFailed: 'Could not reach the server. Check your connection and try again.',
     rateLimited: 'Too many requests — please wait a moment and try again.',
+    noLiquidity: "This token pair isn't tradable right now — try a different token.",
   },
   currency: {
     USD: 'US dollar',

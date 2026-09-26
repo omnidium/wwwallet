@@ -290,6 +290,7 @@ export default {
     networkFailed:
       'Nie udało się nawiązać połączenia z serwerem. Sprawdź połączenie i spróbuj ponownie.',
     rateLimited: 'Zbyt wiele żądań — proszę chwilę poczekać i spróbować ponownie.',
+    noLiquidity: 'Ta para tokenów nie jest obecnie dostępna do handlu — spróbuj innego tokena.',
   },
   currency: {
     USD: 'dolar amerykański',

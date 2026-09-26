@@ -289,6 +289,7 @@ export default {
       'Tento soubor úložiště klíčů se nepodařilo otevřít – může být poškozený nebo může být zadáno nesprávné heslo.',
     networkFailed: 'Nelze se připojit k serveru. Zkontrolujte připojení a zkuste to znovu.',
     rateLimited: 'Příliš mnoho požadavků – počkejte prosím chvíli a zkuste to znovu.',
+    noLiquidity: 'Tuto dvojici tokenů momentálně nelze obchodovat – zkuste jiný token.',
   },
   currency: {
     USD: 'americký dolar',

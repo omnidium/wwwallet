@@ -298,6 +298,8 @@ export default {
     networkFailed:
       'Der Server konnte nicht erreicht werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.',
     rateLimited: 'Zu viele Anfragen – bitte warten Sie einen Moment und versuchen Sie es erneut.',
+    noLiquidity:
+      'Dieses Token-Paar kann derzeit nicht gehandelt werden – versuche es mit einem anderen Token.',
   },
   currency: {
     USD: 'US-Dollar',

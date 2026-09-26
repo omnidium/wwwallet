@@ -286,6 +286,7 @@ export default {
       'Bu anahtar deposu dosyası açılamadı — dosya bozuk olabilir ya da şifre yanlış olabilir.',
     networkFailed: 'Sunucuya ulaşılamadı. Bağlantınızı kontrol edin ve tekrar deneyin.',
     rateLimited: 'Çok fazla istek var — lütfen bir süre bekleyin ve tekrar deneyin.',
+    noLiquidity: 'Bu token çifti şu anda işlem görmüyor — başka bir token deneyin.',
   },
   currency: {
     USD: 'ABD doları',

@@ -10,6 +10,8 @@ pub enum ProviderError {
     InvalidInput(String),
     #[error("rate limit exceeded")]
     RateLimited,
+    #[error("no liquidity available for this token pair")]
+    NoLiquidity,
 }
 
 pub type ProviderResult<T> = Result<T, ProviderError>;

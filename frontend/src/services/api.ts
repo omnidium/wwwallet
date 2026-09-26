@@ -34,12 +34,14 @@ async function fetchWithRetry(input: string | URL, init?: RequestInit): Promise<
 // The backend's own error text (`body.error`) is never shown — it's a
 // hardcoded English string from a stateless Rust API with no i18n of its
 // own, so showing it as-is would leak untranslated text regardless of the
-// app's language. 429 gets its own message since "you're being rate
-// limited, wait and retry" is common and specific enough to be worth
-// distinguishing; anything else falls back to a generic translated message
-// that still names the failing path and status for support/debugging.
+// app's language. 429 and 422 get their own messages since both are common
+// and specific enough to be worth distinguishing (rate-limited; a swap quote
+// for a token pair with no liquidity); anything else falls back to a generic
+// translated message that still names the failing path and status for
+// support/debugging.
 function requestFailedError(path: string, status: number): Error {
   if (status === 429) return translatedError('errors.rateLimited')
+  if (status === 422) return translatedError('errors.noLiquidity')
   return translatedError('errors.requestFailed', { path, status })
 }
 

@@ -3,7 +3,9 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { api, type ChainSlug } from '@/services/api'
 import { tokenUrl } from '@/services/blockExplorer'
-import { formatAmount } from '@/services/money'
+import { convertUsd, formatFiat } from '@/services/money'
+import { useSettingsLocaleStore } from '@/stores/settingsLocale'
+import { useChainDataStore } from '@/stores/chainData'
 import { TOKEN_SEARCH_DEBOUNCE_MS } from '@/config/appSettings'
 import AppTooltip from '@/components/AppTooltip.vue'
 
@@ -26,6 +28,8 @@ export interface HeldToken {
   decimals: number
   logoUrl: string | null
   balance: number
+  /** null when no price is known for this token — treated the same as $0: filtered out. */
+  usdValue: number | null
 }
 
 const props = defineProps<{
@@ -36,7 +40,17 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{ 'update:modelValue': [value: PickedToken] }>()
 
-const { t } = useI18n({ useScope: 'global' })
+const { t, locale } = useI18n({ useScope: 'global' })
+const settingsLocale = useSettingsLocaleStore()
+const chainData = useChainDataStore()
+
+function fiatDisplay(usdValue: number): string {
+  return formatFiat(
+    convertUsd(usdValue, settingsLocale.currency, chainData.fxRates),
+    settingsLocale.currency,
+    locale.value,
+  )
+}
 
 const dialogOpen = ref(false)
 const search = ref('')
@@ -50,13 +64,13 @@ function keyFor(item: { address: string | null }): string {
 
 const heldMatches = computed(() => {
   const query = search.value.trim().toLowerCase()
-  const held = props.heldTokens.filter((t) => t.balance > 0)
+  const held = props.heldTokens.filter((t) => t.usdValue != null && t.usdValue > 0)
   const matching = query
     ? held.filter(
         (t) => t.symbol.toLowerCase().includes(query) || t.name.toLowerCase().includes(query),
       )
     : held
-  return [...matching].sort((a, b) => b.balance - a.balance)
+  return [...matching].sort((a, b) => (b.usdValue ?? 0) - (a.usdValue ?? 0))
 })
 
 const heldKeys = computed(() => new Set(heldMatches.value.map((t) => keyFor(t))))
@@ -158,7 +172,7 @@ function openDialog() {
               <v-list-item-title>{{ tok.symbol }}</v-list-item-title>
               <v-list-item-subtitle>{{ tok.name }}</v-list-item-subtitle>
               <template #append>
-                <span class="text-body-2">{{ formatAmount(tok.balance) }}</span>
+                <span class="text-body-2">{{ fiatDisplay(tok.usdValue!) }}</span>
               </template>
             </v-list-item>
 

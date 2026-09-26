@@ -288,6 +288,7 @@ export default {
       'Không thể mở tệp kho khóa này — có thể tệp đã bị hỏng hoặc mật khẩu không chính xác.',
     networkFailed: 'Không thể kết nối với máy chủ. Vui lòng kiểm tra kết nối của bạn và thử lại.',
     rateLimited: 'Có quá nhiều yêu cầu — vui lòng đợi một lát rồi thử lại.',
+    noLiquidity: 'Hiện tại, cặp token này không thể giao dịch được — hãy thử một token khác.',
   },
   currency: {
     USD: 'Đồng đô la Mỹ',

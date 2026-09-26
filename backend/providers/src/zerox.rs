@@ -22,15 +22,22 @@ struct ZeroExTransaction {
     gas_price: String,
 }
 
+/// 0x's `/quote` always returns 200, even when it can't quote the requested
+/// pair at all (an unrecognized/untradeable token, most commonly) — that case
+/// comes back as just `{"liquidityAvailable": false, "zid": "..."}`, with
+/// none of the normal quote fields present. Confirmed live against 0x's own
+/// API with a scam-token contract address as sellToken.
 #[derive(Deserialize)]
 struct ZeroExQuoteResponse {
-    transaction: ZeroExTransaction,
+    #[serde(rename = "liquidityAvailable")]
+    liquidity_available: bool,
+    transaction: Option<ZeroExTransaction>,
     #[serde(rename = "buyAmount")]
-    buy_amount: String,
+    buy_amount: Option<String>,
     #[serde(rename = "sellAmount")]
-    sell_amount: String,
+    sell_amount: Option<String>,
     #[serde(rename = "allowanceTarget")]
-    allowance_target: String,
+    allowance_target: Option<String>,
 }
 
 pub struct ZeroExProvider {
@@ -72,19 +79,32 @@ impl SwapQuoteProvider for ZeroExProvider {
         )
         .await?;
 
-        let price = quote_price(&quote.buy_amount, &quote.sell_amount);
-        Ok(SwapQuote {
-            to: quote.transaction.to,
-            data: quote.transaction.data,
-            value: quote.transaction.value,
-            gas_price: quote.transaction.gas_price,
-            estimated_gas: quote.transaction.gas,
-            buy_amount: quote.buy_amount,
-            sell_amount: quote.sell_amount,
-            allowance_target: quote.allowance_target,
-            price,
-        })
+        extract_quote(quote)
     }
+}
+
+fn extract_quote(quote: ZeroExQuoteResponse) -> ProviderResult<SwapQuote> {
+    if !quote.liquidity_available {
+        return Err(ProviderError::NoLiquidity);
+    }
+    let missing_field = || ProviderError::Upstream("quote response missing expected field".into());
+    let transaction = quote.transaction.ok_or_else(missing_field)?;
+    let buy_amount = quote.buy_amount.ok_or_else(missing_field)?;
+    let sell_amount = quote.sell_amount.ok_or_else(missing_field)?;
+    let allowance_target = quote.allowance_target.ok_or_else(missing_field)?;
+
+    let price = quote_price(&buy_amount, &sell_amount);
+    Ok(SwapQuote {
+        to: transaction.to,
+        data: transaction.data,
+        value: transaction.value,
+        gas_price: transaction.gas_price,
+        estimated_gas: transaction.gas,
+        buy_amount,
+        sell_amount,
+        allowance_target,
+        price,
+    })
 }
 
 /// Buy/sell ratio in raw (undecimalized) units, for rough display purposes only —
@@ -96,4 +116,54 @@ fn quote_price(buy_amount: &str, sell_amount: &str) -> String {
         return "0".to_string();
     }
     (buy / sell).to_string()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn liquid_response() -> ZeroExQuoteResponse {
+        ZeroExQuoteResponse {
+            liquidity_available: true,
+            transaction: Some(ZeroExTransaction {
+                to: "0xrouter".to_string(),
+                data: "0xdata".to_string(),
+                value: "0".to_string(),
+                gas: "21000".to_string(),
+                gas_price: "1000000000".to_string(),
+            }),
+            buy_amount: Some("200".to_string()),
+            sell_amount: Some("100".to_string()),
+            allowance_target: Some("0xallowance".to_string()),
+        }
+    }
+
+    #[test]
+    fn no_liquidity_response_is_reported_as_no_liquidity_error() {
+        let response = ZeroExQuoteResponse {
+            liquidity_available: false,
+            transaction: None,
+            buy_amount: None,
+            sell_amount: None,
+            allowance_target: None,
+        };
+        assert!(matches!(extract_quote(response), Err(ProviderError::NoLiquidity)));
+    }
+
+    #[test]
+    fn liquid_response_extracts_every_field() {
+        let quote = extract_quote(liquid_response()).unwrap();
+        assert_eq!(quote.to, "0xrouter");
+        assert_eq!(quote.buy_amount, "200");
+        assert_eq!(quote.sell_amount, "100");
+        assert_eq!(quote.allowance_target, "0xallowance");
+        assert_eq!(quote.price, "2");
+    }
+
+    #[test]
+    fn liquid_but_missing_a_field_is_an_upstream_error_not_a_panic() {
+        let mut response = liquid_response();
+        response.transaction = None;
+        assert!(matches!(extract_quote(response), Err(ProviderError::Upstream(_))));
+    }
 }

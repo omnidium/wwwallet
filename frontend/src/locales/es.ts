@@ -294,6 +294,7 @@ export default {
     networkFailed:
       'No se ha podido conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.',
     rateLimited: 'Demasiadas solicitudes: espera un momento e inténtalo de nuevo.',
+    noLiquidity: 'Este par de tokens no se puede negociar en este momento; prueba con otro token.',
   },
   currency: {
     USD: 'dólar estadounidense',
