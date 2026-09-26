@@ -68,13 +68,19 @@ export default {
   },
   swap: {
     title: '交换',
-    sellTokenLabel: '出售代币（地址，或原生代币的 ETH）',
-    buyTokenLabel: '购买代币的地址',
+    sellTokenLabel: '出售',
+    buyTokenLabel: '购买',
     sellAmountLabel: '销售金额',
     getQuote: '获取报价',
     estimateText: '预计收到：{amount}，价格为 {price}',
     signingNotice: '您正在对 {address} 进行交易签名（通过 0x 聚合器）。',
     submit: '交换',
+    selectToken: '选择代币',
+    searchTokenPlaceholder: '搜索名称或代码',
+    yourTokens: '您的代币',
+    allTokens: '所有代币',
+    noResults: '未找到代币。',
+    viewOnExplorer: '在区块浏览器上查看代币',
   },
   payees: {
     title: '收款人',
@@ -184,8 +190,6 @@ export default {
     amountGreaterThanZero: '请输入一个大于零的数值。',
     insufficientBalance: '转账金额超过“发款账户”的余额（包括交易手续费）。',
     invalidRecipientAddress: '请输入有效的收件人地址。',
-    validTokenOrEth: '请输入有效的代币地址，或输入 ETH 作为原生代币。',
-    validBuyToken: '请输入一个有效的代币购买地址。',
     labelRequired: '必须填写标签。',
     validAddress: '请输入有效的地址。',
     filePasswordRequired: '此文件需要输入密码。',
@@ -194,6 +198,7 @@ export default {
     keystoreFileRequired: '选择一个密钥库文件。',
     recoveryPhraseFormat: '这看起来不像是一组有效的恢复短语。',
     insufficientGas: '该账户中的以太币（ETH）不足以支付网络手续费。',
+    sameTokenSwap: '代币的卖出和买入必须有所不同。',
   },
   msg: {
     account: {

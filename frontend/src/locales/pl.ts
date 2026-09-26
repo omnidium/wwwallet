@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Zamień',
-    sellTokenLabel: 'Sprzedaj token (adres lub ETH w przypadku tokenów natywnych)',
-    buyTokenLabel: 'Adres do zakupu tokenów',
+    sellTokenLabel: 'Sprzedaj',
+    buyTokenLabel: 'Kup',
     sellAmountLabel: 'Kwota sprzedaży',
     getQuote: 'Poproś o wycenę',
     estimateText: 'Szacowana kwota do otrzymania: {amount} po cenie {price}',
     signingNotice:
       'Podpisujesz transakcję w celu zawarcia umowy z {address} (za pośrednictwem agregatora 0x).',
     submit: 'Zamień',
+    selectToken: 'Wybierz token',
+    searchTokenPlaceholder: 'Wyszukaj nazwę lub symbol',
+    yourTokens: 'Twoje tokeny',
+    allTokens: 'Wszystkie tokeny',
+    noResults: 'Nie znaleziono tokenów.',
+    viewOnExplorer: 'Wyświetl token w przeglądarce bloków',
   },
   payees: {
     title: 'Odbiorcy płatności',
@@ -193,8 +199,6 @@ export default {
     insufficientBalance:
       'Kwota do przelania przekracza saldo konta nadawcy (wraz z opłatą transakcyjną).',
     invalidRecipientAddress: 'Wprowadź prawidłowy adres odbiorcy.',
-    validTokenOrEth: 'Wprowadź prawidłowy adres tokenu lub „ETH”, jeśli chodzi o token natywny.',
-    validBuyToken: 'Wprowadź prawidłowy adres tokena zakupowego.',
     labelRequired: 'Pole „Etykieta” jest obowiązkowe.',
     validAddress: 'Wprowadź prawidłowy adres.',
     filePasswordRequired: 'Wymagane jest podanie hasła do tego pliku.',
@@ -203,6 +207,7 @@ export default {
     keystoreFileRequired: 'Wybierz plik magazynu kluczy.',
     recoveryPhraseFormat: 'To nie wygląda na prawidłową frazę odzyskiwania.',
     insufficientGas: 'Na tym koncie nie ma wystarczającej ilości ETH, aby pokryć opłatę sieciową.',
+    sameTokenSwap: 'Tokeny przeznaczone do sprzedaży i do zakupu muszą się od siebie różnić.',
   },
   msg: {
     account: {

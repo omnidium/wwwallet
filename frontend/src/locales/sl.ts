@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Zamenjava',
-    sellTokenLabel: 'Prodaja tokena (naslov ali ETH za lastni token)',
-    buyTokenLabel: 'Naslov za nakup tokena',
+    sellTokenLabel: 'Prodaja',
+    buyTokenLabel: 'Kupi',
     sellAmountLabel: 'Znesek prodaje',
     getQuote: 'Pridobite ponudbo',
     estimateText: 'Predvideni prihodek: {amount} po ceni {price}',
     signingNotice:
       'Podpisujete transakcijo za sklenitev pogodbe z {address} (prek agregatorja 0x).',
     submit: 'Zamenjava',
+    selectToken: 'Izberi žeton',
+    searchTokenPlaceholder: 'Iskanje po imenu ali simbolu',
+    yourTokens: 'Vaši žetoni',
+    allTokens: 'Vsi žetoni',
+    noResults: 'Žetonov ni bilo najdenih.',
+    viewOnExplorer: 'Ogled žetona v raziskovalcu blokov',
   },
   payees: {
     title: 'Prejemniki plačil',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       'Znesek za nakazilo presega stanje na izhodnem računu (vključno s provizijo za transakcijo).',
     invalidRecipientAddress: 'Vnesite veljaven naslov prejemnika.',
-    validTokenOrEth: 'Vnesite veljaven naslov žetona ali ETH za nativni žeton.',
-    validBuyToken: 'Vnesite veljaven naslov za nakup žetona.',
     labelRequired: 'Oznaka je obvezna.',
     validAddress: 'Vnesite veljaven naslov.',
     filePasswordRequired: 'Za to datoteko je potrebno geslo.',
@@ -202,6 +206,7 @@ export default {
     keystoreFileRequired: 'Izberite datoteko s ključi.',
     recoveryPhraseFormat: 'To ne izgleda kot veljavna gesla za obnovitev.',
     insufficientGas: 'Na tem računu ni dovolj ETH za kritje omrežne provizije.',
+    sameTokenSwap: 'Prodaja in nakup žetonov morata biti različna.',
   },
   msg: {
     account: {

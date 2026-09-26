@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Byt',
-    sellTokenLabel: 'Sälj token (adress eller ETH för den inhemska valutan)',
-    buyTokenLabel: 'Adress för att köpa token',
+    sellTokenLabel: 'Sälj',
+    buyTokenLabel: 'Köp',
     sellAmountLabel: 'Försäljningsbelopp',
     getQuote: 'Begär offert',
     estimateText: 'Beräknat belopp: {amount} till priset {price}',
     signingNotice: 'Du signerar en transaktion till {address} (via 0x-aggregatorn).',
     submit: 'Byt',
+    selectToken: 'Välj token',
+    searchTokenPlaceholder: 'Sök efter namn eller symbol',
+    yourTokens: 'Dina polletter',
+    allTokens: 'Alla tokens',
+    noResults: 'Inga tokens hittades.',
+    viewOnExplorer: 'Visa token i blockutforskaren',
   },
   payees: {
     title: 'Mottagare',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       'Det belopp som ska överföras överstiger saldot på avsändarkontot (inklusive transaktionsavgift).',
     invalidRecipientAddress: 'Ange en giltig mottagaradress.',
-    validTokenOrEth: 'Ange en giltig tokenadress eller ETH för den inbyggda tokenen.',
-    validBuyToken: 'Ange en giltig adress för köptoken.',
     labelRequired: 'Etikett är obligatorisk.',
     validAddress: 'Ange en giltig adress.',
     filePasswordRequired: 'Lösenordet till den här filen krävs.',
@@ -203,6 +207,7 @@ export default {
     recoveryPhraseFormat: 'Det ser inte ut som en giltig återställningsfras.',
     insufficientGas:
       'Det finns inte tillräckligt med ETH på detta konto för att täcka nätverksavgiften.',
+    sameTokenSwap: 'Försäljning och köp av tokens måste ske på olika sätt.',
   },
   msg: {
     account: {

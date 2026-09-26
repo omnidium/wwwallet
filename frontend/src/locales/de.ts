@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Tauschen',
-    sellTokenLabel: 'Token verkaufen (Adresse oder ETH für native Token)',
-    buyTokenLabel: 'Adresse zum Kauf von Token',
+    sellTokenLabel: 'Verkaufen',
+    buyTokenLabel: 'Kaufen',
     sellAmountLabel: 'Verkaufsbetrag',
     getQuote: 'Angebot anfordern',
     estimateText: 'Voraussichtlicher Erlös: {amount} zum Preis von {price}',
     signingNotice: 'Sie signieren eine Transaktion an {address} (über den 0x-Aggregator).',
     submit: 'Tauschen',
+    selectToken: 'Token auswählen',
+    searchTokenPlaceholder: 'Nach Name oder Symbol suchen',
+    yourTokens: 'Deine Spielsteine',
+    allTokens: 'Alle Token',
+    noResults: 'Es wurden keine Token gefunden.',
+    viewOnExplorer: 'Token im Block-Explorer anzeigen',
   },
   payees: {
     title: 'Zahlungsempfänger',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       'Der zu überweisende Betrag übersteigt den Kontostand des Absenderkontos (einschließlich Überweisungsgebühr).',
     invalidRecipientAddress: 'Geben Sie eine gültige Empfängeradresse ein.',
-    validTokenOrEth: 'Geben Sie eine gültige Token-Adresse ein oder „ETH“ für native Token.',
-    validBuyToken: 'Geben Sie eine gültige Adresse für den Kauf-Token ein.',
     labelRequired: 'Die Angabe des Labels ist erforderlich.',
     validAddress: 'Geben Sie eine gültige Adresse ein.',
     filePasswordRequired: 'Für diese Datei ist ein Passwort erforderlich.',
@@ -204,6 +208,7 @@ export default {
     recoveryPhraseFormat: 'Das sieht nicht nach einer gültigen Wiederherstellungsphrase aus.',
     insufficientGas:
       'Auf diesem Konto ist nicht genügend ETH vorhanden, um die Netzwerkgebühr zu decken.',
+    sameTokenSwap: 'Der Verkauf und der Kauf von Token müssen unterschiedlich sein.',
   },
   msg: {
     account: {

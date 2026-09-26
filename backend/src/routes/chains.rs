@@ -6,8 +6,8 @@ use serde::{Deserialize, Serialize};
 use crate::error::ApiError;
 use crate::state::AppState;
 use wwwallet_providers::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPage,
-    TransactionPrep, TransactionStatus,
+    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenListItem, TokenMetadata,
+    TransactionPage, TransactionPrep, TransactionStatus,
 };
 use wwwallet_providers::ChainId;
 
@@ -89,6 +89,28 @@ pub async fn token_metadata(
             .providers
             .token_metadata(chain, &address, client_ip(&headers))
             .await?,
+    ))
+}
+
+#[derive(Deserialize)]
+pub struct TokenSearchQuery {
+    q: String,
+}
+
+#[worker::send]
+pub async fn token_search(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path(chain): Path<String>,
+    axum::extract::Query(query): axum::extract::Query<TokenSearchQuery>,
+) -> Result<Json<Vec<TokenListItem>>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    let q = query.q.trim();
+    if q.is_empty() || q.len() > 64 {
+        return Err(ApiError::BadRequest("q must be 1-64 characters".to_string()));
+    }
+    Ok(Json(
+        state.providers.search_tokens(chain, q, client_ip(&headers)).await?,
     ))
 }
 

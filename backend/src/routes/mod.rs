@@ -21,6 +21,10 @@ pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
             get(chains::token_metadata),
         )
         .route(
+            "/api/v1/chains/:chain/tokens/search",
+            get(chains::token_search),
+        )
+        .route(
             "/api/v1/chains/:chain/native-price",
             get(chains::native_price),
         )

@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Vyměnit',
-    sellTokenLabel: 'Prodat token (na adresu nebo za ETH v případě nativního tokenu)',
-    buyTokenLabel: 'Adresa pro nákup tokenu',
+    sellTokenLabel: 'Prodat',
+    buyTokenLabel: 'Koupit',
     sellAmountLabel: 'Prodané množství',
     getQuote: 'Získat cenovou nabídku',
     estimateText: 'Odhadovaná částka k obdržení: {amount} za cenu {price}',
     signingNotice: 'Podepisujete transakci určenou pro {address} (prostřednictvím agregátoru 0x).',
     submit: 'Vyměnit',
+    selectToken: 'Vyberte token',
+    searchTokenPlaceholder: 'Vyhledat název nebo symbol',
+    yourTokens: 'Vaše žetony',
+    allTokens: 'Všechny tokeny',
+    noResults: 'Nebyly nalezeny žádné tokeny.',
+    viewOnExplorer: 'Zobrazit token v prohlížeči bloků',
   },
   payees: {
     title: 'Příjemci plateb',
@@ -191,8 +197,6 @@ export default {
     insufficientBalance:
       'Částka k odeslání přesahuje zůstatek na odesílajícím účtu (včetně transakčního poplatku).',
     invalidRecipientAddress: 'Zadejte platnou adresu příjemce.',
-    validTokenOrEth: 'Zadejte platnou adresu tokenu nebo ETH pro nativní platbu.',
-    validBuyToken: 'Zadejte platnou adresu pro nákup tokenů.',
     labelRequired: 'Popisek je povinný.',
     validAddress: 'Zadejte platnou adresu.',
     filePasswordRequired: 'Pro otevření tohoto souboru je nutné zadat heslo.',
@@ -201,6 +205,7 @@ export default {
     keystoreFileRequired: 'Vyberte soubor úložiště klíčů.',
     recoveryPhraseFormat: 'To nevypadá jako platná obnovovací fráze.',
     insufficientGas: 'Na tomto účtu není dostatek ETH k úhradě síťového poplatku.',
+    sameTokenSwap: 'Tokeny určené k prodeji a k nákupu se musí lišit.',
   },
   msg: {
     account: {

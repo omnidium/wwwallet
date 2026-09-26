@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'المبادلة',
-    sellTokenLabel: 'بيع التوكن (العنوان، أو ETH بالنسبة للتوكن الأصلي)',
-    buyTokenLabel: 'عنوان شراء التوكن',
+    sellTokenLabel: 'بيع',
+    buyTokenLabel: 'شراء',
     sellAmountLabel: 'مبلغ البيع',
     getQuote: 'احصل على عرض أسعار',
     estimateText: 'المبلغ المتوقع استلامه: {amount} بسعر {price}',
     signingNotice: 'أنت تقوم بالتوقيع على معاملة مع {address} (عبر أداة التجميع 0x).',
     submit: 'المبادلة',
+    selectToken: 'اختر الرمز المميز',
+    searchTokenPlaceholder: 'ابحث عن الاسم أو الرمز',
+    yourTokens: 'الرموز الخاصة بك',
+    allTokens: 'جميع الرموز',
+    noResults: 'لم يتم العثور على أي رموز.',
+    viewOnExplorer: 'عرض الرمز المميز على مستكشف البلوكشين',
   },
   payees: {
     title: 'المستفيدون',
@@ -191,8 +197,6 @@ export default {
     insufficientBalance:
       'المبلغ المراد إرساله يزيد عن رصيد الحساب المرسل منه (بما في ذلك رسوم المعاملة).',
     invalidRecipientAddress: 'أدخل عنوان مستلم صالحًا.',
-    validTokenOrEth: 'أدخل عنوان توكن صالحًا، أو ETH إذا كان التوكن أصليًّا.',
-    validBuyToken: 'أدخل عنوانًا صالحًا لرمز الشراء.',
     labelRequired: 'يجب إدخال العنوان.',
     validAddress: 'أدخل عنوانًا صحيحًا.',
     filePasswordRequired: 'يلزم إدخال كلمة مرور هذا الملف.',
@@ -201,6 +205,7 @@ export default {
     keystoreFileRequired: 'اختر ملف مخزن المفاتيح.',
     recoveryPhraseFormat: 'لا تبدو هذه عبارة استرداد صالحة.',
     insufficientGas: 'لا يوجد ما يكفي من ETH في هذا الحساب لتغطية رسوم الشبكة.',
+    sameTokenSwap: 'يجب أن يكون بيع التوكنات وشرائها أمرين مختلفين.',
   },
   msg: {
     account: {

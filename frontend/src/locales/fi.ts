@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Vaihto',
-    sellTokenLabel: 'Myy token (osoite tai ETH, jos kyseessä on natiivitoken)',
-    buyTokenLabel: 'Tokenin ostosoite',
+    sellTokenLabel: 'Myy',
+    buyTokenLabel: 'Osta',
     sellAmountLabel: 'Myyntimäärä',
     getQuote: 'Pyydä tarjous',
     estimateText: 'Arvioitu saatu summa: {amount} hintaan {price}',
     signingNotice:
       'Olet allekirjoittamassa tapahtumaa, joka koskee {address}:ta (0x-aggregaattorin kautta).',
     submit: 'Vaihda',
+    selectToken: 'Valitse tunnus',
+    searchTokenPlaceholder: 'Hae nimen tai tunnuksen perusteella',
+    yourTokens: 'Tunnuksesi',
+    allTokens: 'Kaikki rahakkeet',
+    noResults: 'Tunnisteita ei löytynyt.',
+    viewOnExplorer: 'Tarkastele tunnusta lohkoketjun selaimessa',
   },
   payees: {
     title: 'Maksunsaajat',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       'Lähetettävä summa on suurempi kuin lähettäjän tilin saldo (mukaan lukien siirtomaksu).',
     invalidRecipientAddress: 'Syötä kelvollinen vastaanottajan osoite.',
-    validTokenOrEth: 'Syötä kelvollinen token-osoite tai ETH, jos kyseessä on alkuperäinen token.',
-    validBuyToken: 'Syötä kelvollinen ostotunnuksen osoite.',
     labelRequired: 'Kuvaus on pakollinen.',
     validAddress: 'Syötä kelvollinen osoite.',
     filePasswordRequired: 'Tämän tiedoston avaamiseen tarvitaan salasana.',
@@ -202,6 +206,7 @@ export default {
     keystoreFileRequired: 'Valitse avainvarastotiedosto.',
     recoveryPhraseFormat: 'Tuo ei näytä kelvolliselta palautuslauseelta.',
     insufficientGas: 'Tällä tilillä ei ole tarpeeksi ETH:ta verkkomaksun kattamiseen.',
+    sameTokenSwap: 'Tokenien myynti ja ostaminen on erotettava toisistaan.',
   },
   msg: {
     account: {

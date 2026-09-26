@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Ανταλλαγή',
-    sellTokenLabel: 'Πώληση token (διεύθυνση ή ETH για το εγγενές)',
-    buyTokenLabel: 'Διεύθυνση αγοράς token',
+    sellTokenLabel: 'Πώληση',
+    buyTokenLabel: 'Αγοράστε',
     sellAmountLabel: 'Ποσό πώλησης',
     getQuote: 'Ζητήστε προσφορά',
     estimateText: 'Εκτιμώμενο ποσό που θα εισπραχθεί: {amount} στην τιμή {price}',
     signingNotice: 'Υπογράφετε μια συναλλαγή με συμβαλλόμενο {address} (μέσω του aggregator 0x).',
     submit: 'Ανταλλαγή',
+    selectToken: 'Επιλογή token',
+    searchTokenPlaceholder: 'Αναζήτηση ονόματος ή συμβόλου',
+    yourTokens: 'Τα κουπόνια σας',
+    allTokens: 'Όλα τα tokens',
+    noResults: 'Δεν βρέθηκαν διακριτικά.',
+    viewOnExplorer: 'Προβολή του token στον εξερευνητή μπλοκ',
   },
   payees: {
     title: 'Δικαιούχοι',
@@ -193,8 +199,6 @@ export default {
     insufficientBalance:
       'Το ποσό προς αποστολή υπερβαίνει το υπόλοιπο του λογαριασμού ΑΠΟ (συμπεριλαμβανομένης της προμήθειας συναλλαγής).',
     invalidRecipientAddress: 'Εισάγετε μια έγκυρη διεύθυνση παραλήπτη.',
-    validTokenOrEth: 'Εισάγετε μια έγκυρη διεύθυνση token ή «ETH» για το εγγενές νόμισμα.',
-    validBuyToken: 'Εισάγετε μια έγκυρη διεύθυνση token αγοράς.',
     labelRequired: 'Η ετικέτα είναι υποχρεωτική.',
     validAddress: 'Εισάγετε μια έγκυρη διεύθυνση.',
     filePasswordRequired: 'Απαιτείται ο κωδικός πρόσβασης αυτού του αρχείου.',
@@ -204,6 +208,7 @@ export default {
     recoveryPhraseFormat: 'Αυτή η φράση ανάκτησης δεν φαίνεται να είναι έγκυρη.',
     insufficientGas:
       'Δεν υπάρχουν αρκετά ETH σε αυτόν τον λογαριασμό για την κάλυψη του τέλους δικτύου.',
+    sameTokenSwap: 'Η πώληση και η αγορά token πρέπει να είναι διαφορετικές.',
   },
   msg: {
     account: {

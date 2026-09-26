@@ -6,7 +6,8 @@ use worker::RateLimiter;
 use crate::alchemy::AlchemyProvider;
 use crate::cache::{
     self, ADDRESS_ACTIVITY_TTL, CONTRACT_ABI_TTL, FX_RATES_STALE_TTL, FX_RATES_TTL,
-    NATIVE_PRICE_STALE_TTL, NATIVE_PRICE_TTL, TOKEN_METADATA_STALE_TTL, TOKEN_METADATA_TTL,
+    NATIVE_PRICE_STALE_TTL, NATIVE_PRICE_TTL, TOKEN_LIST_STALE_TTL, TOKEN_LIST_TTL,
+    TOKEN_METADATA_STALE_TTL, TOKEN_METADATA_TTL,
 };
 use crate::chain::ChainId;
 use crate::coingecko::CoinGeckoProvider;
@@ -15,14 +16,15 @@ use crate::etherscan::EtherscanProvider;
 use crate::ethplorer::EthplorerProvider;
 use crate::fxrate::FrankfurterProvider;
 use crate::public_rpc::PublicRpcProvider;
+use crate::tokenlist::{self, TokenListProvider};
 use crate::traits::{
     AbiProvider, ActivityProvider, AllowanceProvider, FxRateProvider, NativePriceProvider,
     SwapQuoteProvider, TokenMetadataProvider, TransactionBroadcaster, TransactionPrepProvider,
     TransactionStatusProvider,
 };
 use crate::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPage,
-    TransactionPrep, TransactionStatus,
+    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenListItem, TokenMetadata,
+    TransactionPage, TransactionPrep, TransactionStatus,
 };
 use crate::zerox::ZeroExProvider;
 
@@ -55,6 +57,7 @@ pub struct ProviderRegistry {
     allowance: Rc<dyn AllowanceProvider>,
     swap: Rc<dyn SwapQuoteProvider>,
     native_price: Rc<dyn NativePriceProvider>,
+    token_list: Rc<TokenListProvider>,
     kv: KvStore,
     rate_limiter_default: RateLimiter,
     rate_limiter_broadcast: RateLimiter,
@@ -82,6 +85,7 @@ impl ProviderRegistry {
             fx: Rc::new(FrankfurterProvider::new()),
             swap: Rc::new(ZeroExProvider::new(config.zerox_api_key)),
             native_price: Rc::new(CoinGeckoProvider::new()),
+            token_list: Rc::new(TokenListProvider::new()),
             kv,
             rate_limiter_default,
             rate_limiter_broadcast,
@@ -215,6 +219,31 @@ impl ProviderRegistry {
             self.native_price.native_price(chain).await
         })
         .await
+    }
+
+    /// The full per-chain list is what's cached (rarely changes, one shared
+    /// key for every query on that chain) — filtering by `query` happens
+    /// in-memory on every call against whatever that returns, fresh or
+    /// cached, so a search itself never spends an upstream fetch.
+    pub async fn search_tokens(
+        &self,
+        chain: ChainId,
+        query: &str,
+        client_ip: &str,
+    ) -> ProviderResult<Vec<TokenListItem>> {
+        let key = format!("tokenlist:{chain:?}");
+        let list: Vec<TokenListItem> = cache::get_or_fetch_with_stale_fallback(
+            &self.kv,
+            &key,
+            TOKEN_LIST_TTL,
+            TOKEN_LIST_STALE_TTL,
+            || async {
+                self.check_rate_limit(client_ip, "token_list").await?;
+                self.token_list.fetch_list(chain).await
+            },
+        )
+        .await?;
+        Ok(tokenlist::search(&list, query, 20))
     }
 
     /// Never cached — this is a write, not a read.

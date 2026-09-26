@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Hoán đổi',
-    sellTokenLabel: 'Bán token (theo địa chỉ hoặc bằng ETH đối với token gốc)',
-    buyTokenLabel: 'Địa chỉ mua token',
+    sellTokenLabel: 'Bán',
+    buyTokenLabel: 'Mua',
     sellAmountLabel: 'Số lượng bán ra',
     getQuote: 'Yêu cầu báo giá',
     estimateText: 'Dự kiến sẽ nhận được: {amount} với giá {price}',
     signingNotice:
       'Bạn đang ký xác nhận một giao dịch với hợp đồng {address} (thông qua trình tổng hợp 0x).',
     submit: 'Hoán đổi',
+    selectToken: 'Chọn mã thông báo',
+    searchTokenPlaceholder: 'Tìm kiếm theo tên hoặc mã chứng khoán',
+    yourTokens: 'Các token của bạn',
+    allTokens: 'Tất cả các token',
+    noResults: 'Không tìm thấy mã thông báo nào.',
+    viewOnExplorer: 'Xem token trên trình khám phá blockchain',
   },
   payees: {
     title: 'Người nhận tiền',
@@ -193,8 +199,6 @@ export default {
     insufficientBalance:
       'Số tiền cần chuyển vượt quá số dư trong tài khoản người gửi (bao gồm cả phí giao dịch).',
     invalidRecipientAddress: 'Vui lòng nhập địa chỉ người nhận hợp lệ.',
-    validTokenOrEth: 'Nhập địa chỉ token hợp lệ hoặc ETH (nếu là token gốc).',
-    validBuyToken: 'Vui lòng nhập địa chỉ token mua hợp lệ.',
     labelRequired: 'Phải điền nhãn.',
     validAddress: 'Vui lòng nhập một địa chỉ hợp lệ.',
     filePasswordRequired: 'Tệp này yêu cầu nhập mật khẩu.',
@@ -203,6 +207,7 @@ export default {
     keystoreFileRequired: 'Chọn một tệp keystore.',
     recoveryPhraseFormat: 'Câu đó có vẻ không phải là cụm từ khôi phục hợp lệ.',
     insufficientGas: 'Số ETH trong tài khoản này không đủ để thanh toán phí mạng.',
+    sameTokenSwap: 'Việc bán và mua token phải khác nhau.',
   },
   msg: {
     account: {

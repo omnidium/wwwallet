@@ -28,6 +28,12 @@ pub const NATIVE_PRICE_STALE_TTL: u64 = 60 * 60 * 24;
 // calls — a week-old fallback is still correct almost always, and far better
 // than a bare 429/502 breaking a whole account card's token list.
 pub const TOKEN_METADATA_STALE_TTL: u64 = 60 * 60 * 24 * 7;
+// A chain's token list (address/symbol/name/decimals/logo for every listed
+// token) changes on the order of days, not minutes — a full day between
+// refetches is plenty fresh, and a stale week-old list is still far better
+// than search results going empty over a transient fetch failure.
+pub const TOKEN_LIST_TTL: u64 = 60 * 60 * 24;
+pub const TOKEN_LIST_STALE_TTL: u64 = 60 * 60 * 24 * 7;
 
 /// Reads `key` from KV; on a miss, calls `fetch`, stores the result with the
 /// given TTL (best-effort — a KV write failure doesn't fail the request),

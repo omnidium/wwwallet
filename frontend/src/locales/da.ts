@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Byt',
-    sellTokenLabel: 'Sælg token (adresse eller ETH for native)',
-    buyTokenLabel: 'Køb token-adresse',
+    sellTokenLabel: 'Sælg',
+    buyTokenLabel: 'Køb',
     sellAmountLabel: 'Salgsbeløb',
     getQuote: 'Få et tilbud',
     estimateText: 'Anslået modtagelse: {amount} til en pris på {price}',
     signingNotice: 'Du underskriver en transaktion til {address} (via 0x-aggregatoren).',
     submit: 'Byt',
+    selectToken: 'Vælg token',
+    searchTokenPlaceholder: 'Søg efter navn eller symbol',
+    yourTokens: 'Dine tokens',
+    allTokens: 'Alle tokens',
+    noResults: 'Der blev ikke fundet nogen tokens.',
+    viewOnExplorer: 'Se token i blokudforskeren',
   },
   payees: {
     title: 'Modtagere',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       'Det beløb, der skal overføres, er større end saldoen på afsenderkontoen (inklusive transaktionsgebyr).',
     invalidRecipientAddress: 'Indtast en gyldig modtageradresse.',
-    validTokenOrEth: 'Indtast en gyldig token-adresse eller ETH for den indbyggede token.',
-    validBuyToken: 'Indtast en gyldig adresse til køb af token.',
     labelRequired: 'Der skal angives en etiket.',
     validAddress: 'Indtast en gyldig adresse.',
     filePasswordRequired: 'Der kræves en adgangskode til denne fil.',
@@ -202,6 +206,7 @@ export default {
     keystoreFileRequired: 'Vælg en nøglefil.',
     recoveryPhraseFormat: 'Det ser ikke ud til at være en gyldig gendannelsesfrase.',
     insufficientGas: 'Der er ikke nok ETH på denne konto til at dække netværksgebyret.',
+    sameTokenSwap: 'Salg og køb af tokens skal være to forskellige ting.',
   },
   msg: {
     account: {

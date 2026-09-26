@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Intercambio',
-    sellTokenLabel: 'Vender token (dirección o ETH para el token nativo)',
-    buyTokenLabel: 'Dirección para comprar tokens',
+    sellTokenLabel: 'Vender',
+    buyTokenLabel: 'Comprar',
     sellAmountLabel: 'Importe de la venta',
     getQuote: 'Solicitar presupuesto',
     estimateText: 'Se estima que se recibirá: {amount} a un precio de {price}',
     signingNotice:
       'Estás firmando una transacción para contratar {address} (a través del agregador 0x).',
     submit: 'Intercambio',
+    selectToken: 'Seleccionar token',
+    searchTokenPlaceholder: 'Buscar por nombre o símbolo',
+    yourTokens: 'Tus fichas',
+    allTokens: 'Todas las fichas',
+    noResults: 'No se han encontrado tokens.',
+    viewOnExplorer: 'Ver el token en el explorador de bloques',
   },
   payees: {
     title: 'Beneficiarios',
@@ -193,9 +199,6 @@ export default {
     insufficientBalance:
       'El importe a enviar supera el saldo de la cuenta de origen (incluida la comisión por transacción).',
     invalidRecipientAddress: 'Introduce una dirección de destinatario válida.',
-    validTokenOrEth:
-      'Introduce una dirección de token válida o ETH si se trata de la moneda nativa.',
-    validBuyToken: 'Introduce una dirección válida para el token de compra.',
     labelRequired: 'Es obligatorio rellenar el campo «Etiqueta».',
     validAddress: 'Introduce una dirección válida.',
     filePasswordRequired: 'Es necesario introducir la contraseña de este archivo.',
@@ -204,6 +207,7 @@ export default {
     keystoreFileRequired: 'Elige un archivo de almacén de claves.',
     recoveryPhraseFormat: 'No parece que esa sea una frase de recuperación válida.',
     insufficientGas: 'No hay suficiente ETH en esta cuenta para cubrir la comisión de red.',
+    sameTokenSwap: 'La venta y la compra de tokens deben ser distintas.',
   },
   msg: {
     account: {

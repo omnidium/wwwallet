@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Scambio',
-    sellTokenLabel: 'Vendi token (indirizzo o ETH per i token nativi)',
-    buyTokenLabel: 'Acquista indirizzo token',
+    sellTokenLabel: 'Vendi',
+    buyTokenLabel: 'Acquista',
     sellAmountLabel: 'Importo della vendita',
     getQuote: 'Richiedi un preventivo',
     estimateText: 'Importo stimato da ricevere: {amount} al prezzo di {price}',
     signingNotice: "Stai firmando una transazione per {address} (tramite l'aggregatore 0x).",
     submit: 'Scambio',
+    selectToken: 'Seleziona il token',
+    searchTokenPlaceholder: 'Cerca per nome o simbolo',
+    yourTokens: 'I tuoi gettoni',
+    allTokens: 'Tutti i token',
+    noResults: 'Non sono stati trovati token.',
+    viewOnExplorer: "Visualizza il token sull'esploratore di blockchain",
   },
   payees: {
     title: 'Beneficiari',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       "L'importo da inviare è superiore al saldo del conto di origine (compresa la commissione di transazione).",
     invalidRecipientAddress: 'Inserisci un indirizzo del destinatario valido.',
-    validTokenOrEth: 'Inserisci un indirizzo token valido oppure ETH per la valuta nativa.',
-    validBuyToken: 'Inserisci un indirizzo valido per il token di acquisto.',
     labelRequired: "È necessario inserire l'etichetta.",
     validAddress: 'Inserisci un indirizzo valido.',
     filePasswordRequired: 'È richiesta la password di questo file.',
@@ -202,6 +206,7 @@ export default {
     keystoreFileRequired: 'Scegli un file keystore.',
     recoveryPhraseFormat: 'Non sembra una frase di recupero valida.',
     insufficientGas: "In questo conto non c'è abbastanza ETH per coprire la commissione di rete.",
+    sameTokenSwap: "La vendita e l'acquisto di token devono essere distinti.",
   },
   msg: {
     account: {

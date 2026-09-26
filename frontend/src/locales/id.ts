@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Tukar',
-    sellTokenLabel: 'Jual token (alamat, atau ETH untuk token asli)',
-    buyTokenLabel: 'Alamat pembelian token',
+    sellTokenLabel: 'Jual',
+    buyTokenLabel: 'Beli',
     sellAmountLabel: 'Jumlah yang dijual',
     getQuote: 'Dapatkan penawaran',
     estimateText: 'Diperkirakan akan diterima: {amount} dengan harga {price}',
     signingNotice:
       'Anda sedang menandatangani transaksi untuk kontrak {address} (melalui agregator 0x).',
     submit: 'Tukar',
+    selectToken: 'Pilih token',
+    searchTokenPlaceholder: 'Cari nama atau simbol',
+    yourTokens: 'Token Anda',
+    allTokens: 'Semua token',
+    noResults: 'Tidak ditemukan token.',
+    viewOnExplorer: 'Lihat token di penjelajah blok',
   },
   payees: {
     title: 'Penerima pembayaran',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       'Jumlah yang akan dikirim melebihi saldo rekening pengirim (termasuk biaya transaksi).',
     invalidRecipientAddress: 'Masukkan alamat penerima yang valid.',
-    validTokenOrEth: 'Masukkan alamat token yang valid, atau ETH untuk token asli.',
-    validBuyToken: 'Masukkan alamat token pembelian yang valid.',
     labelRequired: 'Label wajib diisi.',
     validAddress: 'Masukkan alamat yang sah.',
     filePasswordRequired: 'Kata sandi berkas ini wajib diisi.',
@@ -202,6 +206,7 @@ export default {
     keystoreFileRequired: 'Pilih berkas keystore.',
     recoveryPhraseFormat: 'Itu sepertinya bukan frasa pemulihan yang sah.',
     insufficientGas: 'Saldo ETH di akun ini tidak cukup untuk menutupi biaya jaringan.',
+    sameTokenSwap: 'Penjualan dan pembelian token harus berbeda.',
   },
   msg: {
     account: {

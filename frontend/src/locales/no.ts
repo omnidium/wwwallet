@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Bytt',
-    sellTokenLabel: 'Selg token (adresse eller ETH for egen valuta)',
-    buyTokenLabel: 'Kjøp token-adresse',
+    sellTokenLabel: 'Selg',
+    buyTokenLabel: 'Kjøp',
     sellAmountLabel: 'Salgsbeløp',
     getQuote: 'Få tilbud',
     estimateText: 'Anslått mottak: {amount} til pris {price}',
     signingNotice:
       'Du signerer en transaksjon for å inngå en avtale med {address} (via 0x-aggregatoren).',
     submit: 'Bytte',
+    selectToken: 'Velg token',
+    searchTokenPlaceholder: 'Søk etter navn eller symbol',
+    yourTokens: 'Dine poeng',
+    allTokens: 'Alle tokens',
+    noResults: 'Det ble ikke funnet noen tokens.',
+    viewOnExplorer: 'Vis token i blokk-utforskeren',
   },
   payees: {
     title: 'Mottakere',
@@ -193,8 +199,6 @@ export default {
     insufficientBalance:
       'Beløpet som skal overføres, er større enn saldoen på avsenderkontoen (inkludert transaksjonsgebyr).',
     invalidRecipientAddress: 'Skriv inn en gyldig mottakeradresse.',
-    validTokenOrEth: 'Skriv inn en gyldig tokenadresse, eller ETH for den innebygde.',
-    validBuyToken: 'Skriv inn en gyldig adresse for kjøpstoken.',
     labelRequired: 'Etikett er påkrevd.',
     validAddress: 'Skriv inn en gyldig adresse.',
     filePasswordRequired: 'Det kreves passord for denne filen.',
@@ -203,6 +207,7 @@ export default {
     keystoreFileRequired: 'Velg en nøkkelarkivfil.',
     recoveryPhraseFormat: 'Det ser ikke ut som en gyldig gjenopprettingsfrase.',
     insufficientGas: 'Det er ikke nok ETH på denne kontoen til å dekke nettverksavgiften.',
+    sameTokenSwap: 'Salg og kjøp av tokens må skilles fra hverandre.',
   },
   msg: {
     account: {

@@ -32,6 +32,7 @@ import { displayErrorMessage } from '@/services/errors'
 import QrScannerDialog from '@/components/QrScannerDialog.vue'
 import TransactionReviewDialog, { type ReviewRow } from '@/components/TransactionReviewDialog.vue'
 import AppTooltip from '@/components/AppTooltip.vue'
+import TokenPickerField, { type HeldToken, type PickedToken } from '@/components/TokenPickerField.vue'
 
 const { t, locale } = useI18n({ useScope: 'global' })
 const route = useRoute()
@@ -613,33 +614,131 @@ function skipAddPayee() {
 
 /* ------------------------------- Swap tab -------------------------------- */
 
-const NATIVE_SENTINEL = 'ETH'
 // The pseudo-address DEX aggregators (including 0x's Swap API) use to mean
 // "the chain's native currency" — there's no real ERC-20 contract for it.
 const NATIVE_PSEUDO_ADDRESS = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
 
-function toApiTokenAddress(input: string): string {
-  const trimmed = input.trim()
-  return trimmed.toUpperCase() === NATIVE_SENTINEL ? NATIVE_PSEUDO_ADDRESS : trimmed
-}
+// The Swap tab always operates on the single account this panel was opened
+// from — unlike the Send tab, there's no From selector — so its held-token
+// list is scoped to the fixed `chain`/`address`, independent of whatever the
+// Send tab's own From dropdown currently points to.
+const swapActivity = computed(() => chainData.activityByAddress[chainData.keyFor(chain, address)])
+const swapTokenOptions = computed<TokenOption[]>(() =>
+  (swapActivity.value?.balances ?? []).map((b) => {
+    if (b.contract_address === null) {
+      return {
+        key: 'native',
+        symbol: b.symbol,
+        contractAddress: null,
+        decimals: b.decimals,
+        rawBalance: b.balance,
+        logoUrl: null,
+        usdPrice: chainData.nativePriceUsdByChain[chain] ?? null,
+      }
+    }
+    const metadata = chainData.tokenMetadataByKey[chainData.keyFor(chain, b.contract_address)]
+    return {
+      key: b.contract_address,
+      symbol: metadata?.symbol ?? b.symbol,
+      contractAddress: b.contract_address,
+      decimals: metadata?.decimals ?? b.decimals,
+      rawBalance: b.balance,
+      logoUrl: metadata?.logo_url ?? null,
+      usdPrice: metadata?.usd_price ?? null,
+    }
+  }),
+)
+const swapHeldTokens = computed<HeldToken[]>(() =>
+  swapTokenOptions.value.map((t) => ({
+    address: t.contractAddress,
+    symbol: t.symbol,
+    name: t.symbol,
+    decimals: t.decimals,
+    logoUrl: t.logoUrl,
+    balance: Number(formatUnits(t.rawBalance, t.decimals)),
+  })),
+)
 
-// The pseudo-address has no real contract, so there's no metadata to look up —
-// every supported chain's native currency uses 18 decimals.
-async function resolveDecimals(tokenAddress: string): Promise<number> {
-  if (tokenAddress === NATIVE_PSEUDO_ADDRESS) return 18
-  const metadata = await api.tokenMetadata(chain, tokenAddress)
-  return metadata.decimals ?? 18
-}
+// Same lazy-metadata pattern as the Send tab's own watch above, but scoped to
+// this fixed account rather than whichever one the Send tab's From selector
+// currently points to.
+watch(
+  () => swapActivity.value?.balances ?? [],
+  (balances) => {
+    for (const b of balances) {
+      if (!b.contract_address) continue
+      const key = chainData.keyFor(chain, b.contract_address)
+      if (!chainData.tokenMetadataByKey[key]) void chainData.loadTokenMetadata(chain, b.contract_address)
+    }
+  },
+  { immediate: true },
+)
 
-const sellToken = ref(NATIVE_SENTINEL)
-const buyToken = ref('')
+const sellTokenPicked = ref<PickedToken | null>(null)
+const buyTokenPicked = ref<PickedToken | null>(null)
 const sellAmount = ref('')
 const quote = ref<SwapQuote | null>(null)
 const buyAmountFormatted = ref('')
 const swapBusy = ref(false)
-const quoteFormValid = ref(false)
 const swapReviewOpen = ref(false)
 const swapReviewRows = ref<ReviewRow[]>([])
+
+const sellTokenBalance = computed<number | null>(() => {
+  const picked = sellTokenPicked.value
+  if (!picked) return null
+  const held = swapTokenOptions.value.find(
+    (t) => (t.contractAddress?.toLowerCase() ?? null) === (picked.address?.toLowerCase() ?? null),
+  )
+  return held ? Number(formatUnits(held.rawBalance, held.decimals)) : 0
+})
+
+function applySellPercent(fraction: number) {
+  const balance = sellTokenBalance.value
+  if (balance === null) return
+  sellAmount.value = (balance * fraction).toString()
+}
+
+async function setSellMax() {
+  const picked = sellTokenPicked.value
+  if (!picked) return
+  if (picked.address !== null) {
+    applySellPercent(1)
+    return
+  }
+  const native = swapTokenOptions.value.find((t) => t.contractAddress === null)
+  if (!native) return
+  swapBusy.value = true
+  try {
+    // Same fee-reservation approach as the Send tab's own Max: estimate a
+    // plain transfer's gas since the real swap gas cost isn't known until a
+    // quote comes back, then leave that reserved out of the sellable amount.
+    const prep = await api.transactionPrep(chain, address, address, '0')
+    const feeWei = BigInt(prep.gas_price) * BigInt(prep.gas_limit)
+    const balanceWei = BigInt(native.rawBalance)
+    const valueWei = balanceWei > feeWei ? balanceWei - feeWei : 0n
+    sellAmount.value = formatUnits(valueWei, native.decimals)
+  } catch (err) {
+    messages.push(displayErrorMessage(err), 'error')
+  } finally {
+    swapBusy.value = false
+  }
+}
+
+const sameTokenSelected = computed(() => {
+  if (!sellTokenPicked.value || !buyTokenPicked.value) return false
+  return (
+    (sellTokenPicked.value.address?.toLowerCase() ?? null) ===
+    (buyTokenPicked.value.address?.toLowerCase() ?? null)
+  )
+})
+
+const quoteFormValid = computed(
+  () =>
+    !!sellTokenPicked.value &&
+    !!buyTokenPicked.value &&
+    !sameTokenSelected.value &&
+    Number(sellAmount.value) > 0,
+)
 
 function formatNativeFee(feeWei: bigint): { value: string; sub?: string } {
   const human = Number(formatUnits(feeWei, 18))
@@ -654,37 +753,21 @@ function formatNativeFee(feeWei: bigint): { value: string; sub?: string } {
   return { value: fiat, sub: nativeStr }
 }
 
-const sellTokenRules = [
-  (v: string) =>
-    v.trim().toUpperCase() === NATIVE_SENTINEL ||
-    isValidAddress(v.trim()) ||
-    t('validation.validTokenOrEth'),
-]
-const buyTokenRules = [(v: string) => isValidAddress(v.trim()) || t('validation.validBuyToken')]
 const sellAmountRules = [
   (v: string) => (!!v && Number(v) > 0) || t('validation.amountGreaterThanZero'),
 ]
 
 async function getQuote() {
-  if (!quoteFormValid.value) return
+  const sell = sellTokenPicked.value
+  const buy = buyTokenPicked.value
+  if (!quoteFormValid.value || !sell || !buy) return
   swapBusy.value = true
   try {
-    const sellTokenAddress = toApiTokenAddress(sellToken.value)
-    const buyTokenAddress = buyToken.value.trim()
-    const [sellDecimals, buyDecimals] = await Promise.all([
-      resolveDecimals(sellTokenAddress),
-      resolveDecimals(buyTokenAddress),
-    ])
-
-    const sellAmountWei = parseUnits(sellAmount.value, sellDecimals).toString()
-    quote.value = await api.swapQuote(
-      chain,
-      sellTokenAddress,
-      buyTokenAddress,
-      sellAmountWei,
-      address,
-    )
-    buyAmountFormatted.value = formatAmount(Number(formatUnits(quote.value.buy_amount, buyDecimals)))
+    const sellTokenAddress = sell.address ?? NATIVE_PSEUDO_ADDRESS
+    const buyTokenAddress = buy.address ?? NATIVE_PSEUDO_ADDRESS
+    const sellAmountWei = parseUnits(sellAmount.value, sell.decimals).toString()
+    quote.value = await api.swapQuote(chain, sellTokenAddress, buyTokenAddress, sellAmountWei, address)
+    buyAmountFormatted.value = formatAmount(Number(formatUnits(quote.value.buy_amount, buy.decimals)))
   } catch (err) {
     messages.push(displayErrorMessage(err), 'error')
   } finally {
@@ -693,22 +776,23 @@ async function getQuote() {
 }
 
 async function onSwapClick() {
-  if (!account || !quote.value) return
+  const sell = sellTokenPicked.value
+  if (!account || !quote.value || !sell) return
 
   swapBusy.value = true
   try {
-    if (sellToken.value !== NATIVE_SENTINEL) {
+    if (sell.address !== null) {
       const { amount: currentAllowance } = await api.allowance(
         chain,
-        sellToken.value,
+        sell.address,
         address,
         quote.value.allowance_target,
       )
       if (BigInt(currentAllowance) < BigInt(quote.value.sell_amount)) {
         const wallet = await unlockWalletForSigning(account)
-        const approvePrep = await api.transactionPrep(chain, address, sellToken.value, '0')
+        const approvePrep = await api.transactionPrep(chain, address, sell.address, '0')
         const approveTx = await wallet.signTransaction({
-          to: sellToken.value,
+          to: sell.address,
           value: '0',
           // Exactly what this swap needs, not an unlimited/infinite approval —
           // if the swap contract is ever compromised later, it can only ever
@@ -734,7 +818,7 @@ async function onSwapClick() {
 }
 
 function openSwapReview() {
-  if (!quote.value) return
+  if (!quote.value || !sellTokenPicked.value || !buyTokenPicked.value) return
   const feeWei = BigInt(quote.value.gas_price) * BigInt(quote.value.estimated_gas)
 
   // quote.value.value is only nonzero when selling native ETH (an ERC-20
@@ -750,8 +834,8 @@ function openSwapReview() {
   }
 
   swapReviewRows.value = [
-    { label: t('review.sell'), value: `${sellAmount.value} ${sellToken.value.trim()}` },
-    { label: t('review.buy'), value: `${buyAmountFormatted.value} ${buyToken.value.trim()}` },
+    { label: t('review.sell'), value: `${sellAmount.value} ${sellTokenPicked.value.symbol}` },
+    { label: t('review.buy'), value: `${buyAmountFormatted.value} ${buyTokenPicked.value.symbol}` },
     { label: t('review.chain'), value: chain },
     { label: t('review.price'), value: quote.value.price },
     { label: t('review.fee'), ...formatNativeFee(feeWei) },
@@ -926,36 +1010,68 @@ async function confirmSwap() {
             readonly
           />
 
-          <v-form v-model="quoteFormValid">
-            <v-text-field
-              v-model="sellToken"
-              :label="t('swap.sellTokenLabel')"
-              :rules="sellTokenRules"
+          <div class="d-flex align-center justify-space-between mt-4 mb-2">
+            <span class="text-body-2 text-medium-emphasis">{{ t('swap.sellTokenLabel') }}</span>
+            <TokenPickerField
+              :chain="chain"
+              :model-value="sellTokenPicked"
+              :held-tokens="swapHeldTokens"
+              :label="t('swap.selectToken')"
+              @update:model-value="(picked) => (sellTokenPicked = picked)"
             />
-            <v-text-field
-              v-model="buyToken"
-              :label="t('swap.buyTokenLabel')"
-              :rules="buyTokenRules"
-            />
-            <v-text-field
-              v-model="sellAmount"
-              :label="t('swap.sellAmountLabel')"
-              type="number"
-              min="0"
-              step="any"
-              :rules="sellAmountRules"
-            />
-
-            <v-btn
-              variant="outlined"
-              block
-              class="mb-4"
-              :disabled="!quoteFormValid"
-              :loading="swapBusy"
-              @click="getQuote"
-              >{{ t('swap.getQuote') }}</v-btn
+          </div>
+          <v-text-field
+            v-model="sellAmount"
+            :label="t('swap.sellAmountLabel')"
+            type="number"
+            min="0"
+            step="any"
+            :rules="sellAmountRules"
+          />
+          <div class="d-flex mb-4" style="gap: 0.5em">
+            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" @click="applySellPercent(0.25)"
+              >25%</v-btn
             >
-          </v-form>
+            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" @click="applySellPercent(0.5)"
+              >50%</v-btn
+            >
+            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" @click="applySellPercent(0.75)"
+              >75%</v-btn
+            >
+            <v-btn
+              size="small"
+              variant="tonal"
+              :disabled="!sellTokenPicked"
+              :loading="swapBusy"
+              @click="setSellMax"
+              >{{ t('send.maxLabel') }}</v-btn
+            >
+          </div>
+
+          <div class="d-flex align-center justify-space-between mb-2">
+            <span class="text-body-2 text-medium-emphasis">{{ t('swap.buyTokenLabel') }}</span>
+            <TokenPickerField
+              :chain="chain"
+              :model-value="buyTokenPicked"
+              :held-tokens="swapHeldTokens"
+              :label="t('swap.selectToken')"
+              @update:model-value="(picked) => (buyTokenPicked = picked)"
+            />
+          </div>
+
+          <p v-if="sameTokenSelected" class="text-caption text-error mb-4">
+            {{ t('validation.sameTokenSwap') }}
+          </p>
+
+          <v-btn
+            variant="outlined"
+            block
+            class="mb-4"
+            :disabled="!quoteFormValid"
+            :loading="swapBusy"
+            @click="getQuote"
+            >{{ t('swap.getQuote') }}</v-btn
+          >
 
           <template v-if="quote">
             <v-alert type="info" variant="tonal" class="mb-4">

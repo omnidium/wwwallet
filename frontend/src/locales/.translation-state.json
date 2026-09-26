@@ -137,12 +137,12 @@
       "value": "Intercambio"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Vender token (dirección o ETH para el token nativo)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Vender"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Dirección para comprar tokens"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Comprar"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -419,14 +419,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Introduce una dirección de destinatario válida."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Introduce una dirección de token válida o ETH si se trata de la moneda nativa."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Introduce una dirección válida para el token de compra."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -1099,6 +1091,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Editar beneficiario"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Seleccionar token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Buscar por nombre o símbolo"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Tus fichas"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Todas las fichas"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "No se han encontrado tokens."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Ver el token en el explorador de bloques"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "La venta y la compra de tokens deben ser distintas."
     }
   },
   "ar": {
@@ -1239,12 +1259,12 @@
       "value": "المبادلة"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "بيع التوكن (العنوان، أو ETH بالنسبة للتوكن الأصلي)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "بيع"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "عنوان شراء التوكن"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "شراء"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -1521,14 +1541,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "أدخل عنوان مستلم صالحًا."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "أدخل عنوان توكن صالحًا، أو ETH إذا كان التوكن أصليًّا."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "أدخل عنوانًا صالحًا لرمز الشراء."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -2201,6 +2213,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "تعديل المستفيد"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "اختر الرمز المميز"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "ابحث عن الاسم أو الرمز"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "الرموز الخاصة بك"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "جميع الرموز"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "لم يتم العثور على أي رموز."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "عرض الرمز المميز على مستكشف البلوكشين"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "يجب أن يكون بيع التوكنات وشرائها أمرين مختلفين."
     }
   },
   "bg": {
@@ -2341,12 +2381,12 @@
       "value": "Размяна"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Продажба на токен (адрес или ETH за собствен токен)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Продавам"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Адрес за закупуване на токен"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Купи"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -2623,14 +2663,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Въведете валиден адрес на получателя."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Въведете валиден адрес на токен или ETH за роден токен."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Въведете валиден адрес за токен за покупка."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -3303,6 +3335,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Редактиране на получателя"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Изберете токен"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Търсене по име или символ"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Вашите жетони"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Всички токени"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Не бяха намерени токени."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Преглед на токена в блокчейн експлорера"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Продажбата и покупката на токени трябва да са различни."
     }
   },
   "cs": {
@@ -3443,12 +3503,12 @@
       "value": "Vyměnit"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Prodat token (na adresu nebo za ETH v případě nativního tokenu)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Prodat"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Adresa pro nákup tokenu"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Koupit"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -3725,14 +3785,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Zadejte platnou adresu příjemce."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Zadejte platnou adresu tokenu nebo ETH pro nativní platbu."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Zadejte platnou adresu pro nákup tokenů."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -4405,6 +4457,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Upravit příjemce platby"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Vyberte token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Vyhledat název nebo symbol"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Vaše žetony"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Všechny tokeny"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Nebyly nalezeny žádné tokeny."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Zobrazit token v prohlížeči bloků"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Tokeny určené k prodeji a k nákupu se musí lišit."
     }
   },
   "da": {
@@ -4545,12 +4625,12 @@
       "value": "Byt"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Sælg token (adresse eller ETH for native)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Sælg"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Køb token-adresse"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Køb"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -4827,14 +4907,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Indtast en gyldig modtageradresse."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Indtast en gyldig token-adresse eller ETH for den indbyggede token."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Indtast en gyldig adresse til køb af token."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -5507,6 +5579,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Rediger modtager"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Vælg token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Søg efter navn eller symbol"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Dine tokens"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Alle tokens"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Der blev ikke fundet nogen tokens."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Se token i blokudforskeren"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Salg og køb af tokens skal være to forskellige ting."
     }
   },
   "de": {
@@ -5647,12 +5747,12 @@
       "value": "Tauschen"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Token verkaufen (Adresse oder ETH für native Token)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Verkaufen"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Adresse zum Kauf von Token"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Kaufen"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -5929,14 +6029,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Geben Sie eine gültige Empfängeradresse ein."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Geben Sie eine gültige Token-Adresse ein oder „ETH“ für native Token."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Geben Sie eine gültige Adresse für den Kauf-Token ein."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -6609,6 +6701,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Empfänger bearbeiten"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Token auswählen"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Nach Name oder Symbol suchen"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Deine Spielsteine"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Alle Token"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Es wurden keine Token gefunden."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Token im Block-Explorer anzeigen"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Der Verkauf und der Kauf von Token müssen unterschiedlich sein."
     }
   },
   "el": {
@@ -6749,12 +6869,12 @@
       "value": "Ανταλλαγή"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Πώληση token (διεύθυνση ή ETH για το εγγενές)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Πώληση"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Διεύθυνση αγοράς token"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Αγοράστε"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -7031,14 +7151,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Εισάγετε μια έγκυρη διεύθυνση παραλήπτη."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Εισάγετε μια έγκυρη διεύθυνση token ή «ETH» για το εγγενές νόμισμα."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Εισάγετε μια έγκυρη διεύθυνση token αγοράς."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -7711,6 +7823,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Επεξεργασία δικαιούχου"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Επιλογή token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Αναζήτηση ονόματος ή συμβόλου"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Τα κουπόνια σας"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Όλα τα tokens"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Δεν βρέθηκαν διακριτικά."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Προβολή του token στον εξερευνητή μπλοκ"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Η πώληση και η αγορά token πρέπει να είναι διαφορετικές."
     }
   },
   "et": {
@@ -7851,12 +7991,12 @@
       "value": "Vahetus"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Müü tokenit (aadress või ETH, kui tegemist on platvormi omaga)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Müü"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Token'i aadressi ostmine"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Osta"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -8133,14 +8273,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Sisestage kehtiv saaja aadress."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Sisestage kehtiv tokeni aadress või „ETH”, kui kasutate algset valuutat."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Sisestage kehtiv ostutokeni aadress."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -8813,6 +8945,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Muuda makse saajat"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Vali märk"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Otsi nime või sümbolit"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Sinu žetoonid"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Kõik märgid"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Märke ei leitud."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Vaata tokenit plokkiahela uurijas"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Müügi- ja ostutokenid peavad olema erinevad."
     }
   },
   "fi": {
@@ -8953,12 +9113,12 @@
       "value": "Vaihto"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Myy token (osoite tai ETH, jos kyseessä on natiivitoken)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Myy"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Tokenin ostosoite"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Osta"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -9235,14 +9395,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Syötä kelvollinen vastaanottajan osoite."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Syötä kelvollinen token-osoite tai ETH, jos kyseessä on alkuperäinen token."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Syötä kelvollinen ostotunnuksen osoite."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -9915,6 +10067,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Muokkaa maksunsaajaa"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Valitse tunnus"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Hae nimen tai tunnuksen perusteella"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Tunnuksesi"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Kaikki rahakkeet"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Tunnisteita ei löytynyt."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Tarkastele tunnusta lohkoketjun selaimessa"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Tokenien myynti ja ostaminen on erotettava toisistaan."
     }
   },
   "fr": {
@@ -10055,12 +10235,12 @@
       "value": "Échange"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Vendre un token (adresse ou ETH pour les tokens natifs)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Vendre"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Acheter une adresse de jeton"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Acheter"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -10337,14 +10517,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Saisissez une adresse de destinataire valide."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Saisissez une adresse de jeton valide, ou « ETH » pour le jeton natif."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Saisissez une adresse de jeton d'achat valide."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -11017,6 +11189,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Modifier le bénéficiaire"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Sélectionner un jeton"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Rechercher un nom ou un symbole"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Vos jetons"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Tous les jetons"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Aucun jeton trouvé."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Afficher le jeton sur l'explorateur de blocs"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Les opérations de vente et d'achat de jetons doivent être distinctes."
     }
   },
   "hu": {
@@ -11157,12 +11357,12 @@
       "value": "Csere"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Token eladása (cím, vagy ETH a natív token esetében)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Eladás"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Token-cím vásárlása"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Vásárlás"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -11439,14 +11639,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Írjon be egy érvényes címzett-címet."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Adjon meg egy érvényes token-címet, vagy az ETH-t, ha natív tokenről van szó."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Adjon meg egy érvényes token-vásárlási címet."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -12119,6 +12311,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "A kedvezményezett szerkesztése"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Token kiválasztása"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Név vagy szimbólum keresése"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "A zsetonjaid"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Minden token"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Nem találtak tokeneket."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "A token megtekintése a blokklánc-böngészőben"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "A tokenek eladásának és vásárlásának külön kell lennie."
     }
   },
   "id": {
@@ -12259,12 +12479,12 @@
       "value": "Tukar"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Jual token (alamat, atau ETH untuk token asli)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Jual"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Alamat pembelian token"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Beli"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -12541,14 +12761,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Masukkan alamat penerima yang valid."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Masukkan alamat token yang valid, atau ETH untuk token asli."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Masukkan alamat token pembelian yang valid."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -13221,6 +13433,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Edit penerima pembayaran"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Pilih token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Cari nama atau simbol"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Token Anda"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Semua token"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Tidak ditemukan token."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Lihat token di penjelajah blok"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Penjualan dan pembelian token harus berbeda."
     }
   },
   "it": {
@@ -13361,12 +13601,12 @@
       "value": "Scambio"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Vendi token (indirizzo o ETH per i token nativi)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Vendi"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Acquista indirizzo token"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Acquista"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -13643,14 +13883,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Inserisci un indirizzo del destinatario valido."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Inserisci un indirizzo token valido oppure ETH per la valuta nativa."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Inserisci un indirizzo valido per il token di acquisto."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -14323,6 +14555,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Modifica beneficiario"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Seleziona il token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Cerca per nome o simbolo"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "I tuoi gettoni"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Tutti i token"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Non sono stati trovati token."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Visualizza il token sull'esploratore di blockchain"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "La vendita e l'acquisto di token devono essere distinti."
     }
   },
   "iw": {
@@ -14463,12 +14723,12 @@
       "value": "החלפה"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "מכירת אסימון (כתובת, או ETH עבור אסימון מקורי)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "למכור"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "כתובת לרכישת אסימון"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "קנה"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -14745,14 +15005,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "הזן כתובת נמען חוקית."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "הזן כתובת אסימון חוקית, או ETH עבור המטבע המקורי."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "הזן כתובת תקפה של אסימון הרכישה."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -15425,6 +15677,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "ערוך מקבל תשלום"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "בחר אסימון"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "חפש שם או סימן"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "האסימונים שלך"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "כל האסימונים"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "לא נמצאו אסימונים."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "הצג את האסימון במאגר הבלוקים"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "המכירה והרכישה של אסימונים חייבות להיות שונות זו מזו."
     }
   },
   "ja": {
@@ -15565,12 +15845,12 @@
       "value": "スワップ"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "トークンの売却（アドレス、またはネイティブトークンの場合はETH）"
+      "enHash": "2ec1e28159466f2a",
+      "value": "売る"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "トークン購入用アドレス"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "購入する"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -15847,14 +16127,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "有効な受信者アドレスを入力してください。"
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "有効なトークンアドレスを入力するか、ネイティブの場合はETHと入力してください。"
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "有効なトークン購入用アドレスを入力してください。"
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -16527,6 +16799,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "受取人の編集"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "トークンを選択"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "名前または銘柄コードを検索"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "あなたのトークン"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "すべてのトークン"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "トークンが見つかりませんでした。"
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "ブロックエクスプローラーでトークンを確認する"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "トークンの売却と購入は区別する必要があります。"
     }
   },
   "ko": {
@@ -16667,12 +16967,12 @@
       "value": "스왑"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "토큰 판매 (주소 또는 네이티브 토큰의 경우 ETH)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "판매"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "토큰 구매 주소"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "구매하기"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -16949,14 +17249,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "유효한 수신자 주소를 입력하십시오."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "유효한 토큰 주소를 입력하거나, 기본값인 ETH를 입력하세요."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "유효한 토큰 구매 주소를 입력하세요."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -17629,6 +17921,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "수취인 정보 수정"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "토큰 선택"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "이름 또는 종목 코드를 검색하세요"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "사용자의 토큰"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "모든 토큰"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "토큰이 없습니다."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "블록체인 탐색기에서 토큰 보기"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "토큰 매도와 매수는 서로 달라야 합니다."
     }
   },
   "lt": {
@@ -17769,12 +18089,12 @@
       "value": "Pasikeisti"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Parduoti žetoną (adresas arba ETH, jei tai vietinis žetonas)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Parduoti"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Tokenų pirkimo adresas"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Pirkti"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -18051,14 +18371,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Įveskite galiojantį gavėjo adresą."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Įveskite galiojantį žetono adresą arba „ETH“, jei naudojate vietinę valiutą."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Įveskite galiojantį žetono pirkimo adresą."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -18731,6 +19043,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Redaguoti gavėją"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Pasirinkite žetoną"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Ieškoti pagal pavadinimą arba simbolį"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Jūsų žetonai"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Visi žetonai"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Žetonų nerasta."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Peržiūrėti žetoną blokų naršyklėje"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Žetonų pardavimas ir pirkimas turi skirtis."
     }
   },
   "lv": {
@@ -18871,12 +19211,12 @@
       "value": "Apmaiņa"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Pārdot žetonu (uz adresi vai par ETH, ja tas ir vietējais žetons)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Pārdot"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Tokenu iegādes adrese"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Pirkt"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -19153,14 +19493,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Ievadiet derīgu saņēmēja adresi."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Ievadiet derīgu žetona adresi vai „ETH”, ja izmantojat sistēmas iekšējo žetonu."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Ievadiet derīgu pirkšanas žetona adresi."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -19833,6 +20165,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Rediģēt maksājuma saņēmēju"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Izvēlieties žetonu"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Meklēt nosaukumu vai simbolu"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Tavi žetoni"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Visi žetoni"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Nav atrasti žetoni."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Apskatīt žetonu blokķēdes pārlūkā"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Žetonu pārdošanas un pirkšanas cenām jābūt atšķirīgām."
     }
   },
   "nl": {
@@ -19973,12 +20333,12 @@
       "value": "Ruilen"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Token verkopen (adres, of ETH voor native)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Verkopen"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Adres voor het kopen van tokens"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Kopen"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -20255,14 +20615,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Voer een geldig e-mailadres van de ontvanger in."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Voer een geldig tokenadres in, of ETH voor het native token."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Voer een geldig adres voor het aankooptoken in."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -20935,6 +21287,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Begunstigde bewerken"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Token selecteren"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Zoek op naam of symbool"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Je tokens"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Alle tokens"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Er zijn geen tokens gevonden."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Token bekijken in de block explorer"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Het verkopen en kopen van tokens moet verschillend zijn."
     }
   },
   "no": {
@@ -21075,12 +21455,12 @@
       "value": "Bytt"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Selg token (adresse eller ETH for egen valuta)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Selg"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Kjøp token-adresse"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Kjøp"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -21357,14 +21737,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Skriv inn en gyldig mottakeradresse."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Skriv inn en gyldig tokenadresse, eller ETH for den innebygde."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Skriv inn en gyldig adresse for kjøpstoken."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -22037,6 +22409,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Rediger betalingsmottaker"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Velg token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Søk etter navn eller symbol"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Dine poeng"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Alle tokens"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Det ble ikke funnet noen tokens."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Vis token i blokk-utforskeren"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Salg og kjøp av tokens må skilles fra hverandre."
     }
   },
   "pl": {
@@ -22177,12 +22577,12 @@
       "value": "Zamień"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Sprzedaj token (adres lub ETH w przypadku tokenów natywnych)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Sprzedaj"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Adres do zakupu tokenów"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Kup"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -22459,14 +22859,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Wprowadź prawidłowy adres odbiorcy."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Wprowadź prawidłowy adres tokenu lub „ETH”, jeśli chodzi o token natywny."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Wprowadź prawidłowy adres tokena zakupowego."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -23139,6 +23531,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Edytuj odbiorcę płatności"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Wybierz token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Wyszukaj nazwę lub symbol"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Twoje tokeny"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Wszystkie tokeny"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Nie znaleziono tokenów."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Wyświetl token w przeglądarce bloków"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Tokeny przeznaczone do sprzedaży i do zakupu muszą się od siebie różnić."
     }
   },
   "ro": {
@@ -23279,12 +23699,12 @@
       "value": "Schimb"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Vinde token (adresă sau ETH pentru tokenul nativ)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Vinde"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Adresă pentru cumpărarea de tokenuri"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Cumpără"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -23561,14 +23981,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Introduceți o adresă validă a destinatarului."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Introduceți o adresă de token validă sau ETH pentru tokenul nativ."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Introduceți o adresă validă pentru tokenul de cumpărare."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -24241,6 +24653,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Editează beneficiarul plății"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Selectează tokenul"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Căutați numele sau simbolul"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Jetoanele tale"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Toate jetoanele"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Nu s-au găsit jetoane."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Vizualizează tokenul în exploratorul de blocuri"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Vânzarea și cumpărarea de tokenuri trebuie să fie procese distincte."
     }
   },
   "ru": {
@@ -24381,12 +24821,12 @@
       "value": "Обмен"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Продать токен (по адресу или за ETH, если это собственный токен)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Продать"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Адрес для покупки токена"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Купить"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -24663,14 +25103,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Введите действительный адрес получателя."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Введите действительный адрес токена или ETH для собственной монеты."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Введите действительный адрес токена для покупки."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -25343,6 +25775,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Изменить получателя платежа"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Выбрать токен"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Поиск по названию или символу"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Ваши жетоны"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Все токены"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Токенов не найдено."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Просмотреть токен в блокчейн-браузере"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Цена продажи и цена покупки токенов должны различаться."
     }
   },
   "sk": {
@@ -25483,12 +25943,12 @@
       "value": "Výmena"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Predaj tokenu (adresa alebo ETH v prípade natívneho tokenu)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Predať"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Adresa na nákup tokenu"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Kúpiť"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -25765,14 +26225,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Zadajte platnú adresu príjemcu."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Zadajte platnú adresu tokenu alebo ETH v prípade natívneho tokenu."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Zadajte platnú adresu pre nákup tokenov."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -26445,6 +26897,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Upraviť príjemcu platby"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Vyberte token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Vyhľadajte názov alebo symbol"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Vaše žetóny"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Všetky žetóny"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Nenašli sa žiadne žetóny."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Zobraziť token v prehliadači blokov"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Predaj a nákup tokenov sa musia líšiť."
     }
   },
   "sl": {
@@ -26585,12 +27065,12 @@
       "value": "Zamenjava"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Prodaja tokena (naslov ali ETH za lastni token)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Prodaja"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Naslov za nakup tokena"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Kupi"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -26867,14 +27347,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Vnesite veljaven naslov prejemnika."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Vnesite veljaven naslov žetona ali ETH za nativni žeton."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Vnesite veljaven naslov za nakup žetona."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -27547,6 +28019,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Uredi prejemnika plačila"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Izberi žeton"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Iskanje po imenu ali simbolu"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Vaši žetoni"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Vsi žetoni"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Žetonov ni bilo najdenih."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Ogled žetona v raziskovalcu blokov"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Prodaja in nakup žetonov morata biti različna."
     }
   },
   "sv": {
@@ -27687,12 +28187,12 @@
       "value": "Byt"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Sälj token (adress eller ETH för den inhemska valutan)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Sälj"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Adress för att köpa token"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Köp"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -27969,14 +28469,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Ange en giltig mottagaradress."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Ange en giltig tokenadress eller ETH för den inbyggda tokenen."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Ange en giltig adress för köptoken."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -28649,6 +29141,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Redigera betalningsmottagare"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Välj token"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Sök efter namn eller symbol"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Dina polletter"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Alla tokens"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Inga tokens hittades."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Visa token i blockutforskaren"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Försäljning och köp av tokens måste ske på olika sätt."
     }
   },
   "tr": {
@@ -28789,12 +29309,12 @@
       "value": "Değiştir"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Token sat (adres veya yerel token için ETH)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Sat"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Token satın alma adresi"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Satın al"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -29071,14 +29591,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Geçerli bir alıcı adresi girin."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Geçerli bir token adresi girin ya da yerel birim olarak ETH'yi seçin."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Geçerli bir satın alma jetonu adresi girin."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -29751,6 +30263,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Alıcıyı düzenle"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Jetonu seçin"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Adı veya sembolü ara"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Jetonlarınız"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Tüm jetonlar"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Hiçbir jeton bulunamadı."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Blok gezgininde jetonu görüntüle"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Satış ve alım işlemlerinde kullanılan tokenlar farklı olmalıdır."
     }
   },
   "uk": {
@@ -29891,12 +30431,12 @@
       "value": "Обмін"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Продати токен (за адресою або в ETH, якщо це власний токен)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Продати"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Адреса для придбання токена"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Купити"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -30173,14 +30713,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Введіть дійсну адресу одержувача."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Введіть дійсну адресу токена або ETH для вбудованого токена."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Введіть дійсну адресу токена для покупки."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -30853,6 +31385,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Редагувати отримувача платежу"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Вибрати токен"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Пошук за назвою або символом"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Ваші жетони"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Усі токени"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Токенів не знайдено."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Переглянути токен у блокчейн-браузері"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Операції з продажу та купівлі токенів мають відрізнятися."
     }
   },
   "vi": {
@@ -30993,12 +31553,12 @@
       "value": "Hoán đổi"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "Bán token (theo địa chỉ hoặc bằng ETH đối với token gốc)"
+      "enHash": "2ec1e28159466f2a",
+      "value": "Bán"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "Địa chỉ mua token"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "Mua"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -31275,14 +31835,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "Vui lòng nhập địa chỉ người nhận hợp lệ."
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "Nhập địa chỉ token hợp lệ hoặc ETH (nếu là token gốc)."
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "Vui lòng nhập địa chỉ token mua hợp lệ."
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -31955,6 +32507,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "Chỉnh sửa người nhận thanh toán"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "Chọn mã thông báo"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "Tìm kiếm theo tên hoặc mã chứng khoán"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "Các token của bạn"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "Tất cả các token"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "Không tìm thấy mã thông báo nào."
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "Xem token trên trình khám phá blockchain"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "Việc bán và mua token phải khác nhau."
     }
   },
   "zh-CN": {
@@ -32095,12 +32675,12 @@
       "value": "交换"
     },
     "swap.sellTokenLabel": {
-      "enHash": "2f836201ce364e73",
-      "value": "出售代币（地址，或原生代币的 ETH）"
+      "enHash": "2ec1e28159466f2a",
+      "value": "出售"
     },
     "swap.buyTokenLabel": {
-      "enHash": "b3a80de1cebafd63",
-      "value": "购买代币的地址"
+      "enHash": "64e3cb0e4960ba69",
+      "value": "购买"
     },
     "swap.sellAmountLabel": {
       "enHash": "2dc1ad5b5dcc41f6",
@@ -32377,14 +32957,6 @@
     "validation.invalidRecipientAddress": {
       "enHash": "05126171613582b6",
       "value": "请输入有效的收件人地址。"
-    },
-    "validation.validTokenOrEth": {
-      "enHash": "fed75544142ac910",
-      "value": "请输入有效的代币地址，或输入 ETH 作为原生代币。"
-    },
-    "validation.validBuyToken": {
-      "enHash": "8c2adf5477bf3598",
-      "value": "请输入一个有效的代币购买地址。"
     },
     "validation.labelRequired": {
       "enHash": "5746426fd5252c2d",
@@ -33057,6 +33629,34 @@
     "payees.edit": {
       "enHash": "1223ca09580659ff",
       "value": "编辑收款人"
+    },
+    "swap.selectToken": {
+      "enHash": "b713b7bf81e07dfa",
+      "value": "选择代币"
+    },
+    "swap.searchTokenPlaceholder": {
+      "enHash": "474cf1fff5ba2a79",
+      "value": "搜索名称或代码"
+    },
+    "swap.yourTokens": {
+      "enHash": "bd84f5d4f863ea27",
+      "value": "您的代币"
+    },
+    "swap.allTokens": {
+      "enHash": "229c8c14416ebc39",
+      "value": "所有代币"
+    },
+    "swap.noResults": {
+      "enHash": "08399177b527d1d4",
+      "value": "未找到代币。"
+    },
+    "swap.viewOnExplorer": {
+      "enHash": "160cdb12c8dd851e",
+      "value": "在区块浏览器上查看代币"
+    },
+    "validation.sameTokenSwap": {
+      "enHash": "e0540eed713cb2d4",
+      "value": "代币的卖出和买入必须有所不同。"
     }
   }
 }

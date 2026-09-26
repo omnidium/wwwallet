@@ -9,6 +9,7 @@ pub mod fxrate;
 pub mod http;
 pub mod public_rpc;
 pub mod registry;
+pub mod tokenlist;
 pub mod traits;
 pub mod types;
 pub mod zerox;

@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Výmena',
-    sellTokenLabel: 'Predaj tokenu (adresa alebo ETH v prípade natívneho tokenu)',
-    buyTokenLabel: 'Adresa na nákup tokenu',
+    sellTokenLabel: 'Predať',
+    buyTokenLabel: 'Kúpiť',
     sellAmountLabel: 'Predajná suma',
     getQuote: 'Vyžiadať cenovú ponuku',
     estimateText: 'Predpokladaná suma: {amount} pri cene {price}',
     signingNotice: 'Podpisujete transakciu na zmluvu {address} (prostredníctvom agregátora 0x).',
     submit: 'Výmena',
+    selectToken: 'Vyberte token',
+    searchTokenPlaceholder: 'Vyhľadajte názov alebo symbol',
+    yourTokens: 'Vaše žetóny',
+    allTokens: 'Všetky žetóny',
+    noResults: 'Nenašli sa žiadne žetóny.',
+    viewOnExplorer: 'Zobraziť token v prehliadači blokov',
   },
   payees: {
     title: 'Príjemcovia platieb',
@@ -191,8 +197,6 @@ export default {
     insufficientBalance:
       'Suma na odoslanie presahuje zostatok na odosielateľskom účte (vrátane transakčného poplatku).',
     invalidRecipientAddress: 'Zadajte platnú adresu príjemcu.',
-    validTokenOrEth: 'Zadajte platnú adresu tokenu alebo ETH v prípade natívneho tokenu.',
-    validBuyToken: 'Zadajte platnú adresu pre nákup tokenov.',
     labelRequired: 'Názov je povinný.',
     validAddress: 'Zadajte platnú adresu.',
     filePasswordRequired: 'Na otvorenie tohto súboru je potrebné zadať heslo.',
@@ -201,6 +205,7 @@ export default {
     keystoreFileRequired: 'Vyberte súbor s kľúčami.',
     recoveryPhraseFormat: 'To nevyzerá ako platná obnovenia fráza.',
     insufficientGas: 'Na tomto účte nie je dostatok ETH na pokrytie sieťového poplatku.',
+    sameTokenSwap: 'Predaj a nákup tokenov sa musia líšiť.',
   },
   msg: {
     account: {

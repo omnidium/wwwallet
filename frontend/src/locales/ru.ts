@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Обмен',
-    sellTokenLabel: 'Продать токен (по адресу или за ETH, если это собственный токен)',
-    buyTokenLabel: 'Адрес для покупки токена',
+    sellTokenLabel: 'Продать',
+    buyTokenLabel: 'Купить',
     sellAmountLabel: 'Сумма продажи',
     getQuote: 'Получить расценки',
     estimateText: 'Ожидаемая сумма поступления: {amount} по цене {price}',
     signingNotice:
       'Вы подписываете транзакцию для заключения контракта с {address} (через агрегатор 0x).',
     submit: 'Обмен',
+    selectToken: 'Выбрать токен',
+    searchTokenPlaceholder: 'Поиск по названию или символу',
+    yourTokens: 'Ваши жетоны',
+    allTokens: 'Все токены',
+    noResults: 'Токенов не найдено.',
+    viewOnExplorer: 'Просмотреть токен в блокчейн-браузере',
   },
   payees: {
     title: 'Получатели платежей',
@@ -193,8 +199,6 @@ export default {
     insufficientBalance:
       'Сумма перевода превышает остаток на счете отправителя (с учётом комиссии за транзакцию).',
     invalidRecipientAddress: 'Введите действительный адрес получателя.',
-    validTokenOrEth: 'Введите действительный адрес токена или ETH для собственной монеты.',
-    validBuyToken: 'Введите действительный адрес токена для покупки.',
     labelRequired: 'Поле «Название» является обязательным для заполнения.',
     validAddress: 'Введите действительный адрес.',
     filePasswordRequired: 'Для доступа к этому файлу требуется ввести пароль.',
@@ -203,6 +207,7 @@ export default {
     keystoreFileRequired: 'Выберите файл хранилища ключей.',
     recoveryPhraseFormat: 'Похоже, это неверная фраза для восстановления.',
     insufficientGas: 'На этом счете недостаточно ETH для оплаты сетевой комиссии.',
+    sameTokenSwap: 'Цена продажи и цена покупки токенов должны различаться.',
   },
   msg: {
     account: {

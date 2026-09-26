@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Pasikeisti',
-    sellTokenLabel: 'Parduoti žetoną (adresas arba ETH, jei tai vietinis žetonas)',
-    buyTokenLabel: 'Tokenų pirkimo adresas',
+    sellTokenLabel: 'Parduoti',
+    buyTokenLabel: 'Pirkti',
     sellAmountLabel: 'Parduodama suma',
     getQuote: 'Gauti pasiūlymą',
     estimateText: 'Numatoma gauti: {amount} už kainą {price}',
     signingNotice: 'Jūs pasirašote sandorį su {address} (per 0x agregatorių).',
     submit: 'Pasikeisti vietomis',
+    selectToken: 'Pasirinkite žetoną',
+    searchTokenPlaceholder: 'Ieškoti pagal pavadinimą arba simbolį',
+    yourTokens: 'Jūsų žetonai',
+    allTokens: 'Visi žetonai',
+    noResults: 'Žetonų nerasta.',
+    viewOnExplorer: 'Peržiūrėti žetoną blokų naršyklėje',
   },
   payees: {
     title: 'Gavėjai',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       'Siunčiama suma viršija „FROM“ sąskaitos likutį (įskaitant operacijos mokestį).',
     invalidRecipientAddress: 'Įveskite galiojantį gavėjo adresą.',
-    validTokenOrEth: 'Įveskite galiojantį žetono adresą arba „ETH“, jei naudojate vietinę valiutą.',
-    validBuyToken: 'Įveskite galiojantį žetono pirkimo adresą.',
     labelRequired: 'Reikia įrašyti pavadinimą.',
     validAddress: 'Įveskite galiojantį adresą.',
     filePasswordRequired: 'Reikia įvesti šio failo slaptažodį.',
@@ -203,6 +207,7 @@ export default {
     recoveryPhraseFormat: 'Tai neatrodo kaip teisinga atkūrimo frazė.',
     insufficientGas:
       'Šioje sąskaitoje nėra pakankamai ETH, kad būtų galima padengti tinklo mokestį.',
+    sameTokenSwap: 'Žetonų pardavimas ir pirkimas turi skirtis.',
   },
   msg: {
     account: {

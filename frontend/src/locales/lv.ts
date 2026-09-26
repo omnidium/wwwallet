@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Apmaiņa',
-    sellTokenLabel: 'Pārdot žetonu (uz adresi vai par ETH, ja tas ir vietējais žetons)',
-    buyTokenLabel: 'Tokenu iegādes adrese',
+    sellTokenLabel: 'Pārdot',
+    buyTokenLabel: 'Pirkt',
     sellAmountLabel: 'Pārdošanas summa',
     getQuote: 'Saņemt piedāvājumu',
     estimateText: 'Paredzamā saņemtā summa: {amount} par cenu {price}',
     signingNotice:
       'Jūs parakstāt darījumu, lai noslēgtu līgumu ar {address} (izmantojot 0x agregatoru).',
     submit: 'Apmaiņa',
+    selectToken: 'Izvēlieties žetonu',
+    searchTokenPlaceholder: 'Meklēt nosaukumu vai simbolu',
+    yourTokens: 'Tavi žetoni',
+    allTokens: 'Visi žetoni',
+    noResults: 'Nav atrasti žetoni.',
+    viewOnExplorer: 'Apskatīt žetonu blokķēdes pārlūkā',
   },
   payees: {
     title: 'Saņēmēji',
@@ -192,9 +198,6 @@ export default {
     insufficientBalance:
       'Nosūtāmā summa pārsniedz „FROM” konta atlikumu (ieskaitot darījuma komisiju).',
     invalidRecipientAddress: 'Ievadiet derīgu saņēmēja adresi.',
-    validTokenOrEth:
-      'Ievadiet derīgu žetona adresi vai „ETH”, ja izmantojat sistēmas iekšējo žetonu.',
-    validBuyToken: 'Ievadiet derīgu pirkšanas žetona adresi.',
     labelRequired: 'Ir jānorāda nosaukums.',
     validAddress: 'Ievadiet derīgu adresi.',
     filePasswordRequired: 'Šim failam ir nepieciešama parole.',
@@ -203,6 +206,7 @@ export default {
     keystoreFileRequired: 'Izvēlieties atslēgu krātuves failu.',
     recoveryPhraseFormat: 'Šķiet, ka tā nav derīga atjaunošanas frāze.',
     insufficientGas: 'Šajā kontā nav pietiekami daudz ETH, lai segtu tīkla maksu.',
+    sameTokenSwap: 'Žetonu pārdošanas un pirkšanas cenām jābūt atšķirīgām.',
   },
   msg: {
     account: {

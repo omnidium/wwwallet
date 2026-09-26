@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Schimb',
-    sellTokenLabel: 'Vinde token (adresă sau ETH pentru tokenul nativ)',
-    buyTokenLabel: 'Adresă pentru cumpărarea de tokenuri',
+    sellTokenLabel: 'Vinde',
+    buyTokenLabel: 'Cumpără',
     sellAmountLabel: 'Suma de vânzare',
     getQuote: 'Solicită o ofertă',
     estimateText: 'Suma estimată de încasat: {amount} la prețul de {price}',
     signingNotice:
       'Semnezi o tranzacție pentru a încheia un contract cu {address} (prin intermediul agregatorului 0x).',
     submit: 'Schimb',
+    selectToken: 'Selectează tokenul',
+    searchTokenPlaceholder: 'Căutați numele sau simbolul',
+    yourTokens: 'Jetoanele tale',
+    allTokens: 'Toate jetoanele',
+    noResults: 'Nu s-au găsit jetoane.',
+    viewOnExplorer: 'Vizualizează tokenul în exploratorul de blocuri',
   },
   payees: {
     title: 'Beneficiari',
@@ -193,8 +199,6 @@ export default {
     insufficientBalance:
       'Suma de transferat este mai mare decât soldul contului de origine (inclusiv comisionul de tranzacție).',
     invalidRecipientAddress: 'Introduceți o adresă validă a destinatarului.',
-    validTokenOrEth: 'Introduceți o adresă de token validă sau ETH pentru tokenul nativ.',
-    validBuyToken: 'Introduceți o adresă validă pentru tokenul de cumpărare.',
     labelRequired: 'Eticheta este obligatorie.',
     validAddress: 'Introduceți o adresă validă.',
     filePasswordRequired: 'Este necesară introducerea parolei pentru acest fișier.',
@@ -204,6 +208,7 @@ export default {
     keystoreFileRequired: 'Alegeți un fișier de stocare a cheilor.',
     recoveryPhraseFormat: 'Nu pare a fi o frază de recuperare validă.',
     insufficientGas: 'În acest cont nu există suficient ETH pentru a acoperi comisionul de rețea.',
+    sameTokenSwap: 'Vânzarea și cumpărarea de tokenuri trebuie să fie procese distincte.',
   },
   msg: {
     account: {

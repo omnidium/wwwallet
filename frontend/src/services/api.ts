@@ -138,6 +138,14 @@ export interface SwapQuote {
   price: string
 }
 
+export interface TokenListItem {
+  address: string
+  name: string
+  symbol: string
+  decimals: number
+  logo_url: string | null
+}
+
 export type ChainSlug = 'ethereum' | 'polygon' | 'arbitrum' | 'base' | 'optimism'
 
 export const api = {
@@ -173,4 +181,6 @@ export const api = {
       sell_amount: sellAmountWei,
       taker_address: takerAddress,
     }),
+  searchTokens: (chain: ChainSlug, query: string) =>
+    getJson<TokenListItem[]>(`/api/v1/chains/${chain}/tokens/search`, { q: query }),
 }

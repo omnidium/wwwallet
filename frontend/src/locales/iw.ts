@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'החלפה',
-    sellTokenLabel: 'מכירת אסימון (כתובת, או ETH עבור אסימון מקורי)',
-    buyTokenLabel: 'כתובת לרכישת אסימון',
+    sellTokenLabel: 'למכור',
+    buyTokenLabel: 'קנה',
     sellAmountLabel: 'סכום המכירה',
     getQuote: 'קבל הצעת מחיר',
     estimateText: 'הערכה: צפוי להתקבל: {amount} במחיר {price}',
     signingNotice: 'אתה חותם על עסקה עם {address} (באמצעות האגרגטור 0x).',
     submit: 'החלפה',
+    selectToken: 'בחר אסימון',
+    searchTokenPlaceholder: 'חפש שם או סימן',
+    yourTokens: 'האסימונים שלך',
+    allTokens: 'כל האסימונים',
+    noResults: 'לא נמצאו אסימונים.',
+    viewOnExplorer: 'הצג את האסימון במאגר הבלוקים',
   },
   payees: {
     title: 'מקבלי התשלומים',
@@ -189,8 +195,6 @@ export default {
     amountGreaterThanZero: 'הזן סכום הגדול מאפס.',
     insufficientBalance: 'הסכום שיש לשלוח עולה על יתרת החשבון "מ" (כולל עמלת העסקה).',
     invalidRecipientAddress: 'הזן כתובת נמען חוקית.',
-    validTokenOrEth: 'הזן כתובת אסימון חוקית, או ETH עבור המטבע המקורי.',
-    validBuyToken: 'הזן כתובת תקפה של אסימון הרכישה.',
     labelRequired: 'יש להזין תווית.',
     validAddress: 'הזן כתובת חוקית.',
     filePasswordRequired: 'יש להזין את הסיסמה של קובץ זה.',
@@ -199,6 +203,7 @@ export default {
     keystoreFileRequired: 'בחר קובץ מאגר מפתחות.',
     recoveryPhraseFormat: 'זה לא נראה כמו ביטוי שחזור תקין.',
     insufficientGas: 'אין מספיק ETH בחשבון זה כדי לכסות את עמלת הרשת.',
+    sameTokenSwap: 'המכירה והרכישה של אסימונים חייבות להיות שונות זו מזו.',
   },
   msg: {
     account: {

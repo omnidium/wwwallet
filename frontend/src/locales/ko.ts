@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: '스왑',
-    sellTokenLabel: '토큰 판매 (주소 또는 네이티브 토큰의 경우 ETH)',
-    buyTokenLabel: '토큰 구매 주소',
+    sellTokenLabel: '판매',
+    buyTokenLabel: '구매하기',
     sellAmountLabel: '판매 금액',
     getQuote: '견적 받기',
     estimateText: '예상 수령액: {amount} (단가 {price} 기준)',
     signingNotice: '{address}와 거래 계약을 체결하고 있습니다(0x 애그리게이터를 통해).',
     submit: '스왑',
+    selectToken: '토큰 선택',
+    searchTokenPlaceholder: '이름 또는 종목 코드를 검색하세요',
+    yourTokens: '사용자의 토큰',
+    allTokens: '모든 토큰',
+    noResults: '토큰이 없습니다.',
+    viewOnExplorer: '블록체인 탐색기에서 토큰 보기',
   },
   payees: {
     title: '수취인',
@@ -189,8 +195,6 @@ export default {
     amountGreaterThanZero: '0보다 큰 숫자를 입력하세요.',
     insufficientBalance: '송금할 금액이 송금인 계좌의 잔액(거래 수수료 포함)을 초과합니다.',
     invalidRecipientAddress: '유효한 수신자 주소를 입력하십시오.',
-    validTokenOrEth: '유효한 토큰 주소를 입력하거나, 기본값인 ETH를 입력하세요.',
-    validBuyToken: '유효한 토큰 구매 주소를 입력하세요.',
     labelRequired: '라벨은 필수 항목입니다.',
     validAddress: '유효한 주소를 입력해 주세요.',
     filePasswordRequired: '이 파일을 열려면 비밀번호가 필요합니다.',
@@ -200,6 +204,7 @@ export default {
     keystoreFileRequired: '키스토어 파일을 선택하십시오.',
     recoveryPhraseFormat: '그건 유효한 복구 문구로 보이지 않습니다.',
     insufficientGas: '이 계좌에는 네트워크 수수료를 지불하기에 충분한 ETH가 없습니다.',
+    sameTokenSwap: '토큰 매도와 매수는 서로 달라야 합니다.',
   },
   msg: {
     account: {

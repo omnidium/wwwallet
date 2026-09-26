@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'スワップ',
-    sellTokenLabel: 'トークンの売却（アドレス、またはネイティブトークンの場合はETH）',
-    buyTokenLabel: 'トークン購入用アドレス',
+    sellTokenLabel: '売る',
+    buyTokenLabel: '購入する',
     sellAmountLabel: '販売数量',
     getQuote: '見積もりを依頼する',
     estimateText: '受取予定額：{amount}（価格 {price}）',
     signingNotice: '{address} との取引に署名しています（0x アグリゲーター経由）。',
     submit: 'スワップ',
+    selectToken: 'トークンを選択',
+    searchTokenPlaceholder: '名前または銘柄コードを検索',
+    yourTokens: 'あなたのトークン',
+    allTokens: 'すべてのトークン',
+    noResults: 'トークンが見つかりませんでした。',
+    viewOnExplorer: 'ブロックエクスプローラーでトークンを確認する',
   },
   payees: {
     title: '受取人',
@@ -190,9 +196,6 @@ export default {
     amountGreaterThanZero: '0より大きい数値を入力してください。',
     insufficientBalance: '送金金額が、送金元口座の残高（取引手数料を含む）を上回っています。',
     invalidRecipientAddress: '有効な受信者アドレスを入力してください。',
-    validTokenOrEth:
-      '有効なトークンアドレスを入力するか、ネイティブの場合はETHと入力してください。',
-    validBuyToken: '有効なトークン購入用アドレスを入力してください。',
     labelRequired: 'ラベルの入力は必須です。',
     validAddress: '有効な住所を入力してください。',
     filePasswordRequired: 'このファイルを開くにはパスワードが必要です。',
@@ -201,6 +204,7 @@ export default {
     keystoreFileRequired: 'キーストアファイルを選択してください。',
     recoveryPhraseFormat: 'それは有効なリカバリーフレーズには見えません。',
     insufficientGas: 'このアカウントには、ネットワーク手数料を支払うのに十分なETHがありません。',
+    sameTokenSwap: 'トークンの売却と購入は区別する必要があります。',
   },
   msg: {
     account: {

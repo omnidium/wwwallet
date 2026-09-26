@@ -49,3 +49,6 @@ export const DEFAULT_TRANSACTION_BATCH_SIZE = 200
 
 /** Preset choices offered for the transaction batch size setting. */
 export const TRANSACTION_BATCH_SIZE_OPTIONS = [25, 50, 100, 200]
+
+/** How long the swap token picker waits after the last keystroke before searching. */
+export const TOKEN_SEARCH_DEBOUNCE_MS = 300

@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Размяна',
-    sellTokenLabel: 'Продажба на токен (адрес или ETH за собствен токен)',
-    buyTokenLabel: 'Адрес за закупуване на токен',
+    sellTokenLabel: 'Продавам',
+    buyTokenLabel: 'Купи',
     sellAmountLabel: 'Продадена сума',
     getQuote: 'Поискайте оферта',
     estimateText: 'Очаквана сума: {amount} на цена {price}',
     signingNotice:
       'Подписвате транзакция за сключване на договор с {address} (чрез агрегатора 0x).',
     submit: 'Размяна',
+    selectToken: 'Изберете токен',
+    searchTokenPlaceholder: 'Търсене по име или символ',
+    yourTokens: 'Вашите жетони',
+    allTokens: 'Всички токени',
+    noResults: 'Не бяха намерени токени.',
+    viewOnExplorer: 'Преглед на токена в блокчейн експлорера',
   },
   payees: {
     title: 'Получатели на плащания',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       'Сумата за превод надвишава салдото по сметката-източник (включително таксата за транзакцията).',
     invalidRecipientAddress: 'Въведете валиден адрес на получателя.',
-    validTokenOrEth: 'Въведете валиден адрес на токен или ETH за роден токен.',
-    validBuyToken: 'Въведете валиден адрес за токен за покупка.',
     labelRequired: 'Полето „Етикет“ е задължително.',
     validAddress: 'Въведете валиден адрес.',
     filePasswordRequired: 'Необходима е паролата за този файл.',
@@ -202,6 +206,7 @@ export default {
     keystoreFileRequired: 'Изберете файл с ключове.',
     recoveryPhraseFormat: 'Това не изглежда като валидна фраза за възстановяване.',
     insufficientGas: 'В тази сметка няма достатъчно ETH, за да се покрие таксата за мрежата.',
+    sameTokenSwap: 'Продажбата и покупката на токени трябва да са различни.',
   },
   msg: {
     account: {

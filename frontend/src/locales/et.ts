@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Vahetus',
-    sellTokenLabel: 'Müü tokenit (aadress või ETH, kui tegemist on platvormi omaga)',
-    buyTokenLabel: "Token'i aadressi ostmine",
+    sellTokenLabel: 'Müü',
+    buyTokenLabel: 'Osta',
     sellAmountLabel: 'Müügisumma',
     getQuote: 'Küsi hinnapakkumist',
     estimateText: 'Eeldatav saadav summa: {amount} hinnaga {price}',
     signingNotice: 'Sa allkirjastad tehingut {address}-ga (0x-agregaatori kaudu).',
     submit: 'Vahetus',
+    selectToken: 'Vali märk',
+    searchTokenPlaceholder: 'Otsi nime või sümbolit',
+    yourTokens: 'Sinu žetoonid',
+    allTokens: 'Kõik märgid',
+    noResults: 'Märke ei leitud.',
+    viewOnExplorer: 'Vaata tokenit plokkiahela uurijas',
   },
   payees: {
     title: 'Saajad',
@@ -190,8 +196,6 @@ export default {
     amountGreaterThanZero: 'Sisestage nullist suurem summa.',
     insufficientBalance: 'Saadetav summa ületab saatja konto saldo (sh tehingutasu).',
     invalidRecipientAddress: 'Sisestage kehtiv saaja aadress.',
-    validTokenOrEth: 'Sisestage kehtiv tokeni aadress või „ETH”, kui kasutate algset valuutat.',
-    validBuyToken: 'Sisestage kehtiv ostutokeni aadress.',
     labelRequired: 'Silt on kohustuslik.',
     validAddress: 'Sisestage kehtiv aadress.',
     filePasswordRequired: 'Selle faili avamiseks on vaja parooli.',
@@ -200,6 +204,7 @@ export default {
     keystoreFileRequired: 'Valige võtmehoidla fail.',
     recoveryPhraseFormat: 'See ei tundu olevat kehtiv taastamislause.',
     insufficientGas: 'Sellel kontol ei ole piisavalt ETH-d võrgutasu katmiseks.',
+    sameTokenSwap: 'Müügi- ja ostutokenid peavad olema erinevad.',
   },
   msg: {
     account: {

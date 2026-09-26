@@ -70,13 +70,19 @@ export default {
   },
   swap: {
     title: 'Değiştir',
-    sellTokenLabel: 'Token sat (adres veya yerel token için ETH)',
-    buyTokenLabel: 'Token satın alma adresi',
+    sellTokenLabel: 'Sat',
+    buyTokenLabel: 'Satın al',
     sellAmountLabel: 'Satış tutarı',
     getQuote: 'Fiyat teklifi al',
     estimateText: 'Tahmini alım tutarı: {amount}, fiyat {price}',
     signingNotice: '{address} ile bir işlem imzalıyorsunuz (0x toplayıcı aracılığıyla).',
     submit: 'Değiştir',
+    selectToken: 'Jetonu seçin',
+    searchTokenPlaceholder: 'Adı veya sembolü ara',
+    yourTokens: 'Jetonlarınız',
+    allTokens: 'Tüm jetonlar',
+    noResults: 'Hiçbir jeton bulunamadı.',
+    viewOnExplorer: 'Blok gezgininde jetonu görüntüle',
   },
   payees: {
     title: 'Alıcılar',
@@ -191,8 +197,6 @@ export default {
     insufficientBalance:
       'Gönderilecek tutar, KAYNAK hesabındaki bakiyeden (işlem ücreti dahil) daha fazla.',
     invalidRecipientAddress: 'Geçerli bir alıcı adresi girin.',
-    validTokenOrEth: "Geçerli bir token adresi girin ya da yerel birim olarak ETH'yi seçin.",
-    validBuyToken: 'Geçerli bir satın alma jetonu adresi girin.',
     labelRequired: 'Etiket girilmesi zorunludur.',
     validAddress: 'Geçerli bir adres girin.',
     filePasswordRequired: 'Bu dosya için şifre gereklidir.',
@@ -201,6 +205,7 @@ export default {
     keystoreFileRequired: 'Bir anahtar deposu dosyası seçin.',
     recoveryPhraseFormat: 'Bu, geçerli bir kurtarma ifadesine benzemiyor.',
     insufficientGas: 'Bu hesapta ağ ücretini karşılamak için yeterli ETH bulunmamaktadır.',
+    sameTokenSwap: 'Satış ve alım işlemlerinde kullanılan tokenlar farklı olmalıdır.',
   },
   msg: {
     account: {

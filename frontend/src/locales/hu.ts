@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Csere',
-    sellTokenLabel: 'Token eladása (cím, vagy ETH a natív token esetében)',
-    buyTokenLabel: 'Token-cím vásárlása',
+    sellTokenLabel: 'Eladás',
+    buyTokenLabel: 'Vásárlás',
     sellAmountLabel: 'Eladási összeg',
     getQuote: 'Árajánlat kérése',
     estimateText: 'Becsült bevétel: {amount} {price} áron',
     signingNotice:
       'Egy tranzakciót írsz alá az {address} szerződéshez (a 0x aggregátoron keresztül).',
     submit: 'Csere',
+    selectToken: 'Token kiválasztása',
+    searchTokenPlaceholder: 'Név vagy szimbólum keresése',
+    yourTokens: 'A zsetonjaid',
+    allTokens: 'Minden token',
+    noResults: 'Nem találtak tokeneket.',
+    viewOnExplorer: 'A token megtekintése a blokklánc-böngészőben',
   },
   payees: {
     title: 'Kifizetési címzettek',
@@ -194,9 +200,6 @@ export default {
     insufficientBalance:
       'Az átutalandó összeg meghaladja a KÜLDŐ számla egyenlegét (a tranzakciós díjat is beleértve).',
     invalidRecipientAddress: 'Írjon be egy érvényes címzett-címet.',
-    validTokenOrEth:
-      'Adjon meg egy érvényes token-címet, vagy az ETH-t, ha natív tokenről van szó.',
-    validBuyToken: 'Adjon meg egy érvényes token-vásárlási címet.',
     labelRequired: 'A címke megadása kötelező.',
     validAddress: 'Adjon meg egy érvényes címet.',
     filePasswordRequired: 'Ehhez a fájlhoz jelszó szükséges.',
@@ -205,6 +208,7 @@ export default {
     keystoreFileRequired: 'Válasszon ki egy kulcstárat.',
     recoveryPhraseFormat: 'Ez nem tűnik érvényes helyreállítási kódnak.',
     insufficientGas: 'Ezen a számlán nincs elegendő ETH a hálózati díj fedezésére.',
+    sameTokenSwap: 'A tokenek eladásának és vásárlásának külön kell lennie.',
   },
   msg: {
     account: {

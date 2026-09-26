@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Échange',
-    sellTokenLabel: 'Vendre un token (adresse ou ETH pour les tokens natifs)',
-    buyTokenLabel: 'Acheter une adresse de jeton',
+    sellTokenLabel: 'Vendre',
+    buyTokenLabel: 'Acheter',
     sellAmountLabel: 'Montant de la vente',
     getQuote: 'Obtenir un devis',
     estimateText: 'Montant estimé à percevoir : {amount} au prix de {price}',
     signingNotice:
       "Vous êtes en train de signer une transaction destinée à {address} (via l'agrégateur 0x).",
     submit: 'Échange',
+    selectToken: 'Sélectionner un jeton',
+    searchTokenPlaceholder: 'Rechercher un nom ou un symbole',
+    yourTokens: 'Vos jetons',
+    allTokens: 'Tous les jetons',
+    noResults: 'Aucun jeton trouvé.',
+    viewOnExplorer: "Afficher le jeton sur l'explorateur de blocs",
   },
   payees: {
     title: 'Bénéficiaires',
@@ -192,8 +198,6 @@ export default {
     insufficientBalance:
       'Le montant à envoyer est supérieur au solde du compte « FROM » (frais de transaction compris).',
     invalidRecipientAddress: 'Saisissez une adresse de destinataire valide.',
-    validTokenOrEth: 'Saisissez une adresse de jeton valide, ou « ETH » pour le jeton natif.',
-    validBuyToken: "Saisissez une adresse de jeton d'achat valide.",
     labelRequired: 'Le champ « Étiquette » est obligatoire.',
     validAddress: 'Saisissez une adresse valide.',
     filePasswordRequired: 'Le mot de passe de ce fichier est obligatoire.',
@@ -203,6 +207,7 @@ export default {
     recoveryPhraseFormat: 'Cela ne semble pas être une phrase de récupération valide.',
     insufficientGas:
       'Le solde en ETH de ce compte est insuffisant pour couvrir les frais de réseau.',
+    sameTokenSwap: "Les opérations de vente et d'achat de jetons doivent être distinctes.",
   },
   msg: {
     account: {

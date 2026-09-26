@@ -70,14 +70,20 @@ export default {
   },
   swap: {
     title: 'Ruilen',
-    sellTokenLabel: 'Token verkopen (adres, of ETH voor native)',
-    buyTokenLabel: 'Adres voor het kopen van tokens',
+    sellTokenLabel: 'Verkopen',
+    buyTokenLabel: 'Kopen',
     sellAmountLabel: 'Verkoopbedrag',
     getQuote: 'Vraag een offerte aan',
     estimateText: 'Geschatte opbrengst: {amount} tegen een prijs van {price}',
     signingNotice:
       'Je ondertekent een transactie om een contract af te sluiten met {address} (via de 0x-aggregator).',
     submit: 'Ruilen',
+    selectToken: 'Token selecteren',
+    searchTokenPlaceholder: 'Zoek op naam of symbool',
+    yourTokens: 'Je tokens',
+    allTokens: 'Alle tokens',
+    noResults: 'Er zijn geen tokens gevonden.',
+    viewOnExplorer: 'Token bekijken in de block explorer',
   },
   payees: {
     title: 'Begunstigden',
@@ -193,8 +199,6 @@ export default {
     insufficientBalance:
       'Het over te maken bedrag is hoger dan het saldo op de verzendende rekening (inclusief transactiekosten).',
     invalidRecipientAddress: 'Voer een geldig e-mailadres van de ontvanger in.',
-    validTokenOrEth: 'Voer een geldig tokenadres in, of ETH voor het native token.',
-    validBuyToken: 'Voer een geldig adres voor het aankooptoken in.',
     labelRequired: 'Het label is verplicht.',
     validAddress: 'Voer een geldig adres in.',
     filePasswordRequired: 'Voor dit bestand is een wachtwoord vereist.',
@@ -203,6 +207,7 @@ export default {
     keystoreFileRequired: 'Kies een keystore-bestand.',
     recoveryPhraseFormat: 'Dat lijkt geen geldige herstelzin te zijn.',
     insufficientGas: 'Er staat onvoldoende ETH op deze rekening om de netwerkkosten te dekken.',
+    sameTokenSwap: 'Het verkopen en kopen van tokens moet verschillend zijn.',
   },
   msg: {
     account: {

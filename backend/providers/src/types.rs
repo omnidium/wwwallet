@@ -75,6 +75,17 @@ pub struct TokenMetadata {
     pub usd_price: Option<f64>,
 }
 
+/// One entry from a chain's token list, used for symbol/name search (the
+/// swap panel's token picker). See tokenlist.rs.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TokenListItem {
+    pub address: String,
+    pub name: String,
+    pub symbol: String,
+    pub decimals: u8,
+    pub logo_url: Option<String>,
+}
+
 /// A chain's native currency price (ETH, MATIC, ...) in USD. See coingecko.rs.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NativePrice {
