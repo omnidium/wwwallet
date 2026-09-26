@@ -50,11 +50,13 @@ function keyFor(item: { address: string | null }): string {
 
 const heldMatches = computed(() => {
   const query = search.value.trim().toLowerCase()
-  const held = props.heldTokens
-  if (!query) return held
-  return held.filter(
-    (t) => t.symbol.toLowerCase().includes(query) || t.name.toLowerCase().includes(query),
-  )
+  const held = props.heldTokens.filter((t) => t.balance > 0)
+  const matching = query
+    ? held.filter(
+        (t) => t.symbol.toLowerCase().includes(query) || t.name.toLowerCase().includes(query),
+      )
+    : held
+  return [...matching].sort((a, b) => b.balance - a.balance)
 })
 
 const heldKeys = computed(() => new Set(heldMatches.value.map((t) => keyFor(t))))
