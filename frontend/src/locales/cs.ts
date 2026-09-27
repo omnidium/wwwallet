@@ -290,6 +290,8 @@ export default {
     networkFailed: 'Nelze se připojit k serveru. Zkontrolujte připojení a zkuste to znovu.',
     rateLimited: 'Příliš mnoho požadavků – počkejte prosím chvíli a zkuste to znovu.',
     noLiquidity: 'Tuto dvojici tokenů momentálně nelze obchodovat – zkuste jiný token.',
+    transactionWouldFail:
+      'Pokud by byla tato transakce odeslána, nedošlo by k jejímu provedení – zkontrolujte si zůstatek a případné potřebné schválení.',
   },
   currency: {
     USD: 'americký dolar',

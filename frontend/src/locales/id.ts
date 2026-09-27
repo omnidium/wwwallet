@@ -294,6 +294,8 @@ export default {
     rateLimited: 'Terlalu banyak permintaan — mohon tunggu sebentar dan coba lagi.',
     noLiquidity:
       'Pasangan token ini saat ini tidak dapat diperdagangkan — coba gunakan token lain.',
+    transactionWouldFail:
+      'Transaksi ini akan gagal jika diajukan — periksa saldo Anda dan persetujuan yang diperlukan.',
   },
   currency: {
     USD: 'Dolar AS',

@@ -290,6 +290,8 @@ export default {
       'Det gick inte att ansluta till servern. Kontrollera din anslutning och försök igen.',
     rateLimited: 'För många förfrågningar – vänta ett ögonblick och försök igen.',
     noLiquidity: 'Det här tokenparet går inte att handla just nu – prova ett annat token.',
+    transactionWouldFail:
+      'Denna transaktion skulle misslyckas om den skickades in – kontrollera ditt saldo och eventuella godkännanden som krävs.',
   },
   currency: {
     USD: 'amerikansk dollar',

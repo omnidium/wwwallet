@@ -1123,6 +1123,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Este par de tokens no se puede negociar en este momento; prueba con otro token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Esta transacción se rechazaría si se enviara; comprueba tu saldo y si se requiere alguna autorización."
     }
   },
   "ar": {
@@ -2249,6 +2253,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "هذا الزوج من التوكنات غير قابل للتداول في الوقت الحالي — جرب توكنًا آخر."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "ستفشل هذه المعاملة في حال إرسالها — يرجى التحقق من رصيدك ومن أي موافقة مطلوبة."
     }
   },
   "bg": {
@@ -3375,6 +3383,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "В момента тази двойка токени не може да се търгува — опитайте с друг токен."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Тази транзакция ще бъде отхвърлена, ако бъде подадена — проверете наличността си и дали е необходимо одобрение."
     }
   },
   "cs": {
@@ -4501,6 +4513,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Tuto dvojici tokenů momentálně nelze obchodovat – zkuste jiný token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Pokud by byla tato transakce odeslána, nedošlo by k jejímu provedení – zkontrolujte si zůstatek a případné potřebné schválení."
     }
   },
   "da": {
@@ -5627,6 +5643,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Dette tokenpar kan ikke handles i øjeblikket — prøv et andet token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Denne transaktion vil blive afvist, hvis den indsendes — tjek din saldo og eventuelle godkendelseskrav."
     }
   },
   "de": {
@@ -6752,7 +6772,11 @@
     },
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
-      "value": "Dieses Token-Paar kann derzeit nicht gehandelt werden – versuche es mit einem anderen Token."
+      "value": "Dieses Token-Paar ist derzeit nicht handelbar – versuche es mit einem anderen Token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Diese Transaktion würde bei einer Übermittlung fehlschlagen – überprüfen Sie Ihren Kontostand und ob eine Genehmigung erforderlich ist."
     }
   },
   "el": {
@@ -7878,7 +7902,11 @@
     },
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
-      "value": "Αυτό το ζεύγος token δεν είναι διαθέσιμο προς διαπραγμάτευση αυτή τη στιγμή — δοκιμάστε ένα διαφορετικό token."
+      "value": "Αυτό το ζεύγος token δεν είναι διαθέσιμο προς συναλλαγή αυτή τη στιγμή — δοκιμάστε ένα διαφορετικό token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Η συναλλαγή αυτή θα αποτύχει αν υποβληθεί — ελέγξτε το υπόλοιπό σας και τυχόν απαιτούμενες εγκρίσεις."
     }
   },
   "et": {
@@ -9005,6 +9033,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Seda tokenite paari ei saa hetkel vahetada — proovi mõnda teist tokenit."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Kui see tehing esitataks, ei õnnestuks see – kontrollige oma saldo ja vajalikke heakskiite."
     }
   },
   "fi": {
@@ -10130,7 +10162,11 @@
     },
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
-      "value": "Tätä token-paria ei voi tällä hetkellä vaihtaa — kokeile toista tokenia."
+      "value": "Tätä tokeniparia ei voi tällä hetkellä vaihtaa — kokeile toista tokenia."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Tämä tapahtuma epäonnistuisi, jos se lähetettäisiin — tarkista saldosi ja tarvittavat hyväksynnät."
     }
   },
   "fr": {
@@ -11257,6 +11293,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Cette paire de jetons n'est pas négociable pour le moment — essayez un autre jeton."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Cette transaction serait refusée si elle était effectuée — vérifiez votre solde et assurez-vous d'avoir obtenu toutes les autorisations nécessaires."
     }
   },
   "hu": {
@@ -12382,7 +12422,11 @@
     },
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
-      "value": "Ez a tokenpár jelenleg nem kereskedhető — próbálj ki egy másik tokent."
+      "value": "Ez a tokenpár jelenleg nem kereskedhető – próbálkozzon egy másik tokennel!"
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Ez a tranzakció sikertelen lenne, ha benyújtanák – ellenőrizze egyenlegét és az esetleges jóváhagyási követelményeket."
     }
   },
   "id": {
@@ -13509,6 +13553,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Pasangan token ini saat ini tidak dapat diperdagangkan — coba gunakan token lain."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Transaksi ini akan gagal jika diajukan — periksa saldo Anda dan persetujuan yang diperlukan."
     }
   },
   "it": {
@@ -14635,6 +14683,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Al momento questa coppia di token non è negoziabile: prova con un altro token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Se inviata, questa transazione non andrebbe a buon fine: controlla il tuo saldo e verifica se sono necessarie delle approvazioni."
     }
   },
   "iw": {
@@ -15761,6 +15813,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "צמד האסימונים הזה אינו ניתן למסחר כרגע — נסה אסימון אחר."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "עסקה זו תיכשל אם תוגש — אנא בדוק את היתרה שלך ואת כל האישורים הנדרשים."
     }
   },
   "ja": {
@@ -16887,6 +16943,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "現在、このトークンペアは取引できません。別のトークンを試してみてください。"
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "この取引を送信すると失敗します。残高および必要な承認事項を確認してください。"
     }
   },
   "ko": {
@@ -18013,6 +18073,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "현재 이 토큰 쌍은 거래할 수 없습니다. 다른 토큰을 사용해 보세요."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "이 거래를 제출하면 실패할 수 있습니다. 잔액과 필요한 승인 사항을 확인해 주세요."
     }
   },
   "lt": {
@@ -19138,7 +19202,11 @@
     },
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
-      "value": "Šiuo metu šia žetonų pora prekiauti negalima – pabandykite kitą žetoną."
+      "value": "Šiuo metu šia žetonų pora prekiauti negalima — pabandykite kitą žetoną."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Jei šis sandoris būtų pateiktas, jis būtų atmestas – patikrinkite savo likutį ir ar nereikia kokio nors patvirtinimo."
     }
   },
   "lv": {
@@ -20264,7 +20332,11 @@
     },
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
-      "value": "Šo žetonu pāri pašlaik nevar tirgot — izmēģiniet citu žetonu."
+      "value": "Šis žetonu pāris pašlaik nav tirgojams — izmēģiniet citu žetonu."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Šis darījums netiktu apstiprināts, ja to iesniegtu — pārbaudiet savu kontā esošo atlikumu un pārliecinieties, vai ir nepieciešama apstiprināšana."
     }
   },
   "nl": {
@@ -21391,6 +21463,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Dit tokenpaar kan momenteel niet worden verhandeld — probeer een ander token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Deze transactie zou mislukken als deze wordt ingediend — controleer uw saldo en of er goedkeuring nodig is."
     }
   },
   "no": {
@@ -22517,6 +22593,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Dette tokenparet kan ikke handles for øyeblikket — prøv et annet token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Denne transaksjonen vil mislykkes hvis den sendes inn — sjekk saldoen din og eventuelle godkjenningskrav."
     }
   },
   "pl": {
@@ -23643,6 +23723,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Ta para tokenów nie jest obecnie dostępna do handlu — spróbuj innego tokena."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Ta transakcja nie zostanie zrealizowana, jeśli zostanie złożona — sprawdź stan konta i ewentualne wymagane zgody."
     }
   },
   "ro": {
@@ -24769,6 +24853,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Această pereche de tokenuri nu poate fi tranzacționată în acest moment — încearcă un alt token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Această tranzacție ar eșua dacă ar fi trimisă — verificați soldul și eventualele aprobări necesare."
     }
   },
   "ru": {
@@ -25894,7 +25982,11 @@
     },
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
-      "value": "Эта пара токенов в данный момент недоступна для торговли — попробуйте выбрать другой токен."
+      "value": "Эта пара токенов в данный момент недоступна для торговли — попробуйте другой токен."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Эта транзакция не будет выполнена в случае отправки — проверьте свой баланс и наличие необходимых разрешений."
     }
   },
   "sk": {
@@ -27021,6 +27113,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Táto dvojica tokenov sa momentálne nedá obchodovať — skúste iný token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Táto transakcia by sa v prípade odoslania nezrealizovala – skontrolujte si zostatok na účte a prípadné potrebné schválenia."
     }
   },
   "sl": {
@@ -28147,6 +28243,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Ta par tokenov trenutno ni na voljo za trgovanje — poskusite z drugim tokenom."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Ta transakcija bi bila zavrnjena, če bi jo poslali – preverite stanje na računu in morebitna potrebna odobritve."
     }
   },
   "sv": {
@@ -29273,6 +29373,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Det här tokenparet går inte att handla just nu – prova ett annat token."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Denna transaktion skulle misslyckas om den skickades in – kontrollera ditt saldo och eventuella godkännanden som krävs."
     }
   },
   "tr": {
@@ -30398,7 +30502,11 @@
     },
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
-      "value": "Bu token çifti şu anda işlem görmüyor — başka bir token deneyin."
+      "value": "Bu token çifti şu anda işlem göremiyor — başka bir token deneyin."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Bu işlem gönderilirse başarısız olur — bakiyenizi ve gerekli onayları kontrol edin."
     }
   },
   "uk": {
@@ -31525,6 +31633,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Ця пара токенів наразі недоступна для торгівлі — спробуйте інший токен."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Ця операція не буде виконана, якщо її подати — перевірте свій баланс та наявність необхідних дозволів."
     }
   },
   "vi": {
@@ -32651,6 +32763,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "Hiện tại, cặp token này không thể giao dịch được — hãy thử một token khác."
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "Giao dịch này sẽ không thành công nếu được gửi đi — hãy kiểm tra số dư và các thủ tục phê duyệt cần thiết."
     }
   },
   "zh-CN": {
@@ -33777,6 +33893,10 @@
     "errors.noLiquidity": {
       "enHash": "caed1a7dbee820bd",
       "value": "该代币对目前无法交易——请尝试其他代币。"
+    },
+    "errors.transactionWouldFail": {
+      "enHash": "a49b15f00e6f637f",
+      "value": "如果提交此交易，交易将失败——请检查您的余额以及是否需要任何批准。"
     }
   }
 }

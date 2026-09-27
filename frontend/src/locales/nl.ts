@@ -290,6 +290,8 @@ export default {
       'De server kon niet worden bereikt. Controleer je verbinding en probeer het opnieuw.',
     rateLimited: 'Te veel verzoeken — wacht even en probeer het nog eens.',
     noLiquidity: 'Dit tokenpaar kan momenteel niet worden verhandeld — probeer een ander token.',
+    transactionWouldFail:
+      'Deze transactie zou mislukken als deze wordt ingediend — controleer uw saldo en of er goedkeuring nodig is.',
   },
   currency: {
     USD: 'Amerikaanse dollar',

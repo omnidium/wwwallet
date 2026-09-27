@@ -291,6 +291,8 @@ export default {
       'Det var ikke mulig å opprette kontakt med serveren. Sjekk nettforbindelsen din og prøv på nytt.',
     rateLimited: 'For mange forespørsler — vent et øyeblikk og prøv på nytt.',
     noLiquidity: 'Dette tokenparet kan ikke handles for øyeblikket — prøv et annet token.',
+    transactionWouldFail:
+      'Denne transaksjonen vil mislykkes hvis den sendes inn — sjekk saldoen din og eventuelle godkjenningskrav.',
   },
   currency: {
     USD: 'amerikansk dollar',

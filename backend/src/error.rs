@@ -6,26 +6,31 @@ use serde_json::json;
 pub enum ApiError {
     BadRequest(String),
     /// Well-formed request the upstream explicitly can't fulfill (e.g. a swap
-    /// quote for a token pair with no liquidity) — distinct from `Upstream`
-    /// (an actual upstream/network failure) so the frontend can special-case
-    /// it with its own clear message instead of a generic "request failed".
-    Unprocessable(String),
+    /// quote for a token pair with no liquidity, or a transaction that would
+    /// revert on-chain) — distinct from `Upstream` (an actual upstream/network
+    /// failure). `code` is a fixed, machine-readable tag (never shown as-is)
+    /// the frontend switches on to pick its own translated message, since
+    /// `message` itself is hardcoded English with no i18n of its own.
+    Unprocessable { code: &'static str, message: String },
     Upstream(String),
     RateLimited,
 }
 
 impl IntoResponse for ApiError {
     fn into_response(self) -> Response {
-        let (status, message) = match self {
-            ApiError::BadRequest(msg) => (StatusCode::BAD_REQUEST, msg),
-            ApiError::Unprocessable(msg) => (StatusCode::UNPROCESSABLE_ENTITY, msg),
-            ApiError::Upstream(msg) => (StatusCode::BAD_GATEWAY, msg),
+        let (status, body) = match self {
+            ApiError::BadRequest(msg) => (StatusCode::BAD_REQUEST, json!({ "error": msg })),
+            ApiError::Unprocessable { code, message } => (
+                StatusCode::UNPROCESSABLE_ENTITY,
+                json!({ "error": message, "code": code }),
+            ),
+            ApiError::Upstream(msg) => (StatusCode::BAD_GATEWAY, json!({ "error": msg })),
             ApiError::RateLimited => (
                 StatusCode::TOO_MANY_REQUESTS,
-                "rate limit exceeded, try again shortly".to_string(),
+                json!({ "error": "rate limit exceeded, try again shortly" }),
             ),
         };
-        (status, Json(json!({ "error": message }))).into_response()
+        (status, Json(body)).into_response()
     }
 }
 
@@ -34,8 +39,16 @@ impl From<wwwallet_providers::ProviderError> for ApiError {
         match err {
             wwwallet_providers::ProviderError::InvalidInput(msg) => ApiError::BadRequest(msg),
             wwwallet_providers::ProviderError::RateLimited => ApiError::RateLimited,
-            wwwallet_providers::ProviderError::NoLiquidity => {
-                ApiError::Unprocessable("no liquidity available for this token pair".to_string())
+            wwwallet_providers::ProviderError::NoLiquidity => ApiError::Unprocessable {
+                code: "no_liquidity",
+                message: "no liquidity available for this token pair".to_string(),
+            },
+            wwwallet_providers::ProviderError::TransactionWouldRevert(reason) => {
+                worker::console_warn!("transaction would revert: {reason}");
+                ApiError::Unprocessable {
+                    code: "would_revert",
+                    message: "the transaction would fail if submitted".to_string(),
+                }
             }
             other => {
                 worker::console_warn!("upstream provider error: {other}");

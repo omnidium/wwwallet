@@ -291,7 +291,9 @@ export default {
     networkFailed:
       'Nem sikerült kapcsolatba lépni a szerverrel. Ellenőrizze az internetkapcsolatát, majd próbálja meg újra.',
     rateLimited: 'Túl sok kérés érkezett — kérjük, várjon egy pillanatot, majd próbálja meg újra.',
-    noLiquidity: 'Ez a tokenpár jelenleg nem kereskedhető — próbálj ki egy másik tokent.',
+    noLiquidity: 'Ez a tokenpár jelenleg nem kereskedhető – próbálkozzon egy másik tokennel!',
+    transactionWouldFail:
+      'Ez a tranzakció sikertelen lenne, ha benyújtanák – ellenőrizze egyenlegét és az esetleges jóváhagyási követelményeket.',
   },
   currency: {
     USD: 'amerikai dollár',

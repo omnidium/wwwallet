@@ -287,6 +287,8 @@ export default {
       'Serveriga ei õnnestunud ühendust luua. Kontrollige oma ühendust ja proovige uuesti.',
     rateLimited: 'Liiga palju päringuid — palun oodake hetk ja proovige uuesti.',
     noLiquidity: 'Seda tokenite paari ei saa hetkel vahetada — proovi mõnda teist tokenit.',
+    transactionWouldFail:
+      'Kui see tehing esitataks, ei õnnestuks see – kontrollige oma saldo ja vajalikke heakskiite.',
   },
   currency: {
     USD: 'USA dollar',

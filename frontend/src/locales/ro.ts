@@ -297,6 +297,8 @@ export default {
       'Sunt prea multe solicitări — vă rugăm să așteptați puțin și să încercați din nou.',
     noLiquidity:
       'Această pereche de tokenuri nu poate fi tranzacționată în acest moment — încearcă un alt token.',
+    transactionWouldFail:
+      'Această tranzacție ar eșua dacă ar fi trimisă — verificați soldul și eventualele aprobări necesare.',
   },
   currency: {
     USD: 'dolarul american',

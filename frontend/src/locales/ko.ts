@@ -287,6 +287,8 @@ export default {
     networkFailed: '서버에 연결할 수 없습니다. 연결 상태를 확인한 후 다시 시도해 주세요.',
     rateLimited: '요청이 너무 많습니다. 잠시 기다린 후 다시 시도해 주세요.',
     noLiquidity: '현재 이 토큰 쌍은 거래할 수 없습니다. 다른 토큰을 사용해 보세요.',
+    transactionWouldFail:
+      '이 거래를 제출하면 실패할 수 있습니다. 잔액과 필요한 승인 사항을 확인해 주세요.',
   },
   currency: {
     USD: '미국 달러',

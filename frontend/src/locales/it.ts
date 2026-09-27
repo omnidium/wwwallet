@@ -290,6 +290,8 @@ export default {
     networkFailed: 'Impossibile connettersi al server. Verifica la connessione e riprova.',
     rateLimited: 'Troppe richieste: attendi qualche istante e riprova.',
     noLiquidity: 'Al momento questa coppia di token non è negoziabile: prova con un altro token.',
+    transactionWouldFail:
+      'Se inviata, questa transazione non andrebbe a buon fine: controlla il tuo saldo e verifica se sono necessarie delle approvazioni.',
   },
   currency: {
     USD: 'Dollaro statunitense',

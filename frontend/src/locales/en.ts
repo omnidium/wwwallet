@@ -358,6 +358,8 @@ export default {
     networkFailed: 'Could not reach the server. Check your connection and try again.',
     rateLimited: 'Too many requests — please wait a moment and try again.',
     noLiquidity: "This token pair isn't tradable right now — try a different token.",
+    transactionWouldFail:
+      'This transaction would fail if submitted — check your balance and any required approval.',
   },
   currency: {
     USD: 'US dollar',

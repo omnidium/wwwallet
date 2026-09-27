@@ -294,6 +294,8 @@ export default {
     rateLimited: 'Trop de requêtes — veuillez patienter un instant, puis réessayer.',
     noLiquidity:
       "Cette paire de jetons n'est pas négociable pour le moment — essayez un autre jeton.",
+    transactionWouldFail:
+      "Cette transaction serait refusée si elle était effectuée — vérifiez votre solde et assurez-vous d'avoir obtenu toutes les autorisations nécessaires.",
   },
   currency: {
     USD: 'dollar américain',

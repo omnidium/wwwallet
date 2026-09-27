@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { api, type ChainSlug } from '@/services/api'
 import { tokenUrl } from '@/services/blockExplorer'
-import { convertUsd, formatFiat } from '@/services/money'
+import { convertUsd, formatAmount, formatFiat } from '@/services/money'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { useChainDataStore } from '@/stores/chainData'
 import { TOKEN_SEARCH_DEBOUNCE_MS } from '@/config/appSettings'
@@ -64,7 +64,15 @@ function keyFor(item: { address: string | null }): string {
 
 const heldMatches = computed(() => {
   const query = search.value.trim().toLowerCase()
-  const held = props.heldTokens.filter((t) => t.usdValue != null && t.usdValue > 0)
+  // The native asset is always kept regardless of balance/price — unlike an
+  // ERC-20, it's never reachable through remote search (no real contract to
+  // look up), so hiding it here whenever the balance is zero would make it
+  // permanently unselectable for an account that doesn't hold any yet, even
+  // though "sell X to get some ETH for gas" is one of the most common
+  // reasons to open this picker in the first place.
+  const held = props.heldTokens.filter(
+    (t) => t.address === null || (t.usdValue != null && t.usdValue > 0),
+  )
   const matching = query
     ? held.filter(
         (t) => t.symbol.toLowerCase().includes(query) || t.name.toLowerCase().includes(query),
@@ -172,7 +180,8 @@ function openDialog() {
               <v-list-item-title>{{ tok.symbol }}</v-list-item-title>
               <v-list-item-subtitle>{{ tok.name }}</v-list-item-subtitle>
               <template #append>
-                <span class="text-body-2">{{ fiatDisplay(tok.usdValue!) }}</span>
+                <span v-if="tok.usdValue != null" class="text-body-2">{{ fiatDisplay(tok.usdValue) }}</span>
+                <span v-else class="text-body-2">{{ formatAmount(tok.balance) }}</span>
               </template>
             </v-list-item>
 

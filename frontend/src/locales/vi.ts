@@ -289,6 +289,8 @@ export default {
     networkFailed: 'Không thể kết nối với máy chủ. Vui lòng kiểm tra kết nối của bạn và thử lại.',
     rateLimited: 'Có quá nhiều yêu cầu — vui lòng đợi một lát rồi thử lại.',
     noLiquidity: 'Hiện tại, cặp token này không thể giao dịch được — hãy thử một token khác.',
+    transactionWouldFail:
+      'Giao dịch này sẽ không thành công nếu được gửi đi — hãy kiểm tra số dư và các thủ tục phê duyệt cần thiết.',
   },
   currency: {
     USD: 'Đồng đô la Mỹ',

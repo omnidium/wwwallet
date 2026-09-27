@@ -291,7 +291,9 @@ export default {
     networkFailed:
       'Neizdevās izveidot savienojumu ar serveri. Pārbaudiet savienojumu un mēģiniet vēlreiz.',
     rateLimited: 'Pārāk daudz pieprasījumu — lūdzu, pagaidiet brīdi un mēģiniet vēlreiz.',
-    noLiquidity: 'Šo žetonu pāri pašlaik nevar tirgot — izmēģiniet citu žetonu.',
+    noLiquidity: 'Šis žetonu pāris pašlaik nav tirgojams — izmēģiniet citu žetonu.',
+    transactionWouldFail:
+      'Šis darījums netiktu apstiprināts, ja to iesniegtu — pārbaudiet savu kontā esošo atlikumu un pārliecinieties, vai ir nepieciešama apstiprināšana.',
   },
   currency: {
     USD: 'ASV dolārs',

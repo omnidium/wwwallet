@@ -794,14 +794,18 @@ async function onSwapClick() {
       )
       if (BigInt(currentAllowance) < BigInt(quote.value.sell_amount)) {
         const wallet = await unlockWalletForSigning(account)
-        const approvePrep = await api.transactionPrep(chain, address, sell.address, '0')
+        // Exactly what this swap needs, not an unlimited/infinite approval —
+        // if the swap contract is ever compromised later, it can only ever
+        // move up to this leftover amount, not the account's full balance.
+        const approveData = encodeApprove(quote.value.allowance_target, quote.value.sell_amount)
+        // The gas estimate has to be for the actual approve call, not a
+        // bare value-less call to the token contract — passing no data here
+        // previously estimated the wrong (and often reverting) operation.
+        const approvePrep = await api.transactionPrep(chain, address, sell.address, '0', approveData)
         const approveTx = await wallet.signTransaction({
           to: sell.address,
           value: '0',
-          // Exactly what this swap needs, not an unlimited/infinite approval —
-          // if the swap contract is ever compromised later, it can only ever
-          // move up to this leftover amount, not the account's full balance.
-          data: encodeApprove(quote.value.allowance_target, quote.value.sell_amount),
+          data: approveData,
           nonce: approvePrep.nonce,
           gasLimit: approvePrep.gas_limit,
           gasPrice: approvePrep.gas_price,
@@ -854,7 +858,12 @@ async function confirmSwap() {
   const msgId = messages.push(t('msg.swap.submitting'), 'info', -1)
   try {
     const wallet = await unlockWalletForSigning(account)
-    const prep = await api.transactionPrep(chain, address, quote.value.to, quote.value.value)
+    // Must estimate gas for the actual swap call (to + data + value), not
+    // just a bare value transfer to the router contract — the latter either
+    // reverts outright (surfacing as a confusing 502) or, worse, succeeds
+    // with a gas limit far too low for the real swap, which then fails
+    // on-chain after broadcast.
+    const prep = await api.transactionPrep(chain, address, quote.value.to, quote.value.value, quote.value.data)
     const signedTx = await wallet.signTransaction({
       to: quote.value.to,
       data: quote.value.data,

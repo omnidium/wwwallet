@@ -274,6 +274,7 @@ export default {
     networkFailed: '无法连接到服务器。请检查网络连接，然后重试。',
     rateLimited: '请求过多——请稍等片刻，然后重试。',
     noLiquidity: '该代币对目前无法交易——请尝试其他代币。',
+    transactionWouldFail: '如果提交此交易，交易将失败——请检查您的余额以及是否需要任何批准。',
   },
   currency: {
     USD: '美元',

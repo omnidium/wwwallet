@@ -34,22 +34,31 @@ async function fetchWithRetry(input: string | URL, init?: RequestInit): Promise<
 // The backend's own error text (`body.error`) is never shown — it's a
 // hardcoded English string from a stateless Rust API with no i18n of its
 // own, so showing it as-is would leak untranslated text regardless of the
-// app's language. 429 and 422 get their own messages since both are common
-// and specific enough to be worth distinguishing (rate-limited; a swap quote
-// for a token pair with no liquidity); anything else falls back to a generic
-// translated message that still names the failing path and status for
-// support/debugging.
-function requestFailedError(path: string, status: number): Error {
-  if (status === 429) return translatedError('errors.rateLimited')
-  if (status === 422) return translatedError('errors.noLiquidity')
-  return translatedError('errors.requestFailed', { path, status })
+// app's language. A 422 instead carries a fixed, machine-readable `body.code`
+// naming which specific "well-formed but can't be fulfilled" case this is
+// (a swap quote with no liquidity; a transaction that would revert if
+// submitted), which is what's actually switched on below. 429 gets its own
+// message too since it's common enough to be worth distinguishing; anything
+// else falls back to a generic translated message that still names the
+// failing path and status for support/debugging.
+async function requestFailedError(res: Response, path: string): Promise<Error> {
+  if (res.status === 429) return translatedError('errors.rateLimited')
+  if (res.status === 422) {
+    const code = await res
+      .json()
+      .then((body: unknown) => (body as { code?: string } | null)?.code)
+      .catch(() => undefined)
+    if (code === 'no_liquidity') return translatedError('errors.noLiquidity')
+    if (code === 'would_revert') return translatedError('errors.transactionWouldFail')
+  }
+  return translatedError('errors.requestFailed', { path, status: res.status })
 }
 
 async function getJson<T>(path: string, query?: Record<string, string>): Promise<T> {
   const url = new URL(`${BASE_URL}${path}`)
   if (query) for (const [key, value] of Object.entries(query)) url.searchParams.set(key, value)
   const res = await fetchWithRetry(url)
-  if (!res.ok) throw requestFailedError(path, res.status)
+  if (!res.ok) throw await requestFailedError(res, path)
   return res.json() as Promise<T>
 }
 
@@ -59,7 +68,7 @@ async function postJson<T>(path: string, payload: unknown): Promise<T> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   })
-  if (!res.ok) throw requestFailedError(path, res.status)
+  if (!res.ok) throw await requestFailedError(res, path)
   return res.json() as Promise<T>
 }
 

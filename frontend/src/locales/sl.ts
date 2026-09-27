@@ -287,6 +287,8 @@ export default {
     networkFailed: 'Strežnika ni bilo mogoče doseči. Preverite povezavo in poskusite znova.',
     rateLimited: 'Preveč zahtevkov — počakajte trenutek in poskusite znova.',
     noLiquidity: 'Ta par tokenov trenutno ni na voljo za trgovanje — poskusite z drugim tokenom.',
+    transactionWouldFail:
+      'Ta transakcija bi bila zavrnjena, če bi jo poslali – preverite stanje na računu in morebitna potrebna odobritve.',
   },
   currency: {
     USD: 'ameriški dolar',

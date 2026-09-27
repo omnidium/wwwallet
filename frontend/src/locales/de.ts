@@ -299,7 +299,9 @@ export default {
       'Der Server konnte nicht erreicht werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.',
     rateLimited: 'Zu viele Anfragen – bitte warten Sie einen Moment und versuchen Sie es erneut.',
     noLiquidity:
-      'Dieses Token-Paar kann derzeit nicht gehandelt werden – versuche es mit einem anderen Token.',
+      'Dieses Token-Paar ist derzeit nicht handelbar – versuche es mit einem anderen Token.',
+    transactionWouldFail:
+      'Diese Transaktion würde bei einer Übermittlung fehlschlagen – überprüfen Sie Ihren Kontostand und ob eine Genehmigung erforderlich ist.',
   },
   currency: {
     USD: 'US-Dollar',

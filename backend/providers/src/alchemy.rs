@@ -418,9 +418,18 @@ impl TransactionPrepProvider for AlchemyProvider {
             .rpc_call(chain, "eth_getTransactionCount", json!([from, "pending"]))
             .await?;
         let gas_price_hex = self.rpc_call(chain, "eth_gasPrice", json!([])).await?;
+        // Unlike the two calls above (genuine infra failures if they error),
+        // an estimateGas error means the transaction as constructed would
+        // revert on-chain — a property of these specific inputs, not the
+        // network — so it's reclassified into its own error the API layer
+        // maps to a clear "this would fail" response instead of a generic 502.
         let gas_limit_hex = self
             .rpc_call(chain, "eth_estimateGas", json!([estimate_params]))
-            .await?;
+            .await
+            .map_err(|e| match e {
+                ProviderError::Upstream(reason) => ProviderError::TransactionWouldRevert(reason),
+                other => other,
+            })?;
 
         let nonce = u64::from_str_radix(
             nonce_hex.as_str().unwrap_or("0x0").trim_start_matches("0x"),

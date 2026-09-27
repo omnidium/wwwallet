@@ -291,6 +291,8 @@ export default {
       'Nie udało się nawiązać połączenia z serwerem. Sprawdź połączenie i spróbuj ponownie.',
     rateLimited: 'Zbyt wiele żądań — proszę chwilę poczekać i spróbować ponownie.',
     noLiquidity: 'Ta para tokenów nie jest obecnie dostępna do handlu — spróbuj innego tokena.',
+    transactionWouldFail:
+      'Ta transakcja nie zostanie zrealizowana, jeśli zostanie złożona — sprawdź stan konta i ewentualne wymagane zgody.',
   },
   currency: {
     USD: 'dolar amerykański',

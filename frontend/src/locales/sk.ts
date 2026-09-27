@@ -288,6 +288,8 @@ export default {
       'Nepodarilo sa nadviazať spojenie so serverom. Skontrolujte pripojenie a skúste to znova.',
     rateLimited: 'Príliš veľa požiadaviek – prosím, chvíľu počkajte a skúste to znova.',
     noLiquidity: 'Táto dvojica tokenov sa momentálne nedá obchodovať — skúste iný token.',
+    transactionWouldFail:
+      'Táto transakcia by sa v prípade odoslania nezrealizovala – skontrolujte si zostatok na účte a prípadné potrebné schválenia.',
   },
   currency: {
     USD: 'americký dolár',
