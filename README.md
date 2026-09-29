@@ -17,8 +17,10 @@ Full design rationale and phased migration plan: see the plan history in this re
 ```
 backend/            Rust workspace, compiled to a Cloudflare Worker (wasm32) — no database
   providers/        Alchemy / Ethplorer / Etherscan / 0x / fx-rate provider abstraction + KV caching
-frontend/           Vue 3 + Vite PWA
+frontend/           Vue 3 + Vite PWA — the wallet app itself
   src/locales/      Static i18n: en.ts is fully populated, every other locale is a stub
+website/            Vue 3 + Vite public marketing site — deliberately separate from frontend/,
+                    no Vuetify/Pinia/ethers/dexie, deploys independently to its own domain
 ```
 
 ## Backend: local dev
@@ -56,6 +58,19 @@ npm run dev
 ```
 
 Deploys as a static site to Cloudflare Pages, fully decoupled from the backend Worker.
+
+## Website: local dev
+
+```bash
+cd website
+npm install
+npm run dev
+```
+
+The public marketing site (`wwwallet.me` / `www.wwwallet.me`) — separate from the wallet app
+(`app.wwwallet.me`), on its own dev server port so both can run side by side. Deploys as its
+own static site to a separate Cloudflare Pages project, independent of the wallet's release
+cadence.
 
 ## Adding a language
 

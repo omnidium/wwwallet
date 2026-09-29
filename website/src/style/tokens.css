@@ -1,0 +1,62 @@
+:root {
+  --font-heading: 'Manrope', system-ui, sans-serif;
+  --font-body: 'Roboto', system-ui, sans-serif;
+
+  /* Brand gradient — sampled directly from the app's current favicon.ico
+     (green -> teal -> cyan -> blue), not the app's flatter Vuetify tokens. */
+  --grad-1: #7ef0ad;
+  --grad-2: #51f2cd;
+  --grad-3: #20f4ed;
+  --grad-4: #0494fc;
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--grad-1) 0%,
+    var(--grad-2) 35%,
+    var(--grad-3) 60%,
+    var(--grad-4) 100%
+  );
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  --shadow-fab: 0 4px 16px rgb(0 0 0 / 25%);
+  --shadow-panel: 0 12px 40px rgb(0 0 0 / 35%);
+  --shadow-card: 0 2px 12px rgb(0 0 0 / 6%);
+  --blur-glass: 14px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --space-7: 96px;
+
+  --container-max: 1080px;
+  --header-height: 72px;
+
+  /* Light mode (default) */
+  --bg: #f4fbf8;
+  --bg-alt: #e9f5f0;
+  --surface-rgb: 255 255 255;
+  --text: #0d1f1a;
+  --text-muted: #4d5f59;
+  --border-rgb: 13 31 26;
+  --accent: #04918f;
+  --accent-rgb: 4 145 143;
+  --focus-ring: #04918f;
+}
+
+:root[data-theme='dark'] {
+  --bg: #0d1f1a;
+  --bg-alt: #122820;
+  --surface-rgb: 24 42 36;
+  --text: #eef7f3;
+  --text-muted: #9db3ac;
+  --border-rgb: 255 255 255;
+  --accent: #55e8dd;
+  --accent-rgb: 85 232 221;
+  --focus-ring: #55e8dd;
+}

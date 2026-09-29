@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d1f1a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4fbf8" media="(prefers-color-scheme: light)" />
+
+    <title>wwwallet — Your keys. Your Ethereum. Your device.</title>
+    <meta
+      name="description"
+      content="wwwallet is a personal, non-custodial Ethereum wallet. Your keys are encrypted and stored only on your device — we never see them, and there's no account to hack."
+    />
+    <link rel="canonical" href="https://wwwallet.me/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="wwwallet" />
+    <meta property="og:url" content="https://wwwallet.me/" />
+    <meta property="og:title" content="wwwallet — Your keys. Your Ethereum. Your device." />
+    <meta
+      property="og:description"
+      content="A personal, non-custodial Ethereum wallet. Your keys are encrypted and stored only on your device — we never see them, and there's no account to hack."
+    />
+    <meta property="og:image" content="https://wwwallet.me/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="wwwallet — Your keys. Your Ethereum. Your device." />
+    <meta
+      name="twitter:description"
+      content="A personal, non-custodial Ethereum wallet. Your keys are encrypted and stored only on your device — we never see them, and there's no account to hack."
+    />
+    <meta name="twitter:image" content="https://wwwallet.me/og-image.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "wwwallet",
+        "url": "https://wwwallet.me/",
+        "description": "A personal, non-custodial Ethereum wallet. Your keys are encrypted and stored only on your device."
+      }
+    </script>
+
+    <script>
+      // Applied before any CSS/JS loads so there's no flash of the wrong
+      // theme — this page is public/SEO-facing (unlike the wallet app,
+      // which sits behind an auth gate where a brief flash goes unnoticed).
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('wwwallet-site.theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch {
+          document.documentElement.setAttribute('data-theme', 'light')
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
