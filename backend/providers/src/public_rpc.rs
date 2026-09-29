@@ -97,7 +97,18 @@ impl TransactionBroadcaster for PublicRpcProvider {
     }
 
     async fn broadcast(&self, chain: ChainId, raw_transaction_hex: &str) -> ProviderResult<String> {
-        let result = Self::rpc_call(chain, "eth_sendRawTransaction", json!([raw_transaction_hex])).await?;
+        // A node rejects eth_sendRawTransaction outright for reasons specific
+        // to this transaction (insufficient funds, a stale/reused nonce, a
+        // duplicate already in the mempool, ...) — not an upstream/network
+        // failure, so it's reclassified the same way estimateGas reverts are
+        // (see alchemy.rs's prepare()), giving a clear response instead of a
+        // generic 502.
+        let result = Self::rpc_call(chain, "eth_sendRawTransaction", json!([raw_transaction_hex]))
+            .await
+            .map_err(|e| match e {
+                ProviderError::Upstream(reason) => ProviderError::TransactionWouldRevert(reason),
+                other => other,
+            })?;
         result
             .as_str()
             .map(str::to_string)

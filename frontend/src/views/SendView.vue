@@ -823,11 +823,16 @@ async function onSwapClick() {
           return
         }
         messages.update(msgId, t('msg.swap.approvalConfirmed'), 'success')
-        // The quote used for the allowance amount could be a minute or more
-        // old by the time an approval actually mines — re-fetch it so the
-        // review dialog and the transaction actually signed reflect current
-        // market conditions rather than a stale price.
-        await getQuote()
+        // The approval transaction just spent some of this account's native
+        // balance on its own gas — openSwapReview's insufficient-gas check
+        // reads chainData's cached balance, which without this refresh would
+        // still reflect the pre-approval amount, letting a swap through the
+        // check that the real broadcast then rejects for insufficient funds.
+        // The quote itself could also be a minute or more old by the time an
+        // approval actually mines — re-fetch it so the review dialog and the
+        // transaction actually signed reflect current market conditions
+        // rather than a stale price.
+        await Promise.all([chainData.loadAddressActivity(chain, address), getQuote()])
       }
     }
 
