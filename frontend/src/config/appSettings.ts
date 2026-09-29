@@ -41,6 +41,19 @@ export const DUST_THRESHOLD_USD = 0.01
 export const TOKEN_METADATA_MAX_AGE_MS = ACCOUNT_AUTO_REFRESH_MS
 
 /**
+ * How long a token already confirmed to have no live price is left alone
+ * before being asked about again — most held tokens (airdropped dust
+ * especially) never resolve a market price at all, so polling them on the
+ * same cadence as a priced token is pure waste that's previously tripped the
+ * backend's per-IP rate limit for wallets holding a lot of them (see git
+ * history on AccountCard's metadata watcher). Matches the backend's own
+ * token-metadata cache TTL: asking more often than that would just replay
+ * the same cached (still priceless) answer anyway, so this is the shortest
+ * interval that can actually surface a newly-available price.
+ */
+export const TOKEN_METADATA_PRICELESS_RECHECK_MS = 60 * 60_000
+
+/**
  * How many transactions a single infinite-scroll "load more" batch tries to
  * surface before stopping (see useTransactionBatchLoader) — user-configurable
  * from Settings, this is just the default for a vault that's never set one.

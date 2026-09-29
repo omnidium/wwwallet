@@ -10,7 +10,11 @@ import {
 } from '@/services/api'
 import { cachedFetch } from '@/services/cachedFetch'
 import { db } from '@/services/db'
-import { DEFAULT_TRANSACTION_BATCH_SIZE, TOKEN_METADATA_MAX_AGE_MS } from '@/config/appSettings'
+import {
+  DEFAULT_TRANSACTION_BATCH_SIZE,
+  TOKEN_METADATA_MAX_AGE_MS,
+  TOKEN_METADATA_PRICELESS_RECHECK_MS,
+} from '@/config/appSettings'
 
 /**
  * Refreshes matching transactions in place (e.g. a status flip from pending
@@ -211,11 +215,23 @@ export const useChainDataStore = defineStore('chainData', () => {
 
   async function loadTokenMetadata(chain: ChainSlug, contractAddress: string) {
     const key = keyFor(chain, contractAddress)
+    // A token never resolved before is always worth asking about right away
+    // (maxAge 0 — see cachedFetch). One already confirmed priceless backs
+    // off to a much longer interval instead of being skipped forever, so it
+    // still gets an occasional real chance to pick up a price later (e.g. it
+    // resolved via a metadata fallback with no price data, or Ethplorer
+    // simply hadn't indexed a market for it yet at the time).
+    const existing = tokenMetadataByKey.value[key]
+    const maxAge = !existing
+      ? 0
+      : existing.usd_price == null
+        ? TOKEN_METADATA_PRICELESS_RECHECK_MS
+        : TOKEN_METADATA_MAX_AGE_MS
     tokenMetadataByKey.value[key] = await cachedFetch(
       `token-metadata:${key}`,
       () => api.tokenMetadata(chain, contractAddress),
       (fresh) => { tokenMetadataByKey.value[key] = fresh },
-      TOKEN_METADATA_MAX_AGE_MS,
+      maxAge,
     )
   }
 

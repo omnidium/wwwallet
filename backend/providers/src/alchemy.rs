@@ -330,10 +330,18 @@ impl ActivityProvider for AlchemyProvider {
 
         let token_balance_entries = self.fetch_all_token_balances(chain, address).await?;
         let mut balances = vec![native_balance];
+        // Defends against a page boundary in fetch_all_token_balances handing
+        // back the same contract twice (e.g. an inclusive pageKey cursor) —
+        // otherwise a single held token would be summed into the account's
+        // total twice over.
+        let mut seen_contracts = std::collections::HashSet::new();
         for entry in &token_balance_entries {
             let Some(contract) = entry.get("contractAddress").and_then(Value::as_str) else {
                 continue;
             };
+            if !seen_contracts.insert(contract.to_lowercase()) {
+                continue;
+            }
             let raw = entry
                 .get("tokenBalance")
                 .and_then(Value::as_str)

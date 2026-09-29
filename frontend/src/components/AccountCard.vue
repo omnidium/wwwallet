@@ -153,28 +153,19 @@ const { loadNextBatch: loadNextTransactionBatch, isLoading: loadingMoreTxns } = 
 )
 useInfiniteScroll(() => void loadNextTransactionBatch(), expandedListEl)
 
-// Re-checks token metadata on every periodic account refresh (tokenBalances
-// changes each time loadAddressActivity re-runs), but only for tokens not
-// yet resolved at all, or already known to carry a live usd_price — that
-// price is the one field in the metadata blob worth re-fetching for, and
-// most held tokens (airdropped dust especially) never have one, so there's
-// nothing to gain from re-asking for them forever once their first fetch
-// comes back priceless. Skipping those is what keeps this watcher's steady-
-// state request volume bounded for a long-lived address that can easily
-// hold 50+ tokens — re-checking literally everything every cycle blew
-// straight through the backend's rate limiter for exactly that kind of
-// address. Cheap either way for anything that doesn't actually need it yet:
-// loadTokenMetadata's own cachedFetch skips the network call entirely while
-// its cached copy is still within TOKEN_METADATA_MAX_AGE_MS. Concurrency-
-// limited rather than firing one request per held token all at once, for
-// the same reason.
+// Attempts every held token's metadata on every periodic account refresh
+// (tokenBalances changes each time loadAddressActivity re-runs). Whether that
+// actually reaches the network is loadTokenMetadata's own call: a never-seen
+// token goes straight through, a priced one is capped at
+// TOKEN_METADATA_MAX_AGE_MS so its usd_price stays current, and a confirmed-
+// priceless one backs off to TOKEN_METADATA_PRICELESS_RECHECK_MS — so a
+// long-lived address holding 50+ tokens (airdropped dust included) can't
+// turn this into a request per token per refresh, without that same address
+// permanently losing the chance to ever pick up a price for one of them.
+// Concurrency-limited rather than firing one request per held token at once,
+// for the same reason.
 watch(tokenBalances, (balances) => {
-  const toFetch = balances.filter((b) => {
-    const key = chainData.keyFor(props.account.chain, b.contract_address!)
-    const existing = chainData.tokenMetadataByKey[key]
-    return !existing || existing.usd_price != null
-  })
-  void mapWithConcurrency(toFetch, 4, async (b) => {
+  void mapWithConcurrency(balances, 4, async (b) => {
     try {
       await chainData.loadTokenMetadata(props.account.chain, b.contract_address!)
     } catch {
@@ -301,10 +292,10 @@ function openInNewTab(url: string): void {
       </div>
     </div>
 
-    <div v-if="tokenFiatTotal" class="balance-row token-row pa-3 d-flex align-center"
+    <div v-if="tokenRows.length > 0" class="balance-row token-row pa-3 d-flex align-center"
       @click="expandedTokens = !expandedTokens">
       <v-icon icon="mdi-cash-multiple" class="mr-2" />
-      <span class="balance-figure">{{ tokenFiatTotal }}</span>
+      <span class="balance-figure">{{ tokenFiatTotal ?? '—' }}</span>
       <v-spacer />
       <AppTooltip :text="expandedTokens ? t('accountCard.hideTokens') : t('accountCard.showTokens')">
         <template #default="{ activatorProps }">
