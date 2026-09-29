@@ -1,6 +1,6 @@
 # wwwallet
 
-A personal, non-custodial Ethereum/EVM wallet PWA. Rebuilt as a **Rust + Vue** stack, replacing a previous Angular + Flask/MySQL implementation. The backend runs as a **Cloudflare Worker** — no server to maintain, no database.
+A personal, non-custodial Ethereum/EVM wallet PWA. Rebuilt as a **Rust + Vue** stack. The backend runs as a **Cloudflare Worker** — no server to maintain, no database.
 
 Full design rationale and phased migration plan: see the plan history in this repo's commits, or ask for a copy of `eveything-in-wwwallet-needs-nifty-cascade.md` from the migration.
 
