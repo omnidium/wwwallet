@@ -93,21 +93,26 @@ const tokenBalances = computed(
   () => activity.value?.balances.filter((b) => b.contract_address !== null) ?? [],
 )
 const tokenRows = computed(() =>
-  tokenBalances.value.map((balance) => {
-    const key = chainData.keyFor(props.account.chain, balance.contract_address!)
-    const metadata = chainData.tokenMetadataByKey[key]
-    const amount = toHumanAmount(balance.balance, metadata?.decimals ?? balance.decimals)
-    const usd = metadata?.usd_price ? amount * metadata.usd_price : null
-    return {
-      contractAddress: balance.contract_address!,
-      symbol: metadata?.symbol ?? balance.symbol,
-      name: metadata?.name,
-      logoUrl: metadata?.logo_url,
-      amount,
-      fiat: usd === null ? null : formatFiat(convertUsd(usd, settingsLocale.currency, chainData.fxRates), settingsLocale.currency, locale.value),
-      usd,
-    }
-  }),
+  tokenBalances.value
+    .map((balance) => {
+      const key = chainData.keyFor(props.account.chain, balance.contract_address!)
+      const metadata = chainData.tokenMetadataByKey[key]
+      const amount = toHumanAmount(balance.balance, metadata?.decimals ?? balance.decimals)
+      const usd = metadata?.usd_price ? amount * metadata.usd_price : null
+      return {
+        contractAddress: balance.contract_address!,
+        symbol: metadata?.symbol ?? balance.symbol,
+        name: metadata?.name,
+        logoUrl: metadata?.logo_url,
+        amount,
+        fiat: usd === null ? null : formatFiat(convertUsd(usd, settingsLocale.currency, chainData.fxRates), settingsLocale.currency, locale.value),
+        usd,
+      }
+    })
+    // Highest USD value first; a token with no resolved price (e.g. the
+    // token-list metadata fallback, which never carries a live price) sinks
+    // to the bottom rather than sorting arbitrarily among the priced ones.
+    .sort((a, b) => (b.usd ?? -1) - (a.usd ?? -1)),
 )
 const tokenFiatUsdTotal = computed(() =>
   tokenRows.value.reduce((sum, t) => sum + (t.usd ?? 0), 0),
