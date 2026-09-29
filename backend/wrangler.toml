@@ -10,7 +10,9 @@ command = "worker-build --release"
 # (production) or a local, gitignored `.dev.vars` file (local `wrangler dev`) —
 # never here, since this file is committed.
 [vars]
-CORS_ALLOWED_ORIGINS = "https://wwwallet.me,https://www.wwwallet.me,https://main.wwwallet.pages.dev,https://wwwallet.pages.dev"
+#CORS_ALLOWED_ORIGINS = "https://wwwallet.me,https://www.wwwallet.me,https://main.wwwallet.pages.dev,https://wwwallet.pages.dev"
+CORS_ALLOWED_ORIGINS = "https://app.wwwallet.me,https://wwwallet.me,https://www.wwwallet.me,https://main.wwwallet.pages.dev,https://wwwallet.pages.dev"
+
 
 # Create with `wrangler kv namespace create CACHE`, then paste the returned id
 # below. Used for short-TTL caching of provider responses — see providers/src/cache.rs.
