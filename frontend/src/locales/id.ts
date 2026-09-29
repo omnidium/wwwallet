@@ -226,13 +226,16 @@ export default {
       stillPending: 'Masih dalam proses — belum dikonfirmasi. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Permohonan persetujuan telah diajukan. Tunggu hingga dikonfirmasi, lalu lakukan pertukaran lagi.',
+      approvalSubmitted: 'Permohonan persetujuan telah diajukan. Sedang menunggu konfirmasi…',
       success: 'Pertukaran telah dikirimkan.',
       submitting: 'Sedang mengirimkan transaksi…',
       waiting: 'Menunggu transaksi selesai…',
       failed: 'Pertukaran gagal. Hash: {hash}',
       stillPending: 'Masih dalam proses — belum dikonfirmasi. Hash: {hash}',
+      approvalConfirmed: 'Persetujuan telah dikonfirmasi. Sedang mempersiapkan pertukaran…',
+      approvalFailed: 'Persetujuan ditolak. Hash: {hash}',
+      approvalStillPending:
+        'Persetujuan masih dalam proses — belum dikonfirmasi. Coba lakukan pertukaran lagi sebentar lagi. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Telah dicadangkan ke Google Drive.',

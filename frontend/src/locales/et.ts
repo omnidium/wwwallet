@@ -224,13 +224,16 @@ export default {
       stillPending: 'Veel lahtine — seda pole veel kinnitatud. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Heakskiit on esitatud. Oota, kuni see kinnitatakse, ja vaheta siis uuesti.',
+      approvalSubmitted: 'Heakskiitmine on esitatud. Oodatakse kinnitust…',
       success: 'Vahetus on esitatud.',
       submitting: 'Tehingu edastamine…',
       waiting: 'Oodatakse tehingu lõpetamist…',
       failed: 'Vahetus ebaõnnestus. Hash: {hash}',
       stillPending: 'Veel lahtine — seda pole veel kinnitatud. Hash: {hash}',
+      approvalConfirmed: 'Kinnitus on saadud. Vahetust valmistatakse ette…',
+      approvalFailed: 'Kinnitamine ebaõnnestus. Hash: {hash}',
+      approvalStillPending:
+        'Heakskiitmine on veel pooleli – seda pole veel kinnitatud. Proovi veidi aja pärast uuesti vahetada. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Varundatud Google Drive’i.',

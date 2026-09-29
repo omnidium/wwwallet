@@ -223,12 +223,16 @@ export default {
       stillPending: 'עדיין בהמתנה — זה עדיין לא אושר. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted: 'הבקשה לאישור הוגשה. יש להמתין לאישורה, ואז לבצע את ההחלפה שוב.',
+      approvalSubmitted: 'הבקשה הוגשה. ממתינים לאישור…',
       success: 'ההחלפה נשלחה.',
       submitting: 'משלוח העסקה…',
       waiting: 'ממתינים להשלמת העסקה…',
       failed: 'ההחלפה נכשלה. Hash: {hash}',
       stillPending: 'עדיין בהמתנה — הדבר טרם אושר. Hash: {hash}',
+      approvalConfirmed: 'האישור אושר. מכינים את ההחלפה…',
+      approvalFailed: 'האישור נכשל. Hash: {hash}',
+      approvalStillPending:
+        'האישור עדיין בהמתנה — זה עדיין לא אושר. נסה לבצע את ההחלפה שוב בעוד זמן קצר. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'הועתק ל-Google Drive.',

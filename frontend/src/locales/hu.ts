@@ -228,12 +228,16 @@ export default {
       stillPending: 'Még függőben van — egyelőre nem erősítették meg. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted: 'A jóváhagyás elküldve. Várd meg a visszaigazolást, majd cserélj újra.',
+      approvalSubmitted: 'A jóváhagyás benyújtva. Várjuk a visszaigazolást…',
       success: 'A csere benyújtva.',
       submitting: 'Tranzakció elküldése…',
       waiting: 'Várjuk a tranzakció befejezését…',
       failed: 'A csere nem sikerült. Hash: {hash}',
       stillPending: 'Még függőben van – egyelőre nem erősítették meg. Hash: {hash}',
+      approvalConfirmed: 'A jóváhagyás megerősítve. A csere előkészítése folyamatban…',
+      approvalFailed: 'A jóváhagyás nem sikerült. Hash: {hash}',
+      approvalStillPending:
+        'A jóváhagyás még folyamatban van – egyelőre még nem erősítették meg. Próbáld meg hamarosan újra a cserét. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Biztonsági másolatot készítettem a Google Drive-ra.',

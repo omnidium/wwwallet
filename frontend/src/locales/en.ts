@@ -299,7 +299,11 @@ export default {
       stillPending: "Still pending — it hasn't been confirmed yet. Hash: {hash}",
     },
     swap: {
-      approvalSubmitted: 'Approval submitted. Wait for it to confirm, then swap again.',
+      approvalSubmitted: 'Approval submitted. Waiting for it to confirm…',
+      approvalConfirmed: 'Approval confirmed. Preparing swap…',
+      approvalFailed: 'Approval failed. Hash: {hash}',
+      approvalStillPending:
+        "Approval still pending — it hasn't been confirmed yet. Try swapping again shortly. Hash: {hash}",
       submitting: 'Submitting transaction…',
       waiting: 'Waiting for transaction to complete…',
       success: 'Swap submitted.',

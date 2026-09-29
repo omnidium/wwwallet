@@ -228,13 +228,16 @@ export default {
       stillPending: 'Noch offen – es wurde noch nicht bestätigt. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Genehmigung eingereicht. Warte, bis sie bestätigt ist, und tausche dann erneut.',
+      approvalSubmitted: 'Genehmigung eingereicht. Warten auf die Bestätigung…',
       success: 'Tausch eingereicht.',
       submitting: 'Transaktion wird übermittelt…',
       waiting: 'Warten auf den Abschluss der Transaktion…',
       failed: 'Der Austausch ist fehlgeschlagen. Hash: {hash}',
       stillPending: 'Noch offen – es wurde noch nicht bestätigt. Hash: {hash}',
+      approvalConfirmed: 'Genehmigung bestätigt. Swap wird vorbereitet…',
+      approvalFailed: 'Die Genehmigung ist fehlgeschlagen. Hash: {hash}',
+      approvalStillPending:
+        'Die Genehmigung steht noch aus – sie wurde noch nicht bestätigt. Versuchen Sie es in Kürze noch einmal. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Auf Google Drive gesichert.',

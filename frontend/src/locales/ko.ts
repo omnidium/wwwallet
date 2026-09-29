@@ -224,13 +224,16 @@ export default {
       stillPending: '아직 미정입니다 — 아직 확인되지 않았습니다. 해시: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        '승인 요청을 제출했습니다. 확인이 완료될 때까지 기다린 다음, 다시 교체하세요.',
+      approvalSubmitted: '승인 요청을 제출했습니다. 확인을 기다리고 있습니다…',
       success: '스왑이 제출되었습니다.',
       submitting: '거래 전송 중…',
       waiting: '거래가 완료되기를 기다리고 있습니다…',
       failed: '교환에 실패했습니다. 해시: {hash}',
       stillPending: '아직 미정입니다 — 아직 확인되지 않았습니다. 해시: {hash}',
+      approvalConfirmed: '승인 확인되었습니다. 스왑 준비 중…',
+      approvalFailed: '승인이 실패했습니다. 해시: {hash}',
+      approvalStillPending:
+        '승인이 아직 진행 중입니다 — 아직 확정되지 않았습니다. 잠시 후 다시 시도해 보세요. 해시: {hash}',
     },
     backup: {
       driveSuccess: 'Google 드라이브에 백업되었습니다.',

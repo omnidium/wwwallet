@@ -227,13 +227,16 @@ export default {
       stillPending: 'Vẫn đang chờ xử lý — vẫn chưa được xác nhận. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Đã gửi yêu cầu phê duyệt. Hãy đợi cho đến khi có xác nhận, sau đó thực hiện trao đổi lại.',
+      approvalSubmitted: 'Đã gửi đơn xin phê duyệt. Đang chờ xác nhận…',
       success: 'Đã gửi yêu cầu hoán đổi.',
       submitting: 'Đang gửi giao dịch…',
       waiting: 'Đang chờ giao dịch hoàn tất…',
       failed: 'Quá trình hoán đổi không thành công. Băm: {hash}',
       stillPending: 'Vẫn đang chờ xử lý — vẫn chưa được xác nhận. Hash: {hash}',
+      approvalConfirmed: 'Đã xác nhận phê duyệt. Đang chuẩn bị giao dịch hoán đổi…',
+      approvalFailed: 'Không được phê duyệt. Mã băm: {hash}',
+      approvalStillPending:
+        'Vẫn đang chờ phê duyệt — vẫn chưa được xác nhận. Hãy thử thực hiện lại thao tác này sau một lúc. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Đã sao lưu lên Google Drive.',

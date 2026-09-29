@@ -226,13 +226,16 @@ export default {
       stillPending: 'Ancora in sospeso — non è stato ancora confermato. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Richiesta di approvazione inviata. Attendere la conferma, quindi effettuare nuovamente lo scambio.',
+      approvalSubmitted: 'Richiesta di approvazione inviata. In attesa di conferma…',
       success: 'Scambio inviato.',
       submitting: 'Invio della transazione…',
       waiting: 'In attesa che la transazione venga completata…',
       failed: 'Operazione di swap non riuscita. Hash: {hash}',
       stillPending: 'Ancora in sospeso — non è stato ancora confermato. Hash: {hash}',
+      approvalConfirmed: 'Approvazione confermata. Preparazione dello swap in corso…',
+      approvalFailed: 'Approvazione non riuscita. Hash: {hash}',
+      approvalStillPending:
+        "L'approvazione è ancora in sospeso — non è stata ancora confermata. Prova a riprovare tra poco. Hash: {hash}",
     },
     backup: {
       driveSuccess: 'È stato eseguito il backup su Google Drive.',

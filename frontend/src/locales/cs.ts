@@ -225,13 +225,16 @@ export default {
       stillPending: 'Stále nevyřešeno – zatím nebylo potvrzeno. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Žádost o schválení byla odeslána. Počkejte na potvrzení a poté proveďte další výměnu.',
+      approvalSubmitted: 'Žádost o schválení byla podána. Čekám na potvrzení…',
       success: 'Výměna byla odeslána.',
       submitting: 'Odesílání transakce…',
       waiting: 'Čeká se na dokončení transakce…',
       failed: 'Výměna se nezdařila. Hash: {hash}',
       stillPending: 'Stále nevyřešeno – zatím to nebylo potvrzeno. Hash: {hash}',
+      approvalConfirmed: 'Schválení potvrzeno. Probíhá příprava výměny…',
+      approvalFailed: 'Schválení se nezdařilo. Hash: {hash}',
+      approvalStillPending:
+        'Schválení stále čeká na vyřízení – zatím nebylo potvrzeno. Zkuste to za chvíli zkusit znovu. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Zálohováno na Google Drive.',

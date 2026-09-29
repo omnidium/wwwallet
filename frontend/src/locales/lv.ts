@@ -226,13 +226,16 @@ export default {
       stillPending: 'Vēl nav izlemts — tas vēl nav apstiprināts. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Apstiprinājums ir iesniegts. Gaidiet, kamēr tas tiks apstiprināts, un pēc tam veiciet apmaiņu atkārtoti.',
+      approvalSubmitted: 'Apstiprinājums iesniegts. Gaidām apstiprinājumu…',
       success: 'Apmaiņa iesniegta.',
       submitting: 'Veic darījumu…',
       waiting: 'Gaida darījuma pabeigšanu…',
       failed: 'Apmaiņa neizdevās. Hāšs: {hash}',
       stillPending: 'Vēl nav izlemts — tas vēl nav apstiprināts. Hash: {hash}',
+      approvalConfirmed: 'Apstiprinājums apstiprināts. Sagatavojas apmaiņa…',
+      approvalFailed: 'Apstiprināšana neizdevās. Hāšs: {hash}',
+      approvalStillPending:
+        'Apstiprinājums vēl nav saņemts — tas vēl nav apstiprināts. Pēc brīža mēģiniet veikt apmaiņu vēlreiz. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Dati ir dublēti uz Google Drive.',

@@ -227,13 +227,16 @@ export default {
       stillPending: 'Fortsatt uavklart — det er ikke bekreftet ennå. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Godkjenningen er sendt inn. Vent til den er bekreftet, og bytt deretter igjen.',
+      approvalSubmitted: 'Godkjenningen er sendt inn. Venter på bekreftelse…',
       success: 'Byttet er sendt inn.',
       submitting: 'Sender transaksjon…',
       waiting: 'Venter på at transaksjonen skal fullføres…',
       failed: 'Bytte mislyktes. Hash: {hash}',
       stillPending: 'Fortsatt uavklart — det er ikke bekreftet ennå. Hash: {hash}',
+      approvalConfirmed: 'Godkjenningen er bekreftet. Forbereder bytte…',
+      approvalFailed: 'Godkjenningen mislyktes. Hash: {hash}',
+      approvalStillPending:
+        'Godkjenningen er fortsatt under behandling – den er ikke bekreftet ennå. Prøv å bytte igjen om litt. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Sikkerhetskopiert til Google Drive.',

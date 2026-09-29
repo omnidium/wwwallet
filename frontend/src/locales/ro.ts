@@ -228,13 +228,16 @@ export default {
       stillPending: 'Încă în așteptare — nu a fost confirmat încă. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'S-a trimis cererea de aprobare. Așteaptă confirmarea, apoi schimbă din nou.',
+      approvalSubmitted: 'Cererea de aprobare a fost trimisă. Aștept confirmarea…',
       success: 'Schimbul a fost trimis.',
       submitting: 'Se trimite tranzacția…',
       waiting: 'Se așteaptă finalizarea tranzacției…',
       failed: 'Schimbul a eșuat. Hash: {hash}',
       stillPending: 'Încă în așteptare — nu a fost confirmat încă. Hash: {hash}',
+      approvalConfirmed: 'Aprobarea a fost confirmată. Se pregătește schimbul…',
+      approvalFailed: 'Aprobarea a eșuat. Hash: {hash}',
+      approvalStillPending:
+        'Aprobarea este încă în așteptare — nu a fost încă confirmată. Încearcă să faci schimbul din nou în scurt timp. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'S-a făcut o copie de rezervă pe Google Drive.',

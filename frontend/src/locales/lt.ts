@@ -227,13 +227,16 @@ export default {
       stillPending: 'Dar nepatvirtinta — informacija dar nėra patvirtinta. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Patvirtinimas pateiktas. Palaukite, kol jis bus patvirtintas, tada vėl pakeiskite.',
+      approvalSubmitted: 'Patvirtinimas pateiktas. Laukiama patvirtinimo…',
       success: 'Keitimas pateiktas.',
       submitting: 'Siunčiama operacija…',
       waiting: 'Laukiama, kol sandoris bus užbaigtas…',
       failed: 'Keitimas nepavyko. Hash: {hash}',
       stillPending: 'Dar nepatvirtinta — tai dar nėra patvirtinta. Hash: {hash}',
+      approvalConfirmed: 'Patvirtinimas patvirtintas. Ruošiama apsikeitimo operacija…',
+      approvalFailed: 'Patvirtinimas nepavyko. Hash: {hash}',
+      approvalStillPending:
+        'Patvirtinimas dar laukiamas — kol kas tai nėra patvirtinta. Pabandykite vėl atlikti keitimą po kurio laiko. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Sukurta atsarginė kopija „Google Drive“.',

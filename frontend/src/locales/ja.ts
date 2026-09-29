@@ -224,13 +224,16 @@ export default {
       stillPending: 'まだ未定です — まだ確認されていません。ハッシュ：{hash}',
     },
     swap: {
-      approvalSubmitted:
-        '承認を送信しました。確認が完了するまで待ち、その後、再度交換してください。',
+      approvalSubmitted: '承認を申請しました。確認を待っています…',
       success: 'スワップが送信されました。',
       submitting: '取引を送信中…',
       waiting: 'トランザクションの完了を待っています…',
       failed: 'スワップに失敗しました。ハッシュ: {hash}',
       stillPending: 'まだ未定です — まだ確認されていません。ハッシュ：{hash}',
+      approvalConfirmed: '承認が確認されました。スワップの準備中…',
+      approvalFailed: '承認に失敗しました。ハッシュ：{hash}',
+      approvalStillPending:
+        '承認はまだ保留中です — まだ確定していません。しばらくしてからもう一度交換してみてください。ハッシュ：{hash}',
     },
     backup: {
       driveSuccess: 'Google ドライブにバックアップしました。',

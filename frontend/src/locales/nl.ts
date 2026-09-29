@@ -227,13 +227,16 @@ export default {
       stillPending: 'Nog in behandeling — het is nog niet bevestigd. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Goedkeuring ingediend. Wacht tot deze is bevestigd en wissel dan opnieuw.',
+      approvalSubmitted: 'Goedkeuring ingediend. In afwachting van bevestiging…',
       success: 'Ruil is ingediend.',
       submitting: 'Transactie wordt verzonden…',
       waiting: 'Wachten tot de transactie is voltooid…',
       failed: 'De uitwisseling is mislukt. Hash: {hash}',
       stillPending: 'Nog in behandeling — het is nog niet bevestigd. Hash: {hash}',
+      approvalConfirmed: 'Goedkeuring bevestigd. Swap wordt voorbereid…',
+      approvalFailed: 'Goedkeuring is mislukt. Hash: {hash}',
+      approvalStillPending:
+        'Goedkeuring nog in behandeling — het is nog niet bevestigd. Probeer het straks nog eens. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Er is een back-up gemaakt op Google Drive.',

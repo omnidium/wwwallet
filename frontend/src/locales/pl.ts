@@ -227,13 +227,16 @@ export default {
       stillPending: 'Wciąż w toku — nie zostało to jeszcze potwierdzone. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Wniosek o zatwierdzenie został złożony. Poczekaj na potwierdzenie, a potem ponownie dokonaj zamiany.',
+      approvalSubmitted: 'Wniosek o zatwierdzenie został złożony. Czekam na potwierdzenie…',
       success: 'Zgłoszenie zostało przesłane.',
       submitting: 'Przesyłanie transakcji…',
       waiting: 'Oczekiwanie na zakończenie transakcji…',
       failed: 'Wymiana nie powiodła się. Suma kontrolna: {hash}',
       stillPending: 'Wciąż w toku — nie zostało to jeszcze potwierdzone. Hash: {hash}',
+      approvalConfirmed: 'Zatwierdzenie potwierdzone. Przygotowywanie transakcji swapowej…',
+      approvalFailed: 'Zatwierdzenie nie powiodło się. Skrót: {hash}',
+      approvalStillPending:
+        'Zatwierdzenie wciąż w toku — nie zostało jeszcze potwierdzone. Spróbuj ponownie za chwilę. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Zarchiwizowano na Dysku Google.',

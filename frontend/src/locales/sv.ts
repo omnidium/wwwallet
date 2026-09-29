@@ -227,13 +227,16 @@ export default {
       stillPending: 'Fortfarande oklart – det har inte bekräftats ännu. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Godkännandet har skickats in. Vänta tills det bekräftas, och byt sedan igen.',
+      approvalSubmitted: 'Godkännandet har skickats in. Väntar på bekräftelse…',
       success: 'Byte har skickats in.',
       submitting: 'Skickar transaktion…',
       waiting: 'Väntar på att transaktionen ska slutföras…',
       failed: 'Byte misslyckades. Hash: {hash}',
       stillPending: 'Fortfarande oklart – det har inte bekräftats än. Hash: {hash}',
+      approvalConfirmed: 'Godkännandet har bekräftats. Förbereder byte…',
+      approvalFailed: 'Godkännandet misslyckades. Hash: {hash}',
+      approvalStillPending:
+        'Godkännandet väntar fortfarande – det har inte bekräftats än. Försök att byta igen om en stund. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Säkerhetskopierat till Google Drive.',

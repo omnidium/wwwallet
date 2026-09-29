@@ -226,13 +226,16 @@ export default {
       stillPending: 'Vielä avoinna — asiaa ei ole vielä vahvistettu. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Hyväksyntä on lähetetty. Odota, kunnes se vahvistetaan, ja vaihda sitten uudelleen.',
+      approvalSubmitted: 'Hyväksyntä on lähetetty. Odotetaan vahvistusta…',
       success: 'Vaihto on lähetetty.',
       submitting: 'Tapahtumaa lähetetään…',
       waiting: 'Odotetaan tapahtuman päättymistä…',
       failed: 'Vaihto epäonnistui. Hash: {hash}',
       stillPending: 'Vielä avoinna — asiaa ei ole vielä vahvistettu. Hash: {hash}',
+      approvalConfirmed: 'Hyväksyntä vahvistettu. Vaihtoa valmistellaan…',
+      approvalFailed: 'Hyväksyntä epäonnistui. Hash: {hash}',
+      approvalStillPending:
+        'Hyväksyntä on vielä vireillä — sitä ei ole vielä vahvistettu. Yritä vaihtaa uudelleen hetken kuluttua. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Varmuuskopioitu Google Driveen.',

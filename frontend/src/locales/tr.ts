@@ -225,12 +225,16 @@ export default {
       stillPending: 'Hâlâ beklemede — henüz onaylanmadı. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted: 'Onay gönderildi. Onaylanmasını bekleyin, ardından tekrar değiştirin.',
+      approvalSubmitted: 'Onay talebi gönderildi. Onaylanmasını bekliyoruz…',
       success: 'Değişim gönderildi.',
       submitting: 'İşlem gönderiliyor…',
       waiting: 'İşlemin tamamlanmasını bekliyoruz…',
       failed: 'Değiştirme işlemi başarısız oldu. Hash: {hash}',
       stillPending: 'Hâlâ beklemede — henüz onaylanmadı. Hash: {hash}',
+      approvalConfirmed: 'Onaylandı. Takas işlemi hazırlanıyor…',
+      approvalFailed: 'Onay başarısız oldu. Hash: {hash}',
+      approvalStillPending:
+        'Onay hâlâ beklemede — henüz teyit edilmedi. Biraz sonra tekrar değiştirmeyi deneyin. Hash: {hash}',
     },
     backup: {
       driveSuccess: "Google Drive'a yedeklendi.",

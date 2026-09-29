@@ -811,9 +811,23 @@ async function onSwapClick() {
           gasPrice: approvePrep.gas_price,
           chainId: approvePrep.chain_id,
         })
-        await api.broadcastTransaction(chain, approveTx)
-        messages.push(t('msg.swap.approvalSubmitted'), 'info')
-        return
+        const { transaction_hash: approveHash } = await api.broadcastTransaction(chain, approveTx)
+        const msgId = messages.push(t('msg.swap.approvalSubmitted'), 'info', -1)
+        const approvalStatus = await waitForTransactionConfirmation(chain, approveHash)
+        if (approvalStatus === 'failed') {
+          messages.update(msgId, t('msg.swap.approvalFailed', { hash: approveHash }), 'error')
+          return
+        }
+        if (approvalStatus === 'pending') {
+          messages.update(msgId, t('msg.swap.approvalStillPending', { hash: approveHash }), 'warning')
+          return
+        }
+        messages.update(msgId, t('msg.swap.approvalConfirmed'), 'success')
+        // The quote used for the allowance amount could be a minute or more
+        // old by the time an approval actually mines — re-fetch it so the
+        // review dialog and the transaction actually signed reflect current
+        // market conditions rather than a stale price.
+        await getQuote()
       }
     }
 

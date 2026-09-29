@@ -226,13 +226,16 @@ export default {
       stillPending: 'Še vedno v postopku — še ni bilo potrjeno. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Zahtevek za odobritev je bil poslan. Počakajte na potrditev, nato pa ponovno zamenjajte.',
+      approvalSubmitted: 'Zahtevek za odobritev je bil vložen. Čakam na potrditev…',
       success: 'Zamenjava je bila poslana.',
       submitting: 'Pošiljanje transakcije…',
       waiting: 'Čakam, da se transakcija zaključi…',
       failed: 'Zamenjava ni uspela. Hash: {hash}',
       stillPending: 'Še vedno v postopku — še ni bilo potrjeno. Hash: {hash}',
+      approvalConfirmed: 'Odobritev potrjena. Pripravlja se zamenjava…',
+      approvalFailed: 'Odobritev ni uspela. Hash: {hash}',
+      approvalStillPending:
+        'Odobritev še ni bila izdana — še ni bila potrjena. Poskusite zamenjavo ponovno čez nekaj časa. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Varnostna kopija je shranjena v Google Drive.',

@@ -218,12 +218,15 @@ export default {
       stillPending: '仍在等待中——尚未得到确认。哈希值：{hash}',
     },
     swap: {
-      approvalSubmitted: '已提交审批。请等待确认，然后再次交换。',
+      approvalSubmitted: '已提交审批。正在等待确认……',
       success: '交换已提交。',
       submitting: '正在提交交易……',
       waiting: '正在等待交易完成……',
       failed: '交换失败。哈希值：{hash}',
       stillPending: '仍在等待中——尚未得到确认。哈希值：{hash}',
+      approvalConfirmed: '已确认批准。正在准备互换……',
+      approvalFailed: '审批未通过。哈希值：{hash}',
+      approvalStillPending: '尚待批准——尚未得到确认。请稍后再试一次。哈希值：{hash}',
     },
     backup: {
       driveSuccess: '已备份到 Google 云端硬盘。',

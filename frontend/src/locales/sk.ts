@@ -225,13 +225,16 @@ export default {
       stillPending: 'Stále sa čaká — zatiaľ to nebolo potvrdené. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted:
-        'Žiadosť o schválenie bola odoslaná. Počkajte na potvrdenie a potom znovu vymeňte.',
+      approvalSubmitted: 'Žiadosť o schválenie bola odoslaná. Čakáme na potvrdenie…',
       success: 'Výmena bola odoslaná.',
       submitting: 'Odosielanie transakcie…',
       waiting: 'Čaká sa na dokončenie transakcie…',
       failed: 'Výmena sa nepodarila. Hash: {hash}',
       stillPending: 'Stále je to v riešení — zatiaľ to nebolo potvrdené. Hash: {hash}',
+      approvalConfirmed: 'Schválenie potvrdené. Príprava výmeny…',
+      approvalFailed: 'Schválenie sa nepodarilo. Hash: {hash}',
+      approvalStillPending:
+        'Schválenie stále prebieha – zatiaľ nebolo potvrdené. Skúste to o chvíľu znova. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Zálohované na Google Drive.',

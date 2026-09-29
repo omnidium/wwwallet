@@ -228,12 +228,16 @@ export default {
     },
     swap: {
       approvalSubmitted:
-        'Se ha enviado la solicitud de aprobación. Espera a que se confirme y, a continuación, vuelve a cambiarlo.',
+        'Se ha enviado la solicitud de aprobación. A la espera de que se confirme…',
       success: 'Se ha enviado el intercambio.',
       submitting: 'Enviando la transacción…',
       waiting: 'Esperando a que se complete la transacción…',
       failed: 'Error al realizar el intercambio. Hash: {hash}',
       stillPending: 'Aún está pendiente; todavía no se ha confirmado. Hash: {hash}',
+      approvalConfirmed: 'Se ha confirmado la aprobación. Preparando el intercambio…',
+      approvalFailed: 'La aprobación no se ha realizado. Hash: {hash}',
+      approvalStillPending:
+        'La aprobación sigue pendiente; aún no se ha confirmado. Intenta volver a realizar el intercambio dentro de un rato. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'Se ha hecho una copia de seguridad en Google Drive.',

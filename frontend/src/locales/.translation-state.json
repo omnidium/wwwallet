@@ -465,8 +465,8 @@
       "value": "Enviado."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Se ha enviado la solicitud de aprobación. Espera a que se confirme y, a continuación, vuelve a cambiarlo."
+      "enHash": "ed087478334a6bed",
+      "value": "Se ha enviado la solicitud de aprobación. A la espera de que se confirme…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -1127,6 +1127,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Esta transacción se rechazaría si se enviara; comprueba tu saldo y si se requiere alguna autorización."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Se ha confirmado la aprobación. Preparando el intercambio…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "La aprobación no se ha realizado. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "La aprobación sigue pendiente; aún no se ha confirmado. Intenta volver a realizar el intercambio dentro de un rato. Hash: {hash}"
     }
   },
   "ar": {
@@ -1595,8 +1607,8 @@
       "value": "تم الإرسال."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "تم تقديم طلب الموافقة. انتظر حتى يتم تأكيده، ثم قم بالتبديل مرة أخرى."
+      "enHash": "ed087478334a6bed",
+      "value": "تم تقديم طلب الموافقة. في انتظار تأكيده…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -2257,6 +2269,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "ستفشل هذه المعاملة في حال إرسالها — يرجى التحقق من رصيدك ومن أي موافقة مطلوبة."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "تم تأكيد الموافقة. يجري التحضير لعملية المقايضة…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "فشلت عملية الموافقة. التجزئة: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "الموافقة لا تزال قيد النظر — لم يتم تأكيدها بعد. حاول إعادة التبادل بعد قليل. التجزئة: {hash}"
     }
   },
   "bg": {
@@ -2725,8 +2749,8 @@
       "value": "Изпратено."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Заявката за одобрение е подадена. Изчакайте потвърждението, след което отново сменете."
+      "enHash": "ed087478334a6bed",
+      "value": "Заявката за одобрение е подадена. Чакаме потвърждение…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -3387,6 +3411,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Тази транзакция ще бъде отхвърлена, ако бъде подадена — проверете наличността си и дали е необходимо одобрение."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Одобрението е потвърдено. Подготвя се суап…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Одобрението не беше дадено. Хеш: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Одобрението все още е в процес на разглеждане — все още не е потвърдено. Опитайте отново след малко. Хеш: {hash}"
     }
   },
   "cs": {
@@ -3855,8 +3891,8 @@
       "value": "Odesláno."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Žádost o schválení byla odeslána. Počkejte na potvrzení a poté proveďte další výměnu."
+      "enHash": "ed087478334a6bed",
+      "value": "Žádost o schválení byla podána. Čekám na potvrzení…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -4517,6 +4553,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Pokud by byla tato transakce odeslána, nedošlo by k jejímu provedení – zkontrolujte si zůstatek a případné potřebné schválení."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Schválení potvrzeno. Probíhá příprava výměny…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Schválení se nezdařilo. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Schválení stále čeká na vyřízení – zatím nebylo potvrzeno. Zkuste to za chvíli zkusit znovu. Hash: {hash}"
     }
   },
   "da": {
@@ -4985,8 +5033,8 @@
       "value": "Sendt."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Godkendelsen er indsendt. Vent på, at den bliver bekræftet, og skift derefter igen."
+      "enHash": "ed087478334a6bed",
+      "value": "Godkendelsen er indsendt. Venter på bekræftelse…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -5647,6 +5695,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Denne transaktion vil blive afvist, hvis den indsendes — tjek din saldo og eventuelle godkendelseskrav."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Godkendelsen er bekræftet. Forbereder swap…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Godkendelsen mislykkedes. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Godkendelsen er stadig ikke på plads — den er endnu ikke bekræftet. Prøv at bytte igen om lidt. Hash: {hash}"
     }
   },
   "de": {
@@ -6115,8 +6175,8 @@
       "value": "Gesendet."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Genehmigung eingereicht. Warte, bis sie bestätigt ist, und tausche dann erneut."
+      "enHash": "ed087478334a6bed",
+      "value": "Genehmigung eingereicht. Warten auf die Bestätigung…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -6777,6 +6837,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Diese Transaktion würde bei einer Übermittlung fehlschlagen – überprüfen Sie Ihren Kontostand und ob eine Genehmigung erforderlich ist."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Genehmigung bestätigt. Swap wird vorbereitet…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Die Genehmigung ist fehlgeschlagen. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Die Genehmigung steht noch aus – sie wurde noch nicht bestätigt. Versuchen Sie es in Kürze noch einmal. Hash: {hash}"
     }
   },
   "el": {
@@ -7245,8 +7317,8 @@
       "value": "Αποστολή."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Η έγκριση υποβλήθηκε. Περιμένετε να επιβεβαιωθεί και, στη συνέχεια, κάντε ξανά την ανταλλαγή."
+      "enHash": "ed087478334a6bed",
+      "value": "Η αίτηση έγκρισης υποβλήθηκε. Αναμονή για επιβεβαίωση…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -7907,6 +7979,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Η συναλλαγή αυτή θα αποτύχει αν υποβληθεί — ελέγξτε το υπόλοιπό σας και τυχόν απαιτούμενες εγκρίσεις."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Η έγκριση επιβεβαιώθηκε. Προετοιμασία ανταλλαγής…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Η έγκριση απέτυχε. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Η έγκριση εκκρεμεί ακόμα — δεν έχει επιβεβαιωθεί ακόμα. Δοκιμάστε να κάνετε ξανά την ανταλλαγή σε λίγο. Hash: {hash}"
     }
   },
   "et": {
@@ -8375,8 +8459,8 @@
       "value": "Saadetud."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Heakskiit on esitatud. Oota, kuni see kinnitatakse, ja vaheta siis uuesti."
+      "enHash": "ed087478334a6bed",
+      "value": "Heakskiitmine on esitatud. Oodatakse kinnitust…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -9037,6 +9121,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Kui see tehing esitataks, ei õnnestuks see – kontrollige oma saldo ja vajalikke heakskiite."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Kinnitus on saadud. Vahetust valmistatakse ette…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Kinnitamine ebaõnnestus. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Heakskiitmine on veel pooleli – seda pole veel kinnitatud. Proovi veidi aja pärast uuesti vahetada. Hash: {hash}"
     }
   },
   "fi": {
@@ -9505,8 +9601,8 @@
       "value": "Lähetetty."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Hyväksyntä on lähetetty. Odota, kunnes se vahvistetaan, ja vaihda sitten uudelleen."
+      "enHash": "ed087478334a6bed",
+      "value": "Hyväksyntä on lähetetty. Odotetaan vahvistusta…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -10167,6 +10263,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Tämä tapahtuma epäonnistuisi, jos se lähetettäisiin — tarkista saldosi ja tarvittavat hyväksynnät."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Hyväksyntä vahvistettu. Vaihtoa valmistellaan…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Hyväksyntä epäonnistui. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Hyväksyntä on vielä vireillä — sitä ei ole vielä vahvistettu. Yritä vaihtaa uudelleen hetken kuluttua. Hash: {hash}"
     }
   },
   "fr": {
@@ -10635,8 +10743,8 @@
       "value": "Envoyé."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Demande d'approbation envoyée. Attendez la confirmation, puis procédez à un nouvel échange."
+      "enHash": "ed087478334a6bed",
+      "value": "Demande d'approbation envoyée. En attente de confirmation…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -11297,6 +11405,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Cette transaction serait refusée si elle était effectuée — vérifiez votre solde et assurez-vous d'avoir obtenu toutes les autorisations nécessaires."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Validation confirmée. Préparation de l'échange…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Validation échouée. Hachage : {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "L'approbation est toujours en attente — elle n'a pas encore été confirmée. Réessayez dans quelques instants. Hachage : {hash}"
     }
   },
   "hu": {
@@ -11765,8 +11885,8 @@
       "value": "Elküldve."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "A jóváhagyás elküldve. Várd meg a visszaigazolást, majd cserélj újra."
+      "enHash": "ed087478334a6bed",
+      "value": "A jóváhagyás benyújtva. Várjuk a visszaigazolást…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -12427,6 +12547,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Ez a tranzakció sikertelen lenne, ha benyújtanák – ellenőrizze egyenlegét és az esetleges jóváhagyási követelményeket."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "A jóváhagyás megerősítve. A csere előkészítése folyamatban…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "A jóváhagyás nem sikerült. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "A jóváhagyás még folyamatban van – egyelőre még nem erősítették meg. Próbáld meg hamarosan újra a cserét. Hash: {hash}"
     }
   },
   "id": {
@@ -12895,8 +13027,8 @@
       "value": "Dikirim."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Permohonan persetujuan telah diajukan. Tunggu hingga dikonfirmasi, lalu lakukan pertukaran lagi."
+      "enHash": "ed087478334a6bed",
+      "value": "Permohonan persetujuan telah diajukan. Sedang menunggu konfirmasi…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -13557,6 +13689,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Transaksi ini akan gagal jika diajukan — periksa saldo Anda dan persetujuan yang diperlukan."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Persetujuan telah dikonfirmasi. Sedang mempersiapkan pertukaran…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Persetujuan ditolak. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Persetujuan masih dalam proses — belum dikonfirmasi. Coba lakukan pertukaran lagi sebentar lagi. Hash: {hash}"
     }
   },
   "it": {
@@ -14025,8 +14169,8 @@
       "value": "Inviato."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Richiesta di approvazione inviata. Attendere la conferma, quindi effettuare nuovamente lo scambio."
+      "enHash": "ed087478334a6bed",
+      "value": "Richiesta di approvazione inviata. In attesa di conferma…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -14687,6 +14831,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Se inviata, questa transazione non andrebbe a buon fine: controlla il tuo saldo e verifica se sono necessarie delle approvazioni."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Approvazione confermata. Preparazione dello swap in corso…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Approvazione non riuscita. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "L'approvazione è ancora in sospeso — non è stata ancora confermata. Prova a riprovare tra poco. Hash: {hash}"
     }
   },
   "iw": {
@@ -15155,8 +15311,8 @@
       "value": "נשלח."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "הבקשה לאישור הוגשה. יש להמתין לאישורה, ואז לבצע את ההחלפה שוב."
+      "enHash": "ed087478334a6bed",
+      "value": "הבקשה הוגשה. ממתינים לאישור…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -15817,6 +15973,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "עסקה זו תיכשל אם תוגש — אנא בדוק את היתרה שלך ואת כל האישורים הנדרשים."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "האישור אושר. מכינים את ההחלפה…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "האישור נכשל. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "האישור עדיין בהמתנה — זה עדיין לא אושר. נסה לבצע את ההחלפה שוב בעוד זמן קצר. Hash: {hash}"
     }
   },
   "ja": {
@@ -16285,8 +16453,8 @@
       "value": "送信しました。"
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "承認を送信しました。確認が完了するまで待ち、その後、再度交換してください。"
+      "enHash": "ed087478334a6bed",
+      "value": "承認を申請しました。確認を待っています…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -16947,6 +17115,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "この取引を送信すると失敗します。残高および必要な承認事項を確認してください。"
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "承認が確認されました。スワップの準備中…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "承認に失敗しました。ハッシュ：{hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "承認はまだ保留中です — まだ確定していません。しばらくしてからもう一度交換してみてください。ハッシュ：{hash}"
     }
   },
   "ko": {
@@ -17415,8 +17595,8 @@
       "value": "보냄."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "승인 요청을 제출했습니다. 확인이 완료될 때까지 기다린 다음, 다시 교체하세요."
+      "enHash": "ed087478334a6bed",
+      "value": "승인 요청을 제출했습니다. 확인을 기다리고 있습니다…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -18077,6 +18257,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "이 거래를 제출하면 실패할 수 있습니다. 잔액과 필요한 승인 사항을 확인해 주세요."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "승인 확인되었습니다. 스왑 준비 중…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "승인이 실패했습니다. 해시: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "승인이 아직 진행 중입니다 — 아직 확정되지 않았습니다. 잠시 후 다시 시도해 보세요. 해시: {hash}"
     }
   },
   "lt": {
@@ -18545,8 +18737,8 @@
       "value": "Išsiųsta."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Patvirtinimas pateiktas. Palaukite, kol jis bus patvirtintas, tada vėl pakeiskite."
+      "enHash": "ed087478334a6bed",
+      "value": "Patvirtinimas pateiktas. Laukiama patvirtinimo…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -19207,6 +19399,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Jei šis sandoris būtų pateiktas, jis būtų atmestas – patikrinkite savo likutį ir ar nereikia kokio nors patvirtinimo."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Patvirtinimas patvirtintas. Ruošiama apsikeitimo operacija…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Patvirtinimas nepavyko. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Patvirtinimas dar laukiamas — kol kas tai nėra patvirtinta. Pabandykite vėl atlikti keitimą po kurio laiko. Hash: {hash}"
     }
   },
   "lv": {
@@ -19675,8 +19879,8 @@
       "value": "Nosūtīts."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Apstiprinājums ir iesniegts. Gaidiet, kamēr tas tiks apstiprināts, un pēc tam veiciet apmaiņu atkārtoti."
+      "enHash": "ed087478334a6bed",
+      "value": "Apstiprinājums iesniegts. Gaidām apstiprinājumu…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -20337,6 +20541,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Šis darījums netiktu apstiprināts, ja to iesniegtu — pārbaudiet savu kontā esošo atlikumu un pārliecinieties, vai ir nepieciešama apstiprināšana."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Apstiprinājums apstiprināts. Sagatavojas apmaiņa…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Apstiprināšana neizdevās. Hāšs: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Apstiprinājums vēl nav saņemts — tas vēl nav apstiprināts. Pēc brīža mēģiniet veikt apmaiņu vēlreiz. Hash: {hash}"
     }
   },
   "nl": {
@@ -20805,8 +21021,8 @@
       "value": "Verzonden."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Goedkeuring ingediend. Wacht tot deze is bevestigd en wissel dan opnieuw."
+      "enHash": "ed087478334a6bed",
+      "value": "Goedkeuring ingediend. In afwachting van bevestiging…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -21467,6 +21683,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Deze transactie zou mislukken als deze wordt ingediend — controleer uw saldo en of er goedkeuring nodig is."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Goedkeuring bevestigd. Swap wordt voorbereid…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Goedkeuring is mislukt. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Goedkeuring nog in behandeling — het is nog niet bevestigd. Probeer het straks nog eens. Hash: {hash}"
     }
   },
   "no": {
@@ -21935,8 +22163,8 @@
       "value": "Sendt."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Godkjenningen er sendt inn. Vent til den er bekreftet, og bytt deretter igjen."
+      "enHash": "ed087478334a6bed",
+      "value": "Godkjenningen er sendt inn. Venter på bekreftelse…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -22597,6 +22825,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Denne transaksjonen vil mislykkes hvis den sendes inn — sjekk saldoen din og eventuelle godkjenningskrav."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Godkjenningen er bekreftet. Forbereder bytte…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Godkjenningen mislyktes. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Godkjenningen er fortsatt under behandling – den er ikke bekreftet ennå. Prøv å bytte igjen om litt. Hash: {hash}"
     }
   },
   "pl": {
@@ -23065,8 +23305,8 @@
       "value": "Wysłano."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Wniosek o zatwierdzenie został złożony. Poczekaj na potwierdzenie, a potem ponownie dokonaj zamiany."
+      "enHash": "ed087478334a6bed",
+      "value": "Wniosek o zatwierdzenie został złożony. Czekam na potwierdzenie…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -23727,6 +23967,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Ta transakcja nie zostanie zrealizowana, jeśli zostanie złożona — sprawdź stan konta i ewentualne wymagane zgody."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Zatwierdzenie potwierdzone. Przygotowywanie transakcji swapowej…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Zatwierdzenie nie powiodło się. Skrót: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Zatwierdzenie wciąż w toku — nie zostało jeszcze potwierdzone. Spróbuj ponownie za chwilę. Hash: {hash}"
     }
   },
   "ro": {
@@ -24195,8 +24447,8 @@
       "value": "Trimis."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "S-a trimis cererea de aprobare. Așteaptă confirmarea, apoi schimbă din nou."
+      "enHash": "ed087478334a6bed",
+      "value": "Cererea de aprobare a fost trimisă. Aștept confirmarea…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -24857,6 +25109,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Această tranzacție ar eșua dacă ar fi trimisă — verificați soldul și eventualele aprobări necesare."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Aprobarea a fost confirmată. Se pregătește schimbul…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Aprobarea a eșuat. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Aprobarea este încă în așteptare — nu a fost încă confirmată. Încearcă să faci schimbul din nou în scurt timp. Hash: {hash}"
     }
   },
   "ru": {
@@ -25325,8 +25589,8 @@
       "value": "Отправлено."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Заявка на утверждение отправлена. Дождитесь подтверждения, а затем выполните обмен снова."
+      "enHash": "ed087478334a6bed",
+      "value": "Заявка на утверждение отправлена. Ожидаем подтверждения…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -25987,6 +26251,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Эта транзакция не будет выполнена в случае отправки — проверьте свой баланс и наличие необходимых разрешений."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Утверждение подтверждено. Готовится обмен…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Утверждение не прошло. Хеш: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Одобрение пока не получено — это ещё не подтверждено. Попробуйте повторить обмен чуть позже. Хеш: {hash}"
     }
   },
   "sk": {
@@ -26455,8 +26731,8 @@
       "value": "Odoslané."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Žiadosť o schválenie bola odoslaná. Počkajte na potvrdenie a potom znovu vymeňte."
+      "enHash": "ed087478334a6bed",
+      "value": "Žiadosť o schválenie bola odoslaná. Čakáme na potvrdenie…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -27117,6 +27393,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Táto transakcia by sa v prípade odoslania nezrealizovala – skontrolujte si zostatok na účte a prípadné potrebné schválenia."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Schválenie potvrdené. Príprava výmeny…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Schválenie sa nepodarilo. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Schválenie stále prebieha – zatiaľ nebolo potvrdené. Skúste to o chvíľu znova. Hash: {hash}"
     }
   },
   "sl": {
@@ -27585,8 +27873,8 @@
       "value": "Poslano."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Zahtevek za odobritev je bil poslan. Počakajte na potrditev, nato pa ponovno zamenjajte."
+      "enHash": "ed087478334a6bed",
+      "value": "Zahtevek za odobritev je bil vložen. Čakam na potrditev…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -28247,6 +28535,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Ta transakcija bi bila zavrnjena, če bi jo poslali – preverite stanje na računu in morebitna potrebna odobritve."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Odobritev potrjena. Pripravlja se zamenjava…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Odobritev ni uspela. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Odobritev še ni bila izdana — še ni bila potrjena. Poskusite zamenjavo ponovno čez nekaj časa. Hash: {hash}"
     }
   },
   "sv": {
@@ -28715,8 +29015,8 @@
       "value": "Skickat."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Godkännandet har skickats in. Vänta tills det bekräftas, och byt sedan igen."
+      "enHash": "ed087478334a6bed",
+      "value": "Godkännandet har skickats in. Väntar på bekräftelse…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -29377,6 +29677,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Denna transaktion skulle misslyckas om den skickades in – kontrollera ditt saldo och eventuella godkännanden som krävs."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Godkännandet har bekräftats. Förbereder byte…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Godkännandet misslyckades. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Godkännandet väntar fortfarande – det har inte bekräftats än. Försök att byta igen om en stund. Hash: {hash}"
     }
   },
   "tr": {
@@ -29845,8 +30157,8 @@
       "value": "Gönderildi."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Onay gönderildi. Onaylanmasını bekleyin, ardından tekrar değiştirin."
+      "enHash": "ed087478334a6bed",
+      "value": "Onay talebi gönderildi. Onaylanmasını bekliyoruz…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -30507,6 +30819,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Bu işlem gönderilirse başarısız olur — bakiyenizi ve gerekli onayları kontrol edin."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Onaylandı. Takas işlemi hazırlanıyor…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Onay başarısız oldu. Hash: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Onay hâlâ beklemede — henüz teyit edilmedi. Biraz sonra tekrar değiştirmeyi deneyin. Hash: {hash}"
     }
   },
   "uk": {
@@ -30975,8 +31299,8 @@
       "value": "Надіслано."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Заявка на затвердження подана. Дочекайтеся підтвердження, а потім знову обміняйтеся."
+      "enHash": "ed087478334a6bed",
+      "value": "Заявка на затвердження подана. Чекаємо на підтвердження…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -31637,6 +31961,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Ця операція не буде виконана, якщо її подати — перевірте свій баланс та наявність необхідних дозволів."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Затвердження підтверджено. Готується обмін…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Затвердження не пройшло. Хеш: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Затвердження ще не відбулося — це ще не підтверджено. Спробуйте повторити обмін незабаром. Хеш: {hash}"
     }
   },
   "vi": {
@@ -32105,8 +32441,8 @@
       "value": "Đã gửi."
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "Đã gửi yêu cầu phê duyệt. Hãy đợi cho đến khi có xác nhận, sau đó thực hiện trao đổi lại."
+      "enHash": "ed087478334a6bed",
+      "value": "Đã gửi đơn xin phê duyệt. Đang chờ xác nhận…"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -32767,6 +33103,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "Giao dịch này sẽ không thành công nếu được gửi đi — hãy kiểm tra số dư và các thủ tục phê duyệt cần thiết."
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "Đã xác nhận phê duyệt. Đang chuẩn bị giao dịch hoán đổi…"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "Không được phê duyệt. Mã băm: {hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "Vẫn đang chờ phê duyệt — vẫn chưa được xác nhận. Hãy thử thực hiện lại thao tác này sau một lúc. Hash: {hash}"
     }
   },
   "zh-CN": {
@@ -33235,8 +33583,8 @@
       "value": "已发送。"
     },
     "msg.swap.approvalSubmitted": {
-      "enHash": "cbd28b0b2dbe5b40",
-      "value": "已提交审批。请等待确认，然后再次交换。"
+      "enHash": "ed087478334a6bed",
+      "value": "已提交审批。正在等待确认……"
     },
     "msg.swap.success": {
       "enHash": "63a888c44d50bbca",
@@ -33897,6 +34245,18 @@
     "errors.transactionWouldFail": {
       "enHash": "a49b15f00e6f637f",
       "value": "如果提交此交易，交易将失败——请检查您的余额以及是否需要任何批准。"
+    },
+    "msg.swap.approvalConfirmed": {
+      "enHash": "95f31b453a346652",
+      "value": "已确认批准。正在准备互换……"
+    },
+    "msg.swap.approvalFailed": {
+      "enHash": "26287623d6d37a35",
+      "value": "审批未通过。哈希值：{hash}"
+    },
+    "msg.swap.approvalStillPending": {
+      "enHash": "aacead5ae1692dac",
+      "value": "尚待批准——尚未得到确认。请稍后再试一次。哈希值：{hash}"
     }
   }
 }

@@ -227,13 +227,16 @@ export default {
       stillPending: "Toujours en attente — cela n'a pas encore été confirmé. Hash : {hash}",
     },
     swap: {
-      approvalSubmitted:
-        "Demande d'approbation envoyée. Attendez la confirmation, puis procédez à un nouvel échange.",
+      approvalSubmitted: "Demande d'approbation envoyée. En attente de confirmation…",
       success: 'Échange envoyé.',
       submitting: 'Envoi de la transaction…',
       waiting: 'En attente de la fin de la transaction…',
       failed: "Échec de l'échange. Hachage : {hash}",
       stillPending: "Toujours en attente — cela n'a pas encore été confirmé. Hash : {hash}",
+      approvalConfirmed: "Validation confirmée. Préparation de l'échange…",
+      approvalFailed: 'Validation échouée. Hachage : {hash}',
+      approvalStillPending:
+        "L'approbation est toujours en attente — elle n'a pas encore été confirmée. Réessayez dans quelques instants. Hachage : {hash}",
     },
     backup: {
       driveSuccess: 'Sauvegardé sur Google Drive.',
