@@ -333,6 +333,7 @@ export default {
     hideUnknownTokens: 'Masquer les jetons inconnus',
     dragToReorder: 'Faites glisser pour réorganiser',
     refresh: 'Actualiser ce compte',
+    viewOnEtherscan: 'Cliquez ici pour consulter Etherscan',
   },
   editAccount: {
     title: 'Modifier le compte',

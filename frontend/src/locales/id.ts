@@ -333,6 +333,7 @@ export default {
     hideUnknownTokens: 'Sembunyikan token yang tidak dikenal',
     dragToReorder: 'Seret untuk mengatur ulang urutannya',
     refresh: 'Segarkan akun ini',
+    viewOnEtherscan: 'Klik untuk melihat di Etherscan',
   },
   editAccount: {
     title: 'Edit akun',

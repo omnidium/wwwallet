@@ -329,6 +329,7 @@ export default {
     hideUnknownTokens: 'Skrýt neznámé tokeny',
     dragToReorder: 'Přetažením změňte pořadí',
     refresh: 'Obnovit tento účet',
+    viewOnEtherscan: 'Klikněte zde pro zobrazení na Etherscanu',
   },
   editAccount: {
     title: 'Upravit účet',

@@ -46,6 +46,7 @@ export default {
     hideDustTxns: 'Hide transactions under $0.01',
     hideUnknownTokens: 'Hide unknown tokens',
     dragToReorder: 'Drag to reorder',
+    viewOnEtherscan: 'Click to view on Etherscan',
   },
   editAccount: {
     title: 'Edit account',

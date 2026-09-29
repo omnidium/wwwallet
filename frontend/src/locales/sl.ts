@@ -326,6 +326,7 @@ export default {
     hideUnknownTokens: 'Skrij neznane žetone',
     dragToReorder: 'Povleci za preureditev',
     refresh: 'Osveži ta račun',
+    viewOnEtherscan: 'Kliknite, da si ogledate na Etherscanu',
   },
   editAccount: {
     title: 'Uredi račun',

@@ -320,6 +320,7 @@ export default {
     hideUnknownTokens: 'הסתר אסימונים לא ידועים',
     dragToReorder: 'גרור כדי לשנות את הסדר',
     refresh: 'רענן את החשבון הזה',
+    viewOnEtherscan: 'לחץ כדי להציג ב-Etherscan',
   },
   editAccount: {
     title: 'ערוך חשבון',

@@ -338,6 +338,7 @@ export default {
     hideUnknownTokens: 'Απόκρυψη άγνωστων διακριτικών',
     dragToReorder: 'Σύρετε για να αλλάξετε τη σειρά',
     refresh: 'Ανανέωση αυτού του λογαριασμού',
+    viewOnEtherscan: 'Κάντε κλικ για να δείτε στο Etherscan',
   },
   editAccount: {
     title: 'Επεξεργασία λογαριασμού',

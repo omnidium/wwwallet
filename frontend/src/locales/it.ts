@@ -329,6 +329,7 @@ export default {
     hideUnknownTokens: 'Nascondi i token sconosciuti',
     dragToReorder: 'Trascina per riorganizzare',
     refresh: 'Aggiorna questo account',
+    viewOnEtherscan: 'Clicca qui per visualizzare su Etherscan',
   },
   editAccount: {
     title: 'Modifica account',

@@ -328,6 +328,7 @@ export default {
     hideUnknownTokens: '不明なトークンを非表示にする',
     dragToReorder: 'ドラッグして順序を変更してください',
     refresh: 'このアカウントを更新する',
+    viewOnEtherscan: 'クリックしてEtherscanで表示する',
   },
   editAccount: {
     title: 'アカウントを編集する',

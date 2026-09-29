@@ -335,6 +335,7 @@ export default {
     hideUnknownTokens: 'Ocultar tokens desconocidos',
     dragToReorder: 'Arrastra para cambiar el orden',
     refresh: 'Actualizar esta cuenta',
+    viewOnEtherscan: 'Haz clic para verlo en Etherscan',
   },
   editAccount: {
     title: 'Editar cuenta',

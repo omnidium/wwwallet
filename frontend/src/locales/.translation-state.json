@@ -1139,6 +1139,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "La aprobación sigue pendiente; aún no se ha confirmado. Intenta volver a realizar el intercambio dentro de un rato. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Haz clic para verlo en Etherscan"
     }
   },
   "ar": {
@@ -2281,6 +2285,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "الموافقة لا تزال قيد النظر — لم يتم تأكيدها بعد. حاول إعادة التبادل بعد قليل. التجزئة: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "انقر لعرضه على Etherscan"
     }
   },
   "bg": {
@@ -3423,6 +3431,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Одобрението все още е в процес на разглеждане — все още не е потвърдено. Опитайте отново след малко. Хеш: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Кликнете, за да видите в Etherscan"
     }
   },
   "cs": {
@@ -4565,6 +4577,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Schválení stále čeká na vyřízení – zatím nebylo potvrzeno. Zkuste to za chvíli zkusit znovu. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Klikněte zde pro zobrazení na Etherscanu"
     }
   },
   "da": {
@@ -5707,6 +5723,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Godkendelsen er stadig ikke på plads — den er endnu ikke bekræftet. Prøv at bytte igen om lidt. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Klik her for at se det på Etherscan"
     }
   },
   "de": {
@@ -6849,6 +6869,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Die Genehmigung steht noch aus – sie wurde noch nicht bestätigt. Versuchen Sie es in Kürze noch einmal. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Zum Anzeigen auf Etherscan hier klicken"
     }
   },
   "el": {
@@ -7991,6 +8015,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Η έγκριση εκκρεμεί ακόμα — δεν έχει επιβεβαιωθεί ακόμα. Δοκιμάστε να κάνετε ξανά την ανταλλαγή σε λίγο. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Κάντε κλικ για να δείτε στο Etherscan"
     }
   },
   "et": {
@@ -9133,6 +9161,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Heakskiitmine on veel pooleli – seda pole veel kinnitatud. Proovi veidi aja pärast uuesti vahetada. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Klõpsa, et vaadata Etherscanis"
     }
   },
   "fi": {
@@ -10275,6 +10307,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Hyväksyntä on vielä vireillä — sitä ei ole vielä vahvistettu. Yritä vaihtaa uudelleen hetken kuluttua. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Napsauta nähdäksesi Etherscanissa"
     }
   },
   "fr": {
@@ -11417,6 +11453,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "L'approbation est toujours en attente — elle n'a pas encore été confirmée. Réessayez dans quelques instants. Hachage : {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Cliquez ici pour consulter Etherscan"
     }
   },
   "hu": {
@@ -12559,6 +12599,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "A jóváhagyás még folyamatban van – egyelőre még nem erősítették meg. Próbáld meg hamarosan újra a cserét. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Kattintson az Etherscan-on való megtekintéshez"
     }
   },
   "id": {
@@ -13701,6 +13745,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Persetujuan masih dalam proses — belum dikonfirmasi. Coba lakukan pertukaran lagi sebentar lagi. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Klik untuk melihat di Etherscan"
     }
   },
   "it": {
@@ -14843,6 +14891,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "L'approvazione è ancora in sospeso — non è stata ancora confermata. Prova a riprovare tra poco. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Clicca qui per visualizzare su Etherscan"
     }
   },
   "iw": {
@@ -15985,6 +16037,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "האישור עדיין בהמתנה — זה עדיין לא אושר. נסה לבצע את ההחלפה שוב בעוד זמן קצר. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "לחץ כדי להציג ב-Etherscan"
     }
   },
   "ja": {
@@ -17127,6 +17183,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "承認はまだ保留中です — まだ確定していません。しばらくしてからもう一度交換してみてください。ハッシュ：{hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "クリックしてEtherscanで表示する"
     }
   },
   "ko": {
@@ -18269,6 +18329,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "승인이 아직 진행 중입니다 — 아직 확정되지 않았습니다. 잠시 후 다시 시도해 보세요. 해시: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Etherscan에서 보려면 클릭하세요"
     }
   },
   "lt": {
@@ -19411,6 +19475,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Patvirtinimas dar laukiamas — kol kas tai nėra patvirtinta. Pabandykite vėl atlikti keitimą po kurio laiko. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Spustelėkite, kad peržiūrėtumėte „Etherscan“"
     }
   },
   "lv": {
@@ -20553,6 +20621,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Apstiprinājums vēl nav saņemts — tas vēl nav apstiprināts. Pēc brīža mēģiniet veikt apmaiņu vēlreiz. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Noklikšķiniet, lai apskatītu Etherscan"
     }
   },
   "nl": {
@@ -21695,6 +21767,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Goedkeuring nog in behandeling — het is nog niet bevestigd. Probeer het straks nog eens. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Klik hier om op Etherscan te bekijken"
     }
   },
   "no": {
@@ -22837,6 +22913,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Godkjenningen er fortsatt under behandling – den er ikke bekreftet ennå. Prøv å bytte igjen om litt. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Klikk for å se på Etherscan"
     }
   },
   "pl": {
@@ -23979,6 +24059,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Zatwierdzenie wciąż w toku — nie zostało jeszcze potwierdzone. Spróbuj ponownie za chwilę. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Kliknij, aby wyświetlić w serwisie Etherscan"
     }
   },
   "ro": {
@@ -25121,6 +25205,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Aprobarea este încă în așteptare — nu a fost încă confirmată. Încearcă să faci schimbul din nou în scurt timp. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Faceți clic pentru a vizualiza pe Etherscan"
     }
   },
   "ru": {
@@ -26263,6 +26351,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Одобрение пока не получено — это ещё не подтверждено. Попробуйте повторить обмен чуть позже. Хеш: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Нажмите, чтобы посмотреть на Etherscan"
     }
   },
   "sk": {
@@ -27405,6 +27497,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Schválenie stále prebieha – zatiaľ nebolo potvrdené. Skúste to o chvíľu znova. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Kliknite tu pre zobrazenie na Etherscan"
     }
   },
   "sl": {
@@ -28547,6 +28643,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Odobritev še ni bila izdana — še ni bila potrjena. Poskusite zamenjavo ponovno čez nekaj časa. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Kliknite, da si ogledate na Etherscanu"
     }
   },
   "sv": {
@@ -29689,6 +29789,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Godkännandet väntar fortfarande – det har inte bekräftats än. Försök att byta igen om en stund. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Klicka här för att visa på Etherscan"
     }
   },
   "tr": {
@@ -30831,6 +30935,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Onay hâlâ beklemede — henüz teyit edilmedi. Biraz sonra tekrar değiştirmeyi deneyin. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Etherscan'da görüntülemek için tıklayın"
     }
   },
   "uk": {
@@ -31973,6 +32081,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Затвердження ще не відбулося — це ще не підтверджено. Спробуйте повторити обмін незабаром. Хеш: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Натисніть, щоб переглянути на Etherscan"
     }
   },
   "vi": {
@@ -33115,6 +33227,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "Vẫn đang chờ phê duyệt — vẫn chưa được xác nhận. Hãy thử thực hiện lại thao tác này sau một lúc. Hash: {hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "Nhấp vào đây để xem trên Etherscan"
     }
   },
   "zh-CN": {
@@ -34257,6 +34373,10 @@
     "msg.swap.approvalStillPending": {
       "enHash": "aacead5ae1692dac",
       "value": "尚待批准——尚未得到确认。请稍后再试一次。哈希值：{hash}"
+    },
+    "accountCard.viewOnEtherscan": {
+      "enHash": "33f9acae37b47786",
+      "value": "点击在Etherscan上查看"
     }
   }
 }

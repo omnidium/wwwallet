@@ -66,6 +66,15 @@ impl Default for TokenListProvider {
     }
 }
 
+/// Looks up a single token by contract address — used as a `TokenMetadata`
+/// fallback (see registry.rs) for chains whose primary metadata provider
+/// can't help, where a list entry's name/symbol/decimals/logo is the only
+/// source available at all.
+pub fn find_by_address<'a>(list: &'a [TokenListItem], address: &str) -> Option<&'a TokenListItem> {
+    let address = address.to_lowercase();
+    list.iter().find(|item| item.address.to_lowercase() == address)
+}
+
 /// Ranks symbol-exact matches first, then symbol-prefix, then a substring hit
 /// on either symbol or name — the order a user typing "usd" would expect
 /// (USDC/USDT before "Fake USD Token"), capped to `limit` results.
@@ -148,5 +157,12 @@ mod tests {
     fn blank_query_returns_nothing() {
         let list = vec![item("USDC", "USD Coin")];
         assert!(search(&list, "   ", 10).is_empty());
+    }
+
+    #[test]
+    fn find_by_address_matches_case_insensitively() {
+        let list = vec![item("USDC", "USD Coin")];
+        assert_eq!(find_by_address(&list, "0XUSDC").unwrap().symbol, "USDC");
+        assert!(find_by_address(&list, "0xnope").is_none());
     }
 }

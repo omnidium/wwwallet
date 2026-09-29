@@ -168,6 +168,13 @@ impl ProviderRegistry {
         self.activity.transaction_page(chain, address, cursor).await
     }
 
+    /// Ethplorer (`self.tokens`, the primary source) only ever indexes
+    /// Ethereum — every lookup on any other chain fails outright, and even on
+    /// Ethereum it can miss a token it simply hasn't indexed yet. Either way,
+    /// the same per-chain list `search_tokens` fetches for the swap picker
+    /// doubles as a fallback here: no live USD price, but still enough of a
+    /// symbol/decimals/logo to keep a real balance from rendering as
+    /// "unknown" and getting hidden by AccountCard's default toggle.
     pub async fn token_metadata(
         &self,
         chain: ChainId,
@@ -182,10 +189,44 @@ impl ProviderRegistry {
             TOKEN_METADATA_STALE_TTL,
             || async {
                 self.check_rate_limit(client_ip, "token_metadata").await?;
-                self.tokens.token_metadata(chain, contract_address).await
+                match self.tokens.token_metadata(chain, contract_address).await {
+                    Ok(metadata) => Ok(metadata),
+                    Err(_) => self.token_list_metadata(chain, contract_address, client_ip).await,
+                }
             },
         )
         .await
+    }
+
+    /// Fallback source for `token_metadata` — see its docs.
+    async fn token_list_metadata(
+        &self,
+        chain: ChainId,
+        contract_address: &str,
+        client_ip: &str,
+    ) -> ProviderResult<TokenMetadata> {
+        let key = format!("tokenlist:{chain:?}");
+        let list: Vec<TokenListItem> = cache::get_or_fetch_with_stale_fallback(
+            &self.kv,
+            &key,
+            TOKEN_LIST_TTL,
+            TOKEN_LIST_STALE_TTL,
+            || async {
+                self.check_rate_limit(client_ip, "token_list").await?;
+                self.token_list.fetch_list(chain).await
+            },
+        )
+        .await?;
+        tokenlist::find_by_address(&list, contract_address)
+            .map(|item| TokenMetadata {
+                address: item.address.clone(),
+                name: Some(item.name.clone()),
+                symbol: Some(item.symbol.clone()),
+                decimals: Some(item.decimals),
+                logo_url: item.logo_url.clone(),
+                usd_price: None,
+            })
+            .ok_or(ProviderError::Unavailable)
     }
 
     pub async fn contract_abi(

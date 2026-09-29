@@ -331,6 +331,7 @@ export default {
     hideUnknownTokens: 'Paslēpt nezināmos simbolus',
     dragToReorder: 'Velciet, lai mainītu secību',
     refresh: 'Atjaunināt šo kontu',
+    viewOnEtherscan: 'Noklikšķiniet, lai apskatītu Etherscan',
   },
   editAccount: {
     title: 'Rediģēt kontu',

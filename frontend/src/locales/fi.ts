@@ -327,6 +327,7 @@ export default {
     hideUnknownTokens: 'Piilota tuntemattomat tunnukset',
     dragToReorder: 'Vedä järjestystä muuttaaksesi',
     refresh: 'Päivitä tämä tili',
+    viewOnEtherscan: 'Napsauta nähdäksesi Etherscanissa',
   },
   editAccount: {
     title: 'Muokkaa tiliä',

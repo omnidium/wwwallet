@@ -326,6 +326,7 @@ export default {
     hideUnknownTokens: '알 수 없는 토큰 숨기기',
     dragToReorder: '드래그하여 순서 변경',
     refresh: '이 계정 새로 고침',
+    viewOnEtherscan: 'Etherscan에서 보려면 클릭하세요',
   },
   editAccount: {
     title: '계정 수정',

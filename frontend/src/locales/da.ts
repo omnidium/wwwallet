@@ -328,6 +328,7 @@ export default {
     hideUnknownTokens: 'Skjul ukendte tokens',
     dragToReorder: 'Træk for at ændre rækkefølgen',
     refresh: 'Opdater denne konto',
+    viewOnEtherscan: 'Klik her for at se det på Etherscan',
   },
   editAccount: {
     title: 'Rediger konto',

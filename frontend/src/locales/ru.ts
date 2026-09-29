@@ -333,6 +333,7 @@ export default {
     hideUnknownTokens: 'Скрыть неизвестные токены',
     dragToReorder: 'Перетащите, чтобы изменить порядок',
     refresh: 'Обновить эту учетную запись',
+    viewOnEtherscan: 'Нажмите, чтобы посмотреть на Etherscan',
   },
   editAccount: {
     title: 'Редактировать учетную запись',

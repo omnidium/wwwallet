@@ -20,6 +20,15 @@ use crate::types::{
 /// size would make that cursor huge too.
 const TRANSACTION_PAGE_SIZE: usize = 25;
 
+/// Upper bound on how many pages `fetch_all_token_balances` will fetch for a
+/// single address, so a wallet that's been flooded with thousands of
+/// spam-airdropped contracts over the years can't turn one `address_activity`
+/// call into unbounded upstream requests. Comfortably above what we've
+/// observed on real, heavily-airdropped addresses (100-200 distinct
+/// contracts) — this would need many times that before it started silently
+/// truncating again the way the unpaginated version always did.
+const TOKEN_BALANCE_PAGE_CAP: usize = 10;
+
 /// Per-direction (sent/received) pagination state threaded through Alchemy's
 /// own `pageKey` continuation token.
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
@@ -196,6 +205,35 @@ impl AlchemyProvider {
         }
     }
 
+    /// `alchemy_getTokenBalances` in "erc20" mode returns every ERC-20
+    /// contract this address has ever held a balance of (including long-dead
+    /// dust), sorted by contract address — not by balance or relevance. Past
+    /// `TOKEN_BALANCE_PAGE_CAP` distinct contracts, Alchemy paginates that
+    /// list via its own `pageKey` (unrelated to this file's transaction-page
+    /// cursor). Reading only the first page silently dropped every token
+    /// whose contract address sorted past the cutoff — real, valuable
+    /// tokens included, not just spam (e.g. USDC's `0xa0b8...` address
+    /// sorting after a page full of lower addresses).
+    async fn fetch_all_token_balances(&self, chain: ChainId, address: &str) -> ProviderResult<Vec<Value>> {
+        let mut all = Vec::new();
+        let mut page_key: Option<String> = None;
+        for _ in 0..TOKEN_BALANCE_PAGE_CAP {
+            let params = match &page_key {
+                Some(key) => json!([address, "erc20", { "pageKey": key }]),
+                None => json!([address, "erc20"]),
+            };
+            let resp = self.rpc_call(chain, "alchemy_getTokenBalances", params).await?;
+            if let Some(entries) = resp.get("tokenBalances").and_then(Value::as_array) {
+                all.extend(entries.iter().cloned());
+            }
+            page_key = resp.get("pageKey").and_then(Value::as_str).map(str::to_string);
+            if page_key.is_none() {
+                break;
+            }
+        }
+        Ok(all)
+    }
+
     /// Tops up whichever direction(s) aren't yet exhausted with one more page
     /// of raw transfers each, then extracts the newest `TRANSACTION_PAGE_SIZE`
     /// (post swap-merge) as the page to hand back, leaving the remainder
@@ -290,32 +328,25 @@ impl ActivityProvider for AlchemyProvider {
             decimals: 18,
         };
 
-        let token_balances_resp = self
-            .rpc_call(chain, "alchemy_getTokenBalances", json!([address, "erc20"]))
-            .await?;
+        let token_balance_entries = self.fetch_all_token_balances(chain, address).await?;
         let mut balances = vec![native_balance];
-        if let Some(entries) = token_balances_resp
-            .get("tokenBalances")
-            .and_then(Value::as_array)
-        {
-            for entry in entries {
-                let Some(contract) = entry.get("contractAddress").and_then(Value::as_str) else {
-                    continue;
-                };
-                let raw = entry
-                    .get("tokenBalance")
-                    .and_then(Value::as_str)
-                    .unwrap_or("0x0");
-                if raw == "0x0" {
-                    continue;
-                }
-                balances.push(Balance {
-                    symbol: "ERC20".to_string(),
-                    contract_address: Some(contract.to_string()),
-                    balance: Self::hex_to_decimal_string(raw),
-                    decimals: 18,
-                });
+        for entry in &token_balance_entries {
+            let Some(contract) = entry.get("contractAddress").and_then(Value::as_str) else {
+                continue;
+            };
+            let raw = entry
+                .get("tokenBalance")
+                .and_then(Value::as_str)
+                .unwrap_or("0x0");
+            if raw == "0x0" {
+                continue;
             }
+            balances.push(Balance {
+                symbol: "ERC20".to_string(),
+                contract_address: Some(contract.to_string()),
+                balance: Self::hex_to_decimal_string(raw),
+                decimals: 18,
+            });
         }
 
         let (transactions, cursor) = self

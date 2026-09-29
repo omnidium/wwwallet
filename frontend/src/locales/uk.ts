@@ -333,6 +333,7 @@ export default {
     hideUnknownTokens: 'Приховати невідомі токени',
     dragToReorder: 'Перетягніть, щоб змінити порядок',
     refresh: 'Оновити цей обліковий запис',
+    viewOnEtherscan: 'Натисніть, щоб переглянути на Etherscan',
   },
   editAccount: {
     title: 'Редагувати профіль',

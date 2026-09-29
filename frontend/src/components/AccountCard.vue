@@ -205,10 +205,14 @@ function openInNewTab(url: string): void {
     </div>
     <div class=" card-header d-flex align-center pa-4 pb-2">
       <span v-if="account.isDefault" class="mr-1">*</span>
-      <p class="account-name flex-grow-0 text-truncate" style="cursor: pointer"
-        @click="openInNewTab(addressUrl(props.account.chain, props.account.address))">
-        {{ account.label }}
-      </p>
+      <AppTooltip :text="t('accountCard.viewOnEtherscan')">
+        <template #default="{ activatorProps }">
+          <p class="account-name flex-grow-0 text-truncate" style="cursor: pointer" v-bind="activatorProps"
+            @click="openInNewTab(addressUrl(props.account.chain, props.account.address))">
+            {{ account.label }}
+          </p>
+        </template>
+      </AppTooltip>
       <AppTooltip :text="justCopied ? t('accountCard.copied') : t('accountCard.copyAddress')">
         <template #default="{ activatorProps }">
           <v-icon v-bind="activatorProps" icon="mdi-content-copy" size="large" class="mr-2 ml-5" role="button"
@@ -230,6 +234,7 @@ function openInNewTab(url: string): void {
             :aria-busy="refreshing" @click="refreshAccount" />
         </template>
       </AppTooltip>
+      <p class="flex-grow-1"></p>
       <AppTooltip :text="t('accountCard.send')">
         <template #default="{ activatorProps }">
           <v-icon v-bind="activatorProps" icon="mdi-send" size="large" class="mr-5 transfer-handle" role="button"

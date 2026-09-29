@@ -336,6 +336,7 @@ export default {
     hideUnknownTokens: 'Ascunde tokenurile necunoscute',
     dragToReorder: 'Trageți pentru a reordona',
     refresh: 'Reîmprospătează acest cont',
+    viewOnEtherscan: 'Faceți clic pentru a vizualiza pe Etherscan',
   },
   editAccount: {
     title: 'Editează contul',

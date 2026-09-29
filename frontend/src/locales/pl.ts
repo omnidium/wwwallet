@@ -330,6 +330,7 @@ export default {
     hideUnknownTokens: 'Ukryj nieznane tokeny',
     dragToReorder: 'Przeciągnij, aby zmienić kolejność',
     refresh: 'Odśwież to konto',
+    viewOnEtherscan: 'Kliknij, aby wyświetlić w serwisie Etherscan',
   },
   editAccount: {
     title: 'Edytuj konto',

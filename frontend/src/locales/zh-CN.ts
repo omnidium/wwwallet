@@ -312,6 +312,7 @@ export default {
     hideUnknownTokens: '隐藏未知令牌',
     dragToReorder: '拖动以重新排序',
     refresh: '刷新此账户',
+    viewOnEtherscan: '点击在Etherscan上查看',
   },
   editAccount: {
     title: '编辑账户',

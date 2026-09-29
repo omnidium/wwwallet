@@ -327,6 +327,7 @@ export default {
     hideUnknownTokens: 'Bilinmeyen simgeleri gizle',
     dragToReorder: 'Sırayı değiştirmek için sürükleyin',
     refresh: 'Bu hesabı yenile',
+    viewOnEtherscan: "Etherscan'da görüntülemek için tıklayın",
   },
   editAccount: {
     title: 'Hesabı düzenle',

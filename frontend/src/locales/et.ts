@@ -326,6 +326,7 @@ export default {
     hideUnknownTokens: 'Peida tundmatud märgid',
     dragToReorder: 'Lohistage, et järjestust muuta',
     refresh: 'Värskenda seda kontot',
+    viewOnEtherscan: 'Klõpsa, et vaadata Etherscanis',
   },
   editAccount: {
     title: 'Muuda kontot',

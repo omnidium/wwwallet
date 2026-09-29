@@ -333,6 +333,7 @@ export default {
     hideUnknownTokens: 'Скриване на неизвестни маркери',
     dragToReorder: 'Плъзнете, за да промените реда',
     refresh: 'Опресни този акаунт',
+    viewOnEtherscan: 'Кликнете, за да видите в Etherscan',
   },
   editAccount: {
     title: 'Редактиране на профила',

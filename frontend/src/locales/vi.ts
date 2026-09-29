@@ -328,6 +328,7 @@ export default {
     hideUnknownTokens: 'Ẩn các mã thông báo không xác định',
     dragToReorder: 'Kéo để sắp xếp lại thứ tự',
     refresh: 'Làm mới tài khoản này',
+    viewOnEtherscan: 'Nhấp vào đây để xem trên Etherscan',
   },
   editAccount: {
     title: 'Chỉnh sửa tài khoản',

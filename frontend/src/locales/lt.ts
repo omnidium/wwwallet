@@ -330,6 +330,7 @@ export default {
     hideUnknownTokens: 'Paslėpti nežinomus žetonus',
     dragToReorder: 'Pervilkite, kad pakeistumėte tvarką',
     refresh: 'Atnaujinti šią paskyrą',
+    viewOnEtherscan: 'Spustelėkite, kad peržiūrėtumėte „Etherscan“',
   },
   editAccount: {
     title: 'Redaguoti paskyrą',

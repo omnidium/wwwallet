@@ -332,6 +332,7 @@ export default {
     hideUnknownTokens: 'Ismeretlen tokenek elrejtése',
     dragToReorder: 'Húzással rendezhető át a sorrend',
     refresh: 'A fiók frissítése',
+    viewOnEtherscan: 'Kattintson az Etherscan-on való megtekintéshez',
   },
   editAccount: {
     title: 'Fiók szerkesztése',

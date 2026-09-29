@@ -326,6 +326,7 @@ export default {
     hideUnknownTokens: 'إخفاء الرموز غير المعروفة',
     dragToReorder: 'اسحب لإعادة ترتيب العناصر',
     refresh: 'تحديث هذا الحساب',
+    viewOnEtherscan: 'انقر لعرضه على Etherscan',
   },
   editAccount: {
     title: 'تعديل الحساب',
