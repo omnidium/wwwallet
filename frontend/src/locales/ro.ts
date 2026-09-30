@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Fără o parolă de acces, va trebui să introduci fraza completă de recuperare de fiecare dată când deschizi wwwallet. Poți configura această opțiune mai târziu din Setări.',
     continueAnyway: 'Continuă oricum',
+    createIntroBody:
+      'Generează o nouă frază de recuperare și un nou seif pe acest dispozitiv. Nu se trimite nimic către un server — ai controlul deplin încă de la început.',
+    createWalletCta: 'Creează un portofel',
   },
   vaultUnlock: {
     title: 'Deblochează wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Setări',
-    toggleThemeAria: 'Comută tema',
     closeAria: 'Închide setările',
     lockNow: 'Blochează acum',
     languageLabel: 'Limba',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Am salvat fraza de recuperare într-un loc sigur și înțeleg că această acțiune nu poate fi anulată',
     deleteWalletConfirm: 'Șterge portofelul',
+    themeLabel: 'Tema',
+    themeLight: 'Lumină',
+    themeDark: 'Întuneric',
   },
   transactions: {
     title: 'Tranzacții',

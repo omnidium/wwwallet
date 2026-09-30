@@ -264,10 +264,13 @@ function openInNewTab(url: string): void {
     <div class="balance-row pa-3 d-flex align-center" @click="expandedTxns = !expandedTxns">
       <v-icon icon="mdi-wallet" class="mr-2" />
       <div class="flex-grow-1">
-        <span class="balance-figure">{{ fiatTotal ?? '—' }}</span>
-        <span v-if="nativeBalance !== null" class="text-medium-emphasis ml-1">
-          ({{ formatAmount(nativeBalance) }} {{ nativeSymbol }})
-        </span>
+        <span v-if="activity === undefined" class="skeleton-row" />
+        <template v-else>
+          <span class="balance-figure">{{ fiatTotal ?? '—' }}</span>
+          <span v-if="nativeBalance !== null" class="text-medium-emphasis ml-1">
+            ({{ formatAmount(nativeBalance) }} {{ nativeSymbol }})
+          </span>
+        </template>
       </div>
       <AppTooltip :text="expandedTxns ? t('accountCard.hideTransactions') : t('accountCard.showTransactions')">
         <template #default="{ activatorProps }">
@@ -284,7 +287,10 @@ function openInNewTab(url: string): void {
         <TransactionRow v-for="txn in group.transactions" :key="txn.hash" :transaction="txn"
           :my-address="account.address" :chain="account.chain" @click="emit('openTransaction', txn)" />
       </template>
-      <p v-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
+      <div v-if="activity === undefined" class="d-flex justify-center pa-2">
+        <v-progress-circular indeterminate size="20" width="2" color="primary" />
+      </div>
+      <p v-else-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
         {{ t('transactions.empty') }}
       </p>
       <div v-if="loadingMoreTxns" class="d-flex justify-center pa-2">
@@ -292,16 +298,22 @@ function openInNewTab(url: string): void {
       </div>
     </div>
 
-    <div v-if="tokenRows.length > 0" class="balance-row token-row pa-3 d-flex align-center"
-      @click="expandedTokens = !expandedTokens">
-      <v-icon icon="mdi-cash-multiple" class="mr-2" />
-      <span class="balance-figure">{{ tokenFiatTotal ?? '—' }}</span>
-      <v-spacer />
-      <AppTooltip :text="expandedTokens ? t('accountCard.hideTokens') : t('accountCard.showTokens')">
-        <template #default="{ activatorProps }">
-          <v-icon v-bind="activatorProps" :icon="expandedTokens ? 'mdi-chevron-up' : 'mdi-chevron-down'" />
-        </template>
-      </AppTooltip>
+    <div v-if="activity === undefined || tokenRows.length > 0" class="balance-row token-row pa-3 d-flex align-center"
+      @click="activity !== undefined && (expandedTokens = !expandedTokens)">
+      <template v-if="activity === undefined">
+        <v-icon icon="mdi-cash-multiple" class="mr-2" />
+        <span class="skeleton-row" />
+      </template>
+      <template v-else>
+        <v-icon icon="mdi-cash-multiple" class="mr-2" />
+        <span class="balance-figure">{{ tokenFiatTotal ?? '—' }}</span>
+        <v-spacer />
+        <AppTooltip :text="expandedTokens ? t('accountCard.hideTokens') : t('accountCard.showTokens')">
+          <template #default="{ activatorProps }">
+            <v-icon v-bind="activatorProps" :icon="expandedTokens ? 'mdi-chevron-up' : 'mdi-chevron-down'" />
+          </template>
+        </AppTooltip>
+      </template>
     </div>
 
     <div v-if="expandedTokens" class="expanded-list pa-2">

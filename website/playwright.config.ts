@@ -13,7 +13,7 @@ export default defineConfig({
   reporter: 'html',
   use: {
     actionTimeout: 0,
-    baseURL: process.env.CI ? 'http://localhost:4174' : 'http://localhost:5174',
+    baseURL: process.env.CI ? 'http://localhost:3003' : 'http://localhost:3002',
     trace: 'on-first-retry',
     headless: !!process.env.CI,
   },
@@ -37,8 +37,8 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: process.env.CI ? 'npm run preview -- --port 4174' : 'npm run dev',
-    port: process.env.CI ? 4174 : 5174,
+    command: process.env.CI ? 'npm run preview -- --port 3003' : 'npm run dev',
+    port: process.env.CI ? 3003 : 3002,
     reuseExistingServer: !process.env.CI,
   },
 })

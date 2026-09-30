@@ -5,7 +5,7 @@ export default {
     crypto: 'Crypto',
     faqs: 'FAQs',
     launch: 'Launch Wallet',
-    home: 'wwwallet — back to top',
+    home: 'Back to top',
     sectionNavLabel: 'Section navigation',
   },
   settings: {
@@ -18,8 +18,10 @@ export default {
   },
   hero: {
     eyebrow: 'A personal, non-custodial Ethereum wallet',
-    heading: 'Your keys. Your Ethereum. Your device.',
-    lede: 'wwwallet encrypts your wallet on your own device and never sends your keys, passwords, or recovery phrase anywhere else. No account to create. No server to breach. Just you and your Ethereum.',
+    heading1: 'Your Keys.',
+    heading2: 'Your Device.',
+    heading3: 'Your Wallet.',
+    lede: 'wwwallet encrypts your wallet on your own device and never sends your keys, passwords, or recovery phrase anywhere else. No account to create. No server to breach. Just you and your crypto.',
     ctaPrimary: 'Launch Wallet',
     ctaSecondary: 'See how it works',
   },

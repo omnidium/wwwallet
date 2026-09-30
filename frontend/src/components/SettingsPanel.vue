@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useTheme } from 'vuetify'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { useVaultStore } from '@/stores/vault'
-import { getStoredTheme, setStoredTheme, type ThemeName } from '@/services/theme'
+import { getStoredTheme, setStoredTheme, applyDomTheme, type ThemeName } from '@/services/theme'
 import { clearLastActivity } from '@/services/lastActivity'
-import AppTooltip from '@/components/AppTooltip.vue'
 
 const emit = defineEmits<{ close: [] }>()
 
@@ -16,15 +15,66 @@ const settings = useSettingsLocaleStore()
 const vault = useVaultStore()
 const theme = useTheme()
 const router = useRouter()
-const isDark = ref(getStoredTheme() === 'dark')
+const currentTheme = ref<ThemeName>(getStoredTheme())
 const appVersion = __APP_VERSION__
+const panelRef = ref<HTMLElement | null>(null)
 
-function toggleTheme() {
-  isDark.value = !isDark.value
-  const next: ThemeName = isDark.value ? 'dark' : 'light'
+// v-navigation-drawer used to provide Escape-to-close and a scrim for free;
+// now that App.vue renders this as a plain overlay (see its fade-transition
+// swap), this panel owns that behavior itself instead — same approach as
+// website/src/components/layout/SettingsPanel.vue.
+function getFocusable(): HTMLElement[] {
+  if (!panelRef.value) return []
+  return Array.from(
+    panelRef.value.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), select, input, [tabindex]:not([tabindex="-1"])',
+    ),
+  )
+}
+
+function onKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape') {
+    event.stopPropagation()
+    emit('close')
+    return
+  }
+  if (event.key !== 'Tab') return
+  const focusable = getFocusable()
+  const first = focusable[0]
+  const last = focusable[focusable.length - 1]
+  if (!first || !last) return
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault()
+    last.focus()
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault()
+    first.focus()
+  }
+}
+
+
+onMounted(() => {
+  document.addEventListener('keydown', onKeydown)
+  getFocusable()[0]?.focus()
+})
+onBeforeUnmount(() => {
+  document.removeEventListener('keydown', onKeydown)
+})
+
+function setTheme(next: ThemeName) {
+  currentTheme.value = next
   theme.change(next)
+  applyDomTheme(next)
   setStoredTheme(next)
   if (navigator.vibrate) navigator.vibrate(5)
+}
+
+function onLanguageChange(event: Event) {
+  settings.setLocale((event.target as HTMLSelectElement).value)
+}
+
+function onCurrencyChange(event: Event) {
+  settings.currency = (event.target as HTMLSelectElement).value
 }
 
 function lockNow() {
@@ -44,28 +94,37 @@ function lockNow() {
 </script>
 
 <template>
-  <div class="pa-4 settings-panel">
-    <v-row justify="space-between" align="center" no-gutters>
-      <h1 class="text-h5">{{ t('settings.title') }}</h1>
-      <div>
-        <AppTooltip :text="t('settings.toggleThemeAria')" location="bottom">
-          <template #default="{ activatorProps }">
-            <v-btn v-bind="activatorProps" :icon="isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"
-              variant="text" :aria-label="t('settings.toggleThemeAria')" @click="toggleTheme" />
-          </template>
-        </AppTooltip>
-        <AppTooltip :text="t('settings.closeAria')" location="bottom">
-          <template #default="{ activatorProps }">
-            <v-btn v-bind="activatorProps" icon="mdi-close" variant="text" :aria-label="t('settings.closeAria')"
-              @click="emit('close')" />
-          </template>
-        </AppTooltip>
-      </div>
-    </v-row>
+  <div ref="panelRef" class="pa-4 settings-panel" role="dialog" aria-modal="true" :aria-label="t('settings.title')">
+    <div class="panel-header">
+      <h2>{{ t('settings.title') }}</h2>
+      <button type="button" class="close-btn" :aria-label="t('settings.closeAria')" @click="emit('close')">
+        <i class="mdi mdi-close" aria-hidden="true"></i>
+      </button>
+    </div>
 
-    <v-select class="mt-4" density="default" hide-details :label="t('settings.languageLabel')"
-      :items="settings.languages" item-title="name" item-value="id" v-model="settings.locale"
-      @update:model-value="settings.setLocale" />
+    <div class="settings-section mt-4">
+      <p class="settings-section-label">{{ t('settings.themeLabel') }}</p>
+      <div class="theme-segmented" role="group" :aria-label="t('settings.themeLabel')">
+        <button type="button" class="theme-segment" :class="{ active: currentTheme === 'light' }"
+          :aria-pressed="currentTheme === 'light'" @click="setTheme('light')">
+          <v-icon icon="mdi-white-balance-sunny" size="16" />
+          {{ t('settings.themeLight') }}
+        </button>
+        <button type="button" class="theme-segment" :class="{ active: currentTheme === 'dark' }"
+          :aria-pressed="currentTheme === 'dark'" @click="setTheme('dark')">
+          <v-icon icon="mdi-weather-night" size="16" />
+          {{ t('settings.themeDark') }}
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-section mt-4">
+      <p class="settings-section-label">{{ t('settings.languageLabel') }}</p>
+      <select class="settings-select" :class="{ 'settings-select--dark': currentTheme === 'dark' }"
+        :value="settings.locale" @change="onLanguageChange">
+        <option v-for="lang in settings.languages" :key="lang.id" :value="lang.id">{{ lang.name }}</option>
+      </select>
+    </div>
 
     <!--
       Everything below except Backup & Restore and Security is hidden
@@ -83,16 +142,21 @@ function lockNow() {
       parts (backing up, passkey management) behind vault.isUnlocked itself;
       see their own v-if for that.
     -->
-    <v-select v-if="vault.isUnlocked" class="mt-4" density="default" hide-details :label="t('settings.currencyLabel')"
-      :items="settings.currencies" v-model="settings.currency" />
+    <div v-if="vault.isUnlocked" class="settings-section mt-4">
+      <p class="settings-section-label">{{ t('settings.currencyLabel') }}</p>
+      <select class="settings-select" :class="{ 'settings-select--dark': currentTheme === 'dark' }"
+        :value="settings.currency" @change="onCurrencyChange">
+        <option v-for="currency in settings.currencies" :key="currency" :value="currency">{{ currency }}</option>
+      </select>
+    </div>
 
-    <v-list class="mt-4" rounded="lg">
+    <v-list class="mt-4" rounded="lg" bg-color="transparent">
       <v-list-item to="/backup-restore" :title="t('backup.title')" prepend-icon="mdi-cloud-upload"
-        append-icon="mdi-chevron-right" @click="emit('close')" />
+        append-icon="mdi-chevron-right" @click="emit('close')" rounded="lg" />
       <v-list-item v-if="vault.isUnlocked" to="/payees" :title="t('payees.title')" prepend-icon="mdi-account"
-        append-icon="mdi-chevron-right" @click="emit('close')" />
+        append-icon="mdi-chevron-right" @click="emit('close')" rounded="lg" />
       <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock"
-        append-icon="mdi-chevron-right" @click="emit('close')" />
+        append-icon="mdi-chevron-right" @click="emit('close')" rounded="lg" />
     </v-list>
 
     <v-btn v-if="vault.isUnlocked" class="mt-4" color="error" variant="outlined" block prepend-icon="mdi-lock"
@@ -103,3 +167,101 @@ function lockNow() {
     <p class="settings-version text-medium-emphasis mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
   </div>
 </template>
+
+<style scoped>
+/* Below: pixel-for-pixel matches of website/src/components/layout/SettingsPanel.vue,
+   ui/ThemeToggle.vue and ui/LanguageSelect.vue, built on the shared tokens
+   (shared/design-tokens.css, imported by assets/main.css) both projects use —
+   not Vuetify's own theme tokens, so this stays byte-identical to the
+   website's version rather than just similarly-colored. Vuetify-native
+   elements elsewhere in this panel (v-list, v-btn "Lock now") intentionally
+   keep using Vuetify's own tokens. */
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.panel-header h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: rgb(var(--border-rgb) / 8%);
+}
+
+.settings-section-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.theme-segmented {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  background: rgb(var(--border-rgb) / 6%);
+}
+
+.theme-segment {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--space-2);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.theme-segment.active {
+  background: rgb(var(--surface-rgb) / 100%);
+  color: var(--text);
+  box-shadow: var(--shadow-card);
+}
+
+.settings-select {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  padding-right: 2.5em;
+  border-radius: var(--radius-md);
+  border: 1px solid rgb(var(--border-rgb) / 16%);
+  background-color: rgb(var(--surface-rgb) / 100%);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  background-size: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234d5f59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.settings-select--dark {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239db3ac' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+</style>

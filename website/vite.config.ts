@@ -12,8 +12,15 @@ export default defineConfig({
     },
   },
   server: {
-    // Distinct from frontend/'s 5173 so both dev servers can run together —
-    // see the Launch button's VITE_APP_URL for cross-linking between them.
-    port: 5174,
+    // Groups with backend's 3001 / frontend's 3000 (see start_all.sh) so both
+    // dev servers can run together — see the Launch button's VITE_APP_URL for
+    // cross-linking between them.
+    port: 3002,
+    fs: {
+      // Needed to @import ../../../shared/design-tokens.css (global.css) —
+      // outside this project's root, which Vite's dev server otherwise
+      // refuses to serve.
+      allow: ['..'],
+    },
   },
 })

@@ -131,6 +131,9 @@ export default {
     skipBody:
       'パスキーがない場合、wwwalletを開くたびにリカバリーフレーズをすべて入力する必要があります。この設定は、後で「設定」から行うことができます。',
     continueAnyway: 'とにかく続ける',
+    createIntroBody:
+      'このデバイス上で新しいリカバリーフレーズと保管庫を生成します。サーバーへは一切送信されません。最初からすべてを自分で管理できます。',
+    createWalletCta: 'ウォレットを作成する',
   },
   vaultUnlock: {
     title: 'wwwalletのロックを解除',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: '設定',
-    toggleThemeAria: 'テーマを切り替える',
     closeAria: '設定を閉じる',
     lockNow: '今すぐロックする',
     languageLabel: '言語',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'リカバリーフレーズは安全な場所に保管しており、この操作は元に戻せないことを理解しています',
     deleteWalletConfirm: 'ウォレットを削除する',
+    themeLabel: 'テーマ',
+    themeLight: '光',
+    themeDark: 'ダーク',
   },
   transactions: {
     title: '取引',

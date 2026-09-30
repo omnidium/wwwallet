@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Brez gesla boste morali vsakič, ko odprete aplikacijo wwwallet, vnesti celotno obnovitveno frazo. To lahko nastavite kasneje v nastavitvah.',
     continueAnyway: 'Kljub temu nadaljuj',
+    createIntroBody:
+      'Na tej napravi ustvari novo obnovitveno frazo in trezor. Na strežnik se ne pošilja nič – od samega začetka imate popoln nadzor.',
+    createWalletCta: 'Ustvari denarnico',
   },
   vaultUnlock: {
     title: 'Odkleni wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Nastavitve',
-    toggleThemeAria: 'Preklopi temo',
     closeAria: 'Zapri nastavitve',
     lockNow: 'Zakleni zdaj',
     languageLabel: 'Jezik',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Svojo obnovitveno frazo sem shranil na varno mesto in se zavedam, da tega ni mogoče preklicati',
     deleteWalletConfirm: 'Izbriši denarnico',
+    themeLabel: 'Tema',
+    themeLight: 'Svetloba',
+    themeDark: 'Temno',
   },
   transactions: {
     title: 'Transakcije',

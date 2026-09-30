@@ -1,3 +1,5 @@
+@import '../../../shared/design-tokens.css';
+
 /* Base resets (formerly base.css) */
 *,
 *::before,
@@ -5,8 +7,30 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  font-family: 'Manrope', Roboto, 'Helvetica Neue', sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 var(--space-3);
 }
 
 /* Amount fields use type="number" for the numeric keyboard/validation, but
@@ -44,38 +68,40 @@ input[type='number'] {
 
 /* App.vue */
 
-/* Floating, translucent panel instead of an edge-to-edge drawer — matches the
- * old app's slide-in settings pane. The floating/rounded/blurred look lives
- * on an inner wrapper (.settings-drawer-inner) rather than on the drawer
- * element itself: v-navigation-drawer computes its closed-state hide
- * transform from its own left/width, and overriding `left` here directly
- * (an earlier version of this rule did) shifts the drawer's rest position
- * without Vuetify's transform math accounting for it, leaving a permanent
- * sliver of the drawer visible on-screen even when "closed". Keeping this
- * element's own box untouched (full-height, flush-left) lets Vuetify hide it
- * correctly; the inset/blur/shadow on a child element inside it doesn't
- * affect that positioning at all.
- */
-.settings-drawer {
-  background: transparent !important;
-  box-shadow: none !important;
-  /* Vuetify draws a thin themed divider along the drawer's trailing edge by
-   * default — with a transparent background that shows up as a lone
-   * semi-transparent line/frame floating over the page, since there's no
-   * solid drawer surface behind it to anchor it against. */
-  border: none !important;
+/* Settings panel: a plain fixed-position overlay + Vue <Transition>, not
+ * v-navigation-drawer — matches website/src/components/layout/SettingsFab.vue's
+ * fade (no slide). SettingsPanel.vue owns Escape-to-close/focus-trap itself now,
+ * since the drawer used to provide that for free. */
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1010;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .settings-drawer-inner {
   margin: 16px;
+  width: min(340px, calc(100vw - 32px));
   height: calc(100% - 32px);
-  max-width: calc(100vw - 32px);
-  border-radius: 16px;
-  background: rgba(var(--v-theme-surface), 0.85);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-lg);
+  background: rgb(var(--surface-rgb) / 85%);
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  backdrop-filter: blur(var(--blur-glass));
+  box-shadow: var(--shadow-panel);
   overflow-y: auto;
+}
+
+.settings-fade-enter-active,
+.settings-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.settings-fade-enter-from,
+.settings-fade-leave-to {
+  opacity: 0;
 }
 
 .passphrase_box {
@@ -94,12 +120,12 @@ input[type='number'] {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(var(--v-theme-surface), 0.85);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  background: rgb(var(--surface-rgb) / 85%);
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  backdrop-filter: blur(var(--blur-glass));
+  box-shadow: var(--shadow-fab);
   cursor: pointer;
-  color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
+  color: var(--text);
 }
 
 /* AccountCard.vue */
@@ -152,6 +178,27 @@ input[type='number'] {
 .balance-figure {
   font-size: 1.8em;
   font-weight: 600;
+}
+
+/* Reserves the same height as .balance-figure while the first activity load
+ * (cached or network) is still resolving, so the account card doesn't change
+ * height once real data arrives — see AccountCard.vue's `activity === undefined` checks. */
+.skeleton-row {
+  display: inline-block;
+  width: 96px;
+  height: 1.8em;
+  border-radius: var(--v-radius, 6px);
+  background-color: rgba(var(--v-theme-on-surface), 0.08);
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 /* Send icon — also the long-press drag-to-transfer handle. touch-action:none
@@ -448,4 +495,21 @@ input[type='number'] {
   margin-bottom: 0rem;
   font-size: 0.7rem;
   justify-items: end;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.75em 1.5em;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }

@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Tanpa kata sandi, Anda harus memasukkan frasa pemulihan lengkap setiap kali membuka wwwallet. Anda bisa mengaturnya nanti melalui Pengaturan.',
     continueAnyway: 'Lanjutkan saja',
+    createIntroBody:
+      'Membuat frasa pemulihan dan brankas baru di perangkat ini. Tidak ada data yang dikirim ke server — Anda sepenuhnya memegang kendali sejak awal.',
+    createWalletCta: 'Buat Dompet',
   },
   vaultUnlock: {
     title: 'Buka kunci wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Pengaturan',
-    toggleThemeAria: 'Ubah tema',
     closeAria: 'Tutup pengaturan',
     lockNow: 'Kunci sekarang',
     languageLabel: 'Bahasa',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Saya telah menyimpan frasa pemulihan saya di tempat yang aman dan memahami bahwa hal ini tidak dapat dibatalkan',
     deleteWalletConfirm: 'Hapus dompet',
+    themeLabel: 'Tema',
+    themeLight: 'Cahaya',
+    themeDark: 'Gelap',
   },
   transactions: {
     title: 'Transaksi',

@@ -131,6 +131,9 @@ export default {
     skipBody:
       'Ilma pääsukoodita pead sisestama iga kord, kui avad wwwallet, oma täieliku taastamislause. Selle saad hiljem seadistada menüüs „Seaded”.',
     continueAnyway: 'Jätka ikkagi',
+    createIntroBody:
+      'Loob sellel seadmel uue taastamisfraasi ja hoiukoha. Serverisse ei saadeta midagi – sul on algusest peale täielik kontroll.',
+    createWalletCta: 'Loo rahakott',
   },
   vaultUnlock: {
     title: 'wwwallet avamine',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'Seaded',
-    toggleThemeAria: 'Teema vahetamine',
     closeAria: 'Sulge seaded',
     lockNow: 'Lukusta kohe',
     languageLabel: 'Keel',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'Olen oma taastamislause salvestanud turvalisse kohta ja mõistan, et seda ei saa tagasi võtta',
     deleteWalletConfirm: 'Kustuta rahakott',
+    themeLabel: 'Teema',
+    themeLight: 'Valgus',
+    themeDark: 'Tume',
   },
   transactions: {
     title: 'Tehingud',

@@ -131,6 +131,9 @@ export default {
     skipBody:
       'Senza una passkey, dovrai inserire la frase di recupero completa ogni volta che apri wwwallet. Puoi configurarla in un secondo momento dalle Impostazioni.',
     continueAnyway: 'Continua comunque',
+    createIntroBody:
+      "Crea una nuova frase di recupero e un nuovo vault su questo dispositivo. Non viene inviato nulla a un server: hai il pieno controllo sin dall'inizio.",
+    createWalletCta: 'Crea un portafoglio',
   },
   vaultUnlock: {
     title: 'Sblocca wwwallet',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'Impostazioni',
-    toggleThemeAria: 'Cambia tema',
     closeAria: 'Chiudi le impostazioni',
     lockNow: 'Blocca ora',
     languageLabel: 'Lingua',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'Ho salvato la mia frase di recupero in un luogo sicuro e sono consapevole che questa operazione non può essere annullata',
     deleteWalletConfirm: 'Elimina il portafoglio',
+    themeLabel: 'Tema',
+    themeLight: 'Luce',
+    themeDark: 'Buio',
   },
   transactions: {
     title: 'Transazioni',

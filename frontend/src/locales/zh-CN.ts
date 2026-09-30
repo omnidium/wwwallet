@@ -128,6 +128,9 @@ export default {
     skipBody:
       '如果没有通行密钥，每次打开 wwwallet 时，您都需要输入完整的恢复短语。您稍后可以在“设置”中进行配置。',
     continueAnyway: '不管怎样，继续吧',
+    createIntroBody:
+      '在此设备上生成新的恢复短语和保险库。任何数据都不会发送至服务器——您从一开始就完全掌控一切。',
+    createWalletCta: '创建钱包',
   },
   vaultUnlock: {
     title: '解锁 wwwallet',
@@ -138,7 +141,6 @@ export default {
   },
   settings: {
     title: '设置',
-    toggleThemeAria: '切换主题',
     closeAria: '关闭设置',
     lockNow: '立即锁定',
     languageLabel: '语言',
@@ -166,6 +168,9 @@ export default {
     deleteWalletNeverBackedUp: '您从未备份过此钱包。',
     deleteWalletAckLabel: '我已将恢复短语保存在安全的地方，并且明白此操作无法撤销',
     deleteWalletConfirm: '删除钱包',
+    themeLabel: '主题',
+    themeLight: '光',
+    themeDark: '黑暗',
   },
   transactions: {
     title: '交易',

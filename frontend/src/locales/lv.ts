@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Ja nav piekļuves atslēgas, katru reizi, kad atvērsiet wwwallet, būs jāievada pilnā atjaunošanas frāze. To varat iestatīt vēlāk sadaļā „Iestatījumi”.',
     continueAnyway: 'Turpināt tik un tā',
+    createIntroBody:
+      'Šajā ierīcē tiek izveidota jauna atjaunošanas frāze un seifs. Nekāda informācija netiek nosūtīta uz serveri — jūs no paša sākuma pilnībā kontrolējat situāciju.',
+    createWalletCta: 'Izveidot elektronisko maku',
   },
   vaultUnlock: {
     title: 'Atbloķēt wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Iestatījumi',
-    toggleThemeAria: 'Pārslēgt tēmu',
     closeAria: 'Aizvērt iestatījumus',
     lockNow: 'Aizslēgt tagad',
     languageLabel: 'Valoda',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Esmu savu atjaunošanas frāzi saglabājis drošā vietā un saprotu, ka šo darbību nevar atcelt',
     deleteWalletConfirm: 'Dzēst elektronisko maku',
+    themeLabel: 'Tēma',
+    themeLight: 'Gaisma',
+    themeDark: 'Tumšs',
   },
   transactions: {
     title: 'Darījumi',

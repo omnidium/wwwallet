@@ -131,6 +131,9 @@ export default {
     skipBody:
       "ללא מפתח גישה, תצטרך להזין את ביטוי השחזור המלא בכל פעם שתפתח את wwwallet. תוכל להגדיר זאת מאוחר יותר בתפריט 'הגדרות'.",
     continueAnyway: 'להמשיך בכל מקרה',
+    createIntroBody:
+      'יוצר ביטוי שחזור וכספת חדשים במכשיר זה. שום מידע לא נשלח לשרת — השליטה נמצאת בידיך המלאה מהרגע הראשון.',
+    createWalletCta: 'יצירת ארנק',
   },
   vaultUnlock: {
     title: 'ביטול הנעילה של wwwallet',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'הגדרות',
-    toggleThemeAria: 'החלף ערכת נושא',
     closeAria: 'סגור את ההגדרות',
     lockNow: 'נעל עכשיו',
     languageLabel: 'שפה',
@@ -171,6 +173,9 @@ export default {
     deleteWalletNeverBackedUp: 'מעולם לא ביצעת גיבוי לארנק זה.',
     deleteWalletAckLabel: 'שמרתי את ביטוי השחזור במקום בטוח, ואני מבין שלא ניתן לבטל פעולה זו',
     deleteWalletConfirm: 'מחק את הארנק',
+    themeLabel: 'נושא',
+    themeLight: 'אור',
+    themeDark: 'חושך',
   },
   transactions: {
     title: 'עסקאות',

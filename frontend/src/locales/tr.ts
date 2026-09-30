@@ -131,6 +131,9 @@ export default {
     skipBody:
       'Eşleme anahtarı olmadan, wwwallet’i her açtığınızda kurtarma ifadesinin tamamını girmelisiniz. Bunu daha sonra Ayarlar bölümünden ayarlayabilirsiniz.',
     continueAnyway: 'Yine de devam et',
+    createIntroBody:
+      'Bu cihazda yeni bir kurtarma ifadesi ve kasa oluşturur. Sunucuya hiçbir şey gönderilmez — başından itibaren kontrol tamamen sizdedir.',
+    createWalletCta: 'Cüzdan Oluştur',
   },
   vaultUnlock: {
     title: "wwwallet'in kilidini aç",
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'Ayarlar',
-    toggleThemeAria: 'Temayı değiştir',
     closeAria: 'Ayarları kapat',
     lockNow: 'Şimdi kilitle',
     languageLabel: 'Dil',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'Geri alma ifademi güvenli bir yerde sakladım ve bunun geri alınamayacağını biliyorum',
     deleteWalletConfirm: 'Cüzdanı sil',
+    themeLabel: 'Tema',
+    themeLight: 'Işık',
+    themeDark: 'Karanlık',
   },
   transactions: {
     title: 'İşlemler',

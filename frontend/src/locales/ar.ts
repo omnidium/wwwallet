@@ -131,6 +131,9 @@ export default {
     skipBody:
       'بدون مفتاح المرور، سيتعين عليك إدخال عبارة الاسترداد الكاملة في كل مرة تفتح فيها تطبيق wwwallet. يمكنك إعداد ذلك لاحقًا من خلال «الإعدادات».',
     continueAnyway: 'استمر على أي حال',
+    createIntroBody:
+      'يقوم بإنشاء عبارة استرداد جديدة وخزينة جديدة على هذا الجهاز. لا يتم إرسال أي بيانات إلى الخادم — فأنت تتحكم تمامًا في العملية منذ البداية.',
+    createWalletCta: 'إنشاء محفظة',
   },
   vaultUnlock: {
     title: 'إلغاء قفل wwwallet',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'الإعدادات',
-    toggleThemeAria: 'تبديل السمة',
     closeAria: 'إغلاق الإعدادات',
     lockNow: 'قفل الآن',
     languageLabel: 'اللغة',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'لقد قمت بحفظ عبارة الاسترداد في مكان آمن، وأدرك أن هذه العملية لا يمكن التراجع عنها',
     deleteWalletConfirm: 'حذف المحفظة',
+    themeLabel: 'الموضوع',
+    themeLight: 'الضوء',
+    themeDark: 'مظلم',
   },
   transactions: {
     title: 'المعاملات',

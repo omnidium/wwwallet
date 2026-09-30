@@ -4,6 +4,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 export function useScrollSpy(sectionIds: string[]) {
   const activeId = ref<string>(sectionIds[0] ?? '')
   let observer: IntersectionObserver | undefined
+  let suppressed = false
 
   onMounted(() => {
     const headerHeight =
@@ -15,6 +16,7 @@ export function useScrollSpy(sectionIds: string[]) {
     // item stable rather than flickering between adjacent sections.
     observer = new IntersectionObserver(
       (entries) => {
+        if (suppressed) return
         for (const entry of entries) {
           if (entry.isIntersecting) {
             activeId.value = entry.target.id
@@ -36,5 +38,30 @@ export function useScrollSpy(sectionIds: string[]) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  return { activeId, scrollToSection }
+  // Scrolling to the very top (e.g. clicking the logo) shouldn't leave any
+  // nav item looking active — but the observer above only ever *sets*
+  // activeId, never clears it, and a smooth scroll upward typically passes
+  // through a tracked section on the way there, re-triggering it right
+  // before landing. Clear explicitly and ignore the observer until the
+  // scroll actually settles.
+  function scrollToTop() {
+    suppressed = true
+    activeId.value = ''
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+
+    let done = false
+    const finish = () => {
+      if (done) return
+      done = true
+      activeId.value = ''
+      suppressed = false
+      window.removeEventListener('scrollend', finish)
+    }
+    window.addEventListener('scrollend', finish)
+    // Fallback in case scrollend never fires — already at the top so
+    // nothing actually scrolls, or a browser without scrollend support.
+    setTimeout(finish, 800)
+  }
+
+  return { activeId, scrollToSection, scrollToTop }
 }

@@ -1,3 +1,17 @@
+/* Single source of truth for design tokens shared by website/ and frontend/
+   — both @import this exact file (see their vite.config.ts server.fs.allow
+   for why that works across a project boundary). Values originate from the
+   app's own favicon.ico gradient; see website's README or git history for
+   how the color stops were sampled.
+
+   Vuetify (frontend only) is the one exception: it generates its own
+   --v-theme-* variables at runtime from a JS config object in
+   frontend/src/plugins/vuetify.ts, and can't consume this file as its color
+   source. That file's light/dark hex values are kept numerically identical
+   to --bg/--text/--accent/etc. below by hand — treat this file as the
+   source of truth for those values too, even though Vuetify can't import it
+   directly. Everything else here (radius/shadow/blur/spacing/fonts/gradient)
+   is consumed directly as CSS custom properties by both projects. */
 :root {
   --font-heading: 'Manrope', system-ui, sans-serif;
   --font-body: 'Roboto', system-ui, sans-serif;
@@ -8,13 +22,11 @@
   --grad-2: #51f2cd;
   --grad-3: #20f4ed;
   --grad-4: #0494fc;
-  --gradient-brand: linear-gradient(
-    135deg,
-    var(--grad-1) 0%,
-    var(--grad-2) 35%,
-    var(--grad-3) 60%,
-    var(--grad-4) 100%
-  );
+  --gradient-brand: linear-gradient(135deg,
+      var(--grad-1) 0%,
+      var(--grad-2) 35%,
+      var(--grad-3) 60%,
+      var(--grad-4) 100%);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -28,14 +40,14 @@
 
   --space-1: 4px;
   --space-2: 8px;
-  --space-3: 16px;
+  --space-3: 10px;
   --space-4: 24px;
   --space-5: 40px;
   --space-6: 64px;
   --space-7: 96px;
 
   --container-max: 1080px;
-  --header-height: 72px;
+  --header-height: 32px;
 
   /* Light mode (default) */
   --bg: #f4fbf8;

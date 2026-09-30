@@ -9,14 +9,14 @@ const year = new Date().getFullYear()
   <footer class="app-footer">
     <div class="container footer-inner">
       <p class="footer-tagline">{{ t('footer.tagline') }}</p>
-      <a
+      <!-- <a
         class="footer-source"
         href="https://github.com/MrsMisto/wwwallet"
         target="_blank"
         rel="noopener noreferrer"
       >
         {{ t('footer.sourceLink') }}
-      </a>
+      </a> -->
       <p class="footer-copyright">{{ t('footer.copyright', { year }) }}</p>
     </div>
   </footer>

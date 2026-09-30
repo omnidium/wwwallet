@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Zonder toegangscode moet je elke keer dat je wwwallet opent je volledige herstelzin invoeren. Je kunt dit later instellen via ‘Instellingen’.',
     continueAnyway: 'Toch doorgaan',
+    createIntroBody:
+      'Hiermee worden een nieuwe herstelzin en een nieuwe kluis op dit apparaat aangemaakt. Er wordt niets naar een server verzonden — je hebt vanaf het begin de volledige controle.',
+    createWalletCta: 'Portemonnee aanmaken',
   },
   vaultUnlock: {
     title: 'wwwallet ontgrendelen',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Instellingen',
-    toggleThemeAria: 'Thema wisselen',
     closeAria: 'Instellingen sluiten',
     lockNow: 'Nu vergrendelen',
     languageLabel: 'Taal',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Ik heb mijn herstelzin op een veilige plek opgeslagen en begrijp dat dit niet ongedaan kan worden gemaakt',
     deleteWalletConfirm: 'Portemonnee verwijderen',
+    themeLabel: 'Thema',
+    themeLight: 'Licht',
+    themeDark: 'Donker',
   },
   transactions: {
     title: 'Transacties',

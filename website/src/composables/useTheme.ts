@@ -1,13 +1,14 @@
 import { ref, watch } from 'vue'
+import { getSharedCookie, setSharedCookie } from './sharedPrefs'
 
 export type ThemeName = 'light' | 'dark'
 
-const STORAGE_KEY = 'wwwallet-site.theme'
+const COOKIE_KEY = 'wwwallet.theme'
 
 function readInitialTheme(): ThemeName {
   // index.html's inline blocking script already resolved and applied the
-  // initial theme (stored choice, else prefers-color-scheme) before any
-  // Vue code runs, so we just read it back rather than re-deriving it.
+  // initial theme (shared cookie, else prefers-color-scheme) before any Vue
+  // code runs, so we just read it back rather than re-deriving it.
   return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
 }
 
@@ -20,16 +21,10 @@ function attachSystemPreferenceListener() {
   if (mediaListenerAttached) return
   mediaListenerAttached = true
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-    // Once the user picks explicitly, stop following the system setting.
-    let hasExplicitChoice = false
-    try {
-      hasExplicitChoice = localStorage.getItem(STORAGE_KEY) !== null
-    } catch {
-      hasExplicitChoice = false
-    }
-    if (!hasExplicitChoice) {
-      theme.value = event.matches ? 'dark' : 'light'
-    }
+    // Once the user (or the app, via the shared cookie) picks explicitly,
+    // stop following the system setting.
+    if (getSharedCookie(COOKIE_KEY)) return
+    theme.value = event.matches ? 'dark' : 'light'
   })
 }
 
@@ -41,16 +36,23 @@ watch(
   { immediate: true },
 )
 
+// Re-reads the cookie and applies it if it changed — for when a bfcache
+// restore (browser Back/Forward) repaints this exact page from a frozen
+// snapshot instead of reloading it, so nothing else re-runs to notice a
+// cookie written by another page (this one included) in the meantime.
+export function resyncTheme() {
+  const fromCookie = getSharedCookie(COOKIE_KEY)
+  if ((fromCookie === 'light' || fromCookie === 'dark') && fromCookie !== theme.value) {
+    theme.value = fromCookie
+  }
+}
+
 export function useTheme() {
   attachSystemPreferenceListener()
 
   function setTheme(next: ThemeName) {
     theme.value = next
-    try {
-      localStorage.setItem(STORAGE_KEY, next)
-    } catch {
-      // Private-mode/blocked storage — theme still applies for this page load.
-    }
+    setSharedCookie(COOKIE_KEY, next)
   }
 
   function toggleTheme() {

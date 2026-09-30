@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useTheme } from 'vuetify'
 import { useI18n } from 'vue-i18n'
 import { RouterView, useRoute } from 'vue-router'
 import { useMessagesStore } from '@/stores/messages'
 import { useVaultStore } from '@/stores/vault'
-import { getStoredTheme } from '@/services/theme'
+import { useSettingsLocaleStore } from '@/stores/settingsLocale'
+import { getStoredTheme, applyDomTheme } from '@/services/theme'
+import { getSharedCookie } from '@/services/sharedPrefs'
 import { useIdleLock } from '@/composables/useIdleLock'
 import SettingsPanel from '@/components/SettingsPanel.vue'
 import AccountsView from '@/views/AccountsView.vue'
@@ -15,9 +17,18 @@ import AppTooltip from '@/components/AppTooltip.vue'
 const { t } = useI18n({ useScope: 'global' })
 const messages = useMessagesStore()
 const vault = useVaultStore()
+const settingsLocale = useSettingsLocaleStore()
 const theme = useTheme()
 const route = useRoute()
 const settingsOpen = ref(false)
+
+function closeSettings() {
+  settingsOpen.value = false
+  // A plain query, not a template ref: the button sits behind AppTooltip's
+  // `activatorProps`, which binds its own `ref` on the same element — a
+  // template `ref` here loses that race and stays null.
+  nextTick(() => document.querySelector<HTMLElement>('.floating-settings-btn')?.focus())
+}
 
 // vault-setup in particular can flip vault.isUnlocked to true *before*
 // navigating away (creating the vault happens on step 1 of 2, both on this
@@ -28,8 +39,40 @@ const isPreAuthRoute = computed(() => route.name === 'vault-unlock' || route.nam
 
 useIdleLock()
 
+// Re-applies the shared theme/locale cookies. Needed on mount, and again
+// whenever a bfcache restore (browser Back/Forward) repaints this exact page
+// from a frozen snapshot rather than reloading it — nothing else re-runs to
+// notice a cookie written by another page (the public website, or this app
+// in another tab) in the meantime.
+function resyncFromSharedCookies() {
+  const storedTheme = getStoredTheme()
+  theme.change(storedTheme)
+  applyDomTheme(storedTheme)
+  // Pre-auth default only: once a vault is unlocked, its own saved locale
+  // (loadIntoStores, stores/vault.ts) is an authenticated, per-wallet choice
+  // that deliberately takes precedence over this shared cross-origin cookie.
+  if (vault.isUnlocked) return
+  const sharedLocale = getSharedCookie('wwwallet.locale')
+  if (sharedLocale && settingsLocale.languages.some((lang) => lang.id === sharedLocale)) {
+    settingsLocale.setLocale(sharedLocale)
+  }
+}
+
+function onPageShow(event: PageTransitionEvent) {
+  if (event.persisted) resyncFromSharedCookies()
+}
+function onVisibilityChange() {
+  if (document.visibilityState === 'visible') resyncFromSharedCookies()
+}
+
 onMounted(() => {
-  theme.change(getStoredTheme())
+  resyncFromSharedCookies()
+  window.addEventListener('pageshow', onPageShow)
+  document.addEventListener('visibilitychange', onVisibilityChange)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('pageshow', onPageShow)
+  document.removeEventListener('visibilitychange', onVisibilityChange)
 })
 
 // Navigating away (e.g. tapping "Payees" inside the panel) should close it
@@ -44,22 +87,20 @@ watch(() => route.fullPath, () => {
     <AppTooltip v-if="!settingsOpen" :text="t('nav.settings')" location="bottom">
       <template #default="{ activatorProps }">
         <button v-bind="activatorProps" class="floating-settings-btn" :aria-label="t('nav.settings')" @click="settingsOpen = true">
-          <v-icon icon="mdi-cog" />
+          <v-icon icon="mdi-cog" size="20" />
         </button>
       </template>
     </AppTooltip>
 
-    <v-navigation-drawer
-      v-model="settingsOpen"
-      location="left"
-      temporary
-      width="340"
-      class="settings-drawer"
-    >
-      <div class="settings-drawer-inner">
-        <SettingsPanel @close="settingsOpen = false" />
-      </div>
-    </v-navigation-drawer>
+    <Teleport to="body">
+      <Transition name="settings-fade">
+        <div v-if="settingsOpen" class="settings-overlay" @click.self="closeSettings">
+          <div class="settings-drawer-inner">
+            <SettingsPanel @close="closeSettings" />
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
 
     <v-main>
       <template v-if="!isPreAuthRoute">

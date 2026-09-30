@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Bez hasła dostępu będziesz musiał wprowadzać pełną frazę odzyskiwania przy każdym uruchomieniu aplikacji wwwallet. Możesz to skonfigurować później w sekcji Ustawienia.',
     continueAnyway: 'Kontynuuj mimo wszystko',
+    createIntroBody:
+      'Tworzy nową frazę odzyskiwania i skarbnicę na tym urządzeniu. Żadne dane nie są przesyłane na serwer — od samego początku masz pełną kontrolę.',
+    createWalletCta: 'Utwórz portfel',
   },
   vaultUnlock: {
     title: 'Odblokuj wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Ustawienia',
-    toggleThemeAria: 'Przełącz motyw',
     closeAria: 'Zamknij ustawienia',
     lockNow: 'Zablokuj teraz',
     languageLabel: 'Język',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Zapisałem swoje hasło odzyskiwania w bezpiecznym miejscu i rozumiem, że tej czynności nie da się cofnąć',
     deleteWalletConfirm: 'Usuń portfel',
+    themeLabel: 'Temat',
+    themeLight: 'Światło',
+    themeDark: 'Ciemność',
   },
   transactions: {
     title: 'Transakcje',

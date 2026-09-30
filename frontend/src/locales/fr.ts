@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Sans mot de passe, vous devrez saisir votre phrase de récupération complète à chaque fois que vous ouvrirez wwwallet. Vous pourrez configurer cette option ultérieurement dans les paramètres.',
     continueAnyway: 'Continuer quand même',
+    createIntroBody:
+      "Génère une nouvelle phrase de récupération et un nouveau coffre-fort sur cet appareil. Aucune donnée n'est transmise à un serveur : vous gardez le contrôle total dès le début.",
+    createWalletCta: 'Créer un portefeuille',
   },
   vaultUnlock: {
     title: 'Déverrouiller wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Paramètres',
-    toggleThemeAria: 'Changer de thème',
     closeAria: 'Fermer les paramètres',
     lockNow: 'Verrouiller maintenant',
     languageLabel: 'Langue',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       "J'ai conservé ma phrase de récupération dans un endroit sûr et je comprends que cette action est irréversible",
     deleteWalletConfirm: 'Supprimer le portefeuille',
+    themeLabel: 'Thème',
+    themeLight: 'Lumière',
+    themeDark: 'Sombre',
   },
   transactions: {
     title: 'Transactions',

@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Uten en passnøkkel må du oppgi hele gjenopprettingsfrasen hver gang du åpner wwwallet. Du kan konfigurere dette senere under Innstillinger.',
     continueAnyway: 'Fortsett likevel',
+    createIntroBody:
+      'Oppretter en ny gjenopprettingsfrase og et nytt hvelv på denne enheten. Ingenting sendes til en server – du har full kontroll helt fra starten av.',
+    createWalletCta: 'Opprett lommebok',
   },
   vaultUnlock: {
     title: 'Lås opp wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Innstillinger',
-    toggleThemeAria: 'Bytt tema',
     closeAria: 'Lukk innstillinger',
     lockNow: 'Lås nå',
     languageLabel: 'Språk',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Jeg har lagret gjenopprettingsfrasen min på et trygt sted og er klar over at dette ikke kan gjøres om',
     deleteWalletConfirm: 'Slett lommeboken',
+    themeLabel: 'Tema',
+    themeLight: 'Lys',
+    themeDark: 'Mørkt',
   },
   transactions: {
     title: 'Transaksjoner',

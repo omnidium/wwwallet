@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Nếu không có mật khẩu, bạn sẽ phải nhập toàn bộ cụm từ khôi phục mỗi khi mở wwwallet. Bạn có thể thiết lập tính năng này sau này trong phần Cài đặt.',
     continueAnyway: 'Dù sao thì cứ tiếp tục đi',
+    createIntroBody:
+      'Tạo một cụm từ khôi phục và kho lưu trữ mới trên thiết bị này. Không có dữ liệu nào được gửi lên máy chủ — bạn hoàn toàn kiểm soát mọi thứ ngay từ đầu.',
+    createWalletCta: 'Tạo Ví',
   },
   vaultUnlock: {
     title: 'Mở khóa wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Cài đặt',
-    toggleThemeAria: 'Chuyển đổi chủ đề',
     closeAria: 'Đóng cài đặt',
     lockNow: 'Khóa ngay',
     languageLabel: 'Ngôn ngữ',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Tôi đã lưu cụm từ khôi phục ở một nơi an toàn và hiểu rằng việc này không thể hoàn tác được',
     deleteWalletConfirm: 'Xóa ví',
+    themeLabel: 'Chủ đề',
+    themeLight: 'Ánh sáng',
+    themeDark: 'Tối',
   },
   transactions: {
     title: 'Giao dịch',

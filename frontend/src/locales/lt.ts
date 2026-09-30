@@ -131,6 +131,9 @@ export default {
     skipBody:
       'Jei neturėsite prieigos rakto, kiekvieną kartą atidarydami „wwwallet“ turėsite įvesti visą atkūrimo frazę. Tai galite nustatyti vėliau meniu „Nustatymai“.',
     continueAnyway: 'Vis tiek tęsti',
+    createIntroBody:
+      'Šiame įrenginyje sukuria naują atkūrimo frazę ir saugyklą. Į serverį nieko nesiunčiama – nuo pat pradžių viską kontroliuojate patys.',
+    createWalletCta: 'Sukurti piniginę',
   },
   vaultUnlock: {
     title: 'Atrakinti „wwwallet“',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'Nustatymai',
-    toggleThemeAria: 'Perjungti temą',
     closeAria: 'Uždaryti nustatymus',
     lockNow: 'Užrakinkite dabar',
     languageLabel: 'Kalba',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'Savo atkūrimo frazę esu išsaugojęs saugioje vietoje ir suprantu, kad šio veiksmo atšaukti nebus galima',
     deleteWalletConfirm: 'Ištrinti piniginę',
+    themeLabel: 'Tema',
+    themeLight: 'Šviesa',
+    themeDark: 'Tamsus',
   },
   transactions: {
     title: 'Sandoriai',

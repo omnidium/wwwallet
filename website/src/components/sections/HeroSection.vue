@@ -13,7 +13,9 @@ function scrollToWallet() {
   <section class="hero">
     <div class="container hero-inner">
       <p class="section-eyebrow">{{ t('hero.eyebrow') }}</p>
-      <h1 class="hero-heading gradient-text">{{ t('hero.heading') }}</h1>
+      <h1 class="hero-heading gradient-text">{{ t('hero.heading1') }}</h1>
+      <h1 class="hero-heading gradient-text">{{ t('hero.heading2') }}</h1>
+      <h1 class="hero-heading gradient-text">{{ t('hero.heading3') }}</h1>
       <p class="hero-lede">{{ t('hero.lede') }}</p>
       <div class="hero-actions">
         <a :href="APP_URL" class="btn btn-primary">{{ t('hero.ctaPrimary') }}</a>
@@ -27,7 +29,7 @@ function scrollToWallet() {
 
 <style scoped>
 .hero {
-  padding: calc(var(--header-height) + var(--space-6)) 0 var(--space-6);
+  padding: calc(var(--header-height) + var(--space-2)) 0 var(--space-6);
   min-height: 88vh;
   display: flex;
   align-items: center;
@@ -40,7 +42,7 @@ function scrollToWallet() {
 }
 
 .hero-inner {
-  max-width: 46ch;
+  max-width: var(--container-max);
 }
 
 .hero-heading {

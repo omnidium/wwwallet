@@ -2,9 +2,13 @@ import 'vuetify/styles'
 import '@mdi/font/css/materialdesignicons.css'
 import { createVuetify } from 'vuetify'
 
-// Matches the old Angular app's Material theme (custom-theme.scss) as closely
-// as makes sense in Vuetify: same primary/accent/warn colors and surface
-// tokens, plus its send/receive/link accent colors as named theme colors.
+// Brand colors match the public website (website/src/style/tokens.css),
+// which itself samples the app's own favicon.ico gradient (green -> teal ->
+// cyan -> blue). Previously this matched the old Angular app's Material
+// theme (flat green/blue) instead, which no longer matches favicon.ico since
+// it was updated — see the send/receive/link/error/info accents below, which
+// are unrelated semantic colors (transaction direction, links, warnings) and
+// were deliberately left as-is.
 export default createVuetify({
   theme: {
     defaultTheme: 'light',
@@ -12,12 +16,12 @@ export default createVuetify({
       light: {
         dark: false,
         colors: {
-          primary: '#478e07',
-          secondary: '#3472ca',
+          primary: '#04918f',
+          secondary: '#0494fc',
           error: '#f44336',
-          background: '#fafafa',
+          background: '#f4fbf8',
           surface: '#ffffff',
-          'surface-variant': '#e0e0e0',
+          'surface-variant': '#e4f0ec',
           send: '#ff6666',
           receive: '#79ae57',
           link: '#0909c2',
@@ -34,12 +38,12 @@ export default createVuetify({
       dark: {
         dark: true,
         colors: {
-          primary: '#478e07',
-          secondary: '#3472ca',
+          primary: '#55e8dd',
+          secondary: '#0494fc',
           error: '#f44336',
-          background: '#303030',
-          surface: '#424242',
-          'surface-variant': '#525252',
+          background: '#0d1f1a',
+          surface: '#182a24',
+          'surface-variant': '#22392f',
           send: '#660000',
           receive: '#082100',
           link: '#b3b3ff',

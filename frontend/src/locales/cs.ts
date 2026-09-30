@@ -131,6 +131,9 @@ export default {
     skipBody:
       'Bez přístupového klíče budete při každém spuštění aplikace wwwallet zadávat celou obnovovací frázi. Tuto možnost můžete nastavit později v nastavení.',
     continueAnyway: 'Pokračovat i tak',
+    createIntroBody:
+      'Vytvoří na tomto zařízení novou obnovovací frázi a trezor. Na server se nic neodesílá – od samého začátku máte vše plně pod kontrolou.',
+    createWalletCta: 'Vytvořit peněženku',
   },
   vaultUnlock: {
     title: 'Odemknout wwwallet',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'Nastavení',
-    toggleThemeAria: 'Přepnout motiv',
     closeAria: 'Zavřít nastavení',
     lockNow: 'Zamknout nyní',
     languageLabel: 'Jazyk',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'Mám svou obnovovací frázi uloženou na bezpečném místě a chápu, že tento krok nelze zvrátit',
     deleteWalletConfirm: 'Odstranit peněženku',
+    themeLabel: 'Téma',
+    themeLight: 'Světlo',
+    themeDark: 'Tma',
   },
   transactions: {
     title: 'Transakce',

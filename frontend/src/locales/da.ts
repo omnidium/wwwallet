@@ -131,6 +131,9 @@ export default {
     skipBody:
       'Uden en adgangskode skal du indtaste hele din gendannelsessætning, hver gang du åbner wwwallet. Du kan konfigurere dette senere under Indstillinger.',
     continueAnyway: 'Fortsæt alligevel',
+    createIntroBody:
+      'Opretter en ny gendannelsesfrase og et nyt opbevaringssted på denne enhed. Der sendes intet til en server — du har fuld kontrol fra starten.',
+    createWalletCta: 'Opret tegnebog',
   },
   vaultUnlock: {
     title: 'Lås wwwallet op',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'Indstillinger',
-    toggleThemeAria: 'Skift tema',
     closeAria: 'Luk indstillinger',
     lockNow: 'Lås nu',
     languageLabel: 'Sprog',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'Jeg har gemt min gendannelsesfrase et sikkert sted og er klar over, at dette ikke kan fortrydes',
     deleteWalletConfirm: 'Slet tegnebogen',
+    themeLabel: 'Tema',
+    themeLight: 'Lys',
+    themeDark: 'Mørkt',
   },
   transactions: {
     title: 'Transaktioner',

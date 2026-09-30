@@ -130,6 +130,9 @@ export default {
     skipBody:
       '패스키가 없으면 wwwallet을 열 때마다 복구 문구를 전부 입력해야 합니다. 이 설정은 나중에 ‘설정’에서 변경할 수 있습니다.',
     continueAnyway: '어쨌든 계속하기',
+    createIntroBody:
+      '이 기기에서 새로운 복구 문구와 금고를 생성합니다. 서버로 전송되는 정보는 전혀 없으며, 처음부터 사용자가 모든 권한을 완전히 통제합니다.',
+    createWalletCta: '지갑 만들기',
   },
   vaultUnlock: {
     title: 'wwwallet 잠금 해제',
@@ -140,7 +143,6 @@ export default {
   },
   settings: {
     title: '설정',
-    toggleThemeAria: '테마 전환',
     closeAria: '설정 닫기',
     lockNow: '지금 잠그기',
     languageLabel: '언어',
@@ -171,6 +173,9 @@ export default {
     deleteWalletAckLabel:
       '복구 문구를 안전한 곳에 보관해 두었으며, 이 조치는 되돌릴 수 없다는 점을 잘 알고 있습니다.',
     deleteWalletConfirm: '지갑 삭제',
+    themeLabel: '주제',
+    themeLight: '빛',
+    themeDark: '어둠',
   },
   transactions: {
     title: '거래 내역',

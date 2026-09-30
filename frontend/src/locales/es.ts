@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Si no tienes una clave de acceso, tendrás que introducir tu frase de recuperación completa cada vez que abras wwwallet. Puedes configurarla más tarde en «Ajustes».',
     continueAnyway: 'Continuar de todos modos',
+    createIntroBody:
+      'Genera una nueva frase de recuperación y un nuevo almacén en este dispositivo. No se envía nada a ningún servidor: tú tienes el control total desde el principio.',
+    createWalletCta: 'Crear monedero',
   },
   vaultUnlock: {
     title: 'Desbloquear wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Configuración',
-    toggleThemeAria: 'Cambiar tema',
     closeAria: 'Cerrar configuración',
     lockNow: 'Bloquear ahora',
     languageLabel: 'Idioma',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Tengo mi frase de recuperación guardada en un lugar seguro y soy consciente de que esto no se puede deshacer.',
     deleteWalletConfirm: 'Eliminar monedero',
+    themeLabel: 'Tema',
+    themeLight: 'Luz',
+    themeDark: 'Oscuro',
   },
   transactions: {
     title: 'Transacciones',

@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Jelszó nélkül minden alkalommal be kell írnod a teljes helyreállítási kifejezést, amikor megnyitod a wwwallet alkalmazást. Ezt később a Beállítások menüpontban állíthatod be.',
     continueAnyway: 'Mindenképpen folytasd',
+    createIntroBody:
+      'Új helyreállítási kifejezést és tárolót hoz létre ezen az eszközön. Semmi sem kerül elküldésre egy szerverre — a kezdetektől fogva teljes mértékben Ön irányít.',
+    createWalletCta: 'Pénztárca létrehozása',
   },
   vaultUnlock: {
     title: 'A wwwallet feloldása',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Beállítások',
-    toggleThemeAria: 'Téma váltása',
     closeAria: 'Beállítások bezárása',
     lockNow: 'Zárd le most!',
     languageLabel: 'Nyelv',
@@ -174,6 +176,9 @@ export default {
     deleteWalletAckLabel:
       'A helyreállítási kódomat biztonságos helyen tárolom, és tisztában vagyok azzal, hogy ezt a műveletet nem lehet visszavonni',
     deleteWalletConfirm: 'Pénztárca törlése',
+    themeLabel: 'Téma',
+    themeLight: 'Fény',
+    themeDark: 'Sötét',
   },
   transactions: {
     title: 'Tranzakciók',

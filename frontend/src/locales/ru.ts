@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Без пароля вам придется вводить полную фразу восстановления при каждом запуске wwwallet. Настроить это можно позже в разделе «Настройки».',
     continueAnyway: 'Продолжить всё равно',
+    createIntroBody:
+      'Создает новую фразу восстановления и хранилище на этом устройстве. Никакие данные не отправляются на сервер — вы с самого начала полностью контролируете процесс.',
+    createWalletCta: 'Создать кошелек',
   },
   vaultUnlock: {
     title: 'Разблокировать wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Настройки',
-    toggleThemeAria: 'Переключить тему',
     closeAria: 'Закрыть настройки',
     lockNow: 'Заблокировать сейчас',
     languageLabel: 'Язык',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Я сохранил свою фразу для восстановления в надёжном месте и понимаю, что этот шаг нельзя отменить',
     deleteWalletConfirm: 'Удалить кошелек',
+    themeLabel: 'Тема',
+    themeLight: 'Свет',
+    themeDark: 'Темный',
   },
   transactions: {
     title: 'Транзакции',

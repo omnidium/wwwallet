@@ -131,6 +131,9 @@ export default {
     skipBody:
       'Utan en lösenkod måste du ange hela återställningsfrasen varje gång du öppnar wwwallet. Du kan ställa in detta senare under Inställningar.',
     continueAnyway: 'Fortsätt ändå',
+    createIntroBody:
+      'Skapar en ny återställningsfras och ett nytt förvar på den här enheten. Ingenting skickas till en server – du har full kontroll från början.',
+    createWalletCta: 'Skapa plånbok',
   },
   vaultUnlock: {
     title: 'Lås upp wwwallet',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'Inställningar',
-    toggleThemeAria: 'Växla tema',
     closeAria: 'Stäng inställningarna',
     lockNow: 'Lås nu',
     languageLabel: 'Språk',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'Jag har sparat min återställningsfras på en säker plats och är medveten om att detta inte går att ångra',
     deleteWalletConfirm: 'Ta bort plånboken',
+    themeLabel: 'Tema',
+    themeLight: 'Ljus',
+    themeDark: 'Mörkt',
   },
   transactions: {
     title: 'Transaktioner',

@@ -6,19 +6,8 @@ defineProps<{ question: string; answer: string }>()
   <details class="faq-item">
     <summary>
       <span>{{ question }}</span>
-      <svg
-        class="chevron"
-        viewBox="0 0 24 24"
-        width="18"
-        height="18"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M6 9l6 6 6-6" />
+      <svg class="chevron" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+        <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
       </svg>
     </summary>
     <p>{{ answer }}</p>

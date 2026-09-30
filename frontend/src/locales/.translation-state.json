@@ -324,10 +324,6 @@
       "enHash": "74a883a037bc227f",
       "value": "Configuración"
     },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Cambiar tema"
-    },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
       "value": "Cerrar configuración"
@@ -1143,6 +1139,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Haz clic para verlo en Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Luz"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Oscuro"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Genera una nueva frase de recuperación y un nuevo almacén en este dispositivo. No se envía nada a ningún servidor: tú tienes el control total desde el principio."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Crear monedero"
     }
   },
   "ar": {
@@ -1469,10 +1485,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "الإعدادات"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "تبديل السمة"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -2289,6 +2301,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "انقر لعرضه على Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "الموضوع"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "الضوء"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "مظلم"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "يقوم بإنشاء عبارة استرداد جديدة وخزينة جديدة على هذا الجهاز. لا يتم إرسال أي بيانات إلى الخادم — فأنت تتحكم تمامًا في العملية منذ البداية."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "إنشاء محفظة"
     }
   },
   "bg": {
@@ -2615,10 +2647,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Настройки"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Превключване на темата"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -3435,6 +3463,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Кликнете, за да видите в Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Тема"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Светлина"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Тъмно"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Създава нова фраза за възстановяване и хранилище на това устройство. Нищо не се изпраща към сървър — вие имате пълен контрол от самото начало."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Създаване на портфейл"
     }
   },
   "cs": {
@@ -3761,10 +3809,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Nastavení"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Přepnout motiv"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -4581,6 +4625,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Klikněte zde pro zobrazení na Etherscanu"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Téma"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Světlo"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Tma"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Vytvoří na tomto zařízení novou obnovovací frázi a trezor. Na server se nic neodesílá – od samého začátku máte vše plně pod kontrolou."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Vytvořit peněženku"
     }
   },
   "da": {
@@ -4907,10 +4971,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Indstillinger"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Skift tema"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -5727,6 +5787,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Klik her for at se det på Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Lys"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Mørkt"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Opretter en ny gendannelsesfrase og et nyt opbevaringssted på denne enhed. Der sendes intet til en server — du har fuld kontrol fra starten."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Opret tegnebog"
     }
   },
   "de": {
@@ -6053,10 +6133,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Einstellungen"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Design umschalten"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -6873,6 +6949,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Zum Anzeigen auf Etherscan hier klicken"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Thema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Licht"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Dunkel"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Erstellt eine neue Wiederherstellungsphrase und einen neuen Tresor auf diesem Gerät. Es werden keinerlei Daten an einen Server gesendet – Sie behalten von Anfang an die volle Kontrolle."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Wallet erstellen"
     }
   },
   "el": {
@@ -7199,10 +7295,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Ρυθμίσεις"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Αλλαγή θέματος"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -8019,6 +8111,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Κάντε κλικ για να δείτε στο Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Θέμα"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Φως"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Σκοτεινό"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Δημιουργεί μια νέα φράση ανάκτησης και ένα νέο θησαυροφυλάκιο σε αυτή τη συσκευή. Δεν αποστέλλεται τίποτα σε διακομιστή — έχετε τον πλήρη έλεγχο από την αρχή."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Δημιουργία πορτοφολιού"
     }
   },
   "et": {
@@ -8345,10 +8457,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Seaded"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Teema vahetamine"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -9165,6 +9273,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Klõpsa, et vaadata Etherscanis"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Teema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Valgus"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Tume"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Loob sellel seadmel uue taastamisfraasi ja hoiukoha. Serverisse ei saadeta midagi – sul on algusest peale täielik kontroll."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Loo rahakott"
     }
   },
   "fi": {
@@ -9491,10 +9619,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Asetukset"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Vaihda teemaa"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -10311,6 +10435,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Napsauta nähdäksesi Etherscanissa"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Teema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Valo"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Pimeä"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Luo uuden palautuslauseen ja säilytystilan tällä laitteella. Mitään tietoja ei lähetetä palvelimelle — sinulla on täysi hallinta alusta alkaen."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Luo lompakko"
     }
   },
   "fr": {
@@ -10637,10 +10781,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Paramètres"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Changer de thème"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -11457,6 +11597,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Cliquez ici pour consulter Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Thème"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Lumière"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Sombre"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Génère une nouvelle phrase de récupération et un nouveau coffre-fort sur cet appareil. Aucune donnée n'est transmise à un serveur : vous gardez le contrôle total dès le début."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Créer un portefeuille"
     }
   },
   "hu": {
@@ -11783,10 +11943,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Beállítások"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Téma váltása"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -12603,6 +12759,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Kattintson az Etherscan-on való megtekintéshez"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Téma"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Fény"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Sötét"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Új helyreállítási kifejezést és tárolót hoz létre ezen az eszközön. Semmi sem kerül elküldésre egy szerverre — a kezdetektől fogva teljes mértékben Ön irányít."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Pénztárca létrehozása"
     }
   },
   "id": {
@@ -12929,10 +13105,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Pengaturan"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Ubah tema"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -13749,6 +13921,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Klik untuk melihat di Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Cahaya"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Gelap"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Membuat frasa pemulihan dan brankas baru di perangkat ini. Tidak ada data yang dikirim ke server — Anda sepenuhnya memegang kendali sejak awal."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Buat Dompet"
     }
   },
   "it": {
@@ -14075,10 +14267,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Impostazioni"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Cambia tema"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -14895,6 +15083,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Clicca qui per visualizzare su Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Luce"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Buio"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Crea una nuova frase di recupero e un nuovo vault su questo dispositivo. Non viene inviato nulla a un server: hai il pieno controllo sin dall'inizio."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Crea un portafoglio"
     }
   },
   "iw": {
@@ -15221,10 +15429,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "הגדרות"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "החלף ערכת נושא"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -16041,6 +16245,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "לחץ כדי להציג ב-Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "נושא"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "אור"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "חושך"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "יוצר ביטוי שחזור וכספת חדשים במכשיר זה. שום מידע לא נשלח לשרת — השליטה נמצאת בידיך המלאה מהרגע הראשון."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "יצירת ארנק"
     }
   },
   "ja": {
@@ -16367,10 +16591,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "設定"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "テーマを切り替える"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -17187,6 +17407,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "クリックしてEtherscanで表示する"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "テーマ"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "光"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "ダーク"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "このデバイス上で新しいリカバリーフレーズと保管庫を生成します。サーバーへは一切送信されません。最初からすべてを自分で管理できます。"
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "ウォレットを作成する"
     }
   },
   "ko": {
@@ -17513,10 +17753,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "설정"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "테마 전환"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -18333,6 +18569,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Etherscan에서 보려면 클릭하세요"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "주제"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "빛"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "어둠"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "이 기기에서 새로운 복구 문구와 금고를 생성합니다. 서버로 전송되는 정보는 전혀 없으며, 처음부터 사용자가 모든 권한을 완전히 통제합니다."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "지갑 만들기"
     }
   },
   "lt": {
@@ -18659,10 +18915,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Nustatymai"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Perjungti temą"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -19479,6 +19731,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Spustelėkite, kad peržiūrėtumėte „Etherscan“"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Šviesa"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Tamsus"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Šiame įrenginyje sukuria naują atkūrimo frazę ir saugyklą. Į serverį nieko nesiunčiama – nuo pat pradžių viską kontroliuojate patys."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Sukurti piniginę"
     }
   },
   "lv": {
@@ -19805,10 +20077,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Iestatījumi"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Pārslēgt tēmu"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -20625,6 +20893,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Noklikšķiniet, lai apskatītu Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tēma"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Gaisma"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Tumšs"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Šajā ierīcē tiek izveidota jauna atjaunošanas frāze un seifs. Nekāda informācija netiek nosūtīta uz serveri — jūs no paša sākuma pilnībā kontrolējat situāciju."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Izveidot elektronisko maku"
     }
   },
   "nl": {
@@ -20951,10 +21239,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Instellingen"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Thema wisselen"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -21771,6 +22055,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Klik hier om op Etherscan te bekijken"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Thema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Licht"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Donker"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Hiermee worden een nieuwe herstelzin en een nieuwe kluis op dit apparaat aangemaakt. Er wordt niets naar een server verzonden — je hebt vanaf het begin de volledige controle."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Portemonnee aanmaken"
     }
   },
   "no": {
@@ -22097,10 +22401,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Innstillinger"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Bytt tema"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -22917,6 +23217,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Klikk for å se på Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Lys"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Mørkt"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Oppretter en ny gjenopprettingsfrase og et nytt hvelv på denne enheten. Ingenting sendes til en server – du har full kontroll helt fra starten av."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Opprett lommebok"
     }
   },
   "pl": {
@@ -23243,10 +23563,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Ustawienia"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Przełącz motyw"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -24063,6 +24379,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Kliknij, aby wyświetlić w serwisie Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Temat"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Światło"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Ciemność"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Tworzy nową frazę odzyskiwania i skarbnicę na tym urządzeniu. Żadne dane nie są przesyłane na serwer — od samego początku masz pełną kontrolę."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Utwórz portfel"
     }
   },
   "ro": {
@@ -24389,10 +24725,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Setări"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Comută tema"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -25209,6 +25541,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Faceți clic pentru a vizualiza pe Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Lumină"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Întuneric"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Generează o nouă frază de recuperare și un nou seif pe acest dispozitiv. Nu se trimite nimic către un server — ai controlul deplin încă de la început."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Creează un portofel"
     }
   },
   "ru": {
@@ -25535,10 +25887,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Настройки"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Переключить тему"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -26355,6 +26703,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Нажмите, чтобы посмотреть на Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Тема"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Свет"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Темный"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Создает новую фразу восстановления и хранилище на этом устройстве. Никакие данные не отправляются на сервер — вы с самого начала полностью контролируете процесс."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Создать кошелек"
     }
   },
   "sk": {
@@ -26681,10 +27049,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Nastavenia"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Zmeniť vzhľad"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -27501,6 +27865,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Kliknite tu pre zobrazenie na Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Téma"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Svetlo"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Tma"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Vytvorí novú obnovovaciu frázu a trezor na tomto zariadení. Na server sa neposiela absolútne nič – od začiatku máte všetko pod kontrolou."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Vytvoriť peňaženku"
     }
   },
   "sl": {
@@ -27827,10 +28211,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Nastavitve"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Preklopi temo"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -28647,6 +29027,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Kliknite, da si ogledate na Etherscanu"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Svetloba"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Temno"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Na tej napravi ustvari novo obnovitveno frazo in trezor. Na strežnik se ne pošilja nič – od samega začetka imate popoln nadzor."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Ustvari denarnico"
     }
   },
   "sv": {
@@ -28973,10 +29373,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Inställningar"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Växla tema"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -29793,6 +30189,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Klicka här för att visa på Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Ljus"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Mörkt"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Skapar en ny återställningsfras och ett nytt förvar på den här enheten. Ingenting skickas till en server – du har full kontroll från början."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Skapa plånbok"
     }
   },
   "tr": {
@@ -30119,10 +30535,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Ayarlar"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Temayı değiştir"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -30939,6 +31351,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Etherscan'da görüntülemek için tıklayın"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Tema"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Işık"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Karanlık"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Bu cihazda yeni bir kurtarma ifadesi ve kasa oluşturur. Sunucuya hiçbir şey gönderilmez — başından itibaren kontrol tamamen sizdedir."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Cüzdan Oluştur"
     }
   },
   "uk": {
@@ -31265,10 +31697,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Налаштування"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Перемикати тему"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -32085,6 +32513,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Натисніть, щоб переглянути на Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Тема"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Світло"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Темний"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Створює нову фразу відновлення та сховище на цьому пристрої. Ніякі дані не надсилаються на сервер — ви повністю контролюєте процес із самого початку."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Створити гаманець"
     }
   },
   "vi": {
@@ -32411,10 +32859,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "Cài đặt"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "Chuyển đổi chủ đề"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -33231,6 +33675,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "Nhấp vào đây để xem trên Etherscan"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "Chủ đề"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "Ánh sáng"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "Tối"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "Tạo một cụm từ khôi phục và kho lưu trữ mới trên thiết bị này. Không có dữ liệu nào được gửi lên máy chủ — bạn hoàn toàn kiểm soát mọi thứ ngay từ đầu."
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "Tạo Ví"
     }
   },
   "zh-CN": {
@@ -33557,10 +34021,6 @@
     "settings.title": {
       "enHash": "74a883a037bc227f",
       "value": "设置"
-    },
-    "settings.toggleThemeAria": {
-      "enHash": "6026719f081a8f34",
-      "value": "切换主题"
     },
     "settings.closeAria": {
       "enHash": "0ccfef82895026e2",
@@ -34377,6 +34837,26 @@
     "accountCard.viewOnEtherscan": {
       "enHash": "33f9acae37b47786",
       "value": "点击在Etherscan上查看"
+    },
+    "settings.themeLabel": {
+      "enHash": "efb52e7172b77731",
+      "value": "主题"
+    },
+    "settings.themeLight": {
+      "enHash": "dbcd5e7bb7a0f538",
+      "value": "光"
+    },
+    "settings.themeDark": {
+      "enHash": "60acc53f13a5d1bf",
+      "value": "黑暗"
+    },
+    "vaultSetup.createIntroBody": {
+      "enHash": "53ad32c02f32468b",
+      "value": "在此设备上生成新的恢复短语和保险库。任何数据都不会发送至服务器——您从一开始就完全掌控一切。"
+    },
+    "vaultSetup.createWalletCta": {
+      "enHash": "726aa71c01d0a369",
+      "value": "创建钱包"
     }
   }
 }

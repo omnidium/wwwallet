@@ -131,6 +131,9 @@ export default {
     skipBody:
       'Bez prístupového kľúča budete musieť pri každom otvorení aplikácie wwwallet zadať celú obnovovaciu frázu. Túto funkciu si môžete nastaviť neskôr v nastaveniach.',
     continueAnyway: 'Pokračovať aj tak',
+    createIntroBody:
+      'Vytvorí novú obnovovaciu frázu a trezor na tomto zariadení. Na server sa neposiela absolútne nič – od začiatku máte všetko pod kontrolou.',
+    createWalletCta: 'Vytvoriť peňaženku',
   },
   vaultUnlock: {
     title: 'Odomknúť wwwallet',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'Nastavenia',
-    toggleThemeAria: 'Zmeniť vzhľad',
     closeAria: 'Zatvoriť nastavenia',
     lockNow: 'Zamknúť teraz',
     languageLabel: 'Jazyk',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'Mám svoju obnovovaciu frázu uloženú na bezpečnom mieste a uvedomujem si, že tento krok nemožno vrátiť späť',
     deleteWalletConfirm: 'Odstrániť peňaženku',
+    themeLabel: 'Téma',
+    themeLight: 'Svetlo',
+    themeDark: 'Tma',
   },
   transactions: {
     title: 'Transakcie',

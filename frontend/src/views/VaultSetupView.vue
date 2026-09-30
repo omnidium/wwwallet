@@ -14,14 +14,20 @@ const vault = useVaultStore()
 const messages = useMessagesStore()
 const router = useRouter()
 
-const step = ref<'recoveryPhrase' | 'extras'>('recoveryPhrase')
-const recoveryPhrase = ref(generateRecoveryMnemonic())
-const recoveryPhraseWords = ref(recoveryMnemonicWords(recoveryPhrase.value))
+const step = ref<'intro' | 'recoveryPhrase' | 'extras'>('intro')
+const recoveryPhrase = ref('')
+const recoveryPhraseWords = ref<string[]>([])
 const savedAck = ref(false)
 const restoreFileInput = ref<HTMLInputElement | null>(null)
 const passkeyUnsupported = ref(false)
 const skipWarningOpen = ref(false)
 const restoring = ref(false)
+
+function startCreate() {
+  recoveryPhrase.value = generateRecoveryMnemonic()
+  recoveryPhraseWords.value = recoveryMnemonicWords(recoveryPhrase.value)
+  step.value = 'recoveryPhrase'
+}
 
 async function copyRecoveryPhrase() {
   try {
@@ -96,7 +102,28 @@ function finish() {
 <template>
   <v-container class="fill-height d-flex align-center justify-center">
     <v-card width="480" class="pa-4">
-      <template v-if="step === 'recoveryPhrase'">
+      <template v-if="step === 'intro'">
+        <v-card-title>{{ t('vaultSetup.createTitle') }}</v-card-title>
+        <v-card-text class="text-body-2 text-medium-emphasis">
+          {{ t('vaultSetup.createIntroBody') }}
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="primary" block @click="startCreate">{{ t('vaultSetup.createWalletCta') }}</v-btn>
+        </v-card-actions>
+
+        <v-divider class="my-4" />
+
+        <v-card-text class="text-subtitle-2 pb-0">{{ t('vaultSetup.haveBackup') }}</v-card-text>
+        <v-card-actions class="flex-column">
+          <v-btn variant="outlined" block @click="restoreFromDrive">{{ t('vaultSetup.restoreFromDrive') }}</v-btn>
+          <v-btn variant="outlined" block class="mt-2" @click="restoreFileInput?.click()">
+            {{ t('vaultSetup.restoreFromLocalFile') }}
+          </v-btn>
+          <input ref="restoreFileInput" type="file" accept="application/json" hidden @change="onRestoreFileSelected" />
+        </v-card-actions>
+      </template>
+
+      <template v-else-if="step === 'recoveryPhrase'">
         <v-card-title>{{ t('vaultSetup.createTitle') }}</v-card-title>
         <v-card-text>
           <i18n-t keypath="vaultSetup.recoveryExplainer" tag="span" scope="global">
@@ -124,17 +151,6 @@ function finish() {
         <v-card-actions>
           <v-btn color="primary" block :disabled="!savedAck" @click="createVault">{{ t('vaultSetup.createVault')
             }}</v-btn>
-        </v-card-actions>
-
-        <v-divider class="my-4" />
-
-        <v-card-text class="text-subtitle-2 pb-0">{{ t('vaultSetup.haveBackup') }}</v-card-text>
-        <v-card-actions class="flex-column">
-          <v-btn variant="outlined" block @click="restoreFromDrive">{{ t('vaultSetup.restoreFromDrive') }}</v-btn>
-          <v-btn variant="outlined" block class="mt-2" @click="restoreFileInput?.click()">
-            {{ t('vaultSetup.restoreFromLocalFile') }}
-          </v-btn>
-          <input ref="restoreFileInput" type="file" accept="application/json" hidden @change="onRestoreFileSelected" />
         </v-card-actions>
       </template>
 

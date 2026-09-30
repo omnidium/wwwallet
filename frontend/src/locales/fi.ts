@@ -132,6 +132,9 @@ export default {
     skipBody:
       'Ilman salasanaa joudut syöttämään koko palautuslauseen joka kerta, kun avaat wwwallet-sovelluksen. Voit määrittää tämän myöhemmin Asetukset-valikosta.',
     continueAnyway: 'Jatka silti',
+    createIntroBody:
+      'Luo uuden palautuslauseen ja säilytystilan tällä laitteella. Mitään tietoja ei lähetetä palvelimelle — sinulla on täysi hallinta alusta alkaen.',
+    createWalletCta: 'Luo lompakko',
   },
   vaultUnlock: {
     title: 'Avaa wwwallet',
@@ -142,7 +145,6 @@ export default {
   },
   settings: {
     title: 'Asetukset',
-    toggleThemeAria: 'Vaihda teemaa',
     closeAria: 'Sulje asetukset',
     lockNow: 'Lukitse nyt',
     languageLabel: 'Kieli',
@@ -173,6 +175,9 @@ export default {
     deleteWalletAckLabel:
       'Olen tallentanut palautuslauseeni turvalliseen paikkaan ja ymmärrän, että tätä ei voi peruuttaa',
     deleteWalletConfirm: 'Poista lompakko',
+    themeLabel: 'Teema',
+    themeLight: 'Valo',
+    themeDark: 'Pimeä',
   },
   transactions: {
     title: 'Tapahtumat',

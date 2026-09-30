@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import { api, type ChainSlug, type TokenMetadata } from '@/services/api'
+import { type ChainSlug } from '@/services/api'
 import { useMessagesStore } from '@/stores/messages'
 import { displayErrorMessage } from '@/services/errors'
 import { useChainDataStore } from '@/stores/chainData'
@@ -37,12 +37,12 @@ const address = route.params.address as string
 // those two rows just don't render rather than showing wrong data.
 const holderAddress = typeof route.query.holder === 'string' ? route.query.holder : null
 
-const metadata = ref<TokenMetadata | null>(null)
+const metadata = computed(() => chainData.tokenMetadataByKey[chainData.keyFor(chain, address)] ?? null)
 const loading = ref(true)
 
 onMounted(async () => {
   try {
-    metadata.value = await api.tokenMetadata(chain, address)
+    await chainData.loadTokenMetadata(chain, address)
   } catch (err) {
     messages.push(displayErrorMessage(err), 'error')
   } finally {
@@ -84,6 +84,10 @@ const totalFormatted = computed(() => {
   )
 })
 
+const activityLoaded = computed(() => {
+  if (!holderAddress) return true
+  return chainData.activityByAddress[chainData.keyFor(chain, holderAddress)] !== undefined
+})
 const tokenTransactions = computed(() => {
   if (!holderAddress) return []
   const activity = chainData.activityByAddress[chainData.keyFor(chain, holderAddress)]
@@ -180,7 +184,10 @@ function openTransaction(txn: Transaction) {
             <TransactionRow v-for="txn in group.transactions" :key="txn.hash" :transaction="txn"
               :my-address="holderAddress" :chain="chain" @click="openTransaction(txn)" />
           </template>
-          <p v-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
+          <div v-if="!activityLoaded" class="d-flex justify-center pa-2">
+            <v-progress-circular indeterminate size="20" width="2" color="primary" />
+          </div>
+          <p v-else-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
             {{ t('transactions.empty') }}
           </p>
           <div v-if="loadingMoreTxns" class="d-flex justify-center pa-2">

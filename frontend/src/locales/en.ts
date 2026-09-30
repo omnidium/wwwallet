@@ -186,6 +186,9 @@ export default {
   },
   vaultSetup: {
     createTitle: 'Create your wallet',
+    createIntroBody:
+      "Generates a new recovery phrase and vault on this device. Nothing is sent to a server — you're fully in control from the start.",
+    createWalletCta: 'Create Wallet',
     recoveryExplainer:
       "This is your {phrase}. It encrypts everything on this device and is the only way back in if you ever lose access to your passkey — including restoring a backup on a new device. Write it down or copy it somewhere safe, offline. You won't need it day-to-day once quick unlock is set up on the next screen, and wwwallet will never show it to you again.",
     recoveryExplainerPhrase: 'recovery phrase',
@@ -216,7 +219,9 @@ export default {
   },
   settings: {
     title: 'Settings',
-    toggleThemeAria: 'Toggle theme',
+    themeLabel: 'Theme',
+    themeLight: 'Light',
+    themeDark: 'Dark',
     closeAria: 'Close settings',
     lockNow: 'Lock now',
     languageLabel: 'Language',

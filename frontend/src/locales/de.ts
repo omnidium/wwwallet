@@ -131,6 +131,9 @@ export default {
     skipBody:
       'Ohne Passwort müssen Sie bei jedem Öffnen von wwwallet Ihre vollständige Wiederherstellungsphrase eingeben. Sie können dies später in den Einstellungen einrichten.',
     continueAnyway: 'Trotzdem weitermachen',
+    createIntroBody:
+      'Erstellt eine neue Wiederherstellungsphrase und einen neuen Tresor auf diesem Gerät. Es werden keinerlei Daten an einen Server gesendet – Sie behalten von Anfang an die volle Kontrolle.',
+    createWalletCta: 'Wallet erstellen',
   },
   vaultUnlock: {
     title: 'wwwallet freischalten',
@@ -141,7 +144,6 @@ export default {
   },
   settings: {
     title: 'Einstellungen',
-    toggleThemeAria: 'Design umschalten',
     closeAria: 'Einstellungen schließen',
     lockNow: 'Jetzt sperren',
     languageLabel: 'Sprache',
@@ -172,6 +174,9 @@ export default {
     deleteWalletAckLabel:
       'Ich habe meine Wiederherstellungsphrase an einem sicheren Ort gespeichert und bin mir bewusst, dass dieser Vorgang nicht rückgängig gemacht werden kann',
     deleteWalletConfirm: 'Wallet löschen',
+    themeLabel: 'Thema',
+    themeLight: 'Licht',
+    themeDark: 'Dunkel',
   },
   transactions: {
     title: 'Transaktionen',

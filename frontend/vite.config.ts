@@ -21,6 +21,12 @@ function getAppVersion(): string {
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Moved out of frontend/ into shared/ — a first step toward the wallet
+  // and the public website drawing their static assets (icons especially)
+  // from one place instead of each keeping its own copy. Paths inside
+  // (includeAssets/manifest.icons below, index.html's favicon link) are
+  // unchanged since they're relative to whatever publicDir points at.
+  publicDir: fileURLToPath(new URL('../shared/frontend-public', import.meta.url)),
   define: {
     __APP_VERSION__: JSON.stringify(getAppVersion()),
   },
@@ -45,8 +51,8 @@ export default defineConfig({
         name: 'wwwallet',
         short_name: 'wwwallet',
         description: 'A personal, non-custodial Ethereum/EVM wallet',
-        theme_color: '#1e1e2e',
-        background_color: '#1e1e2e',
+        theme_color: '#0d1f1a',
+        background_color: '#0d1f1a',
         display: 'standalone',
         start_url: '/',
         icons: [
@@ -70,6 +76,14 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  server: {
+    fs: {
+      // Needed to @import ../../../shared/design-tokens.css (main.css) —
+      // outside this project's root, which Vite's dev server otherwise
+      // refuses to serve.
+      allow: ['..'],
     },
   },
 })

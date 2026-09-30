@@ -11,11 +11,7 @@ const sections = [
   { id: 'faqs', label: 'nav.faqs' },
 ]
 
-const { activeId, scrollToSection } = useScrollSpy(sections.map((section) => section.id))
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
+const { activeId, scrollToSection, scrollToTop } = useScrollSpy(sections.map((section) => section.id))
 
 function onNavClick(id: string, event: MouseEvent) {
   event.preventDefault()
@@ -26,15 +22,12 @@ function onNavClick(id: string, event: MouseEvent) {
 <template>
   <nav class="scroll-spy-nav glass-surface" :aria-label="t('nav.sectionNavLabel')">
     <a href="#" class="wordmark" :aria-label="t('nav.home')" @click.prevent="scrollToTop">
-      wwwallet
+      <img src="/icons/icon-inv-64.png" width="28" height="28" alt="" />
     </a>
     <ul>
       <li v-for="section in sections" :key="section.id">
-        <a
-          :href="`#${section.id}`"
-          :class="{ active: activeId === section.id }"
-          @click="onNavClick(section.id, $event)"
-        >
+        <a :href="`#${section.id}`" :class="{ active: activeId === section.id }"
+          @click="onNavClick(section.id, $event)">
           {{ t(section.label) }}
         </a>
       </li>
@@ -59,12 +52,14 @@ function onNavClick(id: string, event: MouseEvent) {
 }
 
 .wordmark {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1rem;
-  text-decoration: none;
-  color: var(--text);
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.wordmark img {
+  display: block;
+  width: 28px;
+  height: 28px;
 }
 
 .scroll-spy-nav ul {
