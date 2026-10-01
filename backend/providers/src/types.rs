@@ -124,10 +124,62 @@ pub struct TokenListItem {
     pub logo_url: Option<String>,
 }
 
-/// A chain's native currency price (ETH, MATIC, ...) in USD. See coingecko.rs.
+/// A chain's native currency price (ETH, POL, ...) in USD. See coingecko.rs.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NativePrice {
     pub usd: f64,
+}
+
+/// How many points `PriceHistory::points` is downsampled to (give or take
+/// the final one) — plenty for a sparkline, without shipping all ~288
+/// five-minute samples a day's history arrives as.
+const SPARKLINE_POINTS: usize = 48;
+
+/// An asset's USD price over the past 24 hours: the latest price, its change
+/// across the window, and a downsampled series for a sparkline. See
+/// PriceHistoryProvider.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PriceHistory {
+    pub usd: f64,
+    /// Percent change from the window's first sample to its last.
+    pub change_24h_pct: f64,
+    /// Oldest first, evenly spaced; the last one is always `usd`.
+    pub points: Vec<f64>,
+}
+
+impl PriceHistory {
+    /// Builds one from a provider's raw, oldest-first price series. None when
+    /// there's too little usable data to say anything about a change.
+    pub fn from_series(series: &[f64]) -> Option<Self> {
+        let series: Vec<f64> = series.iter().copied().filter(|p| p.is_finite() && *p > 0.0).collect();
+        if series.len() < 2 {
+            return None;
+        }
+        let first = series[0];
+        let last = series[series.len() - 1];
+        let step = series.len().div_ceil(SPARKLINE_POINTS);
+        let mut points: Vec<f64> = series.iter().copied().step_by(step).collect();
+        if (series.len() - 1) % step != 0 {
+            points.push(last);
+        }
+        Some(Self {
+            usd: last,
+            change_24h_pct: (last - first) / first * 100.0,
+            points,
+        })
+    }
+}
+
+/// What a mined transaction cost in network fees, from its receipt.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionFee {
+    /// Decimal wei string: gas used × effective gas price, plus the L1 data
+    /// fee OP-stack chains (Base, Optimism) report separately. Arbitrum
+    /// already counts its L1 share in gas used.
+    pub fee_wei: String,
+    /// The account that paid it — the transaction's sender, which for a
+    /// received token transfer is someone else entirely.
+    pub payer: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -208,6 +260,26 @@ mod tests {
         assert_eq!(primary.name.as_deref(), Some("Primary"));
         assert_eq!(primary.logo_url.as_deref(), Some("https://logo"));
         assert_eq!(primary.usd_price, Some(1.5));
+    }
+
+    #[test]
+    fn price_history_downsamples_and_keeps_the_latest_price() {
+        let series: Vec<f64> = (1..=288).map(f64::from).collect();
+        let history = PriceHistory::from_series(&series).unwrap();
+        assert_eq!(history.usd, 288.0);
+        assert_eq!(history.points.first(), Some(&1.0));
+        assert_eq!(history.points.last(), Some(&288.0));
+        assert!(history.points.len() <= SPARKLINE_POINTS + 1);
+        assert!((history.change_24h_pct - 28_700.0).abs() < 1e-9);
+    }
+
+    #[test]
+    fn price_history_needs_two_usable_samples() {
+        assert!(PriceHistory::from_series(&[]).is_none());
+        assert!(PriceHistory::from_series(&[2.0, f64::NAN, 0.0]).is_none());
+        let falling = PriceHistory::from_series(&[2.0, f64::NAN, 1.0]).unwrap();
+        assert_eq!(falling.points, vec![2.0, 1.0]);
+        assert!((falling.change_24h_pct + 50.0).abs() < 1e-9);
     }
 
     #[test]

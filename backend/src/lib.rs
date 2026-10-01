@@ -27,10 +27,17 @@ async fn fetch(
     };
 
     let mut router = routes::build_router(state, cors);
-    let response = router
+    let mut response = router
         .call(req.map(axum::body::Body::new))
         .await
         .expect("axum router with no fallible middleware is infallible");
+
+    // Responses carry the user's addresses, balances and transaction
+    // history; the client keeps its own (encrypted) cache of what it needs,
+    // so the browser's HTTP cache must never write a copy of its own to disk.
+    response
+        .headers_mut()
+        .insert(header::CACHE_CONTROL, HeaderValue::from_static("no-store"));
 
     Ok(response)
 }

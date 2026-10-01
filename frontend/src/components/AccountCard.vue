@@ -114,6 +114,15 @@ const tokenRows = computed(() =>
     // to the bottom rather than sorting arbitrarily among the priced ones.
     .sort((a, b) => (b.usd ?? -1) - (a.usd ?? -1)),
 )
+// Watermark stack on the collapsed token row: the most valuable non-dust
+// holdings (tokenRows is already sorted by USD value, highest first). Tokens
+// without a logo are skipped, since there'd be nothing to draw.
+const MAX_TOKEN_WATERMARKS = 5
+const tokenWatermarks = computed(() =>
+  tokenRows.value
+    .filter((r) => r.logoUrl != null && (r.usd ?? 0) > DUST_THRESHOLD_USD)
+    .slice(0, MAX_TOKEN_WATERMARKS),
+)
 const tokenFiatUsdTotal = computed(() =>
   tokenRows.value.reduce((sum, t) => sum + (t.usd ?? 0), 0),
 )
@@ -177,84 +186,94 @@ function openInNewTab(url: string): void {
         </template>
       </AppTooltip>
     </div>
-    <div class=" card-header d-flex align-center pa-4 pb-2">
-      <span v-if="account.isDefault" class="mr-1">*</span>
-      <AppTooltip :text="t('accountCard.viewOnEtherscan')">
-        <template #default="{ activatorProps }">
-          <p class="account-name grow-0 text-truncate" style="cursor: pointer" v-bind="activatorProps"
-            @click="openInNewTab(addressUrl(props.account.chain, props.account.address))">
-            {{ account.label }}
-          </p>
-        </template>
-      </AppTooltip>
-      <AppTooltip :text="justCopied ? t('accountCard.copied') : t('accountCard.copyAddress')">
-        <template #default="{ activatorProps }">
-          <v-icon v-bind="activatorProps" icon="mdi-content-copy" size="large" class="mr-2 ml-5" role="button"
-            @click="copyAddress" />
-        </template>
-      </AppTooltip>
-      <AppTooltip :text="t('accountCard.viewQr')">
-        <template #default="{ activatorProps }">
-          <v-icon v-bind="activatorProps" icon="mdi-qrcode" size="large" class="mr-2" role="button"
-            :aria-label="t('accountCard.viewQr')"
-            @click="$router.push(`/accounts/${account.chain}/${account.address}/receive`)" />
-        </template>
-      </AppTooltip>
-      <p class="flex-grow-1"></p>
-      <AppTooltip :text="t('accountCard.refresh')">
-        <template #default="{ activatorProps }">
-          <v-icon v-bind="activatorProps" icon="mdi-refresh" size="large" class="mr-2"
-            :class="{ 'mdi-spin': refreshing }" role="button" :aria-label="t('accountCard.refresh')"
-            :aria-busy="refreshing" @click="refreshAccount" />
-        </template>
-      </AppTooltip>
-      <p class="flex-grow-1"></p>
-      <AppTooltip :text="t('accountCard.send')">
-        <template #default="{ activatorProps }">
-          <v-icon v-bind="activatorProps" icon="mdi-send" size="large" class="mr-5 transfer-handle" role="button"
-            tabindex="0" aria-hidden="false" :aria-label="t('accountCard.send')"
-            @pointerdown="emit('transferPointerdown', $event)" @keydown.enter="goToSend"
-            @keydown.space.prevent="goToSend" />
-        </template>
-      </AppTooltip>
-      <v-menu>
-        <template #activator="{ props: menuProps }">
-          <AppTooltip :text="t('accountCard.moreActions')">
-            <template #default="{ activatorProps }">
-              <v-icon v-bind="mergeProps(menuProps, activatorProps)" icon="mdi-dots-horizontal" role="button"
-                :aria-label="t('accountCard.moreActions')" />
-            </template>
-          </AppTooltip>
-        </template>
-        <v-list density="compact">
-          <v-list-item :title="t('accountCard.edit')" prepend-icon="mdi-pencil" @click="editOpen = true" />
-          <v-list-item v-if="account.visible" :title="t('accountCard.hide')" prepend-icon="mdi-eye-off"
-            @click="hideOpen = true" />
-          <v-list-item v-else :title="t('accountCard.show')" prepend-icon="mdi-eye" @click="toggleShow" />
-          <v-list-item :title="t('accountCard.viewPrivateKey')" prepend-icon="mdi-key"
-            @click="revealPrivateKeyOpen = true" />
-          <v-list-item v-if="account.hasMnemonic" :title="t('accountCard.viewMnemonic')"
-            prepend-icon="mdi-format-list-numbered" @click="revealMnemonicOpen = true" />
-        </v-list>
-      </v-menu>
-    </div>
-
-    <div class="balance-row pa-3 d-flex align-center" @click="expandedTxns = !expandedTxns">
-      <v-icon icon="mdi-wallet" class="mr-2" />
-      <div class="grow">
-        <span v-if="activity === undefined" class="skeleton-row" />
-        <template v-else>
-          <span class="balance-figure">{{ fiatTotal ?? '—' }}</span>
-          <span v-if="nativeBalance !== null" class="text-medium-emphasis ml-1">
-            ({{ formatAmount(nativeBalance) }} {{ nativeSymbol }})
-          </span>
-        </template>
+    <div class="card-summary">
+      <img :src="`/chains/${account.chain}.svg`" alt="" aria-hidden="true" class="chain-watermark" />
+      <div class=" card-header d-flex align-center pa-4 pb-2">
+        <span v-if="account.isDefault" class="mr-1">*</span>
+        <AppTooltip :text="t('accountCard.viewOnEtherscan')">
+          <template #default="{ activatorProps }">
+            <p class="account-name grow-0 text-truncate" style="cursor: pointer" v-bind="activatorProps"
+              @click="openInNewTab(addressUrl(props.account.chain, props.account.address))">
+              {{ account.label }}
+            </p>
+          </template>
+        </AppTooltip>
+        <AppTooltip :text="justCopied ? t('accountCard.copied') : t('accountCard.copyAddress')">
+          <template #default="{ activatorProps }">
+            <v-icon v-bind="activatorProps" icon="mdi-content-copy" size="large" class="mr-2 ml-5" role="button"
+              @click="copyAddress" />
+          </template>
+        </AppTooltip>
+        <AppTooltip :text="t('accountCard.viewQr')">
+          <template #default="{ activatorProps }">
+            <v-icon v-bind="activatorProps" icon="mdi-qrcode" size="large" class="mr-2" role="button"
+              :aria-label="t('accountCard.viewQr')"
+              @click="$router.push(`/accounts/${account.chain}/${account.address}/receive`)" />
+          </template>
+        </AppTooltip>
+        <AppTooltip :text="t('accountCard.viewNativeToken', { symbol: nativeSymbol })">
+          <template #default="{ activatorProps }">
+            <v-icon v-bind="activatorProps" icon="mdi-information-outline" size="large" class="mr-2" role="button"
+              :aria-label="t('accountCard.viewNativeToken', { symbol: nativeSymbol })"
+              @click="$router.push(`/accounts/${account.chain}/${account.address}/native`)" />
+          </template>
+        </AppTooltip>
+        <p class="flex-grow-1"></p>
+        <AppTooltip :text="t('accountCard.refresh')">
+          <template #default="{ activatorProps }">
+            <v-icon v-bind="activatorProps" icon="mdi-refresh" size="large" class="mr-2"
+              :class="{ 'mdi-spin': refreshing }" role="button" :aria-label="t('accountCard.refresh')"
+              :aria-busy="refreshing" @click="refreshAccount" />
+          </template>
+        </AppTooltip>
+        <p class="flex-grow-1"></p>
+        <AppTooltip :text="t('accountCard.send')">
+          <template #default="{ activatorProps }">
+            <v-icon v-bind="activatorProps" icon="mdi-send" size="large" class="mr-5 transfer-handle" role="button"
+              tabindex="0" aria-hidden="false" :aria-label="t('accountCard.send')"
+              @pointerdown="emit('transferPointerdown', $event)" @keydown.enter="goToSend"
+              @keydown.space.prevent="goToSend" />
+          </template>
+        </AppTooltip>
+        <v-menu>
+          <template #activator="{ props: menuProps }">
+            <AppTooltip :text="t('accountCard.moreActions')">
+              <template #default="{ activatorProps }">
+                <v-icon v-bind="mergeProps(menuProps, activatorProps)" icon="mdi-dots-horizontal" role="button"
+                  :aria-label="t('accountCard.moreActions')" />
+              </template>
+            </AppTooltip>
+          </template>
+          <v-list density="compact">
+            <v-list-item :title="t('accountCard.edit')" prepend-icon="mdi-pencil" @click="editOpen = true" />
+            <v-list-item v-if="account.visible" :title="t('accountCard.hide')" prepend-icon="mdi-eye-off"
+              @click="hideOpen = true" />
+            <v-list-item v-else :title="t('accountCard.show')" prepend-icon="mdi-eye" @click="toggleShow" />
+            <v-list-item :title="t('accountCard.viewPrivateKey')" prepend-icon="mdi-key"
+              @click="revealPrivateKeyOpen = true" />
+            <v-list-item v-if="account.hasMnemonic" :title="t('accountCard.viewMnemonic')"
+              prepend-icon="mdi-format-list-numbered" @click="revealMnemonicOpen = true" />
+          </v-list>
+        </v-menu>
       </div>
-      <AppTooltip :text="expandedTxns ? t('accountCard.hideTransactions') : t('accountCard.showTransactions')">
-        <template #default="{ activatorProps }">
-          <v-icon v-bind="activatorProps" :icon="expandedTxns ? 'mdi-chevron-up' : 'mdi-chevron-down'" />
-        </template>
-      </AppTooltip>
+
+      <div class="balance-row pa-3 d-flex align-center" @click="expandedTxns = !expandedTxns">
+        <v-icon icon="mdi-wallet" class="mr-2" />
+        <div class="grow">
+          <span v-if="activity === undefined" class="skeleton-row" />
+          <template v-else>
+            <span class="balance-figure">{{ fiatTotal ?? '—' }}</span>
+            <span v-if="nativeBalance !== null" class="text-medium-emphasis ml-1">
+              ({{ formatAmount(nativeBalance) }} {{ nativeSymbol }})
+            </span>
+          </template>
+        </div>
+        <AppTooltip :text="expandedTxns ? t('accountCard.hideTransactions') : t('accountCard.showTransactions')">
+          <template #default="{ activatorProps }">
+            <v-icon v-bind="activatorProps" :icon="expandedTxns ? 'mdi-chevron-up' : 'mdi-chevron-down'" />
+          </template>
+        </AppTooltip>
+      </div>
     </div>
 
     <div v-if="expandedTxns">
@@ -288,6 +307,10 @@ function openInNewTab(url: string): void {
         <v-icon icon="mdi-cash-multiple" class="mr-2" />
         <span class="balance-figure">{{ tokenFiatTotal ?? '—' }}</span>
         <v-spacer />
+        <div v-if="tokenWatermarks.length > 0" class="token-watermarks mr-2" aria-hidden="true">
+          <img v-for="tokenRow in tokenWatermarks" :key="tokenRow.contractAddress" :src="tokenRow.logoUrl!" alt=""
+            class="token-watermark" />
+        </div>
         <AppTooltip :text="expandedTokens ? t('accountCard.hideTokens') : t('accountCard.showTokens')">
           <template #default="{ activatorProps }">
             <v-icon v-bind="activatorProps" :icon="expandedTokens ? 'mdi-chevron-up' : 'mdi-chevron-down'" />

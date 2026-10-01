@@ -68,18 +68,23 @@ async function remove(id: string) {
 </script>
 
 <template>
-  <div>
-    <v-row justify="space-between" align="center">
-      <h1 class="text-h5">{{ t('payees.title') }}</h1>
-      <v-btn color="primary" @click="openDialog">{{ t('payees.add') }}</v-btn>
-    </v-row>
+  <div class="settings-pane">
+    <div class="pane-header d-flex align-center flex-wrap ga-4">
+      <div class="d-flex align-center ga-3">
+        <v-icon icon="mdi-account" size="28" />
+        <h1 class="text-h5">{{ t('payees.title') }}</h1>
+      </div>
+      <v-spacer />
+      <v-btn color="primary" prepend-icon="mdi-plus" @click="openDialog">{{ t('payees.add') }}</v-btn>
+    </div>
 
-    <v-alert v-if="payees.payees.length === 0" type="info" variant="tonal" class="mt-4">
+    <v-alert v-if="payees.payees.length === 0" type="info" variant="tonal" class="mt-6">
       {{ t('payees.empty') }}
     </v-alert>
-    <v-list v-else>
+    <v-list v-else class="payees-list mt-4" bg-color="transparent">
       <v-list-item v-for="payee in payees.payees" :key="payee.id" :title="payee.label"
-        :subtitle="`${truncateAddress(payee.address)} (${payee.chain})`" @click="openEditDialog(payee)">
+        :subtitle="`${truncateAddress(payee.address)} (${payee.chain})`" class="py-3"
+        @click="openEditDialog(payee)">
         <template #append>
           <AppTooltip :text="t('payees.deleteAria', { label: payee.label })">
             <template #default="{ activatorProps }">

@@ -227,6 +227,53 @@ input[type='number'] {
   border-top: 1px solid rgb(var(--v-border-color) / var(--border-opacity));
 }
 
+/* Header + native-balance rows, grouped so the chain watermark below can
+ * span exactly those two rows and nothing else. */
+.card-summary {
+  position: relative;
+}
+
+/* Faded logo of the account's chain, filling the right of .card-summary.
+ * Purely decorative: sits under the row content and lets clicks through to
+ * the header icons and balance row on top of it. */
+.chain-watermark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: auto;
+  padding-block: 0rem;
+  opacity: 0.1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.card-summary> :not(.chain-watermark) {
+  position: relative;
+}
+
+/* Logos of the most valuable held tokens, overlapping one another on the
+ * collapsed token row (see AccountCard.vue's tokenWatermarks). */
+.token-watermarks {
+  display: flex;
+  align-items: center;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.token-watermark {
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: rgb(var(--v-theme-surface));
+  box-shadow: 0 0 0 2px rgb(var(--v-theme-surface));
+}
+
+.token-watermark+.token-watermark {
+  margin-left: -10px;
+}
+
 .balance-figure {
   font-size: 1.8em;
   font-weight: 400;
@@ -439,6 +486,12 @@ input[type='number'] {
 
 /* PaneOverlay.vue */
 
+/* How tall a pane may get — shared with .token-detail-view, which sizes its
+ * own scrolling area from it. */
+:root {
+  --pane-max-height: 90vh;
+}
+
 .pane-scrim {
   position: fixed;
   inset: 0;
@@ -463,7 +516,7 @@ input[type='number'] {
    * would otherwise sit in a much wider card than it needs. */
   width: fit-content;
   max-width: 60vw;
-  max-height: 90vh;
+  max-height: var(--pane-max-height);
   overflow-y: auto;
   padding: 1em;
   border-radius: 0.5em;
@@ -474,12 +527,135 @@ input[type='number'] {
   .pane-card {
     max-width: 98vw;
   }
+
+  /* Near full width, a pane's top-left corner would sit under
+   * .floating-settings-btn (fixed, 16px in, 44px tall, above the scrim) —
+   * so the pane starts below it instead, giving up that height. */
+  :root {
+    --pane-max-height: calc(100dvh - 68px - 1em);
+  }
+
+  .pane-scrim {
+    padding-top: 68px;
+  }
 }
 
 .pane-close-btn {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
+}
+
+/* A pane's title row, for one that has controls on its right: stays clear
+ * of .pane-close-btn (32px wide, 0.5em in from the card's edge, vs. the
+ * card's own 1em padding) instead of putting them underneath it. */
+.pane-header {
+  padding-inline-end: 32px;
+  padding-top: 0.25em;
+}
+
+/* Centred on the icon beside it, not offset by the global heading margin. */
+.pane-header h1 {
+  margin: 0;
+}
+
+/* The Settings panes — PayeesView, BackupRestoreView, SecurityView. One
+ * fixed width rather than .pane-card's shrink-to-fit, so the three match
+ * and none gets cramped by short content. */
+.settings-pane {
+  box-sizing: border-box;
+  width: 560px;
+  /* .pane-card's own cap (60vw, or 98vw on narrow screens) wins. */
+  max-width: 100%;
+  padding: 0.5em;
+}
+
+/* A labelled row inside a settings card (icon, label + description, action
+ * button): the text starts at a modest width so it shares the line with
+ * its icon, and only the button drops below on a narrow pane. */
+.settings-row-text {
+  flex: 1 1 12em;
+  min-width: 0;
+}
+
+/* Set here rather than with mt-* utilities, which the global h1–h4 margin
+ * rule outranks. */
+.settings-section-title {
+  margin: 2em 0 0.5em;
+}
+
+/* BackupRestoreView.vue — back-up and restore as a pair of square-ish
+ * tiles in each card. Two columns even when only restore is shown (while
+ * locked), so a lone tile keeps its shape instead of stretching across.
+ * Back up is the solid accent; restore the same hue as a tint, since it
+ * replaces what's on the device rather than saving it. */
+:root {
+  --backup-tile-from: color-mix(in srgb, rgb(var(--accent-rgb)) 85%, black);
+  --backup-tile-to: color-mix(in srgb, rgb(var(--accent-rgb)) 60%, black);
+}
+
+:root[data-theme='dark'] {
+  --backup-tile-from: rgb(var(--accent-rgb));
+  --backup-tile-to: color-mix(in srgb, rgb(var(--accent-rgb)) 70%, black);
+}
+
+.backup-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.backup-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  min-height: 112px;
+  padding: 0.75em;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.backup-tile:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+  filter: brightness(1.05);
+}
+
+.backup-tile:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.backup-tile--backup {
+  border: none;
+  color: rgb(var(--on-accent-rgb));
+  background: linear-gradient(145deg, var(--backup-tile-from), var(--backup-tile-to));
+}
+
+.backup-tile--restore {
+  border: 1px solid rgb(var(--accent-rgb) / 45%);
+  color: rgb(var(--v-theme-on-surface));
+  background: linear-gradient(145deg, rgb(var(--accent-rgb) / 24%), rgb(var(--accent-rgb) / 8%));
+}
+
+.backup-tile--restore .v-icon {
+  color: var(--accent);
+}
+
+/* PayeesView.vue */
+
+.payees-list .v-list-item+.v-list-item {
+  border-top: 1px solid rgb(var(--v-border-color) / var(--border-opacity));
 }
 
 /* TokenDetailView.vue */
@@ -496,13 +672,37 @@ input[type='number'] {
 .token-detail-view {
   display: flex;
   flex-direction: column;
-  max-height: calc(90vh - 3em);
+  max-height: calc(var(--pane-max-height) - 3em);
   min-height: 0;
 }
 
 .token-detail-view>* {
   flex: none;
   margin-inline: 0em;
+}
+
+/* Logo, name and favourite star, capped to the 480px info card below.
+ * Starts below .pane-close-btn (0.5em + 32px from the card's top, vs.
+ * .pane-card's 1em padding) so a long name can't run underneath it. */
+.token-detail-header {
+  max-width: 480px;
+  margin-top: 24px;
+}
+
+.token-detail-header h3 {
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Clicking the name refreshes the price — dimmed while that's in flight,
+ * standing in for the spinner the old refresh icon had. */
+.token-detail-name {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.token-detail-name--refreshing {
+  opacity: 0.5;
 }
 
 .token-detail-txn-card {
@@ -609,4 +809,40 @@ input[type='number'] {
 
 .close-btn:hover {
   background: rgb(var(--border-rgb) / 8%);
+}
+
+/* Favourites — the lock screen's FavouritesList and the token pane's star,
+ * 24h change and PriceSparkline. */
+.favourites-list {
+  border-top: 1px solid rgb(var(--v-border-color) / var(--border-opacity));
+}
+
+.favourite-change {
+  min-width: 4.5em;
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.price-change--up {
+  color: rgb(var(--v-theme-receive));
+}
+
+.price-change--down {
+  color: rgb(var(--v-theme-send));
+}
+
+.price-sparkline--up {
+  stroke: rgb(var(--v-theme-receive));
+}
+
+.price-sparkline--down {
+  stroke: rgb(var(--v-theme-send));
+}
+
+.favourite-star {
+  color: rgb(var(--v-theme-on-surface) / 0.38);
+}
+
+.favourite-star--on {
+  color: #f5c518;
 }

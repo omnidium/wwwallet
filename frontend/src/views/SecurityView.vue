@@ -46,20 +46,23 @@ async function performDeleteWallet() {
 </script>
 
 <template>
-  <div>
-    <h1 class="text-h5">{{ t('settings.securityTitle') }}</h1>
-    <p class="text-caption text-medium-emphasis mb-2">
+  <div class="settings-pane">
+    <div class="pane-header d-flex align-center ga-3">
+      <v-icon icon="mdi-shield-lock" size="28" />
+      <h1 class="text-h5">{{ t('settings.securityTitle') }}</h1>
+    </div>
+    <v-alert type="info" variant="tonal" class="mt-6">
       {{ t('settings.securityIntro') }}
-    </p>
+    </v-alert>
 
     <!-- Managing a passkey needs the unlocked session key (see stores/vault.ts's
          registerPasskey/removePasskey) — unlike the danger zone below, there's
          no locked-safe version of this to offer. -->
     <template v-if="vault.isUnlocked">
-      <v-card class="pa-4 mt-2">
-        <div class="d-flex align-center">
-          <v-icon icon="mdi-fingerprint" class="mr-3" />
-          <div class="flex-grow-1">
+      <v-card class="pa-4 mt-4" variant="outlined">
+        <div class="d-flex align-center flex-wrap ga-2">
+          <v-icon icon="mdi-fingerprint" class="mr-1" />
+          <div class="settings-row-text">
             <p class="text-body-2">{{ t('settings.passkeyLabel') }}</p>
             <p class="text-caption text-medium-emphasis">
               {{ vault.hasPasskey ? t('settings.passkeyEnabled') : t('settings.passkeyNotSetUp') }}
@@ -85,11 +88,11 @@ async function performDeleteWallet() {
       </v-dialog>
     </template>
 
-    <h2 class="text-subtitle-1 text-error mt-6">{{ t('settings.dangerZoneTitle') }}</h2>
-    <v-card class="pa-4 mt-2" variant="outlined">
-      <div class="d-flex align-center">
-        <v-icon icon="mdi-delete-outline" color="error" class="mr-3" />
-        <div class="flex-grow-1">
+    <h2 class="settings-section-title text-subtitle-1 text-error">{{ t('settings.dangerZoneTitle') }}</h2>
+    <v-card class="pa-4" variant="outlined" color="error">
+      <div class="d-flex align-center flex-wrap ga-2 text-high-emphasis">
+        <v-icon icon="mdi-delete-outline" color="error" class="mr-1" />
+        <div class="settings-row-text">
           <p class="text-body-2">{{ t('settings.deleteWalletLabel') }}</p>
           <p class="text-caption text-medium-emphasis">
             {{ t('settings.deleteWalletDescription') }}

@@ -98,7 +98,7 @@ export default {
     edit: 'Editar beneficiario',
   },
   backup: {
-    title: 'Copias de seguridad y restauración',
+    title: 'Copia de seguridad y restauración',
     intro:
       'Las copias de seguridad se cifran en este dispositivo antes de salir de él. El servidor de wwwallet nunca interviene: la restauración en un nuevo dispositivo se realiza directamente con Google o mediante la lectura de un archivo local.',
     googleDriveTitle: 'Google Drive',
@@ -196,12 +196,20 @@ export default {
   token: {
     defaultLabel: 'Token',
     decimals: 'Decimales',
-    price: 'Precio',
     priceTooltip: 'Precio de 1 token {symbol} en dólares estadounidenses',
     amount: 'Importe',
     amountTooltip: 'Cantidad de tokens {symbol} que se poseen',
     total: 'Total',
     totalTooltip: 'Valor total de los tokens en poder, expresado en moneda local',
+    network: 'Red',
+    addFavourite: 'Añadir a favoritos (aparecerá en la pantalla de bloqueo)',
+    removeFavourite: 'Eliminar de los favoritos',
+    refreshPrice: 'Haz clic para actualizar el precio',
+    moreDetails: 'Más detalles',
+    lessDetails: 'Menos detalles',
+    currentPrice: 'Precio actual (USD)',
+    change24h: 'Variación en las últimas 24 horas',
+    chart24h: 'Últimas 24 horas',
   },
   qrScanner: {
     title: 'Escanear el código QR de la dirección',
@@ -350,6 +358,7 @@ export default {
     dragToReorder: 'Arrastra para cambiar el orden',
     refresh: 'Actualizar esta cuenta',
     viewOnEtherscan: 'Haz clic para verlo en Etherscan',
+    viewNativeToken: 'Ver detalles de {symbol}',
   },
   editAccount: {
     title: 'Editar cuenta',
@@ -385,6 +394,9 @@ export default {
     amount: 'Importe',
     sold: 'Vendido',
     bought: 'Comprado',
+    networkFee: 'Cuota de red',
+    paidBySender: 'A cargo del remitente',
+    feeUnavailable: 'Aún no está disponible',
   },
   transferPicker: {
     title: 'Introduce una cuenta o un beneficiario para realizar la transferencia',

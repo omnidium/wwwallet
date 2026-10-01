@@ -21,12 +21,20 @@ pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
             get(chains::token_metadata),
         )
         .route(
+            "/api/v1/chains/:chain/token/:address/price-history",
+            get(chains::token_price_history),
+        )
+        .route(
             "/api/v1/chains/:chain/tokens",
             get(chains::token_list),
         )
         .route(
             "/api/v1/chains/:chain/native-price",
             get(chains::native_price),
+        )
+        .route(
+            "/api/v1/chains/:chain/native-price-history",
+            get(chains::native_price_history),
         )
         .route(
             "/api/v1/chains/:chain/abi/:address",
@@ -43,6 +51,10 @@ pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
         .route(
             "/api/v1/chains/:chain/tx-status/:hash",
             get(chains::transaction_status),
+        )
+        .route(
+            "/api/v1/chains/:chain/tx-fee/:hash",
+            get(chains::transaction_fee),
         )
         .route("/api/v1/chains/:chain/allowance", get(chains::allowance))
         .route("/api/v1/chains/:chain/swap-quote", get(chains::swap_quote))

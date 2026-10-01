@@ -21,6 +21,12 @@ const router = createRouter({
       name: 'receive',
       component: () => import('../views/ReceiveView.vue'),
     },
+    // Same pane as token-detail, for the account's native asset (ETH, POL…).
+    {
+      path: '/accounts/:chain/:address/native',
+      name: 'native-token-detail',
+      component: () => import('../views/TokenDetailView.vue'),
+    },
     { path: '/payees', name: 'payees', component: () => import('../views/PayeesView.vue') },
     { path: '/security', name: 'security', component: () => import('../views/SecurityView.vue') },
     {

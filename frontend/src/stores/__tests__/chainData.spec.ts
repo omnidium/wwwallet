@@ -1,8 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import 'fake-indexeddb/auto'
 import { createPinia, setActivePinia } from 'pinia'
+import Dexie from 'dexie'
 import { api, type AddressActivity, type TokenMetadata, type Transaction } from '@/services/api'
-import { db } from '@/services/db'
+import { importAesKey } from '@/crypto/aesGcm'
+import { clearCache, flushCacheWrites, lockCache, privateEntries, unlockCache } from '@/services/secureCache'
 import { useChainDataStore } from '../chainData'
 
 vi.mock('@/services/api', () => ({
@@ -50,6 +52,7 @@ function usdc(overrides: Partial<TokenMetadata> = {}): TokenMetadata {
 
 /** Simulates an app reload: a brand-new store, populated only from IndexedDB. */
 async function reloadedStore() {
+  await flushCacheWrites()
   setActivePinia(createPinia())
   const store = useChainDataStore()
   await store.hydrate()
@@ -58,13 +61,34 @@ async function reloadedStore() {
 
 /** Cache writes are fire-and-forget, so wait for the one a test depends on to land. */
 async function cachedActivityHashes(): Promise<string[]> {
-  const entry = await db.cache.get(`chain-activity:${ACTIVITY_KEY}`)
+  const entry = (await privateEntries()).find((e) => e.key === `chain-activity:${ACTIVITY_KEY}`)
   return (entry?.data as AddressActivity | undefined)?.transactions.map((t) => t.hash) ?? []
+}
+
+async function cachedCount(prefix: string): Promise<number> {
+  return (await privateEntries()).filter((e) => e.key.startsWith(prefix)).length
+}
+
+/** The cache database exactly as it sits on disk. */
+async function rawCacheContents(): Promise<string> {
+  await flushCacheWrites()
+  const raw = new Dexie('wwwallet-cache')
+  await raw.open()
+  const entries = await raw.table('entries').toArray()
+  raw.close()
+  return JSON.stringify(entries, (_, value) =>
+    value instanceof ArrayBuffer ? new TextDecoder().decode(value) : value,
+  )
+}
+
+function vaultKey(): Promise<CryptoKey> {
+  return importAesKey(crypto.getRandomValues(new Uint8Array(32)), true)
 }
 
 describe('chainData client-side cache', () => {
   beforeEach(async () => {
-    await db.cache.clear()
+    await clearCache()
+    await unlockCache(await vaultKey())
     vi.resetAllMocks()
     mockedApi.tokenList.mockResolvedValue([])
     setActivePinia(createPinia())
@@ -170,7 +194,7 @@ describe('chainData client-side cache', () => {
     expect(fetchedSinceLastLook()).toEqual([VALUABLE, UNKNOWN_VALUABLE])
 
     // An app restart doesn't reset the clock — the check times are cached too.
-    await vi.waitFor(async () => expect(await db.cache.where('key').startsWith('token-checked:').count()).toBe(5))
+    await vi.waitFor(async () => expect(await cachedCount('token-checked:')).toBe(5))
     const reloaded = await reloadedStore()
     await refresh(reloaded)
     expect(fetchedSinceLastLook()).toEqual([VALUABLE, UNKNOWN_VALUABLE])
@@ -243,5 +267,49 @@ describe('chainData client-side cache', () => {
 
     await expect(store.loadTokenMetadata(CHAIN, TOKEN)).rejects.toThrow('502')
     expect(store.tokenMetadataByKey[TOKEN_KEY]).toBeUndefined()
+  })
+
+  it('stores nothing about an account in readable form', async () => {
+    const store = useChainDataStore()
+    mockedApi.addressActivity.mockResolvedValue(activity(['0xfeedface']))
+    mockedApi.tokenMetadata.mockResolvedValue(usdc())
+
+    await store.loadAddressActivity(CHAIN, HOLDER)
+    await store.loadTokenMetadata(CHAIN, TOKEN)
+    await vi.waitFor(async () => expect(await cachedCount('token-metadata:')).toBe(1))
+
+    const onDisk = await rawCacheContents()
+    for (const secret of [HOLDER.slice(2), TOKEN.slice(2), 'feedface', 'USD Coin', 'chain-activity']) {
+      expect(onDisk).not.toContain(secret)
+    }
+  })
+
+  it('loads no personal data while locked, and keeps none once locked', async () => {
+    const store = useChainDataStore()
+    mockedApi.addressActivity.mockResolvedValue(activity(['0x1']))
+    await store.loadAddressActivity(CHAIN, HOLDER)
+    await vi.waitFor(async () => expect(await cachedActivityHashes()).toEqual(['0x1']))
+
+    lockCache()
+    store.clearPersonalData()
+    expect(store.activityByAddress).toEqual({})
+    expect((await reloadedStore()).activityByAddress).toEqual({})
+
+    // A refresh that lands after locking must not put anything back.
+    const late = useChainDataStore()
+    mockedApi.addressActivity.mockResolvedValue(activity(['0x2']))
+    await late.loadAddressActivity(CHAIN, HOLDER)
+    expect(late.activityByAddress).toEqual({})
+  })
+
+  it('drops entries a different vault key wrote, e.g. before a restore', async () => {
+    const store = useChainDataStore()
+    mockedApi.addressActivity.mockResolvedValue(activity(['0x1']))
+    await store.loadAddressActivity(CHAIN, HOLDER)
+    await vi.waitFor(async () => expect(await cachedActivityHashes()).toEqual(['0x1']))
+
+    await unlockCache(await vaultKey())
+    expect((await reloadedStore()).activityByAddress).toEqual({})
+    expect(await rawCacheContents()).toBe('[]')
   })
 })

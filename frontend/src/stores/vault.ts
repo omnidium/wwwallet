@@ -31,6 +31,9 @@ import { useAccountsStore } from '@/stores/accounts'
 import { usePayeesStore } from '@/stores/payees'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { useChainDataStore } from '@/stores/chainData'
+import { useFavouritesStore } from '@/stores/favourites'
+import { useMessagesStore } from '@/stores/messages'
+import { clearCache, lockCache, unlockCache } from '@/services/secureCache'
 import { DEFAULT_TRANSACTION_BATCH_SIZE } from '@/config/appSettings'
 
 function emptyVaultData(): VaultData {
@@ -66,6 +69,7 @@ export const useVaultStore = defineStore('vault', () => {
     settings.locale = data.settings.locale
     settings.currency = data.settings.currency
     useChainDataStore().transactionBatchSize = data.settings.transactionBatchSize ?? DEFAULT_TRANSACTION_BATCH_SIZE
+    useFavouritesStore().rememberVisibleChains(data.wallets)
   }
 
   function collectFromStores(): VaultData {
@@ -83,6 +87,7 @@ export const useVaultStore = defineStore('vault', () => {
   async function createVault(recoveryMnemonic: string): Promise<void> {
     const data = emptyVaultData()
     sessionKey = await createVaultRecord(recoveryMnemonic, data)
+    await unlockCache(sessionKey)
     loadIntoStores(data)
     isUnlocked.value = true
     hasVault.value = true
@@ -92,6 +97,7 @@ export const useVaultStore = defineStore('vault', () => {
   async function unlockWithMnemonic(recoveryMnemonic: string): Promise<void> {
     const { key, data } = await unlockWithMnemonicRecord(recoveryMnemonic)
     sessionKey = key
+    await unlockCache(key)
     loadIntoStores(data)
     isUnlocked.value = true
   }
@@ -102,6 +108,7 @@ export const useVaultStore = defineStore('vault', () => {
     const prfSecret = await unlockPasskeyPrfSecret(meta.credentialId, meta.prfSalt)
     const { key, data } = await unlockWithPasskeyRecord(prfSecret)
     sessionKey = key
+    await unlockCache(key)
     loadIntoStores(data)
     isUnlocked.value = true
   }
@@ -111,9 +118,16 @@ export const useVaultStore = defineStore('vault', () => {
   // before this — the accounts/payees data loaded by `loadIntoStores` stayed
   // sitting in memory (reachable via Vue devtools, or any injected script)
   // even after the vault was "locked" and the UI had moved to the unlock screen.
+  //
+  // Same for everything else derived from the accounts: their balances and
+  // transaction history (and the cache keys that could decrypt them from
+  // disk), and any on-screen messages, some of which quote transaction hashes.
   function clearStores(): void {
     useAccountsStore().accounts = []
     usePayeesStore().payees = []
+    lockCache()
+    useChainDataStore().clearPersonalData()
+    useMessagesStore().messages = []
   }
 
   function lock(): void {
@@ -131,7 +145,8 @@ export const useVaultStore = defineStore('vault', () => {
   async function deleteFromDevice(): Promise<void> {
     await deleteVaultRecord()
     await db.localWebAuthnCredential.delete('default')
-    await db.cache.clear()
+    await clearCache()
+    useFavouritesStore().forget()
     sessionKey = null
     isUnlocked.value = false
     hasVault.value = false
@@ -144,6 +159,7 @@ export const useVaultStore = defineStore('vault', () => {
   async function persist(): Promise<void> {
     if (!sessionKey) throw new Error(i18n.global.t('errors.vaultLocked'))
     await saveVaultRecord(sessionKey, collectFromStores())
+    useFavouritesStore().rememberVisibleChains(useAccountsStore().accounts)
   }
 
   async function registerPasskey(displayName: string): Promise<void> {
@@ -170,8 +186,13 @@ export const useVaultStore = defineStore('vault', () => {
   // Only the recovery-phrase wrap travels with a backup (see crypto/vault.ts) —
   // any passkey set up on THIS device no longer matches the restored vault, so
   // clear that local state too rather than leave it dangling.
+  // The cache goes too: anything private in it is encrypted under the
+  // previous vault's key, and the rest (favourites included) belonged to
+  // whichever wallet was here before.
   async function clearLocalFastUnlockState(): Promise<void> {
     await db.localWebAuthnCredential.delete('default')
+    await clearCache()
+    useFavouritesStore().forget()
   }
 
   async function restoreFromDrive(): Promise<void> {

@@ -6,8 +6,8 @@ use serde::{Deserialize, Serialize};
 use crate::error::ApiError;
 use crate::state::AppState;
 use wwwallet_providers::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenListItem, TokenMetadata,
-    TransactionPage, TransactionPrep, TransactionStatus,
+    AddressActivity, ContractAbi, FxRates, NativePrice, PriceHistory, SwapQuote, TokenListItem,
+    TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 use wwwallet_providers::ChainId;
 
@@ -113,6 +113,32 @@ pub async fn native_price(
 }
 
 #[worker::send]
+pub async fn native_price_history(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path(chain): Path<String>,
+) -> Result<Json<PriceHistory>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    Ok(Json(state.providers.price_history(chain, None, client_ip(&headers)).await?))
+}
+
+#[worker::send]
+pub async fn token_price_history(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path((chain, address)): Path<(String, String)>,
+) -> Result<Json<PriceHistory>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    validate_address(&address)?;
+    Ok(Json(
+        state
+            .providers
+            .price_history(chain, Some(&address), client_ip(&headers))
+            .await?,
+    ))
+}
+
+#[worker::send]
 pub async fn contract_abi(
     State(state): State<AppState>,
     headers: HeaderMap,
@@ -189,6 +215,22 @@ pub async fn transaction_status(
     validate_tx_hash(&hash)?;
     let status = state.providers.transaction_status(chain, &hash).await?;
     Ok(Json(TransactionStatusResponse { status }))
+}
+
+#[worker::send]
+pub async fn transaction_fee(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path((chain, hash)): Path<(String, String)>,
+) -> Result<Json<TransactionFee>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    validate_tx_hash(&hash)?;
+    Ok(Json(
+        state
+            .providers
+            .transaction_fee(chain, &hash, client_ip(&headers))
+            .await?,
+    ))
 }
 
 #[derive(Deserialize)]

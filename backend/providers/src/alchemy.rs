@@ -6,12 +6,13 @@ use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
 use crate::http;
 use crate::traits::{
-    ActivityProvider, AllowanceProvider, NativePriceProvider, TokenMetadataProvider,
-    TokenPriceProvider, TransactionBroadcaster, TransactionPrepProvider, TransactionStatusProvider,
+    ActivityProvider, AllowanceProvider, NativePriceProvider, PriceHistoryProvider,
+    TokenMetadataProvider, TokenPriceProvider, TransactionBroadcaster, TransactionFeeProvider,
+    TransactionPrepProvider, TransactionStatusProvider,
 };
 use crate::types::{
-    AddressActivity, Balance, NativePrice, TokenMetadata, Transaction, TransactionPage,
-    TransactionPrep, TransactionStatus,
+    AddressActivity, Balance, NativePrice, PriceHistory, TokenMetadata, Transaction,
+    TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 
 /// How many raw transfers to ask Alchemy for per direction (sent/received) on
@@ -114,6 +115,20 @@ impl AlchemyProvider {
             .as_str()?
             .parse()
             .ok()
+    }
+
+    /// The historical Prices API's `data` is an oldest-first list of
+    /// `{ value, timestamp }` samples, `value` a decimal string.
+    fn historical_series(resp: &Value) -> Vec<f64> {
+        resp.get("data")
+            .and_then(Value::as_array)
+            .map(|samples| {
+                samples
+                    .iter()
+                    .filter_map(|s| s.get("value")?.as_str()?.parse().ok())
+                    .collect()
+            })
+            .unwrap_or_default()
     }
 
     async fn rpc_call(&self, chain: ChainId, method: &str, params: Value) -> ProviderResult<Value> {
@@ -459,8 +474,8 @@ impl TokenPriceProvider for AlchemyProvider {
 }
 
 /// Fallback for CoinGecko's keyless endpoint, which rate-limits the shared IP
-/// ranges Workers' outbound fetches come from. Alchemy accepts "MATIC" as an
-/// alias for POL, so `native_symbol` works as-is for every chain.
+/// ranges Workers' outbound fetches come from. Looked up by ticker, so this
+/// relies on `native_symbol` matching Alchemy's symbol for every chain.
 #[async_trait(?Send)]
 impl NativePriceProvider for AlchemyProvider {
     fn name(&self) -> &'static str {
@@ -477,6 +492,32 @@ impl NativePriceProvider for AlchemyProvider {
         Self::first_usd_price(&resp)
             .map(|usd| NativePrice { usd })
             .ok_or(ProviderError::Unavailable)
+    }
+}
+
+#[async_trait(?Send)]
+impl PriceHistoryProvider for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn price_history_24h(
+        &self,
+        chain: ChainId,
+        contract_address: Option<&str>,
+    ) -> ProviderResult<PriceHistory> {
+        let end = worker::Date::now().as_millis() / 1000;
+        let start = end - 24 * 60 * 60;
+        let mut body = json!({ "startTime": start, "endTime": end, "interval": "5m" });
+        match contract_address {
+            Some(address) => {
+                body["network"] = json!(chain.alchemy_slug());
+                body["address"] = json!(address);
+            }
+            None => body["symbol"] = json!(chain.native_symbol()),
+        }
+        let resp: Value = http::post_json(&self.prices_url("tokens/historical"), &body).await?;
+        PriceHistory::from_series(&Self::historical_series(&resp)).ok_or(ProviderError::Unavailable)
     }
 }
 
@@ -526,6 +567,43 @@ impl TransactionStatusProvider for AlchemyProvider {
         } else {
             TransactionStatus::Success
         })
+    }
+}
+
+/// Total network fee from an `eth_getTransactionReceipt` result, in wei —
+/// None if a field it needs is missing or isn't a hex quantity.
+fn receipt_fee_wei(receipt: &Value) -> Option<u128> {
+    let quantity = |field: &str| -> Option<u128> {
+        let hex = receipt.get(field)?.as_str()?.strip_prefix("0x")?;
+        u128::from_str_radix(hex, 16).ok()
+    };
+    let execution = quantity("gasUsed")?.checked_mul(quantity("effectiveGasPrice")?)?;
+    // Only present on OP-stack chains; elsewhere it simply adds nothing.
+    let l1 = if receipt.get("l1Fee").is_some() { quantity("l1Fee")? } else { 0 };
+    execution.checked_add(l1)
+}
+
+#[async_trait(?Send)]
+impl TransactionFeeProvider for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn transaction_fee(
+        &self,
+        chain: ChainId,
+        transaction_hash: &str,
+    ) -> ProviderResult<TransactionFee> {
+        let receipt = self
+            .rpc_call(chain, "eth_getTransactionReceipt", json!([transaction_hash]))
+            .await?;
+        let fee_wei = receipt_fee_wei(&receipt).ok_or(ProviderError::Unavailable)?;
+        let payer = receipt
+            .get("from")
+            .and_then(Value::as_str)
+            .ok_or(ProviderError::Unavailable)?
+            .to_string();
+        Ok(TransactionFee { fee_wei: fee_wei.to_string(), payer })
     }
 }
 
@@ -643,6 +721,29 @@ mod tests {
     #[test]
     fn pad_address_for_abi_rejects_malformed_addresses() {
         assert!(AlchemyProvider::pad_address_for_abi("0x123").is_err());
+    }
+
+    #[test]
+    fn receipt_fee_adds_the_op_stack_l1_fee_when_present() {
+        let mainnet = json!({ "gasUsed": "0x5208", "effectiveGasPrice": "0x3b9aca00" });
+        assert_eq!(receipt_fee_wei(&mainnet), Some(21_000 * 1_000_000_000));
+
+        let base = json!({ "gasUsed": "0x5208", "effectiveGasPrice": "0x10", "l1Fee": "0x64" });
+        assert_eq!(receipt_fee_wei(&base), Some(21_000 * 16 + 100));
+
+        assert_eq!(receipt_fee_wei(&Value::Null), None, "pending: no receipt yet");
+        assert_eq!(receipt_fee_wei(&json!({ "gasUsed": "0x1", "effectiveGasPrice": "zz" })), None);
+    }
+
+    #[test]
+    fn historical_series_reads_sample_values_in_order() {
+        let resp = json!({ "symbol": "ETH", "currency": "usd", "data": [
+            { "value": "1900.5", "timestamp": "2024-01-01T00:00:00Z" },
+            { "value": "bogus", "timestamp": "2024-01-01T00:05:00Z" },
+            { "value": "1901", "timestamp": "2024-01-01T00:10:00Z" },
+        ]});
+        assert_eq!(AlchemyProvider::historical_series(&resp), vec![1900.5, 1901.0]);
+        assert!(AlchemyProvider::historical_series(&json!({ "error": "x" })).is_empty());
     }
 
     #[test]

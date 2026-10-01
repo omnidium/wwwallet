@@ -31,6 +31,7 @@ export default {
     copyAddress: 'Copy the address',
     copied: 'Copied!',
     viewQr: 'View QR code',
+    viewNativeToken: 'View {symbol} details',
     refresh: 'Refresh this account',
     send: 'Send (drag to transfer to another account or payee)',
     moreActions: 'More actions',
@@ -84,6 +85,9 @@ export default {
     amount: 'Amount',
     sold: 'Sold',
     bought: 'Bought',
+    networkFee: 'Network fee',
+    paidBySender: 'Paid by the sender',
+    feeUnavailable: 'Not available yet',
   },
   transferPicker: {
     title: 'Drop on an account or payee to transfer',
@@ -176,7 +180,7 @@ export default {
     addressField: 'Address',
   },
   backup: {
-    title: 'Backup & restore',
+    title: 'Backup & Restore',
     intro:
       "Backups are encrypted on this device before they ever leave it. wwwallet's server is never involved — restoring on a new device talks directly to Google or reads a local file.",
     googleDriveTitle: 'Google Drive',
@@ -274,12 +278,20 @@ export default {
   token: {
     defaultLabel: 'Token',
     decimals: 'Decimals',
-    price: 'Price',
     priceTooltip: 'Price of 1 {symbol} token in USD',
     amount: 'Amount',
     amountTooltip: 'Amount of {symbol} tokens held',
     total: 'Total',
     totalTooltip: 'Total value of tokens held in local currency',
+    network: 'Network',
+    addFavourite: 'Add to favourites (shown on the lock screen)',
+    removeFavourite: 'Remove from favourites',
+    refreshPrice: 'Click to refresh the price',
+    moreDetails: 'More details',
+    lessDetails: 'Fewer details',
+    currentPrice: 'Current price (USD)',
+    change24h: '24h change',
+    chart24h: 'Past 24 hours',
   },
   qrScanner: {
     title: 'Scan address QR code',

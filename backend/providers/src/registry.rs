@@ -13,12 +13,13 @@ use crate::public_rpc::PublicRpcProvider;
 use crate::tokenlist::TokenListProvider;
 use crate::traits::{
     AbiProvider, ActivityProvider, AllowanceProvider, FxRateProvider, NativePriceProvider,
-    SwapQuoteProvider, TokenMetadataProvider, TokenPriceProvider, TransactionBroadcaster,
-    TransactionPrepProvider, TransactionStatusProvider,
+    PriceHistoryProvider, SwapQuoteProvider, TokenMetadataProvider, TokenPriceProvider,
+    TransactionBroadcaster, TransactionFeeProvider, TransactionPrepProvider,
+    TransactionStatusProvider,
 };
 use crate::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenListItem, TokenMetadata,
-    TransactionPage, TransactionPrep, TransactionStatus,
+    AddressActivity, ContractAbi, FxRates, NativePrice, PriceHistory, SwapQuote, TokenListItem,
+    TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 use crate::zerox::ZeroExProvider;
 
@@ -54,11 +55,14 @@ pub struct ProviderRegistry {
     // for why the nonce has to come from here rather than from Alchemy.
     public_rpc: Rc<PublicRpcProvider>,
     tx_status: Rc<dyn TransactionStatusProvider>,
+    tx_fee: Rc<dyn TransactionFeeProvider>,
     tx_prep: Rc<dyn TransactionPrepProvider>,
     allowance: Rc<dyn AllowanceProvider>,
     swap: Rc<dyn SwapQuoteProvider>,
     native_price: Rc<dyn NativePriceProvider>,
     native_price_fallback: Rc<dyn NativePriceProvider>,
+    price_history: Rc<dyn PriceHistoryProvider>,
+    price_history_fallback: Rc<dyn PriceHistoryProvider>,
     token_list: Rc<TokenListProvider>,
     rate_limiter_default: RateLimiter,
     rate_limiter_broadcast: RateLimiter,
@@ -78,11 +82,14 @@ impl ProviderRegistry {
             broadcaster: public_rpc.clone(),
             public_rpc,
             tx_status: alchemy.clone(),
+            tx_fee: alchemy.clone(),
             allowance: alchemy.clone(),
             tx_prep: alchemy.clone(),
             token_fallback: alchemy.clone(),
             token_price: alchemy.clone(),
+            price_history: alchemy.clone(),
             native_price_fallback: alchemy,
+            price_history_fallback: Rc::new(CoinGeckoProvider::new()),
             tokens: Rc::new(EthplorerProvider::new(config.ethplorer_api_key)),
             abi: Rc::new(EtherscanProvider::new(config.etherscan_api_key)),
             fx: Rc::new(FrankfurterProvider::new()),
@@ -214,6 +221,23 @@ impl ProviderRegistry {
         }
     }
 
+    /// Alchemy first — it covers tokens on every chain as well as native
+    /// currencies, and isn't subject to CoinGecko's keyless rate limits —
+    /// with CoinGecko behind it for native currencies only.
+    pub async fn price_history(
+        &self,
+        chain: ChainId,
+        contract_address: Option<&str>,
+        client_ip: &str,
+    ) -> ProviderResult<PriceHistory> {
+        self.check_rate_limit(client_ip, "price_history").await?;
+        match self.price_history.price_history_24h(chain, contract_address).await {
+            Ok(history) => Ok(history),
+            Err(err) if contract_address.is_some() => Err(err),
+            Err(_) => self.price_history_fallback.price_history_24h(chain, None).await,
+        }
+    }
+
     /// The chain's whole token list, for the swap picker's search. Searching
     /// happens client-side against the client's own stored copy, which it
     /// refreshes from here at most once per app session — so this is fetched
@@ -237,6 +261,16 @@ impl ProviderRegistry {
         transaction_hash: &str,
     ) -> ProviderResult<TransactionStatus> {
         self.tx_status.transaction_status(chain, transaction_hash).await
+    }
+
+    pub async fn transaction_fee(
+        &self,
+        chain: ChainId,
+        transaction_hash: &str,
+        client_ip: &str,
+    ) -> ProviderResult<TransactionFee> {
+        self.check_rate_limit(client_ip, "transaction_fee").await?;
+        self.tx_fee.transaction_fee(chain, transaction_hash).await
     }
 
     pub async fn prepare_transaction(

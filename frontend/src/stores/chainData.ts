@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import {
   api,
   type AddressActivity,
@@ -7,11 +7,21 @@ import {
   type ChainSlug,
   type FxRates,
   type NativePrice,
+  type PriceHistory,
+  type SwapFee,
+  type TransactionFee,
   type Transaction,
   type TokenListItem,
   type TokenMetadata,
 } from '@/services/api'
-import { db } from '@/services/db'
+import {
+  getPublic,
+  isCacheUnlocked,
+  privateEntries,
+  publicEntries,
+  putPrivate,
+  putPublic,
+} from '@/services/secureCache'
 import { createConcurrencyLimiter } from '@/services/concurrencyLimit'
 import { tokenUsdValue } from '@/services/money'
 import {
@@ -21,7 +31,7 @@ import {
   TOKEN_METADATA_RECHECK_MS,
 } from '@/config/appSettings'
 
-// IndexedDB's `cache` table is the one and only cache for provider data — the
+// services/secureCache.ts is the one and only cache for provider data — the
 // backend stores nothing. Every entry is rewritten after each successful
 // fetch and never expires: it's only removed by wiping this device's copy of
 // the wallet (vault.deleteFromDevice), clearing site data, or uninstalling.
@@ -29,6 +39,22 @@ const ACTIVITY_PREFIX = 'chain-activity:'
 const TOKEN_METADATA_PREFIX = 'token-metadata:'
 const FX_RATES_PREFIX = 'fx-rates:'
 const NATIVE_PRICE_PREFIX = 'native-price:'
+// Keyed by assetKey — the favourites rows and the token pane's "more details".
+const PRICE_HISTORY_PREFIX = 'price-history:'
+// Keyed by keyFor(chain, hash) — the transaction details pane. A mined
+// transaction's fee never changes, so a cached one is never re-fetched.
+const TRANSACTION_FEE_PREFIX = 'tx-fee:'
+// The 0x quote's fees for a swap sent from this device, keyed like the
+// above. Nowhere else to get them from afterwards: they're taken inside the
+// swap contract, not as transfers the indexer reports.
+const SWAP_FEES_PREFIX = 'swap-fees:'
+
+/** A swap's aggregator fee as quoted, already resolved to its token's units. */
+export interface RecordedSwapFee {
+  kind: SwapFee['kind']
+  amount: number
+  symbol: string
+}
 // Not part of hydrate() — a chain's list runs to megabytes, so it's only read
 // from disk once something actually needs it (see loadTokenList).
 const TOKEN_LIST_PREFIX = 'token-list:'
@@ -39,16 +65,19 @@ const TOKEN_LIST_PREFIX = 'token-list:'
 // metadata to store it with.
 const TOKEN_CHECKED_PREFIX = 'token-checked:'
 
-/**
- * Writes a JSON-cloned copy rather than `data` itself: values read back out
- * of the reactive store are Vue proxies, which IndexedDB's structured clone
- * rejects outright (DataCloneError). That's what used to keep every merged,
- * scrolled-back transaction history from ever reaching disk — the error was
- * swallowed, so only the raw page-one response survived a reload. Everything
- * stored here started life as backend JSON, so the round-trip is lossless.
- */
+// Market data that says nothing about the user — the only entries cached
+// unencrypted and readable while locked. Everything else is tied to the
+// user's own accounts (addresses, balances, history, which tokens they hold
+// or look at) and is encrypted — see services/secureCache.ts.
+const PUBLIC_PREFIXES = [FX_RATES_PREFIX, NATIVE_PRICE_PREFIX, TOKEN_LIST_PREFIX]
+
+function isPublic(key: string): boolean {
+  return PUBLIC_PREFIXES.some((prefix) => key.startsWith(prefix))
+}
+
 function persist(key: string, data: unknown) {
-  db.cache.put({ key, data: JSON.parse(JSON.stringify(data)), fetchedAt: Date.now() }).catch((err) => {
+  const write = isPublic(key) ? putPublic(key, data) : putPrivate(key, data)
+  write.catch((err) => {
     console.warn(`Failed to cache ${key}`, err)
   })
 }
@@ -113,6 +142,9 @@ export const useChainDataStore = defineStore('chainData', () => {
   const fxRates = ref<FxRates | null>(null)
   const nativePriceUsdByChain = ref<Partial<Record<ChainSlug, number>>>({})
   const tokenMetadataByKey = ref<Record<string, TokenMetadata>>({})
+  const priceHistoryByAsset = ref<Record<string, PriceHistory>>({})
+  const transactionFeeByKey = ref<Record<string, TransactionFee>>({})
+  const swapFeesByKey = ref<Record<string, RecordedSwapFee[]>>({})
   // A count rather than a flag: the same account can be refreshing from two
   // places at once (the periodic refresh plus a manual one, or SendView's own
   // load), and the first to finish mustn't clear the spinner for the other.
@@ -134,44 +166,80 @@ export const useChainDataStore = defineStore('chainData', () => {
     return `${chain}:${address.toLowerCase()}`
   }
 
-  let hydration: Promise<void> | null = null
+  /** keyFor for a token contract, or `<chain>:native` for the chain's native currency. */
+  function assetKey(chain: ChainSlug, contractAddress: string | null) {
+    return contractAddress === null ? `${chain}:native` : keyFor(chain, contractAddress)
+  }
+
+  function applyCachedEntry(key: string, data: unknown) {
+    if (key.startsWith(ACTIVITY_PREFIX)) {
+      activityByAddress.value[key.slice(ACTIVITY_PREFIX.length)] ??= data as AddressActivity
+    } else if (key.startsWith(TOKEN_METADATA_PREFIX)) {
+      tokenMetadataByKey.value[key.slice(TOKEN_METADATA_PREFIX.length)] ??= data as TokenMetadata
+    } else if (key === `${FX_RATES_PREFIX}USD`) {
+      fxRates.value ??= data as FxRates
+    } else if (key.startsWith(TOKEN_CHECKED_PREFIX)) {
+      const tokenKey = key.slice(TOKEN_CHECKED_PREFIX.length)
+      if (!tokenMetadataCheckedAt.has(tokenKey)) tokenMetadataCheckedAt.set(tokenKey, data as number)
+    } else if (key.startsWith(NATIVE_PRICE_PREFIX)) {
+      const chain = key.slice(NATIVE_PRICE_PREFIX.length) as ChainSlug
+      nativePriceUsdByChain.value[chain] ??= (data as NativePrice).usd
+    } else if (key.startsWith(PRICE_HISTORY_PREFIX)) {
+      priceHistoryByAsset.value[key.slice(PRICE_HISTORY_PREFIX.length)] ??= data as PriceHistory
+    } else if (key.startsWith(TRANSACTION_FEE_PREFIX)) {
+      transactionFeeByKey.value[key.slice(TRANSACTION_FEE_PREFIX.length)] ??= data as TransactionFee
+    } else if (key.startsWith(SWAP_FEES_PREFIX)) {
+      swapFeesByKey.value[key.slice(SWAP_FEES_PREFIX.length)] ??= data as RecordedSwapFee[]
+    }
+  }
+
+  let publicHydration: Promise<void> | null = null
+  let privateHydration: Promise<void> | null = null
   /**
-   * Loads everything cached on disk into the store, once per app session, so
-   * the UI renders last-known data straight away — every loader awaits this
-   * before fetching, and its fresh result then overwrites what this put in.
+   * Loads everything cached on disk into the store, so the UI renders
+   * last-known data straight away — every loader awaits this before
+   * fetching, and its fresh result then overwrites what this put in. Public
+   * data once per app session; personal data only once unlocked, and again
+   * after every unlock, since locking clears it (see clearPersonalData).
    */
   function hydrate(): Promise<void> {
-    hydration ??= (async () => {
-      const entries = await db.cache
-        .where('key')
-        .startsWithAnyOf([
-          ACTIVITY_PREFIX,
-          TOKEN_METADATA_PREFIX,
-          TOKEN_CHECKED_PREFIX,
-          FX_RATES_PREFIX,
-          NATIVE_PRICE_PREFIX,
-        ])
-        .toArray()
-      for (const { key, data } of entries) {
-        if (key.startsWith(ACTIVITY_PREFIX)) {
-          activityByAddress.value[key.slice(ACTIVITY_PREFIX.length)] ??= data as AddressActivity
-        } else if (key.startsWith(TOKEN_METADATA_PREFIX)) {
-          tokenMetadataByKey.value[key.slice(TOKEN_METADATA_PREFIX.length)] ??= data as TokenMetadata
-        } else if (key === `${FX_RATES_PREFIX}USD`) {
-          fxRates.value ??= data as FxRates
-        } else if (key.startsWith(TOKEN_CHECKED_PREFIX)) {
-          const tokenKey = key.slice(TOKEN_CHECKED_PREFIX.length)
-          if (!tokenMetadataCheckedAt.has(tokenKey)) tokenMetadataCheckedAt.set(tokenKey, data as number)
-        } else if (key.startsWith(NATIVE_PRICE_PREFIX)) {
-          const chain = key.slice(NATIVE_PRICE_PREFIX.length) as ChainSlug
-          nativePriceUsdByChain.value[chain] ??= (data as NativePrice).usd
-        }
-      }
-    })().catch((err) => {
-      // Not fatal — everything just loads from the network instead.
-      console.warn('Failed to read cached chain data', err)
-    })
-    return hydration
+    // Not fatal either way — everything just loads from the network instead.
+    const warn = (err: unknown) => console.warn('Failed to read cached chain data', err)
+    publicHydration ??= publicEntries(PUBLIC_PREFIXES)
+      .then((entries) => entries.forEach(({ key, data }) => applyCachedEntry(key, data)))
+      .catch(warn)
+    if (isCacheUnlocked()) {
+      privateHydration ??= privateEntries()
+        .then((entries) => entries.forEach(({ key, data }) => applyCachedEntry(key, data)))
+        .catch(warn)
+    }
+    return Promise.all([publicHydration, privateHydration]).then(() => {})
+  }
+
+  /**
+   * Sets a personal-data entry in memory and in the encrypted cache — or
+   * neither, once locked: a fetch that was still in flight at lock time
+   * must not put anything back after clearPersonalData wiped it.
+   */
+  function remember<T>(record: Ref<Record<string, T>>, prefix: string, key: string, value: T) {
+    if (!isCacheUnlocked()) return
+    record.value[key] = value
+    persist(prefix + key, value)
+  }
+
+  /** Called on lock — see stores/vault.ts. Public market data stays. */
+  function clearPersonalData() {
+    activityByAddress.value = {}
+    tokenMetadataByKey.value = {}
+    priceHistoryByAsset.value = {}
+    transactionFeeByKey.value = {}
+    swapFeesByKey.value = {}
+    loadingCounts.value = {}
+    loadingMoreKeys.value = new Set()
+    tokenMetadataCheckedAt.clear()
+    inFlightTokenMetadata.clear()
+    for (const key of Object.keys(inFlightLoadMore)) delete inFlightLoadMore[key]
+    privateHydration = null
   }
 
   function setTransactionBatchSize(size: number) {
@@ -258,8 +326,7 @@ export const useChainDataStore = defineStore('chainData', () => {
       const fresh = await api.addressActivity(chain, address)
       const history = await mergeIntoKnownHistory(chain, address, key, fresh)
       const merged: AddressActivity = { balances: fresh.balances, ...history }
-      activityByAddress.value[key] = merged
-      persist(ACTIVITY_PREFIX + key, merged)
+      remember(activityByAddress, ACTIVITY_PREFIX, key, merged)
       if (refreshTokenMetadata) tokenRefresh = refreshHeldTokenMetadata(chain, fresh.balances)
     } finally {
       void tokenRefresh.finally(() => {
@@ -303,8 +370,7 @@ export const useChainDataStore = defineStore('chainData', () => {
           transactions: appendOlderPage(current.transactions, page.transactions),
           next_cursor: page.next_cursor,
         }
-        activityByAddress.value[key] = merged
-        persist(ACTIVITY_PREFIX + key, merged)
+        remember(activityByAddress, ACTIVITY_PREFIX, key, merged)
       } finally {
         loadingMoreKeys.value.delete(key)
         delete inFlightLoadMore[key]
@@ -343,8 +409,7 @@ export const useChainDataStore = defineStore('chainData', () => {
       ...existing,
       transactions: [txn, ...existing.transactions.filter((t) => t.hash !== txn.hash)],
     }
-    activityByAddress.value[key] = merged
-    persist(ACTIVITY_PREFIX + key, merged)
+    remember(activityByAddress, ACTIVITY_PREFIX, key, merged)
   }
 
   /**
@@ -360,8 +425,10 @@ export const useChainDataStore = defineStore('chainData', () => {
     if (inFlight) return inFlight
 
     const checkedAt = Date.now()
-    tokenMetadataCheckedAt.set(key, checkedAt)
-    persist(TOKEN_CHECKED_PREFIX + key, checkedAt)
+    if (isCacheUnlocked()) {
+      tokenMetadataCheckedAt.set(key, checkedAt)
+      persist(TOKEN_CHECKED_PREFIX + key, checkedAt)
+    }
     const request = (async () => {
       await hydrate()
       let fresh: TokenMetadata | null = null
@@ -380,8 +447,7 @@ export const useChainDataStore = defineStore('chainData', () => {
       }
       const resolvedAnything = [merged.name, merged.symbol, merged.decimals, merged.logo_url, merged.usd_price].some(present)
       if (resolvedAnything) {
-        tokenMetadataByKey.value[key] = merged
-        persist(TOKEN_METADATA_PREFIX + key, merged)
+        remember(tokenMetadataByKey, TOKEN_METADATA_PREFIX, key, merged)
       }
       if (failure && !resolvedAnything) throw failure
     })().finally(() => inFlightTokenMetadata.delete(key))
@@ -443,8 +509,8 @@ export const useChainDataStore = defineStore('chainData', () => {
    */
   async function loadTokenList(chain: ChainSlug): Promise<TokenListItem[] | null> {
     if (!tokenListByChain.has(chain)) {
-      const cached = await db.cache.get(TOKEN_LIST_PREFIX + chain).catch(() => undefined)
-      if (cached && !tokenListByChain.has(chain)) tokenListByChain.set(chain, cached.data as TokenListItem[])
+      const cached = await getPublic<TokenListItem[]>(TOKEN_LIST_PREFIX + chain).catch(() => undefined)
+      if (cached && !tokenListByChain.has(chain)) tokenListByChain.set(chain, cached)
     }
     let refresh = tokenListRefreshes.get(chain)
     if (!refresh) {
@@ -461,11 +527,39 @@ export const useChainDataStore = defineStore('chainData', () => {
     return tokenListByChain.get(chain) ?? refresh.catch(() => null)
   }
 
+  /** Past-24h price for a token contract, or the chain's native currency when `contractAddress` is null. */
+  async function loadPriceHistory(chain: ChainSlug, contractAddress: string | null) {
+    await hydrate()
+    const fresh = await (contractAddress === null
+      ? api.nativePriceHistory(chain)
+      : api.tokenPriceHistory(chain, contractAddress))
+    const key = assetKey(chain, contractAddress)
+    remember(priceHistoryByAsset, PRICE_HISTORY_PREFIX, key, fresh)
+  }
+
+  /** No-op once known. Throws while the transaction is still pending (no receipt yet). */
+  async function ensureTransactionFee(chain: ChainSlug, hash: string) {
+    await hydrate()
+    const key = keyFor(chain, hash)
+    if (transactionFeeByKey.value[key]) return
+    const fee = await api.transactionFee(chain, hash)
+    remember(transactionFeeByKey, TRANSACTION_FEE_PREFIX, key, fee)
+  }
+
+  function recordSwapFees(chain: ChainSlug, hash: string, fees: RecordedSwapFee[]) {
+    if (fees.length === 0) return
+    const key = keyFor(chain, hash)
+    remember(swapFeesByKey, SWAP_FEES_PREFIX, key, fees)
+  }
+
   return {
     activityByAddress,
     fxRates,
     nativePriceUsdByChain,
     tokenMetadataByKey,
+    priceHistoryByAsset,
+    transactionFeeByKey,
+    swapFeesByKey,
     transactionBatchSize,
     setTransactionBatchSize,
     isLoading,
@@ -479,7 +573,12 @@ export const useChainDataStore = defineStore('chainData', () => {
     loadTokenMetadata,
     ensureTokenMetadata,
     loadTokenList,
+    loadPriceHistory,
+    ensureTransactionFee,
+    recordSwapFees,
+    clearPersonalData,
     prependTransaction,
     keyFor,
+    assetKey,
   }
 })

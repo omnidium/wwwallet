@@ -98,7 +98,7 @@ export default {
     edit: 'Edit penerima pembayaran',
   },
   backup: {
-    title: 'Pencadangan & pemulihan',
+    title: 'Pencadangan & Pemulihan',
     intro:
       'Cadangan dienkripsi di perangkat ini sebelum dikirim ke luar. Server wwwallet sama sekali tidak terlibat — saat memulihkan data di perangkat baru, prosesnya terhubung langsung ke Google atau membaca berkas lokal.',
     googleDriveTitle: 'Google Drive',
@@ -196,12 +196,20 @@ export default {
   token: {
     defaultLabel: 'Token',
     decimals: 'Bilangan desimal',
-    price: 'Harga',
     priceTooltip: 'Harga 1 token {symbol} dalam USD',
     amount: 'Jumlah',
     amountTooltip: 'Jumlah token {symbol} yang dimiliki',
     total: 'Total',
     totalTooltip: 'Nilai total token yang dimiliki dalam mata uang lokal',
+    network: 'Jaringan',
+    addFavourite: 'Tambahkan ke favorit (ditampilkan di layar kunci)',
+    removeFavourite: 'Hapus dari daftar favorit',
+    refreshPrice: 'Klik untuk memperbarui harga',
+    moreDetails: 'Informasi lebih lanjut',
+    lessDetails: 'Lebih sedikit detail',
+    currentPrice: 'Harga saat ini (USD)',
+    change24h: 'Perubahan dalam 24 jam',
+    chart24h: 'Dalam 24 jam terakhir',
   },
   qrScanner: {
     title: 'Pindai kode QR alamat ini',
@@ -348,6 +356,7 @@ export default {
     dragToReorder: 'Seret untuk mengatur ulang urutannya',
     refresh: 'Segarkan akun ini',
     viewOnEtherscan: 'Klik untuk melihat di Etherscan',
+    viewNativeToken: 'Lihat detail {symbol}',
   },
   editAccount: {
     title: 'Edit akun',
@@ -383,6 +392,9 @@ export default {
     amount: 'Jumlah',
     sold: 'Telah terjual',
     bought: 'Telah dibeli',
+    networkFee: 'Biaya jaringan',
+    paidBySender: 'Biaya ditanggung oleh pengirim',
+    feeUnavailable: 'Belum tersedia',
   },
   transferPicker: {
     title: 'Pilih rekening atau penerima untuk melakukan transfer',

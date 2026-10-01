@@ -76,29 +76,53 @@ function proceedWithRestore() {
 </script>
 
 <template>
-  <div>
-    <h1 class="text-h5">{{ t('backup.title') }}</h1>
-    <v-alert type="info" variant="tonal" class="my-4">
+  <div class="settings-pane">
+    <div class="pane-header d-flex align-center ga-3">
+      <v-icon icon="mdi-cloud-upload" size="28" />
+      <h1 class="text-h5">{{ t('backup.title') }}</h1>
+    </div>
+    <v-alert type="info" variant="tonal" class="mt-6">
       {{ t('backup.intro') }}
     </v-alert>
 
-    <v-row>
-      <v-col cols="12" md="6">
-        <v-card class="pa-4">
-          <v-card-title class="text-subtitle-1">{{ t('backup.googleDriveTitle') }}</v-card-title>
-          <v-btn v-if="vault.isUnlocked" class="mb-2" block variant="outlined" @click="backupToDrive">{{ t('backup.backUpNow') }}</v-btn>
-          <v-btn block variant="outlined" @click="confirmRestore(restoreFromDrive)">{{ t('backup.restoreLatest') }}</v-btn>
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="6">
-        <v-card class="pa-4">
-          <v-card-title class="text-subtitle-1">{{ t('backup.localFileTitle') }}</v-card-title>
-          <v-btn v-if="vault.isUnlocked" class="mb-2" block variant="outlined" @click="backupToFile">{{ t('backup.downloadBackup') }}</v-btn>
-          <v-btn block variant="outlined" @click="confirmRestore(() => fileInput?.click())">{{ t('backup.restoreFromFile') }}</v-btn>
-          <input ref="fileInput" type="file" accept="application/json" hidden @change="onFileSelected" />
-        </v-card>
-      </v-col>
-    </v-row>
+    <!-- The two cards stacked (the pane is narrow at every screen size); the
+         back-up/restore tiles inside each, side by side. -->
+    <div class="d-flex flex-column ga-4 mt-4">
+      <v-card class="pa-4" variant="outlined">
+        <div class="d-flex align-center ga-3 mb-3">
+          <v-icon icon="mdi-google-drive" />
+          <span class="text-subtitle-1 font-weight-medium">{{ t('backup.googleDriveTitle') }}</span>
+        </div>
+        <div class="backup-tiles">
+          <button v-if="vault.isUnlocked" type="button" class="backup-tile backup-tile--backup" @click="backupToDrive">
+            <v-icon icon="mdi-cloud-upload-outline" size="32" />
+            <span>{{ t('backup.backUpNow') }}</span>
+          </button>
+          <button type="button" class="backup-tile backup-tile--restore" @click="confirmRestore(restoreFromDrive)">
+            <v-icon icon="mdi-cloud-download-outline" size="32" />
+            <span>{{ t('backup.restoreLatest') }}</span>
+          </button>
+        </div>
+      </v-card>
+      <v-card class="pa-4" variant="outlined">
+        <div class="d-flex align-center ga-3 mb-3">
+          <v-icon icon="mdi-file-outline" />
+          <span class="text-subtitle-1 font-weight-medium">{{ t('backup.localFileTitle') }}</span>
+        </div>
+        <div class="backup-tiles">
+          <button v-if="vault.isUnlocked" type="button" class="backup-tile backup-tile--backup" @click="backupToFile">
+            <v-icon icon="mdi-file-download-outline" size="32" />
+            <span>{{ t('backup.downloadBackup') }}</span>
+          </button>
+          <button type="button" class="backup-tile backup-tile--restore"
+            @click="confirmRestore(() => fileInput?.click())">
+            <v-icon icon="mdi-file-upload-outline" size="32" />
+            <span>{{ t('backup.restoreFromFile') }}</span>
+          </button>
+        </div>
+        <input ref="fileInput" type="file" accept="application/json" hidden @change="onFileSelected" />
+      </v-card>
+    </div>
 
     <v-dialog v-model="restoreWarningOpen" max-width="420">
       <v-card>

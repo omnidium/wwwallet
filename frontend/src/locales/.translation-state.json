@@ -189,8 +189,8 @@
       "value": "Dirección"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
-      "value": "Copias de seguridad y restauración"
+      "enHash": "a8efaee30dab9afd",
+      "value": "Copia de seguridad y restauración"
     },
     "backup.intro": {
       "enHash": "b83497e48fd705ef",
@@ -996,10 +996,6 @@
       "enHash": "74672912045e226a",
       "value": "Decimales"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Precio"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Precio de 1 token {symbol} en dólares estadounidenses"
@@ -1199,6 +1195,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "He leído y acepto estas condiciones"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Ver detalles de {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Cuota de red"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "A cargo del remitente"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Aún no está disponible"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Red"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Añadir a favoritos (aparecerá en la pantalla de bloqueo)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Eliminar de los favoritos"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Haz clic para actualizar el precio"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Más detalles"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Menos detalles"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Precio actual (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Variación en las últimas 24 horas"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Últimas 24 horas"
     }
   },
   "ar": {
@@ -1391,7 +1439,7 @@
       "value": "العنوان"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "النسخ الاحتياطي والاستعادة"
     },
     "backup.intro": {
@@ -2198,10 +2246,6 @@
       "enHash": "74672912045e226a",
       "value": "الأرقام العشرية"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "السعر"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "سعر الرمز المميز 1 {symbol} بالدولار الأمريكي"
@@ -2401,6 +2445,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "لقد قرأت هذه الشروط وأوافق عليها"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "عرض تفاصيل {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "رسوم الشبكة"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "الرسوم يدفعها المرسل"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "غير متوفر حتى الآن"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "الشبكة"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "إضافة إلى المفضلة (تظهر على شاشة القفل)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "إزالة من المفضلة"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "انقر لتحديث السعر"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "مزيد من التفاصيل"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "تفاصيل أقل"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "السعر الحالي (بالدولار الأمريكي)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "التغير خلال 24 ساعة"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "خلال الـ24 ساعة الماضية"
     }
   },
   "bg": {
@@ -2593,7 +2689,7 @@
       "value": "Адрес"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Архивиране и възстановяване"
     },
     "backup.intro": {
@@ -3400,10 +3496,6 @@
       "enHash": "74672912045e226a",
       "value": "Десетични числа"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Цена"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Цена на 1 {symbol} токен в щатски долари"
@@ -3603,6 +3695,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Прочетох и приемам тези условия"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Виж подробности за {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Такса за използване на мрежата"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Разходите се поемат от изпращача"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Все още не е налично"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Мрежа"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Добави към любимите (показва се на екрана за заключване)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Премахни от любимите"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Кликнете, за да обновите цената"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Повече подробности"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "По-малко подробности"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Текуща цена (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Промяна за 24 часа"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "През последните 24 часа"
     }
   },
   "cs": {
@@ -3795,7 +3939,7 @@
       "value": "Adresa"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Zálohování a obnovení"
     },
     "backup.intro": {
@@ -4602,10 +4746,6 @@
       "enHash": "74672912045e226a",
       "value": "Desetinná čísla"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Cena"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Cena 1 tokenu {symbol} v USD"
@@ -4805,6 +4945,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Přečetl/a jsem si tyto podmínky a souhlasím s nimi"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Zobrazit podrobnosti o {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Poplatek za připojení k síti"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Hradí odesílatel"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Zatím není k dispozici"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Síť"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Přidat do oblíbených (zobrazí se na uzamčené obrazovce)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Odebrat z oblíbených"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Kliknutím obnovíte cenu"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Další podrobnosti"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Méně podrobností"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Aktuální cena (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Změna za 24 hodin"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Za posledních 24 hodin"
     }
   },
   "da": {
@@ -4997,7 +5189,7 @@
       "value": "Adresse"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Sikkerhedskopiering og gendannelse"
     },
     "backup.intro": {
@@ -5804,10 +5996,6 @@
       "enHash": "74672912045e226a",
       "value": "Decimaltal"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Pris"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prisen på 1 {symbol}-token i USD"
@@ -6007,6 +6195,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Jeg har læst og accepterer disse vilkår"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Se detaljer om {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Netværksgebyr"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Betalt af afsenderen"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Ikke tilgængelig endnu"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Netværk"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Føj til favoritter (vises på låseskærmen)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Fjern fra favoritter"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Klik her for at opdatere prisen"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Flere detaljer"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Færre detaljer"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Aktuel pris (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Ændring i løbet af 24 timer"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "De seneste 24 timer"
     }
   },
   "de": {
@@ -6199,7 +6439,7 @@
       "value": "Adresse"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Sicherung und Wiederherstellung"
     },
     "backup.intro": {
@@ -7006,10 +7246,6 @@
       "enHash": "74672912045e226a",
       "value": "Dezimalzahlen"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Preis"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Preis für 1 {symbol}-Token in USD"
@@ -7209,6 +7445,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Ich habe diese Bedingungen gelesen und akzeptiere sie"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Details zu {symbol} anzeigen"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Netzwerkgebühr"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Kosten trägt der Absender"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Noch nicht verfügbar"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Netzwerk"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Zu den Favoriten hinzufügen (wird auf dem Sperrbildschirm angezeigt)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Aus den Favoriten entfernen"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Klicken Sie hier, um den Preis zu aktualisieren"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Weitere Details"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Weniger Details"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Aktueller Preis (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Veränderung innerhalb von 24 Stunden"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "In den letzten 24 Stunden"
     }
   },
   "el": {
@@ -7401,7 +7689,7 @@
       "value": "Διεύθυνση"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Δημιουργία αντιγράφων ασφαλείας και επαναφορά"
     },
     "backup.intro": {
@@ -8208,10 +8496,6 @@
       "enHash": "74672912045e226a",
       "value": "Δεκαδικοί αριθμοί"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Τιμή"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Τιμή 1 token {symbol} σε δολάρια ΗΠΑ"
@@ -8411,6 +8695,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Έχω διαβάσει και αποδέχομαι τους παρόντες όρους"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Δείτε τις λεπτομέρειες του {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Τέλος δικτύου"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Πληρώνεται από τον αποστολέα"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Δεν είναι ακόμα διαθέσιμο"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Δίκτυο"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Προσθήκη στα αγαπημένα (εμφανίζεται στην οθόνη κλειδώματος)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Κατάργηση από τα αγαπημένα"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Κάντε κλικ για να ανανεώσετε την τιμή"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Περισσότερες λεπτομέρειες"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Λιγότερες λεπτομέρειες"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Τρέχουσα τιμή (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Μεταβολή σε 24 ώρες"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Τις τελευταίες 24 ώρες"
     }
   },
   "et": {
@@ -8603,7 +8939,7 @@
       "value": "Aadress"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Varundamine ja taastamine"
     },
     "backup.intro": {
@@ -9410,10 +9746,6 @@
       "enHash": "74672912045e226a",
       "value": "Komaarvud"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Hind"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} tokeni hind USA dollarites"
@@ -9613,6 +9945,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Olen need tingimused läbi lugenud ja nõustun nendega"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Vaata {symbol} üksikasju"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Võrgutasu"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Maksab saatja"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Hetkel pole saadaval"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Võrk"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Lisa lemmikute hulka (kuvatakse lukustusekraanil)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Eemalda lemmikute hulgast"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Vajuta, et hinda uuendada"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Lisateave"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Vähem üksikasju"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Praegune hind (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Muutus 24 tunni jooksul"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Viimased 24 tundi"
     }
   },
   "fi": {
@@ -9805,7 +10189,7 @@
       "value": "Osoite"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Varmuuskopiointi ja palautus"
     },
     "backup.intro": {
@@ -10612,10 +10996,6 @@
       "enHash": "74672912045e226a",
       "value": "Desimaaliluvut"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Hinta"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol}-tokenin hinta Yhdysvaltain dollareina"
@@ -10815,6 +11195,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Olen lukenut nämä ehdot ja hyväksyn ne"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Näytä {symbol}:n tiedot"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Verkkomaksu"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Lähettäjä maksaa"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Ei vielä saatavilla"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Verkko"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Lisää suosikkeihin (näkyy lukitusnäytössä)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Poista suosikeista"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Napsauta päivittääksesi hinnan"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Lisätietoja"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Vähemmän yksityiskohtia"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Nykyinen hinta (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Muutos 24 tunnin aikana"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Viimeiset 24 tuntia"
     }
   },
   "fr": {
@@ -11007,7 +11439,7 @@
       "value": "Adresse"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Sauvegarde et restauration"
     },
     "backup.intro": {
@@ -11814,10 +12246,6 @@
       "enHash": "74672912045e226a",
       "value": "Nombres décimaux"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Prix"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prix d'un jeton {symbol} en dollars américains"
@@ -12017,6 +12445,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "J'ai lu et j'accepte ces conditions"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Afficher les détails de {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Frais de réseau"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Frais à la charge de l'expéditeur"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Pas encore disponible"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Réseau"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Ajouter aux favoris (affichés sur l'écran de verrouillage)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Supprimer des favoris"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Cliquez ici pour actualiser le prix"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Plus d'informations"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Moins de détails"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Prix actuel (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Variation sur 24 heures"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Au cours des dernières 24 heures"
     }
   },
   "hu": {
@@ -12209,7 +12689,7 @@
       "value": "Cím"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Biztonsági mentés és visszaállítás"
     },
     "backup.intro": {
@@ -13016,10 +13496,6 @@
       "enHash": "74672912045e226a",
       "value": "Tizedes számok"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Ár"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} token ára USD-ben"
@@ -13219,6 +13695,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Elolvastam és elfogadom ezeket a feltételeket"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "{symbol} részleteinek megtekintése"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Hálózati díj"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "A feladó fizeti"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Még nem elérhető"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Hálózat"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Hozzáadás a kedvencekhez (megjelenik a zárképernyőn)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Kivonás a kedvencek közül"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Kattintson az ár frissítéséhez"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "További részletek"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Kevesebb részlet"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Jelenlegi ár (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "24 órás változás"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Az elmúlt 24 óra"
     }
   },
   "id": {
@@ -13411,8 +13939,8 @@
       "value": "Alamat"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
-      "value": "Pencadangan & pemulihan"
+      "enHash": "a8efaee30dab9afd",
+      "value": "Pencadangan & Pemulihan"
     },
     "backup.intro": {
       "enHash": "b83497e48fd705ef",
@@ -14218,10 +14746,6 @@
       "enHash": "74672912045e226a",
       "value": "Bilangan desimal"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Harga"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Harga 1 token {symbol} dalam USD"
@@ -14421,6 +14945,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Saya telah membaca dan menyetujui ketentuan-ketentuan ini"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Lihat detail {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Biaya jaringan"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Biaya ditanggung oleh pengirim"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Belum tersedia"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Jaringan"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Tambahkan ke favorit (ditampilkan di layar kunci)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Hapus dari daftar favorit"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Klik untuk memperbarui harga"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Informasi lebih lanjut"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Lebih sedikit detail"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Harga saat ini (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Perubahan dalam 24 jam"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Dalam 24 jam terakhir"
     }
   },
   "it": {
@@ -14613,7 +15189,7 @@
       "value": "Indirizzo"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Backup e ripristino"
     },
     "backup.intro": {
@@ -15420,10 +15996,6 @@
       "enHash": "74672912045e226a",
       "value": "Decimali"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Prezzo"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prezzo di 1 token {symbol} in USD"
@@ -15623,6 +16195,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Ho letto e accetto i presenti termini"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Visualizza i dettagli di {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Costo di connessione"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Spese a carico del mittente"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Non ancora disponibile"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Rete"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Aggiungi ai preferiti (visualizzati nella schermata di blocco)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Rimuovi dai preferiti"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Clicca per aggiornare il prezzo"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Maggiori dettagli"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Meno dettagli"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Prezzo attuale (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Variazione nelle 24 ore"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Nelle ultime 24 ore"
     }
   },
   "iw": {
@@ -15815,7 +16439,7 @@
       "value": "כתובת"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "גיבוי ושחזור"
     },
     "backup.intro": {
@@ -16622,10 +17246,6 @@
       "enHash": "74672912045e226a",
       "value": "מספרים עשרוניים"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "מחיר"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "מחיר אסימון אחד {symbol} בדולר ארה\"ב"
@@ -16825,6 +17445,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "קראתי את התנאים הללו ואני מסכים להם"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "הצג פרטים על {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "דמי רשת"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "בתשלום על ידי השולח"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "עדיין לא זמין"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "רשת"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "הוסף למועדפים (מוצג במסך הנעילה)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "הסר מהמועדפים"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "לחץ כאן כדי לרענן את המחיר"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "פרטים נוספים"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "פחות פרטים"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "המחיר הנוכחי (דולר ארה\"ב)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "שינוי ב-24 שעות"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "ב-24 השעות האחרונות"
     }
   },
   "ja": {
@@ -17017,7 +17689,7 @@
       "value": "住所"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "バックアップと復元"
     },
     "backup.intro": {
@@ -17824,10 +18496,6 @@
       "enHash": "74672912045e226a",
       "value": "小数"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "価格"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} トークンの価格（米ドル）"
@@ -18027,6 +18695,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "本利用規約を読み、同意します"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "{symbol}の詳細を表示"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "ネットワーク手数料"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "送料は差出人負担"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "まだ利用できません"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "ネットワーク"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "お気に入りに追加（ロック画面に表示されます）"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "「お気に入り」から削除"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "クリックして価格を更新してください"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "詳細はこちら"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "詳細は省略"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "現在の価格（米ドル）"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "24時間における変化"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "過去24時間"
     }
   },
   "ko": {
@@ -18219,7 +18939,7 @@
       "value": "주소"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "백업 및 복원"
     },
     "backup.intro": {
@@ -19026,10 +19746,6 @@
       "enHash": "74672912045e226a",
       "value": "소수"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "가격"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} 토큰의 가격 (USD)"
@@ -19229,6 +19945,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "본 약관을 읽었으며 이에 동의합니다"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "{symbol}에 대한 자세히 보기"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "네트워크 수수료"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "발송인이 지불함"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "아직 이용하실 수 없습니다"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "네트워크"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "즐겨찾기에 추가 (잠금 화면에 표시됨)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "즐겨찾기에서 제거"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "클릭하여 가격을 새로 고침"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "자세한 내용"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "자세한 내용 생략"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "현재 가격 (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "24시간 변동률"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "지난 24시간 동안"
     }
   },
   "lt": {
@@ -19421,7 +20189,7 @@
       "value": "Adresas"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Atsarginės kopijos ir atkūrimas"
     },
     "backup.intro": {
@@ -20228,10 +20996,6 @@
       "enHash": "74672912045e226a",
       "value": "Dešimtainiai skaičiai"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Kaina"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} žetono kaina JAV doleriais"
@@ -20431,6 +21195,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Aš perskaičiau šias sąlygas ir su jomis sutinku"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Peržiūrėti {symbol} informaciją"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Tinklo mokestis"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Moka siuntėjas"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Dar nėra prieinama"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Tinklas"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Pridėti prie mėgstamiausių (rodoma užrakintame ekrane)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Pašalinti iš mėgstamiausių"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Spustelėkite, kad atnaujintumėte kainą"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Daugiau informacijos"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Mažiau informacijos"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Dabartinė kaina (JAV doleriai)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Pokytis per 24 val."
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Per pastarąsias 24 valandas"
     }
   },
   "lv": {
@@ -20623,7 +21439,7 @@
       "value": "Adrese"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Datu dublēšana un atjaunošana"
     },
     "backup.intro": {
@@ -21430,10 +22246,6 @@
       "enHash": "74672912045e226a",
       "value": "Decimāldaļas"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Cena"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} žetona cena ASV dolāros"
@@ -21633,6 +22445,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Esmu iepazinisies ar šiem noteikumiem un tos piekrītu"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Skatīt {symbol} informāciju"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Tīkla maksa"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Apmaksā sūtītājs"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Vēl nav pieejams"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Tīkls"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Pievienot izlasei (parādās bloķēšanas ekrānā)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Noņemt no iecienītajiem"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Noklikšķiniet, lai atjauninātu cenu"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Sīkāka informācija"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Mazāk sīkākas ziņas"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Pašreizējā cena (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Izmaiņas 24 stundu laikā"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Pēdējās 24 stundas"
     }
   },
   "nl": {
@@ -21825,7 +22689,7 @@
       "value": "Adres"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Back-up en herstel"
     },
     "backup.intro": {
@@ -22632,10 +23496,6 @@
       "enHash": "74672912045e226a",
       "value": "Decimalen"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Prijs"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prijs van 1 {symbol}-token in USD"
@@ -22835,6 +23695,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Ik heb deze voorwaarden gelezen en ga hiermee akkoord"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Bekijk de details van {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Netwerkkosten"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Betaald door de afzender"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Nog niet beschikbaar"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Netwerk"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Toevoegen aan favorieten (weergegeven op het vergrendelingsscherm)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Uit favorieten verwijderen"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Klik hier om de prijs te vernieuwen"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Meer informatie"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Minder details"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Huidige prijs (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Verandering in 24 uur"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Afgelopen 24 uur"
     }
   },
   "no": {
@@ -23027,7 +23939,7 @@
       "value": "Adresse"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Sikkerhetskopiering og gjenoppretting"
     },
     "backup.intro": {
@@ -23834,10 +24746,6 @@
       "enHash": "74672912045e226a",
       "value": "Desimaler"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Pris"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prisen på 1 {symbol}-token i USD"
@@ -24037,6 +24945,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Jeg har lest og godtar disse vilkårene"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Vis detaljer om {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Nettverksavgift"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Betalt av avsenderen"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Ikke tilgjengelig ennå"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Nettverk"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Legg til i favoritter (vises på låseskjermen)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Fjern fra favoritter"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Klikk for å oppdatere prisen"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Mer informasjon"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Færre detaljer"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Gjeldende pris (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Endring i løpet av 24 timer"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "De siste 24 timene"
     }
   },
   "pl": {
@@ -24229,7 +25189,7 @@
       "value": "Adres"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Tworzenie kopii zapasowych i przywracanie danych"
     },
     "backup.intro": {
@@ -25036,10 +25996,6 @@
       "enHash": "74672912045e226a",
       "value": "Liczby dziesiętne"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Cena"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Cena 1 tokenu {symbol} w USD"
@@ -25239,6 +26195,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Zapoznałem się z niniejszymi warunkami i je akceptuję"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Zobacz szczegóły {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Opłata za dostęp do sieci"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Opłaca nadawca"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Jeszcze niedostępne"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Sieć"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Dodaj do ulubionych (wyświetlane na ekranie blokady)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Usuń z ulubionych"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Kliknij, aby zaktualizować cenę"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Więcej szczegółów"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Mniej szczegółów"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Aktualna cena (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Zmiana w ciągu 24 godzin"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Ostatnie 24 godziny"
     }
   },
   "ro": {
@@ -25431,7 +26439,7 @@
       "value": "Adresă"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Copiere de rezervă și restaurare"
     },
     "backup.intro": {
@@ -26238,10 +27246,6 @@
       "enHash": "74672912045e226a",
       "value": "Zecimale"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Preț"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prețul unui token {symbol} în USD"
@@ -26441,6 +27445,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Am citit și accept acești termeni"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Vezi detaliile {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Taxă de rețea"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Plătit de expeditor"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Nu este încă disponibil"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Rețea"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Adaugă la favorite (afișat pe ecranul de blocare)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Elimină din favorite"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Faceți clic pentru a actualiza prețul"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Mai multe detalii"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Mai puține detalii"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Prețul actual (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Variația pe 24 de ore"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Ultimele 24 de ore"
     }
   },
   "ru": {
@@ -26633,7 +27689,7 @@
       "value": "Адрес"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Резервное копирование и восстановление"
     },
     "backup.intro": {
@@ -27440,10 +28496,6 @@
       "enHash": "74672912045e226a",
       "value": "Десятичные дроби"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Цена"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Цена 1 токена {symbol} в долларах США"
@@ -27643,6 +28695,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Я ознакомился с этими условиями и принимаю их"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Просмотреть подробную информацию о {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Плата за подключение к сети"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Оплачивается отправителем"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Пока недоступно"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Сеть"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Добавить в избранное (отображается на экране блокировки)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Удалить из избранного"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Нажмите, чтобы обновить цену"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Подробнее"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Меньше подробностей"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Текущая цена (долл. США)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Изменение за 24 часа"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "За последние 24 часа"
     }
   },
   "sk": {
@@ -27835,7 +28939,7 @@
       "value": "Adresa"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Zálohovanie a obnovenie"
     },
     "backup.intro": {
@@ -28642,10 +29746,6 @@
       "enHash": "74672912045e226a",
       "value": "Desatinné čísla"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Cena"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Cena 1 tokenu {symbol} v USD"
@@ -28845,6 +29945,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Prečítal som si tieto podmienky a súhlasím s nimi"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Zobraziť podrobnosti o {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Poplatok za sieť"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Hradí odosielateľ"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Zatiaľ nie je k dispozícii"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Sieť"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Pridať do obľúbených (zobrazí sa na uzamknutej obrazovke)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Odstrániť z obľúbených"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Kliknite na tlačidlo na aktualizovanie ceny"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Ďalšie informácie"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Menej podrobností"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Aktuálna cena (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Zmena za 24 hodín"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Posledných 24 hodín"
     }
   },
   "sl": {
@@ -29037,7 +30189,7 @@
       "value": "Naslov"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Varnostno kopiranje in obnovitev"
     },
     "backup.intro": {
@@ -29844,10 +30996,6 @@
       "enHash": "74672912045e226a",
       "value": "Decimalna števila"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Cena"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Cena 1 {symbol} žetona v USD"
@@ -30047,6 +31195,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Prebral sem te pogoje in jih sprejemam"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Oglej si podrobnosti o {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Omrežna pristojbina"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Stroške krije pošiljatelj"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Še ni na voljo"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Omrežje"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Dodaj med priljubljene (prikaže se na zaklenjenem zaslonu)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Odstrani iz priljubljenih"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Kliknite, da osvežite ceno"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Več podrobnosti"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Manj podrobnosti"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Trenutna cena (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Sprememba v zadnjih 24 urah"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "V zadnjih 24 urah"
     }
   },
   "sv": {
@@ -30239,7 +31439,7 @@
       "value": "Adress"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Säkerhetskopiering och återställning"
     },
     "backup.intro": {
@@ -31046,10 +32246,6 @@
       "enHash": "74672912045e226a",
       "value": "Decimaltal"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Pris"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Priset per 1 {symbol}-token i USD"
@@ -31249,6 +32445,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Jag har läst och godkänner dessa villkor"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Visa {symbol} detaljer"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Nätverksavgift"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Betalas av avsändaren"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Finns inte ännu"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Nätverk"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Lägg till i favoriter (visas på låsskärmen)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Ta bort från favoriterna"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Klicka för att uppdatera priset"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Mer information"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Färre detaljer"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Aktuellt pris (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Förändring under 24 timmar"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "De senaste 24 timmarna"
     }
   },
   "tr": {
@@ -31441,8 +32689,8 @@
       "value": "Adres"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
-      "value": "Yedekleme ve geri yükleme"
+      "enHash": "a8efaee30dab9afd",
+      "value": "Yedekleme ve Geri Yükleme"
     },
     "backup.intro": {
       "enHash": "b83497e48fd705ef",
@@ -32248,10 +33496,6 @@
       "enHash": "74672912045e226a",
       "value": "Ondalık sayılar"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Fiyat"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} tokeninin USD cinsinden fiyatı"
@@ -32451,6 +33695,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Bu şartları okudum ve kabul ediyorum"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "{symbol} ayrıntılarını görüntüle"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Ağ ücreti"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Gönderici tarafından ödenir"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Henüz mevcut değil"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Ağ"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Favorilere ekle (kilit ekranında gösterilir)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Favorilerden çıkar"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Fiyatı yenilemek için tıklayın"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Daha fazla ayrıntı"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Daha az ayrıntı"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Güncel fiyat (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "24 saatlik değişim"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Son 24 saat"
     }
   },
   "uk": {
@@ -32643,7 +33939,7 @@
       "value": "Адреса"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Резервне копіювання та відновлення"
     },
     "backup.intro": {
@@ -33450,10 +34746,6 @@
       "enHash": "74672912045e226a",
       "value": "Дроби"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Ціна"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Ціна 1 токена {symbol} у доларах США"
@@ -33653,6 +34945,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Я ознайомився з цими умовами та погоджуюся з ними"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Переглянути деталі {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Плата за користування мережею"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Оплата здійснюється відправником"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Поки що недоступно"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Мережа"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Додати до обраного (відображається на екрані блокування)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Видалити з обраного"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Натисніть, щоб оновити ціну"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Більше інформації"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Менше деталей"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Поточна ціна (доларів США)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Зміна за 24 години"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "За останні 24 години"
     }
   },
   "vi": {
@@ -33845,7 +35189,7 @@
       "value": "Địa chỉ"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "Sao lưu và khôi phục"
     },
     "backup.intro": {
@@ -34652,10 +35996,6 @@
       "enHash": "74672912045e226a",
       "value": "Số thập phân"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "Giá"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Giá của 1 token {symbol} tính bằng USD"
@@ -34855,6 +36195,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "Tôi đã đọc và đồng ý với các điều khoản này"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "Xem chi tiết {symbol}"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "Phí mạng"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "Người gửi thanh toán"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "Chưa có sẵn"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "Mạng"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "Thêm vào danh sách yêu thích (hiển thị trên màn hình khóa)"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "Xóa khỏi danh sách yêu thích"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "Nhấp vào đây để cập nhật giá"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "Thông tin chi tiết hơn"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "Ít chi tiết hơn"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "Giá hiện tại (USD)"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "Biến động trong 24 giờ"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "Trong 24 giờ qua"
     }
   },
   "zh-CN": {
@@ -35047,7 +36439,7 @@
       "value": "地址"
     },
     "backup.title": {
-      "enHash": "0076967a94f3290b",
+      "enHash": "a8efaee30dab9afd",
       "value": "备份与还原"
     },
     "backup.intro": {
@@ -35854,10 +37246,6 @@
       "enHash": "74672912045e226a",
       "value": "小数"
     },
-    "token.price": {
-      "enHash": "93c91c851e7acc17",
-      "value": "价格"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1个 {symbol} 代币的美元价格"
@@ -36057,6 +37445,58 @@
     "vaultSetup.disclaimerAckLabel": {
       "enHash": "6cb0b8e2bc355722",
       "value": "我已阅读并接受这些条款"
+    },
+    "accountCard.viewNativeToken": {
+      "enHash": "e31897d3e7a49285",
+      "value": "查看 {symbol} 的详细信息"
+    },
+    "transactionDetail.networkFee": {
+      "enHash": "82c5067df6801187",
+      "value": "网络费"
+    },
+    "transactionDetail.paidBySender": {
+      "enHash": "d9780d2a59f7ab70",
+      "value": "由发件人支付"
+    },
+    "transactionDetail.feeUnavailable": {
+      "enHash": "787406ddea2a10a4",
+      "value": "暂未提供"
+    },
+    "token.network": {
+      "enHash": "1744b96470b51bf3",
+      "value": "网络"
+    },
+    "token.addFavourite": {
+      "enHash": "1bd184b24e45af82",
+      "value": "添加到收藏夹（显示在锁屏界面上）"
+    },
+    "token.removeFavourite": {
+      "enHash": "a5bdecedf4ee6419",
+      "value": "从收藏中移除"
+    },
+    "token.refreshPrice": {
+      "enHash": "6acc0e696e4d6148",
+      "value": "点击刷新价格"
+    },
+    "token.moreDetails": {
+      "enHash": "b5eff1dbd0154de8",
+      "value": "更多详情"
+    },
+    "token.lessDetails": {
+      "enHash": "e65a753b069c8547",
+      "value": "更少的细节"
+    },
+    "token.currentPrice": {
+      "enHash": "e99fbb25615fd37d",
+      "value": "当前价格（美元）"
+    },
+    "token.change24h": {
+      "enHash": "ff859fd436866e20",
+      "value": "24小时变动"
+    },
+    "token.chart24h": {
+      "enHash": "324f17e9530a5528",
+      "value": "过去24小时"
     }
   }
 }

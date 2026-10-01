@@ -128,6 +128,22 @@ export interface NativePrice {
   usd: number
 }
 
+/** An asset's USD price over the past 24h — see the backend's PriceHistory. */
+export interface PriceHistory {
+  usd: number
+  change_24h_pct: number
+  /** Oldest first, evenly spaced; the last one is always `usd`. */
+  points: number[]
+}
+
+/** A mined transaction's network fee — see the backend's TransactionFee. */
+export interface TransactionFee {
+  /** Decimal wei string, in the chain's native currency. */
+  fee_wei: string
+  /** Who paid it: the transaction's sender. */
+  payer: string
+}
+
 export interface TransactionPrep {
   nonce: number
   gas_price: string
@@ -178,6 +194,10 @@ export const api = {
   tokenMetadata: (chain: ChainSlug, address: string) =>
     getJson<TokenMetadata>(`/api/v1/chains/${chain}/token/${encodeURIComponent(address)}`),
   nativePrice: (chain: ChainSlug) => getJson<NativePrice>(`/api/v1/chains/${chain}/native-price`),
+  nativePriceHistory: (chain: ChainSlug) =>
+    getJson<PriceHistory>(`/api/v1/chains/${chain}/native-price-history`),
+  tokenPriceHistory: (chain: ChainSlug, address: string) =>
+    getJson<PriceHistory>(`/api/v1/chains/${chain}/token/${encodeURIComponent(address)}/price-history`),
   fxRates: (base = 'USD') => getJson<FxRates>('/api/v1/fx-rates', { base }),
   broadcastTransaction: (chain: ChainSlug, rawTransaction: string) =>
     postJson<{ transaction_hash: string }>(`/api/v1/chains/${chain}/broadcast`, {
@@ -185,6 +205,8 @@ export const api = {
     }),
   transactionStatus: (chain: ChainSlug, hash: string) =>
     getJson<{ status: TransactionStatus }>(`/api/v1/chains/${chain}/tx-status/${encodeURIComponent(hash)}`),
+  transactionFee: (chain: ChainSlug, hash: string) =>
+    getJson<TransactionFee>(`/api/v1/chains/${chain}/tx-fee/${encodeURIComponent(hash)}`),
   transactionPrep: (chain: ChainSlug, from: string, to: string, valueWei: string, data?: string) =>
     getJson<TransactionPrep>(`/api/v1/chains/${chain}/tx-prep/${encodeURIComponent(from)}`, {
       to,

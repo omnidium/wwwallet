@@ -3,8 +3,8 @@ use async_trait::async_trait;
 use crate::chain::ChainId;
 use crate::error::ProviderResult;
 use crate::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, SwapQuote, TokenMetadata, TransactionPage,
-    TransactionPrep, TransactionStatus,
+    AddressActivity, ContractAbi, FxRates, NativePrice, PriceHistory, SwapQuote, TokenMetadata,
+    TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 
 /// Fetches native + token balances and recent transactions for an address.
@@ -81,6 +81,19 @@ pub trait NativePriceProvider {
     async fn native_price(&self, chain: ChainId) -> ProviderResult<NativePrice>;
 }
 
+/// Fetches an asset's past-24h USD price history — the chain's native
+/// currency when `contract_address` is None, else that ERC-20. Backed by
+/// Alchemy's Prices API, with CoinGecko as a native-currency fallback.
+#[async_trait(?Send)]
+pub trait PriceHistoryProvider {
+    fn name(&self) -> &'static str;
+    async fn price_history_24h(
+        &self,
+        chain: ChainId,
+        contract_address: Option<&str>,
+    ) -> ProviderResult<PriceHistory>;
+}
+
 /// Relays an already-signed raw transaction to the network. The backend never
 /// sees a private key — the client signs locally and only hands over the
 /// resulting raw transaction bytes for broadcast.
@@ -102,6 +115,18 @@ pub trait TransactionStatusProvider {
         chain: ChainId,
         transaction_hash: &str,
     ) -> ProviderResult<TransactionStatus>;
+}
+
+/// Reads what a mined transaction paid in network fees. Unavailable while
+/// it's still pending — there's no receipt to read yet.
+#[async_trait(?Send)]
+pub trait TransactionFeeProvider {
+    fn name(&self) -> &'static str;
+    async fn transaction_fee(
+        &self,
+        chain: ChainId,
+        transaction_hash: &str,
+    ) -> ProviderResult<TransactionFee>;
 }
 
 /// Supplies everything the client needs to build and sign a transaction

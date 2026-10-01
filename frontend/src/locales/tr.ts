@@ -97,7 +97,7 @@ export default {
     edit: 'Alıcıyı düzenle',
   },
   backup: {
-    title: 'Yedekleme ve geri yükleme',
+    title: 'Yedekleme ve Geri Yükleme',
     intro:
       'Yedeklemeler, bu cihazdan ayrılmadan önce cihazda şifrelenir. wwwallet’in sunucusu bu sürece hiçbir şekilde dahil olmaz — yeni bir cihaza geri yükleme işlemi sırasında doğrudan Google ile iletişim kurulur ya da yerel bir dosya okunur.',
     googleDriveTitle: 'Google Drive',
@@ -195,12 +195,20 @@ export default {
   token: {
     defaultLabel: 'Jeton',
     decimals: 'Ondalık sayılar',
-    price: 'Fiyat',
     priceTooltip: '1 {symbol} tokeninin USD cinsinden fiyatı',
     amount: 'Miktar',
     amountTooltip: 'Elinde bulunan {symbol} jeton miktarı',
     total: 'Toplam',
     totalTooltip: 'Yerel para biriminde tutulan tokenlerin toplam değeri',
+    network: 'Ağ',
+    addFavourite: 'Favorilere ekle (kilit ekranında gösterilir)',
+    removeFavourite: 'Favorilerden çıkar',
+    refreshPrice: 'Fiyatı yenilemek için tıklayın',
+    moreDetails: 'Daha fazla ayrıntı',
+    lessDetails: 'Daha az ayrıntı',
+    currentPrice: 'Güncel fiyat (USD)',
+    change24h: '24 saatlik değişim',
+    chart24h: 'Son 24 saat',
   },
   qrScanner: {
     title: 'Adresin QR kodunu tarayın',
@@ -342,6 +350,7 @@ export default {
     dragToReorder: 'Sırayı değiştirmek için sürükleyin',
     refresh: 'Bu hesabı yenile',
     viewOnEtherscan: "Etherscan'da görüntülemek için tıklayın",
+    viewNativeToken: '{symbol} ayrıntılarını görüntüle',
   },
   editAccount: {
     title: 'Hesabı düzenle',
@@ -377,6 +386,9 @@ export default {
     amount: 'Miktar',
     sold: 'Satıldı',
     bought: 'Satın alındı',
+    networkFee: 'Ağ ücreti',
+    paidBySender: 'Gönderici tarafından ödenir',
+    feeUnavailable: 'Henüz mevcut değil',
   },
   transferPicker: {
     title: 'Para transferi yapmak için bir hesap veya alıcı seçin',

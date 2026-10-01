@@ -33,6 +33,7 @@ const showHidden = ref(false)
 const visibleListEl = ref<HTMLElement | null>(null)
 const detailTransaction = ref<Transaction | null>(null)
 const detailChain = ref<ChainSlug>('ethereum')
+const detailAddress = ref<string | null>(null)
 const detailOpen = ref(false)
 let sortable: Sortable | null = null
 let refreshInFlight = false
@@ -55,8 +56,9 @@ const showBackupReminder = computed(() => {
     : Date.now() - vault.lastBackupAt > BACKUP_REMINDER_RECURRING_MS
 })
 
-function openTransaction(chain: ChainSlug, txn: Transaction) {
+function openTransaction(chain: ChainSlug, address: string, txn: Transaction) {
   detailChain.value = chain
+  detailAddress.value = address
   detailTransaction.value = txn
   detailOpen.value = true
 }
@@ -200,7 +202,7 @@ onUnmounted(() => {
       <div v-for="account in visibleAccounts" :key="account.address" :data-address="account.address">
         <AccountCard :account="account" reorderable
           @transfer-pointerdown="(e) => dragToTransfer.onPointerDown(e, account, accounts.accounts, payees.payees)"
-          @open-transaction="(txn) => openTransaction(account.chain, txn)" />
+          @open-transaction="(txn) => openTransaction(account.chain, account.address, txn)" />
       </div>
     </div>
 
@@ -219,11 +221,12 @@ onUnmounted(() => {
       </p>
       <div v-if="showHidden">
         <AccountCard v-for="account in hiddenAccounts" :key="account.address" :account="account"
-          @open-transaction="(txn) => openTransaction(account.chain, txn)" />
+          @open-transaction="(txn) => openTransaction(account.chain, account.address, txn)" />
       </div>
     </template>
 
-    <TransactionDetailDialog v-model="detailOpen" :chain="detailChain" :transaction="detailTransaction" />
+    <TransactionDetailDialog v-model="detailOpen" :chain="detailChain" :transaction="detailTransaction"
+      :my-address="detailAddress" />
     <TransferTargetPicker :open="dragToTransfer.pickerOpen.value" :targets="dragToTransfer.targets.value"
       :hovered-address="dragToTransfer.hoveredAddress.value" />
   </v-container>

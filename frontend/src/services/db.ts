@@ -5,11 +5,6 @@ type KeyWrap =
   | { method: 'mnemonic'; iv: ArrayBuffer; wrappedKey: ArrayBuffer }
   | { method: 'passkeyPrf'; credentialId: ArrayBuffer; prfSalt: ArrayBuffer; iv: ArrayBuffer; wrappedKey: ArrayBuffer }
 
-interface CacheEntry {
-  key: string
-  data: unknown
-  fetchedAt: number
-}
 
 /**
  * Encrypted vault blob. `ciphertext`/`iv` are opaque to everything except the
@@ -41,7 +36,6 @@ interface LocalWebAuthnCredential {
 }
 
 const db = new Dexie('wwwallet') as Dexie & {
-  cache: EntityTable<CacheEntry, 'key'>
   vault: EntityTable<VaultRecord, 'id'>
   localWebAuthnCredential: EntityTable<LocalWebAuthnCredential, 'id'>
 }
@@ -63,6 +57,16 @@ db.version(2).stores({
   totpFactor: null,
 })
 
+// The provider cache used to live here, unencrypted — every account's
+// address, balances and transaction history readable with the vault locked.
+// It's now in services/secureCache.ts (its own database, personal data
+// encrypted). Dropped outright rather than migrated: it's only a cache, so
+// the cost is one refetch, and deleting the whole object store is the most
+// thorough removal IndexedDB offers.
+db.version(3).stores({
+  cache: null,
+})
+
 // Fires when something outside this connection — another tab with a newer
 // app version, or DevTools' "Clear site data" — needs this database deleted
 // or upgraded, which IndexedDB can't do while a connection is still open.
@@ -80,8 +84,7 @@ db.on('versionchange', () => {
 /**
  * Asks the browser to exempt this origin's storage from automatic eviction
  * under storage pressure — without it, IndexedDB is only "best-effort" and
- * can be silently cleared, taking the encrypted vault and every cached
- * balance, transaction and token with it. Installed PWAs are generally
+ * can be silently cleared, taking the encrypted vault with it. Installed PWAs are generally
  * granted this automatically; elsewhere the browser decides (Firefox asks
  * the user). Afterward, only the user (clearing site data, uninstalling)
  * or deleteFromDevice ever removes anything.
@@ -99,5 +102,5 @@ export async function secureClientStorage(): Promise<void> {
   if ('caches' in window) await caches.delete('chain-data').catch(() => {})
 }
 
-export type { CacheEntry, VaultRecord, LocalWebAuthnCredential, KeyWrap }
+export type { VaultRecord, LocalWebAuthnCredential, KeyWrap }
 export { db }

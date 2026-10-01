@@ -60,3 +60,22 @@ export function convertToUsd(displayAmount: number, currency: string, fxRates: F
   const rate = fxRates.rates[currency]
   return rate ? displayAmount / rate : displayAmount
 }
+
+/**
+ * A unit price in USD. Below $1, four significant digits rather than
+ * formatFiat's fixed two decimals — which would show most altcoins as "$0.00".
+ */
+export function formatUsdPrice(amount: number, locale: string): string {
+  if (amount >= 1) return formatFiat(amount, 'USD', locale)
+  return new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD', maximumSignificantDigits: 4 }).format(amount)
+}
+
+/** A percent change, always signed ("+1.23%", "−0.45%"). */
+export function formatPercentChange(pct: number, locale: string): string {
+  return new Intl.NumberFormat(locale, {
+    style: 'percent',
+    signDisplay: 'exceptZero',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(pct / 100)
+}

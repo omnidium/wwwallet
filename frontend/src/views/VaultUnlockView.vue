@@ -9,6 +9,7 @@ import { isValidRecoveryMnemonic, normalizeMnemonic } from '@/services/mnemonic'
 import { getLastActivityAt } from '@/services/lastActivity'
 import { AUTO_LOCK_MS } from '@/config/appSettings'
 import { displayErrorMessage } from '@/services/errors'
+import FavouritesList from '@/components/FavouritesList.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
@@ -83,17 +84,12 @@ async function submitPasskey() {
 
       <template v-if="showRecoveryPhraseField">
         <v-card-text>
-          <v-textarea
-            v-model="recoveryPhrase"
-            :label="t('vaultUnlock.recoveryPhraseLabel')"
-            rows="2"
-            auto-grow
-            autofocus
-            :rules="recoveryPhraseRules"
-          />
+          <v-textarea v-model="recoveryPhrase" :label="t('vaultUnlock.recoveryPhraseLabel')" rows="2" auto-grow
+            autofocus :rules="recoveryPhraseRules" />
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block :loading="busy" @click="submitRecoveryPhrase">{{ t('vaultUnlock.unlock') }}</v-btn>
+          <v-btn color="primary" block :loading="busy" @click="submitRecoveryPhrase">{{ t('vaultUnlock.unlock')
+          }}</v-btn>
         </v-card-actions>
       </template>
       <v-card-actions v-else>
@@ -101,6 +97,8 @@ async function submitPasskey() {
           {{ t('vaultUnlock.useRecoveryInstead') }}
         </v-btn>
       </v-card-actions>
+
+      <FavouritesList class="px-4 pb-1 pt-2" />
     </v-card>
   </v-container>
 </template>

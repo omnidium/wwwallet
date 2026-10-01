@@ -751,7 +751,7 @@ const quoteFormValid = computed(
 
 function formatNativeFee(feeWei: bigint): { value: string; sub?: string } {
   const human = Number(formatUnits(feeWei, 18))
-  const nativeStr = `${formatAmount(human)} ${chain === 'polygon' ? 'MATIC' : 'ETH'}`
+  const nativeStr = `${formatAmount(human)} ${chain === 'polygon' ? 'POL' : 'ETH'}`
   const priceUsd = chainData.nativePriceUsdByChain[chain]
   if (priceUsd === undefined) return { value: nativeStr }
   const fiat = formatFiat(
@@ -777,8 +777,8 @@ const quoteProtocolFees = computed(() => {
   if (!quote.value || !sell || !buy) return []
   return (quote.value.fees ?? []).map((f) => {
     const match = [sell, buy].find((tk) => (tk.address ?? NATIVE_PSEUDO_ADDRESS).toLowerCase() === f.token.toLowerCase()) ?? buy
-    const amount = formatAmount(Number(formatUnits(f.amount, match.decimals)))
-    return { kind: f.kind, text: `${amount} ${match.symbol}` }
+    const amount = Number(formatUnits(f.amount, match.decimals))
+    return { kind: f.kind, amount, symbol: match.symbol, text: `${formatAmount(amount)} ${match.symbol}` }
   })
 })
 
@@ -919,6 +919,12 @@ async function confirmSwap() {
       chainId: prep.chain_id,
     })
     const { transaction_hash } = await api.broadcastTransaction(chain, signedTx)
+    // Kept for the transaction details pane — the quote is the only record of them.
+    chainData.recordSwapFees(
+      chain,
+      transaction_hash,
+      quoteProtocolFees.value.map(({ kind, amount, symbol }) => ({ kind, amount, symbol })),
+    )
     swapReviewOpen.value = false
     swapBusy.value = false
     closePanel()

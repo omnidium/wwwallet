@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { type ChainSlug } from '@/services/api'
@@ -7,15 +7,19 @@ import { useMessagesStore } from '@/stores/messages'
 import { displayErrorMessage } from '@/services/errors'
 import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
-import { toHumanAmount, convertUsd, formatFiat, formatAmount } from '@/services/money'
+import { useFavouritesStore } from '@/stores/favourites'
+import { toHumanAmount, convertUsd, formatFiat, formatAmount, formatPercentChange, formatUsdPrice } from '@/services/money'
 import { tokenUrl } from '@/services/blockExplorer'
 import { truncateAddress } from '@/services/format'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import { useTransactionBatchLoader } from '@/composables/useTransactionBatchLoader'
 import { DUST_THRESHOLD_USD } from '@/config/appSettings'
+import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import type { Transaction } from '@/services/api'
 import InfoTooltip from '@/components/InfoTooltip.vue'
+import AppTooltip from '@/components/AppTooltip.vue'
+import PriceSparkline from '@/components/PriceSparkline.vue'
 import TransactionRow from '@/components/TransactionRow.vue'
 import TransactionDetailDialog from '@/components/TransactionDetailDialog.vue'
 
@@ -24,57 +28,76 @@ const route = useRoute()
 const messages = useMessagesStore()
 const chainData = useChainDataStore()
 const settingsLocale = useSettingsLocaleStore()
+const favourites = useFavouritesStore()
 
 const hideDustTxns = ref(true)
 const detailTransaction = ref<Transaction | null>(null)
 const detailOpen = ref(false)
 
 const chain = route.params.chain as ChainSlug
-const address = route.params.address as string
+// The native-token route (an account's ETH, POL…) puts the holder in the
+// path instead, and has no contract address to look metadata up by.
+const isNative = route.name === 'native-token-detail'
+// The token's contract address; null for the native asset.
+const address = isNative ? null : (route.params.address as string)
 // Which of the user's own accounts this came from — needed for the
 // amount-held/total-value rows, since the same token contract can have a
 // different balance per account. Absent on a direct/deep link, in which case
 // those two rows just don't render rather than showing wrong data.
-const holderAddress = typeof route.query.holder === 'string' ? route.query.holder : null
+const holderAddress = isNative
+  ? (route.params.address as string)
+  : typeof route.query.holder === 'string' ? route.query.holder : null
 
-const metadata = computed(() => chainData.tokenMetadataByKey[chainData.keyFor(chain, address)] ?? null)
+const holderActivity = computed(() =>
+  holderAddress ? chainData.activityByAddress[chainData.keyFor(chain, holderAddress)] : undefined,
+)
+// The holder's balance entry for this token (the contract-less one for native).
+const heldBalance = computed(() =>
+  holderActivity.value?.balances.find((b) =>
+    address === null ? b.contract_address === null : b.contract_address?.toLowerCase() === address.toLowerCase(),
+  ),
+)
+
+// For the native asset, assembled from the holder's balance entry, the
+// chain's native price and the static NATIVE_ASSETS details.
+const metadata = computed(() => {
+  if (address !== null) return chainData.tokenMetadataByKey[chainData.keyFor(chain, address)] ?? null
+  const native = NATIVE_ASSETS[chain]
+  return {
+    name: native.name,
+    symbol: heldBalance.value?.symbol ?? native.symbol,
+    decimals: heldBalance.value?.decimals ?? null,
+    logo_url: native.logoUrl,
+    usd_price: chainData.nativePriceUsdByChain[chain] ?? null,
+  }
+})
 const loading = ref(true)
 
 // Everything below renders straight from the persistent cache first; these
 // only refresh it. The holder's other tokens aren't shown here, so their
 // metadata is left to the accounts screen's own refresh.
 onMounted(async () => {
-  const metadataLoad = chainData
-    .loadTokenMetadata(chain, address)
+  const metadataLoad = (address === null ? chainData.loadNativePrice(chain) : chainData.loadTokenMetadata(chain, address))
     .catch((err) => {
       // Only worth interrupting the user over when there's nothing at all to show.
-      if (!metadata.value) messages.push(displayErrorMessage(err), 'error')
+      if (address === null ? metadata.value?.usd_price == null : !metadata.value) {
+        messages.push(displayErrorMessage(err), 'error')
+      }
     })
     .finally(() => {
       loading.value = false
     })
-  const loaders: Promise<unknown>[] = [chainData.loadFxRates()]
+  // The price history also backs the always-visible current price row.
+  const loaders: Promise<unknown>[] = [chainData.loadFxRates(), favourites.load(), loadPriceHistory()]
   if (holderAddress) loaders.push(chainData.loadAddressActivity(chain, holderAddress, { refreshTokenMetadata: false }))
   // Amount-held/total rows fall back to cached data (or don't render) on failure.
   await Promise.allSettled([metadataLoad, ...loaders])
 })
 
 const amountHeld = computed(() => {
-  if (!holderAddress || !metadata.value) return null
-  const activity = chainData.activityByAddress[chainData.keyFor(chain, holderAddress)]
-  const balance = activity?.balances.find(
-    (b) => b.contract_address?.toLowerCase() === address.toLowerCase(),
-  )
-  if (!balance) return null
-  return toHumanAmount(balance.balance, metadata.value.decimals ?? balance.decimals)
+  if (!metadata.value || !heldBalance.value) return null
+  return toHumanAmount(heldBalance.value.balance, metadata.value.decimals ?? heldBalance.value.decimals)
 })
-
-// Shown in USD regardless of the user's chosen display currency — that's
-// the actual currency the upstream price source (Ethplorer) reports in, so
-// converting it would be presenting a number as more precise than it is.
-const priceFormatted = computed(() =>
-  metadata.value?.usd_price != null ? formatFiat(metadata.value.usd_price, 'USD', locale.value) : null,
-)
 
 const totalFormatted = computed(() => {
   if (amountHeld.value === null || metadata.value?.usd_price == null) return null
@@ -86,17 +109,62 @@ const totalFormatted = computed(() => {
   )
 })
 
-const activityLoaded = computed(() => {
-  if (!holderAddress) return true
-  return chainData.activityByAddress[chainData.keyFor(chain, holderAddress)] !== undefined
+const isFavourite = computed(() => favourites.isFavourite(chain, address))
+// A token's lock-screen row has nothing else to name it by.
+const favouriteDisplay = computed(() =>
+  address !== null && metadata.value?.symbol
+    ? { symbol: metadata.value.symbol, logoUrl: metadata.value.logo_url ?? null }
+    : undefined,
+)
+function toggleFavourite() {
+  void favourites.setFavourite(chain, address, !isFavourite.value, favouriteDisplay.value)
+}
+watch(favouriteDisplay, (display) => {
+  if (address !== null && display) favourites.updateTokenDisplay(chain, address, display)
 })
-const tokenTransactions = computed(() => {
-  if (!holderAddress) return []
-  const activity = chainData.activityByAddress[chainData.keyFor(chain, holderAddress)]
-  return (
-    activity?.transactions.filter((t) => t.contract_address?.toLowerCase() === address.toLowerCase()) ?? []
-  )
-})
+
+const priceHistory = computed(() => chainData.priceHistoryByAsset[chainData.assetKey(chain, address)] ?? null)
+// Shown in USD regardless of the user's chosen display currency — that's
+// what the upstream price sources report in, so converting it would be
+// presenting a number as more precise than it is. The 24h history's latest
+// sample once it's in; until then, the price that came with the metadata.
+const currentPriceUsd = computed(() => priceHistory.value?.usd ?? metadata.value?.usd_price ?? null)
+const showMoreDetails = ref(false)
+const loadingPriceHistory = ref(false)
+async function loadPriceHistory() {
+  loadingPriceHistory.value = true
+  try {
+    await chainData.loadPriceHistory(chain, address)
+  } finally {
+    loadingPriceHistory.value = false
+  }
+}
+function toggleMoreDetails() {
+  showMoreDetails.value = !showMoreDetails.value
+}
+
+// Clicking the header's name: refreshes the price row above as well as the
+// 24h figures, so the two never disagree after a click.
+const refreshingPrice = ref(false)
+async function refreshPrice() {
+  if (refreshingPrice.value) return
+  refreshingPrice.value = true
+  const results = await Promise.allSettled([
+    address === null ? chainData.loadNativePrice(chain) : chainData.loadTokenMetadata(chain, address),
+    loadPriceHistory(),
+  ])
+  refreshingPrice.value = false
+  const failure = results.find((r) => r.status === 'rejected')
+  if (failure) messages.push(displayErrorMessage(failure.reason), 'error')
+}
+
+const activityLoaded = computed(() => !holderAddress || holderActivity.value !== undefined)
+const tokenTransactions = computed(
+  () =>
+    holderActivity.value?.transactions.filter((t) =>
+      address === null ? t.contract_address === null : t.contract_address?.toLowerCase() === address.toLowerCase(),
+    ) ?? [],
+)
 const visibleTokenTransactions = computed(() => {
   if (!hideDustTxns.value) return tokenTransactions.value
   const priceUsd = metadata.value?.usd_price
@@ -128,17 +196,36 @@ function openTransaction(txn: Transaction) {
   <div class="token-detail-view">
     <!-- <v-progress-linear v-if="loading" indeterminate class="mb-4" /> -->
 
-    <div class="d-flex align-center mb-2 mt-3">
+    <div class="token-detail-header d-flex align-center mb-2">
       <v-avatar v-if="metadata?.logo_url" :image="metadata.logo_url" size="30" class="mr-3" />
       <v-icon v-else icon="mdi-cash-multiple" size="large" class="mr-3" />
-      <h3 class="pt-3">
-        {{ metadata?.name ?? t('token.defaultLabel') }}
-        <span v-if="metadata?.symbol" class="text-medium-emphasis">({{ metadata.symbol }})</span>
-      </h3>
+      <AppTooltip :text="t('token.refreshPrice')">
+        <template #default="{ activatorProps }">
+          <h3 v-bind="activatorProps" class="token-detail-name"
+            :class="{ 'token-detail-name--refreshing': refreshingPrice }" role="button" tabindex="0"
+            :aria-busy="refreshingPrice" @click="refreshPrice" @keydown.enter="refreshPrice"
+            @keydown.space.prevent="refreshPrice">
+            {{ metadata?.name ?? t('token.defaultLabel') }}
+            <span v-if="metadata?.symbol" class="text-medium-emphasis">({{ metadata.symbol }})</span>
+          </h3>
+        </template>
+      </AppTooltip>
+      <AppTooltip :text="isFavourite ? t('token.removeFavourite') : t('token.addFavourite')">
+        <template #default="{ activatorProps }">
+          <v-icon v-bind="activatorProps" :icon="isFavourite ? 'mdi-star' : 'mdi-star-outline'" size="large"
+            class="favourite-star flex-shrink-0 ml-3" :class="{ 'favourite-star--on': isFavourite }" role="button"
+            :aria-pressed="isFavourite" :aria-label="isFavourite ? t('token.removeFavourite') : t('token.addFavourite')"
+            @click="toggleFavourite" />
+        </template>
+      </AppTooltip>
     </div>
 
     <v-card class="pa-4" max-width="480">
-      <div class="detail-row d-flex justify-space-between py-2">
+      <div v-if="address === null" class="detail-row d-flex justify-space-between py-2">
+        <span class="text-medium-emphasis">{{ t('token.network') }}</span>
+        <span>{{ NATIVE_ASSETS[chain].networkName }}</span>
+      </div>
+      <div v-else class="detail-row d-flex justify-space-between py-2">
         <span class="text-medium-emphasis">{{ t('common.address') }}</span>
         <a :href="tokenUrl(chain, address)" target="_blank" rel="noopener noreferrer">
           {{ truncateAddress(address) }}
@@ -150,12 +237,12 @@ function openTransaction(txn: Transaction) {
         <span>{{ metadata.decimals }}</span>
       </div>
 
-      <div v-if="priceFormatted" class="detail-row d-flex align-center justify-space-between py-2">
+      <div v-if="currentPriceUsd !== null" class="detail-row d-flex align-center justify-space-between py-2">
         <span class="text-medium-emphasis d-flex align-center">
-          {{ t('token.price') }}
+          {{ t('token.currentPrice') }}
           <InfoTooltip :text="t('token.priceTooltip', { symbol: metadata?.symbol ?? '' })" />
         </span>
-        <span>{{ priceFormatted }}</span>
+        <span>{{ formatUsdPrice(currentPriceUsd, locale) }}</span>
       </div>
 
       <div v-if="amountHeld !== null" class="detail-row d-flex align-center justify-space-between py-2">
@@ -172,6 +259,28 @@ function openTransaction(txn: Transaction) {
           <InfoTooltip :text="t('token.totalTooltip')" />
         </span>
         <span class="font-weight-bold">{{ totalFormatted }}</span>
+      </div>
+
+      <template v-if="showMoreDetails">
+        <div class="detail-row d-flex align-center justify-space-between py-2">
+          <span class="text-medium-emphasis">{{ t('token.change24h') }}</span>
+          <span v-if="priceHistory"
+            :class="priceHistory.change_24h_pct > 0 ? 'price-change--up' : 'price-change--down'">
+            {{ formatPercentChange(priceHistory.change_24h_pct, locale) }}
+          </span>
+          <span v-else>—</span>
+        </div>
+        <div class="detail-row d-flex align-center justify-space-between py-2">
+          <span class="text-medium-emphasis">{{ t('token.chart24h') }}</span>
+          <PriceSparkline v-if="priceHistory" :points="priceHistory.points" :width="160" :height="40" />
+          <v-progress-circular v-else-if="loadingPriceHistory" indeterminate size="20" width="2" color="primary" />
+          <span v-else>—</span>
+        </div>
+      </template>
+      <div class="pt-2">
+        <a href="#" class="text-caption" @click.prevent="toggleMoreDetails">
+          {{ showMoreDetails ? t('token.lessDetails') : t('token.moreDetails') }}
+        </a>
       </div>
     </v-card>
 
@@ -200,6 +309,7 @@ function openTransaction(txn: Transaction) {
       </v-card>
     </template>
 
-    <TransactionDetailDialog v-model="detailOpen" :chain="chain" :transaction="detailTransaction" />
+    <TransactionDetailDialog v-model="detailOpen" :chain="chain" :transaction="detailTransaction"
+      :my-address="holderAddress" />
   </div>
 </template>

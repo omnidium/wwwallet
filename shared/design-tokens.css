@@ -87,16 +87,20 @@
   --on-secondary-rgb: 255 255 255;
   --error-rgb: 244 67 54;
   --on-error-rgb: 255 255 255;
-  --send-rgb: 255 102 102;
+  /* Dark enough to read as text/icon color on the light surfaces — which is
+     all they're used as (transaction amounts and arrows, price changes). */
+  --send-rgb: 190 30 30;
   --on-send-rgb: 255 255 255;
-  --receive-rgb: 121 174 87;
+  --receive-rgb: 35 120 35;
   --on-receive-rgb: 255 255 255;
   /* Not currently used as a Vuetify color prop anywhere in the app — carried
      over for parity with the old vuetify.ts rather than dropped outright. */
   --link-rgb: 9 9 194;
   --on-link-rgb: 255 255 255;
-  --info-rgb: 203 169 104;
-  --on-info-rgb: 0 0 0;
+  /* Dark enough to read as text in the tonal info alerts on a light surface
+     (5:1), with white text when it's a fill (toasts — 5.9:1). */
+  --info-rgb: 138 90 0;
+  --on-info-rgb: 255 255 255;
 }
 
 :root[data-theme='dark'] {
@@ -116,12 +120,16 @@
   --on-accent-rgb: 0 0 0;
   --focus-ring: #55e8dd;
 
-  --send-rgb: 131 12 12;
-  --receive-rgb: 35 100 35;
+  /* Light enough to read as text/icon color on the dark surfaces — which is
+     all they're used as (transaction amounts and arrows, price changes). */
+  --send-rgb: 255 102 102;
+  --receive-rgb: 121 174 87;
   --link-rgb: 179 179 255;
   --on-link-rgb: 0 0 0;
-  --info-rgb: 157 71 0;
-  --on-info-rgb: 255 255 255;
+  /* Light enough to read as text in the tonal info alerts on a dark surface
+     (6.7:1), with black text when it's a fill (toasts — 12:1). */
+  --info-rgb: 255 183 77;
+  --on-info-rgb: 0 0 0;
 
   --exp-txns-bg1: #182a24;
   --exp-txns-bg2: #0d1f1a;
