@@ -97,4 +97,6 @@ In plain terms (the [LICENSE](LICENSE) file is the only authoritative text):
 
 wwwallet is non-custodial software provided **"as is", without warranty of any kind**, to the extent permitted by law. You alone are responsible for your recovery phrase, backups and funds. Lost keys or backups cannot be recovered by anyone, and blockchain transactions are irreversible. Nothing here is financial, investment, legal or tax advice. Use at your own risk.
 
-Found a security issue? Please report it privately to the maintainer rather than opening a public issue.
+### Contributions and security
+
+This project does **not** accept external contributions — pull requests will not be merged, and issues are disabled. Found a security issue? Please report it privately; see [SECURITY.md](SECURITY.md).
