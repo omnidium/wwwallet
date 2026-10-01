@@ -83,6 +83,9 @@ export default {
     allTokens: 'Tüm jetonlar',
     noResults: 'Hiçbir jeton bulunamadı.',
     viewOnExplorer: 'Blok gezgininde jetonu görüntüle',
+    estimatedFee: 'Tahmini ağ ücreti: {fee}',
+    swapFee: 'Takas ücreti: {fee}',
+    integratorFee: 'Hizmet ücreti: {fee}',
   },
   payees: {
     title: 'Alıcılar',
@@ -386,5 +389,7 @@ export default {
     sell: 'Sat',
     buy: 'Satın al',
     price: 'Fiyat',
+    swapFee: 'Takas ücreti',
+    integratorFee: 'Hizmet ücreti',
   },
 }

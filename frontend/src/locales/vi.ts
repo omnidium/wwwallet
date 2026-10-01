@@ -84,6 +84,9 @@ export default {
     allTokens: 'Tất cả các token',
     noResults: 'Không tìm thấy mã thông báo nào.',
     viewOnExplorer: 'Xem token trên trình khám phá blockchain',
+    estimatedFee: 'Phí mạng ước tính: {fee}',
+    swapFee: 'Phí hoán đổi: {fee}',
+    integratorFee: 'Phí dịch vụ: {fee}',
   },
   payees: {
     title: 'Người nhận tiền',
@@ -387,5 +390,7 @@ export default {
     sell: 'Bán',
     buy: 'Mua',
     price: 'Giá',
+    swapFee: 'Phí hoán đổi',
+    integratorFee: 'Phí dịch vụ',
   },
 }

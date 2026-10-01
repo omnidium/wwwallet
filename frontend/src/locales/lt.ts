@@ -83,6 +83,9 @@ export default {
     allTokens: 'Visi žetonai',
     noResults: 'Žetonų nerasta.',
     viewOnExplorer: 'Peržiūrėti žetoną blokų naršyklėje',
+    estimatedFee: 'Numatomas tinklo mokestis: {fee}',
+    swapFee: 'Keitimo mokestis: {fee}',
+    integratorFee: 'Paslaugos mokestis: {fee}',
   },
   payees: {
     title: 'Gavėjai',
@@ -389,5 +392,7 @@ export default {
     sell: 'Parduoti',
     buy: 'Pirkti',
     price: 'Kaina',
+    swapFee: 'Keitimo mokestis',
+    integratorFee: 'Paslaugos mokestis',
   },
 }

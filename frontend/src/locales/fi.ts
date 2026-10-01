@@ -84,6 +84,9 @@ export default {
     allTokens: 'Kaikki rahakkeet',
     noResults: 'Tunnisteita ei löytynyt.',
     viewOnExplorer: 'Tarkastele tunnusta lohkoketjun selaimessa',
+    estimatedFee: 'Arvioitu verkkomaksu: {fee}',
+    swapFee: 'Vaihtomaksu: {fee}',
+    integratorFee: 'Palvelumaksu: {fee}',
   },
   payees: {
     title: 'Maksunsaajat',
@@ -386,5 +389,7 @@ export default {
     sell: 'Myy',
     buy: 'Osta',
     price: 'Hinta',
+    swapFee: 'Vaihtomaksu',
+    integratorFee: 'Palvelumaksu',
   },
 }

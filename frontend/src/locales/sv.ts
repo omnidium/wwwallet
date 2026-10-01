@@ -83,6 +83,9 @@ export default {
     allTokens: 'Alla tokens',
     noResults: 'Inga tokens hittades.',
     viewOnExplorer: 'Visa token i blockutforskaren',
+    estimatedFee: 'Uppskattad nätverksavgift: {fee}',
+    swapFee: 'Bytavgift: {fee}',
+    integratorFee: 'Serviceavgift: {fee}',
   },
   payees: {
     title: 'Mottagare',
@@ -388,5 +391,7 @@ export default {
     sell: 'Sälj',
     buy: 'Köp',
     price: 'Pris',
+    swapFee: 'Byteskostnad',
+    integratorFee: 'Serviceavgift',
   },
 }

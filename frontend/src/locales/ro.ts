@@ -84,6 +84,9 @@ export default {
     allTokens: 'Toate jetoanele',
     noResults: 'Nu s-au găsit jetoane.',
     viewOnExplorer: 'Vizualizează tokenul în exploratorul de blocuri',
+    estimatedFee: 'Taxă estimată pentru rețea: {fee}',
+    swapFee: 'Comision de schimb: {fee}',
+    integratorFee: 'Taxă de serviciu: {fee}',
   },
   payees: {
     title: 'Beneficiari',
@@ -395,5 +398,7 @@ export default {
     sell: 'Vinde',
     buy: 'Cumpără',
     price: 'Preț',
+    swapFee: 'Comision de schimb valutar',
+    integratorFee: 'Taxă de serviciu',
   },
 }

@@ -84,6 +84,9 @@ export default {
     allTokens: 'Wszystkie tokeny',
     noResults: 'Nie znaleziono tokenów.',
     viewOnExplorer: 'Wyświetl token w przeglądarce bloków',
+    estimatedFee: 'Szacowana opłata sieciowa: {fee}',
+    swapFee: 'Opłata za zamianę: {fee}',
+    integratorFee: 'Opłata za usługę: {fee}',
   },
   payees: {
     title: 'Odbiorcy płatności',
@@ -389,5 +392,7 @@ export default {
     sell: 'Sprzedaj',
     buy: 'Kup',
     price: 'Cena',
+    swapFee: 'Opłata za zamianę',
+    integratorFee: 'Opłata za usługę',
   },
 }

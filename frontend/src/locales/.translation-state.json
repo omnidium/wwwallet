@@ -1163,6 +1163,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Volver a la página principal"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Comisión por intercambio"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Comisión por servicio"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Tarifa de red estimada: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Comisión por intercambio: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Comisión por el servicio: {fee}"
     }
   },
   "ar": {
@@ -2329,6 +2349,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "العودة إلى الموقع الرئيسي"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "رسوم المبادلة"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "رسوم الخدمة"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "الرسوم التقديرية للشبكة: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "رسوم المبادلة: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "رسوم الخدمة: {fee}"
     }
   },
   "bg": {
@@ -3495,6 +3535,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Назад към главната страница"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Такса за обмен"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Такса за услугата"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Приблизителна такса за мрежата: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Такса за обмен: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Такса за услугата: {fee}"
     }
   },
   "cs": {
@@ -4661,6 +4721,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Zpět na hlavní stránku"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Poplatek za výměnu"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Poplatek za službu"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Odhadovaný poplatek za síť: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Poplatek za výměnu: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Poplatek za službu: {fee}"
     }
   },
   "da": {
@@ -5827,6 +5907,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Tilbage til hovedsiden"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Byttegebyr"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Servicegebyr"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Anslået netværksgebyr: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Byttegebyr: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Servicegebyr: {fee}"
     }
   },
   "de": {
@@ -6993,6 +7093,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Zurück zur Hauptseite"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Swap-Gebühr"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Servicegebühr"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Geschätzte Netzwerkgebühr: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Swap-Gebühr: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Servicegebühr: {fee}"
     }
   },
   "el": {
@@ -8159,6 +8279,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Επιστροφή στην κύρια ιστοσελίδα"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Χρέωση ανταλλαγής"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Χρέωση υπηρεσιών"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Εκτιμώμενο κόστος δικτύου: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Χρέωση ανταλλαγής: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Χρέωση υπηρεσίας: {fee}"
     }
   },
   "et": {
@@ -9325,6 +9465,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Tagasi pealehele"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Vahetustasu"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Teenustasu"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Võrgutasu hinnanguline suurus: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Vahetustasu: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Teenustasu: {fee}"
     }
   },
   "fi": {
@@ -10491,6 +10651,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Takaisin pääsivustolle"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Vaihtomaksu"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Palvelumaksu"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Arvioitu verkkomaksu: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Vaihtomaksu: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Palvelumaksu: {fee}"
     }
   },
   "fr": {
@@ -11657,6 +11837,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Retour à la page d'accueil"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Frais de swap"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Frais de service"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Frais de réseau estimés : {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Frais de swap : {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Frais de service : {fee}"
     }
   },
   "hu": {
@@ -12823,6 +13023,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Vissza a főoldalra"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Csere díja"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Szolgáltatási díj"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Becsült hálózati díj: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Csere-díj: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Szolgáltatási díj: {fee}"
     }
   },
   "id": {
@@ -13989,6 +14209,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Kembali ke situs utama"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Biaya swap"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Biaya layanan"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Perkiraan biaya jaringan: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Biaya swap: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Biaya layanan: {fee}"
     }
   },
   "it": {
@@ -15155,6 +15395,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Torna al sito principale"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Commissione di swap"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Costo del servizio"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Costo stimato della rete: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Commissione di swap: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Costo del servizio: {fee}"
     }
   },
   "iw": {
@@ -16321,6 +16581,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "חזרה לאתר הראשי"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "עמלת החלפה"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "דמי שירות"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "עמלת רשת משוערת: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "עמלת החלפה: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "דמי שירות: {fee}"
     }
   },
   "ja": {
@@ -17487,6 +17767,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "メインサイトに戻る"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "スワップ手数料"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "サービス料"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "推定ネットワーク手数料：{fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "スワップ手数料：{fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "サービス料：{fee}"
     }
   },
   "ko": {
@@ -18653,6 +18953,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "메인 사이트로 돌아가기"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "스왑 수수료"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "서비스 수수료"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "예상 네트워크 수수료: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "스왑 수수료: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "서비스 수수료: {fee}"
     }
   },
   "lt": {
@@ -19819,6 +20139,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Grįžti į pagrindinį puslapį"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Keitimo mokestis"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Paslaugos mokestis"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Numatomas tinklo mokestis: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Keitimo mokestis: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Paslaugos mokestis: {fee}"
     }
   },
   "lv": {
@@ -20985,6 +21325,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Atgriezties uz galveno lapu"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Apmaiņas maksa"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Pakalpojuma maksa"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Aptuvenā tīkla maksa: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Apmaiņas maksa: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Pakalpojuma maksa: {fee}"
     }
   },
   "nl": {
@@ -22151,6 +22511,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Terug naar de hoofdpagina"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Swapkosten"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Servicekosten"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Geschatte netwerkkosten: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Swapkosten: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Servicekosten: {fee}"
     }
   },
   "no": {
@@ -23317,6 +23697,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Tilbake til hovedsiden"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Byttegebyr"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Servicegebyr"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Anslått nettverksavgift: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Byttegebyr: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Servicegebyr: {fee}"
     }
   },
   "pl": {
@@ -24483,6 +24883,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Powrót do strony głównej"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Opłata za zamianę"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Opłata za usługę"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Szacowana opłata sieciowa: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Opłata za zamianę: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Opłata za usługę: {fee}"
     }
   },
   "ro": {
@@ -25649,6 +26069,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Înapoi la pagina principală"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Comision de schimb valutar"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Taxă de serviciu"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Taxă estimată pentru rețea: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Comision de schimb: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Taxă de serviciu: {fee}"
     }
   },
   "ru": {
@@ -26815,6 +27255,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Вернуться на главную страницу"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Комиссия за обмен"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Комиссия за обслуживание"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Ориентировочная комиссия за использование сети: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Комиссия за обмен: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Комиссия за обслуживание: {fee}"
     }
   },
   "sk": {
@@ -27981,6 +28441,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Späť na hlavnú stránku"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Poplatok za výmenu"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Poplatok za službu"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Odhadovaný poplatok za sieť: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Poplatok za výmenu: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Poplatok za službu: {fee}"
     }
   },
   "sl": {
@@ -29147,6 +29627,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Nazaj na glavno stran"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Provizija za zamenjavo"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Stroški storitve"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Predvidena omrežna pristojbina: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Provizija za zamenjavo: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Stroški storitve: {fee}"
     }
   },
   "sv": {
@@ -30313,6 +30813,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Tillbaka till huvudsidan"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Byteskostnad"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Serviceavgift"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Uppskattad nätverksavgift: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Bytavgift: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Serviceavgift: {fee}"
     }
   },
   "tr": {
@@ -31479,6 +31999,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Ana sayfaya dön"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Takas ücreti"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Hizmet ücreti"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Tahmini ağ ücreti: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Takas ücreti: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Hizmet ücreti: {fee}"
     }
   },
   "uk": {
@@ -32645,6 +33185,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Повернутися на головну сторінку"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Комісія за обмін"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Комісія за обслуговування"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Орієнтовна комісія за транзакцію в мережі: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Комісія за обмін: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Комісія за послугу: {fee}"
     }
   },
   "vi": {
@@ -33811,6 +34371,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "Quay lại trang chủ"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "Phí hoán đổi"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "Phí dịch vụ"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "Phí mạng ước tính: {fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "Phí hoán đổi: {fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "Phí dịch vụ: {fee}"
     }
   },
   "zh-CN": {
@@ -34977,6 +35557,26 @@
     "settings.backToWebsite": {
       "enHash": "664d4ef1bee922da",
       "value": "返回主站"
+    },
+    "review.swapFee": {
+      "enHash": "52195e8616dfb2ad",
+      "value": "互换费"
+    },
+    "review.integratorFee": {
+      "enHash": "c1f39f767e10068f",
+      "value": "服务费"
+    },
+    "swap.estimatedFee": {
+      "enHash": "85e65a0ea4335011",
+      "value": "预计网络手续费：{fee}"
+    },
+    "swap.swapFee": {
+      "enHash": "559a0d260b671ff2",
+      "value": "掉期费：{fee}"
+    },
+    "swap.integratorFee": {
+      "enHash": "896c3c58ed5f714e",
+      "value": "服务费：{fee}"
     }
   }
 }

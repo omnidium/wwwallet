@@ -83,6 +83,9 @@ export default {
     allTokens: '모든 토큰',
     noResults: '토큰이 없습니다.',
     viewOnExplorer: '블록체인 탐색기에서 토큰 보기',
+    estimatedFee: '예상 네트워크 수수료: {fee}',
+    swapFee: '스왑 수수료: {fee}',
+    integratorFee: '서비스 수수료: {fee}',
   },
   payees: {
     title: '수취인',
@@ -385,5 +388,7 @@ export default {
     sell: '판매',
     buy: '구매하기',
     price: '가격',
+    swapFee: '스왑 수수료',
+    integratorFee: '서비스 수수료',
   },
 }

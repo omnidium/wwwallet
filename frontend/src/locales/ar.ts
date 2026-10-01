@@ -83,6 +83,9 @@ export default {
     allTokens: 'جميع الرموز',
     noResults: 'لم يتم العثور على أي رموز.',
     viewOnExplorer: 'عرض الرمز المميز على مستكشف البلوكشين',
+    estimatedFee: 'الرسوم التقديرية للشبكة: {fee}',
+    swapFee: 'رسوم المبادلة: {fee}',
+    integratorFee: 'رسوم الخدمة: {fee}',
   },
   payees: {
     title: 'المستفيدون',
@@ -385,5 +388,7 @@ export default {
     sell: 'بيع',
     buy: 'شراء',
     price: 'السعر',
+    swapFee: 'رسوم المبادلة',
+    integratorFee: 'رسوم الخدمة',
   },
 }

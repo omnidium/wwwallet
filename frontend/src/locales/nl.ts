@@ -84,6 +84,9 @@ export default {
     allTokens: 'Alle tokens',
     noResults: 'Er zijn geen tokens gevonden.',
     viewOnExplorer: 'Token bekijken in de block explorer',
+    estimatedFee: 'Geschatte netwerkkosten: {fee}',
+    swapFee: 'Swapkosten: {fee}',
+    integratorFee: 'Servicekosten: {fee}',
   },
   payees: {
     title: 'Begunstigden',
@@ -388,5 +391,7 @@ export default {
     sell: 'Verkopen',
     buy: 'Kopen',
     price: 'Prijs',
+    swapFee: 'Swapkosten',
+    integratorFee: 'Servicekosten',
   },
 }

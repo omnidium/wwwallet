@@ -81,6 +81,9 @@ export default {
     allTokens: '所有代币',
     noResults: '未找到代币。',
     viewOnExplorer: '在区块浏览器上查看代币',
+    estimatedFee: '预计网络手续费：{fee}',
+    swapFee: '掉期费：{fee}',
+    integratorFee: '服务费：{fee}',
   },
   payees: {
     title: '收款人',
@@ -371,5 +374,7 @@ export default {
     sell: '出售',
     buy: '购买',
     price: '价格',
+    swapFee: '互换费',
+    integratorFee: '服务费',
   },
 }

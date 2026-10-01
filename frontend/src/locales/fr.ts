@@ -84,6 +84,9 @@ export default {
     allTokens: 'Tous les jetons',
     noResults: 'Aucun jeton trouvé.',
     viewOnExplorer: "Afficher le jeton sur l'explorateur de blocs",
+    estimatedFee: 'Frais de réseau estimés : {fee}',
+    swapFee: 'Frais de swap : {fee}',
+    integratorFee: 'Frais de service : {fee}',
   },
   payees: {
     title: 'Bénéficiaires',
@@ -392,5 +395,7 @@ export default {
     sell: 'Vendre',
     buy: 'Acheter',
     price: 'Prix',
+    swapFee: 'Frais de swap',
+    integratorFee: 'Frais de service',
   },
 }

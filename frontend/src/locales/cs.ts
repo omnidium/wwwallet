@@ -83,6 +83,9 @@ export default {
     allTokens: 'Všechny tokeny',
     noResults: 'Nebyly nalezeny žádné tokeny.',
     viewOnExplorer: 'Zobrazit token v prohlížeči bloků',
+    estimatedFee: 'Odhadovaný poplatek za síť: {fee}',
+    swapFee: 'Poplatek za výměnu: {fee}',
+    integratorFee: 'Poplatek za službu: {fee}',
   },
   payees: {
     title: 'Příjemci plateb',
@@ -388,5 +391,7 @@ export default {
     sell: 'Prodat',
     buy: 'Koupit',
     price: 'Cena',
+    swapFee: 'Poplatek za výměnu',
+    integratorFee: 'Poplatek za službu',
   },
 }

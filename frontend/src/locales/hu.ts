@@ -84,6 +84,9 @@ export default {
     allTokens: 'Minden token',
     noResults: 'Nem találtak tokeneket.',
     viewOnExplorer: 'A token megtekintése a blokklánc-böngészőben',
+    estimatedFee: 'Becsült hálózati díj: {fee}',
+    swapFee: 'Csere-díj: {fee}',
+    integratorFee: 'Szolgáltatási díj: {fee}',
   },
   payees: {
     title: 'Kifizetési címzettek',
@@ -391,5 +394,7 @@ export default {
     sell: 'Eladás',
     buy: 'Vásárlás',
     price: 'Ár',
+    swapFee: 'Csere díja',
+    integratorFee: 'Szolgáltatási díj',
   },
 }

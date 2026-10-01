@@ -84,6 +84,9 @@ export default {
     allTokens: 'Alle tokens',
     noResults: 'Det ble ikke funnet noen tokens.',
     viewOnExplorer: 'Vis token i blokk-utforskeren',
+    estimatedFee: 'Anslått nettverksavgift: {fee}',
+    swapFee: 'Byttegebyr: {fee}',
+    integratorFee: 'Servicegebyr: {fee}',
   },
   payees: {
     title: 'Mottakere',
@@ -389,5 +392,7 @@ export default {
     sell: 'Selg',
     buy: 'Kjøp',
     price: 'Pris',
+    swapFee: 'Byttegebyr',
+    integratorFee: 'Servicegebyr',
   },
 }

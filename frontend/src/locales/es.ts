@@ -84,6 +84,9 @@ export default {
     allTokens: 'Todas las fichas',
     noResults: 'No se han encontrado tokens.',
     viewOnExplorer: 'Ver el token en el explorador de bloques',
+    estimatedFee: 'Tarifa de red estimada: {fee}',
+    swapFee: 'Comisión por intercambio: {fee}',
+    integratorFee: 'Comisión por el servicio: {fee}',
   },
   payees: {
     title: 'Beneficiarios',
@@ -394,5 +397,7 @@ export default {
     sell: 'Vender',
     buy: 'Comprar',
     price: 'Precio',
+    swapFee: 'Comisión por intercambio',
+    integratorFee: 'Comisión por servicio',
   },
 }

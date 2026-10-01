@@ -84,6 +84,9 @@ export default {
     allTokens: 'Semua token',
     noResults: 'Tidak ditemukan token.',
     viewOnExplorer: 'Lihat token di penjelajah blok',
+    estimatedFee: 'Perkiraan biaya jaringan: {fee}',
+    swapFee: 'Biaya swap: {fee}',
+    integratorFee: 'Biaya layanan: {fee}',
   },
   payees: {
     title: 'Penerima pembayaran',
@@ -392,5 +395,7 @@ export default {
     sell: 'Jual',
     buy: 'Beli',
     price: 'Harga',
+    swapFee: 'Biaya swap',
+    integratorFee: 'Biaya layanan',
   },
 }

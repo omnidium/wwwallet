@@ -83,6 +83,9 @@ export default {
     allTokens: 'Tutti i token',
     noResults: 'Non sono stati trovati token.',
     viewOnExplorer: "Visualizza il token sull'esploratore di blockchain",
+    estimatedFee: 'Costo stimato della rete: {fee}',
+    swapFee: 'Commissione di swap: {fee}',
+    integratorFee: 'Costo del servizio: {fee}',
   },
   payees: {
     title: 'Beneficiari',
@@ -388,5 +391,7 @@ export default {
     sell: 'Vendi',
     buy: 'Acquista',
     price: 'Prezzo',
+    swapFee: 'Commissione di swap',
+    integratorFee: 'Costo del servizio',
   },
 }

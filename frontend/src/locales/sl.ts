@@ -84,6 +84,9 @@ export default {
     allTokens: 'Vsi žetoni',
     noResults: 'Žetonov ni bilo najdenih.',
     viewOnExplorer: 'Ogled žetona v raziskovalcu blokov',
+    estimatedFee: 'Predvidena omrežna pristojbina: {fee}',
+    swapFee: 'Provizija za zamenjavo: {fee}',
+    integratorFee: 'Stroški storitve: {fee}',
   },
   payees: {
     title: 'Prejemniki plačil',
@@ -385,5 +388,7 @@ export default {
     sell: 'Prodaja',
     buy: 'Kupite',
     price: 'Cena',
+    swapFee: 'Provizija za zamenjavo',
+    integratorFee: 'Stroški storitve',
   },
 }

@@ -83,6 +83,9 @@ export default {
     allTokens: 'すべてのトークン',
     noResults: 'トークンが見つかりませんでした。',
     viewOnExplorer: 'ブロックエクスプローラーでトークンを確認する',
+    estimatedFee: '推定ネットワーク手数料：{fee}',
+    swapFee: 'スワップ手数料：{fee}',
+    integratorFee: 'サービス料：{fee}',
   },
   payees: {
     title: '受取人',
@@ -387,5 +390,7 @@ export default {
     sell: '売る',
     buy: '購入',
     price: '価格',
+    swapFee: 'スワップ手数料',
+    integratorFee: 'サービス料',
   },
 }

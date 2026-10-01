@@ -83,6 +83,9 @@ export default {
     allTokens: 'Alle Token',
     noResults: 'Es wurden keine Token gefunden.',
     viewOnExplorer: 'Token im Block-Explorer anzeigen',
+    estimatedFee: 'Geschätzte Netzwerkgebühr: {fee}',
+    swapFee: 'Swap-Gebühr: {fee}',
+    integratorFee: 'Servicegebühr: {fee}',
   },
   payees: {
     title: 'Zahlungsempfänger',
@@ -398,5 +401,7 @@ export default {
     sell: 'Verkaufen',
     buy: 'Kaufen',
     price: 'Preis',
+    swapFee: 'Swap-Gebühr',
+    integratorFee: 'Servicegebühr',
   },
 }

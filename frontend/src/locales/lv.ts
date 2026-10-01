@@ -84,6 +84,9 @@ export default {
     allTokens: 'Visi žetoni',
     noResults: 'Nav atrasti žetoni.',
     viewOnExplorer: 'Apskatīt žetonu blokķēdes pārlūkā',
+    estimatedFee: 'Aptuvenā tīkla maksa: {fee}',
+    swapFee: 'Apmaiņas maksa: {fee}',
+    integratorFee: 'Pakalpojuma maksa: {fee}',
   },
   payees: {
     title: 'Saņēmēji',
@@ -390,5 +393,7 @@ export default {
     sell: 'Pārdot',
     buy: 'Pirkt',
     price: 'Cena',
+    swapFee: 'Apmaiņas maksa',
+    integratorFee: 'Pakalpojuma maksa',
   },
 }

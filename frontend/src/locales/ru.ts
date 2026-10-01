@@ -84,6 +84,9 @@ export default {
     allTokens: 'Все токены',
     noResults: 'Токенов не найдено.',
     viewOnExplorer: 'Просмотреть токен в блокчейн-браузере',
+    estimatedFee: 'Ориентировочная комиссия за использование сети: {fee}',
+    swapFee: 'Комиссия за обмен: {fee}',
+    integratorFee: 'Комиссия за обслуживание: {fee}',
   },
   payees: {
     title: 'Получатели платежей',
@@ -392,5 +395,7 @@ export default {
     sell: 'Продать',
     buy: 'Купить',
     price: 'Цена',
+    swapFee: 'Комиссия за обмен',
+    integratorFee: 'Комиссия за обслуживание',
   },
 }

@@ -83,6 +83,9 @@ export default {
     allTokens: 'Όλα τα tokens',
     noResults: 'Δεν βρέθηκαν διακριτικά.',
     viewOnExplorer: 'Προβολή του token στον εξερευνητή μπλοκ',
+    estimatedFee: 'Εκτιμώμενο κόστος δικτύου: {fee}',
+    swapFee: 'Χρέωση ανταλλαγής: {fee}',
+    integratorFee: 'Χρέωση υπηρεσίας: {fee}',
   },
   payees: {
     title: 'Δικαιούχοι',
@@ -397,5 +400,7 @@ export default {
     sell: 'Πώληση',
     buy: 'Αγορά',
     price: 'Τιμή',
+    swapFee: 'Χρέωση ανταλλαγής',
+    integratorFee: 'Χρέωση υπηρεσιών',
   },
 }

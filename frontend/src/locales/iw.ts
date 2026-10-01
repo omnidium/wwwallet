@@ -83,6 +83,9 @@ export default {
     allTokens: 'כל האסימונים',
     noResults: 'לא נמצאו אסימונים.',
     viewOnExplorer: 'הצג את האסימון במאגר הבלוקים',
+    estimatedFee: 'עמלת רשת משוערת: {fee}',
+    swapFee: 'עמלת החלפה: {fee}',
+    integratorFee: 'דמי שירות: {fee}',
   },
   payees: {
     title: 'מקבלי התשלומים',
@@ -379,5 +382,7 @@ export default {
     sell: 'למכור',
     buy: 'קנה',
     price: 'מחיר',
+    swapFee: 'עמלת החלפה',
+    integratorFee: 'דמי שירות',
   },
 }

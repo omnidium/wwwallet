@@ -83,6 +83,9 @@ export default {
     allTokens: 'Alle tokens',
     noResults: 'Der blev ikke fundet nogen tokens.',
     viewOnExplorer: 'Se token i blokudforskeren',
+    estimatedFee: 'Anslået netværksgebyr: {fee}',
+    swapFee: 'Byttegebyr: {fee}',
+    integratorFee: 'Servicegebyr: {fee}',
   },
   payees: {
     title: 'Modtagere',
@@ -387,5 +390,7 @@ export default {
     sell: 'Sælg',
     buy: 'Køb',
     price: 'Pris',
+    swapFee: 'Byttegebyr',
+    integratorFee: 'Servicegebyr',
   },
 }

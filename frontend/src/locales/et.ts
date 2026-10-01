@@ -83,6 +83,9 @@ export default {
     allTokens: 'Kõik märgid',
     noResults: 'Märke ei leitud.',
     viewOnExplorer: 'Vaata tokenit plokkiahela uurijas',
+    estimatedFee: 'Võrgutasu hinnanguline suurus: {fee}',
+    swapFee: 'Vahetustasu: {fee}',
+    integratorFee: 'Teenustasu: {fee}',
   },
   payees: {
     title: 'Saajad',
@@ -385,5 +388,7 @@ export default {
     sell: 'Müü',
     buy: 'Osta',
     price: 'Hind',
+    swapFee: 'Vahetustasu',
+    integratorFee: 'Teenustasu',
   },
 }
