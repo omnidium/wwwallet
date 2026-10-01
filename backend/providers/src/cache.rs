@@ -32,6 +32,8 @@ pub const TOKEN_METADATA_STALE_TTL: u64 = 60 * 60 * 24 * 7;
 // token) changes on the order of days, not minutes — a full day between
 // refetches is plenty fresh, and a stale week-old list is still far better
 // than search results going empty over a transient fetch failure.
+/// Workers KV rejects expiration_ttl below 60s.
+pub const DEGRADED_TTL: u64 = 60;
 pub const TOKEN_LIST_TTL: u64 = 60 * 60 * 24;
 pub const TOKEN_LIST_STALE_TTL: u64 = 60 * 60 * 24 * 7;
 
@@ -91,6 +93,27 @@ where
     F: FnOnce() -> Fut,
     Fut: Future<Output = ProviderResult<T>>,
 {
+    get_or_fetch_with_stale_fallback_degradable(kv, key, ttl_secs, stale_ttl_secs, |_| false, fetch).await
+}
+
+/// Like `get_or_fetch_with_stale_fallback`, but `is_degraded` marks a
+/// successful-but-lesser result (e.g. metadata from a fallback source that
+/// lacks a price because the primary source briefly failed). Those are cached
+/// only for `DEGRADED_TTL` and never overwrite the long-lived stale entry, so a
+/// transient primary failure can't pin the degraded value for the full TTL.
+pub async fn get_or_fetch_with_stale_fallback_degradable<T, F, Fut>(
+    kv: &KvStore,
+    key: &str,
+    ttl_secs: u64,
+    stale_ttl_secs: u64,
+    is_degraded: impl Fn(&T) -> bool,
+    fetch: F,
+) -> ProviderResult<T>
+where
+    T: Serialize + DeserializeOwned,
+    F: FnOnce() -> Fut,
+    Fut: Future<Output = ProviderResult<T>>,
+{
     if let Ok(Some(text)) = kv.get(key).text().await {
         if let Ok(cached) = serde_json::from_str::<T>(&text) {
             return Ok(cached);
@@ -99,12 +122,16 @@ where
     let stale_key = format!("{key}:stale");
     match fetch().await {
         Ok(fresh) => {
+            let degraded = is_degraded(&fresh);
             if let Ok(json) = serde_json::to_string(&fresh) {
+                let ttl = if degraded { DEGRADED_TTL } else { ttl_secs };
                 if let Ok(builder) = kv.put(key, json.as_str()) {
-                    let _ = builder.expiration_ttl(ttl_secs).execute().await;
+                    let _ = builder.expiration_ttl(ttl).execute().await;
                 }
-                if let Ok(builder) = kv.put(&stale_key, json.as_str()) {
-                    let _ = builder.expiration_ttl(stale_ttl_secs).execute().await;
+                if !degraded {
+                    if let Ok(builder) = kv.put(&stale_key, json.as_str()) {
+                        let _ = builder.expiration_ttl(stale_ttl_secs).execute().await;
+                    }
                 }
             }
             Ok(fresh)

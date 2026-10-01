@@ -944,7 +944,7 @@ async function confirmSwap() {
 
 <template>
   <div>
-    <h1 class="text-h5">{{ t('send.title') }}</h1>
+    <h2>{{ t('send.title') }}</h2>
 
     <v-tabs v-model="activeTab" class="mb-4">
       <v-tab value="send">{{ t('send.tabSend') }}</v-tab>
@@ -996,14 +996,14 @@ async function confirmSwap() {
               <template #append-inner>
                 <a href="#" class="text-body-2" @click.prevent="setMaxAmount">{{
                   t('send.maxLabel')
-                }}</a>
+                  }}</a>
               </template>
             </v-text-field>
 
             <div class="d-flex mt-2" style="gap: 0.5em">
               <v-btn class="flex-grow-1" variant="text" @click="closePanel">{{
                 t('common.cancel')
-              }}</v-btn>
+                }}</v-btn>
               <v-btn class="flex-grow-1" color="primary" :disabled="!sendFormValid" :loading="sendBusy"
                 @click="openSendReview">{{
                   t('common.review') }}</v-btn>
@@ -1059,7 +1059,7 @@ async function confirmSwap() {
             </v-alert>
             <v-btn color="primary" block :loading="swapBusy" @click="onSwapClick">{{
               t('swap.submit')
-            }}</v-btn>
+              }}</v-btn>
           </template>
         </v-card>
       </v-window-item>

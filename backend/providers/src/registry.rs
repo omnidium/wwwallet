@@ -182,11 +182,12 @@ impl ProviderRegistry {
         client_ip: &str,
     ) -> ProviderResult<TokenMetadata> {
         let key = format!("token:{chain:?}:{}", contract_address.to_lowercase());
-        cache::get_or_fetch_with_stale_fallback(
+        cache::get_or_fetch_with_stale_fallback_degradable(
             &self.kv,
             &key,
             TOKEN_METADATA_TTL,
             TOKEN_METADATA_STALE_TTL,
+            |m: &TokenMetadata| m.usd_price.is_none(),
             || async {
                 self.check_rate_limit(client_ip, "token_metadata").await?;
                 match self.tokens.token_metadata(chain, contract_address).await {

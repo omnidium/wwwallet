@@ -230,7 +230,7 @@ function openInNewTab(url: string): void {
             :aria-busy="refreshing" @click="refreshAccount" />
         </template>
       </AppTooltip>
-      <p class="grow"></p>
+      <p class="flex-grow-1"></p>
       <AppTooltip :text="t('accountCard.send')">
         <template #default="{ activatorProps }">
           <v-icon v-bind="activatorProps" icon="mdi-send" size="large" class="mr-5 transfer-handle" role="button"
@@ -330,7 +330,7 @@ function openInNewTab(url: string): void {
           </template>
           <v-list-item-title>{{ tokenRow.name ?? tokenRow.symbol }} ({{ formatAmount(tokenRow.amount) }} {{
             tokenRow.symbol
-          }})</v-list-item-title>
+            }})</v-list-item-title>
           <template #append>
             <span v-if="tokenRow.fiat">{{ tokenRow.fiat }}</span>
           </template>

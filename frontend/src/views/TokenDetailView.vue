@@ -175,10 +175,10 @@ function openTransaction(txn: Transaction) {
 
     <template v-if="holderAddress">
       <h4 class="pt-4 mb-1">{{ t('transactions.title') }}</h4>
+      <v-switch v-model="hideDustTxns" :label="t('accountCard.hideDustTxns')" density="compact" hide-details
+        color="primary" class="pl-2 pb-2" />
       <v-card class="pa-2 token-detail-txn-card" max-width="480">
-        <div ref="txnListEl" class="expanded-list pa-2">
-          <v-switch v-model="hideDustTxns" :label="t('accountCard.hideDustTxns')" density="compact" hide-details
-            color="primary" class="dust-toggle" />
+        <div ref="txnListEl" class="token-detail-txn">
           <template v-for="group in transactionGroups" :key="group.dateLabel">
             <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
             <TransactionRow v-for="txn in group.transactions" :key="txn.hash" :transaction="txn"
@@ -194,6 +194,7 @@ function openTransaction(txn: Transaction) {
             <v-progress-circular indeterminate size="20" width="2" color="primary" />
           </div>
         </div>
+
       </v-card>
     </template>
 

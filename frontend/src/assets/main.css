@@ -297,18 +297,6 @@ input[type='number'] {
 .expanded-list {
   max-height: 45vh;
   overflow-y: auto;
-  /* --exp-txns-bg1/2 (shared/design-tokens.css, plain #hex) — not
-   * --surface-rgb/--surface-variant-rgb: this panel sits inside
-   * .account-card, which already uses that exact pair for its own
-   * background, so reusing it here produced no visible contrast at all.
-   * Plain hex here, not rgb(var(...)/...)) — the other tokens in that file
-   * are bare "R G B" triples (required by the Vuetify theme-variable
-   * override elsewhere in this file, which needs numeric channels, not a
-   * hex string) and need the rgb(var(--x) / alpha) slash syntax; mixing
-   * that convention up with the legacy rgba(var(--x), alpha) comma syntax
-   * silently produces an invalid, dropped declaration — exactly what kept
-   * "breaking" this gradient. Hex sidesteps the whole issue for tokens that
-   * never feed that override, like this one. */
   background: linear-gradient(180deg, var(--exp-txns-bg1), var(--exp-txns-bg2));
 }
 
@@ -522,6 +510,14 @@ input[type='number'] {
   min-height: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--exp-txns-bg1), var(--exp-txns-bg2));
+}
+
+.token-detail-txn {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .token-detail-txn-card .expanded-list {
