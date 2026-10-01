@@ -159,7 +159,7 @@ impl PriceHistory {
         let last = series[series.len() - 1];
         let step = series.len().div_ceil(SPARKLINE_POINTS);
         let mut points: Vec<f64> = series.iter().copied().step_by(step).collect();
-        if (series.len() - 1) % step != 0 {
+        if !(series.len() - 1).is_multiple_of(step) {
             points.push(last);
         }
         Some(Self {

@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { api, type ChainSlug, type PriceHistory } from '@/services/api'
 import type { WalletAccount } from '@/stores/accounts'
 import { useChainDataStore } from '@/stores/chainData'
-import { deletePublic, getPublic, putPublic } from '@/services/secureCache'
+import { getPublic, putPublic } from '@/services/secureCache'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
 
 // The one deliberate exception to "nothing personal is readable while

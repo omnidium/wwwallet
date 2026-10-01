@@ -124,10 +124,6 @@ export async function getPublic<T>(key: string): Promise<T | undefined> {
   return (await cacheDb.entries.get(key))?.data as T | undefined
 }
 
-export async function deletePublic(key: string): Promise<void> {
-  await cacheDb.entries.delete(key)
-}
-
 export async function publicEntries(prefixes: string[]): Promise<{ key: string; data: unknown }[]> {
   return cacheDb.entries.where('key').startsWithAnyOf(prefixes).toArray()
 }
