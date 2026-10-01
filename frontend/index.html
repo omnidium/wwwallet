@@ -2,6 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <script>
+      // The Pages project is also reachable at its default wwwallet.pages.dev
+      // address; send it to the canonical domain. Exact-host match only, so
+      // branch previews (<hash>.wwwallet.pages.dev) are left alone.
+      if (location.hostname === 'wwwallet.pages.dev') {
+        location.replace('https://app.wwwallet.me' + location.pathname + location.search + location.hash)
+      }
+    </script>
     <link rel="icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/icons/icon-192.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
