@@ -178,6 +178,7 @@ export default {
     themeLabel: 'Tema',
     themeLight: 'Cahaya',
     themeDark: 'Gelap',
+    backToWebsite: 'Kembali ke situs utama',
   },
   transactions: {
     title: 'Transaksi',

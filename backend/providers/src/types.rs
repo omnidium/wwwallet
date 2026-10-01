@@ -122,6 +122,22 @@ pub struct SwapQuote {
     pub sell_amount: String,
     pub allowance_target: String,
     pub price: String,
+    /// Aggregator/integrator fees charged on top of network gas. Already
+    /// reflected in `buy_amount` for display purposes — listed so the client
+    /// can show them separately. Empty when the quote carries no such fees.
+    #[serde(default)]
+    pub fees: Vec<SwapFee>,
+}
+
+/// One non-gas fee charged by a swap quote, in the token it is taken in.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SwapFee {
+    /// `"zero_ex"` or `"integrator"`.
+    pub kind: String,
+    /// Token contract address the fee is denominated in.
+    pub token: String,
+    /// Raw (undecimalized) amount, decimal string.
+    pub amount: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

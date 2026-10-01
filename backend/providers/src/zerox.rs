@@ -5,7 +5,7 @@ use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
 use crate::http;
 use crate::traits::SwapQuoteProvider;
-use crate::types::SwapQuote;
+use crate::types::{SwapFee, SwapQuote};
 
 /// 0x Swap API v2 uses a single base URL for every chain — the chain is
 /// selected via the `chainId` query parameter instead of a per-chain subdomain
@@ -20,6 +20,20 @@ struct ZeroExTransaction {
     gas: String,
     #[serde(rename = "gasPrice")]
     gas_price: String,
+}
+
+#[derive(Deserialize)]
+struct ZeroExFee {
+    amount: String,
+    token: String,
+}
+
+#[derive(Deserialize, Default)]
+struct ZeroExFees {
+    #[serde(rename = "zeroExFee")]
+    zero_ex_fee: Option<ZeroExFee>,
+    #[serde(rename = "integratorFee")]
+    integrator_fee: Option<ZeroExFee>,
 }
 
 /// 0x's `/quote` always returns 200, even when it can't quote the requested
@@ -38,6 +52,8 @@ struct ZeroExQuoteResponse {
     sell_amount: Option<String>,
     #[serde(rename = "allowanceTarget")]
     allowance_target: Option<String>,
+    #[serde(default)]
+    fees: Option<ZeroExFees>,
 }
 
 pub struct ZeroExProvider {
@@ -94,6 +110,13 @@ fn extract_quote(quote: ZeroExQuoteResponse) -> ProviderResult<SwapQuote> {
     let allowance_target = quote.allowance_target.ok_or_else(missing_field)?;
 
     let price = quote_price(&buy_amount, &sell_amount);
+    let fees = quote.fees.unwrap_or_default();
+    let fees = [("zero_ex", fees.zero_ex_fee), ("integrator", fees.integrator_fee)]
+        .into_iter()
+        .filter_map(|(kind, fee)| {
+            fee.map(|f| SwapFee { kind: kind.to_string(), token: f.token, amount: f.amount })
+        })
+        .collect();
     Ok(SwapQuote {
         to: transaction.to,
         data: transaction.data,
@@ -104,6 +127,7 @@ fn extract_quote(quote: ZeroExQuoteResponse) -> ProviderResult<SwapQuote> {
         sell_amount,
         allowance_target,
         price,
+        fees,
     })
 }
 
@@ -135,6 +159,10 @@ mod tests {
             buy_amount: Some("200".to_string()),
             sell_amount: Some("100".to_string()),
             allowance_target: Some("0xallowance".to_string()),
+            fees: Some(ZeroExFees {
+                zero_ex_fee: Some(ZeroExFee { amount: "3".to_string(), token: "0xbuy".to_string() }),
+                integrator_fee: None,
+            }),
         }
     }
 
@@ -146,6 +174,7 @@ mod tests {
             buy_amount: None,
             sell_amount: None,
             allowance_target: None,
+            fees: None,
         };
         assert!(matches!(extract_quote(response), Err(ProviderError::NoLiquidity)));
     }
@@ -158,6 +187,9 @@ mod tests {
         assert_eq!(quote.sell_amount, "100");
         assert_eq!(quote.allowance_target, "0xallowance");
         assert_eq!(quote.price, "2");
+        assert_eq!(quote.fees.len(), 1);
+        assert_eq!(quote.fees[0].kind, "zero_ex");
+        assert_eq!(quote.fees[0].amount, "3");
     }
 
     #[test]

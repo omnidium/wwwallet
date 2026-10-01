@@ -177,6 +177,7 @@ export default {
     themeLabel: 'Tema',
     themeLight: 'Šviesa',
     themeDark: 'Tamsus',
+    backToWebsite: 'Grįžti į pagrindinį puslapį',
   },
   transactions: {
     title: 'Sandoriai',

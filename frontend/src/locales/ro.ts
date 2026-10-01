@@ -178,6 +178,7 @@ export default {
     themeLabel: 'Tema',
     themeLight: 'Lumină',
     themeDark: 'Întuneric',
+    backToWebsite: 'Înapoi la pagina principală',
   },
   transactions: {
     title: 'Tranzacții',

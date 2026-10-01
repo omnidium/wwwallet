@@ -147,6 +147,14 @@ export interface SwapQuote {
   sell_amount: string
   allowance_target: string
   price: string
+  /** Aggregator/integrator fees on top of network gas (see backend SwapFee). */
+  fees?: SwapFee[]
+}
+
+export interface SwapFee {
+  kind: 'zero_ex' | 'integrator'
+  token: string
+  amount: string
 }
 
 export interface TokenListItem {

@@ -101,6 +101,13 @@ interface TokenOption {
   usdPrice: number | null
 }
 
+// Highest USD value held first; a token with no resolved price sinks to the
+// bottom — same convention as AccountCard.vue's tokenRows sort.
+function usdValueOf(opt: TokenOption): number {
+  if (opt.usdPrice == null) return -1
+  return toHumanAmount(opt.rawBalance, opt.decimals) * opt.usdPrice
+}
+
 const sendFromAddress = ref(address)
 const sendFromAccount = computed(
   () => accounts.accounts.find((a) => a.address === sendFromAddress.value) ?? account,
@@ -165,7 +172,7 @@ const tokenOptions = computed<TokenOption[]>(() =>
       logoUrl: metadata?.logo_url ?? null,
       usdPrice: metadata?.usd_price ?? null,
     }
-  }),
+  }).sort((a, b) => usdValueOf(b) - usdValueOf(a)),
 )
 const selectedToken = computed(
   () =>
@@ -199,10 +206,10 @@ function accountOptionLabel(acc: { label: string; chain: ChainSlug; address: str
   const fiatStr =
     priceUsd != null
       ? formatFiat(
-          convertUsd(humanAmount * priceUsd, settingsLocale.currency, chainData.fxRates),
-          settingsLocale.currency,
-          locale.value,
-        )
+        convertUsd(humanAmount * priceUsd, settingsLocale.currency, chainData.fxRates),
+        settingsLocale.currency,
+        locale.value,
+      )
       : '—'
   return `${acc.label} ${fiatStr} (${formatAmount(humanAmount)} ${native.symbol})`
 }
@@ -646,7 +653,7 @@ const swapTokenOptions = computed<TokenOption[]>(() =>
       logoUrl: metadata?.logo_url ?? null,
       usdPrice: metadata?.usd_price ?? null,
     }
-  }),
+  }).sort((a, b) => usdValueOf(b) - usdValueOf(a)),
 )
 const swapHeldTokens = computed<HeldToken[]>(() =>
   swapTokenOptions.value.map((t) => {
@@ -757,6 +764,26 @@ function formatNativeFee(feeWei: bigint): { value: string; sub?: string } {
   return { value: fiat, sub: nativeStr }
 }
 
+const quoteFeeText = computed(() => {
+  if (!quote.value) return ''
+  const fee = formatNativeFee(BigInt(quote.value.gas_price) * BigInt(quote.value.estimated_gas))
+  return fee.sub ? `${fee.value} (${fee.sub})` : fee.value
+})
+
+// Aggregator/integrator fees, formatted in the token each is charged in. A
+// fee token that is neither the sell nor buy token (shouldn't happen with
+// 0x) falls back to the buy token's decimals/symbol rather than being hidden.
+const quoteProtocolFees = computed(() => {
+  const sell = sellTokenPicked.value
+  const buy = buyTokenPicked.value
+  if (!quote.value || !sell || !buy) return []
+  return (quote.value.fees ?? []).map((f) => {
+    const match = [sell, buy].find((tk) => (tk.address ?? NATIVE_PSEUDO_ADDRESS).toLowerCase() === f.token.toLowerCase()) ?? buy
+    const amount = formatAmount(Number(formatUnits(f.amount, match.decimals)))
+    return { kind: f.kind, text: `${amount} ${match.symbol}` }
+  })
+})
+
 const sellAmountRules = [
   (v: string) => (!!v && Number(v) > 0) || t('validation.amountGreaterThanZero'),
 ]
@@ -865,6 +892,7 @@ function openSwapReview() {
     { label: t('review.buy'), value: `${buyAmountFormatted.value} ${buyTokenPicked.value.symbol}` },
     { label: t('review.chain'), value: chain },
     { label: t('review.price'), value: quote.value.price },
+    ...quoteProtocolFees.value.map((f) => ({ label: t(`review.${f.kind === 'zero_ex' ? 'swapFee' : 'integratorFee'}`), value: f.text })),
     { label: t('review.fee'), ...formatNativeFee(feeWei) },
   ]
   swapReviewOpen.value = true
@@ -926,55 +954,24 @@ async function confirmSwap() {
     <v-window v-model="activeTab">
       <v-window-item value="send">
         <v-card class="pa-4" max-width="480">
-          <v-select
-            v-model="sendFromAddress"
-            :items="fromAccountOptions"
-            item-title="title"
-            item-value="address"
-            :label="t('send.fromLabel')"
-          />
+          <v-select v-model="sendFromAddress" :items="fromAccountOptions" item-title="title" item-value="address"
+            :label="t('send.fromLabel')" />
           <v-form v-model="sendFormValid">
             <div class="d-flex align-center" style="gap: 0.5em">
-              <v-select
-                v-if="toMode === 'select'"
-                v-model="toSelectedAddress"
-                :items="toAccountOptions"
-                item-title="title"
-                item-value="address"
-                :label="t('send.recipientLabel')"
-                class="flex-grow-1"
-              />
-              <v-text-field
-                v-else
-                v-model="to"
-                :label="t('send.recipientLabel')"
-                :rules="addressRules"
-                class="flex-grow-1"
-                clearable
-                @click:clear="clearScannedTo"
-              />
+              <v-select v-if="toMode === 'select'" v-model="toSelectedAddress" :items="toAccountOptions"
+                item-title="title" item-value="address" :label="t('send.recipientLabel')" class="flex-grow-1" />
+              <v-text-field v-else v-model="to" :label="t('send.recipientLabel')" :rules="addressRules"
+                class="flex-grow-1" clearable @click:clear="clearScannedTo" />
               <AppTooltip :text="t('send.scanQrAria')">
                 <template #default="{ activatorProps }">
-                  <v-btn
-                    v-bind="activatorProps"
-                    icon="mdi-qrcode-scan"
-                    variant="tonal"
-                    density="comfortable"
-                    :aria-label="t('send.scanQrAria')"
-                    @click="scannerOpen = true"
-                  />
+                  <v-btn v-bind="activatorProps" icon="mdi-qrcode-scan" variant="tonal" density="comfortable"
+                    :aria-label="t('send.scanQrAria')" @click="scannerOpen = true" />
                 </template>
               </AppTooltip>
             </div>
 
-            <v-select
-              v-model="selectedTokenKey"
-              :items="tokenOptions"
-              item-title="symbol"
-              item-value="key"
-              :label="t('send.tokenLabel')"
-              density="compact"
-            >
+            <v-select v-model="selectedTokenKey" :items="tokenOptions" item-title="symbol" item-value="key"
+              :label="t('send.tokenLabel')" density="compact">
               <template #item="{ props: itemProps, item }">
                 <v-list-item v-bind="itemProps">
                   <template #prepend>
@@ -985,26 +982,12 @@ async function confirmSwap() {
               </template>
             </v-select>
 
-            <v-text-field
-              :model-value="amount"
-              @update:model-value="onAmountInput"
-              :label="amountFieldLabel"
-              type="number"
-              min="0"
-              step="any"
-              :rules="amountRules"
-            >
+            <v-text-field :model-value="amount" @update:model-value="onAmountInput" :label="amountFieldLabel"
+              type="number" min="0" step="any" :rules="amountRules">
               <template #prepend-inner>
-                <AppTooltip
-                  :text="t('send.toggleAmountUnitAria', { currency: settingsLocale.currency })"
-                >
+                <AppTooltip :text="t('send.toggleAmountUnitAria', { currency: settingsLocale.currency })">
                   <template #default="{ activatorProps }">
-                    <a
-                      v-bind="activatorProps"
-                      href="#"
-                      class="text-body-2"
-                      @click.prevent="toggleAmountMode"
-                    >
+                    <a v-bind="activatorProps" href="#" class="text-body-2" @click.prevent="toggleAmountMode">
                       {{ unitSymbolDisplay }}
                     </a>
                   </template>
@@ -1021,14 +1004,9 @@ async function confirmSwap() {
               <v-btn class="flex-grow-1" variant="text" @click="closePanel">{{
                 t('common.cancel')
               }}</v-btn>
-              <v-btn
-                class="flex-grow-1"
-                color="primary"
-                :disabled="!sendFormValid"
-                :loading="sendBusy"
-                @click="openSendReview"
-                >{{ t('common.review') }}</v-btn
-              >
+              <v-btn class="flex-grow-1" color="primary" :disabled="!sendFormValid" :loading="sendBusy"
+                @click="openSendReview">{{
+                  t('common.review') }}</v-btn>
             </div>
           </v-form>
         </v-card>
@@ -1036,78 +1014,45 @@ async function confirmSwap() {
 
       <v-window-item value="swap">
         <v-card class="pa-4" max-width="480">
-          <v-text-field
-            :model-value="`${account?.label ?? ''} — ${truncateAddress(address)}`"
-            :label="t('send.fromLabel')"
-            readonly
-          />
+          <v-text-field :model-value="`${account?.label ?? ''} — ${truncateAddress(address)}`"
+            :label="t('send.fromLabel')" readonly />
 
           <div class="d-flex align-center justify-space-between mt-4 mb-2">
             <span class="text-body-2 text-medium-emphasis">{{ t('swap.sellTokenLabel') }}</span>
-            <TokenPickerField
-              :chain="chain"
-              :model-value="sellTokenPicked"
-              :held-tokens="swapHeldTokens"
-              :label="t('swap.selectToken')"
-              @update:model-value="(picked) => (sellTokenPicked = picked)"
-            />
+            <TokenPickerField :chain="chain" :model-value="sellTokenPicked" :held-tokens="swapHeldTokens"
+              :label="t('swap.selectToken')" @update:model-value="(picked) => (sellTokenPicked = picked)" />
           </div>
-          <v-text-field
-            v-model="sellAmount"
-            :label="t('swap.sellAmountLabel')"
-            type="number"
-            min="0"
-            step="any"
-            :rules="sellAmountRules"
-          />
+          <v-text-field v-model="sellAmount" :label="t('swap.sellAmountLabel')" type="number" min="0" step="any"
+            :rules="sellAmountRules" />
           <div class="d-flex mb-4" style="gap: 0.5em">
-            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" @click="applySellPercent(0.25)"
-              >25%</v-btn
-            >
-            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" @click="applySellPercent(0.5)"
-              >50%</v-btn
-            >
-            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" @click="applySellPercent(0.75)"
-              >75%</v-btn
-            >
-            <v-btn
-              size="small"
-              variant="tonal"
-              :disabled="!sellTokenPicked"
-              :loading="swapBusy"
-              @click="setSellMax"
-              >{{ t('send.maxLabel') }}</v-btn
-            >
+            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" @click="applySellPercent(0.25)">25%</v-btn>
+            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" @click="applySellPercent(0.5)">50%</v-btn>
+            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" @click="applySellPercent(0.75)">75%</v-btn>
+            <v-btn size="small" variant="tonal" :disabled="!sellTokenPicked" :loading="swapBusy" @click="setSellMax">{{
+              t('send.maxLabel') }}</v-btn>
           </div>
 
           <div class="d-flex align-center justify-space-between mb-2">
             <span class="text-body-2 text-medium-emphasis">{{ t('swap.buyTokenLabel') }}</span>
-            <TokenPickerField
-              :chain="chain"
-              :model-value="buyTokenPicked"
-              :held-tokens="swapHeldTokens"
-              :label="t('swap.selectToken')"
-              @update:model-value="(picked) => (buyTokenPicked = picked)"
-            />
+            <TokenPickerField :chain="chain" :model-value="buyTokenPicked" :held-tokens="swapHeldTokens"
+              :label="t('swap.selectToken')" @update:model-value="(picked) => (buyTokenPicked = picked)" />
           </div>
 
           <p v-if="sameTokenSelected" class="text-caption text-error mb-4">
             {{ t('validation.sameTokenSwap') }}
           </p>
 
-          <v-btn
-            variant="outlined"
-            block
-            class="mb-4"
-            :disabled="!quoteFormValid"
-            :loading="swapBusy"
-            @click="getQuote"
-            >{{ t('swap.getQuote') }}</v-btn
-          >
+          <v-btn variant="outlined" block class="mb-4" :disabled="!quoteFormValid" :loading="swapBusy"
+            @click="getQuote">{{
+              t('swap.getQuote') }}</v-btn>
 
           <template v-if="quote">
             <v-alert type="info" variant="tonal" class="mb-4">
               {{ t('swap.estimateText', { amount: buyAmountFormatted, price: formatAmount(Number(quote.price)) }) }}
+              <p v-for="f in quoteProtocolFees" :key="f.kind" class="text-body-2 mt-2 mb-0">
+                {{ t(f.kind === 'zero_ex' ? 'swap.swapFee' : 'swap.integratorFee', { fee: f.text }) }}
+              </p>
+              <p class="text-body-2 mt-2 mb-0">{{ t('swap.estimatedFee', { fee: quoteFeeText }) }}</p>
               <p class="text-caption mt-2 mb-0">
                 {{ t('swap.signingNotice', { address: truncateAddress(quote.to) }) }}
               </p>
@@ -1122,22 +1067,10 @@ async function confirmSwap() {
 
     <QrScannerDialog v-model="scannerOpen" @decoded="onQrDecoded" />
 
-    <TransactionReviewDialog
-      v-model="sendReviewOpen"
-      :title="t('review.title')"
-      :rows="sendReviewRows"
-      :confirm-label="t('send.submit')"
-      :busy="sendBusy"
-      @confirm="confirmSend"
-    />
-    <TransactionReviewDialog
-      v-model="swapReviewOpen"
-      :title="t('review.title')"
-      :rows="swapReviewRows"
-      :confirm-label="t('swap.submit')"
-      :busy="swapBusy"
-      @confirm="confirmSwap"
-    />
+    <TransactionReviewDialog v-model="sendReviewOpen" :title="t('review.title')" :rows="sendReviewRows"
+      :confirm-label="t('send.submit')" :busy="sendBusy" @confirm="confirmSend" />
+    <TransactionReviewDialog v-model="swapReviewOpen" :title="t('review.title')" :rows="swapReviewRows"
+      :confirm-label="t('swap.submit')" :busy="swapBusy" @confirm="confirmSwap" />
 
     <v-dialog v-model="addPayeeOpen" max-width="420" persistent>
       <v-card class="pa-4">

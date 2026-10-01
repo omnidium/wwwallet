@@ -178,6 +178,7 @@ export default {
     themeLabel: 'Tema',
     themeLight: 'Svetloba',
     themeDark: 'Temno',
+    backToWebsite: 'Nazaj na glavno stran',
   },
   transactions: {
     title: 'Transakcije',

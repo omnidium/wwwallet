@@ -177,6 +177,7 @@ export default {
     themeLabel: 'Teema',
     themeLight: 'Valgus',
     themeDark: 'Tume',
+    backToWebsite: 'Tagasi pealehele',
   },
   transactions: {
     title: 'Tehingud',

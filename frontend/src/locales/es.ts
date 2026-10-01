@@ -178,6 +178,7 @@ export default {
     themeLabel: 'Tema',
     themeLight: 'Luz',
     themeDark: 'Oscuro',
+    backToWebsite: 'Volver a la página principal',
   },
   transactions: {
     title: 'Transacciones',

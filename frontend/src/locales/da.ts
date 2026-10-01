@@ -177,6 +177,7 @@ export default {
     themeLabel: 'Tema',
     themeLight: 'Lys',
     themeDark: 'Mørkt',
+    backToWebsite: 'Tilbage til hovedsiden',
   },
   transactions: {
     title: 'Transaktioner',

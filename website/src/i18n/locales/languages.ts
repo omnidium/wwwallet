@@ -5,11 +5,11 @@ export interface LanguageInfo {
 
 // Matches frontend/src/locales/languages.ts's list exactly — the two share a
 // cross-origin locale cookie (see composables/sharedPrefs.ts), so a language
-// picked in one needs to be a valid option in the other. Content is
-// English-only for now (see src/i18n/locales/index.ts): picking any other
-// language here shows English text via vue-i18n's fallbackLocale rather than
-// an untranslated gap, but at least the selector itself reflects the shared
-// choice correctly instead of showing nothing selected.
+// picked in one needs to be a valid option in the other. Fully translated as
+// of the shared/i18n/master_en.ts system (see src/i18n/locales/index.ts and
+// scripts/sync-i18n.mjs at the repo root) — English is the master copy, but
+// every language below renders its own translated content, not an English
+// fallback.
 export const SUPPORTED_LANGUAGES: LanguageInfo[] = [
   { id: 'ar', name: 'عربي' },
   { id: 'bg', name: 'български' },

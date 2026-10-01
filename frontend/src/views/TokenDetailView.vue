@@ -124,15 +124,15 @@ function openTransaction(txn: Transaction) {
 
 <template>
   <div class="token-detail-view">
-    <v-progress-linear v-if="loading" indeterminate class="mb-4" />
+    <!-- <v-progress-linear v-if="loading" indeterminate class="mb-4" /> -->
 
-    <div class="d-flex align-center mb-2">
-      <v-avatar v-if="metadata?.logo_url" :image="metadata.logo_url" size="40" class="mr-3" />
+    <div class="d-flex align-center mb-2 mt-1">
+      <v-avatar v-if="metadata?.logo_url" :image="metadata.logo_url" size="30" class="mr-3" />
       <v-icon v-else icon="mdi-cash-multiple" size="large" class="mr-3" />
-      <h1 class="text-h5">
+      <h3 class="pt-3">
         {{ metadata?.name ?? t('token.defaultLabel') }}
         <span v-if="metadata?.symbol" class="text-medium-emphasis">({{ metadata.symbol }})</span>
-      </h1>
+      </h3>
     </div>
 
     <v-card class="pa-4" max-width="480">
@@ -174,7 +174,7 @@ function openTransaction(txn: Transaction) {
     </v-card>
 
     <template v-if="holderAddress">
-      <h2 class="text-h6 mt-6 mb-2">{{ t('transactions.title') }}</h2>
+      <h4 class="pt-4 mb-1">{{ t('transactions.title') }}</h4>
       <v-card class="pa-2 token-detail-txn-card" max-width="480">
         <div ref="txnListEl" class="expanded-list pa-2">
           <v-switch v-model="hideDustTxns" :label="t('accountCard.hideDustTxns')" density="compact" hide-details

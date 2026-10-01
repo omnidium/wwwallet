@@ -177,6 +177,7 @@ export default {
     themeLabel: 'テーマ',
     themeLight: '光',
     themeDark: 'ダーク',
+    backToWebsite: 'メインサイトに戻る',
   },
   transactions: {
     title: '取引',

@@ -177,6 +177,7 @@ export default {
     themeLabel: 'Tema',
     themeLight: 'Işık',
     themeDark: 'Karanlık',
+    backToWebsite: 'Ana sayfaya dön',
   },
   transactions: {
     title: 'İşlemler',

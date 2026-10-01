@@ -4,14 +4,15 @@
    app's own favicon.ico gradient; see website's README or git history for
    how the color stops were sampled.
 
-   Vuetify (frontend only) is the one exception: it generates its own
-   --v-theme-* variables at runtime from a JS config object in
-   frontend/src/plugins/vuetify.ts, and can't consume this file as its color
-   source. That file's light/dark hex values are kept numerically identical
-   to --bg/--text/--accent/etc. below by hand — treat this file as the
-   source of truth for those values too, even though Vuetify can't import it
-   directly. Everything else here (radius/shadow/blur/spacing/fonts/gradient)
-   is consumed directly as CSS custom properties by both projects. */
+   Vuetify (frontend only) no longer defines any colors of its own —
+   frontend/src/plugins/vuetify.ts carries zero hex literals. Instead,
+   frontend/src/assets/main.css overrides every Vuetify-generated theme
+   variable, pointing each one at the "-rgb" tokens below via var(). The
+   matching "on-...-rgb" tokens exist because overriding Vuetify's colors
+   this way bypasses its own automatic contrast/on-color computation — these
+   were captured once from Vuetify's actual computed output (not re-picked
+   by eye) so the override is visually identical to what Vuetify generated
+   before this file existed. */
 :root {
   --font-heading: 'Manrope', system-ui, sans-serif;
   --font-body: 'Roboto', system-ui, sans-serif;
@@ -49,26 +50,81 @@
   --container-max: 1080px;
   --header-height: 32px;
 
+  /* Sunken-panel effect for the expanded transaction/token list (see
+     .expanded-list in frontend/src/assets/main.css) — starts flush with the
+     surrounding card's own surface color, fading to something visibly
+     darker/greyer so the panel actually reads as recessed. Needs its own
+     dark-mode override below: unlike --surface-rgb/--surface-variant-rgb,
+     reusing those for both stops produced zero visible contrast against the
+     card's own identical surface-to-surface-variant background. */
+  --exp-txns-bg1: #ffffff;
+  --exp-txns-bg2: #eeeeee;
+  --border-opacity: 0.2;
+
   /* Light mode (default) */
   --bg: #f4fbf8;
   --bg-alt: #e9f5f0;
+  --bg-rgb: 244 251 248;
+  --on-bg-rgb: 0 0 0;
   --surface-rgb: 255 255 255;
+  --on-surface-rgb: 0 0 0;
+  --surface-variant-rgb: 218 220 236;
+  --on-surface-variant-rgb: 0 0 0;
   --text: #0d1f1a;
   --text-muted: #4d5f59;
   --border-rgb: 13 31 26;
   --accent: #04918f;
   --accent-rgb: 4 145 143;
+  --on-accent-rgb: 255 255 255;
   --focus-ring: #04918f;
+
+  /* Secondary brand blue and the app's semantic transaction/link/warning
+     accents — unrelated to the favicon gradient above, carried over as-is
+     from frontend/src/plugins/vuetify.ts's former hand-authored values (see
+     this file's own header). error/secondary are identical in both themes,
+     so they only need this one entry. */
+  --secondary-rgb: 4 148 252;
+  --on-secondary-rgb: 255 255 255;
+  --error-rgb: 244 67 54;
+  --on-error-rgb: 255 255 255;
+  --send-rgb: 255 102 102;
+  --on-send-rgb: 255 255 255;
+  --receive-rgb: 121 174 87;
+  --on-receive-rgb: 255 255 255;
+  /* Not currently used as a Vuetify color prop anywhere in the app — carried
+     over for parity with the old vuetify.ts rather than dropped outright. */
+  --link-rgb: 9 9 194;
+  --on-link-rgb: 255 255 255;
+  --info-rgb: 203 169 104;
+  --on-info-rgb: 0 0 0;
 }
 
 :root[data-theme='dark'] {
   --bg: #0d1f1a;
   --bg-alt: #122820;
+  --bg-rgb: 13 31 26;
+  --on-bg-rgb: 255 255 255;
   --surface-rgb: 24 42 36;
+  --on-surface-rgb: 255 255 255;
+  --surface-variant-rgb: 31 80 60;
+  --on-surface-variant-rgb: 255 255 255;
   --text: #eef7f3;
   --text-muted: #9db3ac;
   --border-rgb: 255 255 255;
   --accent: #55e8dd;
   --accent-rgb: 85 232 221;
+  --on-accent-rgb: 0 0 0;
   --focus-ring: #55e8dd;
+
+  --send-rgb: 131 12 12;
+  --receive-rgb: 35 100 35;
+  --link-rgb: 179 179 255;
+  --on-link-rgb: 0 0 0;
+  --info-rgb: 157 71 0;
+  --on-info-rgb: 255 255 255;
+
+  --exp-txns-bg1: #182a24;
+  --exp-txns-bg2: #0d1f1a;
+
+  --test: rgb(31, 78, 62);
 }

@@ -178,6 +178,7 @@ export default {
     themeLabel: 'Tēma',
     themeLight: 'Gaisma',
     themeDark: 'Tumšs',
+    backToWebsite: 'Atgriezties uz galveno lapu',
   },
   transactions: {
     title: 'Darījumi',

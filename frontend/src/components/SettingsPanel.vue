@@ -17,6 +17,9 @@ const theme = useTheme()
 const router = useRouter()
 const currentTheme = ref<ThemeName>(getStoredTheme())
 const appVersion = __APP_VERSION__
+// The marketing website lives on the apex domain (this app is on app.*); in
+// dev it runs separately on port 3002.
+const websiteUrl = import.meta.env.VITE_WEBSITE_URL ?? (import.meta.env.DEV ? 'http://localhost:3002' : 'https://wwwallet.me')
 const panelRef = ref<HTMLElement | null>(null)
 
 // v-navigation-drawer used to provide Escape-to-close and a scrim for free;
@@ -102,7 +105,7 @@ function lockNow() {
       </button>
     </div>
 
-    <div class="settings-section mt-4">
+    <div class="settings-section mt-2">
       <p class="settings-section-label">{{ t('settings.themeLabel') }}</p>
       <div class="theme-segmented" role="group" :aria-label="t('settings.themeLabel')">
         <button type="button" class="theme-segment" :class="{ active: currentTheme === 'light' }"
@@ -118,7 +121,7 @@ function lockNow() {
       </div>
     </div>
 
-    <div class="settings-section mt-4">
+    <div class="settings-section mt-2">
       <p class="settings-section-label">{{ t('settings.languageLabel') }}</p>
       <select class="settings-select" :class="{ 'settings-select--dark': currentTheme === 'dark' }"
         :value="settings.locale" @change="onLanguageChange">
@@ -142,7 +145,7 @@ function lockNow() {
       parts (backing up, passkey management) behind vault.isUnlocked itself;
       see their own v-if for that.
     -->
-    <div v-if="vault.isUnlocked" class="settings-section mt-4">
+    <div v-if="vault.isUnlocked" class="settings-section mt-2">
       <p class="settings-section-label">{{ t('settings.currencyLabel') }}</p>
       <select class="settings-select" :class="{ 'settings-select--dark': currentTheme === 'dark' }"
         :value="settings.currency" @change="onCurrencyChange">
@@ -164,6 +167,10 @@ function lockNow() {
       {{ t('settings.lockNow') }}
     </v-btn>
 
+    <v-btn class="settings-back" variant="outlined" prepend-icon="mdi-arrow-left" :href="websiteUrl">
+      {{ t('settings.backToWebsite') }}
+    </v-btn>
+
     <p class="settings-version text-medium-emphasis mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
   </div>
 </template>
@@ -180,7 +187,7 @@ function lockNow() {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
 }
 
 .panel-header h2 {
@@ -206,11 +213,25 @@ function lockNow() {
   background: rgb(var(--border-rgb) / 8%);
 }
 
+/* Theme/Language/Currency each get their own section — a bottom border
+ * (rather than between every pair, to avoid a trailing line under the last
+ * one) visually separates them beyond the mt-4 spacing utility alone. */
+.settings-section {
+  padding-bottom: var(--space-1);
+  ;
+  border-bottom: 0px solid rgb(var(--border-rgb) / 8%);
+}
+
+.settings-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
 .settings-section-label {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--text-muted);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
 }
 
 .theme-segmented {

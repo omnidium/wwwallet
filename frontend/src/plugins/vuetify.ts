@@ -2,13 +2,26 @@ import 'vuetify/styles'
 import '@mdi/font/css/materialdesignicons.css'
 import { createVuetify } from 'vuetify'
 
-// Brand colors match the public website (website/src/style/tokens.css),
-// which itself samples the app's own favicon.ico gradient (green -> teal ->
-// cyan -> blue). Previously this matched the old Angular app's Material
-// theme (flat green/blue) instead, which no longer matches favicon.ico since
-// it was updated — see the send/receive/link/error/info accents below, which
-// are unrelated semantic colors (transaction direction, links, warnings) and
-// were deliberately left as-is.
+// Real hex colors are intentionally NOT defined here for Vuetify's own
+// built-in color slots (primary/secondary/background/surface/surface-variant/
+// error/info/etc.) — Vuetify's theme engine can't consume CSS custom
+// properties as color values (it needs real hex/rgb to compute automatic
+// on-color contrast), so instead shared/design-tokens.css is the single
+// hand-edited source of truth, and frontend/src/assets/main.css overrides
+// every --v-theme-*/--v-border-* variable Vuetify generates from whatever
+// defaults it falls back to below, pointing each one at design-tokens.css's
+// own -rgb tokens. See that file's header for the full explanation
+// (including why on-color pairs are hand-supplied rather than
+// Vuetify-computed).
+//
+// send/receive/link are the one exception: they're app-specific names with
+// no equivalent in Vuetify's own built-in theme, so Vuetify has no reason to
+// generate the `.bg-send`/`.text-send`/etc. utility classes `color="send"`
+// props rely on (TransactionRow.vue, AccountCard.vue) unless something
+// registers that key. The actual hex values below are never seen — the CSS
+// override replaces them immediately — they exist purely so Vuetify knows
+// these three color names exist at all.
+const UNUSED_PLACEHOLDER_FOR_UTILITY_CLASS_GENERATION = '#000000'
 export default createVuetify({
   theme: {
     defaultTheme: 'light',
@@ -16,21 +29,15 @@ export default createVuetify({
       light: {
         dark: false,
         colors: {
-          primary: '#04918f',
-          secondary: '#0494fc',
-          error: '#f44336',
-          background: '#f4fbf8',
-          surface: '#ffffff',
-          'surface-variant': '#e4f0ec',
-          send: '#ff6666',
-          receive: '#79ae57',
-          link: '#0909c2',
-          info: '#cba968',
+          send: UNUSED_PLACEHOLDER_FOR_UTILITY_CLASS_GENERATION,
+          receive: UNUSED_PLACEHOLDER_FOR_UTILITY_CLASS_GENERATION,
+          link: UNUSED_PLACEHOLDER_FOR_UTILITY_CLASS_GENERATION,
         },
         // Vuetify's default light-theme medium-emphasis-opacity (0.60) fails
         // WCAG contrast for field labels against this app's field/surface
         // colors — confirmed via a Lighthouse accessibility audit. Bumped
-        // until it clears 4.5:1.
+        // until it clears 4.5:1. Not a color, so no duplication problem to
+        // solve — left here rather than also routed through CSS.
         variables: {
           'medium-emphasis-opacity': 0.74,
         },
@@ -38,16 +45,9 @@ export default createVuetify({
       dark: {
         dark: true,
         colors: {
-          primary: '#55e8dd',
-          secondary: '#0494fc',
-          error: '#f44336',
-          background: '#0d1f1a',
-          surface: '#182a24',
-          'surface-variant': '#22392f',
-          send: '#660000',
-          receive: '#082100',
-          link: '#b3b3ff',
-          info: '#9d4700',
+          send: UNUSED_PLACEHOLDER_FOR_UTILITY_CLASS_GENERATION,
+          receive: UNUSED_PLACEHOLDER_FOR_UTILITY_CLASS_GENERATION,
+          link: UNUSED_PLACEHOLDER_FOR_UTILITY_CLASS_GENERATION,
         },
       },
     },

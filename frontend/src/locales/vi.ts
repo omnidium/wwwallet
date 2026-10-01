@@ -178,6 +178,7 @@ export default {
     themeLabel: 'Chủ đề',
     themeLight: 'Ánh sáng',
     themeDark: 'Tối',
+    backToWebsite: 'Quay lại trang chủ',
   },
   transactions: {
     title: 'Giao dịch',

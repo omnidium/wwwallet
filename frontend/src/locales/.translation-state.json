@@ -1159,6 +1159,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Crear monedero"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Volver a la página principal"
     }
   },
   "ar": {
@@ -2321,6 +2325,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "إنشاء محفظة"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "العودة إلى الموقع الرئيسي"
     }
   },
   "bg": {
@@ -3483,6 +3491,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Създаване на портфейл"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Назад към главната страница"
     }
   },
   "cs": {
@@ -4645,6 +4657,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Vytvořit peněženku"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Zpět na hlavní stránku"
     }
   },
   "da": {
@@ -5807,6 +5823,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Opret tegnebog"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Tilbage til hovedsiden"
     }
   },
   "de": {
@@ -6969,6 +6989,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Wallet erstellen"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Zurück zur Hauptseite"
     }
   },
   "el": {
@@ -8131,6 +8155,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Δημιουργία πορτοφολιού"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Επιστροφή στην κύρια ιστοσελίδα"
     }
   },
   "et": {
@@ -9293,6 +9321,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Loo rahakott"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Tagasi pealehele"
     }
   },
   "fi": {
@@ -10455,6 +10487,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Luo lompakko"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Takaisin pääsivustolle"
     }
   },
   "fr": {
@@ -11617,6 +11653,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Créer un portefeuille"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Retour à la page d'accueil"
     }
   },
   "hu": {
@@ -12779,6 +12819,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Pénztárca létrehozása"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Vissza a főoldalra"
     }
   },
   "id": {
@@ -13941,6 +13985,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Buat Dompet"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Kembali ke situs utama"
     }
   },
   "it": {
@@ -15103,6 +15151,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Crea un portafoglio"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Torna al sito principale"
     }
   },
   "iw": {
@@ -16265,6 +16317,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "יצירת ארנק"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "חזרה לאתר הראשי"
     }
   },
   "ja": {
@@ -17427,6 +17483,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "ウォレットを作成する"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "メインサイトに戻る"
     }
   },
   "ko": {
@@ -18589,6 +18649,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "지갑 만들기"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "메인 사이트로 돌아가기"
     }
   },
   "lt": {
@@ -19751,6 +19815,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Sukurti piniginę"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Grįžti į pagrindinį puslapį"
     }
   },
   "lv": {
@@ -20913,6 +20981,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Izveidot elektronisko maku"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Atgriezties uz galveno lapu"
     }
   },
   "nl": {
@@ -22075,6 +22147,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Portemonnee aanmaken"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Terug naar de hoofdpagina"
     }
   },
   "no": {
@@ -23237,6 +23313,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Opprett lommebok"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Tilbake til hovedsiden"
     }
   },
   "pl": {
@@ -24399,6 +24479,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Utwórz portfel"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Powrót do strony głównej"
     }
   },
   "ro": {
@@ -25561,6 +25645,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Creează un portofel"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Înapoi la pagina principală"
     }
   },
   "ru": {
@@ -26723,6 +26811,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Создать кошелек"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Вернуться на главную страницу"
     }
   },
   "sk": {
@@ -27885,6 +27977,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Vytvoriť peňaženku"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Späť na hlavnú stránku"
     }
   },
   "sl": {
@@ -29047,6 +29143,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Ustvari denarnico"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Nazaj na glavno stran"
     }
   },
   "sv": {
@@ -30209,6 +30309,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Skapa plånbok"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Tillbaka till huvudsidan"
     }
   },
   "tr": {
@@ -31371,6 +31475,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Cüzdan Oluştur"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Ana sayfaya dön"
     }
   },
   "uk": {
@@ -32533,6 +32641,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Створити гаманець"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Повернутися на головну сторінку"
     }
   },
   "vi": {
@@ -33695,6 +33807,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "Tạo Ví"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "Quay lại trang chủ"
     }
   },
   "zh-CN": {
@@ -34857,6 +34973,10 @@
     "vaultSetup.createWalletCta": {
       "enHash": "726aa71c01d0a369",
       "value": "创建钱包"
+    },
+    "settings.backToWebsite": {
+      "enHash": "664d4ef1bee922da",
+      "value": "返回主站"
     }
   }
 }

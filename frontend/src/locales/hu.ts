@@ -179,6 +179,7 @@ export default {
     themeLabel: 'Téma',
     themeLight: 'Fény',
     themeDark: 'Sötét',
+    backToWebsite: 'Vissza a főoldalra',
   },
   transactions: {
     title: 'Tranzakciók',

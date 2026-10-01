@@ -12,6 +12,8 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write --experimental-cli src/",
+    "sync-locales": "node scripts/sync-locales.mjs",
+    "sync-locales:dry-run": "node scripts/sync-locales.mjs --dry-run",
     "deploy": "run-s build deploy-only",
     "deploy-only": "wrangler pages deploy dist --project-name=wwwallet-website --branch=main"
   },

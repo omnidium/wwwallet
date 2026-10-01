@@ -19,14 +19,10 @@ const activity = chainData.activityByAddress[chainData.keyFor(chain, address)]
     <h1 class="text-h5">{{ t('transactions.title') }}</h1>
     <template v-if="activity">
       <v-list v-if="activity.transactions.length">
-        <v-list-item
-          v-for="txn in activity.transactions"
-          :key="txn.hash"
-          :title="`${formatAmount(Number(txn.value))} ${txn.asset}`"
-          :subtitle="truncateAddress(txn.hash)"
+        <v-list-item v-for="txn in activity.transactions" :key="txn.hash"
+          :title="`${formatAmount(Number(txn.value))} ${txn.asset}`" :subtitle="truncateAddress(txn.hash)"
           :prepend-icon="txn.from.toLowerCase() === address.toLowerCase() ? 'mdi-tray-arrow-up' : 'mdi-tray-arrow-down'"
-          :base-color="txn.from.toLowerCase() === address.toLowerCase() ? 'send' : 'receive'"
-        />
+          :base-color="txn.from.toLowerCase() === address.toLowerCase() ? 'send' : 'receive'" />
       </v-list>
       <p v-else class="text-medium-emphasis mt-4">{{ t('transactions.empty') }}</p>
     </template>

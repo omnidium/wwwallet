@@ -171,6 +171,7 @@ export default {
     themeLabel: '主题',
     themeLight: '光',
     themeDark: '黑暗',
+    backToWebsite: '返回主站',
   },
   transactions: {
     title: '交易',

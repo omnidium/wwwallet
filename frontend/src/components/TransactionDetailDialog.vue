@@ -18,7 +18,7 @@ const { t } = useI18n({ useScope: 'global' })
 
 <template>
   <v-dialog :model-value="modelValue" max-width="480" @update:model-value="emit('update:modelValue', $event)">
-    <v-card v-if="transaction" class="pa-2">
+    <v-card v-if="transaction" class="pa-2 txn-detail-card">
       <v-card-title>{{ t('transactionDetail.title') }}</v-card-title>
       <v-card-text>
         <table class="txn-details">
@@ -28,7 +28,7 @@ const { t } = useI18n({ useScope: 'global' })
               <td>
                 <a :href="txnUrl(props.chain, transaction.hash)" target="_blank" rel="noopener noreferrer">{{
                   truncateAddress(transaction.hash)
-                  }}</a>
+                }}</a>
               </td>
             </tr>
             <tr>
@@ -52,7 +52,7 @@ const { t } = useI18n({ useScope: 'global' })
               <td>
                 <a :href="addressUrl(props.chain, transaction.from)" target="_blank" rel="noopener noreferrer">{{
                   addressDisplayLabel(props.chain, transaction.from)
-                  }}</a>
+                }}</a>
               </td>
             </tr>
             <tr v-if="transaction.to">
@@ -60,7 +60,7 @@ const { t } = useI18n({ useScope: 'global' })
               <td>
                 <a :href="addressUrl(props.chain, transaction.to)" target="_blank" rel="noopener noreferrer">{{
                   addressDisplayLabel(props.chain, transaction.to)
-                  }}</a>
+                }}</a>
               </td>
             </tr>
             <tr>

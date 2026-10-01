@@ -176,6 +176,7 @@ export default {
     themeLabel: '주제',
     themeLight: '빛',
     themeDark: '어둠',
+    backToWebsite: '메인 사이트로 돌아가기',
   },
   transactions: {
     title: '거래 내역',

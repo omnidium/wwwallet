@@ -178,6 +178,7 @@ export default {
     themeLabel: 'Thema',
     themeLight: 'Licht',
     themeDark: 'Donker',
+    backToWebsite: 'Terug naar de hoofdpagina',
   },
   transactions: {
     title: 'Transacties',

@@ -177,6 +177,7 @@ export default {
     themeLabel: 'الموضوع',
     themeLight: 'الضوء',
     themeDark: 'مظلم',
+    backToWebsite: 'العودة إلى الموقع الرئيسي',
   },
   transactions: {
     title: 'المعاملات',

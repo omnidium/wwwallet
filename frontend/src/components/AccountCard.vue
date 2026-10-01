@@ -203,7 +203,7 @@ function openInNewTab(url: string): void {
       <span v-if="account.isDefault" class="mr-1">*</span>
       <AppTooltip :text="t('accountCard.viewOnEtherscan')">
         <template #default="{ activatorProps }">
-          <p class="account-name flex-grow-0 text-truncate" style="cursor: pointer" v-bind="activatorProps"
+          <p class="account-name grow-0 text-truncate" style="cursor: pointer" v-bind="activatorProps"
             @click="openInNewTab(addressUrl(props.account.chain, props.account.address))">
             {{ account.label }}
           </p>
@@ -230,7 +230,7 @@ function openInNewTab(url: string): void {
             :aria-busy="refreshing" @click="refreshAccount" />
         </template>
       </AppTooltip>
-      <p class="flex-grow-1"></p>
+      <p class="grow"></p>
       <AppTooltip :text="t('accountCard.send')">
         <template #default="{ activatorProps }">
           <v-icon v-bind="activatorProps" icon="mdi-send" size="large" class="mr-5 transfer-handle" role="button"
@@ -263,7 +263,7 @@ function openInNewTab(url: string): void {
 
     <div class="balance-row pa-3 d-flex align-center" @click="expandedTxns = !expandedTxns">
       <v-icon icon="mdi-wallet" class="mr-2" />
-      <div class="flex-grow-1">
+      <div class="grow">
         <span v-if="activity === undefined" class="skeleton-row" />
         <template v-else>
           <span class="balance-figure">{{ fiatTotal ?? '—' }}</span>
@@ -279,22 +279,24 @@ function openInNewTab(url: string): void {
       </AppTooltip>
     </div>
 
-    <div v-if="expandedTxns" ref="expandedListEl" class="expanded-list pa-2">
+    <div v-if="expandedTxns">
       <v-switch v-model="hideDustTxns" :label="t('accountCard.hideDustTxns')" density="compact" hide-details
-        color="primary" class="dust-toggle" />
-      <template v-for="group in transactionGroups" :key="group.dateLabel">
-        <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
-        <TransactionRow v-for="txn in group.transactions" :key="txn.hash" :transaction="txn"
-          :my-address="account.address" :chain="account.chain" @click="emit('openTransaction', txn)" />
-      </template>
-      <div v-if="activity === undefined" class="d-flex justify-center pa-2">
-        <v-progress-circular indeterminate size="20" width="2" color="primary" />
-      </div>
-      <p v-else-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
-        {{ t('transactions.empty') }}
-      </p>
-      <div v-if="loadingMoreTxns" class="d-flex justify-center pa-2">
-        <v-progress-circular indeterminate size="20" width="2" color="primary" />
+        color="primary" class="dust-toggle pa-2" />
+      <div ref="expandedListEl" class="expanded-list pa-2">
+        <template v-for="group in transactionGroups" :key="group.dateLabel">
+          <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
+          <TransactionRow v-for="txn in group.transactions" :key="txn.hash" :transaction="txn"
+            :my-address="account.address" :chain="account.chain" @click="emit('openTransaction', txn)" />
+        </template>
+        <div v-if="activity === undefined" class="d-flex justify-center pa-2">
+          <v-progress-circular indeterminate size="20" width="2" color="primary" />
+        </div>
+        <p v-else-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
+          {{ t('transactions.empty') }}
+        </p>
+        <div v-if="loadingMoreTxns" class="d-flex justify-center pa-2">
+          <v-progress-circular indeterminate size="20" width="2" color="primary" />
+        </div>
       </div>
     </div>
 
@@ -316,22 +318,24 @@ function openInNewTab(url: string): void {
       </template>
     </div>
 
-    <div v-if="expandedTokens" class="expanded-list pa-2">
+    <div v-if="expandedTokens">
       <v-switch v-model="hideUnknownTokens" :label="t('accountCard.hideUnknownTokens')" density="compact" hide-details
         color="primary" class="dust-toggle" />
-      <v-list-item v-for="tokenRow in visibleTokenRows" :key="tokenRow.contractAddress"
-        :to="`/tokens/${account.chain}/${tokenRow.contractAddress}?holder=${account.address}`" density="compact">
-        <template #prepend>
-          <v-avatar v-if="tokenRow.logoUrl" :image="tokenRow.logoUrl" size="24" />
-          <v-icon v-else icon="mdi-cash" size="24" />
-        </template>
-        <v-list-item-title>{{ tokenRow.name ?? tokenRow.symbol }} ({{ formatAmount(tokenRow.amount) }} {{
-          tokenRow.symbol
+      <div class="expanded-list pa-2">
+        <v-list-item v-for="tokenRow in visibleTokenRows" :key="tokenRow.contractAddress"
+          :to="`/tokens/${account.chain}/${tokenRow.contractAddress}?holder=${account.address}`" density="compact">
+          <template #prepend>
+            <v-avatar v-if="tokenRow.logoUrl" :image="tokenRow.logoUrl" size="24" />
+            <v-icon v-else icon="mdi-cash" size="24" />
+          </template>
+          <v-list-item-title>{{ tokenRow.name ?? tokenRow.symbol }} ({{ formatAmount(tokenRow.amount) }} {{
+            tokenRow.symbol
           }})</v-list-item-title>
-        <template #append>
-          <span v-if="tokenRow.fiat">{{ tokenRow.fiat }}</span>
-        </template>
-      </v-list-item>
+          <template #append>
+            <span v-if="tokenRow.fiat">{{ tokenRow.fiat }}</span>
+          </template>
+        </v-list-item>
+      </div>
     </div>
 
     <EditAccountDialog v-model="editOpen" :account="account" />

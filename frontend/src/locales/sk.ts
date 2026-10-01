@@ -177,6 +177,7 @@ export default {
     themeLabel: 'Téma',
     themeLight: 'Svetlo',
     themeDark: 'Tma',
+    backToWebsite: 'Späť na hlavnú stránku',
   },
   transactions: {
     title: 'Transakcie',

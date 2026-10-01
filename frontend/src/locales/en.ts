@@ -1,3 +1,5 @@
+// AUTO-GENERATED from shared/i18n/master_en.ts — do not edit directly.
+// Edit that file instead, then run `node scripts/sync-i18n.mjs` from the repo root.
 export default {
   common: {
     cancel: 'Cancel',
@@ -99,6 +101,8 @@ export default {
     sell: 'Sell',
     buy: 'Buy',
     price: 'Price',
+    swapFee: 'Swap fee',
+    integratorFee: 'Service fee',
   },
   addAccount: {
     title: 'Add account',
@@ -156,6 +160,9 @@ export default {
     viewOnExplorer: 'View token on block explorer',
     getQuote: 'Get quote',
     estimateText: 'Estimated to receive: {amount} at price {price}',
+    estimatedFee: 'Estimated network fee: {fee}',
+    swapFee: 'Swap fee: {fee}',
+    integratorFee: 'Service fee: {fee}',
     signingNotice: "You're signing a transaction to contract {address} (via the 0x aggregator).",
     submit: 'Swap',
   },
@@ -224,6 +231,7 @@ export default {
     themeDark: 'Dark',
     closeAria: 'Close settings',
     lockNow: 'Lock now',
+    backToWebsite: 'Back to main site',
     languageLabel: 'Language',
     currencyLabel: 'Currency',
     transactionBatchSizeLabel: 'Transactions per load',

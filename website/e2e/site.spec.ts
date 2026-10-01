@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('loads and shows the hero heading', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('heading1', { level: 1 })).toContainText('Your keys.')
+  await expect(page.getByRole('heading', { level: 1 }).first()).toContainText('Your keys.')
 })
 
 test('nav links scroll to their section', async ({ page }) => {

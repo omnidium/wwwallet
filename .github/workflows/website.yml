@@ -4,10 +4,14 @@ on:
   push:
     paths:
       - 'website/**'
+      - 'shared/i18n/**'
+      - 'scripts/**'
       - '.github/workflows/website.yml'
   pull_request:
     paths:
       - 'website/**'
+      - 'shared/i18n/**'
+      - 'scripts/**'
       - '.github/workflows/website.yml'
   workflow_dispatch:
 
@@ -25,6 +29,10 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
       - run: npm ci
+      # Offline, no DEEPL_API_KEY needed — fails loudly if en.ts has drifted
+      # from shared/i18n/master_en.ts, or if a locale file is out of sync
+      # with en.ts — same check as frontend's own (see that workflow).
+      - run: node ../scripts/sync-i18n.mjs --check --project=website
       - run: npm run type-check
       - run: npm run lint
       - run: npx playwright install --with-deps chromium

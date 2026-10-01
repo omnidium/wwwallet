@@ -178,6 +178,7 @@ export default {
     themeLabel: 'Θέμα',
     themeLight: 'Φως',
     themeDark: 'Σκοτεινό',
+    backToWebsite: 'Επιστροφή στην κύρια ιστοσελίδα',
   },
   transactions: {
     title: 'Συναλλαγές',

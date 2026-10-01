@@ -24,11 +24,13 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
       - run: npm ci
-      # Offline, no DEEPL_API_KEY needed — just fails loudly if en.ts picked
-      # up a string that never got run through scripts/sync-locales.mjs, so
-      # a locale silently falling back to English (see that script's own
-      # comment) gets caught here instead of shipping unnoticed.
-      - run: node scripts/sync-locales.mjs --check
+      # Offline, no DEEPL_API_KEY needed — fails loudly if en.ts has drifted
+      # from shared/i18n/master_en.ts (the real source of truth), or if a
+      # locale file picked up a string that never got run through the DeepL
+      # sync, so a locale silently falling back to English (see
+      # scripts/lib/localeSync.mjs's own comment) gets caught here instead
+      # of shipping unnoticed.
+      - run: node ../scripts/sync-i18n.mjs --check --project=frontend
       - run: npm run type-check
       - run: npm run lint
       - run: npx vitest run

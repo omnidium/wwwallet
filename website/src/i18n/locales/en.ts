@@ -1,3 +1,5 @@
+// AUTO-GENERATED from shared/i18n/master_en.ts — do not edit directly.
+// Edit that file instead, then run `node scripts/sync-i18n.mjs` from the repo root.
 export default {
   nav: {
     wallet: 'Wallet',

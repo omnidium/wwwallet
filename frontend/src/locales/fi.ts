@@ -178,6 +178,7 @@ export default {
     themeLabel: 'Teema',
     themeLight: 'Valo',
     themeDark: 'Pimeä',
+    backToWebsite: 'Takaisin pääsivustolle',
   },
   transactions: {
     title: 'Tapahtumat',
