@@ -195,23 +195,7 @@ function lockNow() {
   margin: 0;
 }
 
-.close-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: none;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--text);
-  font-size: 20px;
-  cursor: pointer;
-}
 
-.close-btn:hover {
-  background: rgb(var(--border-rgb) / 8%);
-}
 
 /* Theme/Language/Currency each get their own section — a bottom border
  * (rather than between every pair, to avoid a trailing line under the last

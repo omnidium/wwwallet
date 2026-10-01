@@ -72,10 +72,13 @@ onMounted(async () => {
     await Promise.all([
       chainData.loadFxRates(),
       ...[...chains].map((c) => chainData.loadNativePrice(c)),
-      ...accounts.accounts.map((a) => chainData.loadAddressActivity(a.chain, a.address)),
+      // Fresh balances for the inline checks; held tokens' metadata is
+      // refreshed by the accounts screen, and the watchers below fill in any
+      // token it hasn't resolved at all yet.
+      ...accounts.accounts.map((a) => chainData.loadAddressActivity(a.chain, a.address, { refreshTokenMetadata: false })),
     ])
   } catch {
-    // Balances/fiat rows just won't be available for inline checks.
+    // Balances/fiat rows fall back to cached data for inline checks.
   }
 })
 
@@ -181,16 +184,13 @@ const selectedToken = computed(
     null,
 )
 
-// Lazy-load metadata (symbol/decimals/logo/price) for every held ERC-20 token —
-// same pattern as AccountCard.vue.
+// Metadata (symbol/decimals/logo/price) for any held ERC-20 token the
+// accounts screen's own refresh hasn't resolved at all yet.
 watch(
   () => activity.value?.balances ?? [],
   (balances) => {
     for (const b of balances) {
-      if (!b.contract_address) continue
-      const key = chainData.keyFor(sendChain.value, b.contract_address)
-      if (!chainData.tokenMetadataByKey[key])
-        void chainData.loadTokenMetadata(sendChain.value, b.contract_address)
+      if (b.contract_address) void chainData.ensureTokenMetadata(sendChain.value, b.contract_address)
     }
   },
   { immediate: true },
@@ -593,9 +593,9 @@ async function confirmSend() {
     }
     // Refreshes both the transaction list (replacing the pending placeholder
     // with the real, mined entry) and balances, regardless of outcome — a
-    // failed send still spent gas.
-    void chainData.loadAddressActivity(txChain, fromAccount.address)
-    if (toOwnAccount) void chainData.loadAddressActivity(txChain, toAddress)
+    // failed send still spent gas. Best-effort, same as the periodic refresh.
+    chainData.loadAddressActivity(txChain, fromAccount.address).catch(() => {})
+    if (toOwnAccount) chainData.loadAddressActivity(txChain, toAddress).catch(() => {})
   } catch (err) {
     messages.update(msgId, displayErrorMessage(err), 'error')
     sendBusy.value = false
@@ -677,9 +677,7 @@ watch(
   () => swapActivity.value?.balances ?? [],
   (balances) => {
     for (const b of balances) {
-      if (!b.contract_address) continue
-      const key = chainData.keyFor(chain, b.contract_address)
-      if (!chainData.tokenMetadataByKey[key]) void chainData.loadTokenMetadata(chain, b.contract_address)
+      if (b.contract_address) void chainData.ensureTokenMetadata(chain, b.contract_address)
     }
   },
   { immediate: true },
@@ -859,7 +857,7 @@ async function onSwapClick() {
         // approval actually mines — re-fetch it so the review dialog and the
         // transaction actually signed reflect current market conditions
         // rather than a stale price.
-        await Promise.all([chainData.loadAddressActivity(chain, address), getQuote()])
+        await Promise.all([chainData.loadAddressActivity(chain, address, { refreshTokenMetadata: false }), getQuote()])
       }
     }
 
@@ -934,7 +932,8 @@ async function confirmSwap() {
     } else {
       messages.update(msgId, t('msg.swap.stillPending', { hash: transaction_hash }), 'warning')
     }
-    void chainData.loadAddressActivity(chain, address)
+    // Also picks up the bought token's metadata, which may be new to this account.
+    chainData.loadAddressActivity(chain, address).catch(() => {})
   } catch (err) {
     messages.update(msgId, displayErrorMessage(err), 'error')
     swapBusy.value = false

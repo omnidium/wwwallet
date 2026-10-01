@@ -1,8 +1,14 @@
-import type { FxRates } from '@/services/api'
+import type { Balance, FxRates, TokenMetadata } from '@/services/api'
 
 /** Not BigInt-exact — matches the same display-only precision tradeoff SendView already makes elsewhere in this app. */
 export function toHumanAmount(rawBalance: string, decimals: number): number {
   return Number(rawBalance) / 10 ** decimals
+}
+
+/** A held ERC-20's USD value at its last-known price — null while no price is known. */
+export function tokenUsdValue(balance: Balance, metadata: TokenMetadata | undefined): number | null {
+  if (metadata?.usd_price == null) return null
+  return toHumanAmount(balance.balance, metadata.decimals ?? balance.decimals) * metadata.usd_price
 }
 
 /**

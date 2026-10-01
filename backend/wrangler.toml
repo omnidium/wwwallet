@@ -13,12 +13,8 @@ command = "worker-build --release"
 #CORS_ALLOWED_ORIGINS = "https://wwwallet.me,https://www.wwwallet.me,https://main.wwwallet.pages.dev,https://wwwallet.pages.dev"
 CORS_ALLOWED_ORIGINS = "https://app.wwwallet.me,https://wwwallet.me,https://www.wwwallet.me,https://main.wwwallet.pages.dev,https://wwwallet.pages.dev"
 
-
-# Create with `wrangler kv namespace create CACHE`, then paste the returned id
-# below. Used for short-TTL caching of provider responses — see providers/src/cache.rs.
-[[kv_namespaces]]
-binding = "CACHE"
-id = "d55b9cdf94e74f2c820845159cca7528"
+# No KV namespace / server-side cache of any kind: every request goes straight
+# to its upstream provider, and the client keeps the only (persistent) copy.
 
 # Every route here is an unauthenticated proxy in front of metered third-party
 # APIs paid for by this deployment's own keys — CORS only stops browsers on
@@ -32,14 +28,12 @@ id = "d55b9cdf94e74f2c820845159cca7528"
 # `namespace_id` is just a locally-unique small integer per binding, chosen by
 # us — it's not a KV namespace and doesn't need to be created beforehand.
 #
-# This budget is now spent only on genuine cache misses (see registry.rs) —
-# an address holding many tokens (airdropped dust included) can easily need
-# 50-100+ distinct, never-before-cached token-metadata lookups on its very
-# first load, all of which are legitimate, so 30/60s left real wallets stuck
-# retrying indefinitely. A single wallet spanning several accounts, each
-# holding that many tokens, shares this one per-IP budget across all of them
-# (see check_rate_limit's key), so 120 still wasn't enough headroom in
-# practice — raised further for that case.
+# Counted per route per client IP (see check_rate_limit), on every request —
+# there's no server-side cache in front of any route. The busiest route is
+# token_metadata: every account refresh re-fetches every held token's
+# metadata (one request per token, airdropped dust included), and a single
+# wallet spanning several accounts shares this one per-IP budget across all
+# of them — 30, then 120 left real wallets stuck retrying, hence 300.
 [[ratelimits]]
 name = "RATE_LIMITER_DEFAULT"
 namespace_id = "1001"

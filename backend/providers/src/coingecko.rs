@@ -23,9 +23,9 @@ struct SimplePriceEntry {
     usd: f64,
 }
 
-/// CoinGecko's free, keyless `/simple/price` endpoint — fine for this at low
-/// volume since the registry caches every result (see cache::NATIVE_PRICE_TTL),
-/// so most requests never actually reach CoinGecko at all.
+/// CoinGecko's free, keyless `/simple/price` endpoint. It rate-limits the
+/// shared IP ranges Workers' outbound fetches come from fairly readily, so
+/// the registry falls back to Alchemy's Prices API whenever this fails.
 #[derive(Default)]
 pub struct CoinGeckoProvider;
 

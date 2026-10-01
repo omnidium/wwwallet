@@ -8,6 +8,7 @@ import router from './router'
 import vuetify from './plugins/vuetify'
 import { i18n } from './i18n'
 import { setupPwaUpdates } from './services/pwaUpdate'
+import { secureClientStorage } from './services/db'
 
 const app = createApp(App)
 
@@ -19,3 +20,4 @@ app.use(i18n)
 app.mount('#app')
 
 setupPwaUpdates()
+void secureClientStorage()

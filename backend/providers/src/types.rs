@@ -75,6 +75,44 @@ pub struct TokenMetadata {
     pub usd_price: Option<f64>,
 }
 
+impl TokenMetadata {
+    /// Nothing resolved yet — the starting point when the primary source has
+    /// nothing at all to say about a token, for later sources to fill in.
+    pub fn unresolved(address: &str) -> Self {
+        Self {
+            address: address.to_string(),
+            name: None,
+            symbol: None,
+            decimals: None,
+            logo_url: None,
+            usd_price: None,
+        }
+    }
+
+    /// Whether any field other than the price is still unknown.
+    pub fn lacks_descriptive_fields(&self) -> bool {
+        self.name.is_none() || self.symbol.is_none() || self.decimals.is_none() || self.logo_url.is_none()
+    }
+
+    pub fn is_unresolved(&self) -> bool {
+        self.name.is_none()
+            && self.symbol.is_none()
+            && self.decimals.is_none()
+            && self.logo_url.is_none()
+            && self.usd_price.is_none()
+    }
+
+    /// Fills only the fields this one is still missing — anything already
+    /// resolved by an earlier (preferred) source is never overwritten.
+    pub fn fill_missing_from(&mut self, other: TokenMetadata) {
+        self.name = self.name.take().or(other.name);
+        self.symbol = self.symbol.take().or(other.symbol);
+        self.decimals = self.decimals.or(other.decimals);
+        self.logo_url = self.logo_url.take().or(other.logo_url);
+        self.usd_price = self.usd_price.or(other.usd_price);
+    }
+}
+
 /// One entry from a chain's token list, used for symbol/name search (the
 /// swap panel's token picker). See tokenlist.rs.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -145,4 +183,41 @@ pub struct FxRates {
     pub base: String,
     pub rates: std::collections::HashMap<String, f64>,
     pub as_of_unix: i64,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn metadata(name: Option<&str>, logo: Option<&str>, usd_price: Option<f64>) -> TokenMetadata {
+        TokenMetadata {
+            address: "0xtoken".to_string(),
+            name: name.map(str::to_string),
+            symbol: None,
+            decimals: None,
+            logo_url: logo.map(str::to_string),
+            usd_price,
+        }
+    }
+
+    #[test]
+    fn fill_missing_from_only_fills_gaps_and_never_overwrites() {
+        let mut primary = metadata(Some("Primary"), None, Some(1.5));
+        primary.fill_missing_from(metadata(Some("Fallback"), Some("https://logo"), Some(9.0)));
+
+        assert_eq!(primary.name.as_deref(), Some("Primary"));
+        assert_eq!(primary.logo_url.as_deref(), Some("https://logo"));
+        assert_eq!(primary.usd_price, Some(1.5));
+    }
+
+    #[test]
+    fn unresolved_reports_true_until_any_field_is_known() {
+        let mut token = TokenMetadata::unresolved("0xtoken");
+        assert!(token.is_unresolved());
+        assert!(token.lacks_descriptive_fields());
+
+        token.usd_price = Some(1.0);
+        assert!(!token.is_unresolved());
+        assert!(token.lacks_descriptive_fields(), "a price alone isn't a name/symbol/decimals/logo");
+    }
 }

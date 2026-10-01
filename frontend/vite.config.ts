@@ -61,15 +61,12 @@ export default defineConfig({
           { src: '/icons/icon-inv-512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
+      // No runtime caching of API responses: provider data is cached in
+      // exactly one place, IndexedDB (see stores/chainData.ts). A service
+      // worker cache in front of it would hand back old responses as if they
+      // were fresh whenever the network is slow.
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
-        runtimeCaching: [
-          {
-            urlPattern: ({ url }) => url.pathname.startsWith('/api/v1/chains/'),
-            handler: 'NetworkFirst',
-            options: { cacheName: 'chain-data', networkTimeoutSeconds: 5 },
-          },
-        ],
       },
     }),
   ],

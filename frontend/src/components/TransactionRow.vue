@@ -27,16 +27,14 @@ function logoUrlFor(contractAddress: string | null): string | null {
 const soldLogoUrl = computed(() => logoUrlFor(props.transaction.contract_address))
 const boughtLogoUrl = computed(() => logoUrlFor(props.transaction.counter_contract_address))
 
-// Lazy-load metadata for both swap legs the first time this row appears —
-// a token bought in a swap may never have been held before, so it isn't
-// necessarily already cached the way an account's own balances are.
+// Both swap legs' metadata, if nothing's known about them yet — a token
+// bought in a swap may never have been held, so the account refresh (which
+// covers held tokens) wouldn't otherwise ever fetch it.
 watch(
   () => [props.transaction.contract_address, props.transaction.counter_contract_address] as const,
   ([sold, bought]) => {
     for (const contractAddress of [sold, bought]) {
-      if (!contractAddress) continue
-      const key = chainData.keyFor(props.chain, contractAddress)
-      if (!chainData.tokenMetadataByKey[key]) void chainData.loadTokenMetadata(props.chain, contractAddress)
+      if (contractAddress) void chainData.ensureTokenMetadata(props.chain, contractAddress)
     }
   },
   { immediate: true },

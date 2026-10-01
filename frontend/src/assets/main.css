@@ -592,3 +592,21 @@ input[type='number'] {
     transform 0.15s ease,
     box-shadow 0.15s ease;
 }
+
+.close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: rgb(var(--border-rgb) / 8%);
+}

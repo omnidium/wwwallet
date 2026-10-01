@@ -33,7 +33,8 @@ pub trait ActivityProvider {
     ) -> ProviderResult<TransactionPage>;
 }
 
-/// Fetches ERC-20 token metadata (name/symbol/decimals/logo). Backed by Ethplorer.
+/// Fetches ERC-20 token metadata (name/symbol/decimals/logo). Backed by
+/// Ethplorer (Ethereum only, with a price), with Alchemy filling the gaps.
 #[async_trait(?Send)]
 pub trait TokenMetadataProvider {
     fn name(&self) -> &'static str;
@@ -42,6 +43,15 @@ pub trait TokenMetadataProvider {
         chain: ChainId,
         contract_address: &str,
     ) -> ProviderResult<TokenMetadata>;
+}
+
+/// Fetches an ERC-20 token's USD price on its own — for tokens whose metadata
+/// source carries no market data (every chain but Ethereum, for Ethplorer).
+/// Backed by Alchemy's Prices API.
+#[async_trait(?Send)]
+pub trait TokenPriceProvider {
+    fn name(&self) -> &'static str;
+    async fn usd_price(&self, chain: ChainId, contract_address: &str) -> ProviderResult<f64>;
 }
 
 /// Fetches verified contract ABIs. Backed by Etherscan (and its per-chain siblings).

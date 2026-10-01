@@ -6,11 +6,12 @@ use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
 use crate::http;
 use crate::traits::{
-    ActivityProvider, AllowanceProvider, TransactionBroadcaster, TransactionPrepProvider,
-    TransactionStatusProvider,
+    ActivityProvider, AllowanceProvider, NativePriceProvider, TokenMetadataProvider,
+    TokenPriceProvider, TransactionBroadcaster, TransactionPrepProvider, TransactionStatusProvider,
 };
 use crate::types::{
-    AddressActivity, Balance, Transaction, TransactionPage, TransactionPrep, TransactionStatus,
+    AddressActivity, Balance, NativePrice, TokenMetadata, Transaction, TransactionPage,
+    TransactionPrep, TransactionStatus,
 };
 
 /// How many raw transfers to ask Alchemy for per direction (sent/received) on
@@ -92,6 +93,27 @@ impl AlchemyProvider {
             chain.alchemy_slug(),
             self.api_key
         )
+    }
+
+    fn prices_url(&self, path: &str) -> String {
+        format!("https://api.g.alchemy.com/prices/v1/{}/{path}", self.api_key)
+    }
+
+    /// The Prices API returns one entry per requested token, each carrying a
+    /// list of per-currency prices as decimal strings (or an `error` and an
+    /// empty list when it has no market for that token).
+    fn first_usd_price(resp: &Value) -> Option<f64> {
+        resp.get("data")?
+            .as_array()?
+            .first()?
+            .get("prices")?
+            .as_array()?
+            .iter()
+            .find(|p| p.get("currency").and_then(Value::as_str) == Some("usd"))?
+            .get("value")?
+            .as_str()?
+            .parse()
+            .ok()
     }
 
     async fn rpc_call(&self, chain: ChainId, method: &str, params: Value) -> ProviderResult<Value> {
@@ -384,6 +406,80 @@ impl ActivityProvider for AlchemyProvider {
     }
 }
 
+/// Covers every chain this backend supports (unlike Ethplorer), straight from
+/// the token contract itself plus Alchemy's own logo index — so a logo is the
+/// field most often left empty here.
+#[async_trait(?Send)]
+impl TokenMetadataProvider for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn token_metadata(
+        &self,
+        chain: ChainId,
+        contract_address: &str,
+    ) -> ProviderResult<TokenMetadata> {
+        let resp = self
+            .rpc_call(chain, "alchemy_getTokenMetadata", json!([contract_address]))
+            .await?;
+        let non_empty = |field: &str| {
+            resp.get(field)
+                .and_then(Value::as_str)
+                .filter(|s| !s.trim().is_empty())
+                .map(str::to_string)
+        };
+        Ok(TokenMetadata {
+            address: contract_address.to_string(),
+            name: non_empty("name"),
+            symbol: non_empty("symbol"),
+            decimals: resp
+                .get("decimals")
+                .and_then(Value::as_u64)
+                .and_then(|d| u8::try_from(d).ok()),
+            logo_url: non_empty("logo"),
+            usd_price: None,
+        })
+    }
+}
+
+#[async_trait(?Send)]
+impl TokenPriceProvider for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn usd_price(&self, chain: ChainId, contract_address: &str) -> ProviderResult<f64> {
+        let body = json!({
+            "addresses": [{ "network": chain.alchemy_slug(), "address": contract_address }],
+        });
+        let resp: Value = http::post_json(&self.prices_url("tokens/by-address"), &body).await?;
+        Self::first_usd_price(&resp).ok_or(ProviderError::Unavailable)
+    }
+}
+
+/// Fallback for CoinGecko's keyless endpoint, which rate-limits the shared IP
+/// ranges Workers' outbound fetches come from. Alchemy accepts "MATIC" as an
+/// alias for POL, so `native_symbol` works as-is for every chain.
+#[async_trait(?Send)]
+impl NativePriceProvider for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn native_price(&self, chain: ChainId) -> ProviderResult<NativePrice> {
+        let url = format!(
+            "{}?symbols={}",
+            self.prices_url("tokens/by-symbol"),
+            chain.native_symbol()
+        );
+        let resp: Value = http::get_json(&url).await?;
+        Self::first_usd_price(&resp)
+            .map(|usd| NativePrice { usd })
+            .ok_or(ProviderError::Unavailable)
+    }
+}
+
 #[async_trait(?Send)]
 impl TransactionBroadcaster for AlchemyProvider {
     fn name(&self) -> &'static str {
@@ -547,6 +643,24 @@ mod tests {
     #[test]
     fn pad_address_for_abi_rejects_malformed_addresses() {
         assert!(AlchemyProvider::pad_address_for_abi("0x123").is_err());
+    }
+
+    #[test]
+    fn first_usd_price_reads_the_usd_entry_of_a_prices_api_response() {
+        let priced = json!({ "data": [{
+            "network": "base-mainnet",
+            "prices": [
+                { "currency": "eur", "value": "0.92" },
+                { "currency": "usd", "value": "1.0005" },
+            ],
+        }]});
+        assert_eq!(AlchemyProvider::first_usd_price(&priced), Some(1.0005));
+
+        let unpriced = json!({ "data": [{
+            "prices": [],
+            "error": { "message": "Price not found" },
+        }]});
+        assert_eq!(AlchemyProvider::first_usd_price(&unpriced), None);
     }
 
     fn sample_leg(hash: &str, from: &str, to: &str, asset: &str) -> Transaction {

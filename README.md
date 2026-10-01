@@ -7,7 +7,7 @@ Full design rationale and phased migration plan: see the plan history in this re
 ## Design principles
 
 - **Trustless by design**: the backend never sees a private key, mnemonic, password, passphrase, TOTP secret, or WebAuthn credential. It has no database and no user/account concept at all — it only proxies public blockchain/fx data. A full compromise of the backend exposes nothing user-specific, because nothing user-specific is stored there.
-- **No local wallet data on the server**: balances, transactions, token metadata, fx rates, and swap quotes are fetched live from external providers (Alchemy, Ethplorer, Etherscan, 0x, a free fx-rate API) on every request, cached briefly in Workers KV where it's safe to (never for quotes/nonces). Nothing is persisted long-term.
+- **No local wallet data on the server**: balances, transactions, token metadata, fx rates, and swap quotes are fetched live from external providers (Alchemy, Ethplorer, Etherscan, 0x, CoinGecko, a free fx-rate API) on every request. The backend caches nothing; the only cache is client-side, in the browser's IndexedDB, where every refresh overwrites it with the freshest data and it's only ever cleared by the user (clearing site data, uninstalling, or deleting the wallet from the device).
 - **Client-side vault**: wallets (encrypted keystores), payees, settings, and the TOTP secret all live in one client-side encrypted vault (IndexedDB), unlocked locally via a passkey-verified gate. Recovery/cross-device continuity happens by restoring an encrypted vault backup from the user's own Google Drive (`appDataFolder`) or a local file — entirely client↔Google, no backend involvement.
 - **Static i18n**: languages, message strings, and currency names are bundled as static TypeScript files (`frontend/src/locales/`), not fetched from a server — there's nothing to fetch, cache, or go offline for.
 - **Multi-chain**: Ethereum mainnet, Polygon, Arbitrum, Base, Optimism.
@@ -16,7 +16,7 @@ Full design rationale and phased migration plan: see the plan history in this re
 
 ```
 backend/            Rust workspace, compiled to a Cloudflare Worker (wasm32) — no database
-  providers/        Alchemy / Ethplorer / Etherscan / 0x / fx-rate provider abstraction + KV caching
+  providers/        Alchemy / Ethplorer / Etherscan / 0x / fx-rate provider abstraction (uncached)
 frontend/           Vue 3 + Vite PWA — the wallet app itself
   src/locales/      Static i18n: en.ts is fully populated, every other locale is a stub
 website/            Vue 3 + Vite public marketing site — deliberately separate from frontend/,
@@ -42,10 +42,9 @@ cargo clippy --all-targets -- -D warnings
 
 ## Backend: deploying
 
-1. `wrangler kv namespace create CACHE` and paste the returned id into `backend/wrangler.toml`'s `[[kv_namespaces]]` block.
-2. `wrangler secret put ALCHEMY_API_KEY` (repeat for `ETHPLORER_API_KEY`, `ETHERSCAN_API_KEY`, `ZEROX_API_KEY`).
-3. Update `CORS_ALLOWED_ORIGINS` in `wrangler.toml` to your actual frontend origin.
-4. `wrangler deploy`.
+1. `wrangler secret put ALCHEMY_API_KEY` (repeat for `ETHPLORER_API_KEY`, `ETHERSCAN_API_KEY`, `ZEROX_API_KEY`).
+2. Update `CORS_ALLOWED_ORIGINS` in `wrangler.toml` to your actual frontend origin.
+3. `wrangler deploy`.
 
 Entirely on Cloudflare's free tier for personal-scale traffic: no database, no server to patch, global edge distribution.
 

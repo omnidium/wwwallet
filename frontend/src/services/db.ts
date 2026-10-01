@@ -77,5 +77,27 @@ db.on('versionchange', () => {
   window.location.reload()
 })
 
+/**
+ * Asks the browser to exempt this origin's storage from automatic eviction
+ * under storage pressure — without it, IndexedDB is only "best-effort" and
+ * can be silently cleared, taking the encrypted vault and every cached
+ * balance, transaction and token with it. Installed PWAs are generally
+ * granted this automatically; elsewhere the browser decides (Firefox asks
+ * the user). Afterward, only the user (clearing site data, uninstalling)
+ * or deleteFromDevice ever removes anything.
+ *
+ * Also drops the service worker's old `chain-data` response cache, from
+ * before provider data was cached in IndexedDB only — Workbox never deletes
+ * a runtime cache it's no longer configured with.
+ */
+export async function secureClientStorage(): Promise<void> {
+  try {
+    if (!(await navigator.storage?.persisted?.())) await navigator.storage?.persist?.()
+  } catch {
+    // Unsupported or refused — storage stays best-effort, nothing else changes.
+  }
+  if ('caches' in window) await caches.delete('chain-data').catch(() => {})
+}
+
 export type { CacheEntry, VaultRecord, LocalWebAuthnCredential, KeyWrap }
 export { db }

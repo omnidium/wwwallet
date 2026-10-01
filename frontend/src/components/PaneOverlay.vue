@@ -16,7 +16,7 @@ function close() {
     <div class="pane-card">
       <AppTooltip :text="t('common.close')" location="bottom">
         <template #default="{ activatorProps }">
-          <v-btn
+          <!-- <v-btn
             v-bind="activatorProps"
             class="pane-close-btn"
             icon="mdi-close"
@@ -24,7 +24,11 @@ function close() {
             size="small"
             :aria-label="t('common.close')"
             @click="close"
-          />
+          /> -->
+          <button v-bind="activatorProps" type="button" class="close-btn pane-close-btn" :aria-label="t('common.close')"
+            @click="close">
+            <i class="mdi mdi-close" aria-hidden="true"></i>
+          </button>
         </template>
       </AppTooltip>
       <slot />

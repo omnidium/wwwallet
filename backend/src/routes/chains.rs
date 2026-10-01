@@ -92,26 +92,14 @@ pub async fn token_metadata(
     ))
 }
 
-#[derive(Deserialize)]
-pub struct TokenSearchQuery {
-    q: String,
-}
-
 #[worker::send]
-pub async fn token_search(
+pub async fn token_list(
     State(state): State<AppState>,
     headers: HeaderMap,
     Path(chain): Path<String>,
-    axum::extract::Query(query): axum::extract::Query<TokenSearchQuery>,
 ) -> Result<Json<Vec<TokenListItem>>, ApiError> {
     let chain = parse_chain(&chain)?;
-    let q = query.q.trim();
-    if q.is_empty() || q.len() > 64 {
-        return Err(ApiError::BadRequest("q must be 1-64 characters".to_string()));
-    }
-    Ok(Json(
-        state.providers.search_tokens(chain, q, client_ip(&headers)).await?,
-    ))
+    Ok(Json(state.providers.token_list(chain, client_ip(&headers)).await?))
 }
 
 #[worker::send]
@@ -307,7 +295,6 @@ pub async fn swap_quote(
                 &query.buy_token,
                 &query.sell_amount,
                 &query.taker_address,
-                client_ip(&headers),
             )
             .await?,
     ))

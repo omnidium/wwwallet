@@ -3,9 +3,9 @@ import { translatedError } from './errors'
 const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8787'
 
 // Retried rather than surfaced immediately: 429 is our own rate limiter
-// (sized for a slow trickle — a wallet with many held tokens can legitimately
-// fire one request per token, see the concurrency-limited caller in
-// AccountCard.vue), and 502/503/504 are the backend's own upstream calls
+// (a wallet with many held tokens legitimately fires one request per token on
+// every refresh, see the concurrency-limited token-metadata loader in
+// stores/chainData.ts), and 502/503/504 are the backend's own upstream calls
 // (e.g. Ethplorer's free-tier API, which has its own separate, tighter rate
 // limit we don't control) failing transiently. Confirmed live: a token
 // metadata request that 502'd succeeded on a plain retry moments later. No
@@ -200,6 +200,6 @@ export const api = {
       sell_amount: sellAmountWei,
       taker_address: takerAddress,
     }),
-  searchTokens: (chain: ChainSlug, query: string) =>
-    getJson<TokenListItem[]>(`/api/v1/chains/${chain}/tokens/search`, { q: query }),
+  /** The chain's whole token list — searched client-side, see services/tokenSearch.ts. */
+  tokenList: (chain: ChainSlug) => getJson<TokenListItem[]>(`/api/v1/chains/${chain}/tokens`),
 }

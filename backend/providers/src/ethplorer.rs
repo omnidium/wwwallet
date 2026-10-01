@@ -40,21 +40,23 @@ impl TokenMetadataProvider for EthplorerProvider {
         if let Some(err) = resp.get("error") {
             return Err(ProviderError::Upstream(err.to_string()));
         }
+        // Blank strings count as missing, so registry.rs's fallback sources
+        // still get a chance to fill them in.
+        let non_empty = |field: &str| {
+            resp.get(field)
+                .and_then(Value::as_str)
+                .filter(|s| !s.trim().is_empty())
+                .map(str::to_string)
+        };
         Ok(TokenMetadata {
             address: contract_address.to_string(),
-            name: resp.get("name").and_then(Value::as_str).map(str::to_string),
-            symbol: resp
-                .get("symbol")
-                .and_then(Value::as_str)
-                .map(str::to_string),
+            name: non_empty("name"),
+            symbol: non_empty("symbol"),
             decimals: resp
                 .get("decimals")
                 .and_then(Value::as_str)
                 .and_then(|d| d.parse().ok()),
-            logo_url: resp
-                .get("image")
-                .and_then(Value::as_str)
-                .map(|p| format!("https://ethplorer.io{p}")),
+            logo_url: non_empty("image").map(|p| format!("https://ethplorer.io{p}")),
             // Ethplorer returns `"price": false` when there's no market data —
             // `.as_f64()` on a JSON bool yields None for free, no extra branch needed.
             usd_price: resp

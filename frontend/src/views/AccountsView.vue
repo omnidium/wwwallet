@@ -61,14 +61,19 @@ function openTransaction(chain: ChainSlug, txn: Transaction) {
   detailOpen.value = true
 }
 
+// Settles every load before reporting any failure, so one account's (or one
+// feed's) error neither cuts the others short nor skips the default-account
+// reconcile — anything that failed keeps showing its last-known cached data.
 async function loadAllData() {
   const chains = new Set(accounts.accounts.map((a) => a.chain))
-  await Promise.all([
+  const results = await Promise.allSettled([
     chainData.loadFxRates('USD'),
     ...[...chains].map((chain) => chainData.loadNativePrice(chain)),
     ...accounts.accounts.map((a) => chainData.loadAddressActivity(a.chain, a.address)),
   ])
   await reconcile()
+  const failure = results.find((r) => r.status === 'rejected')
+  if (failure) throw failure.reason
 }
 
 async function refresh() {

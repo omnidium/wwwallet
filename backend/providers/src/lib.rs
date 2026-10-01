@@ -1,5 +1,4 @@
 pub mod alchemy;
-pub mod cache;
 pub mod chain;
 pub mod coingecko;
 pub mod error;

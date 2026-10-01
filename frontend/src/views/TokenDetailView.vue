@@ -40,21 +40,23 @@ const holderAddress = typeof route.query.holder === 'string' ? route.query.holde
 const metadata = computed(() => chainData.tokenMetadataByKey[chainData.keyFor(chain, address)] ?? null)
 const loading = ref(true)
 
+// Everything below renders straight from the persistent cache first; these
+// only refresh it. The holder's other tokens aren't shown here, so their
+// metadata is left to the accounts screen's own refresh.
 onMounted(async () => {
-  try {
-    await chainData.loadTokenMetadata(chain, address)
-  } catch (err) {
-    messages.push(displayErrorMessage(err), 'error')
-  } finally {
-    loading.value = false
-  }
-  try {
-    const loaders = [chainData.loadFxRates()]
-    if (holderAddress) loaders.push(chainData.loadAddressActivity(chain, holderAddress))
-    await Promise.all(loaders)
-  } catch {
-    // Amount-held/total rows just won't render without this.
-  }
+  const metadataLoad = chainData
+    .loadTokenMetadata(chain, address)
+    .catch((err) => {
+      // Only worth interrupting the user over when there's nothing at all to show.
+      if (!metadata.value) messages.push(displayErrorMessage(err), 'error')
+    })
+    .finally(() => {
+      loading.value = false
+    })
+  const loaders: Promise<unknown>[] = [chainData.loadFxRates()]
+  if (holderAddress) loaders.push(chainData.loadAddressActivity(chain, holderAddress, { refreshTokenMetadata: false }))
+  // Amount-held/total rows fall back to cached data (or don't render) on failure.
+  await Promise.allSettled([metadataLoad, ...loaders])
 })
 
 const amountHeld = computed(() => {
@@ -126,7 +128,7 @@ function openTransaction(txn: Transaction) {
   <div class="token-detail-view">
     <!-- <v-progress-linear v-if="loading" indeterminate class="mb-4" /> -->
 
-    <div class="d-flex align-center mb-2 mt-1">
+    <div class="d-flex align-center mb-2 mt-3">
       <v-avatar v-if="metadata?.logo_url" :image="metadata.logo_url" size="30" class="mr-3" />
       <v-icon v-else icon="mdi-cash-multiple" size="large" class="mr-3" />
       <h3 class="pt-3">

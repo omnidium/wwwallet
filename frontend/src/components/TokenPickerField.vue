@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { api, type ChainSlug } from '@/services/api'
+import type { ChainSlug } from '@/services/api'
+import { searchTokenList } from '@/services/tokenSearch'
 import { tokenUrl } from '@/services/blockExplorer'
 import { convertUsd, formatAmount, formatFiat } from '@/services/money'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
@@ -83,8 +84,8 @@ const heldMatches = computed(() => {
 
 const heldKeys = computed(() => new Set(heldMatches.value.map((t) => keyFor(t))))
 
-// Remote search never returns the native asset (it isn't a real ERC-20 in any
-// token list), and held tokens matching the query are already shown above —
+// Token-list search never returns the native asset (it isn't a real ERC-20 in
+// any token list), and held tokens matching the query are already shown above —
 // de-duped here so a token the user already owns doesn't appear twice.
 const searchResults = computed(() => remoteResults.value.filter((t) => !heldKeys.value.has(keyFor(t))))
 
@@ -98,22 +99,22 @@ watch(search, (query) => {
   }
   loading.value = true
   debounceHandle = setTimeout(async () => {
-    try {
-      const results = await api.searchTokens(props.chain, trimmed)
-      remoteResults.value = results.map((r) => ({
-        address: r.address,
-        symbol: r.symbol,
-        name: r.name,
-        decimals: r.decimals,
-        logoUrl: r.logo_url,
-      }))
-    } catch {
-      // A failed search just leaves the list empty — the user's own held
-      // tokens above are unaffected, and retyping tries again.
-      remoteResults.value = []
-    } finally {
-      loading.value = false
-    }
+    // Searched locally, against the chain's token list as cached on this
+    // device — only its very first download is ever waited on here.
+    const list = await chainData.loadTokenList(props.chain)
+    // A newer keystroke has superseded this search while the list loaded.
+    if (search.value.trim() !== trimmed) return
+    // No list at all (never downloaded, and that just failed) leaves the
+    // results empty — the user's own held tokens above are unaffected, and
+    // retyping tries again.
+    remoteResults.value = searchTokenList(list ?? [], trimmed).map((r) => ({
+      address: r.address,
+      symbol: r.symbol,
+      name: r.name,
+      decimals: r.decimals,
+      logoUrl: r.logo_url,
+    }))
+    loading.value = false
   }, TOKEN_SEARCH_DEBOUNCE_MS)
 })
 

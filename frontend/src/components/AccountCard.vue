@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, mergeProps, ref, watch } from 'vue'
+import { computed, mergeProps, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import type { WalletAccount } from '@/stores/accounts'
@@ -8,9 +8,8 @@ import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { useMessagesStore } from '@/stores/messages'
 import { displayErrorMessage } from '@/services/errors'
-import { toHumanAmount, convertUsd, formatFiat, formatAmount } from '@/services/money'
+import { toHumanAmount, tokenUsdValue, convertUsd, formatFiat, formatAmount } from '@/services/money'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
-import { mapWithConcurrency } from '@/services/concurrencyLimit'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import { useTransactionBatchLoader } from '@/composables/useTransactionBatchLoader'
 import type { Transaction } from '@/services/api'
@@ -49,21 +48,22 @@ function goToSend() {
   router.push(`/accounts/${props.account.chain}/${props.account.address}/send`)
 }
 
-// Re-fetches page one of this account's activity (balances + latest
-// transactions), merged with whatever's already loaded the same way the
-// periodic auto-refresh is — the token-metadata watcher below then re-checks
-// any held token's price as a side effect of tokenBalances changing, so a
-// single call here covers "this account + its tokens" as requested. Unlike
-// the silent background auto-refresh, a failure here is the direct result of
+// Same refresh the periodic auto-refresh runs, scoped to this account:
+// balances, newest transactions (merged into whatever's already loaded) and
+// metadata for held tokens worth over $0.01 (see chainData.loadAddressActivity), plus the
+// native price and fx rates its fiat totals are computed from. Unlike the
+// silent background auto-refresh, a failure here is the direct result of
 // something the user just clicked, so it gets a toast instead of failing quietly.
 const refreshing = computed(() => chainData.isLoading(props.account.chain, props.account.address))
 async function refreshAccount() {
   if (refreshing.value) return
-  try {
-    await chainData.loadAddressActivity(props.account.chain, props.account.address)
-  } catch (err) {
-    messages.push(displayErrorMessage(err), 'error')
-  }
+  const results = await Promise.allSettled([
+    chainData.loadAddressActivity(props.account.chain, props.account.address),
+    chainData.loadNativePrice(props.account.chain),
+    chainData.loadFxRates(),
+  ])
+  const failure = results.find((r) => r.status === 'rejected')
+  if (failure) messages.push(displayErrorMessage(failure.reason), 'error')
 }
 
 const activity = computed(
@@ -98,7 +98,7 @@ const tokenRows = computed(() =>
       const key = chainData.keyFor(props.account.chain, balance.contract_address!)
       const metadata = chainData.tokenMetadataByKey[key]
       const amount = toHumanAmount(balance.balance, metadata?.decimals ?? balance.decimals)
-      const usd = metadata?.usd_price ? amount * metadata.usd_price : null
+      const usd = tokenUsdValue(balance, metadata)
       return {
         contractAddress: balance.contract_address!,
         symbol: metadata?.symbol ?? balance.symbol,
@@ -152,28 +152,6 @@ const { loadNextBatch: loadNextTransactionBatch, isLoading: loadingMoreTxns } = 
   () => visibleNativeTransactions.value.length,
 )
 useInfiniteScroll(() => void loadNextTransactionBatch(), expandedListEl)
-
-// Attempts every held token's metadata on every periodic account refresh
-// (tokenBalances changes each time loadAddressActivity re-runs). Whether that
-// actually reaches the network is loadTokenMetadata's own call: a never-seen
-// token goes straight through, a priced one is capped at
-// TOKEN_METADATA_MAX_AGE_MS so its usd_price stays current, and a confirmed-
-// priceless one backs off to TOKEN_METADATA_PRICELESS_RECHECK_MS — so a
-// long-lived address holding 50+ tokens (airdropped dust included) can't
-// turn this into a request per token per refresh, without that same address
-// permanently losing the chance to ever pick up a price for one of them.
-// Concurrency-limited rather than firing one request per held token at once,
-// for the same reason.
-watch(tokenBalances, (balances) => {
-  void mapWithConcurrency(balances, 4, async (b) => {
-    try {
-      await chainData.loadTokenMetadata(props.account.chain, b.contract_address!)
-    } catch {
-      // Best-effort — a token that fails to resolve just stays unlabeled;
-      // it's retried the next time this watcher fires (e.g. a refresh).
-    }
-  })
-})
 
 async function copyAddress() {
   await navigator.clipboard.writeText(props.account.address)

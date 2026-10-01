@@ -26,32 +26,24 @@ export const PWA_UPDATE_CHECK_INTERVAL_MS = 30 * 60_000
 export const DUST_THRESHOLD_USD = 0.01
 
 /**
- * How long a cached token's metadata (name/symbol/decimals/logo/usd_price) is
- * trusted before re-fetching. Tied to ACCOUNT_AUTO_REFRESH_MS rather than
- * something longer, since usd_price is the one field in there that's
- * genuinely live and expected to move on the same cadence as the native
- * asset's own price — a longer age would leave a held token's fiat value
- * stale for hours between reloads even though it's cheap to keep current.
- * The backend absorbs the resulting request volume: its own KV cache means
- * most of these calls never reach the upstream provider at all, and a
- * stale-on-error fallback covers the rest, so re-checking this often no
- * longer risks the rate-limit/upstream errors an earlier version of this
- * value was trying to avoid.
+ * How long a held token worth $0.01 or less (dust), or one with no known
+ * price, waits between metadata re-checks — tokens worth more are re-fetched
+ * on every refresh instead, and "unknown" ones (no logo from any source) are
+ * never re-checked at all. Counted from the last
+ * attempt, successful or not, and persisted, so app restarts don't reset it.
+ * See chainData's refreshHeldTokenMetadata.
  */
-export const TOKEN_METADATA_MAX_AGE_MS = ACCOUNT_AUTO_REFRESH_MS
+export const TOKEN_METADATA_RECHECK_MS = 24 * 60 * 60_000
 
 /**
- * How long a token already confirmed to have no live price is left alone
- * before being asked about again — most held tokens (airdropped dust
- * especially) never resolve a market price at all, so polling them on the
- * same cadence as a priced token is pure waste that's previously tripped the
- * backend's per-IP rate limit for wallets holding a lot of them (see git
- * history on AccountCard's metadata watcher). Matches the backend's own
- * token-metadata cache TTL: asking more often than that would just replay
- * the same cached (still priceless) answer anyway, so this is the shortest
- * interval that can actually surface a newly-available price.
+ * How many token-metadata requests may be in flight at once, across every
+ * account combined — a first load, or a day's worth of low-value tokens
+ * coming due together (see TOKEN_METADATA_RECHECK_MS), re-fetches many held
+ * tokens' metadata at once, and a wallet holding many tokens (airdropped
+ * dust included) would otherwise burst past the backend's per-IP rate limit
+ * and Ethplorer's own.
  */
-export const TOKEN_METADATA_PRICELESS_RECHECK_MS = 60 * 60_000
+export const TOKEN_METADATA_CONCURRENCY = 4
 
 /**
  * How many transactions a single infinite-scroll "load more" batch tries to
