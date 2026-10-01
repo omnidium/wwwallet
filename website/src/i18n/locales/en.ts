@@ -130,11 +130,27 @@ export default {
       },
       {
         q: 'Is wwwallet open source?',
-        a: 'The source is public on GitHub, so anyone can read it. It isn’t released under an open-source license yet, so treat it as public for review rather than open source for now.',
+        a: 'No — it’s source-available. The full source is public on GitHub so anyone can read, review, and audit it, but it isn’t open source: the code is licensed under the PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'What am I allowed to do with the code?',
+        a: 'You can read and audit all of it, and run an unmodified copy for noncommercial purposes such as personal study, research, and testing. You can’t distribute it, modify it or build derivative works (including forks), or use it commercially. If you need something the license doesn’t allow, contact the copyright holder for a separate license.',
+      },
+      {
+        q: 'Is wwwallet safe to use? Is there any warranty?',
+        a: 'wwwallet is non-custodial software provided “as is”, without warranty of any kind. You alone control your keys and funds — nobody, including us, can recover a lost recovery phrase or backup, reverse a transaction, or compensate you for losses. Only use funds you can afford to lose, double-check addresses and networks before you send, and nothing here is financial, investment, legal, or tax advice.',
       },
       {
         q: 'What networks does wwwallet support?',
         a: 'Ethereum mainnet, plus the Layer-2 networks Polygon, Arbitrum, Base, and Optimism — all from the same set of accounts.',
+      },
+      {
+        q: 'How do I fund my wallet?',
+        a: 'Open an account, choose “View QR code” to see its address, and send funds to that address from an exchange or another wallet. Make sure you send on the right network (Ethereum, Polygon, Arbitrum, Base, or Optimism) — the same address works on all of them, but funds sent on one network only appear on that network. You’ll also want a little of the network’s native coin (such as ETH) to pay transaction fees.',
+      },
+      {
+        q: 'What can I do with wwwallet?',
+        a: 'Send: transfer ETH or any token to an address you paste, scan from a QR code, or pick from your own accounts, and review the details before you confirm. Swap: exchange one token for another on the same network from the Swap tab, with a quote and fee estimate shown up front. Receive: show your address as a QR code. You can also see your balances with USD values and your transaction history across all supported networks.',
       },
       {
         q: 'What does wwwallet know about me?',
@@ -146,5 +162,8 @@ export default {
     tagline: 'A personal, non-custodial Ethereum wallet.',
     sourceLink: 'View the source on GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Licensed under PolyForm Strict 1.0.0',
+    disclaimer:
+      'Non-custodial software provided “as is”, without warranty. Not financial advice. You are solely responsible for your keys and funds.',
   },
 }

@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Oppretter en ny gjenopprettingsfrase og et nytt hvelv på denne enheten. Ingenting sendes til en server – du har full kontroll helt fra starten av.',
     createWalletCta: 'Opprett lommebok',
+    disclaimerTitle: 'Før du fortsetter',
+    disclaimerBody:
+      'wwwallet er programvare uten forvaring som leveres «som den er», uten noen form for garanti. Du har selv full kontroll over nøklene og midlene dine: En tapt gjenopprettingsfrase eller sikkerhetskopi kan ikke gjenopprettes av noen, og transaksjoner på blokkjeden er irreversible. wwwallet utgjør ikke finansiell, investerings-, juridisk eller skatterådgivning. Bruk den på egen risiko. Kildekoden er tilgjengelig under PolyForm Strict License 1.0.0 – du kan lese og gjennomgå den, men ikke kopiere, endre, videreformidle eller bruke den kommersielt.',
+    disclaimerLicenseLink: 'Les lisensvilkårene',
+    disclaimerAckLabel: 'Jeg har lest og godtar disse vilkårene',
   },
   vaultUnlock: {
     title: 'Lås opp wwwallet',

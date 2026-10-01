@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Generează o nouă frază de recuperare și un nou seif pe acest dispozitiv. Nu se trimite nimic către un server — ai controlul deplin încă de la început.',
     createWalletCta: 'Creează un portofel',
+    disclaimerTitle: 'Înainte de a continua',
+    disclaimerBody:
+      'wwwallet este un software fără custodie, furnizat „așa cum este”, fără niciun fel de garanție. Doar dumneavoastră dețineți controlul asupra cheilor și fondurilor dumneavoastră: o frază de recuperare pierdută sau o copie de rezervă pierdută nu pot fi recuperate de nimeni, iar tranzacțiile de pe blockchain sunt ireversibile. wwwallet nu constituie consultanță financiară, de investiții, juridică sau fiscală. Utilizați-l pe propria răspundere. Codul sursă este disponibil sub licența PolyForm Strict License 1.0.0 — îl puteți citi și verifica, dar nu îl puteți copia, modifica, redistribui sau utiliza în scopuri comerciale.',
+    disclaimerLicenseLink: 'Citiți licența',
+    disclaimerAckLabel: 'Am citit și accept acești termeni',
   },
   vaultUnlock: {
     title: 'Deblochează wwwallet',

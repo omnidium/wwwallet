@@ -137,6 +137,11 @@ export default {
     createIntroBody:
       'Vytvorí novú obnovovaciu frázu a trezor na tomto zariadení. Na server sa neposiela absolútne nič – od začiatku máte všetko pod kontrolou.',
     createWalletCta: 'Vytvoriť peňaženku',
+    disclaimerTitle: 'Než budete pokračovať',
+    disclaimerBody:
+      'wwwallet je softvér bez úschovy poskytovaný „tak, ako je“, bez akejkoľvek záruky. Nad svojimi kľúčmi a prostriedkami máte kontrolu výlučne vy: stratenú obnovovaciu frázu ani zálohu nemôže nikto obnoviť a transakcie v blockchainu sú nezvratné. wwwallet nepredstavuje finančné, investičné, právne ani daňové poradenstvo. Používajte ho na vlastné riziko. Zdrojový kód je dostupný pod licenciou PolyForm Strict License 1.0.0 – môžete si ho prečítať a skontrolovať, ale nie kopírovať, upravovať, ďalej šíriť ani používať na komerčné účely.',
+    disclaimerLicenseLink: 'Prečítajte si licenčné podmienky',
+    disclaimerAckLabel: 'Prečítal som si tieto podmienky a súhlasím s nimi',
   },
   vaultUnlock: {
     title: 'Odomknúť wwwallet',

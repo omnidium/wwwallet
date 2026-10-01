@@ -128,15 +128,31 @@ export default {
       },
       {
         q: 'Är wwwallet öppen källkod?',
-        a: 'Källkoden är offentlig på GitHub, så vem som helst kan läsa den. Den har ännu inte släppts under en öppen källkodslicens, så betrakta den för tillfället som offentlig för granskning snarare än som öppen källkod.',
+        a: 'Nej – källkoden är tillgänglig. Hela källkoden är offentlig på GitHub, så vem som helst kan läsa, granska och kontrollera den, men det är inte öppen källkod: koden är licensierad enligt PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Vad får jag göra med koden?',
+        a: 'Du får läsa och granska allt material samt använda en oförändrad kopia för icke-kommersiella ändamål, såsom personliga studier, forskning och testning. Du får inte distribuera den, ändra den eller skapa härledda verk (inklusive förgreningar) eller använda den kommersiellt. Om du behöver göra något som licensen inte tillåter ska du kontakta upphovsrättsinnehavaren för att få en separat licens.',
+      },
+      {
+        q: 'Är det säkert att använda wwwallet? Finns det någon garanti?',
+        a: 'wwwallet är en icke-förvaringsbaserad programvara som tillhandahålls ”i befintligt skick”, utan någon form av garanti. Det är endast du som har kontroll över dina nycklar och dina medel – ingen, inte ens vi, kan återställa en förlorad återställningsfras eller säkerhetskopia, återkalla en transaktion eller ersätta dig för förluster. Använd endast medel som du har råd att förlora, kontrollera adresser och nätverk noggrant innan du skickar, och ingenting här utgör finansiell, investerings-, juridisk eller skatterådgivning.',
       },
       {
         q: 'Vilka nätverk stöder wwwallet?',
         a: 'Ethereums huvudnätverk samt Layer-2-nätverken Polygon, Arbitrum, Base och Optimism – alla från samma uppsättning konton.',
       },
       {
+        q: 'Hur sätter jag in pengar på min plånbok?',
+        a: 'Öppna ett konto, välj ”Visa QR-kod” för att se adressen och skicka medel till den adressen från en börs eller en annan plånbok. Se till att du skickar via rätt nätverk (Ethereum, Polygon, Arbitrum, Base eller Optimism) – samma adress fungerar på alla nätverk, men medel som skickas via ett nätverk visas endast på det nätverket. Du behöver också lite av nätverkets egna mynt (t.ex. ETH) för att betala transaktionsavgifterna.',
+      },
+      {
+        q: 'Vad kan jag göra med wwwallet?',
+        a: 'Skicka: överför ETH eller valfri token till en adress som du klistrar in, skannar från en QR-kod eller väljer från dina egna konton, och granska uppgifterna innan du bekräftar. Byt: byt en token mot en annan på samma nätverk från fliken ”Swap”, där pris och avgiftsuppskattning visas i förväg. Ta emot: visa din adress som en QR-kod. Du kan också se dina saldon i USD och din transaktionshistorik för alla nätverk som stöds.',
+      },
+      {
         q: 'Vad vet wwwallet om mig?',
-        a: 'Inget som kan identifiera dig. Det finns varken något konto, någon inloggning eller någon databas. Uppgifter om saldo och pris hämtas via wwwallet:s egen backend, istället för att din webbläsare kontaktar tredjepartsleverantörer direkt, och den backenden får aldrig tillgång till dina nycklar, lösenord eller återställningsfras.',
+        a: 'Ingenting som kan identifiera dig. Det finns varken något konto, någon inloggning eller någon databas. Uppgifter om saldo och pris hämtas via wwwallet:s egen backend, istället för att din webbläsare kontaktar tredjepartsleverantörer direkt, och den backenden får aldrig tillgång till dina nycklar, lösenord eller återställningsfras.',
       },
     ],
   },
@@ -144,5 +160,8 @@ export default {
     tagline: 'En personlig Ethereum-plånbok utan förvaring.',
     sourceLink: 'Visa källkoden på GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Licensierad enligt PolyForm Strict 1.0.0',
+    disclaimer:
+      'Programvara utan förvaring tillhandahålls ”i befintligt skick”, utan garanti. Detta utgör inte finansiell rådgivning. Du är ensam ansvarig för dina nycklar och dina medel.',
   },
 }

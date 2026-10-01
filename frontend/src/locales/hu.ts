@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Új helyreállítási kifejezést és tárolót hoz létre ezen az eszközön. Semmi sem kerül elküldésre egy szerverre — a kezdetektől fogva teljes mértékben Ön irányít.',
     createWalletCta: 'Pénztárca létrehozása',
+    disclaimerTitle: 'Mielőtt továbbmenne',
+    disclaimerBody:
+      'A wwwallet egy nem letéti szoftver, amelyet „adott állapotban” biztosítunk, bármiféle garancia nélkül. Kizárólag Ön rendelkezik a kulcsai és pénzeszközei felett: az elveszett helyreállítási kifejezést vagy biztonsági másolatot senki sem tudja helyreállítani, és a blokklánc-tranzakciók visszafordíthatatlanok. A wwwallet nem minősül pénzügyi, befektetési, jogi vagy adózási tanácsadásnak. Használata a saját felelősségére történik. A kód forráskódja a PolyForm Strict License 1.0.0 licenc alapján elérhető – elolvashatja és ellenőrizheti, de nem másolhatja, módosíthatja, terjesztheti tovább, illetve kereskedelmi célokra felhasználhatja.',
+    disclaimerLicenseLink: 'Olvassa el a licencet',
+    disclaimerAckLabel: 'Elolvastam és elfogadom ezeket a feltételeket',
   },
   vaultUnlock: {
     title: 'A wwwallet feloldása',

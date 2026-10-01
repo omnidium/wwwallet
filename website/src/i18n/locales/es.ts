@@ -129,15 +129,31 @@ export default {
       },
       {
         q: '¿Es wwwallet de código abierto?',
-        a: 'El código fuente está disponible públicamente en GitHub, por lo que cualquiera puede consultarlo. Todavía no se ha publicado bajo una licencia de código abierto, así que, por el momento, considéralo como código público para su revisión y no como código abierto.',
+        a: 'No, el código fuente está disponible. El código fuente completo es público en GitHub, por lo que cualquiera puede leerlo, revisarlo y auditarlo, pero no es de código abierto: el código está sujeto a la licencia PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: '¿Qué puedo hacer con el código?',
+        a: 'Puedes leerlo y revisarlo en su totalidad, así como ejecutar una copia sin modificar con fines no comerciales, como el estudio personal, la investigación y la realización de pruebas. No puedes distribuirlo, modificarlo ni crear obras derivadas (incluidas bifurcaciones), ni utilizarlo con fines comerciales. Si necesitas algo que la licencia no permita, ponte en contacto con el titular de los derechos de autor para obtener una licencia independiente.',
+      },
+      {
+        q: '¿Es seguro utilizar wwwallet? ¿Hay alguna garantía?',
+        a: 'wwwallet es un software sin custodia que se proporciona «tal cual», sin garantía de ningún tipo. Solo tú controlas tus claves y tus fondos: nadie, ni siquiera nosotros, puede recuperar una frase de recuperación o una copia de seguridad perdidas, revertir una transacción ni compensarte por las pérdidas. Utiliza únicamente fondos que puedas permitirte perder, comprueba dos veces las direcciones y las redes antes de realizar un envío, y ten en cuenta que nada de lo aquí expuesto constituye asesoramiento financiero, de inversión, jurídico o fiscal.',
       },
       {
         q: '¿Qué redes admite wwwallet?',
         a: 'La red principal de Ethereum, además de las redes de capa 2 Polygon, Arbitrum, Base y Optimism, todas ellas desde el mismo conjunto de cuentas.',
       },
       {
+        q: '¿Cómo puedo recargar mi monedero?',
+        a: 'Abre una cuenta, selecciona «Ver código QR» para ver su dirección y envía fondos a esa dirección desde una plataforma de intercambio u otra cartera. Asegúrate de realizar el envío en la red correcta (Ethereum, Polygon, Arbitrum, Base u Optimism): la misma dirección funciona en todas ellas, pero los fondos enviados en una red solo aparecerán en esa red. También necesitarás un poco de la moneda nativa de la red (como ETH) para pagar las comisiones de transacción.',
+      },
+      {
+        q: '¿Qué puedo hacer con wwwallet?',
+        a: 'Enviar: transfiere ETH o cualquier token a una dirección que pegues, escanees desde un código QR o selecciones de tus propias cuentas, y revisa los detalles antes de confirmar. Intercambiar: cambia un token por otro en la misma red desde la pestaña «Intercambiar», donde se muestran de antemano la cotización y la estimación de las comisiones. Recibir: muestra tu dirección como un código QR. También puedes consultar tus saldos en dólares estadounidenses y tu historial de transacciones en todas las redes compatibles.',
+      },
+      {
         q: '¿Qué sabe wwwallet sobre mí?',
-        a: 'Nada que te identifique. No hay cuenta, ni inicio de sesión, ni base de datos. Los datos sobre saldos y precios se obtienen a través del propio servidor de wwwallet, en lugar de que tu navegador se conecte directamente con proveedores externos, y ese servidor nunca tiene acceso a tus claves, contraseñas ni frase de recuperación.',
+        a: 'Nada que te identifique. No hay ninguna cuenta, inicio de sesión ni base de datos. Los datos sobre saldos y precios se obtienen a través del propio servidor de wwwallet, en lugar de que tu navegador se conecte directamente con proveedores externos, y ese servidor nunca tiene acceso a tus claves, contraseñas ni frase de recuperación.',
       },
     ],
   },
@@ -145,5 +161,8 @@ export default {
     tagline: 'Un monedero de Ethereum personal y sin custodia.',
     sourceLink: 'Ver el código fuente en GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Bajo licencia PolyForm Strict 1.0.0',
+    disclaimer:
+      'El software sin custodia se proporciona «tal cual», sin garantía alguna. No constituye asesoramiento financiero. Eres el único responsable de tus claves y tus fondos.',
   },
 }

@@ -128,15 +128,31 @@ export default {
       },
       {
         q: 'wwwallet açık kaynak mıdır?',
-        a: "Kaynak kodu GitHub'da herkese açık durumda, dolayısıyla herkes okuyabilir. Henüz bir açık kaynak lisansı altında yayınlanmamıştır; bu nedenle şimdilik bunu açık kaynak olarak değil, inceleme amacıyla herkese açık bir kaynak olarak değerlendirin.",
+        a: "Hayır — kaynak kodu erişilebilir. Kaynak kodun tamamı GitHub'da herkese açık olduğundan herkes onu okuyabilir, inceleyebilir ve denetleyebilir; ancak açık kaynak değildir: kod, PolyForm Strict Lisansı 1.0.0 kapsamında lisanslanmıştır.",
+      },
+      {
+        q: 'Bu kodla ne yapmama izin veriliyor?',
+        a: 'Tüm içeriği okuyabilir ve inceleyebilirsiniz; ayrıca kişisel çalışma, araştırma ve test gibi ticari olmayan amaçlarla değiştirilmemiş bir kopyasını kullanabilirsiniz. Bunu dağıtamaz, değiştiremez veya türev çalışmalar (forklar dahil) oluşturamaz ya da ticari olarak kullanamazsınız. Lisansın izin vermediği bir şeye ihtiyacınız varsa, ayrı bir lisans almak için telif hakkı sahibiyle iletişime geçin.',
+      },
+      {
+        q: "wwwallet'i kullanmak güvenli mi? Herhangi bir garanti var mı?",
+        a: 'wwwallet, “olduğu gibi” sunulan ve hiçbir tür garanti içermeyen, saklama hizmeti sunmayan bir yazılımdır. Anahtarlarınız ve varlıklarınızın kontrolü tamamen size aittir — biz dahil hiç kimse, kaybolan kurtarma ifadesini veya yedeği geri getiremez, bir işlemi geri alamaz veya kayıplarınız için tazminat ödeyemez. Yalnızca kaybetmeyi göze alabileceğiniz varlıklarınızı kullanın, göndermeden önce adresleri ve ağları iki kez kontrol edin; buradaki hiçbir bilgi finansal, yatırım, hukuki veya vergi danışmanlığı niteliğinde değildir.',
       },
       {
         q: 'wwwallet hangi ağları destekliyor?',
-        a: 'Ethereum ana ağı ile Polygon, Arbitrum, Base ve Optimism gibi Katman-2 ağları — hepsi aynı hesap grubundan.',
+        a: 'Ethereum ana ağı ile Polygon, Arbitrum, Base ve Optimism adlı Katman-2 ağları — hepsi aynı hesap grubundan.',
+      },
+      {
+        q: 'Cüzdanıma nasıl para yükleyebilirim?',
+        a: 'Bir hesap açın, adresini görmek için “QR kodunu görüntüle” seçeneğini seçin ve bir borsadan veya başka bir cüzdandan bu adrese para gönderin. Doğru ağda (Ethereum, Polygon, Arbitrum, Base veya Optimism) gönderdiğinizden emin olun — aynı adres hepsinde geçerlidir, ancak bir ağda gönderilen fonlar yalnızca o ağda görünür. Ayrıca, işlem ücretlerini ödemek için ağın kendi kripto parası (ETH gibi) da biraz gerekecektir.',
+      },
+      {
+        q: 'wwwallet ile neler yapabilirim?',
+        a: 'Gönder: ETH veya herhangi bir token’ı, yapıştırdığınız, bir QR kodundan taradığınız ya da kendi hesaplarınızdan seçtiğiniz bir adrese aktarın ve onaylamadan önce ayrıntıları inceleyin. Takas: “Takas” sekmesinden, aynı ağ üzerinde bir token’ı başka bir token ile takas edin; fiyat teklifi ve ücret tahmini önceden gösterilir. Al: Adresinizi QR kodu olarak görüntüleyin. Ayrıca, desteklenen tüm ağlardaki bakiyelerinizi USD değerleriyle ve işlem geçmişinizi de görebilirsiniz.',
       },
       {
         q: 'wwwallet benim hakkımda ne biliyor?',
-        a: 'Sizi tanımlayacak hiçbir şey yoktur. Hesap, oturum açma veya veritabanı yoktur. Bakiye ve fiyat verileri, tarayıcınızın üçüncü taraf sağlayıcılara doğrudan bağlanmak yerine wwwallet’in kendi arka ucundan alınır ve bu arka uç, anahtarlarınızı, şifrelerinizi veya kurtarma ifadesini asla görmez.',
+        a: 'Sizi tanımlayacak hiçbir şey yoktur. Hesap, oturum açma veya veritabanı yoktur. Bakiye ve fiyat verileri, tarayıcınızın üçüncü taraf sağlayıcılara doğrudan başvurması yerine wwwallet’in kendi arka ucundan alınır ve bu arka uç, anahtarlarınızı, şifrelerinizi veya kurtarma ifadesinizi asla görmez.',
       },
     ],
   },
@@ -144,5 +160,8 @@ export default {
     tagline: 'Kişisel, merkezi olmayan bir Ethereum cüzdanı.',
     sourceLink: "GitHub'da kaynak kodunu görüntüle",
     copyright: '© {year} wwwallet',
+    licenseLink: 'PolyForm Strict 1.0.0 lisansı kapsamında lisanslanmıştır',
+    disclaimer:
+      'Saklama hizmeti sunmayan yazılım, “olduğu gibi” ve herhangi bir garanti olmaksızın sağlanmaktadır. Bu, finansal tavsiye niteliğinde değildir. Anahtarlarınız ve varlıklarınızın sorumluluğu tamamen size aittir.',
   },
 }

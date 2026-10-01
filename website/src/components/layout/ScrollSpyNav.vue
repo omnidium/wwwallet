@@ -104,11 +104,11 @@ function onNavClick(id: string, event: MouseEvent) {
     right: 8px;
     transform: none;
     max-width: none;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
-  .wordmark {
-    display: none;
+  .scroll-spy-nav ul {
+    min-width: 0;
   }
 }
 </style>

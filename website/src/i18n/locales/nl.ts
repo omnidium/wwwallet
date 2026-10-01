@@ -128,15 +128,31 @@ export default {
       },
       {
         q: 'Is wwwallet open source?',
-        a: 'De broncode staat openbaar op GitHub, dus iedereen kan deze inzien. De code is nog niet onder een open-source-licentie vrijgegeven, dus beschouw deze voorlopig als openbaar ter beoordeling en niet als open source.',
+        a: 'Nee — de broncode is beschikbaar. De volledige broncode staat openbaar op GitHub, zodat iedereen deze kan lezen, beoordelen en controleren, maar het is geen open source: de code valt onder de PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Wat mag ik met de code doen?',
+        a: 'U mag het geheel lezen en controleren, en een ongewijzigde kopie gebruiken voor niet-commerciële doeleinden, zoals persoonlijke studie, onderzoek en het uitvoeren van tests. U mag het niet verspreiden, wijzigen of er afgeleide werken van maken (inclusief forks), noch het commercieel gebruiken. Als u iets nodig hebt wat de licentie niet toestaat, neem dan contact op met de auteursrechthebbende voor een afzonderlijke licentie.',
+      },
+      {
+        q: 'Is wwwallet veilig in gebruik? Is er garantie?',
+        a: 'wwwallet is niet-bewarende software die wordt geleverd „zoals ze is“, zonder enige vorm van garantie. U bent als enige verantwoordelijk voor uw sleutels en uw geld — niemand, ook wij niet, kan een verloren herstelzin of back-up terugvinden, een transactie ongedaan maken of u schadeloos stellen voor verliezen. Gebruik alleen geld dat u zich kunt veroorloven te verliezen, controleer adressen en netwerken nogmaals voordat u geld verstuurt, en niets hier is financieel, beleggings-, juridisch of fiscaal advies.',
       },
       {
         q: 'Welke netwerken ondersteunt wwwallet?',
         a: 'Het Ethereum-mainnet, plus de Layer-2-netwerken Polygon, Arbitrum, Base en Optimism — allemaal vanuit dezelfde reeks accounts.',
       },
       {
+        q: 'Hoe zet ik geld op mijn wallet?',
+        a: 'Open een account, kies ‘QR-code weergeven’ om het adres te zien en stuur geld naar dat adres vanuit een beurs of een andere wallet. Zorg ervoor dat je via het juiste netwerk verstuurt (Ethereum, Polygon, Arbitrum, Base of Optimism) — hetzelfde adres werkt op al deze netwerken, maar geld dat via één netwerk wordt verstuurd, verschijnt alleen op dat netwerk. Je hebt ook een klein beetje van de eigen munt van het netwerk (zoals ETH) nodig om de transactiekosten te betalen.',
+      },
+      {
+        q: 'Wat kan ik doen met wwwallet?',
+        a: 'Verzenden: maak ETH of een willekeurig token over naar een adres dat je plakt, scant via een QR-code of selecteert uit je eigen accounts, en controleer de gegevens voordat je de transactie bevestigt. Ruilen: ruil het ene token in voor het andere binnen hetzelfde netwerk via het tabblad ‘Ruilen’, waarbij de koers en de geschatte kosten vooraf worden weergegeven. Ontvangen: toon je adres als QR-code. Je kunt ook je saldi in USD en je transactiegeschiedenis op alle ondersteunde netwerken bekijken.',
+      },
+      {
         q: 'Wat weet wwwallet over mij?',
-        a: 'Niets waarmee je geïdentificeerd kunt worden. Er is geen account, geen inlogprocedure en geen database. Saldo- en prijsgegevens worden opgehaald via de eigen backend van wwwallet, in plaats van dat je browser rechtstreeks contact opneemt met externe aanbieders, en die backend krijgt nooit je sleutels, wachtwoorden of herstelzin te zien.',
+        a: 'Niets waarmee je geïdentificeerd kunt worden. Er is geen account, geen inlogprocedure en geen database. Saldo- en prijsgegevens worden opgehaald via de eigen backend van wwwallet, in plaats van dat je browser rechtstreeks een beroep doet op externe aanbieders, en die backend krijgt nooit inzage in je sleutels, wachtwoorden of herstelzin.',
       },
     ],
   },
@@ -144,5 +160,8 @@ export default {
     tagline: 'Een persoonlijke Ethereum-wallet zonder bewaring.',
     sourceLink: 'Bekijk de broncode op GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Vrijgegeven onder de PolyForm Strict 1.0.0-licentie',
+    disclaimer:
+      'Software zonder bewaarplicht wordt geleverd “zoals ze is”, zonder garantie. Dit is geen financieel advies. U bent zelf volledig verantwoordelijk voor uw sleutels en uw geld.',
   },
 }

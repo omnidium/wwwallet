@@ -137,6 +137,11 @@ export default {
     createIntroBody:
       'Opretter en ny gendannelsesfrase og et nyt opbevaringssted på denne enhed. Der sendes intet til en server — du har fuld kontrol fra starten.',
     createWalletCta: 'Opret tegnebog',
+    disclaimerTitle: 'Inden du fortsætter',
+    disclaimerBody:
+      'wwwallet er software uden opbevaring, der leveres »som den er«, uden nogen form for garanti. Du har alene kontrol over dine nøgler og midler: En mistet gendannelsessætning eller sikkerhedskopi kan ikke gendannes af nogen, og blockchain-transaktioner kan ikke fortrydes. wwwallet udgør ikke finansiel, investeringsmæssig, juridisk eller skattemæssig rådgivning. Brug den på egen risiko. Kildekoden er tilgængelig under PolyForm Strict License 1.0.0 — du må læse og gennemgå den, men ikke kopiere, ændre, videredistribuere eller anvende den kommercielt.',
+    disclaimerLicenseLink: 'Læs licensvilkårene',
+    disclaimerAckLabel: 'Jeg har læst og accepterer disse vilkår',
   },
   vaultUnlock: {
     title: 'Lås wwwallet op',

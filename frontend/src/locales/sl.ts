@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Na tej napravi ustvari novo obnovitveno frazo in trezor. Na strežnik se ne pošilja nič – od samega začetka imate popoln nadzor.',
     createWalletCta: 'Ustvari denarnico',
+    disclaimerTitle: 'Preden nadaljujete',
+    disclaimerBody:
+      'wwwallet je programska oprema brez skrbništva, ki se zagotavlja »tako, kot je«, brez kakršnih koli jamstev. Nad svojimi ključi in sredstvi imate nadzor izključno vi: izgubljene obnovitvene fraze ali varnostne kopije nihče ne more obnoviti, transakcije v verigi blokov pa so nepovratne. wwwallet ne predstavlja finančnega, naložbenega, pravnega ali davčnega svetovanja. Uporabljajte ga na lastno odgovornost. Izvorna koda je na voljo pod licenco PolyForm Strict License 1.0.0 – lahko jo preberete in pregledate, vendar je ne smete kopirati, spreminjati, ponovno distribuirati ali uporabljati v komercialne namene.',
+    disclaimerLicenseLink: 'Preberite licenco',
+    disclaimerAckLabel: 'Prebral sem te pogoje in jih sprejemam',
   },
   vaultUnlock: {
     title: 'Odkleni wwwallet',

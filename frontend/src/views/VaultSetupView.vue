@@ -18,6 +18,7 @@ const step = ref<'intro' | 'recoveryPhrase' | 'extras'>('intro')
 const recoveryPhrase = ref('')
 const recoveryPhraseWords = ref<string[]>([])
 const savedAck = ref(false)
+const termsAck = ref(false)
 const restoreFileInput = ref<HTMLInputElement | null>(null)
 const passkeyUnsupported = ref(false)
 const skipWarningOpen = ref(false)
@@ -107,16 +108,29 @@ function finish() {
         <v-card-text class="text-body-2 text-medium-emphasis">
           {{ t('vaultSetup.createIntroBody') }}
         </v-card-text>
+        <v-card-text class="pt-0">
+          <v-alert type="warning" variant="tonal" density="compact" class="text-body-2">
+            <div class="font-weight-medium mb-1">{{ t('vaultSetup.disclaimerTitle') }}</div>
+            {{ t('vaultSetup.disclaimerBody') }}
+            <a href="https://github.com/omnidium/wwwallet/blob/main/LICENSE" target="_blank"
+              rel="noopener noreferrer">{{
+                t('vaultSetup.disclaimerLicenseLink') }}</a>
+          </v-alert>
+          <v-checkbox v-model="termsAck" class="mt-2" density="compact" hide-details
+            :label="t('vaultSetup.disclaimerAckLabel')" data-testid="terms-ack" />
+        </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block @click="startCreate">{{ t('vaultSetup.createWalletCta') }}</v-btn>
+          <v-btn color="primary" block :disabled="!termsAck" @click="startCreate">{{ t('vaultSetup.createWalletCta')
+            }}</v-btn>
         </v-card-actions>
 
         <v-divider class="my-4" />
 
         <v-card-text class="text-subtitle-2 pb-0">{{ t('vaultSetup.haveBackup') }}</v-card-text>
         <v-card-actions class="flex-column">
-          <v-btn variant="outlined" block @click="restoreFromDrive">{{ t('vaultSetup.restoreFromDrive') }}</v-btn>
-          <v-btn variant="outlined" block class="mt-2" @click="restoreFileInput?.click()">
+          <v-btn variant="outlined" block :disabled="!termsAck" @click="restoreFromDrive">{{
+            t('vaultSetup.restoreFromDrive') }}</v-btn>
+          <v-btn variant="outlined" block class="mt-2" :disabled="!termsAck" @click="restoreFileInput?.click()">
             {{ t('vaultSetup.restoreFromLocalFile') }}
           </v-btn>
           <input ref="restoreFileInput" type="file" accept="application/json" hidden @change="onRestoreFileSelected" />
@@ -150,7 +164,7 @@ function finish() {
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block :disabled="!savedAck" @click="createVault">{{ t('vaultSetup.createVault')
-            }}</v-btn>
+          }}</v-btn>
         </v-card-actions>
       </template>
 

@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Luo uuden palautuslauseen ja säilytystilan tällä laitteella. Mitään tietoja ei lähetetä palvelimelle — sinulla on täysi hallinta alusta alkaen.',
     createWalletCta: 'Luo lompakko',
+    disclaimerTitle: 'Ennen kuin jatkat',
+    disclaimerBody:
+      'wwwallet on ei-säilytyspohjainen ohjelmisto, joka toimitetaan ”sellaisenaan” ilman minkäänlaista takuuta. Vain sinä hallitset avaimiasi ja varojasi: kukaan ei voi palauttaa kadonnutta palautuslauseketta tai varmuuskopiota, ja lohkoketjutapahtumat ovat peruuttamattomia. wwwallet ei tarjoa rahoitus-, sijoitus-, laki- tai veroneuvontaa. Käytä sitä omalla vastuullasi. Ohjelmiston lähdekoodi on saatavilla PolyForm Strict License 1.0.0 -lisenssin nojalla – voit lukea ja tarkastaa sen, mutta et saa kopioida, muokata, jakaa edelleen tai käyttää sitä kaupallisiin tarkoituksiin.',
+    disclaimerLicenseLink: 'Lue käyttöoikeussopimus',
+    disclaimerAckLabel: 'Olen lukenut nämä ehdot ja hyväksyn ne',
   },
   vaultUnlock: {
     title: 'Avaa wwwallet',

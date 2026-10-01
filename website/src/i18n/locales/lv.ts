@@ -128,11 +128,27 @@ export default {
       },
       {
         q: 'Vai wwwallet ir atvērtā koda programma?',
-        a: 'Avots ir publiski pieejams GitHub vietnē, tāpēc ikviens to var izlasīt. Tas vēl nav publicēts saskaņā ar atvērtā koda licenci, tāpēc pagaidām to uzskatiet par publiski pieejamu pārskatīšanai, nevis par atvērtā koda projektu.',
+        a: 'Nē — tā ir pieejama ar atklātu avotu. Pilnais avota kods ir publiski pieejams GitHub vietnē, tādējādi ikviens to var lasīt, pārskatīt un pārbaudīt, taču tas nav atvērtā koda projekts: kods ir licencēts saskaņā ar „PolyForm Strict License 1.0.0“.',
+      },
+      {
+        q: 'Ko man ir atļauts darīt ar šo kodu?',
+        a: 'Jūs varat to visu lasīt un pārbaudīt, kā arī izmantot nemodificētu kopiju nekomerciāliem mērķiem, piemēram, personīgai apguvei, pētniecībai un testēšanai. Jūs nedrīkstat to izplatīt, modificēt vai veidot atvasinātos darbus (ieskaitot atzarojumus), kā arī izmantot to komerciāli. Ja jums ir nepieciešams kaut kas, ko licence neļauj, sazinieties ar autortiesību īpašnieku, lai saņemtu atsevišķu licenci.',
+      },
+      {
+        q: 'Vai wwwallet ir droši lietot? Vai ir kāda garantija?',
+        a: 'wwwallet ir programmatūra bez glabāšanas funkcijas, kas tiek piedāvāta „tādā stāvoklī, kādā tā ir“, bez jebkāda veida garantijas. Tikai jūs pats kontrolējat savas atslēgas un līdzekļus — neviens, tostarp mēs, nevar atgūt zaudētu atjaunošanas frāzi vai dublējumu, atcelt darījumu vai kompensēt jums zaudējumus. Izmantojiet tikai tos līdzekļus, kuru zaudēšanu varat atļauties, pirms nosūtīšanas rūpīgi pārbaudiet adreses un tīklus, un nekas šeit nav uzskatāms par finanšu, ieguldījumu, juridisku vai nodokļu konsultāciju.',
       },
       {
         q: 'Kādus tīklus atbalsta wwwallet?',
-        a: 'Ethereum galvenais tīkls, kā arī 2. slāņa tīkli „Polygon”, „Arbitrum”, „Base” un „Optimism” — visi no viena un tā paša kontu kopuma.',
+        a: 'Ethereum galvenais tīkls, kā arī 2. slāņa tīkli Polygon, Arbitrum, Base un Optimism — visi no viena un tā paša kontu kopuma.',
+      },
+      {
+        q: 'Kā varu papildināt savu elektronisko maku?',
+        a: 'Atveriet kontu, izvēlieties „Skatīt QR kodu”, lai redzētu tā adresi, un nosūtiet līdzekļus uz šo adresi no biržas vai citas elektroniskās naudas maciņas. Pārliecinieties, ka nosūtāt naudu pareizajā tīklā (Ethereum, Polygon, Arbitrum, Base vai Optimism) — viena un tā pati adrese darbojas visos šajos tīklos, taču līdzekļi, kas nosūtīti vienā tīklā, parādās tikai tajā tīklā. Jums būs nepieciešams arī neliels daudzums tīkla vietējās monētas (piemēram, ETH), lai segtu transakciju komisijas maksas.',
+      },
+      {
+        q: 'Ko es varu darīt ar wwwallet?',
+        a: 'Sūtīt: pārskaitiet ETH vai jebkuru citu žetonu uz adresi, kuru ievietojat, ieskenējat no QR koda vai izvēlaties no saviem kontiem, un pirms apstiprināšanas pārskatiet informāciju. Apmainīt: apmainiet vienu žetonu pret citu tajā pašā tīklā, izmantojot cilni „Apmaiņa”, kurā jau sākumā tiek parādīts piedāvājums un provizoriskā komisijas maksa. Saņemt: parādiet savu adresi kā QR kodu. Jūs varat arī apskatīt savus atlikumus USD vērtībā un darījumu vēsturi visos atbalstītajos tīklos.',
       },
       {
         q: 'Ko wwwallet zina par mani?',
@@ -144,5 +160,8 @@ export default {
     tagline: 'Personīga Ethereum maku, kas nav saistīta ar glabāšanu.',
     sourceLink: 'Apskatīt avota kodu GitHub vietnē',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Licencēts saskaņā ar PolyForm Strict 1.0.0',
+    disclaimer:
+      'Programmatūra, kas nav saistīta ar glabāšanu, tiek piedāvāta „tādā stāvoklī, kādā tā ir“, bez garantijas. Tas nav finanšu padoms. Jūs esat vienīgais, kas atbild par savām atslēgām un līdzekļiem.',
   },
 }

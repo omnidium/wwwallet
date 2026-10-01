@@ -14,6 +14,7 @@ import { test, expect, type Page } from '@playwright/test'
 // mnemonic, not something the user types in), so it's scraped off the page
 // rather than hardcoded.
 async function createVaultSkippingQuickUnlock(page: Page): Promise<string> {
+  await page.getByRole('checkbox').check()
   await page.getByRole('button', { name: 'Create Wallet' }).click()
 
   const words = await page.getByTestId('recovery-phrase-word').allTextContents()

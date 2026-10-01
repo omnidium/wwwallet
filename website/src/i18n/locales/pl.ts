@@ -129,15 +129,31 @@ export default {
       },
       {
         q: 'Czy wwwallet jest oprogramowaniem typu open source?',
-        a: 'Kod źródłowy jest udostępniony publicznie na GitHubie, więc każdy może go przejrzeć. Nie został on jeszcze opublikowany na licencji open source, więc na razie traktuj go raczej jako materiał publiczny do wglądu, a nie jako oprogramowanie open source.',
+        a: 'Nie — kod źródłowy jest dostępny. Pełny kod źródłowy jest opublikowany na GitHubie, więc każdy może go przeczytać, przejrzeć i poddać audytowi, ale nie jest to oprogramowanie typu open source: kod jest objęty licencją PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Co mogę robić z tym kodem?',
+        a: 'Możesz zapoznać się z całą treścią i ją sprawdzić, a także korzystać z niezmodyfikowanej kopii w celach niekomercyjnych, takich jak nauka własna, badania i testowanie. Nie wolno jej rozpowszechniać, modyfikować ani tworzyć dzieł pochodnych (w tym rozgałęzień), ani wykorzystywać jej w celach komercyjnych. Jeśli potrzebujesz czegoś, na co licencja nie zezwala, skontaktuj się z właścicielem praw autorskich w celu uzyskania odrębnej licencji.',
+      },
+      {
+        q: 'Czy korzystanie z serwisu wwwallet jest bezpieczne? Czy przysługuje jakaś gwarancja?',
+        a: 'wwwallet to oprogramowanie bez powiernictwa, udostępniane „tak jak jest”, bez jakiejkolwiek gwarancji. Tylko Ty masz kontrolę nad swoimi kluczami i środkami — nikt, w tym my, nie może odzyskać utraconej frazy odzyskiwania ani kopii zapasowej, cofnąć transakcji ani zrekompensować Ci strat. Korzystaj wyłącznie ze środków, których utratę możesz sobie pozwolić, dokładnie sprawdzaj adresy i sieci przed wysłaniem, a żadna z zawartych tu informacji nie stanowi porady finansowej, inwestycyjnej, prawnej ani podatkowej.',
       },
       {
         q: 'Jakie sieci obsługuje wwwallet?',
-        a: 'Sieć główna Ethereum oraz sieci warstwy drugiej: Polygon, Arbitrum, Base i Optimism — wszystkie z tego samego zestawu kont.',
+        a: 'Sieć główna Ethereum oraz sieci warstwy drugiej: Polygon, Arbitrum, Base i Optimism — wszystko z tego samego zestawu kont.',
+      },
+      {
+        q: 'Jak doładować portfel?',
+        a: 'Załóż konto, wybierz opcję „Wyświetl kod QR”, aby zobaczyć adres, a następnie wyślij środki na ten adres z giełdy lub innego portfela. Upewnij się, że wysyłasz środki w odpowiedniej sieci (Ethereum, Polygon, Arbitrum, Base lub Optimism) — ten sam adres działa we wszystkich z nich, ale środki wysłane w jednej sieci pojawiają się tylko w tej sieci. Będziesz również potrzebować niewielkiej ilości natywnej monety sieci (np. ETH) na opłacenie opłat transakcyjnych.',
+      },
+      {
+        q: 'Co mogę zrobić za pomocą wwwallet?',
+        a: 'Wyślij: przelej ETH lub dowolny token na adres, który wkleisz, zeskanujesz z kodu QR lub wybierzesz spośród własnych kont, a następnie sprawdź szczegóły przed potwierdzeniem. Wymiana: wymień jeden token na inny w tej samej sieci w zakładce „Wymiana”, gdzie od razu wyświetla się kurs wymiany i szacunkowa opłata. Odbiór: wyświetl swój adres w postaci kodu QR. Możesz również sprawdzić swoje salda w USD oraz historię transakcji we wszystkich obsługiwanych sieciach.',
       },
       {
         q: 'Co serwis wwwallet wie o mnie?',
-        a: 'Nie ma tu żadnych danych pozwalających na identyfikację użytkownika. Nie ma konta, logowania ani bazy danych. Dane dotyczące salda i kursów są pobierane za pośrednictwem własnego zaplecza serwisu wwwallet, a nie poprzez bezpośrednie połączenie przeglądarki z zewnętrznymi dostawcami, a to zaplecze nigdy nie ma wglądu w klucze, hasła ani frazę odzyskiwania użytkownika.',
+        a: 'Nie ma tu nic, co pozwoliłoby zidentyfikować użytkownika. Nie ma konta, logowania ani bazy danych. Dane dotyczące salda i cen są pobierane za pośrednictwem własnego zaplecza serwisu wwwallet, a nie poprzez bezpośrednie połączenie przeglądarki z zewnętrznymi dostawcami, a zaplecze to nigdy nie ma dostępu do kluczy, haseł ani frazy odzyskiwania użytkownika.',
       },
     ],
   },
@@ -145,5 +161,8 @@ export default {
     tagline: 'Osobisty portfel Ethereum bez funkcji przechowywania środków.',
     sourceLink: 'Zobacz kod źródłowy na GitHubie',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Na licencji PolyForm Strict 1.0.0',
+    disclaimer:
+      'Oprogramowanie nieposiadające funkcji przechowywania środków jest udostępniane „tak jak jest”, bez gwarancji. Nie stanowi to porady finansowej. Użytkownik ponosi wyłączną odpowiedzialność za swoje klucze i środki.',
   },
 }

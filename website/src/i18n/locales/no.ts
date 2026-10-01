@@ -129,15 +129,31 @@ export default {
       },
       {
         q: 'Er wwwallet åpen kildekode?',
-        a: 'Kildekoden er offentlig tilgjengelig på GitHub, så alle kan lese den. Den er foreløpig ikke utgitt under en åpen kildekode-lisens, så betrakt den foreløpig som offentlig til gjennomgang snarere enn som åpen kildekode.',
+        a: 'Nei — kildekoden er tilgjengelig. Hele kildekoden er offentliggjort på GitHub, slik at alle kan lese, gjennomgå og kontrollere den, men den er ikke åpen kildekode: koden er lisensiert under PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Hva har jeg lov til å gjøre med koden?',
+        a: 'Du kan lese og gjennomgå alt innholdet, og bruke en uendret kopi til ikke-kommersielle formål, for eksempel personlig studium, forskning og testing. Du kan ikke distribuere den, endre den eller lage avledede verk (inkludert forker), eller bruke den kommersielt. Hvis du trenger noe som lisensen ikke tillater, må du kontakte rettighetshaveren for å få en egen lisens.',
+      },
+      {
+        q: 'Er wwwallet trygt å bruke? Er det noen garanti?',
+        a: 'wwwallet er programvare uten forvaring som leveres «som den er», uten noen form for garanti. Du har selv full kontroll over nøklene og midlene dine – ingen, inkludert oss, kan gjenopprette en tapt gjenopprettingsfrase eller sikkerhetskopi, reversere en transaksjon eller kompensere deg for tap. Bruk kun midler du har råd til å miste, dobbeltsjekk adresser og nettverk før du sender, og ingenting her utgjør finansiell, investerings-, juridisk eller skatterådgivning.',
       },
       {
         q: 'Hvilke nettverk støtter wwwallet?',
         a: 'Ethereums hovednettverk, samt Layer-2-nettverkene Polygon, Arbitrum, Base og Optimism – alt fra det samme settet med kontoer.',
       },
       {
+        q: 'Hvordan setter jeg inn penger på lommeboken min?',
+        a: 'Opprett en konto, velg «Vis QR-kode» for å se adressen, og send midler til denne adressen fra en børs eller en annen lommebok. Sørg for at du sender på riktig nettverk (Ethereum, Polygon, Arbitrum, Base eller Optimism) – den samme adressen fungerer på alle, men midler som sendes på ett nettverk, vises kun på det nettverket. Du vil også trenge litt av nettverkets egen valuta (for eksempel ETH) for å betale transaksjonsgebyrene.',
+      },
+      {
+        q: 'Hva kan jeg gjøre med wwwallet?',
+        a: 'Send: Overfør ETH eller et hvilket som helst token til en adresse du limer inn, skanner fra en QR-kode eller velger fra dine egne kontoer, og sjekk detaljene før du bekrefter. Bytte: Bytt ett token mot et annet på samme nettverk fra «Bytte»-fanen, der kurs og estimert gebyr vises på forhånd. Motta: Vis adressen din som en QR-kode. Du kan også se saldoene dine i USD og transaksjonshistorikken din på tvers av alle støttede nettverk.',
+      },
+      {
         q: 'Hva vet wwwallet om meg?',
-        a: 'Ingenting som kan identifisere deg. Det finnes ingen konto, ingen pålogging og ingen database. Saldo- og kursdata hentes via wwwallet sin egen backend, i stedet for at nettleseren din kontakter tredjepartsleverandører direkte, og denne backenden får aldri tilgang til nøklene dine, passordene dine eller gjenopprettingsfrasen din.',
+        a: 'Ingenting som kan identifisere deg. Det finnes ingen konto, ingen pålogging og ingen database. Saldo- og prisdata hentes via wwwallet sin egen backend, i stedet for at nettleseren din kontakter tredjepartsleverandører direkte, og denne backenden får aldri tilgang til nøklene dine, passordene dine eller gjenopprettingsfrasen din.',
       },
     ],
   },
@@ -145,5 +161,8 @@ export default {
     tagline: 'En personlig Ethereum-lommebok uten forvaring.',
     sourceLink: 'Se kildekoden på GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Lisensiert under PolyForm Strict 1.0.0',
+    disclaimer:
+      'Programvare uten oppbevaringstilbud leveres «som den er», uten garanti. Dette er ikke økonomisk rådgivning. Du har selv det fulle ansvaret for nøklene og midlene dine.',
   },
 }

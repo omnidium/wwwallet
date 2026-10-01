@@ -128,15 +128,31 @@ export default {
       },
       {
         q: 'Je wwwallet open source?',
-        a: 'Zdrojový kód je zverejnený na GitHub, takže si ho môže prečítať ktokoľvek. Zatiaľ však nie je uverejnený pod licenciou open source, preto ho zatiaľ považujte skôr za verejne dostupný na posúdenie než za open source.',
+        a: 'Nie — zdrojový kód je dostupný. Úplný zdrojový kód je zverejnený na GitHub-e, takže si ho môže ktokoľvek prečítať, skontrolovať a preveriť, nie je však open source: kód je licencovaný pod licenciou PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Čo môžem s týmto kódom robiť?',
+        a: 'Môžete si to všetko prečítať a skontrolovať a spustiť nezmenenú kópiu na nekomerčné účely, ako je osobné štúdium, výskum a testovanie. Nesmiete ho šíriť, upravovať ani vytvárať odvodené diela (vrátane forkov), ani ho používať na komerčné účely. Ak potrebujete niečo, čo licencia neumožňuje, kontaktujte držiteľa autorských práv a požiadajte o samostatnú licenciu.',
+      },
+      {
+        q: 'Je používanie služby wwwallet bezpečné? Poskytuje sa na ňu nejaká záruka?',
+        a: 'wwwallet je softvér bez úschovy poskytovaný „tak, ako je“, bez akejkoľvek záruky. Vaše kľúče a prostriedky máte pod kontrolou výlučne vy – nikto, ani my, nemôže obnoviť stratenú obnovovaciu frázu alebo zálohu, zrušiť transakciu ani vám nahradiť straty. Používajte len prostriedky, ktorých stratu si môžete dovoliť, pred odoslaním si dôkladne skontrolujte adresy a siete a nič z uvedeného nepredstavuje finančné, investičné, právne ani daňové poradenstvo.',
       },
       {
         q: 'Ktoré siete podporuje wwwallet?',
         a: 'Hlavná sieť Ethereum a siete Layer-2 Polygon, Arbitrum, Base a Optimism – všetko z rovnakého súboru účtov.',
       },
       {
+        q: 'Ako môžem vložiť prostriedky do svojej peňaženky?',
+        a: 'Otvorte si účet, vyberte možnosť „Zobraziť QR kód“, aby ste videli jeho adresu, a pošlite prostriedky na túto adresu z burzy alebo inej peňaženky. Uistite sa, že posielate prostriedky cez správnu sieť (Ethereum, Polygon, Arbitrum, Base alebo Optimism) – tá istá adresa funguje vo všetkých týchto sieťach, ale prostriedky poslané cez jednu sieť sa zobrazia len v tejto sieti. Budete tiež potrebovať malé množstvo natívnej meny danej siete (napríklad ETH) na úhradu transakčných poplatkov.',
+      },
+      {
+        q: 'Čo môžem robiť s wwwallet?',
+        a: 'Odoslať: pošlite ETH alebo akýkoľvek token na adresu, ktorú vložíte, naskenujete z QR kódu alebo vyberiete zo svojich vlastných účtov, a pred potvrdením skontrolujte podrobnosti. Výmena: vymeňte jeden token za iný v rámci tej istej siete na karte „Výmena“, pričom sa vám hneď na začiatku zobrazí kurz a odhad poplatku. Prijímať: zobrazte svoju adresu vo forme QR kódu. Môžete si tiež prezrieť svoje zostatky v USD a históriu transakcií vo všetkých podporovaných sieťach.',
+      },
+      {
         q: 'Čo o mne vie wwwallet?',
-        a: 'Žiadne údaje, ktoré by vás identifikovali. Neexistuje žiadny účet, prihlásenie ani databáza. Údaje o zostatku a cenách sa načítajú prostredníctvom vlastného backendu služby wwwallet, namiesto toho, aby váš prehliadač priamo oslovoval poskytovateľov tretích strán, a tento backend nikdy nemá prístup k vašim kľúčom, heslám ani obnovovacej fráze.',
+        a: 'Žiadne údaje, ktoré by vás identifikovali. Neexistuje žiadny účet, prihlásenie ani databáza. Údaje o zostatku a cenách sa načítajú prostredníctvom vlastného backendu služby wwwallet, namiesto toho, aby váš prehliadač priamo kontaktoval poskytovateľov tretích strán, a tento backend nikdy nemá prístup k vašim kľúčom, heslám ani obnovovacej fráze.',
       },
     ],
   },
@@ -144,5 +160,8 @@ export default {
     tagline: 'Osobná peňaženka pre Ethereum bez úschovy.',
     sourceLink: 'Zobraziť zdrojový kód na GitHub-e',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Licencované podľa licencie PolyForm Strict 1.0.0',
+    disclaimer:
+      'Softvér bez úschovy sa poskytuje „tak, ako je“, bez záruky. Nejedná sa o finančné poradenstvo. Za svoje kľúče a finančné prostriedky nesiete výhradnú zodpovednosť.',
   },
 }

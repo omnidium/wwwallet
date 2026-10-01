@@ -134,6 +134,11 @@ export default {
     createIntroBody:
       '在此设备上生成新的恢复短语和保险库。任何数据都不会发送至服务器——您从一开始就完全掌控一切。',
     createWalletCta: '创建钱包',
+    disclaimerTitle: '在继续之前',
+    disclaimerBody:
+      'wwwallet 是一款“按原样”提供的非托管软件，不提供任何形式的保证。您完全自主掌控自己的密钥和资金：一旦丢失恢复短语或备份，任何人都无法将其恢复，且区块链交易不可逆。wwwallet 不构成任何金融、投资、法律或税务建议。使用本软件需自行承担风险。 该代码根据 PolyForm Strict License 1.0.0 协议开源——您可以阅读和审核代码，但不得复制、修改、再分发或将其用于商业用途。',
+    disclaimerLicenseLink: '阅读许可协议',
+    disclaimerAckLabel: '我已阅读并接受这些条款',
   },
   vaultUnlock: {
     title: '解锁 wwwallet',

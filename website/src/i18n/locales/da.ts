@@ -128,11 +128,27 @@ export default {
       },
       {
         q: 'Er wwwallet open source?',
-        a: 'Kildekoden er offentlig på GitHub, så alle kan læse den. Den er endnu ikke udgivet under en open source-licens, så betragt den foreløbig som offentlig til gennemgang snarere end som open source.',
+        a: 'Nej — kildekoden er tilgængelig. Den fulde kildekode er offentligt tilgængelig på GitHub, så alle kan læse, gennemgå og kontrollere den, men den er ikke open source: koden er licenseret under PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Hvad må jeg gøre med koden?',
+        a: 'Du må læse og gennemgå det hele samt køre en uændret kopi til ikke-kommercielle formål, såsom personlig studier, forskning og test. Du må ikke distribuere det, ændre det eller skabe afledte værker (herunder forks) eller bruge det kommercielt. Hvis du har brug for noget, som licensen ikke tillader, skal du kontakte indehaveren af ophavsretten for at få en separat licens.',
+      },
+      {
+        q: 'Er wwwallet sikkert at bruge? Er der nogen garanti?',
+        a: 'wwwallet er software uden opbevaring, der leveres »som den er«, uden nogen form for garanti. Du har alene kontrol over dine nøgler og midler — ingen, heller ikke os, kan gendanne en mistet gendannelsesfrase eller sikkerhedskopi, tilbageføre en transaktion eller yde erstatning for tab. Brug kun midler, du har råd til at miste, tjek adresser og netværk grundigt, inden du sender, og intet her udgør finansiel, investerings-, juridisk eller skattemæssig rådgivning.',
       },
       {
         q: 'Hvilke netværk understøtter wwwallet?',
-        a: 'Ethereums mainnet samt Layer-2-netværkene Polygon, Arbitrum, Base og Optimism — alt sammen fra den samme konto.',
+        a: 'Ethereums mainnet samt Layer-2-netværkene Polygon, Arbitrum, Base og Optimism — alt sammen fra det samme sæt konti.',
+      },
+      {
+        q: 'Hvordan sætter jeg penge ind på min tegnebog?',
+        a: 'Opret en konto, vælg »Vis QR-kode« for at se adressen, og overfør midler til denne adresse fra en børs eller en anden tegnebog. Sørg for at sende via det rigtige netværk (Ethereum, Polygon, Arbitrum, Base eller Optimism) — den samme adresse fungerer på dem alle, men midler, der sendes via et bestemt netværk, vises kun på det pågældende netværk. Du skal også have lidt af netværkets egen mønt (f.eks. ETH) til at betale transaktionsgebyrer.',
+      },
+      {
+        q: 'Hvad kan jeg bruge wwwallet til?',
+        a: 'Send: Overfør ETH eller et hvilket som helst token til en adresse, du indsætter, scanner fra en QR-kode eller vælger fra dine egne konti, og gennemgå oplysningerne, før du bekræfter. Byt: Byt et token til et andet på det samme netværk fra fanen »Byt«, hvor kursen og et estimat for gebyret vises på forhånd. Modtag: Vis din adresse som en QR-kode. Du kan også se dine saldi i USD samt din transaktionshistorik på tværs af alle understøttede netværk.',
       },
       {
         q: 'Hvad ved wwwallet om mig?',
@@ -144,5 +160,8 @@ export default {
     tagline: 'En personlig Ethereum-tegnebog uden opbevaring.',
     sourceLink: 'Se kildekoden på GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Udgivet under PolyForm Strict 1.0.0',
+    disclaimer:
+      'Software uden opbevaring leveres »som den er«, uden garanti. Dette udgør ikke finansiel rådgivning. Du er alene ansvarlig for dine nøgler og midler.',
   },
 }

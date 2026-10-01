@@ -9,15 +9,14 @@ const year = new Date().getFullYear()
   <footer class="app-footer">
     <div class="container footer-inner">
       <p class="footer-tagline">{{ t('footer.tagline') }}</p>
-      <!-- <a
-        class="footer-source"
-        href="https://github.com/MrsMisto/wwwallet"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {{ t('footer.sourceLink') }}
-      </a> -->
-      <p class="footer-copyright">{{ t('footer.copyright', { year }) }}</p>
+      <p class="footer-copyright">
+        {{ t('footer.copyright', { year }) }} ·
+        <a class="footer-source" href="https://github.com/omnidium/wwwallet/blob/main/LICENSE" target="_blank"
+          rel="noopener noreferrer">
+          {{ t('footer.licenseLink') }}
+        </a>
+      </p>
+      <p class="footer-disclaimer">{{ t('footer.disclaimer') }}</p>
     </div>
   </footer>
 </template>
@@ -40,6 +39,13 @@ const year = new Date().getFullYear()
 
 .footer-tagline {
   margin: 0;
+}
+
+.footer-disclaimer {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
 .footer-source {

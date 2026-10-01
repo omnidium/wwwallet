@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Membuat frasa pemulihan dan brankas baru di perangkat ini. Tidak ada data yang dikirim ke server — Anda sepenuhnya memegang kendali sejak awal.',
     createWalletCta: 'Buat Dompet',
+    disclaimerTitle: 'Sebelum Anda melanjutkan',
+    disclaimerBody:
+      'wwwallet adalah perangkat lunak non-kustodian yang disediakan “apa adanya”, tanpa jaminan apa pun. Anda sendirilah yang mengendalikan kunci dan dana Anda: frasa pemulihan atau cadangan yang hilang tidak dapat dipulihkan oleh siapa pun, dan transaksi blockchain bersifat tidak dapat dibatalkan. wwwallet bukanlah saran keuangan, investasi, hukum, atau perpajakan. Gunakanlah dengan risiko Anda sendiri. Kode sumbernya tersedia di bawah Lisensi PolyForm Strict 1.0.0 — Anda boleh membacanya dan mengauditnya, tetapi tidak boleh menyalin, memodifikasi, mendistribusikan ulang, atau menggunakannya untuk tujuan komersial.',
+    disclaimerLicenseLink: 'Baca lisensinya',
+    disclaimerAckLabel: 'Saya telah membaca dan menyetujui ketentuan-ketentuan ini',
   },
   vaultUnlock: {
     title: 'Buka kunci wwwallet',

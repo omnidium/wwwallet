@@ -128,15 +128,31 @@ export default {
       },
       {
         q: 'wwwallet è open source?',
-        a: 'Il codice sorgente è pubblico su GitHub, quindi chiunque può consultarlo. Non è ancora stato rilasciato con una licenza open source, quindi per il momento consideratelo pubblico a scopo di revisione piuttosto che open source.',
+        a: 'No — è disponibile il codice sorgente. Il codice sorgente completo è pubblico su GitHub, quindi chiunque può leggerlo, esaminarlo e verificarne la correttezza, ma non è open source: il codice è concesso in licenza ai sensi della PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Cosa posso fare con il codice?',
+        a: 'È possibile leggere e verificare l’intero contenuto, nonché utilizzare una copia non modificata per scopi non commerciali quali lo studio personale, la ricerca e i test. Non è consentito distribuirlo, modificarlo o creare opere derivate (compresi i fork), né utilizzarlo a fini commerciali. Se avete bisogno di qualcosa che la licenza non consente, contattate il titolare del copyright per ottenere una licenza separata.',
+      },
+      {
+        q: "È sicuro usare wwwallet? C'è qualche garanzia?",
+        a: 'wwwallet è un software non custodiale fornito “così com’è”, senza garanzie di alcun tipo. Solo tu hai il controllo delle tue chiavi e dei tuoi fondi: nessuno, noi compresi, può recuperare una frase di recupero o un backup smarrito, annullare una transazione o risarcirti per eventuali perdite. Utilizza solo fondi che puoi permetterti di perdere, ricontrolla gli indirizzi e le reti prima di effettuare un invio; nulla di quanto riportato qui costituisce una consulenza finanziaria, di investimento, legale o fiscale.',
       },
       {
         q: 'Quali reti supporta wwwallet?',
         a: 'La mainnet di Ethereum, oltre alle reti Layer 2 Polygon, Arbitrum, Base e Optimism — tutte gestite dallo stesso insieme di account.',
       },
       {
+        q: 'Come posso ricaricare il mio portafoglio?',
+        a: 'Apri un conto, seleziona “Visualizza codice QR” per visualizzarne l’indirizzo, quindi invia fondi a quell’indirizzo da un exchange o da un altro portafoglio. Assicurati di effettuare il trasferimento sulla rete corretta (Ethereum, Polygon, Arbitrum, Base o Optimism): lo stesso indirizzo funziona su tutte queste reti, ma i fondi inviati su una rete appariranno solo su quella rete. Ti servirà anche una piccola quantità della moneta nativa della rete (come ETH) per pagare le commissioni di transazione.',
+      },
+      {
+        q: 'Cosa posso fare con wwwallet?',
+        a: 'Invia: trasferisci ETH o qualsiasi token a un indirizzo che incolli, scansiona da un codice QR o selezioni dai tuoi conti, e verifica i dettagli prima di confermare. Swap: scambia un token con un altro sulla stessa rete dalla scheda “Swap”, con quotazione e stima delle commissioni visualizzate in anticipo. Ricevi: mostra il tuo indirizzo sotto forma di codice QR. Puoi inoltre visualizzare i tuoi saldi in USD e la cronologia delle transazioni su tutte le reti supportate.',
+      },
+      {
         q: 'Cosa sa di me wwwallet?',
-        a: 'Nulla che ti identifichi. Non ci sono account, login o database. I dati relativi al saldo e ai prezzi vengono recuperati tramite il backend di wwwallet, anziché tramite il tuo browser che si rivolge direttamente a fornitori terzi, e tale backend non ha mai accesso alle tue chiavi, alle tue password o alla tua frase di recupero.',
+        a: 'Nulla che ti identifichi. Non ci sono account, login o database. I dati relativi al saldo e ai prezzi vengono recuperati tramite il backend di wwwallet, anziché tramite il tuo browser che si collega direttamente a fornitori terzi, e tale backend non ha mai accesso alle tue chiavi, alle tue password o alla tua frase di recupero.',
       },
     ],
   },
@@ -144,5 +160,8 @@ export default {
     tagline: 'Un portafoglio Ethereum personale e senza custodia.',
     sourceLink: 'Visualizza il codice sorgente su GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Concesso in licenza ai sensi della PolyForm Strict 1.0.0',
+    disclaimer:
+      'Software non di custodia fornito “così com’è”, senza alcuna garanzia. Non costituisce consulenza finanziaria. L’utente è l’unico responsabile delle proprie chiavi e dei propri fondi.',
   },
 }

@@ -129,11 +129,27 @@ export default {
       },
       {
         q: 'Je wwwallet open source?',
-        a: 'Zdrojový kód je zveřejněn na GitHubu, takže si ho může přečíst kdokoli. Zatím však není vydán pod open-source licencí, proto s ním prozatím zacházejte spíše jako s veřejně dostupným materiálem k posouzení než jako s open-source projektem.',
+        a: 'Ne — zdrojový kód je k dispozici. Kompletní zdrojový kód je zveřejněn na GitHubu, takže si jej může kdokoli přečíst, zkontrolovat a prověřit, nejedná se však o open source: kód je licencován pod licencí PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Co smím s tím kódem dělat?',
+        a: 'Můžete si vše přečíst a zkontrolovat a spustit neupravenou kopii pro nekomerční účely, jako je osobní studium, výzkum a testování. Nesmíte jej šířit, upravovat ani vytvářet odvozená díla (včetně forků) ani jej používat ke komerčním účelům. Pokud potřebujete něco, co licence nepovoluje, obraťte se na držitele autorských práv a požádejte o samostatnou licenci.',
+      },
+      {
+        q: 'Je používání služby wwwallet bezpečné? Poskytuje se na ni nějaká záruka?',
+        a: 'wwwallet je software bez úschovy poskytovaný „tak, jak je“, bez jakékoli záruky. O své klíče a prostředky se staráte výhradně vy sami — nikdo, včetně nás, nemůže obnovit ztracenou obnovovací frázi nebo zálohu, zvrátit transakci ani vám nahradit ztráty. Používejte pouze prostředky, o které si můžete dovolit přijít, před odesláním pečlivě zkontrolujte adresy a sítě a nic zde není finančním, investičním, právním ani daňovým poradenstvím.',
       },
       {
         q: 'Jaké sítě podporuje wwwallet?',
         a: 'Hlavní síť Ethereum a sítě druhé vrstvy Polygon, Arbitrum, Base a Optimism – to vše z jedné sady účtů.',
+      },
+      {
+        q: 'Jak mohu vložit prostředky do své peněženky?',
+        a: 'Otevřete si účet, vyberte možnost „Zobrazit QR kód“, abyste si zobrazili jeho adresu, a odešlete prostředky na tuto adresu z burzy nebo jiné peněženky. Ujistěte se, že posíláte prostředky na správné síti (Ethereum, Polygon, Arbitrum, Base nebo Optimism) – stejná adresa funguje na všech z nich, ale prostředky odeslané v jedné síti se zobrazí pouze v té síti. Budete také potřebovat malé množství nativní měny dané sítě (například ETH) na úhradu transakčních poplatků.',
+      },
+      {
+        q: 'Co všechno mohu dělat s wwwallet?',
+        a: 'Odeslat: převedete ETH nebo jakýkoli token na adresu, kterou vložíte, naskenujete z QR kódu nebo vyberete ze svých vlastních účtů, a před potvrzením zkontrolujete podrobnosti. Výměna: na záložce „Výměna“ vyměníte jeden token za jiný v rámci stejné sítě, přičemž se předem zobrazí kurz a odhad poplatku. Příjem: zobrazíte svou adresu jako QR kód. Můžete si také prohlédnout své zůstatky v USD a historii transakcí napříč všemi podporovanými sítěmi.',
       },
       {
         q: 'Co o mně ví wwwallet?',
@@ -145,5 +161,8 @@ export default {
     tagline: 'Osobní peněženka pro Ethereum bez úschovy.',
     sourceLink: 'Zobrazit zdrojový kód na GitHubu',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Licencováno pod licencí PolyForm Strict 1.0.0',
+    disclaimer:
+      'Software bez úschovy je poskytován „tak, jak je“, bez záruky. Nejedná se o finanční poradenství. Za své klíče a prostředky nesete výhradní odpovědnost.',
   },
 }

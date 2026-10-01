@@ -196,6 +196,11 @@ export default {
     createIntroBody:
       "Generates a new recovery phrase and vault on this device. Nothing is sent to a server — you're fully in control from the start.",
     createWalletCta: 'Create Wallet',
+    disclaimerTitle: 'Before you continue',
+    disclaimerBody:
+      'wwwallet is non-custodial software provided “as is”, without warranty of any kind. You alone control your keys and funds: a lost recovery phrase or backup cannot be recovered by anyone, and blockchain transactions are irreversible. wwwallet is not financial, investment, legal, or tax advice. Use it at your own risk. The code is source-available under the PolyForm Strict License 1.0.0 — you may read and audit it, but not copy, modify, redistribute, or use it commercially.',
+    disclaimerLicenseLink: 'Read the license',
+    disclaimerAckLabel: 'I have read and accept these terms',
     recoveryExplainer:
       "This is your {phrase}. It encrypts everything on this device and is the only way back in if you ever lose access to your passkey — including restoring a backup on a new device. Write it down or copy it somewhere safe, offline. You won't need it day-to-day once quick unlock is set up on the next screen, and wwwallet will never show it to you again.",
     recoveryExplainerPhrase: 'recovery phrase',

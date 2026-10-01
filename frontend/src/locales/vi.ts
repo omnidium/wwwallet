@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Tạo một cụm từ khôi phục và kho lưu trữ mới trên thiết bị này. Không có dữ liệu nào được gửi lên máy chủ — bạn hoàn toàn kiểm soát mọi thứ ngay từ đầu.',
     createWalletCta: 'Tạo Ví',
+    disclaimerTitle: 'Trước khi tiếp tục',
+    disclaimerBody:
+      'wwwallet là phần mềm không lưu giữ tài sản, được cung cấp “nguyên trạng”, không kèm theo bất kỳ bảo hành nào. Chỉ bạn mới có quyền kiểm soát các khóa và số dư của mình: nếu mất cụm từ khôi phục hoặc bản sao lưu, không ai có thể khôi phục lại được, và các giao dịch trên blockchain là không thể đảo ngược. wwwallet không phải là lời khuyên về tài chính, đầu tư, pháp lý hay thuế. Hãy sử dụng nó với rủi ro do bạn tự chịu. Mã nguồn được công bố theo Giấy phép PolyForm Strict 1.0.0 — bạn có thể đọc và kiểm tra mã nguồn, nhưng không được sao chép, sửa đổi, phân phối lại hoặc sử dụng cho mục đích thương mại.',
+    disclaimerLicenseLink: 'Đọc bản quyền',
+    disclaimerAckLabel: 'Tôi đã đọc và đồng ý với các điều khoản này',
   },
   vaultUnlock: {
     title: 'Mở khóa wwwallet',

@@ -137,6 +137,11 @@ export default {
     createIntroBody:
       'Erstellt eine neue Wiederherstellungsphrase und einen neuen Tresor auf diesem Gerät. Es werden keinerlei Daten an einen Server gesendet – Sie behalten von Anfang an die volle Kontrolle.',
     createWalletCta: 'Wallet erstellen',
+    disclaimerTitle: 'Bevor Sie fortfahren',
+    disclaimerBody:
+      'wwwallet ist eine nicht-verwahrende Software, die „wie besehen“ ohne jegliche Gewährleistung bereitgestellt wird. Sie allein haben die Kontrolle über Ihre Schlüssel und Ihr Guthaben: Eine verlorene Wiederherstellungsphrase oder ein verlorenes Backup kann von niemandem wiederhergestellt werden, und Blockchain-Transaktionen sind unumkehrbar. wwwallet stellt keine Finanz-, Anlage-, Rechts- oder Steuerberatung dar. Die Nutzung erfolgt auf eigene Gefahr. Der Quellcode ist unter der PolyForm Strict License 1.0.0 verfügbar – Sie dürfen ihn lesen und prüfen, aber nicht kopieren, verändern, weiterverbreiten oder kommerziell nutzen.',
+    disclaimerLicenseLink: 'Lies die Lizenz',
+    disclaimerAckLabel: 'Ich habe diese Bedingungen gelesen und akzeptiere sie',
   },
   vaultUnlock: {
     title: 'wwwallet freischalten',

@@ -137,6 +137,11 @@ export default {
     createIntroBody:
       'Loob sellel seadmel uue taastamisfraasi ja hoiukoha. Serverisse ei saadeta midagi – sul on algusest peale täielik kontroll.',
     createWalletCta: 'Loo rahakott',
+    disclaimerTitle: 'Enne kui jätkate',
+    disclaimerBody:
+      'wwwallet on hoiustamisvaba tarkvara, mida pakutakse „nagu on“, ilma mingisuguse garantiita. Ainult teie ise kontrollite oma võtmeid ja rahalisi vahendeid: kadunud taastamislause või varukoopia ei ole kellelgi võimalik taastada ning plokiahela tehingud on pöördumatud. wwwallet ei ole finants-, investeerimis-, õigus- ega maksunõustamine. Kasutage seda omal vastutusel. Kood on avalikustatud PolyForm Strict License 1.0.0 alusel – võite seda lugeda ja kontrollida, kuid mitte kopeerida, muuta, levitada ega kasutada ärilistel eesmärkidel.',
+    disclaimerLicenseLink: 'Loe litsentsitingimusi',
+    disclaimerAckLabel: 'Olen need tingimused läbi lugenud ja nõustun nendega',
   },
   vaultUnlock: {
     title: 'wwwallet avamine',

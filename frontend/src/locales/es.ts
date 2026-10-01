@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Genera una nueva frase de recuperación y un nuevo almacén en este dispositivo. No se envía nada a ningún servidor: tú tienes el control total desde el principio.',
     createWalletCta: 'Crear monedero',
+    disclaimerTitle: 'Antes de continuar',
+    disclaimerBody:
+      'wwwallet es un software sin custodia que se proporciona «tal cual», sin garantía de ningún tipo. Solo tú controlas tus claves y tus fondos: nadie puede recuperar una frase de recuperación o una copia de seguridad perdidas, y las transacciones en la cadena de bloques son irreversibles. wwwallet no constituye asesoramiento financiero, de inversión, jurídico ni fiscal. Úsalo bajo tu propia responsabilidad. El código fuente está disponible bajo la licencia PolyForm Strict License 1.0.0: puedes leerlo y auditarlo, pero no copiarlo, modificarlo, redistribuirlo ni utilizarlo con fines comerciales.',
+    disclaimerLicenseLink: 'Lee la licencia',
+    disclaimerAckLabel: 'He leído y acepto estas condiciones',
   },
   vaultUnlock: {
     title: 'Desbloquear wwwallet',

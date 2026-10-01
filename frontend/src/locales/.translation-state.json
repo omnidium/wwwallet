@@ -1183,6 +1183,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Comisión por el servicio: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Antes de continuar"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet es un software sin custodia que se proporciona «tal cual», sin garantía de ningún tipo. Solo tú controlas tus claves y tus fondos: nadie puede recuperar una frase de recuperación o una copia de seguridad perdidas, y las transacciones en la cadena de bloques son irreversibles. wwwallet no constituye asesoramiento financiero, de inversión, jurídico ni fiscal. Úsalo bajo tu propia responsabilidad. El código fuente está disponible bajo la licencia PolyForm Strict License 1.0.0: puedes leerlo y auditarlo, pero no copiarlo, modificarlo, redistribuirlo ni utilizarlo con fines comerciales."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Lee la licencia"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "He leído y acepto estas condiciones"
     }
   },
   "ar": {
@@ -2369,6 +2385,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "رسوم الخدمة: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "قبل أن تواصل القراءة"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet هو برنامج غير أمين يُقدَّم «كما هو»، دون أي ضمان من أي نوع. أنت وحدك تتحكم في مفاتيحك وأموالك: لا يمكن لأي شخص استعادة عبارة الاسترداد أو النسخة الاحتياطية في حالة فقدانها، كما أن معاملات البلوكشين لا رجعة فيها. لا يُعدّ wwwallet مشورة مالية أو استثمارية أو قانونية أو ضريبية. استخدمه على مسؤوليتك الخاصة. الكود مفتوح المصدر بموجب ترخيص PolyForm Strict License 1.0.0 — يمكنك قراءته وتدقيقه، ولكن لا يجوز نسخه أو تعديله أو إعادة توزيعه أو استخدامه لأغراض تجارية."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "اقرأ شروط الترخيص"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "لقد قرأت هذه الشروط وأوافق عليها"
     }
   },
   "bg": {
@@ -3555,6 +3587,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Такса за услугата: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Преди да продължите"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet е софтуер без попечителство, предоставян „в настоящия му вид“, без каквато и да е гаранция. Вие сами контролирате ключовете и средствата си: изгубена фраза за възстановяване или резервно копие не могат да бъдат възстановени от никого, а транзакциите в блокчейна са необратими. wwwallet не представлява финансова, инвестиционна, правна или данъчна консултация. Използвайте го на свой риск. Кодът е достъпен под лиценза PolyForm Strict License 1.0.0 — можете да го четете и проверявате, но не можете да го копирате, модифицирате, разпространявате или използвате с търговска цел."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Прочетете лиценза"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Прочетох и приемам тези условия"
     }
   },
   "cs": {
@@ -4741,6 +4789,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Poplatek za službu: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Než budete pokračovat"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet je software bez úschovy poskytovaný „tak, jak je“, bez jakékoli záruky. Nad svými klíči a prostředky máte kontrolu výhradně vy: ztracenou obnovovací frázi ani zálohu nelze nikým obnovit a transakce v blockchainu jsou nevratné. wwwallet nepředstavuje finanční, investiční, právní ani daňové poradenství. Používejte jej na vlastní riziko. Zdrojový kód je k dispozici pod licencí PolyForm Strict License 1.0.0 – můžete jej číst a prověřovat, ale nesmíte jej kopírovat, upravovat, dále šířit ani používat ke komerčním účelům."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Přečtěte si licenční podmínky"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Přečetl/a jsem si tyto podmínky a souhlasím s nimi"
     }
   },
   "da": {
@@ -5927,6 +5991,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Servicegebyr: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Inden du fortsætter"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet er software uden opbevaring, der leveres »som den er«, uden nogen form for garanti. Du har alene kontrol over dine nøgler og midler: En mistet gendannelsessætning eller sikkerhedskopi kan ikke gendannes af nogen, og blockchain-transaktioner kan ikke fortrydes. wwwallet udgør ikke finansiel, investeringsmæssig, juridisk eller skattemæssig rådgivning. Brug den på egen risiko. Kildekoden er tilgængelig under PolyForm Strict License 1.0.0 — du må læse og gennemgå den, men ikke kopiere, ændre, videredistribuere eller anvende den kommercielt."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Læs licensvilkårene"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Jeg har læst og accepterer disse vilkår"
     }
   },
   "de": {
@@ -7113,6 +7193,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Servicegebühr: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Bevor Sie fortfahren"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet ist eine nicht-verwahrende Software, die „wie besehen“ ohne jegliche Gewährleistung bereitgestellt wird. Sie allein haben die Kontrolle über Ihre Schlüssel und Ihr Guthaben: Eine verlorene Wiederherstellungsphrase oder ein verlorenes Backup kann von niemandem wiederhergestellt werden, und Blockchain-Transaktionen sind unumkehrbar. wwwallet stellt keine Finanz-, Anlage-, Rechts- oder Steuerberatung dar. Die Nutzung erfolgt auf eigene Gefahr. Der Quellcode ist unter der PolyForm Strict License 1.0.0 verfügbar – Sie dürfen ihn lesen und prüfen, aber nicht kopieren, verändern, weiterverbreiten oder kommerziell nutzen."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Lies die Lizenz"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Ich habe diese Bedingungen gelesen und akzeptiere sie"
     }
   },
   "el": {
@@ -8299,6 +8395,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Χρέωση υπηρεσίας: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Πριν συνεχίσετε"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "Το wwwallet είναι λογισμικό χωρίς θεματοφυλακή που παρέχεται «ως έχει», χωρίς καμία εγγύηση οποιουδήποτε είδους. Μόνο εσείς έχετε τον έλεγχο των κλειδιών και των κεφαλαίων σας: σε περίπτωση απώλειας της φράσης ανάκτησης ή του αντιγράφου ασφαλείας, κανείς δεν μπορεί να τα ανακτήσει, ενώ οι συναλλαγές στο blockchain είναι μη αναστρέψιμες. Το wwwallet δεν αποτελεί χρηματοοικονομική, επενδυτική, νομική ή φορολογική συμβουλή. Χρησιμοποιήστε το με δική σας ευθύνη. Ο πηγαίος κώδικας διατίθεται υπό την άδεια PolyForm Strict License 1.0.0 — μπορείτε να τον διαβάσετε και να τον ελέγξετε, αλλά δεν επιτρέπεται η αντιγραφή, η τροποποίηση, η αναδιανομή ή η εμπορική χρήση του."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Διαβάστε την άδεια χρήσης"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Έχω διαβάσει και αποδέχομαι τους παρόντες όρους"
     }
   },
   "et": {
@@ -9485,6 +9597,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Teenustasu: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Enne kui jätkate"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet on hoiustamisvaba tarkvara, mida pakutakse „nagu on“, ilma mingisuguse garantiita. Ainult teie ise kontrollite oma võtmeid ja rahalisi vahendeid: kadunud taastamislause või varukoopia ei ole kellelgi võimalik taastada ning plokiahela tehingud on pöördumatud. wwwallet ei ole finants-, investeerimis-, õigus- ega maksunõustamine. Kasutage seda omal vastutusel. Kood on avalikustatud PolyForm Strict License 1.0.0 alusel – võite seda lugeda ja kontrollida, kuid mitte kopeerida, muuta, levitada ega kasutada ärilistel eesmärkidel."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Loe litsentsitingimusi"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Olen need tingimused läbi lugenud ja nõustun nendega"
     }
   },
   "fi": {
@@ -10671,6 +10799,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Palvelumaksu: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Ennen kuin jatkat"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet on ei-säilytyspohjainen ohjelmisto, joka toimitetaan ”sellaisenaan” ilman minkäänlaista takuuta. Vain sinä hallitset avaimiasi ja varojasi: kukaan ei voi palauttaa kadonnutta palautuslauseketta tai varmuuskopiota, ja lohkoketjutapahtumat ovat peruuttamattomia. wwwallet ei tarjoa rahoitus-, sijoitus-, laki- tai veroneuvontaa. Käytä sitä omalla vastuullasi. Ohjelmiston lähdekoodi on saatavilla PolyForm Strict License 1.0.0 -lisenssin nojalla – voit lukea ja tarkastaa sen, mutta et saa kopioida, muokata, jakaa edelleen tai käyttää sitä kaupallisiin tarkoituksiin."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Lue käyttöoikeussopimus"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Olen lukenut nämä ehdot ja hyväksyn ne"
     }
   },
   "fr": {
@@ -11857,6 +12001,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Frais de service : {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Avant de continuer"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet est un logiciel sans garde fourni « tel quel », sans garantie d’aucune sorte. Vous êtes seul à contrôler vos clés et vos fonds : une phrase de récupération ou une sauvegarde perdue ne peut être récupérée par personne, et les transactions sur la blockchain sont irréversibles. wwwallet ne constitue en aucun cas un conseil financier, d’investissement, juridique ou fiscal. Utilisez-le à vos propres risques. Le code source est disponible sous la licence PolyForm Strict License 1.0.0 — vous pouvez le consulter et l’auditer, mais vous ne pouvez pas le copier, le modifier, le redistribuer ni l’utiliser à des fins commerciales."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Lire la licence"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "J'ai lu et j'accepte ces conditions"
     }
   },
   "hu": {
@@ -13043,6 +13203,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Szolgáltatási díj: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Mielőtt továbbmenne"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "A wwwallet egy nem letéti szoftver, amelyet „adott állapotban” biztosítunk, bármiféle garancia nélkül. Kizárólag Ön rendelkezik a kulcsai és pénzeszközei felett: az elveszett helyreállítási kifejezést vagy biztonsági másolatot senki sem tudja helyreállítani, és a blokklánc-tranzakciók visszafordíthatatlanok. A wwwallet nem minősül pénzügyi, befektetési, jogi vagy adózási tanácsadásnak. Használata a saját felelősségére történik. A kód forráskódja a PolyForm Strict License 1.0.0 licenc alapján elérhető – elolvashatja és ellenőrizheti, de nem másolhatja, módosíthatja, terjesztheti tovább, illetve kereskedelmi célokra felhasználhatja."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Olvassa el a licencet"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Elolvastam és elfogadom ezeket a feltételeket"
     }
   },
   "id": {
@@ -14229,6 +14405,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Biaya layanan: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Sebelum Anda melanjutkan"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet adalah perangkat lunak non-kustodian yang disediakan “apa adanya”, tanpa jaminan apa pun. Anda sendirilah yang mengendalikan kunci dan dana Anda: frasa pemulihan atau cadangan yang hilang tidak dapat dipulihkan oleh siapa pun, dan transaksi blockchain bersifat tidak dapat dibatalkan. wwwallet bukanlah saran keuangan, investasi, hukum, atau perpajakan. Gunakanlah dengan risiko Anda sendiri. Kode sumbernya tersedia di bawah Lisensi PolyForm Strict 1.0.0 — Anda boleh membacanya dan mengauditnya, tetapi tidak boleh menyalin, memodifikasi, mendistribusikan ulang, atau menggunakannya untuk tujuan komersial."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Baca lisensinya"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Saya telah membaca dan menyetujui ketentuan-ketentuan ini"
     }
   },
   "it": {
@@ -15415,6 +15607,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Costo del servizio: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Prima di continuare"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet è un software non custodito fornito “così com’è”, senza garanzie di alcun tipo. Sei tu l’unico a controllare le tue chiavi e i tuoi fondi: una frase di recupero o un backup smarriti non possono essere recuperati da nessuno, e le transazioni sulla blockchain sono irreversibili. wwwallet non costituisce una consulenza finanziaria, di investimento, legale o fiscale. Utilizzalo a tuo rischio e pericolo. Il codice è disponibile in formato sorgente sotto la licenza PolyForm Strict License 1.0.0: è possibile leggerlo e verificarlo, ma non copiarlo, modificarlo, ridistribuirlo o utilizzarlo a fini commerciali."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Leggi la licenza"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Ho letto e accetto i presenti termini"
     }
   },
   "iw": {
@@ -16601,6 +16809,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "דמי שירות: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "לפני שתמשיך"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet היא תוכנה ללא שמירת נכסים (non-custodial) המסופקת \"כמות שהיא\", ללא אחריות מכל סוג שהוא. אתה לבדך שולט במפתחות ובכספים שלך: אף אחד לא יוכל לשחזר ביטוי שחזור או גיבוי שאבדו, ועסקאות בבלוקצ'יין הן בלתי הפיכות. wwwallet אינה מהווה ייעוץ פיננסי, השקעתי, משפטי או מס. השימוש בה הוא על אחריותך בלבד. קוד המקור זמין תחת רישיון PolyForm Strict License 1.0.0 — אתה רשאי לקרוא אותו ולבדוק אותו, אך אסור לך להעתיק, לשנות, להפיץ מחדש או להשתמש בו למטרות מסחריות."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "קרא את תנאי הרישיון"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "קראתי את התנאים הללו ואני מסכים להם"
     }
   },
   "ja": {
@@ -17787,6 +18011,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "サービス料：{fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "先に進む前に"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet は「現状有姿」で提供される非カストディアル型ソフトウェアであり、いかなる保証も付帯しません。鍵と資金の管理はユーザー自身のみが行います。リカバリーフレーズやバックアップを紛失した場合、いかなる者もそれらを復元することはできず、ブロックチェーン上の取引は取り消すことができません。wwwallet は、金融、投資、法律、税務に関する助言ではありません。ご利用は自己責任で行ってください。 ソースコードは、PolyForm Strict License 1.0.0 に基づき公開されています。コードの閲覧および監査は可能ですが、複製、改変、再配布、または商用利用は禁じられています。"
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "ライセンスをお読みください"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "本利用規約を読み、同意します"
     }
   },
   "ko": {
@@ -18973,6 +19213,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "서비스 수수료: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "계속하기 전에"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet은 어떠한 종류의 보증도 없이 “있는 그대로” 제공되는 비수탁형 소프트웨어입니다. 사용자 본인만이 자신의 키와 자금을 관리합니다. 복구 문구나 백업을 분실할 경우 누구도 이를 복구할 수 없으며, 블록체인 거래는 되돌릴 수 없습니다. wwwallet은 금융, 투자, 법률 또는 세무 자문이 아닙니다. 사용에 따른 모든 책임은 전적으로 사용자에게 있습니다. 이 코드는 PolyForm Strict License 1.0.0에 따라 소스 코드가 공개되어 있습니다. 코드를 열람하고 검토할 수는 있으나, 복사, 수정, 재배포 또는 상업적 용도로 사용할 수 없습니다."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "라이선스 내용 읽기"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "본 약관을 읽었으며 이에 동의합니다"
     }
   },
   "lt": {
@@ -20159,6 +20415,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Paslaugos mokestis: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Prieš tęsdami"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "„wwwallet“ yra nepatikėtinė programinė įranga, teikiama „tokia, kokia yra“, be jokių garantijų. Tik jūs pats valdote savo raktus ir lėšas: prarastą atkūrimo frazę ar atsarginę kopiją niekas negali atkurti, o blokų grandinės sandoriai yra negrįžtami. „wwwallet“ nėra finansinė, investicinė, teisinė ar mokesčių konsultacija. Naudokitės ja savo pačių rizika. Programos kodas yra prieinamas pagal „PolyForm Strict License 1.0.0“ licenciją – jį galite skaityti ir tikrinti, tačiau negalite kopijuoti, keisti, platinti ar naudoti komerciniais tikslais."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Perskaitykite licenciją"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Aš perskaičiau šias sąlygas ir su jomis sutinku"
     }
   },
   "lv": {
@@ -21345,6 +21617,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Pakalpojuma maksa: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Pirms turpināt"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet ir programmatūra bez glabāšanas pakalpojumiem, kas tiek piedāvāta „tādā stāvoklī, kādā tā ir“, bez jebkāda veida garantijas. Tikai jūs pats kontrolējat savas atslēgas un līdzekļus: zaudētu atjaunošanas frāzi vai dublējumu neviens nevar atgūt, un blokķēdes darījumi ir neatgriezeniski. wwwallet nav finanšu, ieguldījumu, juridiska vai nodokļu konsultācija. Lietojiet to uz savu risku. Programmas kods ir pieejams saskaņā ar „PolyForm Strict License 1.0.0“ — jūs varat to lasīt un pārbaudīt, bet ne kopēt, modificēt, izplatīt tālāk vai izmantot komerciālos nolūkos."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Izlasiet licences noteikumus"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Esmu iepazinisies ar šiem noteikumiem un tos piekrītu"
     }
   },
   "nl": {
@@ -22531,6 +22819,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Servicekosten: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Voordat je verdergaat"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet is non-custodial software die wordt aangeboden “zoals ze is”, zonder enige vorm van garantie. U hebt zelf de volledige controle over uw sleutels en uw geld: een verloren herstelzin of back-up kan door niemand worden hersteld, en blockchain-transacties zijn onomkeerbaar. wwwallet is geen financieel, beleggings-, juridisch of fiscaal advies. Gebruik het op eigen risico. De broncode is beschikbaar onder de PolyForm Strict License 1.0.0 — u mag deze lezen en controleren, maar niet kopiëren, wijzigen, herdistribueren of commercieel gebruiken."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Lees de licentie"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Ik heb deze voorwaarden gelezen en ga hiermee akkoord"
     }
   },
   "no": {
@@ -23717,6 +24021,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Servicegebyr: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Før du fortsetter"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet er programvare uten forvaring som leveres «som den er», uten noen form for garanti. Du har selv full kontroll over nøklene og midlene dine: En tapt gjenopprettingsfrase eller sikkerhetskopi kan ikke gjenopprettes av noen, og transaksjoner på blokkjeden er irreversible. wwwallet utgjør ikke finansiell, investerings-, juridisk eller skatterådgivning. Bruk den på egen risiko. Kildekoden er tilgjengelig under PolyForm Strict License 1.0.0 – du kan lese og gjennomgå den, men ikke kopiere, endre, videreformidle eller bruke den kommersielt."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Les lisensvilkårene"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Jeg har lest og godtar disse vilkårene"
     }
   },
   "pl": {
@@ -24903,6 +25223,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Opłata za usługę: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Zanim przejdziesz dalej"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet to oprogramowanie bezdepozytowe udostępniane „tak jak jest”, bez jakiejkolwiek gwarancji. Tylko Ty masz kontrolę nad swoimi kluczami i środkami: nikt nie jest w stanie odtworzyć utraconej frazy odzyskiwania ani kopii zapasowej, a transakcje w łańcuchu bloków są nieodwracalne. wwwallet nie stanowi porady finansowej, inwestycyjnej, prawnej ani podatkowej. Korzystasz z niego na własne ryzyko. Kod źródłowy jest dostępny na licencji PolyForm Strict License 1.0.0 — możesz go przeglądać i weryfikować, ale nie wolno go kopiować, modyfikować, rozpowszechniać ani wykorzystywać w celach komercyjnych."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Zapoznaj się z warunkami licencji"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Zapoznałem się z niniejszymi warunkami i je akceptuję"
     }
   },
   "ro": {
@@ -26089,6 +26425,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Taxă de serviciu: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Înainte de a continua"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet este un software fără custodie, furnizat „așa cum este”, fără niciun fel de garanție. Doar dumneavoastră dețineți controlul asupra cheilor și fondurilor dumneavoastră: o frază de recuperare pierdută sau o copie de rezervă pierdută nu pot fi recuperate de nimeni, iar tranzacțiile de pe blockchain sunt ireversibile. wwwallet nu constituie consultanță financiară, de investiții, juridică sau fiscală. Utilizați-l pe propria răspundere. Codul sursă este disponibil sub licența PolyForm Strict License 1.0.0 — îl puteți citi și verifica, dar nu îl puteți copia, modifica, redistribui sau utiliza în scopuri comerciale."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Citiți licența"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Am citit și accept acești termeni"
     }
   },
   "ru": {
@@ -27275,6 +27627,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Комиссия за обслуживание: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Прежде чем продолжить"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet — это некастодиальное программное обеспечение, предоставляемое «как есть», без каких-либо гарантий. Только вы контролируете свои ключи и средства: утраченную фразу восстановления или резервную копию никто не сможет восстановить, а транзакции в блокчейне необратимы. wwwallet не является финансовой, инвестиционной, юридической или налоговой консультацией. Используйте его на свой страх и риск. Исходный код доступен в соответствии с лицензией PolyForm Strict License 1.0.0 — вы можете читать и проверять его, но не копировать, не изменять, не распространять и не использовать в коммерческих целях."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Ознакомьтесь с условиями лицензии"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Я ознакомился с этими условиями и принимаю их"
     }
   },
   "sk": {
@@ -28461,6 +28829,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Poplatok za službu: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Než budete pokračovať"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet je softvér bez úschovy poskytovaný „tak, ako je“, bez akejkoľvek záruky. Nad svojimi kľúčmi a prostriedkami máte kontrolu výlučne vy: stratenú obnovovaciu frázu ani zálohu nemôže nikto obnoviť a transakcie v blockchainu sú nezvratné. wwwallet nepredstavuje finančné, investičné, právne ani daňové poradenstvo. Používajte ho na vlastné riziko. Zdrojový kód je dostupný pod licenciou PolyForm Strict License 1.0.0 – môžete si ho prečítať a skontrolovať, ale nie kopírovať, upravovať, ďalej šíriť ani používať na komerčné účely."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Prečítajte si licenčné podmienky"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Prečítal som si tieto podmienky a súhlasím s nimi"
     }
   },
   "sl": {
@@ -29647,6 +30031,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Stroški storitve: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Preden nadaljujete"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet je programska oprema brez skrbništva, ki se zagotavlja »tako, kot je«, brez kakršnih koli jamstev. Nad svojimi ključi in sredstvi imate nadzor izključno vi: izgubljene obnovitvene fraze ali varnostne kopije nihče ne more obnoviti, transakcije v verigi blokov pa so nepovratne. wwwallet ne predstavlja finančnega, naložbenega, pravnega ali davčnega svetovanja. Uporabljajte ga na lastno odgovornost. Izvorna koda je na voljo pod licenco PolyForm Strict License 1.0.0 – lahko jo preberete in pregledate, vendar je ne smete kopirati, spreminjati, ponovno distribuirati ali uporabljati v komercialne namene."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Preberite licenco"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Prebral sem te pogoje in jih sprejemam"
     }
   },
   "sv": {
@@ -30833,6 +31233,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Serviceavgift: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Innan du fortsätter"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet är en programvara utan förvaring som tillhandahålls ”i befintligt skick”, utan någon form av garanti. Du har själv full kontroll över dina nycklar och medel: en förlorad återställningsfras eller säkerhetskopia kan inte återställas av någon, och transaktioner på blockkedjan är oåterkalleliga. wwwallet utgör inte finansiell, investerings-, juridisk eller skatterådgivning. Använd den på egen risk. Källkoden är tillgänglig under PolyForm Strict License 1.0.0 – du får läsa och granska den, men inte kopiera, ändra, vidarebefordra eller använda den kommersiellt."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Läs licensvillkoren"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Jag har läst och godkänner dessa villkor"
     }
   },
   "tr": {
@@ -32019,6 +32435,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Hizmet ücreti: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Devam etmeden önce"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet, herhangi bir garanti olmaksızın “olduğu gibi” sunulan, saklama hizmeti içermeyen bir yazılımdır. Anahtarlarınız ve varlıklarınızın kontrolü tamamen size aittir: Kaybolan kurtarma ifadesi veya yedekleme, hiç kimse tarafından geri getirilemez ve blok zinciri işlemleri geri alınamaz. wwwallet, finansal, yatırım, hukuki veya vergi danışmanlığı niteliğinde değildir. Kullanım riski tamamen size aittir. Kod, PolyForm Strict License 1.0.0 kapsamında açık kaynak olarak sunulmaktadır — kodu okuyabilir ve inceleyebilirsiniz, ancak kopyalayamaz, değiştiremez, yeniden dağıtamaz veya ticari amaçla kullanamazsınız."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Lisansı okuyun"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Bu şartları okudum ve kabul ediyorum"
     }
   },
   "uk": {
@@ -33205,6 +33637,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Комісія за послугу: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Перш ніж продовжувати"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet — це некастодіальне програмне забезпечення, що надається «як є», без будь-яких гарантій. Ви самостійно контролюєте свої ключі та кошти: у разі втрати фрази відновлення або резервної копії ніхто не зможе їх відновити, а транзакції в блокчейні є незворотними. wwwallet не є фінансовою, інвестиційною, юридичною чи податковою порадою. Використовуйте його на власний ризик. Вихідний код доступний на умовах ліцензії PolyForm Strict License 1.0.0 — ви можете його читати та перевіряти, але не можете копіювати, модифікувати, поширювати або використовувати в комерційних цілях."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Ознайомтеся з умовами ліцензії"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Я ознайомився з цими умовами та погоджуюся з ними"
     }
   },
   "vi": {
@@ -34391,6 +34839,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "Phí dịch vụ: {fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "Trước khi tiếp tục"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet là phần mềm không lưu giữ tài sản, được cung cấp “nguyên trạng”, không kèm theo bất kỳ bảo hành nào. Chỉ bạn mới có quyền kiểm soát các khóa và số dư của mình: nếu mất cụm từ khôi phục hoặc bản sao lưu, không ai có thể khôi phục lại được, và các giao dịch trên blockchain là không thể đảo ngược. wwwallet không phải là lời khuyên về tài chính, đầu tư, pháp lý hay thuế. Hãy sử dụng nó với rủi ro do bạn tự chịu. Mã nguồn được công bố theo Giấy phép PolyForm Strict 1.0.0 — bạn có thể đọc và kiểm tra mã nguồn, nhưng không được sao chép, sửa đổi, phân phối lại hoặc sử dụng cho mục đích thương mại."
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "Đọc bản quyền"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "Tôi đã đọc và đồng ý với các điều khoản này"
     }
   },
   "zh-CN": {
@@ -35577,6 +36041,22 @@
     "swap.integratorFee": {
       "enHash": "896c3c58ed5f714e",
       "value": "服务费：{fee}"
+    },
+    "vaultSetup.disclaimerTitle": {
+      "enHash": "a79a71b58afe2bcd",
+      "value": "在继续之前"
+    },
+    "vaultSetup.disclaimerBody": {
+      "enHash": "696f24a799777da2",
+      "value": "wwwallet 是一款“按原样”提供的非托管软件，不提供任何形式的保证。您完全自主掌控自己的密钥和资金：一旦丢失恢复短语或备份，任何人都无法将其恢复，且区块链交易不可逆。wwwallet 不构成任何金融、投资、法律或税务建议。使用本软件需自行承担风险。 该代码根据 PolyForm Strict License 1.0.0 协议开源——您可以阅读和审核代码，但不得复制、修改、再分发或将其用于商业用途。"
+    },
+    "vaultSetup.disclaimerLicenseLink": {
+      "enHash": "246de8e97b13fc6c",
+      "value": "阅读许可协议"
+    },
+    "vaultSetup.disclaimerAckLabel": {
+      "enHash": "6cb0b8e2bc355722",
+      "value": "我已阅读并接受这些条款"
     }
   }
 }

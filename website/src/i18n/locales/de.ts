@@ -129,15 +129,31 @@ export default {
       },
       {
         q: 'Ist wwwallet Open Source?',
-        a: 'Der Quellcode ist auf GitHub öffentlich zugänglich, sodass ihn jeder einsehen kann. Er wurde noch nicht unter einer Open-Source-Lizenz veröffentlicht; betrachten Sie ihn daher vorerst eher als öffentlich zur Überprüfung und nicht als Open Source.',
+        a: 'Nein – der Quellcode ist verfügbar. Der vollständige Quellcode ist auf GitHub öffentlich zugänglich, sodass jeder ihn lesen, prüfen und begutachten kann, aber es handelt sich nicht um Open Source: Der Code unterliegt der PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Was darf ich mit dem Code machen?',
+        a: 'Sie dürfen das gesamte Werk lesen und prüfen sowie eine unveränderte Kopie für nichtkommerzielle Zwecke wie zum Beispiel zum persönlichen Studium, zur Forschung und zum Testen nutzen. Sie dürfen es jedoch nicht verbreiten, verändern oder abgeleitete Werke (einschließlich Forks) erstellen oder es kommerziell nutzen. Wenn Sie etwas benötigen, was die Lizenz nicht erlaubt, wenden Sie sich bitte an den Urheberrechtsinhaber, um eine gesonderte Lizenz zu erhalten.',
+      },
+      {
+        q: 'Ist die Nutzung von wwwallet sicher? Gibt es eine Garantie?',
+        a: 'wwwallet ist eine nicht-verwahrende Software, die „wie besehen“ und ohne jegliche Gewährleistung bereitgestellt wird. Sie allein haben die Kontrolle über Ihre Schlüssel und Ihr Guthaben – niemand, auch nicht wir, kann eine verlorene Wiederherstellungsphrase oder ein Backup wiederherstellen, eine Transaktion rückgängig machen oder Ihnen Verluste ersetzen. Verwenden Sie nur Guthaben, dessen Verlust Sie sich leisten können, überprüfen Sie Adressen und Netzwerke vor dem Senden noch einmal sorgfältig, und beachten Sie, dass nichts hier eine Finanz-, Anlage-, Rechts- oder Steuerberatung darstellt.',
       },
       {
         q: 'Welche Netzwerke unterstützt wwwallet?',
         a: 'Das Ethereum-Mainnet sowie die Layer-2-Netzwerke Polygon, Arbitrum, Base und Optimism – alles über denselben Satz von Konten.',
       },
       {
+        q: 'Wie lade ich Guthaben auf mein Wallet?',
+        a: 'Eröffnen Sie ein Konto, wählen Sie „QR-Code anzeigen“, um die Adresse anzuzeigen, und senden Sie Guthaben von einer Börse oder einer anderen Wallet an diese Adresse. Achten Sie darauf, dass Sie über das richtige Netzwerk senden (Ethereum, Polygon, Arbitrum, Base oder Optimism) – dieselbe Adresse funktioniert zwar in allen Netzwerken, aber Guthaben, das über ein bestimmtes Netzwerk gesendet wird, erscheint nur in diesem Netzwerk. Außerdem benötigen Sie eine kleine Menge der nativen Kryptowährung des Netzwerks (z. B. ETH), um die Transaktionsgebühren zu bezahlen.',
+      },
+      {
+        q: 'Was kann ich mit wwwallet machen?',
+        a: 'Senden: Überweisen Sie ETH oder einen beliebigen Token an eine Adresse, die Sie einfügen, über einen QR-Code einscannen oder aus Ihren eigenen Konten auswählen, und überprüfen Sie die Details, bevor Sie den Vorgang bestätigen. Tauschen: Tauschen Sie auf der Registerkarte „Tauschen“ einen Token gegen einen anderen im selben Netzwerk ein, wobei der Kurs und die voraussichtlichen Gebühren im Voraus angezeigt werden. Empfangen: Zeigen Sie Ihre Adresse als QR-Code an. Außerdem kannst du deine Guthaben in US-Dollar sowie deinen Transaktionsverlauf über alle unterstützten Netzwerke hinweg einsehen.',
+      },
+      {
         q: 'Was weiß wwwallet über mich?',
-        a: 'Nichts, was Rückschlüsse auf Ihre Identität zulässt. Es gibt weder ein Konto noch eine Anmeldung noch eine Datenbank. Guthaben- und Kursdaten werden über das eigene Backend von wwwallet abgerufen, anstatt dass Ihr Browser Drittanbieter direkt anruft, und dieses Backend hat zu keinem Zeitpunkt Zugriff auf Ihre Schlüssel, Passwörter oder Ihre Wiederherstellungsphrase.',
+        a: 'Nichts, was Rückschlüsse auf Ihre Identität zulässt. Es gibt weder ein Konto noch eine Anmeldung noch eine Datenbank. Kontostands- und Kursdaten werden über das eigene Backend von wwwallet abgerufen, anstatt dass Ihr Browser direkt auf Drittanbieter zugreift, und dieses Backend hat zu keinem Zeitpunkt Zugriff auf Ihre Schlüssel, Passwörter oder Ihre Wiederherstellungsphrase.',
       },
     ],
   },
@@ -145,5 +161,8 @@ export default {
     tagline: 'Eine persönliche, nicht-verwahrende Ethereum-Wallet.',
     sourceLink: 'Quellcode auf GitHub anzeigen',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Lizenziert unter PolyForm Strict 1.0.0',
+    disclaimer:
+      'Nicht-verwahrende Software wird „wie besehen“ und ohne Gewährleistung bereitgestellt. Dies stellt keine Finanzberatung dar. Sie tragen die alleinige Verantwortung für Ihre Schlüssel und Ihr Guthaben.',
   },
 }

@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Hiermee worden een nieuwe herstelzin en een nieuwe kluis op dit apparaat aangemaakt. Er wordt niets naar een server verzonden — je hebt vanaf het begin de volledige controle.',
     createWalletCta: 'Portemonnee aanmaken',
+    disclaimerTitle: 'Voordat je verdergaat',
+    disclaimerBody:
+      'wwwallet is non-custodial software die wordt aangeboden “zoals ze is”, zonder enige vorm van garantie. U hebt zelf de volledige controle over uw sleutels en uw geld: een verloren herstelzin of back-up kan door niemand worden hersteld, en blockchain-transacties zijn onomkeerbaar. wwwallet is geen financieel, beleggings-, juridisch of fiscaal advies. Gebruik het op eigen risico. De broncode is beschikbaar onder de PolyForm Strict License 1.0.0 — u mag deze lezen en controleren, maar niet kopiëren, wijzigen, herdistribueren of commercieel gebruiken.',
+    disclaimerLicenseLink: 'Lees de licentie',
+    disclaimerAckLabel: 'Ik heb deze voorwaarden gelezen en ga hiermee akkoord',
   },
   vaultUnlock: {
     title: 'wwwallet ontgrendelen',

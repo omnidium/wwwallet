@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Tworzy nową frazę odzyskiwania i skarbnicę na tym urządzeniu. Żadne dane nie są przesyłane na serwer — od samego początku masz pełną kontrolę.',
     createWalletCta: 'Utwórz portfel',
+    disclaimerTitle: 'Zanim przejdziesz dalej',
+    disclaimerBody:
+      'wwwallet to oprogramowanie bezdepozytowe udostępniane „tak jak jest”, bez jakiejkolwiek gwarancji. Tylko Ty masz kontrolę nad swoimi kluczami i środkami: nikt nie jest w stanie odtworzyć utraconej frazy odzyskiwania ani kopii zapasowej, a transakcje w łańcuchu bloków są nieodwracalne. wwwallet nie stanowi porady finansowej, inwestycyjnej, prawnej ani podatkowej. Korzystasz z niego na własne ryzyko. Kod źródłowy jest dostępny na licencji PolyForm Strict License 1.0.0 — możesz go przeglądać i weryfikować, ale nie wolno go kopiować, modyfikować, rozpowszechniać ani wykorzystywać w celach komercyjnych.',
+    disclaimerLicenseLink: 'Zapoznaj się z warunkami licencji',
+    disclaimerAckLabel: 'Zapoznałem się z niniejszymi warunkami i je akceptuję',
   },
   vaultUnlock: {
     title: 'Odblokuj wwwallet',

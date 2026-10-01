@@ -129,15 +129,31 @@ export default {
       },
       {
         q: 'A wwwallet nyílt forráskódú?',
-        a: 'A forráskód nyilvánosan elérhető a GitHubon, így bárki elolvashatja. Mivel egyelőre nem nyílt forráskódú licenc alatt tették közzé, egyelőre inkább nyilvános, áttekintésre szánt anyagként tekints rá, nem pedig nyílt forráskódúként.',
+        a: 'Nem — a forráskód elérhető. A teljes forráskód nyilvánosan elérhető a GitHubon, így bárki elolvashatja, átnézheti és ellenőrizheti, de nem nyílt forráskódú: a kódra a PolyForm Strict License 1.0.0 licenc vonatkozik.',
       },
       {
-        q: 'Mely hálózatokat támogatja a wwwallet?',
+        q: 'Mit tehetek a kóddal?',
+        a: 'Az egész anyagot elolvashatja és ellenőrizheti, valamint módosítatlan példányát nem kereskedelmi célokra – például személyes tanulás, kutatás és tesztelés céljából – futtathatja. Nem terjesztheti, nem módosíthatja, nem készíthet belőle származékos művet (beleértve a forkákat sem), és nem használhatja kereskedelmi célokra. Ha olyanra van szüksége, amit a licenc nem engedélyez, vegye fel a kapcsolatot a szerzői jog tulajdonosával egy külön licenc megszerzése érdekében.',
+      },
+      {
+        q: 'Biztonságos-e a wwwallet használata? Van-e rá garancia?',
+        a: 'A wwwallet egy nem letéti szoftver, amelyet „adott állapotban” biztosítunk, bármiféle garancia nélkül. Kizárólag Ön rendelkezik a kulcsokkal és a pénzeszközökkel — senki, beleértve minket is, nem tudja helyreállítani az elveszett helyreállítási kifejezést vagy biztonsági másolatot, visszavonni egy tranzakciót, vagy kártérítést nyújtani az Ön veszteségeiért. Csak olyan pénzeszközöket használjon, amelyek elvesztését megengedheti magának, az elküldés előtt gondosan ellenőrizze a címeket és a hálózatokat, és a jelen dokumentumban szereplő információk nem minősülnek pénzügyi, befektetési, jogi vagy adótanácsadásnak.',
+      },
+      {
+        q: 'Mely hálózatokat támogatja az wwwallet?',
         a: 'Az Ethereum főhálózata, valamint a Layer-2 hálózatok – a Polygon, az Arbitrum, a Base és az Optimism – mind ugyanabból a fiókcsoportból.',
       },
       {
+        q: 'Hogyan tölthetem fel a pénztárcámat?',
+        a: 'Nyisson meg egy fiókot, válassza a „QR-kód megtekintése” lehetőséget a cím megtekintéséhez, majd utaljon pénzt erre a címre egy tőzsdéről vagy egy másik pénztárcából. Győződjön meg róla, hogy a megfelelő hálózaton (Ethereum, Polygon, Arbitrum, Base vagy Optimism) küldi el a pénzt – ugyanaz a cím mindegyiken működik, de az egyik hálózaton elküldött pénz csak azon a hálózaton jelenik meg. Szüksége lesz egy kis mennyiségű hálózati natív érmére (például ETH-ra) is a tranzakciós díjak kifizetéséhez.',
+      },
+      {
+        q: 'Mit tudok csinálni a wwwallet segítségével?',
+        a: 'Küldés: utalj ETH-t vagy bármilyen tokent egy címre, amelyet beillesztesz, QR-kódból beolvasol, vagy a saját fiókjaid közül választasz ki, majd a megerősítés előtt ellenőrizd az adatokat. Csere: cserélj ki egy tokent egy másikra ugyanazon a hálózaton a „Csere” fülön, ahol előre megjelenik az árfolyam és a becsült díj. Fogadás: mutasd meg a címedet QR-kód formájában. Emellett megtekintheti egyenlegeit USD-értékben, valamint a tranzakciós előzményeket az összes támogatott hálózaton.',
+      },
+      {
         q: 'Mit tud rólam a wwwallet?',
-        a: 'Semmi, ami azonosíthatna téged. Nincs fiók, bejelentkezés vagy adatbázis. Az egyenleg- és áradatokat a wwwallet saját háttérrendszere szolgáltatja, nem pedig úgy, hogy a böngésződ közvetlenül harmadik fél szolgáltatókat hívna meg, és ez a háttérrendszer soha nem látja a kulcsaidat, jelszavaidat vagy a helyreállítási kódodat.',
+        a: 'Semmi, ami azonosíthatna téged. Nincs fiók, bejelentkezés vagy adatbázis. Az egyenleg- és áradatokat a wwwallet saját háttérrendszere tölti be, nem pedig a böngésződ, amely közvetlenül harmadik fél szolgáltatókat hívna meg, és ez a háttérrendszer soha nem látja a kulcsaidat, jelszavaidat vagy helyreállítási kódodat.',
       },
     ],
   },
@@ -145,5 +161,8 @@ export default {
     tagline: 'Egy személyes, nem letéti Ethereum-pénztárca.',
     sourceLink: 'A forráskód megtekintése a GitHubon',
     copyright: '© {year} wwwallet',
+    licenseLink: 'A PolyForm Strict 1.0.0 licenc alapján',
+    disclaimer:
+      'A nem letéti szoftver „adott állapotban” kerül rendelkezésre, garancia nélkül. Ez nem minősül pénzügyi tanácsadásnak. A kulcsokért és a pénzeszközökért kizárólag Ön felel.',
   },
 }

@@ -128,11 +128,27 @@ export default {
       },
       {
         q: 'Ali je wwwallet odprtokodna rešitev?',
-        a: 'Izvorna koda je objavljena na GitHubu, zato jo lahko prebere kdorkoli. Zaenkrat še ni objavljena pod odprtokodno licenco, zato jo zaenkrat obravnavajte kot javno objavljeno za pregled in ne kot odprtokodno.',
+        a: 'Ne — koda je na voljo. Celotna izvorna koda je javno objavljena na GitHubu, tako da jo lahko kdorkoli prebere, pregleda in preveri, vendar ne gre za odprtokodno programsko opremo: koda je licencirana pod licenco PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Kaj smem početi s kodo?',
+        a: 'Vse to lahko preberete in pregledate ter uporabljate nespremenjeno kopijo za nekomercialne namene, kot so osebno učenje, raziskovanje in testiranje. Ne smete ga razširjati, spreminjati ali ustvarjati izpeljank (vključno z razvejami) niti ga uporabljati v komercialne namene. Če potrebujete kaj, kar licenca ne dovoljuje, se za ločeno licenco obrnite na imetnika avtorskih pravic.',
+      },
+      {
+        q: 'Ali je uporaba wwwallet varna? Ali obstaja kakšna garancija?',
+        a: 'wwwallet je programska oprema brez skrbništva, ki se zagotavlja »tako, kot je«, brez kakršnih koli jamstev. Samo vi imate nadzor nad svojimi ključi in sredstvi – nihče, niti mi, ne more obnoviti izgubljene obnovitvene fraze ali varnostne kopije, razveljaviti transakcije ali vam nadomestiti izgube. Uporabljajte le sredstva, ki si jih lahko privoščite izgubiti, pred pošiljanjem dvakrat preverite naslove in omrežja, pri čemer nič od navedenega ne predstavlja finančnega, naložbenega, pravnega ali davčnega nasveta.',
       },
       {
         q: 'Katera omrežja podpira wwwallet?',
         a: 'Glavna mreža Ethereum ter omrežja Layer-2 Polygon, Arbitrum, Base in Optimism – vse iz istega sklopa računov.',
+      },
+      {
+        q: 'Kako lahko vplačam sredstva v svoj denarnik?',
+        a: 'Odprite račun, izberite »Poglej QR-kodo«, da si ogledate naslov, in sredstva pošljite na ta naslov z borze ali iz drugega denarnika. Prepričajte se, da sredstva pošiljate prek pravega omrežja (Ethereum, Polygon, Arbitrum, Base ali Optimism) – isti naslov deluje na vseh omrežjih, vendar se sredstva, poslana prek enega omrežja, prikažejo le na tem omrežju. Potrebovali boste tudi nekaj domače kriptovalute omrežja (na primer ETH) za plačilo transakcijskih provizij.',
+      },
+      {
+        q: 'Kaj lahko počnem z wwwallet?',
+        a: 'Pošlji: prenesi ETH ali kateri koli token na naslov, ki ga prilepiš, skeniraš iz QR-kode ali izbereš iz svojih računov, ter pred potrditvijo preglej podrobnosti. Zamenjaj: v zavihku »Zamenjaj« zamenjaj en token za drugega v istem omrežju, pri čemer sta ponudba in ocena provizije prikazani vnaprej. Prejmi: prikaži svoj naslov kot QR-kodo. Prav tako lahko pregledate stanja v USD in zgodovino transakcij v vseh podprtih omrežjih.',
       },
       {
         q: 'Kaj ve wwwallet o meni?',
@@ -144,5 +160,8 @@ export default {
     tagline: 'Osebna denarnica za Ethereum brez hrambe sredstev.',
     sourceLink: 'Oglejte si izvorno kodo na GitHubu',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Pod licenco PolyForm Strict 1.0.0',
+    disclaimer:
+      'Programska oprema, ki ne omogoča hrambe, se zagotavlja »takšna, kakršna je«, brez jamstva. To ni finančno svetovanje. Za svoje ključe in sredstva ste odgovorni izključno vi.',
   },
 }

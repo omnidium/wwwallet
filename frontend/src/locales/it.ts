@@ -137,6 +137,11 @@ export default {
     createIntroBody:
       "Crea una nuova frase di recupero e un nuovo vault su questo dispositivo. Non viene inviato nulla a un server: hai il pieno controllo sin dall'inizio.",
     createWalletCta: 'Crea un portafoglio',
+    disclaimerTitle: 'Prima di continuare',
+    disclaimerBody:
+      'wwwallet è un software non custodito fornito “così com’è”, senza garanzie di alcun tipo. Sei tu l’unico a controllare le tue chiavi e i tuoi fondi: una frase di recupero o un backup smarriti non possono essere recuperati da nessuno, e le transazioni sulla blockchain sono irreversibili. wwwallet non costituisce una consulenza finanziaria, di investimento, legale o fiscale. Utilizzalo a tuo rischio e pericolo. Il codice è disponibile in formato sorgente sotto la licenza PolyForm Strict License 1.0.0: è possibile leggerlo e verificarlo, ma non copiarlo, modificarlo, ridistribuirlo o utilizzarlo a fini commerciali.',
+    disclaimerLicenseLink: 'Leggi la licenza',
+    disclaimerAckLabel: 'Ho letto e accetto i presenti termini',
   },
   vaultUnlock: {
     title: 'Sblocca wwwallet',

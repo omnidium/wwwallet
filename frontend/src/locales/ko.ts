@@ -136,6 +136,11 @@ export default {
     createIntroBody:
       '이 기기에서 새로운 복구 문구와 금고를 생성합니다. 서버로 전송되는 정보는 전혀 없으며, 처음부터 사용자가 모든 권한을 완전히 통제합니다.',
     createWalletCta: '지갑 만들기',
+    disclaimerTitle: '계속하기 전에',
+    disclaimerBody:
+      'wwwallet은 어떠한 종류의 보증도 없이 “있는 그대로” 제공되는 비수탁형 소프트웨어입니다. 사용자 본인만이 자신의 키와 자금을 관리합니다. 복구 문구나 백업을 분실할 경우 누구도 이를 복구할 수 없으며, 블록체인 거래는 되돌릴 수 없습니다. wwwallet은 금융, 투자, 법률 또는 세무 자문이 아닙니다. 사용에 따른 모든 책임은 전적으로 사용자에게 있습니다. 이 코드는 PolyForm Strict License 1.0.0에 따라 소스 코드가 공개되어 있습니다. 코드를 열람하고 검토할 수는 있으나, 복사, 수정, 재배포 또는 상업적 용도로 사용할 수 없습니다.',
+    disclaimerLicenseLink: '라이선스 내용 읽기',
+    disclaimerAckLabel: '본 약관을 읽었으며 이에 동의합니다',
   },
   vaultUnlock: {
     title: 'wwwallet 잠금 해제',

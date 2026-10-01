@@ -129,15 +129,31 @@ export default {
       },
       {
         q: 'wwwallet có phải là phần mềm mã nguồn mở không?',
-        a: 'Mã nguồn được công khai trên GitHub, nên bất kỳ ai cũng có thể xem được. Hiện tại, mã nguồn này vẫn chưa được phát hành theo giấy phép mã nguồn mở, vì vậy trước mắt, hãy coi nó là mã nguồn công khai để tham khảo chứ không phải là mã nguồn mở.',
+        a: 'Không — mã nguồn của nó được công khai. Toàn bộ mã nguồn được đăng tải công khai trên GitHub nên bất kỳ ai cũng có thể đọc, xem xét và kiểm tra, nhưng nó không phải là phần mềm mã nguồn mở: mã nguồn này được cấp phép theo Giấy phép PolyForm Strict 1.0.0.',
+      },
+      {
+        q: 'Tôi được phép làm gì với đoạn mã này?',
+        a: 'Bạn có thể đọc và kiểm tra toàn bộ nội dung, đồng thời chạy một bản sao nguyên vẹn cho các mục đích phi thương mại như học tập cá nhân, nghiên cứu và thử nghiệm. Bạn không được phân phối, sửa đổi hoặc tạo ra các tác phẩm phái sinh (bao gồm cả các phiên bản phân nhánh), cũng như không được sử dụng nó cho mục đích thương mại. Nếu bạn cần thực hiện những việc mà giấy phép này không cho phép, hãy liên hệ với chủ sở hữu bản quyền để xin giấy phép riêng.',
+      },
+      {
+        q: 'wwwallet có an toàn khi sử dụng không? Có chế độ bảo hành nào không?',
+        a: 'wwwallet là phần mềm không lưu ký được cung cấp “nguyên trạng”, không kèm theo bất kỳ bảo đảm nào. Chỉ bạn mới có quyền kiểm soát các khóa và tài sản của mình — không ai, kể cả chúng tôi, có thể khôi phục cụm từ khôi phục hoặc bản sao lưu bị mất, hủy bỏ giao dịch, hoặc bồi thường cho bạn về các khoản lỗ. Chỉ nên sử dụng số tiền mà bạn có thể chấp nhận mất, kiểm tra kỹ địa chỉ và mạng lưới trước khi gửi, và những thông tin tại đây không phải là lời khuyên về tài chính, đầu tư, pháp lý hoặc thuế.',
       },
       {
         q: 'wwwallet hỗ trợ những mạng nào?',
-        a: 'Mạng chính Ethereum, cùng với các mạng Layer-2 như Polygon, Arbitrum, Base và Optimism — tất cả đều được quản lý từ cùng một bộ tài khoản.',
+        a: 'Mạng chính Ethereum, cùng với các mạng Lớp 2 như Polygon, Arbitrum, Base và Optimism — tất cả đều được quản lý từ cùng một bộ tài khoản.',
       },
       {
-        q: 'wwwallet biết những thông tin gì về tôi?',
-        a: 'Không có thông tin nào giúp xác định danh tính của bạn. Không có tài khoản, thông tin đăng nhập hay cơ sở dữ liệu. Dữ liệu về số dư và giá được lấy thông qua hệ thống backend riêng của wwwallet, thay vì trình duyệt của bạn gọi trực tiếp đến các nhà cung cấp bên thứ ba, và hệ thống backend đó hoàn toàn không tiếp cận được khóa riêng, mật khẩu hay cụm từ khôi phục của bạn.',
+        q: 'Làm thế nào để nạp tiền vào ví của tôi?',
+        a: 'Mở tài khoản, chọn “Xem mã QR” để xem địa chỉ của tài khoản, sau đó chuyển tiền đến địa chỉ đó từ sàn giao dịch hoặc ví khác. Hãy đảm bảo bạn gửi tiền trên mạng lưới đúng (Ethereum, Polygon, Arbitrum, Base hoặc Optimism) — cùng một địa chỉ hoạt động trên tất cả các mạng này, nhưng số tiền gửi trên một mạng lưới chỉ hiển thị trên mạng lưới đó. Bạn cũng cần có một ít đồng tiền gốc của mạng lưới đó (chẳng hạn như ETH) để thanh toán phí giao dịch.',
+      },
+      {
+        q: 'Tôi có thể làm gì với wwwallet?',
+        a: 'Gửi: chuyển ETH hoặc bất kỳ token nào đến một địa chỉ mà bạn dán, quét từ mã QR hoặc chọn từ các tài khoản của chính bạn, và kiểm tra lại thông tin chi tiết trước khi xác nhận. Hoán đổi: đổi một token lấy một token khác trên cùng một mạng lưới từ tab “Hoán đổi”, với báo giá và ước tính phí được hiển thị ngay từ đầu. Nhận: hiển thị địa chỉ của bạn dưới dạng mã QR. Bạn cũng có thể xem số dư của mình dưới dạng giá trị USD và lịch sử giao dịch trên tất cả các mạng được hỗ trợ.',
+      },
+      {
+        q: 'wwwallet biết những gì về tôi?',
+        a: 'Không có thông tin nào giúp nhận diện bạn. Không có tài khoản, thông tin đăng nhập hay cơ sở dữ liệu. Dữ liệu về số dư và giá được lấy thông qua hệ thống backend riêng của wwwallet, thay vì trình duyệt của bạn gọi trực tiếp đến các nhà cung cấp bên thứ ba, và hệ thống backend đó không bao giờ tiếp cận được khóa riêng, mật khẩu hay cụm từ khôi phục của bạn.',
       },
     ],
   },
@@ -145,5 +161,8 @@ export default {
     tagline: 'Một ví Ethereum cá nhân, không lưu trữ tài sản.',
     sourceLink: 'Xem mã nguồn trên GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Được cấp phép theo Giấy phép PolyForm Strict 1.0.0',
+    disclaimer:
+      'Phần mềm không lưu giữ được cung cấp “nguyên trạng”, không kèm theo bất kỳ bảo hành nào. Đây không phải là lời khuyên tài chính. Bạn hoàn toàn chịu trách nhiệm về các khóa và số tiền của mình.',
   },
 }

@@ -138,6 +138,11 @@ export default {
     createIntroBody:
       'Šajā ierīcē tiek izveidota jauna atjaunošanas frāze un seifs. Nekāda informācija netiek nosūtīta uz serveri — jūs no paša sākuma pilnībā kontrolējat situāciju.',
     createWalletCta: 'Izveidot elektronisko maku',
+    disclaimerTitle: 'Pirms turpināt',
+    disclaimerBody:
+      'wwwallet ir programmatūra bez glabāšanas pakalpojumiem, kas tiek piedāvāta „tādā stāvoklī, kādā tā ir“, bez jebkāda veida garantijas. Tikai jūs pats kontrolējat savas atslēgas un līdzekļus: zaudētu atjaunošanas frāzi vai dublējumu neviens nevar atgūt, un blokķēdes darījumi ir neatgriezeniski. wwwallet nav finanšu, ieguldījumu, juridiska vai nodokļu konsultācija. Lietojiet to uz savu risku. Programmas kods ir pieejams saskaņā ar „PolyForm Strict License 1.0.0“ — jūs varat to lasīt un pārbaudīt, bet ne kopēt, modificēt, izplatīt tālāk vai izmantot komerciālos nolūkos.',
+    disclaimerLicenseLink: 'Izlasiet licences noteikumus',
+    disclaimerAckLabel: 'Esmu iepazinisies ar šiem noteikumiem un tos piekrītu',
   },
   vaultUnlock: {
     title: 'Atbloķēt wwwallet',

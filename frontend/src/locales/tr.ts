@@ -137,6 +137,11 @@ export default {
     createIntroBody:
       'Bu cihazda yeni bir kurtarma ifadesi ve kasa oluşturur. Sunucuya hiçbir şey gönderilmez — başından itibaren kontrol tamamen sizdedir.',
     createWalletCta: 'Cüzdan Oluştur',
+    disclaimerTitle: 'Devam etmeden önce',
+    disclaimerBody:
+      'wwwallet, herhangi bir garanti olmaksızın “olduğu gibi” sunulan, saklama hizmeti içermeyen bir yazılımdır. Anahtarlarınız ve varlıklarınızın kontrolü tamamen size aittir: Kaybolan kurtarma ifadesi veya yedekleme, hiç kimse tarafından geri getirilemez ve blok zinciri işlemleri geri alınamaz. wwwallet, finansal, yatırım, hukuki veya vergi danışmanlığı niteliğinde değildir. Kullanım riski tamamen size aittir. Kod, PolyForm Strict License 1.0.0 kapsamında açık kaynak olarak sunulmaktadır — kodu okuyabilir ve inceleyebilirsiniz, ancak kopyalayamaz, değiştiremez, yeniden dağıtamaz veya ticari amaçla kullanamazsınız.',
+    disclaimerLicenseLink: 'Lisansı okuyun',
+    disclaimerAckLabel: 'Bu şartları okudum ve kabul ediyorum',
   },
   vaultUnlock: {
     title: "wwwallet'in kilidini aç",

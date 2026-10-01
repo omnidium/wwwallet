@@ -128,15 +128,31 @@ export default {
       },
       {
         q: 'Kas wwwallet on avatud lähtekoodiga?',
-        a: 'Allikas on GitHubis avalik, seega võib igaüks seda lugeda. Seda ei ole veel avatud lähtekoodi litsentsi alusel avaldatud, seega käsitle seda praegu pigem avaliku materjalina läbivaatamiseks kui avatud lähtekoodina.',
+        a: 'Ei — selle lähtekood on kättesaadav. Kogu lähtekood on avalikult kättesaadav GitHubis, nii et igaüks saab seda lugeda, läbi vaadata ja kontrollida, kuid tegemist ei ole avatud lähtekoodiga: kood on litsentseeritud PolyForm Strict License 1.0.0 alusel.',
+      },
+      {
+        q: 'Mida mul on lubatud selle koodiga teha?',
+        a: 'Võite seda kõike lugeda ja kontrollida ning kasutada muutmata koopiat mittekaubanduslikel eesmärkidel, nagu isiklik õppimine, uurimistöö ja katsetamine. Te ei tohi seda levitada, muuta ega luua sellest tuletatud teoseid (sealhulgas harukoode) ega kasutada seda ärilistel eesmärkidel. Kui vajate midagi, mida litsents ei luba, võtke ühendust autoriõiguse omanikuga eraldi litsentsi saamiseks.',
+      },
+      {
+        q: 'Kas wwwallet on kasutamiseks turvaline? Kas sellel on mingi garantii?',
+        a: 'wwwallet on hoiustamata tarkvara, mida pakutakse „nagu on“, ilma mingisuguse garantiita. Ainult teie ise kontrollite oma võtmeid ja rahalisi vahendeid – keegi, kaasa arvatud meie, ei saa taastada kadunud taastusfraasi ega varukoopiat, tühistada tehingut ega hüvitada teile kahjusid. Kasutage ainult raha, mille kaotamist saate endale lubada, kontrollige enne saatmist hoolikalt aadresse ja võrke ning pidage meeles, et siin esitatud teave ei kujuta endast finants-, investeerimis-, õigus- ega maksualast nõuannet.',
       },
       {
         q: 'Milliseid võrke toetab wwwallet?',
         a: 'Ethereumi põhivõrk ning 2. kihi võrgustikud Polygon, Arbitrum, Base ja Optimism – kõik samast kontode kogumist.',
       },
       {
-        q: 'Mida teab wwwallet minu kohta?',
-        a: 'Mitte midagi, mis võimaldaks teid identifitseerida. Kontot, sisselogimist ega andmebaasi pole. Saldo- ja hinnaandmed laaditakse wwwallet’i enda tagapõhja kaudu, mitte nii, et teie brauser pöörduks otse kolmandate osapoolte teenusepakkujate poole, ning see tagapõhi ei näe kunagi teie võtmeid, paroole ega taastamislauset.',
+        q: 'Kuidas saan oma rahakotti raha lisada?',
+        a: 'Avage konto, valige „Vaata QR-koodi”, et näha selle aadressi, ning saatke raha sellele aadressile vahetusplatvormilt või teisest rahakotist. Veendu, et saadad raha õigel võrgustikul (Ethereum, Polygon, Arbitrum, Base või Optimism) – sama aadress töötab neil kõigil, kuid ühel võrgustikul saadetud raha kuvatakse ainult selles võrgustikus. Samuti on vaja veidi võrgu omavääringut (nt ETH), et maksta tehingutasusid.',
+      },
+      {
+        q: 'Mida ma saan wwwalletiga teha?',
+        a: 'Saada: kanna ETH või mis tahes tokenit aadressile, mille kleebid, skannid QR-koodist või valid oma kontode hulgast, ning vaata andmed üle enne kinnitamist. Vahetus: vaheta vahekaardil „Swap“ üht tokenit teise vastu samas võrgustikus, kusjuures hinnapakkumine ja teenustasu hinnang kuvatakse kohe alguses. Vastuvõtt: näita oma aadressi QR-koodina. Samuti saad vaadata oma saldod USD väärtustes ja tehingute ajalugu kõigis toetatud võrkudes.',
+      },
+      {
+        q: 'Mida teab wwwallet minust?',
+        a: 'Mitte midagi, mis võimaldaks sind identifitseerida. Kontot, sisselogimist ega andmebaasi pole. Saldo- ja hinnaandmed laaditakse wwwallet’i enda serverist, mitte nii, et su brauser pöörduks otse kolmandate osapoolte teenusepakkujate poole, ning see server ei näe kunagi su võtmeid, paroole ega taastamislauset.',
       },
     ],
   },
@@ -144,5 +160,8 @@ export default {
     tagline: 'Isiklik, hoiustamata Ethereumi rahakott.',
     sourceLink: 'Vaata lähtekoodi GitHubis',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Litsentsitud vastavalt PolyForm Strict 1.0.0-le',
+    disclaimer:
+      'Hoiustamata tarkvara pakutakse „nagu on“, ilma garantiita. See ei ole finantsnõustamine. Teie võtmed ja rahalised vahendid on ainult teie enda vastutusel.',
   },
 }

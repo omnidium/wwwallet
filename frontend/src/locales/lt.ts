@@ -137,6 +137,11 @@ export default {
     createIntroBody:
       'Šiame įrenginyje sukuria naują atkūrimo frazę ir saugyklą. Į serverį nieko nesiunčiama – nuo pat pradžių viską kontroliuojate patys.',
     createWalletCta: 'Sukurti piniginę',
+    disclaimerTitle: 'Prieš tęsdami',
+    disclaimerBody:
+      '„wwwallet“ yra nepatikėtinė programinė įranga, teikiama „tokia, kokia yra“, be jokių garantijų. Tik jūs pats valdote savo raktus ir lėšas: prarastą atkūrimo frazę ar atsarginę kopiją niekas negali atkurti, o blokų grandinės sandoriai yra negrįžtami. „wwwallet“ nėra finansinė, investicinė, teisinė ar mokesčių konsultacija. Naudokitės ja savo pačių rizika. Programos kodas yra prieinamas pagal „PolyForm Strict License 1.0.0“ licenciją – jį galite skaityti ir tikrinti, tačiau negalite kopijuoti, keisti, platinti ar naudoti komerciniais tikslais.',
+    disclaimerLicenseLink: 'Perskaitykite licenciją',
+    disclaimerAckLabel: 'Aš perskaičiau šias sąlygas ir su jomis sutinku',
   },
   vaultUnlock: {
     title: 'Atrakinti „wwwallet“',

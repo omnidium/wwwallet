@@ -129,11 +129,27 @@ export default {
       },
       {
         q: 'wwwallet est-il un logiciel libre ?',
-        a: "Le code source est accessible à tous sur GitHub ; tout le monde peut donc le consulter. Il n'est pas encore publié sous une licence open source ; pour l'instant, considérez-le donc comme un code public destiné à être examiné plutôt que comme un code open source.",
+        a: "Non, le code source est accessible. L'intégralité du code source est publique sur GitHub, ce qui permet à tout le monde de le lire, de l'examiner et de l'auditer, mais il ne s'agit pas d'un logiciel libre : le code est soumis à la licence PolyForm Strict License 1.0.0.",
+      },
+      {
+        q: 'Que suis-je autorisé à faire avec ce code ?',
+        a: "Vous pouvez lire et vérifier l'intégralité de ce contenu, et utiliser une copie non modifiée à des fins non commerciales, telles que l'étude personnelle, la recherche et les tests. Vous ne pouvez pas le distribuer, le modifier ni créer d’œuvres dérivées (y compris des « forks »), ni l’utiliser à des fins commerciales. Si vous avez besoin d’une utilisation non autorisée par la licence, contactez le détenteur des droits d’auteur pour obtenir une licence distincte.",
+      },
+      {
+        q: "L'utilisation de wwwallet est-elle sûre ? Bénéficie-t-on d'une garantie ?",
+        a: "wwwallet est un logiciel non dépositaire fourni « tel quel », sans garantie d’aucune sorte. Vous seul contrôlez vos clés et vos fonds — personne, y compris nous, ne peut récupérer une phrase de récupération ou une sauvegarde perdue, annuler une transaction ou vous indemniser en cas de pertes. N'utilisez que des fonds que vous pouvez vous permettre de perdre, vérifiez soigneusement les adresses et les réseaux avant d'effectuer un envoi, et sachez que rien ici ne constitue un conseil financier, d'investissement, juridique ou fiscal.",
       },
       {
         q: 'Quels réseaux wwwallet prend-il en charge ?',
         a: "Le réseau principal d'Ethereum, ainsi que les réseaux de couche 2 Polygon, Arbitrum, Base et Optimism — le tout à partir d'un même ensemble de comptes.",
+      },
+      {
+        q: 'Comment approvisionner mon portefeuille ?',
+        a: "Ouvrez un compte, sélectionnez « Afficher le code QR » pour voir son adresse, puis envoyez des fonds à cette adresse depuis une plateforme d'échange ou un autre portefeuille. Assurez-vous d’effectuer le virement sur le bon réseau (Ethereum, Polygon, Arbitrum, Base ou Optimism) : la même adresse fonctionne sur tous ces réseaux, mais les fonds envoyés sur un réseau n’apparaîtront que sur ce réseau-là. Vous aurez également besoin d’une petite quantité de la cryptomonnaie native du réseau (comme l’ETH) pour payer les frais de transaction.",
+      },
+      {
+        q: 'Que puis-je faire avec wwwallet ?',
+        a: "Envoyer : transférez des ETH ou n'importe quel token vers une adresse que vous collez, scannez à partir d'un code QR ou sélectionnez parmi vos propres comptes, puis vérifiez les détails avant de valider. Échanger : échangez un token contre un autre sur le même réseau depuis l'onglet « Échanger », avec un devis et une estimation des frais affichés dès le départ. Recevoir : affichez votre adresse sous forme de code QR. Vous pouvez également consulter vos soldes en dollars américains ainsi que l'historique de vos transactions sur tous les réseaux pris en charge.",
       },
       {
         q: 'Que sait wwwallet à mon sujet ?',
@@ -145,5 +161,8 @@ export default {
     tagline: 'Un portefeuille Ethereum personnel et sans dépôt fiduciaire.',
     sourceLink: 'Consulter le code source sur GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Sous licence PolyForm Strict 1.0.0',
+    disclaimer:
+      'Logiciel sans garde fourni « tel quel », sans aucune garantie. Ne constitue pas un conseil financier. Vous êtes seul responsable de vos clés et de vos fonds.',
   },
 }

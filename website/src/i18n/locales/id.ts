@@ -129,15 +129,31 @@ export default {
       },
       {
         q: 'Apakah wwwallet bersifat open source?',
-        a: 'Kode sumbernya tersedia untuk umum di GitHub, sehingga siapa pun dapat membacanya. Kode tersebut belum dirilis di bawah lisensi sumber terbuka, jadi untuk saat ini anggaplah kode tersebut sebagai kode yang tersedia untuk umum guna ditinjau, bukan sebagai kode sumber terbuka.',
+        a: 'Tidak — kode sumbernya tersedia. Kode sumber lengkapnya dipublikasikan di GitHub sehingga siapa pun dapat membacanya, meninjaunya, dan mengauditnya, tetapi ini bukan perangkat lunak sumber terbuka: kode tersebut dilisensikan di bawah PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Apa saja yang boleh saya lakukan dengan kode tersebut?',
+        a: 'Anda dapat membaca dan memeriksa semuanya, serta menjalankan salinan yang tidak dimodifikasi untuk tujuan nonkomersial seperti pembelajaran pribadi, penelitian, dan pengujian. Anda tidak boleh mendistribusikannya, memodifikasinya, atau membuat karya turunan (termasuk fork), maupun menggunakannya untuk tujuan komersial. Jika Anda memerlukan hal yang tidak diizinkan oleh lisensi ini, hubungi pemegang hak cipta untuk mendapatkan lisensi terpisah.',
+      },
+      {
+        q: 'Apakah wwwallet aman digunakan? Apakah ada garansi?',
+        a: 'wwwallet adalah perangkat lunak non-kustodian yang disediakan “apa adanya”, tanpa jaminan apa pun. Anda sendirilah yang mengendalikan kunci dan dana Anda — tidak ada seorang pun, termasuk kami, yang dapat memulihkan frasa pemulihan atau cadangan yang hilang, membatalkan transaksi, atau mengganti kerugian Anda. Gunakanlah hanya dana yang Anda sanggup kehilangan, periksa kembali alamat dan jaringan sebelum mengirim, dan tidak ada satu pun informasi di sini yang merupakan nasihat keuangan, investasi, hukum, atau perpajakan.',
       },
       {
         q: 'Jaringan apa saja yang didukung oleh wwwallet?',
-        a: 'Jaringan utama Ethereum, ditambah jaringan Layer-2 Polygon, Arbitrum, Base, dan Optimism — semuanya berasal dari kumpulan akun yang sama.',
+        a: 'Jaringan utama Ethereum, ditambah jaringan Layer-2 seperti Polygon, Arbitrum, Base, dan Optimism — semuanya berasal dari kumpulan akun yang sama.',
+      },
+      {
+        q: 'Bagaimana cara mengisi saldo dompet saya?',
+        a: 'Buka akun, pilih “Lihat kode QR” untuk melihat alamatnya, lalu kirim dana ke alamat tersebut dari bursa atau dompet lain. Pastikan Anda mengirim dana melalui jaringan yang tepat (Ethereum, Polygon, Arbitrum, Base, atau Optimism) — alamat yang sama dapat digunakan di semua jaringan tersebut, tetapi dana yang dikirim melalui satu jaringan hanya akan muncul di jaringan tersebut. Anda juga perlu memiliki sedikit koin asli jaringan tersebut (seperti ETH) untuk membayar biaya transaksi.',
+      },
+      {
+        q: 'Apa saja yang bisa saya lakukan dengan wwwallet?',
+        a: 'Kirim: transfer ETH atau token apa pun ke alamat yang Anda tempelkan, pindai dari kode QR, atau pilih dari akun Anda sendiri, lalu periksa detailnya sebelum mengonfirmasi. Tukar: tukarkan satu token dengan token lain di jaringan yang sama dari tab “Tukar”, dengan penawaran harga dan perkiraan biaya yang ditampilkan di awal. Terima: tampilkan alamat Anda dalam bentuk kode QR. Anda juga dapat melihat saldo Anda dalam nilai USD serta riwayat transaksi Anda di seluruh jaringan yang didukung.',
       },
       {
         q: 'Apa saja yang diketahui wwwallet tentang saya?',
-        a: 'Tidak ada yang dapat mengidentifikasi Anda. Tidak ada akun, proses login, maupun basis data. Data saldo dan harga diambil melalui backend milik wwwallet sendiri, bukan melalui browser Anda yang menghubungi penyedia pihak ketiga secara langsung, dan backend tersebut sama sekali tidak melihat kunci, kata sandi, atau frasa pemulihan Anda.',
+        a: 'Tidak ada yang dapat mengidentifikasi Anda. Tidak ada akun, proses login, maupun basis data. Data saldo dan harga diambil melalui sistem backend milik wwwallet sendiri, bukan melalui browser Anda yang menghubungi penyedia pihak ketiga secara langsung, dan sistem backend tersebut tidak pernah melihat kunci, kata sandi, atau frasa pemulihan Anda.',
       },
     ],
   },
@@ -145,5 +161,8 @@ export default {
     tagline: 'Dompet Ethereum pribadi yang tidak menyimpan aset.',
     sourceLink: 'Lihat kode sumbernya di GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Dilisensikan di bawah PolyForm Strict 1.0.0',
+    disclaimer:
+      'Perangkat lunak non-penyimpanan disediakan “apa adanya”, tanpa jaminan apa pun. Ini bukan nasihat keuangan. Anda sepenuhnya bertanggung jawab atas kunci dan dana Anda.',
   },
 }

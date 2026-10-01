@@ -137,6 +137,11 @@ export default {
     createIntroBody:
       'Skapar en ny återställningsfras och ett nytt förvar på den här enheten. Ingenting skickas till en server – du har full kontroll från början.',
     createWalletCta: 'Skapa plånbok',
+    disclaimerTitle: 'Innan du fortsätter',
+    disclaimerBody:
+      'wwwallet är en programvara utan förvaring som tillhandahålls ”i befintligt skick”, utan någon form av garanti. Du har själv full kontroll över dina nycklar och medel: en förlorad återställningsfras eller säkerhetskopia kan inte återställas av någon, och transaktioner på blockkedjan är oåterkalleliga. wwwallet utgör inte finansiell, investerings-, juridisk eller skatterådgivning. Använd den på egen risk. Källkoden är tillgänglig under PolyForm Strict License 1.0.0 – du får läsa och granska den, men inte kopiera, ändra, vidarebefordra eller använda den kommersiellt.',
+    disclaimerLicenseLink: 'Läs licensvillkoren',
+    disclaimerAckLabel: 'Jag har läst och godkänner dessa villkor',
   },
   vaultUnlock: {
     title: 'Lås upp wwwallet',

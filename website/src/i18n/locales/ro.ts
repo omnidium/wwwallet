@@ -128,15 +128,31 @@ export default {
       },
       {
         q: 'wwwallet este un proiect open source?',
-        a: 'Codul sursă este public pe GitHub, așa că oricine îl poate citi. Deocamdată nu a fost publicat sub o licență open-source, așa că, pentru moment, considerați-l mai degrabă ca fiind public pentru revizuire decât ca fiind open-source.',
+        a: 'Nu — este disponibil codul sursă. Codul sursă complet este public pe GitHub, astfel încât oricine îl poate citi, revizui și verifica, dar nu este open source: codul este licențiat sub PolyForm Strict License 1.0.0.',
+      },
+      {
+        q: 'Ce am voie să fac cu codul?',
+        a: 'Puteți citi și verifica întregul conținut și puteți rula o copie nemodificată în scopuri necomerciale, cum ar fi studiul personal, cercetarea și testarea. Nu aveți dreptul să o distribuiți, să o modificați sau să creați opere derivate (inclusiv ramificații) și nici să o utilizați în scopuri comerciale. Dacă aveți nevoie de ceva ce licența nu permite, contactați titularul drepturilor de autor pentru a obține o licență separată.',
+      },
+      {
+        q: 'Este sigur să folosești wwwallet? Există vreo garanție?',
+        a: 'wwwallet este un software fără custodie, furnizat „așa cum este”, fără niciun fel de garanție. Numai dumneavoastră dețineți controlul asupra cheilor și fondurilor dumneavoastră — nimeni, inclusiv noi, nu poate recupera o frază de recuperare sau o copie de rezervă pierdută, nu poate anula o tranzacție și nu vă poate despăgubi pentru pierderi. Folosiți numai fonduri pe care vă puteți permite să le pierdeți, verificați de două ori adresele și rețelele înainte de a efectua o tranzacție, iar nimic din ceea ce este menționat aici nu constituie sfaturi financiare, de investiții, juridice sau fiscale.',
       },
       {
         q: 'Ce rețele suportă wwwallet?',
-        a: 'Rețeaua principală Ethereum, precum și rețelele Layer-2 Polygon, Arbitrum, Base și Optimism — toate accesate din același set de conturi.',
+        a: 'Rețeaua principală Ethereum, precum și rețelele Layer-2 Polygon, Arbitrum, Base și Optimism — toate din același set de conturi.',
+      },
+      {
+        q: 'Cum pot alimenta portofelul meu?',
+        a: 'Deschideți un cont, selectați „Vizualizați codul QR” pentru a vedea adresa acestuia și trimiteți fonduri către acea adresă de pe o platformă de schimb sau dintr-un alt portofel. Asigurați-vă că efectuați transferul pe rețeaua corectă (Ethereum, Polygon, Arbitrum, Base sau Optimism) — aceeași adresă funcționează pe toate aceste rețele, dar fondurile trimise pe o anumită rețea vor apărea doar pe rețeaua respectivă. De asemenea, veți avea nevoie de o cantitate mică din moneda nativă a rețelei (cum ar fi ETH) pentru a plăti comisioanele de tranzacție.',
+      },
+      {
+        q: 'Ce pot face cu wwwallet?',
+        a: 'Trimitere: transferați ETH sau orice alt token către o adresă pe care o introduceți, o scanați dintr-un cod QR sau o selectați din propriile conturi, apoi verificați detaliile înainte de a confirma. Schimb: schimbați un token cu altul pe aceeași rețea din fila „Schimb”, cu o cotație și o estimare a comisioanelor afișate în avans. Primire: afișați-vă adresa sub formă de cod QR. De asemenea, poți vedea soldurile tale exprimate în USD și istoricul tranzacțiilor pe toate rețelele acceptate.',
       },
       {
         q: 'Ce informații deține wwwallet despre mine?',
-        a: 'Nimic care să te identifice. Nu există cont, autentificare sau bază de date. Datele privind soldul și prețurile sunt preluate prin intermediul propriului backend al wwwallet, fără ca browserul tău să apeleze direct la furnizori terți, iar acel backend nu are niciodată acces la cheile tale, parolele sau fraza de recuperare.',
+        a: 'Nimic care să te identifice. Nu există cont, autentificare sau bază de date. Datele privind soldul și prețurile sunt preluate prin intermediul sistemului backend propriu al wwwallet, fără ca browserul tău să apeleze direct la furnizori terți, iar acest sistem backend nu are niciodată acces la cheile tale, parolele sau fraza de recuperare.',
       },
     ],
   },
@@ -144,5 +160,8 @@ export default {
     tagline: 'Un portofel Ethereum personal, fără custodie.',
     sourceLink: 'Vizualizați codul sursă pe GitHub',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Licențiat sub licența PolyForm Strict 1.0.0',
+    disclaimer:
+      'Software-ul fără custodie este furnizat „așa cum este”, fără garanție. Nu constituie consultanță financiară. Sunteți singurul responsabil pentru cheile și fondurile dumneavoastră.',
   },
 }

@@ -129,15 +129,31 @@ export default {
       },
       {
         q: 'Ar „wwwallet“ yra atvirojo kodo?',
-        a: 'Šaltinis yra viešai prieinamas „GitHub“ svetainėje, todėl jį gali peržiūrėti bet kas. Kol kas jis nėra išleistas pagal atvirojo kodo licenciją, todėl kol kas laikykite jį viešai prieinamu peržiūrai, o ne atvirojo kodo projektu.',
+        a: 'Ne — jo šaltinis yra prieinamas. Visas kodas viešai skelbiamas „GitHub“ platformoje, todėl bet kas gali jį perskaityti, peržiūrėti ir patikrinti, tačiau tai nėra atvirojo kodo programa: kodas licencijuojamas pagal „PolyForm Strict License 1.0.0“.',
+      },
+      {
+        q: 'Ką man leidžiama daryti su šiuo kodu?',
+        a: 'Jūs galite visą šį tekstą skaityti ir tikrinti, taip pat naudoti nepakeistą jo kopiją nekomerciniais tikslais, pavyzdžiui, asmeniniams studijavimui, tyrimams ir bandymams. Jūs negalite jos platinti, keisti ar kurti išvestinių kūrinių (įskaitant atšakus), taip pat negalite jos naudoti komerciniais tikslais. Jei jums reikia ko nors, ko licencija neleidžia, susisiekite su autorių teisių savininku dėl atskiros licencijos.',
+      },
+      {
+        q: 'Ar „wwwallet“ naudoti saugu? Ar suteikiama kokia nors garantija?',
+        a: '„wwwallet“ yra nepatikėtinė programinė įranga, teikiama „tokia, kokia yra“, be jokių garantijų. Tik jūs pats valdote savo raktus ir lėšas – niekas, įskaitant ir mus, negali atkurti prarastos atkūrimo frazės ar atsarginės kopijos, atšaukti sandorio ar kompensuoti jūsų nuostolių. Naudokite tik tas lėšas, kurių praradimą galite sau leisti, prieš siunčiant dar kartą patikrinkite adresus ir tinklus, o čia pateikta informacija nėra finansinė, investicinė, teisinė ar mokesčių konsultacija.',
       },
       {
         q: 'Kokius tinklus palaiko „wwwallet“?',
         a: '„Ethereum“ pagrindinis tinklas bei „Layer-2“ tinklai „Polygon“, „Arbitrum“, „Base“ ir „Optimism“ – visi iš to paties sąskaitų rinkinio.',
       },
       {
+        q: 'Kaip įnešti lėšų į savo piniginę?',
+        a: 'Atidarykite sąskaitą, pasirinkite „Peržiūrėti QR kodą“, kad pamatytumėte jos adresą, ir iš biržos ar kitos piniginės perveskite lėšas į tą adresą. Įsitikinkite, kad siunčiate per tinkamą tinklą („Ethereum“, „Polygon“, „Arbitrum“, „Base“ arba „Optimism“) – tas pats adresas veikia visuose šiuose tinkluose, tačiau per vieną tinklą siunčiamos lėšos atsiranda tik tame tinkle. Be to, jums reikės šiek tiek to tinklo vietinės valiutos (pavyzdžiui, ETH), kad galėtumėte sumokėti sandorio mokesčius.',
+      },
+      {
+        q: 'Ką galiu daryti naudodamasis „wwwallet“?',
+        a: 'Siųsti: perveskite ETH arba bet kurį žetoną į adresą, kurį įklijuosite, nuskaitysite iš QR kodo arba pasirinksite iš savo sąskaitų, ir prieš patvirtindami peržiūrėkite duomenis. Keisti: „Swap“ skirtuke vieną žetoną iškeiskite į kitą tame pačiame tinkle – iš anksto bus rodomas kursas ir numatomas mokestis. Gauti: parodykite savo adresą kaip QR kodą. Taip pat galite peržiūrėti savo likučius, išreikštus JAV doleriais, ir sandorių istoriją visuose palaikomuose tinkluose.',
+      },
+      {
         q: 'Ką „wwwallet“ žino apie mane?',
-        a: 'Jokių duomenų, pagal kuriuos būtų galima jus atpažinti. Nėra jokios paskyros, prisijungimo duomenų ar duomenų bazės. Duomenys apie likutį ir kainą gaunami per pačios „wwwallet“ vidinę sistemą, o ne per jūsų naršyklę, kuri tiesiogiai kreipiasi į trečiųjų šalių paslaugų teikėjus, ir ta vidinė sistema niekada nemato jūsų raktų, slaptažodžių ar atkūrimo frazės.',
+        a: 'Jokių duomenų, pagal kuriuos būtų galima jus atpažinti. Čia nėra jokios paskyros, prisijungimo duomenų ar duomenų bazės. Duomenys apie likutį ir kainas gaunami per pačios „wwwallet“ vidinę sistemą, o ne per jūsų naršyklę, kuri tiesiogiai kreipiasi į trečiųjų šalių paslaugų teikėjus, ir ta vidinė sistema niekada nemato jūsų raktų, slaptažodžių ar atkūrimo frazės.',
       },
     ],
   },
@@ -145,5 +161,8 @@ export default {
     tagline: 'Asmeninė „Ethereum“ piniginė, kurioje lėšos nesaugomos.',
     sourceLink: 'Peržiūrėti šaltinį „GitHub“ svetainėje',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Licencija suteikta pagal „PolyForm Strict 1.0.0“',
+    disclaimer:
+      'Programinė įranga, neteikianti saugojimo paslaugų, teikiama „tokia, kokia yra“, be jokių garantijų. Tai nėra finansinis patarimas. Jūs esate vienintelis atsakingas už savo raktus ir lėšas.',
   },
 }

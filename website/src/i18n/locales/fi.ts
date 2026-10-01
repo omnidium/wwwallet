@@ -128,11 +128,27 @@ export default {
       },
       {
         q: 'Onko wwwallet avoimen lähdekoodin ohjelmisto?',
-        a: 'Lähdekoodi on julkisesti saatavilla GitHubissa, joten kuka tahansa voi lukea sen. Sitä ei ole vielä julkaistu avoimen lähdekoodin lisenssillä, joten pidä sitä toistaiseksi pikemminkin julkisesti saatavilla olevana tarkasteltavaksi kuin avoimena lähdekoodina.',
+        a: 'Ei — sen lähdekoodi on saatavilla. Koko lähdekoodi on julkisesti saatavilla GitHubissa, joten kuka tahansa voi lukea, tarkistaa ja arvioida sitä, mutta se ei ole avointa lähdekoodia: koodi on lisensoitu PolyForm Strict License 1.0.0 -lisenssillä.',
+      },
+      {
+        q: 'Mitä saan tehdä koodilla?',
+        a: 'Voit lukea ja tarkastaa sen kokonaisuudessaan sekä käyttää muokkaamatonta kopiota ei-kaupallisiin tarkoituksiin, kuten henkilökohtaiseen opiskeluun, tutkimukseen ja testaukseen. Et saa jakaa sitä, muokata sitä tai luoda siitä johdannaisteoksia (mukaan lukien haarautumat) tai käyttää sitä kaupallisiin tarkoituksiin. Jos tarvitset jotain, mitä lisenssi ei salli, ota yhteyttä tekijänoikeuden haltijaan erillisen lisenssin saamiseksi.',
+      },
+      {
+        q: 'Onko wwwallet turvallinen käyttää? Onko sille annettu takuu?',
+        a: 'wwwallet on ei-säilytyspohjainen ohjelmisto, jota tarjotaan ”sellaisenaan” ilman minkäänlaista takuuta. Vain sinä hallitset avaimiasi ja varojasi — kukaan, meitä mukaan lukien, ei voi palauttaa kadonnutta palautuslauseketta tai varmuuskopiota, peruuttaa tapahtumaa tai korvata sinulle menetyksiä. Käytä vain varoja, joiden menettämisen voit kestää, tarkista osoitteet ja verkot huolellisesti ennen lähettämistä, eikä mikään tässä ole taloudellista, sijoitus-, oikeudellista tai veroneuvontaa.',
       },
       {
         q: 'Mitä verkkoja wwwallet tukee?',
-        a: 'Ethereumin pääverkko sekä Layer-2-verkot Polygon, Arbitrum, Base ja Optimism — kaikki samalta tiliryhmältä.',
+        a: 'Ethereumin pääverkko sekä Layer-2-verkot Polygon, Arbitrum, Base ja Optimism — kaikki samasta tilikokonaisuudesta.',
+      },
+      {
+        q: 'Miten lisään varoja lompakkooni?',
+        a: 'Avaa tili, valitse ”Näytä QR-koodi” nähdäksesi sen osoitteen ja lähetä varoja kyseiseen osoitteeseen pörssistä tai toisesta lompakosta. Varmista, että lähetät varat oikealla verkostolla (Ethereum, Polygon, Arbitrum, Base tai Optimism) — sama osoite toimii kaikilla verkostoilla, mutta yhdellä verkostolla lähetetyt varat näkyvät vain kyseisellä verkostolla. Tarvitset myös hieman kyseisen verkon omaa kolikkoa (kuten ETH) transaktiomaksujen maksamiseen.',
+      },
+      {
+        q: 'Mitä voin tehdä wwwallet-palvelun avulla?',
+        a: 'Lähetä: siirrä ETH:ta tai mitä tahansa tokenia osoitteeseen, jonka liität, skannaat QR-koodista tai valitset omilta tileiltäsi, ja tarkista tiedot ennen vahvistamista. Vaihto: vaihda yksi token toiseen samassa verkossa Vaihto-välilehdellä; hintatarjous ja arvioidut palkkiot näkyvät etukäteen. Vastaanota: näytä osoitteesi QR-koodina. Voit myös tarkastella saldojasi Yhdysvaltain dollareina sekä tapahtumahistoriaasi kaikissa tuetuissa verkoissa.',
       },
       {
         q: 'Mitä wwwallet tietää minusta?',
@@ -144,5 +160,8 @@ export default {
     tagline: 'Henkilökohtainen Ethereum-lompakko, jossa ei ole varainhoitoa.',
     sourceLink: 'Katso lähdekoodi GitHubissa',
     copyright: '© {year} wwwallet',
+    licenseLink: 'Lisensoitu PolyForm Strict 1.0.0 -lisenssillä',
+    disclaimer:
+      'Ohjelmisto, joka ei ole säilytyspalvelu, toimitetaan ”sellaisenaan” ilman takuuta. Tämä ei ole taloudellista neuvontaa. Olet yksin vastuussa avaimistasi ja varoistasi.',
   },
 }

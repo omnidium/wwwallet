@@ -82,3 +82,19 @@ Fill in the corresponding stub in `frontend/src/locales/<code>.ts` with the same
 - No server to provision or patch — it's a Cloudflare Worker, not a VM.
 - No user/auth/session tables, no email sending, no server-side password/TOTP/WebAuthn storage.
 - No long-lived transaction/balance/token-price tables — that data is always fetched live.
+
+## License
+
+wwwallet is **source-available, not open source**. It is licensed under the [PolyForm Strict License 1.0.0](LICENSE) (SPDX: `PolyForm-Strict-1.0.0`).
+
+In plain terms (the [LICENSE](LICENSE) file is the only authoritative text):
+
+- **You may** read, review and audit all of the code, and run an unmodified copy for noncommercial purposes such as personal study, research and testing.
+- **You may not** distribute or republish the code, make changes or derivative works, or use it commercially — this includes forking it into your own product or service.
+- Need something the license doesn't allow? Ask the copyright holder for a separate license.
+
+### Disclaimer
+
+wwwallet is non-custodial software provided **"as is", without warranty of any kind**, to the extent permitted by law. You alone are responsible for your recovery phrase, backups and funds. Lost keys or backups cannot be recovered by anyone, and blockchain transactions are irreversible. Nothing here is financial, investment, legal or tax advice. Use at your own risk.
+
+Found a security issue? Please report it privately to the maintainer rather than opening a public issue.
