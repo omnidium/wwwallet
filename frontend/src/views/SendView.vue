@@ -944,7 +944,7 @@ async function confirmSwap() {
 
 <template>
   <div>
-    <h2>{{ t('send.title') }}</h2>
+    <h1 class="text-h5">{{ t('send.title') }}</h1>
 
     <v-tabs v-model="activeTab" class="mb-4">
       <v-tab value="send">{{ t('send.tabSend') }}</v-tab>
