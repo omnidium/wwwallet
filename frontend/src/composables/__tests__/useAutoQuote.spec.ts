@@ -3,7 +3,12 @@ import { effectScope, nextTick, ref } from 'vue'
 import { QUOTE_DEBOUNCE_MS, QUOTE_MAX_AGE_MS } from '@/config/appSettings'
 import { useAutoQuote } from '../useAutoQuote'
 
-vi.mock('@/services/errors', () => ({ displayErrorMessage: () => 'failed' }))
+// Only the message is stubbed; the rest (TranslatedError, which the
+// composable checks errors against) stays real.
+vi.mock(import('@/services/errors'), async (importOriginal) => ({
+  ...(await importOriginal()),
+  displayErrorMessage: () => 'failed',
+}))
 
 /** A fetcher whose calls resolve only when told to, in any order. */
 function deferredFetcher() {
