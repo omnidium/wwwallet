@@ -6,25 +6,18 @@ import type { WalletAccount } from '@/stores/accounts'
 import { useAccountsStore } from '@/stores/accounts'
 import { useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
-import { useMessagesStore } from '@/stores/messages'
-import { displayErrorMessage } from '@/services/errors'
 import { toHumanAmount, tokenUsdValue, convertUsd, formatFiat, formatAmount } from '@/services/money'
-import { groupTransactionsByDate } from '@/services/transactionGrouping'
-import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
-import { useTransactionBatchLoader } from '@/composables/useTransactionBatchLoader'
-import type { Transaction } from '@/services/api'
 import { DUST_THRESHOLD_USD } from '@/config/appSettings'
 import EditAccountDialog from '@/components/EditAccountDialog.vue'
 import HideAccountConfirmDialog from '@/components/HideAccountConfirmDialog.vue'
 import SecretRevealDialog from '@/components/SecretRevealDialog.vue'
-import TransactionRow from '@/components/TransactionRow.vue'
 import AppTooltip from '@/components/AppTooltip.vue'
+import SpinningCoin from '@/components/SpinningCoin.vue'
 import { addressUrl } from '@/services/blockExplorer'
 
 const props = defineProps<{ account: WalletAccount; reorderable?: boolean }>()
 const emit = defineEmits<{
   transferPointerdown: [PointerEvent]
-  openTransaction: [Transaction]
 }>()
 
 const { t, locale } = useI18n({ useScope: 'global' })
@@ -32,11 +25,8 @@ const router = useRouter()
 const accounts = useAccountsStore()
 const chainData = useChainDataStore()
 const settingsLocale = useSettingsLocaleStore()
-const messages = useMessagesStore()
 
-const expandedTxns = ref(false)
 const expandedTokens = ref(false)
-const hideDustTxns = ref(true)
 const hideUnknownTokens = ref(true)
 const justCopied = ref(false)
 const editOpen = ref(false)
@@ -48,23 +38,13 @@ function goToSend() {
   router.push(`/accounts/${props.account.chain}/${props.account.address}/send`)
 }
 
-// Same refresh the periodic auto-refresh runs, scoped to this account:
-// balances, newest transactions (merged into whatever's already loaded) and
-// metadata for held tokens worth over $0.01 (see chainData.loadAddressActivity), plus the
-// native price and fx rates its fiat totals are computed from. Unlike the
-// silent background auto-refresh, a failure here is the direct result of
-// something the user just clicked, so it gets a toast instead of failing quietly.
-const refreshing = computed(() => chainData.isLoading(props.account.chain, props.account.address))
-async function refreshAccount() {
-  if (refreshing.value) return
-  const results = await Promise.allSettled([
-    chainData.loadAddressActivity(props.account.chain, props.account.address),
-    chainData.loadNativePrice(props.account.chain),
-    chainData.loadFxRates(),
-  ])
-  const failure = results.find((r) => r.status === 'rejected')
-  if (failure) messages.push(displayErrorMessage(failure.reason), 'error')
+function goToNativeDetail() {
+  router.push(`/accounts/${props.account.chain}/${props.account.address}/native`)
 }
+
+// The chain logo spins (SpinningCoin) while this account's data is loading —
+// the periodic auto-refresh as well as a manual one from the native detail panel.
+const refreshing = computed(() => chainData.isLoading(props.account.chain, props.account.address))
 
 const activity = computed(
   () => chainData.activityByAddress[chainData.keyFor(props.account.chain, props.account.address)],
@@ -139,29 +119,6 @@ const visibleTokenRows = computed(() =>
   hideUnknownTokens.value ? tokenRows.value.filter((r) => r.logoUrl != null) : tokenRows.value,
 )
 
-// Only native-asset transfers — a token's own transfers show on that
-// token's own detail page instead, alongside the rest of its history.
-const nativeTransactions = computed(
-  () => activity.value?.transactions.filter((t) => t.contract_address === null) ?? [],
-)
-const visibleNativeTransactions = computed(() => {
-  if (!hideDustTxns.value) return nativeTransactions.value
-  const priceUsd = chainData.nativePriceUsdByChain[props.account.chain]
-  if (priceUsd === undefined) return nativeTransactions.value
-  return nativeTransactions.value.filter((t) => Number(t.value) * priceUsd >= DUST_THRESHOLD_USD)
-})
-const transactionGroups = computed(() =>
-  groupTransactionsByDate(visibleNativeTransactions.value, locale.value),
-)
-
-const expandedListEl = ref<HTMLElement | null>(null)
-const { loadNextBatch: loadNextTransactionBatch, isLoading: loadingMoreTxns } = useTransactionBatchLoader(
-  props.account.chain,
-  props.account.address,
-  () => visibleNativeTransactions.value.length,
-)
-useInfiniteScroll(() => void loadNextTransactionBatch(), expandedListEl)
-
 async function copyAddress() {
   await navigator.clipboard.writeText(props.account.address)
   justCopied.value = true
@@ -187,7 +144,9 @@ function openInNewTab(url: string): void {
       </AppTooltip>
     </div>
     <div class="card-summary">
-      <img :src="`/chains/${account.chain}.svg`" alt="" aria-hidden="true" class="chain-watermark" />
+      <div class="chain-watermark" aria-hidden="true">
+        <SpinningCoin :src="`/chains/${account.chain}.svg`" :spinning="refreshing" />
+      </div>
       <div class=" card-header d-flex align-center pa-4 pb-2">
         <span v-if="account.isDefault" class="mr-1">*</span>
         <AppTooltip :text="t('accountCard.viewOnEtherscan')">
@@ -211,27 +170,12 @@ function openInNewTab(url: string): void {
               @click="$router.push(`/accounts/${account.chain}/${account.address}/receive`)" />
           </template>
         </AppTooltip>
-        <AppTooltip :text="t('accountCard.viewNativeToken', { symbol: nativeSymbol })">
-          <template #default="{ activatorProps }">
-            <v-icon v-bind="activatorProps" icon="mdi-information-outline" size="large" class="mr-2" role="button"
-              :aria-label="t('accountCard.viewNativeToken', { symbol: nativeSymbol })"
-              @click="$router.push(`/accounts/${account.chain}/${account.address}/native`)" />
-          </template>
-        </AppTooltip>
-        <p class="flex-grow-1"></p>
-        <AppTooltip :text="t('accountCard.refresh')">
-          <template #default="{ activatorProps }">
-            <v-icon v-bind="activatorProps" icon="mdi-refresh" size="large" class="mr-2"
-              :class="{ 'mdi-spin': refreshing }" role="button" :aria-label="t('accountCard.refresh')"
-              :aria-busy="refreshing" @click="refreshAccount" />
-          </template>
-        </AppTooltip>
         <p class="flex-grow-1"></p>
         <AppTooltip :text="t('accountCard.send')">
           <template #default="{ activatorProps }">
             <v-icon v-bind="activatorProps" icon="mdi-send" size="large" class="mr-5 transfer-handle" role="button"
               tabindex="0" aria-hidden="false" :aria-label="t('accountCard.send')"
-              @pointerdown="emit('transferPointerdown', $event)" @keydown.enter="goToSend"
+              @pointerdown="emit('transferPointerdown', $event)" @contextmenu.prevent @keydown.enter="goToSend"
               @keydown.space.prevent="goToSend" />
           </template>
         </AppTooltip>
@@ -244,7 +188,7 @@ function openInNewTab(url: string): void {
               </template>
             </AppTooltip>
           </template>
-          <v-list density="compact">
+          <v-list density="compact" class="app-select-menu">
             <v-list-item :title="t('accountCard.edit')" prepend-icon="mdi-pencil" @click="editOpen = true" />
             <v-list-item v-if="account.visible" :title="t('accountCard.hide')" prepend-icon="mdi-eye-off"
               @click="hideOpen = true" />
@@ -257,9 +201,11 @@ function openInNewTab(url: string): void {
         </v-menu>
       </div>
 
-      <div class="balance-row pa-3 d-flex align-center" @click="expandedTxns = !expandedTxns">
+      <div class="balance-row pa-3 d-flex align-center" role="button" tabindex="0"
+        :aria-label="t('accountCard.viewNativeToken', { symbol: nativeSymbol })" @click="goToNativeDetail"
+        @keydown.enter="goToNativeDetail" @keydown.space.prevent="goToNativeDetail">
         <v-icon icon="mdi-wallet" class="mr-2" />
-        <div class="grow">
+        <div class="flex-grow-1">
           <span v-if="activity === undefined" class="skeleton-row" />
           <template v-else>
             <span class="balance-figure">{{ fiatTotal ?? '—' }}</span>
@@ -268,36 +214,16 @@ function openInNewTab(url: string): void {
             </span>
           </template>
         </div>
-        <AppTooltip :text="expandedTxns ? t('accountCard.hideTransactions') : t('accountCard.showTransactions')">
+        <AppTooltip :text="t('accountCard.viewNativeToken', { symbol: nativeSymbol })">
           <template #default="{ activatorProps }">
-            <v-icon v-bind="activatorProps" :icon="expandedTxns ? 'mdi-chevron-up' : 'mdi-chevron-down'" />
+            <v-icon v-bind="activatorProps" icon="mdi-chevron-right" />
           </template>
         </AppTooltip>
       </div>
     </div>
 
-    <div v-if="expandedTxns">
-      <v-switch v-model="hideDustTxns" :label="t('accountCard.hideDustTxns')" density="compact" hide-details
-        color="primary" class="dust-toggle pa-2" />
-      <div ref="expandedListEl" class="expanded-list pa-2">
-        <template v-for="group in transactionGroups" :key="group.dateLabel">
-          <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
-          <TransactionRow v-for="txn in group.transactions" :key="txn.hash" :transaction="txn"
-            :my-address="account.address" :chain="account.chain" @click="emit('openTransaction', txn)" />
-        </template>
-        <div v-if="activity === undefined" class="d-flex justify-center pa-2">
-          <v-progress-circular indeterminate size="20" width="2" color="primary" />
-        </div>
-        <p v-else-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
-          {{ t('transactions.empty') }}
-        </p>
-        <div v-if="loadingMoreTxns" class="d-flex justify-center pa-2">
-          <v-progress-circular indeterminate size="20" width="2" color="primary" />
-        </div>
-      </div>
-    </div>
-
-    <div v-if="activity === undefined || tokenRows.length > 0" class="balance-row token-row pa-3 d-flex align-center"
+    <div v-if="activity === undefined || visibleTokenRows.length > 0"
+      class="balance-row token-row pa-3 d-flex align-center"
       @click="activity !== undefined && (expandedTokens = !expandedTokens)">
       <template v-if="activity === undefined">
         <v-icon icon="mdi-cash-multiple" class="mr-2" />

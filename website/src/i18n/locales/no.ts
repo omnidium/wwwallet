@@ -7,6 +7,7 @@ export default {
     launch: 'Start Wallet',
     home: 'Tilbake til toppen',
     sectionNavLabel: 'Navigasjon i seksjonene',
+    principles: 'Prinsipper',
   },
   settings: {
     open: 'Innstillinger',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Lys',
     themeDark: 'Mørkt',
     language: 'Språk',
+    search: 'Søk',
+    noMatches: 'Ingen treff',
   },
   hero: {
-    eyebrow: 'En personlig Ethereum-lommebok uten forvaring',
+    eyebrow: 'En gratis Ethereum-lommebok uten forvaring',
     heading1: 'Nøklene dine.',
     heading2: 'Enheten din.',
-    heading3: 'Lommeboken din.',
-    lede: 'wwwallet krypterer lommeboken din på din egen enhet og sender aldri nøklene, passordene eller gjenopprettingsfrasen din til noen andre. Du trenger ikke opprette noen konto. Det er ingen server som kan hackes. Bare du og kryptovalutaen din.',
+    heading3: 'Gratis for alle.',
+    lede: 'wwwallet kjører i nettleseren din og lagrer nøklene dine kryptert på din egen enhet. Du trenger ikke opprette noen konto, det koster ingenting og det er ingen annonser – bare en lommebok som fungerer på samme måte for alle.',
     ctaPrimary: 'Start Wallet',
     ctaSecondary: 'Se hvordan det fungerer',
+    note: 'Ingen registrering · Ingen annonser · Ingen sporing · 31 språk',
   },
   wallet: {
     eyebrow: 'Lommebok',
@@ -108,6 +112,26 @@ export default {
     heading: 'Vanlige spørsmål',
     items: [
       {
+        q: 'Er wwwallet virkelig gratis?',
+        a: 'Ja. Det koster ingenting å bruke tjenesten, det finnes ingen premium-nivåer og ingenting er skjult bak en betalingsmur, og wwwallet legger ikke til noen gebyrer på det du sender eller bytter. Den eneste uunngåelige kostnaden er nettverkets egne transaksjonsgebyrer (gas), som går til nettverket og ikke til wwwallet. Byttepriser kommer fra 0x-børsaggregatoren, som kan legge til sitt eget gebyr på enkelte handler – slike gebyrer vises på bekreftelsesskjermen før du bekrefter.',
+      },
+      {
+        q: 'Er det annonser, sporingsverktøy eller analyseverktøy?',
+        a: 'Nei. wwwallet viser ingen annonser, kjører ingen analyse- eller sporingsskript og lager ingen profil av deg. Det finnes ingen konto, så det er ingenting å knytte den til.',
+      },
+      {
+        q: 'Trenger jeg en konto eller ID for å bruke den?',
+        a: 'Nei. Det kreves verken registrering, e-postadresse, telefonnummer eller identitetskontroll – du oppretter en lommebok på enheten din og begynner å bruke den.',
+      },
+      {
+        q: 'Hvis det er gratis, hvordan finansierer wwwallet seg da?',
+        a: 'Den tjener ikke penger på brukerne – ingen avgifter, ingen annonser, ingen salg av data. Driftskostnadene holdes lave ved at lommeboken kjører direkte i nettleseren din, og backend-systemet bare videreformidler offentlige blockchain- og kursdata.',
+      },
+      {
+        q: 'Kan noen fryse lommeboken min?',
+        a: 'Det finnes ingen konto, så det er ingenting som wwwallet – eller noen andre – kan fryse. Nøklene dine forlater aldri enheten din, og transaksjonene signeres der før de sendes til nettverket. Midlene dine ligger på Ethereum, ikke i wwwallet: du kan se den private nøkkelen eller gjenopprettingsfrasen til hvilken som helst konto fra menyen og importere den til en annen Ethereum-lommebok når du vil.',
+      },
+      {
         q: 'Er gjenopprettingsfrasen min nok til å få tilbake lommeboken min?',
         a: 'Ikke i seg selv. Gjenopprettingsfrasen din låser opp det krypterte hvelvet ditt, men selve hvelvet finnes kun på enheten din. Hvis du mister eller sletter innholdet på enheten uten å ha tatt en sikkerhetskopi, er det ingenting igjen som frasen kan låse opp. Sørg alltid for å kombinere gjenopprettingsfrasen med en sikkerhetskopi på Google Drive eller en filkopi – se neste spørsmål.',
       },
@@ -117,11 +141,11 @@ export default {
       },
       {
         q: 'Kan jeg bruke wwwallet på flere enheter?',
-        a: 'Ja, men den synkroniseres ikke automatisk — hver enhet har sitt eget lokale hvelv. For å bruke wwwallet på en ny enhet må du gjenopprette den der fra en sikkerhetskopi på Drive eller i en fil, og deretter låse den opp med gjenopprettingsfrasen din.',
+        a: 'Ja, men den synkroniseres ikke automatisk — hver enhet har sitt eget lokale hvelv. For å bruke wwwallet på en ny enhet må du gjenopprette den der fra en sikkerhetskopi på Drive eller fra en fil, og deretter låse den opp med gjenopprettingsfrasen din.',
       },
       {
         q: 'Hva skjer hvis jeg mister enheten min og aldri har tatt sikkerhetskopi?',
-        a: 'Pengene dine kan ikke gjenopprettes. Dette er med vilje: wwwallet har ikke noe kontosystem og oppbevarer ingen kopi av hvelvet ditt noe sted, så ingen – heller ikke vi – kan gjenopprette det for deg. Det er prisen du må betale for å ha en lommebok som ingen andre enn du selv har tilgang til.',
+        a: 'Pengene dine kan ikke gjenopprettes. Dette er helt bevisst: wwwallet har ikke noe kontosystem og lagrer ingen kopi av hvelvet ditt noe sted, så ingen – ikke engang vi – kan gjenopprette det for deg. Det er prisen du må betale for å ha en lommebok som ingen andre enn deg har tilgang til.',
       },
       {
         q: 'Overføres passordnøkler (Face ID / Touch ID) til en ny enhet?',
@@ -133,11 +157,11 @@ export default {
       },
       {
         q: 'Hva har jeg lov til å gjøre med koden?',
-        a: 'Du kan lese og gjennomgå alt innholdet, og bruke en uendret kopi til ikke-kommersielle formål, for eksempel personlig studium, forskning og testing. Du kan ikke distribuere den, endre den eller lage avledede verk (inkludert forker), eller bruke den kommersielt. Hvis du trenger noe som lisensen ikke tillater, må du kontakte rettighetshaveren for å få en egen lisens.',
+        a: 'Du kan lese og gjennomgå alt innholdet, og bruke en uendret kopi til ikke-kommersielle formål, for eksempel personlig studium, forskning og testing. Du kan ikke distribuere det, endre det eller lage avledede verk (inkludert forker), eller bruke det kommersielt. Hvis du trenger noe som lisensen ikke tillater, må du kontakte opphavsrettsinnehaveren for å få en egen lisens.',
       },
       {
         q: 'Er wwwallet trygt å bruke? Er det noen garanti?',
-        a: 'wwwallet er programvare uten forvaring som leveres «som den er», uten noen form for garanti. Du har selv full kontroll over nøklene og midlene dine – ingen, inkludert oss, kan gjenopprette en tapt gjenopprettingsfrase eller sikkerhetskopi, reversere en transaksjon eller kompensere deg for tap. Bruk kun midler du har råd til å miste, dobbeltsjekk adresser og nettverk før du sender, og ingenting her utgjør finansiell, investerings-, juridisk eller skatterådgivning.',
+        a: 'wwwallet er programvare uten forvaring som leveres «som den er», uten noen form for garanti. Du har selv full kontroll over nøklene og midlene dine – ingen, inkludert oss, kan gjenopprette en tapt gjenopprettingsfrase eller sikkerhetskopi, reversere en transaksjon eller kompensere deg for tap. Bruk kun midler du har råd til å tape, dobbeltsjekk adresser og nettverk før du sender, og ingenting her utgjør finansiell, investeringsmessig, juridisk eller skattemessig rådgivning.',
       },
       {
         q: 'Hvilke nettverk støtter wwwallet?',
@@ -145,11 +169,11 @@ export default {
       },
       {
         q: 'Hvordan setter jeg inn penger på lommeboken min?',
-        a: 'Opprett en konto, velg «Vis QR-kode» for å se adressen, og send midler til denne adressen fra en børs eller en annen lommebok. Sørg for at du sender på riktig nettverk (Ethereum, Polygon, Arbitrum, Base eller Optimism) – den samme adressen fungerer på alle, men midler som sendes på ett nettverk, vises kun på det nettverket. Du vil også trenge litt av nettverkets egen valuta (for eksempel ETH) for å betale transaksjonsgebyrene.',
+        a: 'Opprett en konto, velg «Vis QR-kode» for å se adressen, og send midler til denne adressen fra en børs eller en annen lommebok. Sørg for at du sender på riktig nettverk (Ethereum, Polygon, Arbitrum, Base eller Optimism) – den samme adressen fungerer på alle, men midler som sendes på ett nettverk vises kun på det nettverket. Du vil også trenge litt av nettverkets egen valuta (for eksempel ETH) for å betale transaksjonsgebyrene.',
       },
       {
         q: 'Hva kan jeg gjøre med wwwallet?',
-        a: 'Send: Overfør ETH eller et hvilket som helst token til en adresse du limer inn, skanner fra en QR-kode eller velger fra dine egne kontoer, og sjekk detaljene før du bekrefter. Bytte: Bytt ett token mot et annet på samme nettverk fra «Bytte»-fanen, der kurs og estimert gebyr vises på forhånd. Motta: Vis adressen din som en QR-kode. Du kan også se saldoene dine i USD og transaksjonshistorikken din på tvers av alle støttede nettverk.',
+        a: 'Send: Overfør ETH eller et hvilket som helst token til en adresse du limer inn, skanner fra en QR-kode eller velger fra dine egne kontoer, og sjekk detaljene før du bekrefter. Bytte: Bytt ett token mot et annet på samme nettverk fra «Bytte»-fanen, der kurs og estimerte gebyrer vises på forhånd. Motta: Vis adressen din som en QR-kode. Du kan også se saldoene dine i USD og transaksjonshistorikken din på tvers av alle støttede nettverk.',
       },
       {
         q: 'Hva vet wwwallet om meg?',
@@ -158,11 +182,60 @@ export default {
     ],
   },
   footer: {
-    tagline: 'En personlig Ethereum-lommebok uten forvaring.',
-    sourceLink: 'Se kildekoden på GitHub',
+    tagline: 'En gratis Ethereum-lommebok uten forvaring for alle.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Lisensiert under PolyForm Strict 1.0.0',
     disclaimer:
       'Programvare uten oppbevaringstilbud leveres «som den er», uten garanti. Dette er ikke økonomisk rådgivning. Du har selv det fulle ansvaret for nøklene og midlene dine.',
+  },
+  principles: {
+    eyebrow: 'Prinsipper',
+    heading: 'Gratis, åpent og laget for alle',
+    lede: 'En lommebok skal være et verktøy du bruker, ikke en virksomhet som bygger på brukerne sine. Dette er de prinsippene wwwallet bygger på.',
+    items: [
+      {
+        title: 'Gratis, uten noen hake',
+        body: 'Ingen pris, ingen premium-nivå, ingen betalte funksjoner. wwwallet legger ikke til egne gebyrer – den eneste kostnaden er nettverkets eget transaksjonsgebyr.',
+      },
+      {
+        title: 'Ingen annonser, ingen sporing',
+        body: 'Ingen annonser, ingen analyseverktøy, ingen sporingsskript og ingen data som selges til noen. Det finnes jo ikke engang noen profil av deg å selge.',
+      },
+      {
+        title: 'Ingen registrering',
+        body: 'Ingen e-postadresse, telefonnummer eller ID-sjekk. Bare åpne appen, opprett en lommebok, så er du klar.',
+      },
+      {
+        title: 'Nøklene dine forblir hos deg',
+        body: 'Nøklene opprettes og krypteres på enheten din og forlater aldri enheten. wwwallet har ikke tilgang til dem, kan ikke flytte midlene dine eller sperre deg ute.',
+      },
+      {
+        title: 'Fungerer overalt',
+        body: 'Fungerer i alle moderne nettlesere på mobil eller PC, og installeres som en app – uten at du trenger en konto i en appbutikk.',
+      },
+      {
+        title: 'På 31 språk',
+        body: 'Bruk den på det språket du føler deg mest komfortabel med, i lys eller mørk modus.',
+      },
+      {
+        title: 'Åpen kildekode',
+        body: 'Hele kildekoden er publisert slik at alle kan lese og kontrollere den. Den er «source-available» snarere enn «open source» – i FAQ-delen forklares det hva lisensen tillater.',
+      },
+      {
+        title: 'Ingenting å slå av',
+        body: 'Det finnes ingen konto som kan bli fryst. Midlene dine ligger på selve Ethereum, og nøkkelen til enhver konto kan når som helst overføres til en annen lommebok.',
+      },
+    ],
+  },
+  license: {
+    title: 'Lisens',
+    close: 'Lukk',
+    summaryTitle: 'På vanlig engelsk',
+    canUse: 'Du kan bruke wwwallet gratis, til personlige og andre ikke-kommersielle formål.',
+    canRead: 'Du kan lese og gjennomgå hver eneste linje i kildekoden.',
+    cannot: 'Du må ikke kopiere, endre, videreformidle eller selge det.',
+    englishNote:
+      'Her følger den fullstendige lisensen på originalspråket engelsk – dette er den juridiske teksten.',
+    viewSource: 'Se på GitHub',
   },
 }

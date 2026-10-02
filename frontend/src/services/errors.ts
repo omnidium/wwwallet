@@ -10,7 +10,10 @@ import { i18n } from '@/i18n'
  * of which is ever translated — their `.message` is hardcoded English no
  * matter the app's selected language.
  */
-export class TranslatedError extends Error {}
+export class TranslatedError extends Error {
+  /** The backend's machine-readable reason, when it gave one — for a caller that words it more specifically. */
+  code?: string
+}
 
 /** Shorthand for `throw new TranslatedError(i18n.global.t(key, params))`. */
 export function translatedError(key: string, params?: Record<string, unknown>): TranslatedError {

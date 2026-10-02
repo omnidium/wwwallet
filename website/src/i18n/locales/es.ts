@@ -7,6 +7,7 @@ export default {
     launch: 'Abrir la cartera',
     home: 'Volver al inicio',
     sectionNavLabel: 'Navegación por secciones',
+    principles: 'Principios',
   },
   settings: {
     open: 'Configuración',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Luz',
     themeDark: 'Oscuro',
     language: 'Idioma',
+    search: 'Buscar',
+    noMatches: 'No hay resultados',
   },
   hero: {
-    eyebrow: 'Un monedero de Ethereum personal y sin custodia',
+    eyebrow: 'Un monedero de Ethereum gratuito y sin custodia',
     heading1: 'Tus llaves.',
     heading2: 'Tu dispositivo.',
-    heading3: 'Tu cartera.',
-    lede: 'wwwallet cifra tu monedero en tu propio dispositivo y nunca envía tus claves, contraseñas ni frase de recuperación a ningún otro sitio. No hay que crear ninguna cuenta. No hay ningún servidor que pueda ser objeto de un ataque. Solo tú y tus criptomonedas.',
+    heading3: 'Gratis para todo el mundo.',
+    lede: 'wwwallet se ejecuta en tu navegador y mantiene tus claves cifradas en tu propio dispositivo. No hay que crear ninguna cuenta, no hay que pagar nada y no hay anuncios: solo un monedero que funciona igual para todo el mundo.',
     ctaPrimary: 'Abrir la cartera',
     ctaSecondary: 'Descubre cómo funciona',
+    note: 'Sin necesidad de registrarse · Sin anuncios · Sin seguimiento · 31 idiomas',
   },
   wallet: {
     eyebrow: 'Cartera',
@@ -108,6 +112,26 @@ export default {
     heading: 'Preguntas frecuentes',
     items: [
       {
+        q: '¿wwwallet es realmente gratis?',
+        a: 'Sí. Su uso es gratuito, no hay ningún nivel premium ni contenido de pago, y wwwallet no aplica ninguna comisión a lo que envíes o intercambies. El único coste inevitable es la comisión de transacción (gas) de la propia red, que se destina a la red y no a wwwallet. Las cotizaciones de intercambio provienen del agregador de intercambios 0x, que puede incluir su propia comisión en algunas operaciones; dicha comisión aparece indicada en la pantalla de revisión antes de que confirmes la operación.',
+      },
+      {
+        q: '¿Hay anuncios, rastreadores o herramientas de análisis?',
+        a: 'No. wwwallet no muestra anuncios, no ejecuta scripts de análisis ni de seguimiento, y no crea un perfil sobre ti. No hay ninguna cuenta, así que no hay nada a lo que vincularla.',
+      },
+      {
+        q: '¿Necesito una cuenta o un documento de identidad para utilizarlo?',
+        a: 'No. No hay que registrarse, ni proporcionar una dirección de correo electrónico, ni un número de teléfono, ni pasar por ningún proceso de verificación de identidad: solo tienes que crear un monedero en tu dispositivo y empezar a utilizarlo.',
+      },
+      {
+        q: 'Si es gratis, ¿cómo se financia wwwallet?',
+        a: 'No obtiene ingresos de sus usuarios: ni comisiones, ni anuncios, ni venta de datos. Los costes de funcionamiento se mantienen bajos por diseño: el monedero en sí se ejecuta en tu navegador, y el servidor solo transmite datos públicos de la cadena de bloques y de precios.',
+      },
+      {
+        q: '¿Alguien puede bloquear mi cartera?',
+        a: 'No hay ninguna cuenta, por lo que wwwallet —ni nadie más— tiene nada que bloquear. Tus claves nunca salen de tu dispositivo, y las transacciones se firman allí antes de enviarse a la red. Tus fondos se encuentran en Ethereum, no en wwwallet: puedes ver la clave privada o la frase de recuperación de cualquier cuenta desde su menú e importarla a otra cartera de Ethereum cuando quieras.',
+      },
+      {
         q: '¿Basta con mi frase de recuperación para recuperar mi monedero?',
         a: 'No por sí sola. Tu frase de recuperación desbloquea tu caja fuerte cifrada, pero la caja fuerte en sí solo se encuentra en tu dispositivo. Si pierdes o borras ese dispositivo sin haber hecho nunca una copia de seguridad, no quedará nada que la frase pueda desbloquear. Combina siempre tu frase de recuperación con una copia de seguridad en Google Drive o en un archivo; consulta la siguiente pregunta.',
       },
@@ -117,26 +141,26 @@ export default {
       },
       {
         q: '¿Puedo utilizar wwwallet en más de un dispositivo?',
-        a: 'Sí, pero no se sincroniza automáticamente: cada dispositivo tiene su propia caja fuerte local. Para utilizar wwwallet en un nuevo dispositivo, restaura la aplicación desde una copia de seguridad de Drive o de un archivo y, a continuación, desbloquéala con tu frase de recuperación.',
+        a: 'Sí, pero no se sincroniza automáticamente: cada dispositivo tiene su propio almacén local. Para utilizar wwwallet en un nuevo dispositivo, restaúralo desde una copia de seguridad de Drive o de un archivo y, a continuación, desbloquéalo con tu frase de recuperación.',
       },
       {
         q: '¿Qué pasa si pierdo mi dispositivo y nunca he hecho una copia de seguridad?',
-        a: 'Tus fondos son irrecuperables. Así está diseñado: wwwallet no tiene un sistema de cuentas y no guarda ninguna copia de tu almacén en ningún sitio, por lo que nadie —ni siquiera nosotros— puede restaurarlo por ti. Es la contrapartida de tener un monedero al que nadie más que tú puede acceder.',
+        a: 'Tus fondos son irrecuperables. Así está diseñado: wwwallet no tiene ningún sistema de cuentas y no guarda ninguna copia de tu almacén en ningún sitio, por lo que nadie —ni siquiera nosotros— puede restaurarlo por ti. Es la contrapartida de tener un monedero al que nadie más que tú puede acceder.',
       },
       {
         q: '¿Se transfieren las claves de acceso (Face ID / Touch ID) a un nuevo dispositivo?',
-        a: 'No. La clave de acceso está vinculada al dispositivo en el que se creó. Tras restaurar una copia de seguridad en un nuevo dispositivo, desbloquéalo con tu frase de recuperación y podrás configurar allí una nueva clave de acceso.',
+        a: 'No. La clave de acceso está vinculada al dispositivo en el que se creó. Tras restaurar una copia de seguridad en un nuevo dispositivo, desbloquéalo con tu frase de recuperación y podrás configurar una nueva clave de acceso en él.',
       },
       {
-        q: '¿Es wwwallet de código abierto?',
-        a: 'No, el código fuente está disponible. El código fuente completo es público en GitHub, por lo que cualquiera puede leerlo, revisarlo y auditarlo, pero no es de código abierto: el código está sujeto a la licencia PolyForm Strict License 1.0.0.',
+        q: '¿wwwallet es de código abierto?',
+        a: 'No, el código fuente está disponible. El código fuente completo está publicado en GitHub, por lo que cualquiera puede leerlo, revisarlo y auditarlo, pero no es de código abierto: el código está sujeto a la licencia PolyForm Strict License 1.0.0.',
       },
       {
         q: '¿Qué puedo hacer con el código?',
         a: 'Puedes leerlo y revisarlo en su totalidad, así como ejecutar una copia sin modificar con fines no comerciales, como el estudio personal, la investigación y la realización de pruebas. No puedes distribuirlo, modificarlo ni crear obras derivadas (incluidas bifurcaciones), ni utilizarlo con fines comerciales. Si necesitas algo que la licencia no permita, ponte en contacto con el titular de los derechos de autor para obtener una licencia independiente.',
       },
       {
-        q: '¿Es seguro utilizar wwwallet? ¿Hay alguna garantía?',
+        q: '¿Es seguro utilizar wwwallet? ¿Ofrece alguna garantía?',
         a: 'wwwallet es un software sin custodia que se proporciona «tal cual», sin garantía de ningún tipo. Solo tú controlas tus claves y tus fondos: nadie, ni siquiera nosotros, puede recuperar una frase de recuperación o una copia de seguridad perdidas, revertir una transacción ni compensarte por las pérdidas. Utiliza únicamente fondos que puedas permitirte perder, comprueba dos veces las direcciones y las redes antes de realizar un envío, y ten en cuenta que nada de lo aquí expuesto constituye asesoramiento financiero, de inversión, jurídico o fiscal.',
       },
       {
@@ -145,24 +169,74 @@ export default {
       },
       {
         q: '¿Cómo puedo recargar mi monedero?',
-        a: 'Abre una cuenta, selecciona «Ver código QR» para ver su dirección y envía fondos a esa dirección desde una plataforma de intercambio u otra cartera. Asegúrate de realizar el envío en la red correcta (Ethereum, Polygon, Arbitrum, Base u Optimism): la misma dirección funciona en todas ellas, pero los fondos enviados en una red solo aparecerán en esa red. También necesitarás un poco de la moneda nativa de la red (como ETH) para pagar las comisiones de transacción.',
+        a: 'Abre una cuenta, selecciona «Ver código QR» para ver su dirección y envía fondos a esa dirección desde una plataforma de intercambio u otra cartera. Asegúrate de enviar los fondos a través de la red correcta (Ethereum, Polygon, Arbitrum, Base u Optimism): la misma dirección funciona en todas ellas, pero los fondos enviados a través de una red solo aparecerán en esa red. También necesitarás un poco de la moneda nativa de la red (como ETH) para pagar las comisiones de transacción.',
       },
       {
         q: '¿Qué puedo hacer con wwwallet?',
-        a: 'Enviar: transfiere ETH o cualquier token a una dirección que pegues, escanees desde un código QR o selecciones de tus propias cuentas, y revisa los detalles antes de confirmar. Intercambiar: cambia un token por otro en la misma red desde la pestaña «Intercambiar», donde se muestran de antemano la cotización y la estimación de las comisiones. Recibir: muestra tu dirección como un código QR. También puedes consultar tus saldos en dólares estadounidenses y tu historial de transacciones en todas las redes compatibles.',
+        a: 'Enviar: transfiere ETH o cualquier token a una dirección que pegues, escanees desde un código QR o elijas de tus propias cuentas, y revisa los detalles antes de confirmar. Intercambiar: cambia un token por otro en la misma red desde la pestaña «Intercambiar», donde se muestran de antemano la cotización y la estimación de las comisiones. Recibir: muestra tu dirección como un código QR. También puedes consultar tus saldos en dólares estadounidenses y tu historial de transacciones en todas las redes compatibles.',
       },
       {
         q: '¿Qué sabe wwwallet sobre mí?',
-        a: 'Nada que te identifique. No hay ninguna cuenta, inicio de sesión ni base de datos. Los datos sobre saldos y precios se obtienen a través del propio servidor de wwwallet, en lugar de que tu navegador se conecte directamente con proveedores externos, y ese servidor nunca tiene acceso a tus claves, contraseñas ni frase de recuperación.',
+        a: 'Nada que te identifique. No hay cuenta, ni inicio de sesión, ni base de datos. Los datos sobre saldos y precios se obtienen a través del propio servidor de wwwallet, en lugar de que tu navegador se conecte directamente con proveedores externos, y ese servidor nunca tiene acceso a tus claves, contraseñas ni frase de recuperación.',
       },
     ],
   },
   footer: {
-    tagline: 'Un monedero de Ethereum personal y sin custodia.',
-    sourceLink: 'Ver el código fuente en GitHub',
+    tagline: 'Un monedero de Ethereum gratuito y sin custodia para todo el mundo.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Bajo licencia PolyForm Strict 1.0.0',
     disclaimer:
       'El software sin custodia se proporciona «tal cual», sin garantía alguna. No constituye asesoramiento financiero. Eres el único responsable de tus claves y tus fondos.',
+  },
+  principles: {
+    eyebrow: 'Principios',
+    heading: 'Gratuito, abierto y diseñado para todo el mundo',
+    lede: 'Una cartera digital debe ser una herramienta que utilices, no un negocio que se sustente a costa de sus usuarios. Estos son los principios en los que se basa wwwallet.',
+    items: [
+      {
+        title: 'Gratis, sin trampa alguna',
+        body: 'Sin precios, sin planes premium, sin funciones de pago. wwwallet no aplica comisiones propias; el único coste es la comisión por transacción de la propia red.',
+      },
+      {
+        title: 'Sin anuncios, sin seguimiento',
+        body: 'Sin anuncios, sin análisis de datos, sin scripts de seguimiento y sin venta de datos a nadie. Para empezar, no existe ningún perfil tuyo que se pueda vender.',
+      },
+      {
+        title: 'No es necesario registrarse',
+        body: 'No hace falta correo electrónico, número de teléfono ni verificación de identidad. Ábrela, crea un monedero y ya estás listo.',
+      },
+      {
+        title: 'Las llaves las llevas contigo',
+        body: 'Las claves se generan y se cifran en tu dispositivo y nunca salen de él. wwwallet no puede verlas, mover tus fondos ni bloquearte el acceso.',
+      },
+      {
+        title: 'Funciona en cualquier sitio',
+        body: 'Funciona en cualquier navegador moderno, tanto en el móvil como en el ordenador, y se instala como una aplicación; no hace falta tener una cuenta en ninguna tienda de aplicaciones.',
+      },
+      {
+        title: 'En 31 idiomas',
+        body: 'Úsalo en el idioma con el que te sientas más cómodo, en modo claro u oscuro.',
+      },
+      {
+        title: 'Código abierto',
+        body: 'El código fuente completo está publicado para que cualquiera pueda leerlo y auditarlo. Se trata de código fuente disponible, no de código abierto; en las preguntas frecuentes se explica lo que permite la licencia.',
+      },
+      {
+        title: 'No hay nada que apagar',
+        body: 'No hay ninguna cuenta que pueda bloquearse. Tus fondos se almacenan directamente en la red Ethereum, y la clave de cualquier cuenta puede transferirse a otro monedero en cualquier momento.',
+      },
+    ],
+  },
+  license: {
+    title: 'Licencia',
+    close: 'Cerrar',
+    summaryTitle: 'En lenguaje sencillo',
+    canUse:
+      'Puedes utilizar wwwallet de forma gratuita, con fines personales y otros fines no comerciales.',
+    canRead: 'Puedes leer y revisar cada línea de su código fuente.',
+    cannot: 'No puedes copiarlo, modificarlo, redistribuirlo ni venderlo.',
+    englishNote:
+      'A continuación se incluye la licencia completa, en su versión original en inglés; se trata del texto legal.',
+    viewSource: 'Ver en GitHub',
   },
 }

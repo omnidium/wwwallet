@@ -9,6 +9,8 @@ export default {
     address: 'Adresse',
     close: 'Fermer',
     review: 'Critique',
+    search: 'Rechercher',
+    noMatches: 'Aucun résultat',
   },
   nav: {
     settings: 'Paramètres',
@@ -22,8 +24,8 @@ export default {
     offlineServerUnreachable: "Impossible d'accéder au serveur",
     backupReminder:
       "Cela fait un certain temps que vous n'avez pas effectué de sauvegarde. Pensez à sauvegarder régulièrement, et à chaque fois que vous apportez des modifications.",
-    viewHidden: 'Afficher les comptes masqués',
-    hideHidden: 'Masquer les comptes masqués',
+    viewHidden: 'Afficher les éléments masqués',
+    hideHidden: 'Masquer les éléments masqués',
   },
   addAccount: {
     title: 'Ajouter un compte',
@@ -44,20 +46,17 @@ export default {
   send: {
     title: 'Envoyer',
     fromLabel: 'De',
-    recipientLabel: 'Adresse du destinataire',
     scanQrAria: 'Scanner le code QR',
-    amountLabel: 'Montant',
     submit: 'Envoyer',
     tabSend: 'Envoyer',
     tabSwap: 'Échange',
-    chainLabel: 'Chaîne',
     tokenLabel: 'Jeton',
     amountInLabel: 'Montant dans {unit}',
     maxLabel: 'Max',
     toggleAmountUnitAria: 'Basculer entre le montant du jeton et {currency}',
     addPayeeTitle: 'Ajouter cette adresse comme bénéficiaire ?',
     addPayeePrompt:
-      "Vous avez scanné cette adresse à l'aide d'un code QR. Enregistrez-la comme bénéficiaire pour pouvoir lui envoyer facilement de l'argent à l'avenir.",
+      "Vous n'avez encore jamais effectué de virement vers cette adresse. Enregistrez-la comme bénéficiaire pour pouvoir y effectuer facilement un nouveau virement.",
     addPayeeLabelField: 'Étiquette',
     addPayeeSave: 'Enregistrer',
     addPayeeSkip: 'Passer',
@@ -69,12 +68,9 @@ export default {
     copyAria: "Copier l'adresse",
   },
   swap: {
-    title: 'Échange',
     sellTokenLabel: 'Vendre',
     buyTokenLabel: 'Acheter',
     sellAmountLabel: 'Montant de la vente',
-    getQuote: 'Obtenir un devis',
-    estimateText: 'Montant estimé à percevoir : {amount} au prix de {price}',
     signingNotice:
       "Vous êtes en train de signer une transaction destinée à {address} (via l'agrégateur 0x).",
     submit: 'Échange',
@@ -84,9 +80,6 @@ export default {
     allTokens: 'Tous les jetons',
     noResults: 'Aucun jeton trouvé.',
     viewOnExplorer: "Afficher le jeton sur l'explorateur de blocs",
-    estimatedFee: 'Frais de réseau estimés : {fee}',
-    swapFee: 'Frais de swap : {fee}',
-    integratorFee: 'Frais de service : {fee}',
   },
   payees: {
     title: 'Bénéficiaires',
@@ -96,6 +89,8 @@ export default {
     labelField: 'Étiquette',
     addressField: 'Adresse',
     edit: 'Modifier le bénéficiaire',
+    labelPlaceholder: 'par exemple : Alice',
+    chainHint: 'Le réseau sur lequel ils reçoivent le signal leur est attribué par défaut.',
   },
   backup: {
     title: 'Sauvegarde et restauration',
@@ -169,7 +164,6 @@ export default {
     removePasskeyBody:
       "Vous devrez saisir l'intégralité de votre phrase de récupération à chaque fois que vous déverrouillerez wwwallet, jusqu'à ce que vous configuriez à nouveau un mot de passe.",
     removeAnyway: 'Supprimer quand même',
-    transactionBatchSizeLabel: 'Nombre de transactions par chargement',
     version: 'Version {version}',
     dangerZoneTitle: 'Zone dangereuse',
     deleteWalletLabel: 'Supprimer le portefeuille de cet appareil',
@@ -204,9 +198,9 @@ export default {
     network: 'Réseau',
     addFavourite: "Ajouter aux favoris (affichés sur l'écran de verrouillage)",
     removeFavourite: 'Supprimer des favoris',
-    refreshPrice: 'Cliquez ici pour actualiser le prix',
-    moreDetails: "Plus d'informations",
-    lessDetails: 'Moins de détails',
+    refreshPrice: 'Cliquez pour actualiser la page',
+    moreDetails: 'En savoir plus',
+    lessDetails: 'Moins',
     currentPrice: 'Prix actuel (USD)',
     change24h: 'Variation sur 24 heures',
     chart24h: 'Au cours des dernières 24 heures',
@@ -227,8 +221,7 @@ export default {
     privateKeyRequired: 'Une clé privée est requise.',
     keystoreFileRequired: 'Sélectionnez un fichier de clés.',
     recoveryPhraseFormat: 'Cela ne semble pas être une phrase de récupération valide.',
-    insufficientGas:
-      'Le solde en ETH de ce compte est insuffisant pour couvrir les frais de réseau.',
+    insufficientGas: 'Le solde de ce compte est insuffisant pour couvrir les frais de transaction.',
     sameTokenSwap: "Les opérations de vente et d'achat de jetons doivent être distinctes.",
   },
   msg: {
@@ -249,16 +242,11 @@ export default {
       stillPending: "Toujours en attente — cela n'a pas encore été confirmé. Hash : {hash}",
     },
     swap: {
-      approvalSubmitted: "Demande d'approbation envoyée. En attente de confirmation…",
       success: 'Échange envoyé.',
       submitting: 'Envoi de la transaction…',
       waiting: 'En attente de la fin de la transaction…',
       failed: "Échec de l'échange. Hachage : {hash}",
       stillPending: "Toujours en attente — cela n'a pas encore été confirmé. Hash : {hash}",
-      approvalConfirmed: "Validation confirmée. Préparation de l'échange…",
-      approvalFailed: 'Validation échouée. Hachage : {hash}',
-      approvalStillPending:
-        "L'approbation est toujours en attente — elle n'a pas encore été confirmée. Réessayez dans quelques instants. Hachage : {hash}",
     },
     backup: {
       driveSuccess: 'Sauvegardé sur Google Drive.',
@@ -280,6 +268,21 @@ export default {
     },
     passkey: {
       ready: 'Le déverrouillage par Face ID / Touch ID est prêt.',
+    },
+    approval: {
+      submitted: "Demande d'approbation envoyée. En attente de confirmation…",
+      confirmed: 'Validation confirmée. Préparation de la transaction…',
+      failed: 'Validation échouée. Hachage : {hash}',
+      stillPending:
+        "Validation en attente — cela n'a pas encore été confirmé. Veuillez réessayer dans quelques instants. Hachage : {hash}",
+    },
+    bridge: {
+      waiting: 'Le pont a été soumis. En attente de confirmation…',
+      inFlight: 'En route vers {network} — généralement {eta}.',
+      arrived: 'Arrivé le {network}.',
+      refunded: 'Le pont a remboursé ce virement. Hash : {hash}',
+      failed: 'Échec du transfert de pont. Hachage : {hash}',
+      stillPending: 'En cours de publication — revenez plus tard. Hachage : {hash}',
     },
   },
   errors: {
@@ -318,21 +321,11 @@ export default {
     networkFailed: "Impossible d'accéder au serveur. Vérifiez votre connexion et réessayez.",
     rateLimited: 'Trop de requêtes — veuillez patienter un instant, puis réessayer.',
     noLiquidity:
-      "Cette paire de jetons n'est pas négociable pour le moment — essayez un autre jeton.",
+      "Aucun itinéraire n'est disponible pour le moment — essayez un autre jeton, un autre montant ou un autre réseau.",
     transactionWouldFail:
       "Cette transaction serait refusée si elle était effectuée — vérifiez votre solde et assurez-vous d'avoir obtenu toutes les autorisations nécessaires.",
-  },
-  currency: {
-    USD: 'dollar américain',
-    EUR: 'euro',
-    GBP: 'Livre sterling',
-    AUD: 'dollar australien',
-    CAD: 'dollar canadien',
-    JPY: 'yen japonais',
-    CHF: 'franc suisse',
-    CNH: 'Yuan',
-    SEK: 'couronne suédoise',
-    NZD: 'dollar néo-zélandais',
+    tokenNotOnChain: "Ce jeton n'est pas pris en charge sur l'un de ces réseaux.",
+    serviceBusy: 'wwwallet est actuellement occupé — veuillez réessayer dans une minute.',
   },
   accountCard: {
     copyAddress: "Copier l'adresse",
@@ -347,14 +340,11 @@ export default {
     viewMnemonic: "Afficher l'abréviation",
     privateKeyNoun: 'clé privée',
     mnemonicNoun: 'phrase mnémonique',
-    showTransactions: 'Afficher les transactions récentes',
-    hideTransactions: 'Masquer les transactions récentes',
     showTokens: 'Afficher les soldes des jetons',
     hideTokens: 'Masquer les soldes des jetons',
     hideDustTxns: 'Masquer les transactions inférieures à 0,01 $',
     hideUnknownTokens: 'Masquer les jetons inconnus',
     dragToReorder: 'Faites glisser pour réorganiser',
-    refresh: 'Actualiser ce compte',
     viewOnEtherscan: 'Cliquez ici pour consulter Etherscan',
     viewNativeToken: 'Afficher les détails de {symbol}',
   },
@@ -392,9 +382,11 @@ export default {
     amount: 'Montant',
     sold: 'Vendu',
     bought: 'Acheté',
-    networkFee: 'Frais de réseau',
+    networkFee: 'Frais de transaction',
     paidBySender: "Frais à la charge de l'expéditeur",
     feeUnavailable: 'Pas encore disponible',
+    todaysPriceNote:
+      "* Au cours actuel — aucun cours n'a été trouvé pour la date à laquelle cette transaction a été effectuée.",
   },
   transferPicker: {
     title: 'Indiquez un compte ou un bénéficiaire pour effectuer le virement',
@@ -405,7 +397,6 @@ export default {
     title: 'Confirmer la transaction',
     from: 'De',
     to: 'À',
-    chain: 'Chaîne',
     amount: 'Montant',
     fee: 'Frais',
     total: 'Total',
@@ -414,5 +405,91 @@ export default {
     price: 'Prix',
     swapFee: 'Frais de swap',
     integratorFee: 'Frais de service',
+  },
+  transfer: {
+    fromNetwork: 'Source : réseau',
+    toNetwork: 'Pour se créer un réseau',
+    chainAria: '{label} : {network}. Changer de réseau',
+    chooseAccount: 'Choisissez un compte',
+    chooseRecipient: 'Choisissez un destinataire',
+    myAccounts: 'Mes comptes',
+    payees: 'Bénéficiaires',
+    noOptions: "Il n'y a pas le choix",
+    enterAddress: 'Collez ou saisissez une adresse (0x…)',
+    useAddress: 'Utilisez cette adresse',
+    externalAddress: 'Adresse externe',
+    sameAccountSameChain:
+      "Il s'agit du compte émetteur : choisissez un autre destinataire ou un autre réseau pour effectuer le virement.",
+    payeeOtherChain:
+      "Enregistré comme bénéficiaire le {saved}. Assurez-vous qu'il puisse recevoir le paiement le {network}.",
+    movingOwnFunds: 'Transfert de fonds vers ce compte le {network}.',
+    receiveIntoSame: 'Les jetons échangés sont crédités sur ce même compte',
+    flip: 'Changer de direction',
+    noPrice: 'Prix non disponible',
+    summaryTitle: 'Résumé',
+    routeDirect: 'Direct',
+    routeBridge: 'Pont',
+    via: 'Itinéraire',
+    youSend: 'Vous envoyez',
+    youGet: 'Vous recevez',
+    recipientGets: 'Le destinataire reçoit',
+    minReceived: 'Montant minimum perçu',
+    minReceivedHint:
+      "Le montant minimum pouvant être crédité si les cours évoluent avant que la transaction ne soit exécutée (slippage). Si ce montant est inférieur, la transaction n'est pas exécutée.",
+    rate: 'Taux',
+    bridgeFees: 'Péages de pont',
+    swapFees: 'Frais de swap',
+    networkFee: 'Frais de transaction',
+    arrives: 'Arrivée prévue le',
+    etaNextBlock: 'Secondes',
+    etaSeconds: '~{n} sec',
+    etaMinutes: '~{n} min',
+    etaHours: '~{n} h',
+    placeholderRecipient:
+      'Choisissez le destinataire et indiquez un montant pour connaître les frais et les délais.',
+    placeholderAmount: 'Saisissez un montant pour connaître les frais et les délais.',
+    placeholderBuyToken:
+      'Choisissez un token que vous souhaitez recevoir et indiquez un montant pour connaître le taux de change et les frais.',
+    bridgeSigningNotice:
+      "Vous êtes en train de signer une transaction destinée à {address} (via l'agrégateur LI.FI Bridge).",
+    reviewBridge: 'Pont de révision',
+    submitBridge: 'Pont',
+    tokenNotOnChain:
+      '{symbol} ne peut pas être relié à {network} — choisissez un autre réseau ou un autre jeton.',
+    tokenNotOnChainSwap: 'Ce jeton ne peut pas être relié à {network} — choisissez un autre jeton.',
+  },
+  accountCarousel: {
+    label: '{name} sur chaque réseau',
+    show: 'Afficher le compte {network}',
+  },
+  favourites: {
+    title: 'Favoris',
+    edit: 'Modifier les favoris',
+    doneEditing: 'Terminé',
+    hideCard: 'Masquer cette fiche',
+    showCard: 'Afficher cette carte',
+    empty:
+      "Aucun favori pour l'instant — utilisez le crayon pour ajouter des devises ou des paires de devises.",
+    dragToReorder: 'Faites glisser pour réorganiser',
+    remove: 'Supprimer {name} de mes favoris',
+    add: 'Ajouter {name} à mes favoris',
+    addLabel: 'Ajouter aux favoris',
+    addPlaceholder: 'Bitcoin, SOL, EUR/USD…',
+    fxPair: 'Paire de devises',
+    searchFailed:
+      "Impossible d'effectuer la recherche pour le moment — réessayez dans quelques instants.",
+    noResults: 'Aucun résultat.',
+  },
+  license: {
+    title: 'Licence',
+    summaryTitle: 'En termes simples',
+    canUse:
+      'Vous pouvez utiliser wwwallet gratuitement, à des fins personnelles et à toute autre fin non commerciale.',
+    canRead: 'Vous pouvez lire et analyser chaque ligne de son code source.',
+    cannot:
+      "Vous n'avez pas le droit de le copier, de le modifier, de le redistribuer ou de le vendre.",
+    englishNote:
+      "Voici le texte intégral de la licence, dans sa version originale en anglais — il s'agit du texte juridique.",
+    viewSource: 'Consulter sur GitHub',
   },
 }

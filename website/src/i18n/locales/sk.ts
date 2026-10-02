@@ -7,6 +7,7 @@ export default {
     launch: 'Spustiť peňaženku',
     home: 'Späť na začiatok stránky',
     sectionNavLabel: 'Navigácia v sekcii',
+    principles: 'Zásady',
   },
   settings: {
     open: 'Nastavenia',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Svetlo',
     themeDark: 'Tma',
     language: 'Jazyk',
+    search: 'Vyhľadávanie',
+    noMatches: 'Žiadne výsledky',
   },
   hero: {
-    eyebrow: 'Osobná peňaženka pre Ethereum bez úschovy',
-    heading1: 'Vaše kľúče.',
+    eyebrow: 'Bezplatná peňaženka pre Ethereum bez úschovy',
+    heading1: 'Tvoje kľúče.',
     heading2: 'Vaše zariadenie.',
-    heading3: 'Vaša peňaženka.',
-    lede: 'wwwallet šifruje vašu peňaženku priamo na vašom zariadení a vaše kľúče, heslá ani obnovovaciu frázu nikdy neposiela nikam inam. Nie je potrebné vytvárať žiadny účet. Neexistuje žiadny server, ktorý by mohol byť napadnutý. Len vy a vaše kryptomeny.',
+    heading3: 'Bezplatné pre všetkých.',
+    lede: 'wwwallet beží vo vašom prehliadači a vaše kľúče uchováva v zašifrovanej podobe na vašom vlastnom zariadení. Nie je potrebné vytvárať žiadny účet, nič neplatíte a nie sú tu žiadne reklamy – je to jednoducho peňaženka, ktorá funguje rovnako pre každého.',
     ctaPrimary: 'Spustiť peňaženku',
     ctaSecondary: 'Pozrite sa, ako to funguje',
+    note: 'Bez registrácie · Bez reklám · Bez sledovania · 31 jazykov',
   },
   wallet: {
     eyebrow: 'Peňaženka',
@@ -107,12 +111,32 @@ export default {
     heading: 'Často kladené otázky',
     items: [
       {
+        q: 'Je wwwallet naozaj zadarmo?',
+        a: 'Áno. Používanie je bezplatné, neexistuje žiadna prémiová úroveň ani obsah dostupný len za poplatok a wwwallet nepridáva žiadny poplatok k ničomu, čo posielate alebo vymieňate. Jediným nevyhnutným nákladom je vlastný transakčný poplatok (gas) siete, ktorý ide do siete, nie do wwwallet. Cenové ponuky na výmenu pochádzajú z agregátora búrz 0x, ktorý môže pri niektorých transakciách účtovať vlastný poplatok – akýkoľvek takýto poplatok je uvedený na obrazovke s prehľadom pred potvrdením transakcie.',
+      },
+      {
+        q: 'Sú tam reklamy, sledovacie nástroje alebo analytické nástroje?',
+        a: 'Nie. Stránka wwwallet nezobrazuje žiadne reklamy, nepoužíva žiadne analytické ani sledovacie skripty a nevytvára o vás žiadny profil. Neexistuje tu žiadny účet, takže nie je k čomu ho priradiť.',
+      },
+      {
+        q: 'Potrebujem na to účet alebo preukaz totožnosti?',
+        a: 'Nie. Nie je potrebná žiadna registrácia, e-mailová adresa, telefónne číslo ani overenie totožnosti – peňaženku si vytvoríte priamo vo svojom zariadení a môžete ju hneď používať.',
+      },
+      {
+        q: 'Ak je to zadarmo, ako sa wwwallet financuje?',
+        a: 'Na svojich používateľoch nezarába – žiadne poplatky, žiadne reklamy, žiadny predaj údajov. Prevádzkové náklady sú zámerne udržované na nízkej úrovni: samotná peňaženka beží vo vašom prehliadači a backend iba prenáša verejné údaje z blockchainu a cenové údaje.',
+      },
+      {
+        q: 'Môže mi niekto zmraziť peňaženku?',
+        a: 'Neexistuje žiadny účet, takže wwwallet – ani nikto iný – nemá čo zmraziť. Vaše kľúče nikdy neopustia vaše zariadenie a transakcie sa tam podpíšu ešte pred odoslaním do siete. Vaše prostriedky sú uložené na Ethereu, nie v wwwallet: súkromný kľúč alebo obnovovaciu frázu akéhokoľvek účtu si môžete zobraziť v jeho ponuke a kedykoľvek ich importovať do inej peňaženky Ethereum.',
+      },
+      {
         q: 'Stačí moja obnovovacia fráza na to, aby som dostal späť svoju peňaženku?',
-        a: 'Nie sama o sebe. Vaša obnovovacia fráza odomkne váš šifrovaný trezor, ale samotný trezor sa nachádza iba na vašom zariadení. Ak toto zariadenie stratíte alebo vymažete bez toho, aby ste si predtým vytvorili zálohu, fráza už nebude mať čo odomknúť. Obnovovaciu frázu vždy kombinujte so zálohou na Google Drive alebo so zálohou súborov – pozrite si nasledujúcu otázku.',
+        a: 'Nie sama o sebe. Vaša obnovovacia fráza odomkne váš šifrovaný trezor, ale samotný trezor sa nachádza iba na vašom zariadení. Ak toto zariadenie stratíte alebo vymažete bez toho, aby ste si predtým vytvorili zálohu, táto fráza už nebude mať čo odomknúť. Obnovovaciu frázu vždy kombinujte so zálohou na Google Drive alebo so zálohou súborov – pozrite si nasledujúcu otázku.',
       },
       {
         q: 'Ako môžem zálohovať svoju peňaženku?',
-        a: 'V nastaveniach si zálohujte šifrovaný trezor na svoj Google Drive – kde bude uložený v súkromnej zložke prístupnej len pre aplikáciu, do ktorej aplikácia wwwallet nemá prístup – alebo ako súbor, ktorý si stiahnete a uchováte sami. Urobte to vždy, keď si nastavujete peňaženku alebo pridávate nové účty.',
+        a: 'V nastaveniach si zálohujte šifrovanú peňaženku na svoj Google Drive – kde bude uložená v súkromnej zložke prístupnej len pre aplikáciu, do ktorej aplikácia wwwallet nemá prístup – alebo ako súbor, ktorý si stiahnete a uchováte sami. Urobte to vždy, keď si nastavujete peňaženku alebo pridávate nové účty.',
       },
       {
         q: 'Môžem používať wwwallet na viacerých zariadeniach?',
@@ -120,7 +144,7 @@ export default {
       },
       {
         q: 'Čo sa stane, ak stratím svoje zariadenie a nikdy som si nevytvoril zálohu?',
-        a: 'Vaše prostriedky nie je možné obnoviť. Je to zámerné: wwwallet nemá žiadny systém účtov a nikde neuchováva žiadnu kópiu vášho trezoru, takže nikto – ani my – vám ho nemôže obnoviť. Je to kompromis za peňaženku, ku ktorej nemá prístup nikto okrem vás.',
+        a: 'Vaše prostriedky nie je možné obnoviť. Je to zámerné: wwwallet nemá žiadny systém účtov a nikde neuchováva žiadnu kópiu vášho trezoru, takže nikto – ani my – vám ho nemôže obnoviť. Je to kompromis za peňaženku, ku ktorej máte prístup len vy.',
       },
       {
         q: 'Prenesú sa prístupové kľúče (Face ID / Touch ID) do nového zariadenia?',
@@ -136,7 +160,7 @@ export default {
       },
       {
         q: 'Je používanie služby wwwallet bezpečné? Poskytuje sa na ňu nejaká záruka?',
-        a: 'wwwallet je softvér bez úschovy poskytovaný „tak, ako je“, bez akejkoľvek záruky. Vaše kľúče a prostriedky máte pod kontrolou výlučne vy – nikto, ani my, nemôže obnoviť stratenú obnovovaciu frázu alebo zálohu, zrušiť transakciu ani vám nahradiť straty. Používajte len prostriedky, ktorých stratu si môžete dovoliť, pred odoslaním si dôkladne skontrolujte adresy a siete a nič z uvedeného nepredstavuje finančné, investičné, právne ani daňové poradenstvo.',
+        a: 'wwwallet je softvér bez úschovy poskytovaný „tak, ako je“, bez akejkoľvek záruky. Vaše kľúče a finančné prostriedky máte pod kontrolou výlučne vy – nikto, vrátane nás, nemôže obnoviť stratenú obnovovaciu frázu alebo zálohu, zrušiť transakciu ani vám nahradiť straty. Používajte iba finančné prostriedky, ktorých stratu si môžete dovoliť, pred odoslaním si dôkladne skontrolujte adresy a siete a nič z uvedeného nepredstavuje finančné, investičné, právne ani daňové poradenstvo.',
       },
       {
         q: 'Ktoré siete podporuje wwwallet?',
@@ -144,24 +168,72 @@ export default {
       },
       {
         q: 'Ako môžem vložiť prostriedky do svojej peňaženky?',
-        a: 'Otvorte si účet, vyberte možnosť „Zobraziť QR kód“, aby ste videli jeho adresu, a pošlite prostriedky na túto adresu z burzy alebo inej peňaženky. Uistite sa, že posielate prostriedky cez správnu sieť (Ethereum, Polygon, Arbitrum, Base alebo Optimism) – tá istá adresa funguje vo všetkých týchto sieťach, ale prostriedky poslané cez jednu sieť sa zobrazia len v tejto sieti. Budete tiež potrebovať malé množstvo natívnej meny danej siete (napríklad ETH) na úhradu transakčných poplatkov.',
+        a: 'Otvorte si účet, vyberte možnosť „Zobraziť QR kód“, aby ste videli jeho adresu, a pošlite prostriedky na túto adresu z burzy alebo inej peňaženky. Uistite sa, že posielate prostriedky cez správnu sieť (Ethereum, Polygon, Arbitrum, Base alebo Optimism) – tá istá adresa funguje vo všetkých týchto sieťach, ale prostriedky poslané cez jednu sieť sa zobrazia len v tej danej sieti. Budete tiež potrebovať malé množstvo natívnej meny danej siete (napríklad ETH) na úhradu transakčných poplatkov.',
       },
       {
-        q: 'Čo môžem robiť s wwwallet?',
-        a: 'Odoslať: pošlite ETH alebo akýkoľvek token na adresu, ktorú vložíte, naskenujete z QR kódu alebo vyberiete zo svojich vlastných účtov, a pred potvrdením skontrolujte podrobnosti. Výmena: vymeňte jeden token za iný v rámci tej istej siete na karte „Výmena“, pričom sa vám hneď na začiatku zobrazí kurz a odhad poplatku. Prijímať: zobrazte svoju adresu vo forme QR kódu. Môžete si tiež prezrieť svoje zostatky v USD a históriu transakcií vo všetkých podporovaných sieťach.',
+        q: 'Čo všetko môžem robiť s wwwallet?',
+        a: 'Odoslať: prevedte ETH alebo akýkoľvek token na adresu, ktorú vložíte, naskenujete z QR kódu alebo vyberiete zo svojich vlastných účtov, a pred potvrdením skontrolujte podrobnosti. Výmena: vymeňte jeden token za iný v rámci tej istej siete na karte „Výmena“, pričom sa vám hneď na začiatku zobrazí kurz a odhad poplatku. Prijímať: zobrazte svoju adresu vo forme QR kódu. Môžete si tiež zobraziť svoje zostatky v USD a históriu transakcií vo všetkých podporovaných sieťach.',
       },
       {
-        q: 'Čo o mne vie wwwallet?',
-        a: 'Žiadne údaje, ktoré by vás identifikovali. Neexistuje žiadny účet, prihlásenie ani databáza. Údaje o zostatku a cenách sa načítajú prostredníctvom vlastného backendu služby wwwallet, namiesto toho, aby váš prehliadač priamo kontaktoval poskytovateľov tretích strán, a tento backend nikdy nemá prístup k vašim kľúčom, heslám ani obnovovacej fráze.',
+        q: 'Čo vie wwwallet o mne?',
+        a: 'Žiadne údaje, ktoré by vás identifikovali. Neexistuje žiadny účet, prihlásenie ani databáza. Údaje o zostatku a cenách sa načítajú prostredníctvom vlastného backendu služby wwwallet, namiesto toho, aby váš prehliadač priamo oslovoval poskytovateľov tretích strán, a tento backend nikdy nemá prístup k vašim kľúčom, heslám ani obnovovacej fráze.',
       },
     ],
   },
   footer: {
-    tagline: 'Osobná peňaženka pre Ethereum bez úschovy.',
-    sourceLink: 'Zobraziť zdrojový kód na GitHub-e',
+    tagline: 'Bezplatná peňaženka na Ethereum bez úschovy pre každého.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Licencované podľa licencie PolyForm Strict 1.0.0',
     disclaimer:
       'Softvér bez úschovy sa poskytuje „tak, ako je“, bez záruky. Nejedná sa o finančné poradenstvo. Za svoje kľúče a finančné prostriedky nesiete výhradnú zodpovednosť.',
+  },
+  principles: {
+    eyebrow: 'Zásady',
+    heading: 'Bezplatné, otvorené a určené pre každého',
+    lede: 'Peňaženka by mala byť nástrojom, ktorý používate, a nie podnikom založeným na svojich používateľoch. Práve na týchto zásadách je postavená služba wwwallet.',
+    items: [
+      {
+        title: 'Zadarmo, bez žiadneho háčika',
+        body: 'Žiadna cena, žiadna prémiová úroveň, žiadne platené funkcie. wwwallet neúčtuje žiadne vlastné poplatky – jediným nákladom je transakčný poplatok siete.',
+      },
+      {
+        title: 'Žiadne reklamy, žiadne sledovanie',
+        body: 'Žiadne reklamy, žiadne analytické nástroje, žiadne sledovacie skripty a žiadne údaje, ktoré by sa komukoľvek predávali. V prvom rade totiž neexistuje žiadny váš profil, ktorý by sa dal predať.',
+      },
+      {
+        title: 'Bez registrácie',
+        body: 'Žiadna kontrola e-mailovej adresy, telefónneho čísla ani dokladu totožnosti. Stačí aplikáciu otvoriť, vytvoriť peňaženku a je to.',
+      },
+      {
+        title: 'Kľúče zostanú u vás',
+        body: 'Kľúče sa vytvárajú a šifrujú priamo vo vašom zariadení a nikdy z neho neopúšťajú. wwwallet k nim nemá prístup, nemôže s vašimi prostriedkami disponovať ani vám zablokovať prístup.',
+      },
+      {
+        title: 'Funguje kdekoľvek',
+        body: 'Funguje v akomkoľvek modernom prehliadači na mobile alebo počítači a inštaluje sa ako aplikácia – nie je potrebný účet v obchode s aplikáciami.',
+      },
+      {
+        title: 'V 31 jazykoch',
+        body: 'Používajte ho v jazyku, ktorý vám najviac vyhovuje, v svetlom alebo tmavom režime.',
+      },
+      {
+        title: 'Kód vo verejnej doméne',
+        body: 'Úplný zdrojový kód je zverejnený, aby si ho mohol prečítať a skontrolovať ktokoľvek. Ide skôr o zdrojovo dostupný kód než o open source – v častých otázkach je vysvetlené, čo licencia povoľuje.',
+      },
+      {
+        title: 'Nie je čo vypnúť',
+        body: 'Neexistuje žiadny účet, ktorý by mohol byť zmrazený. Vaše prostriedky sú uložené priamo v sieti Ethereum a kľúč k akémukoľvek účtu je možné kedykoľvek preniesť do inej peňaženky.',
+      },
+    ],
+  },
+  license: {
+    title: 'Licencia',
+    close: 'Zatvoriť',
+    summaryTitle: 'Jednoducho povedané',
+    canUse: 'Aplikáciu wwwallet môžete používať zadarmo na osobné a iné nekomerčné účely.',
+    canRead: 'Môžete si prečítať a skontrolovať každý riadok jeho zdrojového kódu.',
+    cannot: 'Nesmiete ho kopírovať, upravovať, ďalej šíriť ani predávať.',
+    englishNote: 'Nasleduje úplné znenie licencie v pôvodnej angličtine – ide o právny text.',
+    viewSource: 'Zobraziť na GitHub',
   },
 }

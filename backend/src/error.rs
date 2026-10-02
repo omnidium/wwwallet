@@ -14,6 +14,11 @@ pub enum ApiError {
     Unprocessable { code: &'static str, message: String },
     Upstream(String),
     RateLimited,
+    /// The backend's own per-provider budget is spent (upstream_budget.rs):
+    /// a transient, everyone-wide slowdown rather than this client's fault.
+    Busy,
+    /// A refusal the app acts on by `code` (session tokens: routes/session.rs).
+    Coded { status: StatusCode, code: &'static str },
 }
 
 impl IntoResponse for ApiError {
@@ -29,6 +34,11 @@ impl IntoResponse for ApiError {
                 StatusCode::TOO_MANY_REQUESTS,
                 json!({ "error": "rate limit exceeded, try again shortly" }),
             ),
+            ApiError::Coded { status, code } => (status, json!({ "error": code, "code": code })),
+            ApiError::Busy => (
+                StatusCode::SERVICE_UNAVAILABLE,
+                json!({ "error": "busy, try again shortly", "code": "busy" }),
+            ),
         };
         (status, Json(body)).into_response()
     }
@@ -39,9 +49,14 @@ impl From<wwwallet_providers::ProviderError> for ApiError {
         match err {
             wwwallet_providers::ProviderError::InvalidInput(msg) => ApiError::BadRequest(msg),
             wwwallet_providers::ProviderError::RateLimited => ApiError::RateLimited,
+            wwwallet_providers::ProviderError::Busy => ApiError::Busy,
             wwwallet_providers::ProviderError::NoLiquidity => ApiError::Unprocessable {
                 code: "no_liquidity",
                 message: "no liquidity available for this token pair".to_string(),
+            },
+            wwwallet_providers::ProviderError::TokenNotOnChain => ApiError::Unprocessable {
+                code: "token_not_on_chain",
+                message: "token not supported on one of these chains".to_string(),
             },
             wwwallet_providers::ProviderError::TransactionWouldRevert(reason) => {
                 worker::console_warn!("transaction would revert: {reason}");

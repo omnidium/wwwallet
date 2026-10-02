@@ -38,7 +38,7 @@ defineProps<{ question: string; answer: string }>()
 
 .chevron {
   flex-shrink: 0;
-  color: var(--accent);
+  color: var(--accent-ink);
   transition: transform 0.15s ease;
 }
 

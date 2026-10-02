@@ -57,3 +57,23 @@ export const TRANSACTION_BATCH_SIZE_OPTIONS = [25, 50, 100, 200]
 
 /** How long the swap token picker waits after the last keystroke before searching. */
 export const TOKEN_SEARCH_DEBOUNCE_MS = 300
+
+/** How long a touch must be held on a button for its tooltip to show (see AppTooltip). */
+export const TOOLTIP_LONG_PRESS_MS = 450
+
+/** How long a tooltip shown by a long press stays up, unless tapped away sooner. */
+export const TOOLTIP_TOUCH_SHOW_MS = 2500
+
+/** How long the transfer panel waits after the last edit before fetching a swap/bridge quote or fee estimate. */
+export const QUOTE_DEBOUNCE_MS = 600
+
+/** A shown quote older than this is re-fetched before it's reviewed — prices and bridge fees drift. */
+export const QUOTE_MAX_AGE_MS = 30_000
+
+/** How often a bridged transfer's arrival is checked, and for at most how long. */
+export const BRIDGE_STATUS_POLL_MS = 10_000
+export const BRIDGE_STATUS_MAX_WAIT_MS = 60 * 60_000
+
+// How long the Send icon on an account card must be held before the
+// drag-to-transfer target picker opens (shorter presses just open Send).
+export const TRANSFER_LONG_PRESS_MS = 400

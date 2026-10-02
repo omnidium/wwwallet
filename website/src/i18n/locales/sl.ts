@@ -7,6 +7,7 @@ export default {
     launch: 'Zaženi denarnico',
     home: 'Nazaj na vrh',
     sectionNavLabel: 'Navigacija po razdelkih',
+    principles: 'Načela',
   },
   settings: {
     open: 'Nastavitve',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Svetloba',
     themeDark: 'Temno',
     language: 'Jezik',
+    search: 'Iskanje',
+    noMatches: 'Ni zadetkov',
   },
   hero: {
-    eyebrow: 'Osebna denarnica za Ethereum brez hrambe sredstev',
-    heading1: 'Vaši ključi.',
+    eyebrow: 'Brezplačna denarnica za Ethereum brez hrambe sredstev',
+    heading1: 'Tvoji ključi.',
     heading2: 'Vaša naprava.',
-    heading3: 'Vaš denarnik.',
-    lede: 'wwwallet šifrira vašo denarnico na vaši lastni napravi in nikoli ne pošilja vaših ključev, gesel ali obnovitvene fraze nikamor drugam. Ni treba ustvarjati računa. Ni strežnika, ki bi ga lahko nekdo vdrl. Samo vi in vaše kriptovalute.',
+    heading3: 'Brezplačno za vse.',
+    lede: 'wwwallet deluje v vašem brskalniku, ključe pa so šifrirani na vaši napravi. Ni treba ustvarjati računa, ničesar plačati in ni oglasov – preprosto denarnica, ki deluje enako za vse.',
     ctaPrimary: 'Zaženi denarnico',
     ctaSecondary: 'Oglejte si, kako deluje',
+    note: 'Brez registracije · Brez oglasov · Brez sledenja · 31 jezikov',
   },
   wallet: {
     eyebrow: 'Denarnica',
@@ -107,20 +111,40 @@ export default {
     heading: 'Pogosta vprašanja',
     items: [
       {
-        q: 'Ali je moja obnovitvena fraza dovolj, da dobim nazaj svojo denarnico?',
-        a: 'Sama po sebi ne. Vaša obnovitvena fraza odklene vaš šifrirani trezor, vendar se sam trezor nahaja izključno na vaši napravi. Če to napravo izgubite ali jo izbrišete, ne da bi kdajkoli naredili varnostno kopijo, fraza ne bo imela več kaj odkleniti. Obnovitveno frazo vedno dopolnite z varnostno kopijo na Google Drive ali v datotekah – glejte naslednje vprašanje.',
+        q: 'Ali je wwwallet res brezplačen?',
+        a: 'Da. Uporaba je brezplačna, ni nobene premium stopnje in ničesar ni za plačilnim zidom, wwwallet pa ne zaračunava nobenih provizij za pošiljanje ali menjavo. Edini neizogibni strošek je lastna transakcijska (gas) provizija omrežja, ki gre omrežju in ne wwwalletu. Ponudbe za zamenjavo prihajajo iz agregatorja borz 0x, ki lahko pri nekaterih transakcijah zaračuna lastno provizijo – vsaka taka provizija je navedena na preglednem zaslonu, preden potrdite transakcijo.',
       },
       {
-        q: 'Kako naredim varnostno kopijo denarnice?',
+        q: 'Ali so na spletni strani oglasi, sledilniki ali analitični orodji?',
+        a: 'Ne. Spletna stran wwwallet ne prikazuje oglasov, ne izvaja analitičnih ali sledilnih skriptov in ne ustvarja vašega profila. Ker ni računa, ni ničesar, s čimer bi ga lahko povezali.',
+      },
+      {
+        q: 'Ali potrebujem račun ali identifikacijsko številko, da ga lahko uporabljam?',
+        a: 'Ne. Ni potrebna nobena registracija, e-poštni naslov, telefonska številka ali preverjanje identitete – denarnico ustvarite na svoji napravi in jo takoj začnete uporabljati.',
+      },
+      {
+        q: 'Če je storitev brezplačna, kako se wwwallet financira?',
+        a: 'S svojimi uporabniki ne ustvarja dobička – brez provizij, brez oglasov, brez prodaje podatkov. Stroški delovanja so namerno omejeni: denarnica deluje v vašem brskalniku, strežniški del pa zgolj posreduje javne podatke iz verige blokov in podatke o cenah.',
+      },
+      {
+        q: 'Ali mi lahko kdo zamrzne denarnico?',
+        a: 'Ker ni računa, wwwallet – niti kdor koli drug – ne more ničesar zamrzniti. Vaši ključi nikoli ne zapustijo vaše naprave, transakcije pa se tam tudi podpišejo, preden se pošljejo v omrežje. Vaša sredstva so shranjena v omrežju Ethereum, ne v wwwallet: v meniju katerega koli računa si lahko ogledate zasebni ključ ali frazo za obnovo ter ju kadarkoli uvozite v drugo denarnico Ethereum.',
+      },
+      {
+        q: 'Ali je moja obnovitvena fraza dovolj, da dobim nazaj svoj denarnik?',
+        a: 'Sama po sebi ne. Vaša obnovitvena fraza odklene vaš šifrirani trezor, vendar se sam trezor nahaja izključno na vaši napravi. Če to napravo izgubite ali jo izbrišete, ne da bi kdajkoli naredili varnostno kopijo, fraza ne bo imela več česa odkleniti. Obnovitveno frazo vedno dopolnite z varnostno kopijo na Google Drive ali v datotekah – glejte naslednje vprašanje.',
+      },
+      {
+        q: 'Kako naredim varnostno kopijo svojega denarnika?',
         a: 'V nastavitvah naredite varnostno kopijo svojega šifriranega trezorja na svoj Google Drive – shranjeno v zasebni mapi, dostopni le aplikaciji, katere preostalega dela wwwallet ne more videti – ali pa kot datoteko, ki jo prenesete in shranite sami. To storite vsakič, ko nastavite denarnico ali dodate nove račune.',
       },
       {
         q: 'Ali lahko uporabljam wwwallet na več napravah?',
-        a: 'Da, vendar se ne sinhronizira samodejno – vsaka naprava ima svoj lokalni trezor. Če želite uporabljati wwwallet na novi napravi, ga tam obnovite iz varnostne kopije na Drive ali iz datoteke, nato pa ga odklenite s svojo obnovitveno frazo.',
+        a: 'Da, vendar se ne sinhronizira samodejno – vsaka naprava ima svoj lokalni trezor. Če želite uporabljati wwwallet na novi napravi, ga tam obnovite iz varnostne kopije na Driveu ali iz datoteke, nato pa ga odklenite s svojo obnovitveno frazo.',
       },
       {
-        q: 'Kaj se zgodi, če izgubim svojo napravo in nisem nikoli naredil varnostne kopije?',
-        a: 'Vaša sredstva so nepovratna. Tako je namerno zasnovano: wwwallet nima sistema računov in nikjer ne hrani kopije vašega trezorja, zato ga nihče – niti mi – ne more obnoviti za vas. To je cena, ki jo plačate za denarnico, do katere nima dostopa nihče razen vas.',
+        q: 'Kaj se zgodi, če izgubim napravo in nisem nikoli naredil varnostne kopije?',
+        a: 'Vaša sredstva so nepovratna. To je namerno: wwwallet nima sistema računov in nikjer ne hrani kopije vašega trezorja, zato ga nihče – niti mi – ne more obnoviti za vas. To je cena, ki jo morate plačati za denarnico, do katere nima dostopa nihče razen vas.',
       },
       {
         q: 'Ali se gesla (Face ID / Touch ID) prenesejo na novo napravo?',
@@ -128,27 +152,27 @@ export default {
       },
       {
         q: 'Ali je wwwallet odprtokodna rešitev?',
-        a: 'Ne — koda je na voljo. Celotna izvorna koda je javno objavljena na GitHubu, tako da jo lahko kdorkoli prebere, pregleda in preveri, vendar ne gre za odprtokodno programsko opremo: koda je licencirana pod licenco PolyForm Strict License 1.0.0.',
+        a: 'Ne — gre za programsko opremo z dostopno izvorno kodo. Celotna izvorna koda je javno objavljena na GitHubu, tako da jo lahko kdorkoli prebere, pregleda in preveri, vendar ne gre za odprtokodno programsko opremo: koda je licencirana pod licenco PolyForm Strict License 1.0.0.',
       },
       {
         q: 'Kaj smem početi s kodo?',
-        a: 'Vse to lahko preberete in pregledate ter uporabljate nespremenjeno kopijo za nekomercialne namene, kot so osebno učenje, raziskovanje in testiranje. Ne smete ga razširjati, spreminjati ali ustvarjati izpeljank (vključno z razvejami) niti ga uporabljati v komercialne namene. Če potrebujete kaj, kar licenca ne dovoljuje, se za ločeno licenco obrnite na imetnika avtorskih pravic.',
+        a: 'Vse to lahko preberete in pregledate ter uporabljate nespremenjeno kopijo za nekomercialne namene, kot so osebno učenje, raziskovanje in testiranje. Ne smete ga razširjati, spreminjati ali ustvarjati izpeljank (vključno z različicami), niti ga uporabljati v komercialne namene. Če potrebujete nekaj, kar licenca ne dovoljuje, se obrnite na imetnika avtorskih pravic za pridobitev ločene licence.',
       },
       {
         q: 'Ali je uporaba wwwallet varna? Ali obstaja kakšna garancija?',
-        a: 'wwwallet je programska oprema brez skrbništva, ki se zagotavlja »tako, kot je«, brez kakršnih koli jamstev. Samo vi imate nadzor nad svojimi ključi in sredstvi – nihče, niti mi, ne more obnoviti izgubljene obnovitvene fraze ali varnostne kopije, razveljaviti transakcije ali vam nadomestiti izgube. Uporabljajte le sredstva, ki si jih lahko privoščite izgubiti, pred pošiljanjem dvakrat preverite naslove in omrežja, pri čemer nič od navedenega ne predstavlja finančnega, naložbenega, pravnega ali davčnega nasveta.',
+        a: 'wwwallet je programsko oprema brez skrbništva, ki se ponuja »tako, kot je«, brez kakršnega koli jamstva. Samo vi imate nadzor nad svojimi ključi in sredstvi – nihče, niti mi, ne more obnoviti izgubljene obnovitvene fraze ali varnostne kopije, razveljaviti transakcije ali vam nadomestiti izgube. Uporabljajte le sredstva, ki si jih lahko privoščite izgubiti, pred pošiljanjem še enkrat preverite naslove in omrežja, pri čemer nič od navedenega ne predstavlja finančnega, naložbenega, pravnega ali davčnega nasveta.',
       },
       {
         q: 'Katera omrežja podpira wwwallet?',
-        a: 'Glavna mreža Ethereum ter omrežja Layer-2 Polygon, Arbitrum, Base in Optimism – vse iz istega sklopa računov.',
+        a: 'Glavno omrežje Ethereum ter omrežja Layer-2 Polygon, Arbitrum, Base in Optimism – vse iz istega sklopa računov.',
       },
       {
-        q: 'Kako lahko vplačam sredstva v svoj denarnik?',
-        a: 'Odprite račun, izberite »Poglej QR-kodo«, da si ogledate naslov, in sredstva pošljite na ta naslov z borze ali iz drugega denarnika. Prepričajte se, da sredstva pošiljate prek pravega omrežja (Ethereum, Polygon, Arbitrum, Base ali Optimism) – isti naslov deluje na vseh omrežjih, vendar se sredstva, poslana prek enega omrežja, prikažejo le na tem omrežju. Potrebovali boste tudi nekaj domače kriptovalute omrežja (na primer ETH) za plačilo transakcijskih provizij.',
+        q: 'Kako lahko napolnim svoj denarnik?',
+        a: 'Odprite račun, izberite »Poglej QR-kodo«, da si ogledate naslov, in na ta naslov pošljite sredstva z borze ali iz drugega denarnika. Prepričajte se, da sredstva pošiljate prek pravega omrežja (Ethereum, Polygon, Arbitrum, Base ali Optimism) — isti naslov deluje na vseh omrežjih, vendar se sredstva, poslana prek enega omrežja, prikažejo le na tem omrežju. Potrebovali boste tudi nekaj domače kriptovalute omrežja (na primer ETH) za plačilo transakcijskih stroškov.',
       },
       {
         q: 'Kaj lahko počnem z wwwallet?',
-        a: 'Pošlji: prenesi ETH ali kateri koli token na naslov, ki ga prilepiš, skeniraš iz QR-kode ali izbereš iz svojih računov, ter pred potrditvijo preglej podrobnosti. Zamenjaj: v zavihku »Zamenjaj« zamenjaj en token za drugega v istem omrežju, pri čemer sta ponudba in ocena provizije prikazani vnaprej. Prejmi: prikaži svoj naslov kot QR-kodo. Prav tako lahko pregledate stanja v USD in zgodovino transakcij v vseh podprtih omrežjih.',
+        a: 'Pošlji: prenesi ETH ali kateri koli token na naslov, ki ga vneseš, skeniraš iz QR-kode ali izbereš iz svojih računov, ter pred potrditvijo preglej podrobnosti. Zamenjaj: v zavihku »Zamenjaj« zamenjaj en token za drugega v istem omrežju, pri čemer sta ponudba in ocena provizije prikazani vnaprej. Prejmi: prikaži svoj naslov kot QR-kodo. Prav tako lahko pregledate stanja v USD in zgodovino transakcij v vseh podprtih omrežjih.',
       },
       {
         q: 'Kaj ve wwwallet o meni?',
@@ -157,11 +181,60 @@ export default {
     ],
   },
   footer: {
-    tagline: 'Osebna denarnica za Ethereum brez hrambe sredstev.',
-    sourceLink: 'Oglejte si izvorno kodo na GitHubu',
+    tagline: 'Brezplačna denarnica za Ethereum brez hrambe za vse.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Pod licenco PolyForm Strict 1.0.0',
     disclaimer:
       'Programska oprema, ki ne omogoča hrambe, se zagotavlja »takšna, kakršna je«, brez jamstva. To ni finančno svetovanje. Za svoje ključe in sredstva ste odgovorni izključno vi.',
+  },
+  license: {
+    title: 'Licenca',
+    close: 'Zapri',
+    summaryTitle: 'V preprostem jeziku',
+    canUse: 'wwwallet lahko uporabljate brezplačno za osebne in druge nekomercialne namene.',
+    canRead: 'Lahko preberete in pregledate vsako vrstico njegove izvorne kode.',
+    cannot: 'Ne smete ga kopirati, spreminjati, ponovno razširjati ali prodajati.',
+    englishNote:
+      'V nadaljevanju je navedena celotna licenca v izvirnem angleškem jeziku – to je pravno besedilo.',
+    viewSource: 'Oglej si na GitHubu',
+  },
+  principles: {
+    eyebrow: 'Načela',
+    heading: 'Brezplačno, odprto in ustvarjeno za vsakogar',
+    lede: 'Denarnica bi morala biti orodje, ki ga uporabljate, ne pa posel, ki temelji na svojih uporabnikih. To so načela, na katerih temelji wwwallet.',
+    items: [
+      {
+        title: 'Brezplačno, brez kakršnih koli pogojev',
+        body: 'Brez cene, brez premium paketa, brez plačljivih funkcij. wwwallet ne zaračunava lastnih provizij – edini strošek je provizija omrežja za transakcijo.',
+      },
+      {
+        title: 'Brez oglasov, brez sledenja',
+        body: 'Brez oglasov, brez analitičnih orodij, brez skriptov za sledenje in brez prodaje podatkov komur koli. Vašega profila sploh ni, da bi ga lahko prodali.',
+      },
+      {
+        title: 'Brez registracije',
+        body: 'Ni potrebe po e-pošti, telefonski številki ali preverjanju identitete. Odpri aplikacijo, ustvari denarnico in že si pripravljen.',
+      },
+      {
+        title: 'Ključi ostanejo pri vas',
+        body: 'Ključi se ustvarijo in šifrirajo na vaši napravi ter je nikoli ne zapustijo. wwwallet jih ne more videti, ne more premikati vaših sredstev niti vam onemogočiti dostopa.',
+      },
+      {
+        title: 'Deluje povsod',
+        body: 'Deluje v vsakem sodobnem brskalniku na telefonu ali namiznem računalniku, namesti pa se kot aplikacija – račun v trgovini z aplikacijami ni potreben.',
+      },
+      {
+        title: 'V 31 jezikih',
+        body: 'Uporabljajte ga v jeziku, ki vam najbolj ustreza, v svetlem ali temnem načinu.',
+      },
+      {
+        title: 'Odprta koda',
+        body: 'Celotna izvorna koda je objavljena, da jo lahko vsakdo prebere in preveri. Gre za »source-available« (izvorna koda na voljo) in ne za »open source« (odprta koda) – v pogostih vprašanjih je pojasnjeno, kaj licenca dovoljuje.',
+      },
+      {
+        title: 'Ni treba nič izklopiti',
+        body: 'Ni nobenega računa, ki bi ga lahko zamrznili. Vaša sredstva so shranjena neposredno na omrežju Ethereum, ključ katerega koli računa pa lahko kadarkoli prenesete v drugo denarnico.',
+      },
+    ],
   },
 }

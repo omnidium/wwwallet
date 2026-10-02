@@ -7,8 +7,13 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   resolve: {
+    // A shared/ component imports 'vue' from outside this project, where
+    // there's no node_modules to find it in — resolve it from here instead.
+    dedupe: ['vue'],
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      // Components shared with the other project (see shared/ui/).
+      '@shared': fileURLToPath(new URL('../shared', import.meta.url)),
     },
   },
   server: {

@@ -10,8 +10,16 @@ pub enum ProviderError {
     InvalidInput(String),
     #[error("rate limit exceeded")]
     RateLimited,
+    /// This backend's own budget for calling the provider is spent for now
+    /// (see upstream_budget.rs) — no call was made.
+    #[error("upstream budget exhausted for now")]
+    Busy,
     #[error("no liquidity available for this token pair")]
     NoLiquidity,
+    /// A bridge aggregator doesn't know the requested token on one of the
+    /// two chains — nothing can route it there.
+    #[error("token not supported on this chain")]
+    TokenNotOnChain,
     /// An `eth_estimateGas` call reverted — the transaction as constructed
     /// can't succeed (insufficient balance/allowance, a require() failing,
     /// ...). Carries the node's raw revert reason for server-side logging

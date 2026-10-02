@@ -1,5 +1,8 @@
 pub mod chains;
+pub mod markets;
+pub mod session;
 
+use axum::middleware;
 use axum::routing::{get, post};
 use axum::Router;
 use tower_http::cors::CorsLayer;
@@ -56,9 +59,23 @@ pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
             "/api/v1/chains/:chain/tx-fee/:hash",
             get(chains::transaction_fee),
         )
+        .route(
+            "/api/v1/chains/:chain/historical-price",
+            get(chains::historical_price),
+        )
         .route("/api/v1/chains/:chain/allowance", get(chains::allowance))
         .route("/api/v1/chains/:chain/swap-quote", get(chains::swap_quote))
+        .route("/api/v1/bridge/quote", get(chains::bridge_quote))
+        .route("/api/v1/bridge/status", get(chains::bridge_status))
         .route("/api/v1/fx-rates", get(chains::fx_rates))
+        .route("/api/v1/coins/search", get(markets::coin_search))
+        .route("/api/v1/coins/:id/price-history", get(markets::coin_price_history))
+        .route("/api/v1/fx-history", get(markets::fx_history))
+        .route("/api/v1/session/challenge", get(session::challenge))
+        .route("/api/v1/session", post(session::redeem))
+        // Inside the CORS layer, so refusals still carry CORS headers (the
+        // app can read them) and preflights never reach it.
+        .layer(middleware::from_fn_with_state(state.clone(), session::gate))
         .layer(cors)
         .with_state(state)
 }

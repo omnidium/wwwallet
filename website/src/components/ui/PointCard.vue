@@ -1,9 +1,14 @@
 <script setup lang="ts">
-defineProps<{ title: string; body: string }>()
+import LineIcon, { type IconName } from './LineIcon.vue'
+
+defineProps<{ title: string; body: string; icon?: IconName }>()
 </script>
 
 <template>
   <article class="point-card">
+    <span v-if="icon" class="point-icon">
+      <LineIcon :name="icon" :size="22" />
+    </span>
     <h3>{{ title }}</h3>
     <p>{{ body }}</p>
   </article>
@@ -16,6 +21,20 @@ defineProps<{ title: string; body: string }>()
   border-radius: var(--radius-lg);
   padding: var(--space-4);
   box-shadow: var(--shadow-card);
+}
+
+/* A soft tile in the accent tint — enough to anchor each card visually
+   without competing with its heading. */
+.point-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--accent-ink);
+  background: rgb(var(--accent-rgb) / 12%);
+  border: 1px solid rgb(var(--accent-rgb) / 22%);
 }
 
 .point-card h3 {

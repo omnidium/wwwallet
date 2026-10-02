@@ -3,6 +3,18 @@ main = "build/worker/shim.mjs"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
+# Top-level (above [build]): in TOML, keys after a [table] header belong
+# to that table.
+#
+# Served from a custom domain, not just *.workers.dev: Cloudflare's Cache API
+# (the shared layer of providers/src/public_cache.rs) only works there. The
+# app calls this hostname (its VITE_API_BASE_URL); `wrangler deploy` creates
+# the DNS record and certificate itself, which needs the deploying API token
+# to have Workers Routes: Edit on the wwwallet.me zone. workers.dev stays
+# enabled alongside it, so anything still pointing there keeps working.
+routes = [{ pattern = "api.wwwallet.me", custom_domain = true }]
+workers_dev = true
+
 [build]
 command = "worker-build --release"
 
@@ -12,9 +24,27 @@ command = "worker-build --release"
 [vars]
 #CORS_ALLOWED_ORIGINS = "https://wwwallet.me,https://www.wwwallet.me,https://main.wwwallet.pages.dev,https://wwwallet.pages.dev"
 CORS_ALLOWED_ORIGINS = "https://app.wwwallet.me,https://wwwallet.me,https://www.wwwallet.me,https://main.wwwallet.pages.dev,https://wwwallet.pages.dev"
+# Anonymous proof-of-work session tokens (src/session.rs):
+#   "off"      — not issued or checked
+#   "optional" — checked and rate-limited when sent; requests without one
+#                fall back to the per-IP limits alone (for rolling out)
+#   "required" — every request needs one
+# Needs the SESSION_SECRET secret (`wrangler secret put SESSION_SECRET`).
+SESSION_MODE = "required"
+# Proof-of-work difficulty: leading zero bits of SHA-256. Each extra bit
+# doubles the average solve time. Measured at 18: ~1s on a 12-core desktop
+# (4 workers), so a few seconds on a phone, once a day per device — 17
+# halves that. Native code solves 17 in well under 100ms, so this is a
+# speed bump, not a wall: the per-IP mint limit and the upstream budgets
+# (upstream_budget.rs) are what actually bound abuse.
+SESSION_POW_BITS = "17"
 
-# No KV namespace / server-side cache of any kind: every request goes straight
-# to its upstream provider, and the client keeps the only (persistent) copy.
+# No KV namespace: Workers KV's free plan allows 1,000 writes a day, too few
+# for a price cache. Public market data (prices, price histories, token
+# metadata, coin search, FX) is cached in isolate memory plus the Cache API
+# instead — see providers/src/public_cache.rs. The Cache API layer is a no-op
+# on *.workers.dev and only takes effect once this Worker is served from a
+# custom domain. Nothing tied to an address or user is cached server-side.
 
 # Every route here is an unauthenticated proxy in front of metered third-party
 # APIs paid for by this deployment's own keys — CORS only stops browsers on
@@ -29,7 +59,7 @@ CORS_ALLOWED_ORIGINS = "https://app.wwwallet.me,https://wwwallet.me,https://www.
 # us — it's not a KV namespace and doesn't need to be created beforehand.
 #
 # Counted per route per client IP (see check_rate_limit), on every request —
-# there's no server-side cache in front of any route. The busiest route is
+# cache hits included (public_cache.rs sits behind the check). The busiest route is
 # token_metadata: every account refresh re-fetches every held token's
 # metadata (one request per token, airdropped dust included), and a single
 # wallet spanning several accounts shares this one per-IP budget across all
@@ -49,4 +79,55 @@ name = "RATE_LIMITER_BROADCAST"
 namespace_id = "1002"
 [ratelimits.simple]
 limit = 5
+period = 60
+
+# Caps on calls to each upstream provider by this backend as a whole —
+# keyed per provider, not per client (see providers/src/upstream_budget.rs).
+# The per-IP limits above stop one client hogging the backend; these put a
+# ceiling on provider spend however many IPs an abuser spreads across.
+# Only calls that reach a provider count: public-cache hits never do. Over
+# budget, cached routes serve their last good value and the rest return 503,
+# which the app retries. Per Cloudflare location, like the limits above.
+#
+# Price APIs, which have the tightest quotas — Alchemy's Prices API allows
+# 300 lookups an hour on the free tier (5 a minute sustained); CoinGecko's
+# keyless API rate-limits around 5-30 a minute. Each provider is its own
+# bucket under this limit.
+[[ratelimits]]
+name = "RATE_LIMITER_UPSTREAM_PRICES"
+namespace_id = "1003"
+[ratelimits.simple]
+limit = 20
+period = 60
+
+# Everything else (Alchemy RPC — all networks share one bucket, as they share
+# one compute-unit quota — Ethplorer, Etherscan, 0x, LI.FI, public RPCs,
+# Frankfurter), each provider its own bucket under this limit. Sized for a
+# few wallets refreshing at once (one wallet's refresh is ~4 calls per
+# account per chain); raise it with real traffic, lower it to stretch a
+# monthly quota.
+[[ratelimits]]
+name = "RATE_LIMITER_UPSTREAM"
+namespace_id = "1004"
+[ratelimits.simple]
+limit = 300
+period = 60
+
+# Requests per anonymous session token (src/session.rs) — per token, so
+# several wallets behind one IP (an office, a mobile carrier) don't share a
+# budget the way the per-IP limits make them.
+[[ratelimits]]
+name = "RATE_LIMITER_SESSION"
+namespace_id = "1005"
+[ratelimits.simple]
+limit = 600
+period = 60
+
+# Session tokens minted per IP: what makes abusing many tokens expensive on
+# top of each one's proof of work. An app mints one a day per device.
+[[ratelimits]]
+name = "RATE_LIMITER_SESSION_MINT"
+namespace_id = "1006"
+[ratelimits.simple]
+limit = 10
 period = 60

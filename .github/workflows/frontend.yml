@@ -24,6 +24,10 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
       - run: npm ci
+      # Every installed package must carry a valid npm registry signature
+      # (and, where published, a provenance attestation that checks out) —
+      # fails on a tampered or unsigned tarball before anything builds.
+      - run: npm audit signatures
       # Offline, no DEEPL_API_KEY needed — fails loudly if en.ts has drifted
       # from shared/i18n/master_en.ts (the real source of truth), or if a
       # locale file picked up a string that never got run through the DeepL
@@ -56,6 +60,7 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
       - run: npm ci
+      - run: npm audit signatures
       # VITE_* vars are baked in at build time, not read at runtime — this
       # repo's real value only ever lived in a gitignored .env.production,
       # which a local `wrangler pages deploy` (this project's only deploy

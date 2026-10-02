@@ -2,6 +2,11 @@ import { ref } from 'vue'
 import type { Router } from 'vue-router'
 import type { WalletAccount } from '@/stores/accounts'
 import type { Payee } from '@/stores/payees'
+import { TRANSFER_LONG_PRESS_MS } from '@/config/appSettings'
+
+// Movement (in CSS px) past which a press counts as a drag rather than a
+// wobbly tap — and so opens the picker without waiting for the long press.
+const DRAG_START_PX = 10
 
 export interface TransferTarget {
   kind: 'account' | 'payee'
@@ -10,16 +15,17 @@ export interface TransferTarget {
 }
 
 /**
- * Drag-to-transfer between the user's own accounts or a payee: press the
- * Send icon on one account card, drag onto another account or payee tile,
- * release to drop. Built on Pointer Events rather than native HTML5
- * drag-and-drop — this is a PWA used on mobile, and HTML5 DnD has poor/no
- * touch support, whereas pointer capture works uniformly for mouse and touch.
+ * Send icon gestures on an account card:
+ *  - tap/click → open Send with nothing prefilled
+ *  - long press (or starting to drag) → show the target picker; releasing
+ *    over an account/payee tile prefills Send with it, releasing anywhere
+ *    else opens Send empty
  *
- * Strictly press-to-start, release-to-finish: pointerdown always begins
- * tracking (no long-press delay), and whatever's under the pointer at
- * release decides the outcome — hovering a tile prefills Send with that
- * target, releasing anywhere else just opens Send empty.
+ * Built on Pointer Events rather than native HTML5 drag-and-drop — this is a
+ * PWA used on mobile, and HTML5 DnD has poor/no touch support. Move/up/cancel
+ * are listened for on window rather than on the pressed icon itself, so the
+ * gesture still finishes if the card re-renders mid-press (e.g. an
+ * auto-refresh swapping the icon element out from under the finger).
  */
 export function useDragToTransfer(router: Router) {
   const active = ref(false)
@@ -38,7 +44,7 @@ export function useDragToTransfer(router: Router) {
     return [...accountTargets, ...payeeTargets]
   }
 
-  /** No target means "open Send with nothing prefilled" — the same outcome a plain click always had. */
+  /** No target means "open Send with nothing prefilled". */
   function goToSend(target?: TransferTarget) {
     const from = source.value
     if (!from) return
@@ -46,18 +52,18 @@ export function useDragToTransfer(router: Router) {
     router.push(`/accounts/${from.chain}/${from.address}/send${query}`)
   }
 
-  let captureEl: HTMLElement | null = null
-  let capturePointerId: number | null = null
+  let pointerId: number | null = null
+  let startX = 0
+  let startY = 0
+  let longPressTimer: ReturnType<typeof setTimeout> | null = null
 
   function reset() {
-    if (captureEl && capturePointerId !== null) {
-      captureEl.removeEventListener('pointermove', onPointerMove)
-      captureEl.removeEventListener('pointerup', onPointerUp)
-      captureEl.removeEventListener('pointercancel', onPointerCancel)
-      if (captureEl.hasPointerCapture(capturePointerId)) captureEl.releasePointerCapture(capturePointerId)
-    }
-    captureEl = null
-    capturePointerId = null
+    if (longPressTimer !== null) clearTimeout(longPressTimer)
+    longPressTimer = null
+    window.removeEventListener('pointermove', onPointerMove)
+    window.removeEventListener('pointerup', onPointerUp)
+    window.removeEventListener('pointercancel', onPointerCancel)
+    pointerId = null
     active.value = false
     pickerOpen.value = false
     hoveredAddress.value = null
@@ -65,48 +71,75 @@ export function useDragToTransfer(router: Router) {
     targets.value = []
   }
 
-  function onPointerMove(event: PointerEvent) {
-    if (!active.value) return
-    // Pointer capture routes events to captureEl regardless of screen
-    // position, but elementFromPoint's hit-testing is unaffected by capture —
-    // it just answers "what's visually at these coordinates."
+  function openPicker() {
+    if (longPressTimer !== null) clearTimeout(longPressTimer)
+    longPressTimer = null
+    if (pickerOpen.value) return
+    // Nothing to pick from — release will just open Send empty.
+    if (targets.value.length === 0) return
+    pickerOpen.value = true
+    if (navigator.vibrate) navigator.vibrate(10)
+  }
+
+  function updateHovered(event: PointerEvent) {
+    // elementFromPoint answers "what's visually at these coordinates",
+    // independent of which element the pointer events are delivered to.
     const el = document.elementFromPoint(event.clientX, event.clientY)
     hoveredAddress.value = el?.closest<HTMLElement>('[data-drop-address]')?.dataset.dropAddress ?? null
   }
 
-  function onPointerUp() {
-    // Always finishes the gesture on release — the only thing that decides
-    // whether Send opens prefilled is what's under the pointer right now.
-    const target = hoveredAddress.value
-      ? targets.value.find((t) => t.address === hoveredAddress.value)
-      : undefined
+  function onPointerMove(event: PointerEvent) {
+    if (event.pointerId !== pointerId) return
+    if (!pickerOpen.value) {
+      // Dragging off without waiting for the long press is just as clearly
+      // "pick a target" — start it now rather than reading it as a tap.
+      if (Math.hypot(event.clientX - startX, event.clientY - startY) < DRAG_START_PX) return
+      openPicker()
+    }
+    updateHovered(event)
+  }
+
+  function onPointerUp(event: PointerEvent) {
+    if (event.pointerId !== pointerId) return
+    let target: TransferTarget | undefined
+    if (pickerOpen.value) {
+      updateHovered(event)
+      target = targets.value.find((t) => t.address === hoveredAddress.value)
+    }
+    // A short tap, or a release that isn't over a tile, both open Send empty.
     goToSend(target)
     reset()
   }
 
-  /** A cancelled gesture (e.g. the browser claims it for scrolling) is aborted outright, not treated as a drop. */
-  function onPointerCancel() {
+  /**
+   * The browser taking the pointer away (system gesture, incoming call…).
+   * Before the picker showed, the press is simply dropped; once it's up the
+   * user was clearly heading for Send, so that still opens — empty.
+   */
+  function onPointerCancel(event: PointerEvent) {
+    if (event.pointerId !== pointerId) return
+    if (pickerOpen.value) goToSend()
     reset()
   }
 
   function onPointerDown(event: PointerEvent, account: WalletAccount, accounts: WalletAccount[], payees: Payee[]) {
+    // Primary button / first finger only — a right-click or a second finger
+    // landing mid-gesture shouldn't start (or restart) one.
+    if (!event.isPrimary || event.button !== 0 || active.value) return
+    // Stops mouse text-selection and focus juggling starting from the icon.
+    event.preventDefault()
+
     source.value = account
     targets.value = eligibleTargets(accounts, payees, account)
-
-    captureEl = event.target as HTMLElement
-    capturePointerId = event.pointerId
-    captureEl.setPointerCapture(event.pointerId)
-    // Pointer capture keeps routing events to captureEl for this pointer no
-    // matter where it physically moves — that's the whole reason this works
-    // on touch, where the finger can leave the handle's bounds immediately.
-    captureEl.addEventListener('pointermove', onPointerMove)
-    captureEl.addEventListener('pointerup', onPointerUp)
-    captureEl.addEventListener('pointercancel', onPointerCancel)
-
+    pointerId = event.pointerId
+    startX = event.clientX
+    startY = event.clientY
     active.value = true
-    // Nothing to show a picker for if there's nowhere else to send — release
-    // just opens Send empty in that case, same as targets.value staying empty.
-    if (targets.value.length > 0) pickerOpen.value = true
+
+    window.addEventListener('pointermove', onPointerMove)
+    window.addEventListener('pointerup', onPointerUp)
+    window.addEventListener('pointercancel', onPointerCancel)
+    longPressTimer = setTimeout(openPicker, TRANSFER_LONG_PRESS_MS)
   }
 
   return { active, pickerOpen, hoveredAddress, targets, onPointerDown }

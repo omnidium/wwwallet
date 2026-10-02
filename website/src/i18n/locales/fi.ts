@@ -7,6 +7,7 @@ export default {
     launch: 'Käynnistä lompakko',
     home: 'Takaisin alkuun',
     sectionNavLabel: 'Osioiden navigaatio',
+    principles: 'Periaatteet',
   },
   settings: {
     open: 'Asetukset',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Valo',
     themeDark: 'Pimeä',
     language: 'Kieli',
+    search: 'Haku',
+    noMatches: 'Ei osumia',
   },
   hero: {
-    eyebrow: 'Henkilökohtainen, säilytyspalvelua tarjoamaton Ethereum-lompakko',
+    eyebrow: 'Ilmainen, ei-säilytyspohjainen Ethereum-lompakko',
     heading1: 'Avaimesi.',
     heading2: 'Laitteesi.',
-    heading3: 'Lompakkosi.',
-    lede: 'wwwallet salaa lompakkosi omalla laitteellasi eikä lähetä avaimiasi, salasanojasi tai palautuslauseitasi koskaan mihinkään muualle. Ei tarvitse luoda tiliä. Ei palvelinta, johon voitaisiin murtautua. Vain sinä ja kryptovaluuttasi.',
+    heading3: 'Ilmainen kaikille.',
+    lede: 'wwwallet toimii selaimessasi, ja avaimet säilytetään salattuina omalla laitteellasi. Sinun ei tarvitse luoda tiliä, maksaa mitään eikä katsella mainoksia — kyseessä on vain lompakko, joka toimii kaikille samalla tavalla.',
     ctaPrimary: 'Käynnistä lompakko',
     ctaSecondary: 'Katso, miten se toimii',
+    note: 'Ei rekisteröitymistä · Ei mainoksia · Ei seurantaa · 31 kieltä',
   },
   wallet: {
     eyebrow: 'Lompakko',
@@ -107,12 +111,32 @@ export default {
     heading: 'Usein kysyttyjä kysymyksiä',
     items: [
       {
+        q: 'Onko wwwallet todella ilmainen?',
+        a: 'Kyllä. Sen käyttö on maksutonta, eikä siinä ole premium-tasoa tai maksullisia osioita, eikä wwwallet lisää palkkiota mihinkään lähettämääsi tai vaihtamaasi summaan. Ainoa väistämätön kustannus on verkon oma transaktiomaksu (gas-maksu), joka menee verkolle eikä wwwalletille. Vaihtotarjoukset tulevat 0x-pörssien aggregaattorilta, joka voi lisätä omaa palkkiotaan joihinkin kauppoihin – tällaiset palkkiot näkyvät tarkistusnäytöllä ennen vahvistamista.',
+      },
+      {
+        q: 'Onko sivustolla mainoksia, seurantatyökaluja tai analytiikkaa?',
+        a: 'Ei. wwwallet ei näytä mainoksia, ei käytä analytiikka- tai seurantaskriptejä eikä luo sinusta profiilia. Sivustolla ei ole käyttäjätiliä, joten sinua ei voida liittää mihinkään.',
+      },
+      {
+        q: 'Tarvitsenko käyttäjätilin tai tunnuksen, jotta voin käyttää sitä?',
+        a: 'Ei. Rekisteröitymistä, sähköpostiosoitetta, puhelinnumeroa tai henkilöllisyyden tarkistusta ei vaadita — luot lompakon laitteellesi ja alat käyttää sitä.',
+      },
+      {
+        q: 'Jos palvelu on ilmainen, miten wwwallet kattaa kustannuksensa?',
+        a: 'Se ei ansaitse rahaa käyttäjiltään – ei maksuja, ei mainoksia, ei tietojen myyntiä. Käyttökustannukset on suunniteltu pidettäväksi alhaisina: lompakko itsessään toimii selaimessasi, ja taustajärjestelmä välittää ainoastaan julkista lohkoketjutietoa ja hintatietoja.',
+      },
+      {
+        q: 'Voiko kukaan jäädyttää lompakkoni?',
+        a: 'Tiliä ei ole, joten wwwalletilla – tai kenelläkään muullakaan – ei ole mitään jäädytettävää. Avaimesi eivät koskaan poistu laitteeltasi, ja tapahtumat allekirjoitetaan siellä ennen kuin ne lähetetään verkkoon. Varat ovat Ethereum-verkossa, eivät wwwalletissa: voit tarkastella minkä tahansa tilin yksityistä avainta tai palautuslauseketta sen valikosta ja tuoda ne toiseen Ethereum-lompakkoon milloin tahansa.',
+      },
+      {
         q: 'Riittääkö palautuslauseeni lompakkoni takaisin saamiseksi?',
-        a: 'Ei yksinään. Palautuslause avaa salatun tallennustilan, mutta tallennustila itsessään sijaitsee ainoastaan laitteellasi. Jos kadotat laitteen tai tyhjennät sen muistin ilman, että olet koskaan ottanut varmuuskopiota, palautuslauseella ei ole enää mitään avattavaa. Yhdistä palautuslauseesi aina Google Driveen tai tiedostovarmuuskopioon – katso seuraava kysymys.',
+        a: 'Ei yksinään. Palautuslause avaa salatun säilytystilan, mutta säilytystila itsessään sijaitsee ainoastaan laitteellasi. Jos kadotat laitteen tai tyhjennät sen muistia ottamatta koskaan varmuuskopiota, palautuslauseella ei ole enää mitään avattavaa. Yhdistä palautuslauseesi aina Google Driveen tai tiedostovarmuuskopioon – katso seuraava kysymys.',
       },
       {
         q: 'Miten teen varmuuskopion lompakostani?',
-        a: 'Varmuuskopioi salattu kirstusi Asetuksista omaan Google Driveen — se tallennetaan yksityiseen, pelkästään sovellukselle tarkoitettuun kansioon, jonka muuta sisältöä wwwallet ei näe — tai tiedostona, jonka voit ladata ja säilyttää itse. Tee tämä aina, kun otat lompakon käyttöön tai lisäät uusia tilejä.',
+        a: 'Varmuuskopioi salattu kirstusi Asetukset-kohdasta omaan Google Driveen – se tallennetaan yksityiseen, vain sovellukselle tarkoitettuun kansioon, jonka muuta sisältöä wwwallet ei näe – tai lataa tiedosto ja säilytä se itse. Tee tämä aina, kun otat lompakon käyttöön tai lisäät uusia tilejä.',
       },
       {
         q: 'Voinko käyttää wwwallet-palvelua useammalla kuin yhdellä laitteella?',
@@ -120,11 +144,11 @@ export default {
       },
       {
         q: 'Mitä tapahtuu, jos kadotan laitteeni enkä ole koskaan tehnyt varmuuskopiota?',
-        a: 'Varoja ei voi palauttaa. Tämä on tarkoituksellista: wwwalletissa ei ole tilijärjestelmää, eikä se säilytä missään kopiota tallelokerostasi, joten kukaan – emme edes me – voi palauttaa sitä sinulle. Tämä on se hinta, joka maksetaan siitä, että kukaan muu kuin sinä itse ei pääse käsiksi lompakkoosi.',
+        a: 'Varoja ei voi palauttaa. Tämä on tarkoituksellista: wwwalletissa ei ole tilijärjestelmää, eikä se säilytä missään kopiota säilytystilastasi, joten kukaan – emme edes me – ei voi palauttaa sitä sinulle. Tämä on se hinta, joka maksetaan siitä, että lompakkoon pääsee käsiksi vain sinä itse.',
       },
       {
         q: 'Siirtyvätkö tunnistustiedot (Face ID / Touch ID) uuteen laitteeseen?',
-        a: 'Ei. Salasana on sidottu laitteeseen, jolla se on luotu. Kun olet palauttanut varmuuskopion uudelle laitteelle, avaa laite palautuslauseellasi, ja voit määrittää siellä uuden salasanan.',
+        a: 'Ei. Salasana on sidottu laitteeseen, jolla se on luotu. Kun olet palauttanut varmuuskopion uudelle laitteelle, avaa laite palautuslauseellasi, ja voit määrittää sille uuden salasanan.',
       },
       {
         q: 'Onko wwwallet avoimen lähdekoodin ohjelmisto?',
@@ -132,23 +156,23 @@ export default {
       },
       {
         q: 'Mitä saan tehdä koodilla?',
-        a: 'Voit lukea ja tarkastaa sen kokonaisuudessaan sekä käyttää muokkaamatonta kopiota ei-kaupallisiin tarkoituksiin, kuten henkilökohtaiseen opiskeluun, tutkimukseen ja testaukseen. Et saa jakaa sitä, muokata sitä tai luoda siitä johdannaisteoksia (mukaan lukien haarautumat) tai käyttää sitä kaupallisiin tarkoituksiin. Jos tarvitset jotain, mitä lisenssi ei salli, ota yhteyttä tekijänoikeuden haltijaan erillisen lisenssin saamiseksi.',
+        a: 'Voit lukea ja tarkastaa koko teoksen sekä käyttää sitä muokkaamattomana kopiona ei-kaupallisiin tarkoituksiin, kuten henkilökohtaiseen opiskeluun, tutkimukseen ja testaukseen. Et saa jakaa sitä, muokata sitä tai luoda siitä johdannaisteoksia (mukaan lukien haarautumat) tai käyttää sitä kaupallisiin tarkoituksiin. Jos tarvitset jotain, mitä lisenssi ei salli, ota yhteyttä tekijänoikeuden haltijaan erillisen lisenssin saamiseksi.',
       },
       {
         q: 'Onko wwwallet turvallinen käyttää? Onko sille annettu takuu?',
-        a: 'wwwallet on ei-säilytyspohjainen ohjelmisto, jota tarjotaan ”sellaisenaan” ilman minkäänlaista takuuta. Vain sinä hallitset avaimiasi ja varojasi — kukaan, meitä mukaan lukien, ei voi palauttaa kadonnutta palautuslauseketta tai varmuuskopiota, peruuttaa tapahtumaa tai korvata sinulle menetyksiä. Käytä vain varoja, joiden menettämisen voit kestää, tarkista osoitteet ja verkot huolellisesti ennen lähettämistä, eikä mikään tässä ole taloudellista, sijoitus-, oikeudellista tai veroneuvontaa.',
+        a: 'wwwallet on ei-säilytyspohjainen ohjelmisto, joka toimitetaan ”sellaisenaan” ilman minkäänlaista takuuta. Vain sinä hallitset avaimiasi ja varojasi – kukaan, meitä mukaan lukien, ei voi palauttaa kadonnutta palautuslauseketta tai varmuuskopiota, peruuttaa tapahtumaa tai korvata sinulle menetyksiä. Käytä vain varoja, joiden menettämisen voit varautua, tarkista osoitteet ja verkot huolellisesti ennen lähettämistä, eikä mikään tässä ole taloudellista, sijoitus-, oikeudellista tai veroneuvontaa.',
       },
       {
         q: 'Mitä verkkoja wwwallet tukee?',
-        a: 'Ethereumin pääverkko sekä Layer-2-verkot Polygon, Arbitrum, Base ja Optimism — kaikki samasta tilikokonaisuudesta.',
+        a: 'Ethereumin pääverkko sekä Layer-2-verkot Polygon, Arbitrum, Base ja Optimism — kaikki samalta tilikokonaisuudelta.',
       },
       {
-        q: 'Miten lisään varoja lompakkooni?',
+        q: 'Miten voin ladata rahaa lompakkooni?',
         a: 'Avaa tili, valitse ”Näytä QR-koodi” nähdäksesi sen osoitteen ja lähetä varoja kyseiseen osoitteeseen pörssistä tai toisesta lompakosta. Varmista, että lähetät varat oikealla verkostolla (Ethereum, Polygon, Arbitrum, Base tai Optimism) — sama osoite toimii kaikilla verkostoilla, mutta yhdellä verkostolla lähetetyt varat näkyvät vain kyseisellä verkostolla. Tarvitset myös hieman kyseisen verkon omaa kolikkoa (kuten ETH) transaktiomaksujen maksamiseen.',
       },
       {
         q: 'Mitä voin tehdä wwwallet-palvelun avulla?',
-        a: 'Lähetä: siirrä ETH:ta tai mitä tahansa tokenia osoitteeseen, jonka liität, skannaat QR-koodista tai valitset omilta tileiltäsi, ja tarkista tiedot ennen vahvistamista. Vaihto: vaihda yksi token toiseen samassa verkossa Vaihto-välilehdellä; hintatarjous ja arvioidut palkkiot näkyvät etukäteen. Vastaanota: näytä osoitteesi QR-koodina. Voit myös tarkastella saldojasi Yhdysvaltain dollareina sekä tapahtumahistoriaasi kaikissa tuetuissa verkoissa.',
+        a: 'Lähetä: siirrä ETH:ta tai mitä tahansa tokenia osoitteeseen, jonka liität, skannaat QR-koodista tai valitset omista tileistäsi, ja tarkista tiedot ennen vahvistamista. Vaihto: vaihda yksi token toiseen samassa verkossa Swap-välilehdellä; hintatarjous ja arvioidut palkkiot näkyvät etukäteen. Vastaanota: näytä osoitteesi QR-koodina. Voit myös tarkastella saldojasi Yhdysvaltain dollareina sekä tapahtumahistoriaasi kaikissa tuetuissa verkoissa.',
       },
       {
         q: 'Mitä wwwallet tietää minusta?',
@@ -157,11 +181,61 @@ export default {
     ],
   },
   footer: {
-    tagline: 'Henkilökohtainen Ethereum-lompakko, jossa ei ole varainhoitoa.',
-    sourceLink: 'Katso lähdekoodi GitHubissa',
+    tagline: 'Ilmainen, ei-säilytyspohjainen Ethereum-lompakko kaikille.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Lisensoitu PolyForm Strict 1.0.0 -lisenssillä',
     disclaimer:
       'Ohjelmisto, joka ei ole säilytyspalvelu, toimitetaan ”sellaisenaan” ilman takuuta. Tämä ei ole taloudellista neuvontaa. Olet yksin vastuussa avaimistasi ja varoistasi.',
+  },
+  principles: {
+    eyebrow: 'Periaatteet',
+    heading: 'Ilmainen, avoin ja kaikille tarkoitettu',
+    lede: 'Lompakko pitäisi olla työkalu, jota käytät, ei liiketoimintaa, joka perustuu sen käyttäjiin. Nämä ovat sitoumukset, joiden pohjalta wwwallet on rakennettu.',
+    items: [
+      {
+        title: 'Ilmainen, ilman piilokustannuksia',
+        body: 'Ei hintaa, ei premium-tasoa, ei maksullisia ominaisuuksia. wwwallet ei peri omia maksuja – ainoa kustannus on verkon oma siirtomaksu.',
+      },
+      {
+        title: 'Ei mainoksia, ei seurantaa',
+        body: 'Ei mainoksia, ei analytiikkaa, ei seurantaskriptejä eikä tietojen myyntiä kenellekään. Sinusta ei ole edes profiilia, jota voitaisiin myydä.',
+      },
+      {
+        title: 'Ei rekisteröitymistä',
+        body: 'Ei sähköpostiosoitetta, puhelinnumeroa tai henkilöllisyystodistuksen tarkistusta. Avaa sovellus, luo lompakko, ja olet valmis.',
+      },
+      {
+        title: 'Avaimesi pysyvät sinulla',
+        body: 'Avaimet luodaan ja salataan laitteellasi, eivätkä ne koskaan poistu laitteesta. wwwallet ei voi nähdä niitä, siirtää varojasi tai estää pääsyäsi tilillesi.',
+      },
+      {
+        title: 'Toimii missä tahansa',
+        body: 'Toimii kaikissa nykyaikaisissa selaimissa sekä puhelimella että tietokoneella, ja se asennetaan aivan kuten sovellus – sovelluskaupan tiliä ei tarvita.',
+      },
+      {
+        title: '31 kielellä',
+        body: 'Käytä sitä kielellä, joka tuntuu sinulle luontevimmalta, vaaleassa tai tummassa tilassa.',
+      },
+      {
+        title: 'Avoin koodi',
+        body: 'Lähdekoodi on julkaistu kokonaisuudessaan, jotta kuka tahansa voi lukea ja tarkastaa sen. Kyseessä on lähdekoodin saatavuus eikä avoimen lähdekoodin malli — usein kysytyissä kysymyksissä selitetään, mitä lisenssi sallii.',
+      },
+      {
+        title: 'Ei mitään, mitä pitäisi sammuttaa',
+        body: 'Kukaan ei voi jäädyttää kenenkään tiliä. Varasi sijaitsevat suoraan Ethereum-verkossa, ja minkä tahansa tilin avain voidaan siirtää toiseen lompakkoon milloin tahansa.',
+      },
+    ],
+  },
+  license: {
+    title: 'Käyttöoikeus',
+    close: 'Sulje',
+    summaryTitle: 'Selkokielellä',
+    canUse:
+      'Voit käyttää wwwallet-palvelua ilmaiseksi henkilökohtaisiin ja muihin ei-kaupallisiin tarkoituksiin.',
+    canRead: 'Voit lukea ja tarkastaa sen lähdekoodin jokaisen rivin.',
+    cannot: 'Et saa kopioida, muuttaa, jakaa edelleen tai myydä sitä.',
+    englishNote:
+      'Seuraavassa on lisenssin koko teksti alkuperäisellä englanninkielellä – kyseessä on oikeudellinen teksti.',
+    viewSource: 'Katso GitHubissa',
   },
 }

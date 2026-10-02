@@ -3,6 +3,7 @@ use serde::Serialize;
 use worker::{Fetch, Headers, Method, Request, RequestInit};
 
 use crate::error::{ProviderError, ProviderResult};
+use crate::upstream_budget;
 
 pub async fn get_json<T: DeserializeOwned>(url: &str) -> ProviderResult<T> {
     get_json_with_headers(url, &[]).await
@@ -12,6 +13,7 @@ pub async fn get_json_with_headers<T: DeserializeOwned>(
     url: &str,
     headers: &[(&str, &str)],
 ) -> ProviderResult<T> {
+    upstream_budget::spend(url).await?;
     let mut init = RequestInit::new();
     init.with_method(Method::Get);
     if !headers.is_empty() {
@@ -35,6 +37,7 @@ pub async fn post_json<B: Serialize, T: DeserializeOwned>(
     url: &str,
     body: &B,
 ) -> ProviderResult<T> {
+    upstream_budget::spend(url).await?;
     let payload =
         serde_json::to_string(body).map_err(|e| ProviderError::InvalidInput(e.to_string()))?;
 

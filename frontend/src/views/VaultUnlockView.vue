@@ -10,6 +10,7 @@ import { getLastActivityAt } from '@/services/lastActivity'
 import { AUTO_LOCK_MS } from '@/config/appSettings'
 import { displayErrorMessage } from '@/services/errors'
 import FavouritesList from '@/components/FavouritesList.vue'
+import NetworkGlobe from '@shared/ui/NetworkGlobe.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
@@ -72,33 +73,39 @@ async function submitPasskey() {
 </script>
 
 <template>
-  <v-container class="fill-height d-flex align-center justify-center">
-    <v-card width="400" class="pa-4">
-      <v-card-title>{{ t('vaultUnlock.title') }}</v-card-title>
+  <div class="lock-screen">
+    <!-- The website hero's network globe, as a watermark filling the screen behind the card. -->
+    <div class="lock-watermark" aria-hidden="true">
+      <NetworkGlobe fill />
+    </div>
+    <v-container class="lock-content fill-height d-flex align-center justify-center">
+      <v-card width="400" class="pa-4">
+        <v-card-title>{{ t('vaultUnlock.title') }}</v-card-title>
 
-      <v-card-text v-if="hasPasskeyWrap">
-        <v-btn color="primary" block :loading="busy" prepend-icon="mdi-fingerprint" @click="submitPasskey">
-          {{ t('vaultUnlock.unlockWithPasskey') }}
-        </v-btn>
-      </v-card-text>
-
-      <template v-if="showRecoveryPhraseField">
-        <v-card-text>
-          <v-textarea v-model="recoveryPhrase" :label="t('vaultUnlock.recoveryPhraseLabel')" rows="2" auto-grow
-            autofocus :rules="recoveryPhraseRules" />
+        <v-card-text v-if="hasPasskeyWrap">
+          <v-btn color="primary" block :loading="busy" prepend-icon="mdi-fingerprint" @click="submitPasskey">
+            {{ t('vaultUnlock.unlockWithPasskey') }}
+          </v-btn>
         </v-card-text>
-        <v-card-actions>
-          <v-btn color="primary" block :loading="busy" @click="submitRecoveryPhrase">{{ t('vaultUnlock.unlock')
-          }}</v-btn>
-        </v-card-actions>
-      </template>
-      <v-card-actions v-else>
-        <v-btn variant="text" size="small" block @click="showRecoveryPhraseField = true">
-          {{ t('vaultUnlock.useRecoveryInstead') }}
-        </v-btn>
-      </v-card-actions>
 
-      <FavouritesList class="px-4 pb-1 pt-2" />
-    </v-card>
-  </v-container>
+        <template v-if="showRecoveryPhraseField">
+          <v-card-text>
+            <v-textarea v-model="recoveryPhrase" :label="t('vaultUnlock.recoveryPhraseLabel')" rows="2" auto-grow
+              autofocus :rules="recoveryPhraseRules" />
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="primary" block :loading="busy" @click="submitRecoveryPhrase">{{ t('vaultUnlock.unlock')
+            }}</v-btn>
+          </v-card-actions>
+        </template>
+        <v-card-actions v-else>
+          <v-btn variant="text" size="small" block @click="showRecoveryPhraseField = true">
+            {{ t('vaultUnlock.useRecoveryInstead') }}
+          </v-btn>
+        </v-card-actions>
+
+        <FavouritesList class="px-4 pb-1 pt-2" />
+      </v-card>
+    </v-container>
+  </div>
 </template>

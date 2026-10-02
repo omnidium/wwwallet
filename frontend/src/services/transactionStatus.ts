@@ -1,4 +1,5 @@
-import { api, type ChainSlug, type TransactionStatus } from './api'
+import { api, type BridgeStatus, type ChainSlug, type TransactionStatus } from './api'
+import { BRIDGE_STATUS_MAX_WAIT_MS, BRIDGE_STATUS_POLL_MS } from '@/config/appSettings'
 
 const POLL_INTERVAL_MS = 4000
 const MAX_ATTEMPTS = 30 // ~2 minutes, matching typical L1/L2 confirmation times.
@@ -26,4 +27,27 @@ export async function waitForTransactionConfirmation(
     await sleep(POLL_INTERVAL_MS)
   }
   return 'pending'
+}
+
+/**
+ * Polls a bridged transfer until it lands on the destination chain, fails,
+ * or polling gives up (reported as pending). Starts once the source
+ * transaction has confirmed. Never throws, same as above.
+ */
+export async function waitForBridgeArrival(
+  hash: string,
+  fromChain: ChainSlug,
+  toChain: ChainSlug,
+): Promise<BridgeStatus> {
+  const deadline = Date.now() + BRIDGE_STATUS_MAX_WAIT_MS
+  while (Date.now() < deadline) {
+    try {
+      const status = await api.bridgeStatus(hash, fromChain, toChain)
+      if (status.status !== 'pending') return status
+    } catch {
+      // Keep polling — the status service being briefly unreachable isn't the transfer failing.
+    }
+    await sleep(BRIDGE_STATUS_POLL_MS)
+  }
+  return { status: 'pending', substatus: null, receiving_tx_hash: null }
 }

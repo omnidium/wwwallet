@@ -6,11 +6,14 @@ pub mod etherscan;
 pub mod ethplorer;
 pub mod fxrate;
 pub mod http;
+pub mod lifi;
+pub mod public_cache;
 pub mod public_rpc;
 pub mod registry;
 pub mod tokenlist;
 pub mod traits;
 pub mod types;
+pub mod upstream_budget;
 pub mod zerox;
 
 pub use chain::ChainId;

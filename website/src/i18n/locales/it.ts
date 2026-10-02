@@ -7,6 +7,7 @@ export default {
     launch: 'Avvia il portafoglio',
     home: "Torna all'inizio",
     sectionNavLabel: 'Navigazione tra le sezioni',
+    principles: 'Principi',
   },
   settings: {
     open: 'Impostazioni',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Luce',
     themeDark: 'Buio',
     language: 'Lingua',
+    search: 'Cerca',
+    noMatches: 'Nessun risultato',
   },
   hero: {
-    eyebrow: 'Un portafoglio Ethereum personale e senza custodia',
+    eyebrow: 'Un portafoglio Ethereum gratuito e senza custodia',
     heading1: 'Le tue chiavi.',
     heading2: 'Il tuo dispositivo.',
-    heading3: 'Il tuo portafoglio.',
-    lede: "wwwallet crittografa il tuo wallet sul tuo dispositivo e non invia mai le tue chiavi, le tue password o la tua frase di recupero altrove. Non devi creare alcun account. Non c'è alcun server da violare. Solo tu e le tue criptovalute.",
+    heading3: 'Gratuito per tutti.',
+    lede: 'wwwallet funziona nel tuo browser e conserva le tue chiavi crittografate sul tuo dispositivo. Non devi creare alcun account, non devi pagare nulla e non ci sono pubblicità: è semplicemente un portafoglio che funziona allo stesso modo per tutti.',
     ctaPrimary: 'Avvia il portafoglio',
     ctaSecondary: 'Scopri come funziona',
+    note: 'Nessuna registrazione · Nessuna pubblicità · Nessun tracciamento · 31 lingue',
   },
   wallet: {
     eyebrow: 'Portafoglio',
@@ -107,11 +111,31 @@ export default {
     heading: 'Domande frequenti',
     items: [
       {
-        q: 'La mia frase di recupero è sufficiente per riavere il mio portafoglio?',
-        a: 'Non da sola. La frase di recupero sblocca il tuo archivio crittografato, ma l’archivio stesso risiede esclusivamente sul tuo dispositivo. Se perdi o cancelli i dati da quel dispositivo senza aver mai effettuato un backup, la frase non avrà più nulla da sbloccare. Assicurati sempre di abbinare la tua frase di recupero a un backup su Google Drive o a un backup dei file — vedi la domanda successiva.',
+        q: 'wwwallet è davvero gratuito?',
+        a: 'Sì. L’utilizzo è gratuito, non ci sono livelli premium né contenuti a pagamento, e wwwallet non applica alcuna commissione sulle operazioni di invio o scambio. L’unico costo inevitabile è la commissione di transazione (gas) della rete stessa, che va alla rete piuttosto che a wwwallet. Le quotazioni di scambio provengono dall’aggregatore di exchange 0x, che può applicare una propria commissione su alcune operazioni; eventuali commissioni di questo tipo sono indicate nella schermata di riepilogo prima della conferma.',
       },
       {
-        q: 'Come faccio a eseguire il backup del mio portafoglio?',
+        q: 'Ci sono pubblicità, tracker o strumenti di analisi?',
+        a: "No. wwwallet non mostra pubblicità, non esegue script di analisi o tracciamento e non crea un profilo dell'utente. Non esiste un account, quindi non c'è nulla a cui collegarlo.",
+      },
+      {
+        q: "Devo avere un account o un documento d'identità per utilizzarlo?",
+        a: "No. Non è richiesta alcuna registrazione, né l'inserimento di un indirizzo e-mail, di un numero di telefono o di un documento d'identità: basta creare un portafoglio sul proprio dispositivo e iniziare a utilizzarlo.",
+      },
+      {
+        q: 'Se è gratuito, come fa wwwallet a ripagarsi?',
+        a: 'Non ricava profitti dai propri utenti: nessuna commissione, nessuna pubblicità, nessuna vendita di dati. I costi di gestione sono volutamente contenuti: il wallet funziona direttamente nel browser, mentre il backend si limita a trasmettere i dati pubblici della blockchain e quelli relativi ai prezzi.',
+      },
+      {
+        q: 'Qualcuno può bloccare il mio portafoglio?',
+        a: "Non esiste alcun account, quindi non c'è nulla che wwwallet — o chiunque altro — possa bloccare. Le tue chiavi non lasciano mai il tuo dispositivo e le transazioni vengono firmate lì prima di essere inviate alla rete. I tuoi fondi risiedono su Ethereum, non in wwwallet: puoi visualizzare la chiave privata o la frase di recupero di qualsiasi account dal relativo menu e importarla in un altro portafoglio Ethereum quando vuoi.",
+      },
+      {
+        q: 'La mia frase di recupero è sufficiente per riavere il mio portafoglio?',
+        a: 'Non da sola. La frase di recupero sblocca il tuo archivio crittografato, ma l’archivio stesso risiede esclusivamente sul tuo dispositivo. Se perdi o cancelli il dispositivo senza aver mai effettuato un backup, la frase non avrà più nulla da sbloccare. Abbina sempre la frase di recupero a un backup su Google Drive o a un backup dei file — vedi la domanda successiva.',
+      },
+      {
+        q: 'Come posso eseguire il backup del mio portafoglio?',
         a: 'Da "Impostazioni", esegui il backup del tuo vault crittografato sul tuo Google Drive — dove verrà archiviato in una cartella privata accessibile solo dall\'app, di cui wwwallet non può visualizzare il contenuto — oppure come file da scaricare e conservare autonomamente. Esegui questa operazione ogni volta che configuri un portafoglio o aggiungi nuovi conti.',
       },
       {
@@ -119,7 +143,7 @@ export default {
         a: 'Sì, ma la sincronizzazione non avviene automaticamente: ogni dispositivo dispone di un proprio archivio locale. Per utilizzare wwwallet su un nuovo dispositivo, ripristinalo da un backup su Drive o da un file, quindi sbloccalo con la tua frase di recupero.',
       },
       {
-        q: 'Cosa succede se perdo il mio dispositivo e non ho mai eseguito un backup?',
+        q: 'Cosa succede se smarrisco il mio dispositivo e non ho mai eseguito un backup?',
         a: 'I tuoi fondi sono irrecuperabili. È una scelta deliberata: wwwallet non dispone di un sistema di account e non conserva alcuna copia del tuo vault da nessuna parte, quindi nessuno — nemmeno noi — può ripristinarlo per te. È il compromesso necessario per avere un wallet a cui nessuno, tranne te, può accedere.',
       },
       {
@@ -128,11 +152,11 @@ export default {
       },
       {
         q: 'wwwallet è open source?',
-        a: 'No — è disponibile il codice sorgente. Il codice sorgente completo è pubblico su GitHub, quindi chiunque può leggerlo, esaminarlo e verificarne la correttezza, ma non è open source: il codice è concesso in licenza ai sensi della PolyForm Strict License 1.0.0.',
+        a: 'No — è disponibile il codice sorgente. Il codice sorgente completo è pubblico su GitHub, quindi chiunque può leggerlo, esaminarlo e verificarlo, ma non è open source: il codice è concesso in licenza ai sensi della PolyForm Strict License 1.0.0.',
       },
       {
         q: 'Cosa posso fare con il codice?',
-        a: 'È possibile leggere e verificare l’intero contenuto, nonché utilizzare una copia non modificata per scopi non commerciali quali lo studio personale, la ricerca e i test. Non è consentito distribuirlo, modificarlo o creare opere derivate (compresi i fork), né utilizzarlo a fini commerciali. Se avete bisogno di qualcosa che la licenza non consente, contattate il titolare del copyright per ottenere una licenza separata.',
+        a: "È possibile leggere e verificare l'intero contenuto, nonché utilizzare una copia non modificata per scopi non commerciali quali lo studio personale, la ricerca e la sperimentazione. Non è consentito distribuirlo, modificarlo o creare opere derivate (compresi i fork), né utilizzarlo a fini commerciali. Se avete bisogno di qualcosa che la licenza non consente, contattate il titolare del copyright per ottenere una licenza separata.",
       },
       {
         q: "È sicuro usare wwwallet? C'è qualche garanzia?",
@@ -144,24 +168,74 @@ export default {
       },
       {
         q: 'Come posso ricaricare il mio portafoglio?',
-        a: 'Apri un conto, seleziona “Visualizza codice QR” per visualizzarne l’indirizzo, quindi invia fondi a quell’indirizzo da un exchange o da un altro portafoglio. Assicurati di effettuare il trasferimento sulla rete corretta (Ethereum, Polygon, Arbitrum, Base o Optimism): lo stesso indirizzo funziona su tutte queste reti, ma i fondi inviati su una rete appariranno solo su quella rete. Ti servirà anche una piccola quantità della moneta nativa della rete (come ETH) per pagare le commissioni di transazione.',
+        a: 'Apri un conto, seleziona “Visualizza codice QR” per visualizzarne l’indirizzo, quindi invia fondi a quell’indirizzo da un exchange o da un altro portafoglio. Assicurati di effettuare l’invio sulla rete corretta (Ethereum, Polygon, Arbitrum, Base o Optimism): lo stesso indirizzo funziona su tutte queste reti, ma i fondi inviati su una rete appariranno solo su quella rete. Ti servirà anche una piccola quantità della moneta nativa della rete (come ETH) per pagare le commissioni di transazione.',
       },
       {
         q: 'Cosa posso fare con wwwallet?',
-        a: 'Invia: trasferisci ETH o qualsiasi token a un indirizzo che incolli, scansiona da un codice QR o selezioni dai tuoi conti, e verifica i dettagli prima di confermare. Swap: scambia un token con un altro sulla stessa rete dalla scheda “Swap”, con quotazione e stima delle commissioni visualizzate in anticipo. Ricevi: mostra il tuo indirizzo sotto forma di codice QR. Puoi inoltre visualizzare i tuoi saldi in USD e la cronologia delle transazioni su tutte le reti supportate.',
+        a: 'Invia: trasferisci ETH o qualsiasi token a un indirizzo che incolli, scansiona da un codice QR o selezioni dai tuoi conti, e verifica i dettagli prima di confermare. Scambio: scambia un token con un altro sulla stessa rete dalla scheda “Scambio”, con quotazione e stima delle commissioni visualizzate in anticipo. Ricevi: mostra il tuo indirizzo sotto forma di codice QR. Puoi anche visualizzare i tuoi saldi in dollari statunitensi (USD) e la cronologia delle transazioni su tutte le reti supportate.',
       },
       {
         q: 'Cosa sa di me wwwallet?',
-        a: 'Nulla che ti identifichi. Non ci sono account, login o database. I dati relativi al saldo e ai prezzi vengono recuperati tramite il backend di wwwallet, anziché tramite il tuo browser che si collega direttamente a fornitori terzi, e tale backend non ha mai accesso alle tue chiavi, alle tue password o alla tua frase di recupero.',
+        a: 'Nulla che ti identifichi. Non ci sono account, login o database. I dati relativi al saldo e ai prezzi vengono recuperati tramite il backend di wwwallet, anziché tramite il tuo browser che si rivolge direttamente a fornitori terzi, e tale backend non ha mai accesso alle tue chiavi, alle tue password o alla tua frase di recupero.',
       },
     ],
   },
   footer: {
-    tagline: 'Un portafoglio Ethereum personale e senza custodia.',
-    sourceLink: 'Visualizza il codice sorgente su GitHub',
+    tagline: 'Un portafoglio Ethereum gratuito e senza custodia, per tutti.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Concesso in licenza ai sensi della PolyForm Strict 1.0.0',
     disclaimer:
       'Software non di custodia fornito “così com’è”, senza alcuna garanzia. Non costituisce consulenza finanziaria. L’utente è l’unico responsabile delle proprie chiavi e dei propri fondi.',
+  },
+  principles: {
+    eyebrow: 'Principi',
+    heading: 'Gratuito, aperto e pensato per tutti',
+    lede: 'Un portafoglio dovrebbe essere uno strumento da utilizzare, non un’attività commerciale che si basa sui propri utenti. Questi sono i principi su cui si fonda wwwallet.',
+    items: [
+      {
+        title: 'Gratis, senza alcun trucco',
+        body: 'Nessun costo, nessun piano premium, nessuna funzionalità a pagamento. wwwallet non applica commissioni proprie: l’unico costo è la commissione di transazione prevista dalla rete.',
+      },
+      {
+        title: 'Nessuna pubblicità, nessun tracciamento',
+        body: 'Nessuna pubblicità, nessuna analisi dei dati, nessun script di tracciamento e nessun dato venduto a nessuno. Innanzitutto, non esiste alcun tuo profilo da vendere.',
+      },
+      {
+        title: 'Nessuna registrazione',
+        body: 'Non serve né un indirizzo e-mail, né un numero di telefono, né la verifica dell’identità. Basta aprirlo, creare un portafoglio e il gioco è fatto.',
+      },
+      {
+        title: 'Le tue chiavi rimangono con te',
+        body: "Le chiavi vengono generate e crittografate sul tuo dispositivo e non escono mai da esso. wwwallet non può visualizzarle, spostare i tuoi fondi né impedirti l'accesso.",
+      },
+      {
+        title: 'Funziona ovunque',
+        body: "Funziona su qualsiasi browser moderno, sia su cellulare che su computer, e si installa come un'app — non è necessario avere un account su un app store.",
+      },
+      {
+        title: 'In 31 lingue',
+        body: 'Usalo nella lingua con cui ti trovi più a tuo agio, in modalità chiara o scura.',
+      },
+      {
+        title: 'Codice aperto',
+        body: 'Il codice sorgente completo è pubblicato affinché chiunque possa leggerlo e verificarne la correttezza. Si tratta di codice sorgente disponibile piuttosto che open source: le FAQ spiegano cosa consente la licenza.',
+      },
+      {
+        title: "Non c'è nulla da spegnere",
+        body: 'Non esiste alcun account che possa essere bloccato. I tuoi fondi risiedono direttamente sulla rete Ethereum e la chiave di qualsiasi account può essere trasferita in un altro portafoglio in qualsiasi momento.',
+      },
+    ],
+  },
+  license: {
+    title: 'Licenza',
+    close: 'Chiudi',
+    summaryTitle: 'In parole povere',
+    canUse:
+      'È possibile utilizzare wwwallet gratuitamente, per scopi personali e altri scopi non commerciali.',
+    canRead: 'È possibile leggere e verificare ogni riga del suo codice sorgente.',
+    cannot: 'Non è consentito copiarlo, modificarlo, ridistribuirlo o venderlo.',
+    englishNote:
+      'Di seguito è riportata la licenza completa, nella versione originale in inglese: si tratta del testo legale.',
+    viewSource: 'Visualizza su GitHub',
   },
 }

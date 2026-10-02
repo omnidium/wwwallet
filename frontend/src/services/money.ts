@@ -1,4 +1,5 @@
 import type { Balance, FxRates, TokenMetadata } from '@/services/api'
+import { formatUnits } from 'ethers'
 
 /** Not BigInt-exact — matches the same display-only precision tradeoff SendView already makes elsewhere in this app. */
 export function toHumanAmount(rawBalance: string, decimals: number): number {
@@ -78,4 +79,25 @@ export function formatPercentChange(pct: number, locale: string): string {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(pct / 100)
+}
+
+/**
+ * A raw token amount as an editable decimal string, cut (never rounded up —
+ * it must not exceed what it was taken from) to `significant` significant
+ * digits. The whole-number part is always kept in full. For filling an
+ * amount field from a balance: 18 decimals of a percentage run off the field.
+ */
+export function unitsToSignificant(raw: bigint, decimals: number, significant = 6): string {
+  const full = formatUnits(raw, decimals)
+  const [whole = '0', frac = ''] = full.split('.')
+  const wholeDigits = whole.replace(/^0+/, '').length
+  let keep: number
+  if (wholeDigits > 0) {
+    keep = Math.max(0, significant - wholeDigits)
+  } else {
+    const leadingZeros = frac.length - frac.replace(/^0+/, '').length
+    keep = leadingZeros + significant
+  }
+  const cut = frac.slice(0, keep).replace(/0+$/, '')
+  return cut ? `${whole}.${cut}` : whole
 }

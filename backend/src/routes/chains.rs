@@ -6,9 +6,10 @@ use serde::{Deserialize, Serialize};
 use crate::error::ApiError;
 use crate::state::AppState;
 use wwwallet_providers::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, PriceHistory, SwapQuote, TokenListItem,
+    AddressActivity, BridgeQuote, BridgeStatus, ContractAbi, HistoricalPrice, FxRates, NativePrice, PriceHistory, SwapQuote, TokenListItem,
     TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
+use wwwallet_providers::traits::BridgeQuoteRequest;
 use wwwallet_providers::ChainId;
 
 fn client_ip(headers: &HeaderMap) -> &str {
@@ -343,8 +344,137 @@ pub async fn swap_quote(
 }
 
 #[derive(Deserialize)]
+pub struct BridgeQuoteQuery {
+    from_chain: String,
+    to_chain: String,
+    /// Token address, or a symbol for the aggregator to resolve (how a
+    /// bridged send names "the same token" on the destination chain).
+    from_token: String,
+    to_token: String,
+    /// Decimal wei string.
+    from_amount: String,
+    from_address: String,
+    to_address: String,
+}
+
+fn validate_token(token: &str) -> Result<(), ApiError> {
+    let ok = !token.is_empty() && token.len() <= 64 && token.chars().all(|c| c.is_ascii_alphanumeric() || c == '.');
+    if !ok {
+        return Err(ApiError::BadRequest("token must be a token address or symbol".to_string()));
+    }
+    Ok(())
+}
+
+#[worker::send]
+pub async fn bridge_quote(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    axum::extract::Query(query): axum::extract::Query<BridgeQuoteQuery>,
+) -> Result<Json<BridgeQuote>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "bridge_quote")
+        .await?;
+    let from_chain = parse_chain(&query.from_chain)?;
+    let to_chain = parse_chain(&query.to_chain)?;
+    validate_address(&query.from_address)?;
+    validate_address(&query.to_address)?;
+    validate_token(&query.from_token)?;
+    validate_token(&query.to_token)?;
+    if query.from_amount.is_empty() || !query.from_amount.chars().all(|c| c.is_ascii_digit()) {
+        return Err(ApiError::BadRequest("from_amount must be a decimal wei string".to_string()));
+    }
+    let request = BridgeQuoteRequest {
+        from_chain,
+        to_chain,
+        from_token: &query.from_token,
+        to_token: &query.to_token,
+        from_amount_wei: &query.from_amount,
+        from_address: &query.from_address,
+        to_address: &query.to_address,
+    };
+    Ok(Json(state.providers.bridge_quote(&request).await?))
+}
+
+#[derive(Deserialize)]
+pub struct BridgeStatusQuery {
+    tx_hash: String,
+    from_chain: String,
+    to_chain: String,
+}
+
+#[worker::send]
+pub async fn bridge_status(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    axum::extract::Query(query): axum::extract::Query<BridgeStatusQuery>,
+) -> Result<Json<BridgeStatus>, ApiError> {
+    state
+        .providers
+        .check_rate_limit(client_ip(&headers), "bridge_status")
+        .await?;
+    let from_chain = parse_chain(&query.from_chain)?;
+    let to_chain = parse_chain(&query.to_chain)?;
+    let is_hash = query.tx_hash.len() == 66
+        && query.tx_hash.starts_with("0x")
+        && query.tx_hash[2..].chars().all(|c| c.is_ascii_hexdigit());
+    if !is_hash {
+        return Err(ApiError::BadRequest("invalid transaction hash".to_string()));
+    }
+    Ok(Json(state.providers.bridge_status(&query.tx_hash, from_chain, to_chain).await?))
+}
+
+#[derive(Deserialize)]
 pub struct FxQuery {
     base: Option<String>,
+    /// "YYYY-MM-DD" for that day's rates instead of today's.
+    date: Option<String>,
+}
+
+fn validate_iso_date(date: &str) -> Result<(), ApiError> {
+    let b = date.as_bytes();
+    let ok = b.len() == 10
+        && b[4] == b'-'
+        && b[7] == b'-'
+        && b.iter().enumerate().all(|(i, c)| i == 4 || i == 7 || c.is_ascii_digit());
+    if !ok {
+        return Err(ApiError::BadRequest("date must be YYYY-MM-DD".to_string()));
+    }
+    Ok(())
+}
+
+#[derive(Deserialize)]
+pub struct HistoricalPriceQuery {
+    /// Token contract; omitted for the chain's native coin.
+    token: Option<String>,
+    /// Unix seconds.
+    timestamp: i64,
+}
+
+/// Before Ethereum's genesis block — no price can exist.
+const EARLIEST_TIMESTAMP: i64 = 1_438_269_973;
+
+#[worker::send]
+pub async fn historical_price(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path(chain): Path<String>,
+    axum::extract::Query(query): axum::extract::Query<HistoricalPriceQuery>,
+) -> Result<Json<HistoricalPrice>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    if let Some(token) = &query.token {
+        validate_address(token)?;
+    }
+    let now = (worker::Date::now().as_millis() / 1000) as i64;
+    if query.timestamp < EARLIEST_TIMESTAMP || query.timestamp > now + 3600 {
+        return Err(ApiError::BadRequest("timestamp out of range".to_string()));
+    }
+    Ok(Json(
+        state
+            .providers
+            .historical_price(chain, query.token.as_deref(), query.timestamp, client_ip(&headers))
+            .await?,
+    ))
 }
 
 #[worker::send]
@@ -359,12 +489,24 @@ pub async fn fx_rates(
             "base must be a 3-letter currency code".to_string(),
         ));
     }
+    if let Some(date) = &query.date {
+        validate_iso_date(date)?;
+        return Ok(Json(state.providers.fx_rates_on(&base, date, client_ip(&headers)).await?));
+    }
     Ok(Json(state.providers.fx_rates(&base, client_ip(&headers)).await?))
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn iso_date_validation() {
+        assert!(validate_iso_date("2025-03-15").is_ok());
+        assert!(validate_iso_date("2025-3-15").is_err());
+        assert!(validate_iso_date("2025-03-15T00").is_err());
+        assert!(validate_iso_date("../latest").is_err());
+    }
 
     #[test]
     fn accepts_well_formed_checksummed_and_lowercase_addresses() {

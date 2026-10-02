@@ -12,7 +12,19 @@ export interface VaultData {
   payees: Payee[]
   // Optional: a vault backed up before this setting existed won't have it —
   // callers fall back to a default rather than treating it as required.
-  settings: { locale: string; currency: string; transactionBatchSize?: number }
+  settings: {
+    locale: string
+    currency: string
+    transactionBatchSize?: number
+    favouritesCard?: FavouritesCardLayout
+  }
+}
+
+/** Where the accounts screen's Favourites card sits among the account cards. */
+export interface FavouritesCardLayout {
+  /** Index among the visible cards; null puts it after the last account (the default). */
+  position: number | null
+  visible: boolean
 }
 
 const VAULT_ID = 'default' as const

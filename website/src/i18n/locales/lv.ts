@@ -7,6 +7,7 @@ export default {
     launch: 'Atvērt maku',
     home: 'Atgriezties uz sākumu',
     sectionNavLabel: 'Sadaļu navigācija',
+    principles: 'Principi',
   },
   settings: {
     open: 'Iestatījumi',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Gaisma',
     themeDark: 'Tumšs',
     language: 'Valoda',
+    search: 'Meklēt',
+    noMatches: 'Nav atbilžu',
   },
   hero: {
-    eyebrow: 'Personīga Ethereum maku, kas nav saistīta ar glabāšanu',
-    heading1: 'Jūsu atslēgas.',
+    eyebrow: 'Bezmaksas Ethereum maku bez glabāšanas funkcijas',
+    heading1: 'Tavas atslēgas.',
     heading2: 'Jūsu ierīce.',
-    heading3: 'Tava maku.',
-    lede: 'wwwallet šifrē jūsu elektronisko maku jūsu ierīcē un nekad nekur citur neaizsūta jūsu atslēgas, paroles vai atjaunošanas frāzi. Nav jāizveido konts. Nav servera, ko varētu uzlauzt. Tikai jūs un jūsu kriptovalūta.',
+    heading3: 'Bez maksas visiem.',
+    lede: 'wwwallet darbojas jūsu pārlūkprogrammā, un jūsu atslēgas tiek glabātas šifrētā veidā jūsu ierīcē. Nav jāizveido konts, nav jāmaksā un nav reklāmu — vienkārši elektroniskā maksa, kas visiem darbojas vienādi.',
     ctaPrimary: 'Atvērt maku',
     ctaSecondary: 'Uzziniet, kā tas darbojas',
+    note: 'Nav jāreģistrējas · Nav reklāmu · Nav izsekošanas · 31 valoda',
   },
   wallet: {
     eyebrow: 'Maks',
@@ -107,48 +111,68 @@ export default {
     heading: 'Bieži uzdotie jautājumi',
     items: [
       {
+        q: 'Vai wwwallet tiešām ir bezmaksas?',
+        a: 'Jā. Tās izmantošana ir bez maksas, nav nekāda premium līmeņa un nekāda satura, kas būtu pieejams tikai par maksu, un wwwallet nepiemēro nekādas komisijas maksas par jebkādiem nosūtījumiem vai apmaiņām. Vienīgās neizbēgamās izmaksas ir tīkla paša darījuma (gas) maksa, kas tiek samaksāta tīklam, nevis wwwallet. Apmaiņas kotācijas nāk no 0x biržu agregatora, kas dažos darījumos var piemērot savu maksu — jebkura šāda maksa tiek norādīta pārskata ekrānā, pirms jūs apstiprināt darījumu.',
+      },
+      {
+        q: 'Vai tur ir reklāmas, izsekošanas rīki vai analītikas rīki?',
+        a: 'Nē. Vietnē wwwallet netiek rādītas reklāmas, netiek izmantoti analītikas vai izsekošanas skripti, kā arī netiek veidots jūsu profils. Tur nav konta, tāpēc nav arī nekā, ar ko to saistīt.',
+      },
+      {
+        q: 'Vai, lai to izmantotu, man ir nepieciešams konts vai personas apliecība?',
+        a: 'Nē. Nav ne reģistrācijas, ne e-pasta adreses, ne tālruņa numura, ne identitātes pārbaudes — jūs izveidojat elektronisko maku savā ierīcē un sākat to lietot.',
+      },
+      {
+        q: 'Ja tas ir bez maksas, kā tad wwwallet sedz savas izmaksas?',
+        a: 'Tā negūst peļņu no saviem lietotājiem — nav komisijas maksas, nav reklāmu, nav datu pārdošanas. Ekspluatācijas izmaksas ir apzināti saglabātas zemas: pati elektroniskā maksa darbojas jūsu pārlūkprogrammā, bet serveru sistēma tikai pārsūta publiskā blokķēdes un cenu datus.',
+      },
+      {
+        q: 'Vai kāds var bloķēt manu elektronisko maku?',
+        a: 'Nav nekāda konta, tāpēc wwwallet — vai jebkuram citam — nav ko iesaldēt. Jūsu atslēgas nekad neiziet ārpus jūsu ierīces, un darījumi tiek parakstīti tajā, pirms tie tiek nosūtīti tīklā. Jūsu līdzekļi atrodas Ethereum tīklā, nevis wwwallet: jūs varat apskatīt jebkura konta privāto atslēgu vai atjaunošanas frāzi no tā izvēlnes un importēt to citā Ethereum makā, kad vien vēlaties.',
+      },
+      {
         q: 'Vai mana atjaunošanas frāze ir pietiekama, lai atgūtu savu elektronisko maku?',
         a: 'Nē, ne vien pati par sevi. Jūsu atjaunošanas frāze atbloķē jūsu šifrēto seifu, taču pats seifs atrodas tikai jūsu ierīcē. Ja jūs pazaudējat vai izdzēšat šo ierīci, neizveidojot nekādu dublējumu, frāzei vairs nebūs ko atbloķēt. Vienmēr papildiniet savu atjaunošanas frāzi ar dublējumu „Google Drive“ vai failu dublējumu — skatiet nākamo jautājumu.',
       },
       {
         q: 'Kā veikt savas elektroniskās naudas makas dublējumu?',
-        a: 'Sadaļā „Iestatījumi” izveidojiet šifrētās seifa dublikātu savā „Google Drive” — tas tiks saglabāts privātā mapē, kas pieejama tikai lietotnei un kuras pārējo saturu „wwwallet” neredz — vai arī kā failu, ko lejupielādējat un glabājat paši. To dariet ikreiz, kad konfigurējat elektronisko maku vai pievienojat jaunus kontus.',
+        a: 'Sadaļā „Iestatījumi” izveidojiet savas šifrētās seifu rezerves kopiju savā „Google Drive“ kontā — tā tiks saglabāta privātā, tikai lietotnei paredzētā mapē, kuras pārējo saturu „wwwallet“ nevar redzēt — vai arī kā failu, ko varat lejupielādēt un glabāt pats. To dariet ik reizi, kad izveidojat elektronisko maku vai pievienojat jaunus kontus.',
       },
       {
-        q: 'Vai es varu izmantot „wwwallet“ vairākās ierīcēs?',
-        a: 'Jā, taču sinhronizācija nenotiek automātiski — katrai ierīcei ir sava vietējā seifa kopija. Lai izmantotu wwwallet jaunā ierīcē, atjaunojiet to no „Drive“ vai faila dublējuma, pēc tam atbloķējiet ar atjaunošanas frāzi.',
+        q: 'Vai es varu izmantot wwwallet vairākās ierīcēs?',
+        a: 'Jā, taču sinhronizācija nenotiek automātiski — katrai ierīcei ir sava vietējā seifa kopija. Lai lietotu wwwallet jaunā ierīcē, atjaunojiet to no „Drive“ vai faila dublējuma, pēc tam atbloķējiet ar atjaunošanas frāzi.',
       },
       {
-        q: 'Kas notiks, ja pazaudēšu savu ierīci un nekad neesmu veicis dublējumu?',
-        a: 'Jūsu līdzekļi ir neatgūstami. Tas ir paredzēts: wwwallet neizmanto kontu sistēmu un nekur nesaglabā jūsu seifa kopiju, tāpēc neviens — arī mēs — to nevar atjaunot jūsu vietā. Tas ir kompromiss, lai radītu maku, kuram piekļūt var tikai jūs.',
+        q: 'Kas notiks, ja es pazaudēšu savu ierīci un nekad neesmu veicis dublējumu?',
+        a: 'Jūsu līdzekļus nav iespējams atgūt. Tas ir paredzēts: wwwallet neizmanto kontu sistēmu un nekur nesaglabā jūsu seifa kopiju, tāpēc neviens — arī mēs ne — nevar to jums atjaunot. Tas ir kompromiss, lai nodrošinātu, ka piekļuvi šai makai varat tikai jūs.',
       },
       {
         q: 'Vai piekļuves atslēgas (Face ID / Touch ID) tiek pārnestas uz jauno ierīci?',
-        a: 'Nē. Parole ir piesaistīta ierīcei, uz kuras tā tika izveidota. Pēc dublējuma atjaunošanas jaunā ierīcē atbloķējiet to, izmantojot atjaunošanas frāzi, un tur varēsiet iestatīt jaunu paroli.',
+        a: 'Nē. Piekļuves atslēga ir piesaistīta ierīcei, uz kuras tā tika izveidota. Pēc dublējuma atjaunošanas jaunā ierīcē atbloķējiet to, izmantojot atjaunošanas frāzi, un tur varēsiet iestatīt jaunu piekļuves atslēgu.',
       },
       {
         q: 'Vai wwwallet ir atvērtā koda programma?',
-        a: 'Nē — tā ir pieejama ar atklātu avotu. Pilnais avota kods ir publiski pieejams GitHub vietnē, tādējādi ikviens to var lasīt, pārskatīt un pārbaudīt, taču tas nav atvērtā koda projekts: kods ir licencēts saskaņā ar „PolyForm Strict License 1.0.0“.',
+        a: 'Nē — tā avots ir pieejams. Pilnais avota kods ir publiski pieejams GitHub vietnē, tādējādi ikviens to var lasīt, pārskatīt un pārbaudīt, taču tas nav atvērtā koda projekts: kods ir licencēts saskaņā ar „PolyForm Strict License 1.0.0“.',
       },
       {
         q: 'Ko man ir atļauts darīt ar šo kodu?',
-        a: 'Jūs varat to visu lasīt un pārbaudīt, kā arī izmantot nemodificētu kopiju nekomerciāliem mērķiem, piemēram, personīgai apguvei, pētniecībai un testēšanai. Jūs nedrīkstat to izplatīt, modificēt vai veidot atvasinātos darbus (ieskaitot atzarojumus), kā arī izmantot to komerciāli. Ja jums ir nepieciešams kaut kas, ko licence neļauj, sazinieties ar autortiesību īpašnieku, lai saņemtu atsevišķu licenci.',
+        a: 'Jūs varat to visu lasīt un pārbaudīt, kā arī izmantot nemodificētu kopiju nekomerciāliem mērķiem, piemēram, personīgai apguvei, pētniecībai un testēšanai. Jūs nedrīkstat to izplatīt, modificēt vai izveidot atvasinātos darbus (ieskaitot atzarojumus), kā arī izmantot to komerciāli. Ja jums ir nepieciešams kaut kas, ko licence neļauj, sazinieties ar autortiesību īpašnieku, lai saņemtu atsevišķu licenci.',
       },
       {
         q: 'Vai wwwallet ir droši lietot? Vai ir kāda garantija?',
-        a: 'wwwallet ir programmatūra bez glabāšanas funkcijas, kas tiek piedāvāta „tādā stāvoklī, kādā tā ir“, bez jebkāda veida garantijas. Tikai jūs pats kontrolējat savas atslēgas un līdzekļus — neviens, tostarp mēs, nevar atgūt zaudētu atjaunošanas frāzi vai dublējumu, atcelt darījumu vai kompensēt jums zaudējumus. Izmantojiet tikai tos līdzekļus, kuru zaudēšanu varat atļauties, pirms nosūtīšanas rūpīgi pārbaudiet adreses un tīklus, un nekas šeit nav uzskatāms par finanšu, ieguldījumu, juridisku vai nodokļu konsultāciju.',
+        a: 'wwwallet ir programmatūra bez glabāšanas funkcijas, kas tiek piedāvāta „tādā stāvoklī, kādā tā ir”, bez jebkāda veida garantijas. Tikai jūs pats kontrolējat savas atslēgas un līdzekļus — neviens, ieskaitot mūs, nevar atgūt zaudētu atjaunošanas frāzi vai dublējumu, atcelt darījumu vai kompensēt jums zaudējumus. Izmantojiet tikai tos līdzekļus, kuru zaudēšanu varat atļauties, pirms nosūtīšanas rūpīgi pārbaudiet adreses un tīklus, un nekas šeit nav uzskatāms par finanšu, ieguldījumu, juridisku vai nodokļu konsultāciju.',
       },
       {
         q: 'Kādus tīklus atbalsta wwwallet?',
         a: 'Ethereum galvenais tīkls, kā arī 2. slāņa tīkli Polygon, Arbitrum, Base un Optimism — visi no viena un tā paša kontu kopuma.',
       },
       {
-        q: 'Kā varu papildināt savu elektronisko maku?',
-        a: 'Atveriet kontu, izvēlieties „Skatīt QR kodu”, lai redzētu tā adresi, un nosūtiet līdzekļus uz šo adresi no biržas vai citas elektroniskās naudas maciņas. Pārliecinieties, ka nosūtāt naudu pareizajā tīklā (Ethereum, Polygon, Arbitrum, Base vai Optimism) — viena un tā pati adrese darbojas visos šajos tīklos, taču līdzekļi, kas nosūtīti vienā tīklā, parādās tikai tajā tīklā. Jums būs nepieciešams arī neliels daudzums tīkla vietējās monētas (piemēram, ETH), lai segtu transakciju komisijas maksas.',
+        q: 'Kā es varu papildināt savu elektronisko maku?',
+        a: 'Atveriet kontu, izvēlieties „Skatīt QR kodu”, lai redzētu tā adresi, un nosūtiet līdzekļus uz šo adresi no biržas vai citas elektroniskās naudas makas. Pārliecinieties, ka nosūtāt pareizajā tīklā (Ethereum, Polygon, Arbitrum, Base vai Optimism) — viena un tā pati adrese darbojas visos šajos tīklos, taču līdzekļi, kas nosūtīti vienā tīklā, parādās tikai tajā tīklā. Jums būs nepieciešams arī neliels daudzums tīkla vietējās monētas (piemēram, ETH), lai segtu transakcijas komisijas maksu.',
       },
       {
         q: 'Ko es varu darīt ar wwwallet?',
-        a: 'Sūtīt: pārskaitiet ETH vai jebkuru citu žetonu uz adresi, kuru ievietojat, ieskenējat no QR koda vai izvēlaties no saviem kontiem, un pirms apstiprināšanas pārskatiet informāciju. Apmainīt: apmainiet vienu žetonu pret citu tajā pašā tīklā, izmantojot cilni „Apmaiņa”, kurā jau sākumā tiek parādīts piedāvājums un provizoriskā komisijas maksa. Saņemt: parādiet savu adresi kā QR kodu. Jūs varat arī apskatīt savus atlikumus USD vērtībā un darījumu vēsturi visos atbalstītajos tīklos.',
+        a: 'Sūtīt: pārskaitiet ETH vai jebkuru citu žetonu uz adresi, kuru ievietojat, ieskenējat no QR koda vai izvēlaties no saviem kontiem, un pirms apstiprināšanas pārbaudiet informāciju. Apmainīt: apmainiet vienu žetonu pret citu tajā pašā tīklā, izmantojot cilni „Swap”, kurā jau sākumā tiek parādīts piedāvājums un provizoriskā komisijas maksa. Saņemt: parādiet savu adresi kā QR kodu. Jūs varat arī apskatīt savus atlikumus USD vērtībā un darījumu vēsturi visos atbalstītajos tīklos.',
       },
       {
         q: 'Ko wwwallet zina par mani?',
@@ -157,11 +181,60 @@ export default {
     ],
   },
   footer: {
-    tagline: 'Personīga Ethereum maku, kas nav saistīta ar glabāšanu.',
-    sourceLink: 'Apskatīt avota kodu GitHub vietnē',
+    tagline: 'Bezmaksas Ethereum maku bez aktīvu glabāšanas, kas pieejams ikvienam.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Licencēts saskaņā ar PolyForm Strict 1.0.0',
     disclaimer:
       'Programmatūra, kas nav saistīta ar glabāšanu, tiek piedāvāta „tādā stāvoklī, kādā tā ir“, bez garantijas. Tas nav finanšu padoms. Jūs esat vienīgais, kas atbild par savām atslēgām un līdzekļiem.',
+  },
+  principles: {
+    eyebrow: 'Principi',
+    heading: 'Bezmaksas, atvērts un radīts ikvienam',
+    lede: 'Maksai jābūt rīkam, ko tu izmanto, nevis uzņēmumam, kas balstās uz saviem lietotājiem. Tieši uz šīm saistībām balstās wwwallet.',
+    items: [
+      {
+        title: 'Bez maksas, bez slēptām nosacījumiem',
+        body: 'Nav cenas, nav premium līmeņa, nav maksas funkciju. wwwallet nepiemēro nekādas savas komisijas — vienīgās izmaksas ir tīkla paša darījuma komisija.',
+      },
+      {
+        title: 'Bez reklāmām, bez izsekošanas',
+        body: 'Nekādu reklāmu, nekādu analītiku, nekādu izsekošanas skriptu un nekādu datu pārdošanu trešajām personām. Jūsu profils vispār nav pieejams pārdošanai.',
+      },
+      {
+        title: 'Nav jāreģistrējas',
+        body: 'Nav nepieciešams norādīt e-pasta adresi, tālruņa numuru vai uzrādīt personu apliecinošu dokumentu. Atveriet lietotni, izveidojiet elektronisko maku, un viss ir gatavs.',
+      },
+      {
+        title: 'Jūsu atslēgas paliek pie jums',
+        body: 'Atslēgas tiek izveidotas un šifrētas jūsu ierīcē un nekad to neiziet. wwwallet nevar tās redzēt, pārvietot jūsu līdzekļus vai bloķēt jūsu piekļuvi.',
+      },
+      {
+        title: 'Darbojas jebkurā vietā',
+        body: 'Darbojas jebkurā mūsdienīgā pārlūkprogrammā gan viedtālrunī, gan datorā, un to var instalēt tāpat kā lietotni — nav nepieciešams konts lietotņu veikalā.',
+      },
+      {
+        title: '31 valodā',
+        body: 'Izmantojiet to valodā, kas jums ir visērtākā, gan gaišajā, gan tumšajā režīmā.',
+      },
+      {
+        title: 'Atklāts kods',
+        body: 'Pilnais avota kods ir publicēts, lai ikviens to varētu izlasīt un pārbaudīt. Tas ir „source-available”, nevis „open source” — bieži uzdotajos jautājumos ir izskaidrots, ko atļauj licence.',
+      },
+      {
+        title: 'Nav ko izslēgt',
+        body: 'Nav nekāda konta, ko varētu iesaldēt. Jūsu līdzekļi atrodas pašā „Ethereum” tīklā, un jebkura konta atslēgu jebkurā brīdī var pārnest uz citu elektronisko maku.',
+      },
+    ],
+  },
+  license: {
+    title: 'Licence',
+    close: 'Aizvērt',
+    summaryTitle: 'Vienkāršā valodā',
+    canUse: 'Jūs varat bez maksas izmantot wwwallet personīgām un citām nekomerciālām vajadzībām.',
+    canRead: 'Jūs varat izlasīt un pārbaudīt katru tā avota koda rindu.',
+    cannot: 'Jūs nedrīkstat to kopēt, mainīt, izplatīt vai pārdot.',
+    englishNote:
+      'Tālāk ir sniegta pilnā licences versija oriģinālvalodā — angļu valodā; tas ir juridiskais teksts.',
+    viewSource: 'Apskatīt GitHub vietnē',
   },
 }

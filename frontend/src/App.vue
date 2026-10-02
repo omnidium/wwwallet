@@ -8,6 +8,7 @@ import { useVaultStore } from '@/stores/vault'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { getStoredTheme, applyDomTheme } from '@/services/theme'
 import { getSharedCookie } from '@/services/sharedPrefs'
+import { isSupportedLocale, LOCALE_COOKIE_KEY } from '@/i18n'
 import { useIdleLock } from '@/composables/useIdleLock'
 import SettingsPanel from '@/components/SettingsPanel.vue'
 import AccountsView from '@/views/AccountsView.vue'
@@ -52,8 +53,8 @@ function resyncFromSharedCookies() {
   // (loadIntoStores, stores/vault.ts) is an authenticated, per-wallet choice
   // that deliberately takes precedence over this shared cross-origin cookie.
   if (vault.isUnlocked) return
-  const sharedLocale = getSharedCookie('wwwallet.locale')
-  if (sharedLocale && settingsLocale.languages.some((lang) => lang.id === sharedLocale)) {
+  const sharedLocale = getSharedCookie(LOCALE_COOKIE_KEY)
+  if (sharedLocale && isSupportedLocale(sharedLocale)) {
     settingsLocale.setLocale(sharedLocale)
   }
 }

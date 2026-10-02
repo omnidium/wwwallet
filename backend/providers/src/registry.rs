@@ -9,25 +9,46 @@ use crate::error::{ProviderError, ProviderResult};
 use crate::etherscan::EtherscanProvider;
 use crate::ethplorer::EthplorerProvider;
 use crate::fxrate::FrankfurterProvider;
+use crate::lifi::LifiProvider;
+use crate::public_cache::{self, Ttl};
 use crate::public_rpc::PublicRpcProvider;
 use crate::tokenlist::TokenListProvider;
 use crate::traits::{
-    AbiProvider, ActivityProvider, AllowanceProvider, FxRateProvider, NativePriceProvider,
+    AbiProvider, ActivityProvider, AllowanceProvider, BridgeProvider, BridgeQuoteRequest,
+    CoinPriceHistoryProvider,
+    CoinSearchProvider, FxHistoryProvider, FxRateProvider, NativePriceProvider,
     PriceHistoryProvider, SwapQuoteProvider, TokenMetadataProvider, TokenPriceProvider,
     TransactionBroadcaster, TransactionFeeProvider, TransactionPrepProvider,
     TransactionStatusProvider,
 };
 use crate::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, PriceHistory, SwapQuote, TokenListItem,
+    AddressActivity, BridgeQuote, BridgeStatus, CoinSearchResult, HistoricalPrice, ContractAbi, FxHistory, FxRates, NativePrice, PriceHistory,
+    SwapQuote, TokenListItem,
     TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 use crate::zerox::ZeroExProvider;
+
+// Shared-cache lifetimes for public market data (see public_cache.rs):
+// fresh = served without an upstream call; stale = still served if the
+// upstream call fails. Prices move, so their fresh windows are short;
+// slower data (daily FX, search results) keeps longer.
+const NATIVE_PRICE_TTL: Ttl = Ttl { fresh_secs: 60, stale_secs: 60 * 60 };
+const PRICE_HISTORY_TTL: Ttl = Ttl { fresh_secs: 5 * 60, stale_secs: 6 * 60 * 60 };
+const TOKEN_METADATA_TTL: Ttl = Ttl { fresh_secs: 10 * 60, stale_secs: 24 * 60 * 60 };
+const FX_RATES_TTL: Ttl = Ttl { fresh_secs: 10 * 60, stale_secs: 24 * 60 * 60 };
+const FX_HISTORY_TTL: Ttl = Ttl { fresh_secs: 60 * 60, stale_secs: 3 * 24 * 60 * 60 };
+// A past price or day's FX rate never changes — kept for as long as the
+// cache will hold it.
+const HISTORICAL_TTL: Ttl = Ttl { fresh_secs: 30 * 24 * 60 * 60, stale_secs: 30 * 24 * 60 * 60 };
+const COIN_SEARCH_TTL: Ttl = Ttl { fresh_secs: 60 * 60, stale_secs: 24 * 60 * 60 };
 
 pub struct ProviderConfig {
     pub alchemy_api_key: String,
     pub ethplorer_api_key: String,
     pub etherscan_api_key: String,
     pub zerox_api_key: String,
+    /// Optional: LI.FI quotes without one, at a lower rate limit.
+    pub lifi_api_key: Option<String>,
 }
 
 /// Aggregates every provider behind single-call methods the backend's HTTP
@@ -59,10 +80,15 @@ pub struct ProviderRegistry {
     tx_prep: Rc<dyn TransactionPrepProvider>,
     allowance: Rc<dyn AllowanceProvider>,
     swap: Rc<dyn SwapQuoteProvider>,
+    bridge: Rc<dyn BridgeProvider>,
     native_price: Rc<dyn NativePriceProvider>,
     native_price_fallback: Rc<dyn NativePriceProvider>,
     price_history: Rc<dyn PriceHistoryProvider>,
     price_history_fallback: Rc<dyn PriceHistoryProvider>,
+    coin_search: Rc<dyn CoinSearchProvider>,
+    coin_price_history: Rc<dyn CoinPriceHistoryProvider>,
+    coin_price_history_fallback: Rc<dyn CoinPriceHistoryProvider>,
+    fx_history: Rc<dyn FxHistoryProvider>,
     token_list: Rc<TokenListProvider>,
     rate_limiter_default: RateLimiter,
     rate_limiter_broadcast: RateLimiter,
@@ -88,12 +114,17 @@ impl ProviderRegistry {
             token_fallback: alchemy.clone(),
             token_price: alchemy.clone(),
             price_history: alchemy.clone(),
+            coin_price_history_fallback: alchemy.clone(),
             native_price_fallback: alchemy,
+            coin_search: Rc::new(CoinGeckoProvider::new()),
+            coin_price_history: Rc::new(CoinGeckoProvider::new()),
+            fx_history: Rc::new(FrankfurterProvider::new()),
             price_history_fallback: Rc::new(CoinGeckoProvider::new()),
             tokens: Rc::new(EthplorerProvider::new(config.ethplorer_api_key)),
             abi: Rc::new(EtherscanProvider::new(config.etherscan_api_key)),
             fx: Rc::new(FrankfurterProvider::new()),
             swap: Rc::new(ZeroExProvider::new(config.zerox_api_key)),
+            bridge: Rc::new(LifiProvider::new(config.lifi_api_key)),
             native_price: Rc::new(CoinGeckoProvider::new()),
             token_list: Rc::new(TokenListProvider::new()),
             rate_limiter_default,
@@ -177,6 +208,11 @@ impl ProviderRegistry {
         client_ip: &str,
     ) -> ProviderResult<TokenMetadata> {
         self.check_rate_limit(client_ip, "token_metadata").await?;
+        let key = format!("token:{}:{}", chain.alchemy_slug(), contract_address.to_lowercase());
+        public_cache::get_or_fetch(&key, TOKEN_METADATA_TTL, || self.fetch_token_metadata(chain, contract_address)).await
+    }
+
+    async fn fetch_token_metadata(&self, chain: ChainId, contract_address: &str) -> ProviderResult<TokenMetadata> {
         let mut metadata = self
             .tokens
             .token_metadata(chain, contract_address)
@@ -210,15 +246,85 @@ impl ProviderRegistry {
 
     pub async fn fx_rates(&self, base: &str, client_ip: &str) -> ProviderResult<FxRates> {
         self.check_rate_limit(client_ip, "fx_rates").await?;
-        self.fx.latest_rates(&base.to_uppercase()).await
+        let base = base.to_uppercase();
+        public_cache::get_or_fetch(&format!("fx-rates:{base}"), FX_RATES_TTL, || self.fx.latest_rates(&base)).await
+    }
+
+    /// Rates as published on a past date — see FxRateProvider::rates_on.
+    pub async fn fx_rates_on(&self, base: &str, date: &str, client_ip: &str) -> ProviderResult<FxRates> {
+        self.check_rate_limit(client_ip, "fx_rates").await?;
+        let base = base.to_uppercase();
+        public_cache::get_or_fetch(&format!("fx-rates:{base}:{date}"), HISTORICAL_TTL, || self.fx.rates_on(&base, date))
+            .await
+    }
+
+    /// An asset's USD price when a transaction was mined. Bucketed by the
+    /// hour (the finest sample available), so every transaction in the same
+    /// hour shares one cached lookup.
+    pub async fn historical_price(
+        &self,
+        chain: ChainId,
+        contract_address: Option<&str>,
+        unix_secs: i64,
+        client_ip: &str,
+    ) -> ProviderResult<HistoricalPrice> {
+        self.check_rate_limit(client_ip, "historical_price").await?;
+        let hour = unix_secs.div_euclid(3600);
+        let asset = match contract_address {
+            Some(address) => format!("{}:{}", chain.alchemy_slug(), address.to_lowercase()),
+            // Same as native_price: one entry per coin, not per chain.
+            None => format!("native:{}", chain.native_symbol()),
+        };
+        public_cache::get_or_fetch(&format!("price-at:{asset}:{hour}"), HISTORICAL_TTL, || async {
+            let usd = self.price_history.usd_price_at(chain, contract_address, hour * 3600 + 1800).await?;
+            Ok(HistoricalPrice { usd })
+        })
+        .await
+    }
+
+    pub async fn search_coins(&self, query: &str, client_ip: &str) -> ProviderResult<Vec<CoinSearchResult>> {
+        self.check_rate_limit(client_ip, "coin_search").await?;
+        let key = format!("coin-search:{}", query.to_lowercase());
+        public_cache::get_or_fetch(&key, COIN_SEARCH_TTL, || self.coin_search.search_coins(query)).await
+    }
+
+    /// CoinGecko by id first, then Alchemy by ticker — the same pairing (and
+    /// for the same keyless-rate-limit reason) as native_price.
+    pub async fn coin_price_history(
+        &self,
+        id: &str,
+        symbol: &str,
+        client_ip: &str,
+    ) -> ProviderResult<PriceHistory> {
+        self.check_rate_limit(client_ip, "coin_price_history").await?;
+        public_cache::get_or_fetch(&format!("coin-history:{id}"), PRICE_HISTORY_TTL, || async {
+            match self.coin_price_history.coin_price_history_24h(id, symbol).await {
+                Ok(history) => Ok(history),
+                Err(_) => self.coin_price_history_fallback.coin_price_history_24h(id, symbol).await,
+            }
+        })
+        .await
+    }
+
+    pub async fn fx_history(&self, base: &str, quote: &str, client_ip: &str) -> ProviderResult<FxHistory> {
+        self.check_rate_limit(client_ip, "fx_history").await?;
+        let (base, quote) = (base.to_uppercase(), quote.to_uppercase());
+        public_cache::get_or_fetch(&format!("fx-history:{base}/{quote}"), FX_HISTORY_TTL, || {
+            self.fx_history.fx_history(&base, &quote)
+        })
+        .await
     }
 
     pub async fn native_price(&self, chain: ChainId, client_ip: &str) -> ProviderResult<NativePrice> {
         self.check_rate_limit(client_ip, "native_price").await?;
-        match self.native_price.native_price(chain).await {
-            Ok(price) => Ok(price),
-            Err(_) => self.native_price_fallback.native_price(chain).await,
-        }
+        // By symbol, not chain: Ethereum and the ETH L2s share one entry.
+        public_cache::get_or_fetch(&format!("native-price:{}", chain.native_symbol()), NATIVE_PRICE_TTL, || async {
+            match self.native_price.native_price(chain).await {
+                Ok(price) => Ok(price),
+                Err(_) => self.native_price_fallback.native_price(chain).await,
+            }
+        })
+        .await
     }
 
     /// Alchemy first — it covers tokens on every chain as well as native
@@ -231,11 +337,19 @@ impl ProviderRegistry {
         client_ip: &str,
     ) -> ProviderResult<PriceHistory> {
         self.check_rate_limit(client_ip, "price_history").await?;
-        match self.price_history.price_history_24h(chain, contract_address).await {
-            Ok(history) => Ok(history),
-            Err(err) if contract_address.is_some() => Err(err),
-            Err(_) => self.price_history_fallback.price_history_24h(chain, None).await,
-        }
+        let key = match contract_address {
+            Some(address) => format!("price-history:{}:{}", chain.alchemy_slug(), address.to_lowercase()),
+            // Same as native_price: one entry per coin, not per chain.
+            None => format!("price-history:native:{}", chain.native_symbol()),
+        };
+        public_cache::get_or_fetch(&key, PRICE_HISTORY_TTL, || async {
+            match self.price_history.price_history_24h(chain, contract_address).await {
+                Ok(history) => Ok(history),
+                Err(err) if contract_address.is_some() => Err(err),
+                Err(_) => self.price_history_fallback.price_history_24h(chain, None).await,
+            }
+        })
+        .await
     }
 
     /// The chain's whole token list, for the swap picker's search. Searching
@@ -319,6 +433,20 @@ impl ProviderRegistry {
             buy_decimals,
         );
         Ok(quote)
+    }
+
+    /// A cross-chain transfer's route, fees and ready-to-sign transaction.
+    pub async fn bridge_quote(&self, request: &BridgeQuoteRequest<'_>) -> ProviderResult<BridgeQuote> {
+        self.bridge.quote(request).await
+    }
+
+    pub async fn bridge_status(
+        &self,
+        transaction_hash: &str,
+        from_chain: ChainId,
+        to_chain: ChainId,
+    ) -> ProviderResult<BridgeStatus> {
+        self.bridge.status(transaction_hash, from_chain, to_chain).await
     }
 
     /// Resolves an ERC-20's decimals, special-cased for the pseudo-address DEX

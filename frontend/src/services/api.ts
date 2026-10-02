@@ -1,6 +1,6 @@
 import { translatedError } from './errors'
-
-const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8787'
+import { API_BASE_URL as BASE_URL } from './apiBase'
+import { discardSessionToken, SESSION_HEADER, sessionToken } from './session'
 
 // Retried rather than surfaced immediately: 429 is our own rate limiter
 // (a wallet with many held tokens legitimately fires one request per token on
@@ -43,6 +43,15 @@ async function fetchWithRetry(input: string | URL, init?: RequestInit): Promise<
 // failing path and status for support/debugging.
 async function requestFailedError(res: Response, path: string): Promise<Error> {
   if (res.status === 429) return translatedError('errors.rateLimited')
+  // The backend's own per-provider budget (backend/providers/src/upstream_budget.rs).
+  if (res.status === 503) {
+    const code = await res
+      .clone()
+      .json()
+      .then((body: unknown) => (body as { code?: string } | null)?.code)
+      .catch(() => undefined)
+    if (code === 'busy') return translatedError('errors.serviceBusy')
+  }
   if (res.status === 422) {
     const code = await res
       .json()
@@ -50,20 +59,49 @@ async function requestFailedError(res: Response, path: string): Promise<Error> {
       .catch(() => undefined)
     if (code === 'no_liquidity') return translatedError('errors.noLiquidity')
     if (code === 'would_revert') return translatedError('errors.transactionWouldFail')
+    if (code === 'token_not_on_chain') {
+      const err = translatedError('errors.tokenNotOnChain')
+      err.code = code
+      return err
+    }
   }
   return translatedError('errors.requestFailed', { path, status: res.status })
+}
+
+async function sessionHeaders(headers: Record<string, string> = {}): Promise<Record<string, string>> {
+  const token = await sessionToken()
+  return token ? { ...headers, [SESSION_HEADER]: token } : headers
+}
+
+/**
+ * fetchWithRetry, carrying the session token (services/session.ts). If the
+ * backend refuses the token — expired, or the backend's secret changed — a
+ * fresh one is minted and the request retried once.
+ */
+async function fetchWithSession(input: string | URL, init: RequestInit = {}): Promise<Response> {
+  const baseHeaders = (init.headers ?? {}) as Record<string, string>
+  const res = await fetchWithRetry(input, { ...init, headers: await sessionHeaders(baseHeaders) })
+  if (res.status !== 401) return res
+  const code = await res
+    .clone()
+    .json()
+    .then((body: unknown) => (body as { code?: string } | null)?.code)
+    .catch(() => undefined)
+  if (code !== 'session_invalid' && code !== 'session_required') return res
+  discardSessionToken()
+  return fetchWithRetry(input, { ...init, headers: await sessionHeaders(baseHeaders) })
 }
 
 async function getJson<T>(path: string, query?: Record<string, string>): Promise<T> {
   const url = new URL(`${BASE_URL}${path}`)
   if (query) for (const [key, value] of Object.entries(query)) url.searchParams.set(key, value)
-  const res = await fetchWithRetry(url)
+  const res = await fetchWithSession(url)
   if (!res.ok) throw await requestFailedError(res, path)
   return res.json() as Promise<T>
 }
 
 async function postJson<T>(path: string, payload: unknown): Promise<T> {
-  const res = await fetchWithRetry(`${BASE_URL}${path}`, {
+  const res = await fetchWithSession(`${BASE_URL}${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -128,6 +166,26 @@ export interface NativePrice {
   usd: number
 }
 
+/** A hit from the chain-agnostic coin search (Bitcoin, Solana…) — see the backend's CoinSearchResult. */
+export interface CoinSearchResult {
+  /** The price source's coin id, e.g. "solana". */
+  id: string
+  symbol: string
+  name: string
+  logo_url: string | null
+  market_cap_rank: number | null
+}
+
+/** A currency pair's recent daily rates — see the backend's FxHistory. */
+export interface FxHistory {
+  base: string
+  quote: string
+  rate: number
+  change_1d_pct: number
+  /** One per business day over about a month, oldest first. */
+  points: number[]
+}
+
 /** An asset's USD price over the past 24h — see the backend's PriceHistory. */
 export interface PriceHistory {
   usd: number
@@ -173,6 +231,52 @@ export interface SwapFee {
   amount: string
 }
 
+/** A cross-chain transfer's route and ready-to-sign transaction — see the backend's BridgeQuote. */
+export interface BridgeQuote {
+  to: string
+  data: string
+  /** Decimal wei strings. */
+  value: string
+  gas_price: string
+  gas_limit: string
+  from_amount: string
+  to_amount: string
+  to_amount_min: string
+  /** ERC-20 spender to approve first; null when sending the native coin. */
+  approval_address: string | null
+  from_token: BridgeToken
+  to_token: BridgeToken
+  fees: BridgeFee[]
+  gas_cost_usd: number | null
+  execution_duration_secs: number
+  tool: string
+  tool_logo_url: string | null
+}
+
+export interface BridgeToken {
+  address: string
+  symbol: string
+  decimals: number
+  logo_url: string | null
+  usd_price: number | null
+}
+
+export interface BridgeFee {
+  name: string
+  symbol: string
+  amount: string
+  decimals: number
+  amount_usd: number | null
+  /** Already taken out of to_amount (true), or charged on top in the tx value (false). */
+  included: boolean
+}
+
+export interface BridgeStatus {
+  status: 'pending' | 'done' | 'failed'
+  substatus: string | null
+  receiving_tx_hash: string | null
+}
+
 export interface TokenListItem {
   address: string
   name: string
@@ -199,6 +303,18 @@ export const api = {
   tokenPriceHistory: (chain: ChainSlug, address: string) =>
     getJson<PriceHistory>(`/api/v1/chains/${chain}/token/${encodeURIComponent(address)}/price-history`),
   fxRates: (base = 'USD') => getJson<FxRates>('/api/v1/fx-rates', { base }),
+  /** Rates as published on a past "YYYY-MM-DD" (or the business day before). */
+  fxRatesOn: (date: string, base = 'USD') => getJson<FxRates>('/api/v1/fx-rates', { base, date }),
+  /** An asset's USD price when a transaction was mined; `token` null for the native coin. */
+  historicalPrice: (chain: ChainSlug, token: string | null, unixSecs: number) =>
+    getJson<{ usd: number }>(`/api/v1/chains/${chain}/historical-price`, {
+      timestamp: String(Math.floor(unixSecs)),
+      ...(token ? { token } : {}),
+    }),
+  searchCoins: (query: string) => getJson<CoinSearchResult[]>('/api/v1/coins/search', { q: query }),
+  coinPriceHistory: (id: string, symbol: string) =>
+    getJson<PriceHistory>(`/api/v1/coins/${encodeURIComponent(id)}/price-history`, { symbol }),
+  fxHistory: (base: string, quote: string) => getJson<FxHistory>('/api/v1/fx-history', { base, quote }),
   broadcastTransaction: (chain: ChainSlug, rawTransaction: string) =>
     postJson<{ transaction_hash: string }>(`/api/v1/chains/${chain}/broadcast`, {
       raw_transaction: rawTransaction,
@@ -222,6 +338,26 @@ export const api = {
       sell_amount: sellAmountWei,
       taker_address: takerAddress,
     }),
+  bridgeQuote: (params: {
+    fromChain: ChainSlug
+    toChain: ChainSlug
+    fromToken: string
+    toToken: string
+    fromAmountWei: string
+    fromAddress: string
+    toAddress: string
+  }) =>
+    getJson<BridgeQuote>('/api/v1/bridge/quote', {
+      from_chain: params.fromChain,
+      to_chain: params.toChain,
+      from_token: params.fromToken,
+      to_token: params.toToken,
+      from_amount: params.fromAmountWei,
+      from_address: params.fromAddress,
+      to_address: params.toAddress,
+    }),
+  bridgeStatus: (hash: string, fromChain: ChainSlug, toChain: ChainSlug) =>
+    getJson<BridgeStatus>('/api/v1/bridge/status', { tx_hash: hash, from_chain: fromChain, to_chain: toChain }),
   /** The chain's whole token list — searched client-side, see services/tokenSearch.ts. */
   tokenList: (chain: ChainSlug) => getJson<TokenListItem[]>(`/api/v1/chains/${chain}/tokens`),
 }

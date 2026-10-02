@@ -24,6 +24,7 @@ import {
 } from '@/services/secureCache'
 import { createConcurrencyLimiter } from '@/services/concurrencyLimit'
 import { tokenUsdValue } from '@/services/money'
+import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import {
   DEFAULT_TRANSACTION_BATCH_SIZE,
   DUST_THRESHOLD_USD,
@@ -48,6 +49,23 @@ const TRANSACTION_FEE_PREFIX = 'tx-fee:'
 // above. Nowhere else to get them from afterwards: they're taken inside the
 // swap contract, not as transfers the indexer reports.
 const SWAP_FEES_PREFIX = 'swap-fees:'
+// Prices as of when a transaction was mined, keyed like the above — for the
+// details pane's fiat values. Fetched only when a transaction is opened, and
+// never again once found: a past price doesn't change.
+const TX_RATES_PREFIX = 'tx-rates:'
+
+/** What a transaction's assets were worth when it was mined. */
+export interface TransactionRates {
+  /** USD price per asset, keyed by txRateAsset; an asset with no price found is absent. */
+  usd: Record<string, number>
+  /** USD → currency rates on the day it was mined; null when none were found. */
+  fx: Record<string, number> | null
+}
+
+/** A transaction asset's key in TransactionRates.usd. */
+export function txRateAsset(contractAddress: string | null): string {
+  return contractAddress?.toLowerCase() ?? 'native'
+}
 
 /** A swap's aggregator fee as quoted, already resolved to its token's units. */
 export interface RecordedSwapFee {
@@ -145,6 +163,10 @@ export const useChainDataStore = defineStore('chainData', () => {
   const priceHistoryByAsset = ref<Record<string, PriceHistory>>({})
   const transactionFeeByKey = ref<Record<string, TransactionFee>>({})
   const swapFeesByKey = ref<Record<string, RecordedSwapFee[]>>({})
+  const transactionRatesByKey = ref<Record<string, TransactionRates>>({})
+  // Lookups that found nothing this session — not retried until the next
+  // one, so reopening the same transaction doesn't re-ask every time.
+  const transactionRateMisses = new Set<string>()
   // A count rather than a flag: the same account can be refreshing from two
   // places at once (the periodic refresh plus a manual one, or SendView's own
   // load), and the first to finish mustn't clear the spinner for the other.
@@ -190,6 +212,8 @@ export const useChainDataStore = defineStore('chainData', () => {
       transactionFeeByKey.value[key.slice(TRANSACTION_FEE_PREFIX.length)] ??= data as TransactionFee
     } else if (key.startsWith(SWAP_FEES_PREFIX)) {
       swapFeesByKey.value[key.slice(SWAP_FEES_PREFIX.length)] ??= data as RecordedSwapFee[]
+    } else if (key.startsWith(TX_RATES_PREFIX)) {
+      transactionRatesByKey.value[key.slice(TX_RATES_PREFIX.length)] ??= data as TransactionRates
     }
   }
 
@@ -234,6 +258,8 @@ export const useChainDataStore = defineStore('chainData', () => {
     priceHistoryByAsset.value = {}
     transactionFeeByKey.value = {}
     swapFeesByKey.value = {}
+    transactionRatesByKey.value = {}
+    transactionRateMisses.clear()
     loadingCounts.value = {}
     loadingMoreKeys.value = new Set()
     tokenMetadataCheckedAt.clear()
@@ -387,11 +413,32 @@ export const useChainDataStore = defineStore('chainData', () => {
     persist(FX_RATES_PREFIX + base, fresh)
   }
 
+  // Ethereum and the ETH L2s all price the same coin — one request per
+  // native symbol, shared by every chain using it while in flight and for a
+  // minute after, rather than one per chain. The price providers behind the
+  // backend have tight free-tier quotas (Alchemy: 300 price lookups an hour).
+  // A failed request isn't shared, so the next caller retries.
+  const NATIVE_PRICE_REUSE_MS = 60_000
+  const nativePriceRequests = new Map<string, { at: number; request: Promise<NativePrice> }>()
+
   async function loadNativePrice(chain: ChainSlug) {
     await hydrate()
-    const fresh = await api.nativePrice(chain)
-    nativePriceUsdByChain.value[chain] = fresh.usd
-    persist(NATIVE_PRICE_PREFIX + chain, fresh)
+    const symbol = NATIVE_ASSETS[chain].symbol
+    let entry = nativePriceRequests.get(symbol)
+    if (!entry || Date.now() - entry.at > NATIVE_PRICE_REUSE_MS) {
+      const created = { at: Date.now(), request: api.nativePrice(chain) }
+      created.request.catch(() => {
+        if (nativePriceRequests.get(symbol) === created) nativePriceRequests.delete(symbol)
+      })
+      nativePriceRequests.set(symbol, created)
+      entry = created
+    }
+    const fresh = await entry.request
+    for (const sibling of Object.keys(NATIVE_ASSETS) as ChainSlug[]) {
+      if (NATIVE_ASSETS[sibling].symbol !== symbol) continue
+      nativePriceUsdByChain.value[sibling] = fresh.usd
+      persist(NATIVE_PRICE_PREFIX + sibling, fresh)
+    }
   }
 
   /**
@@ -546,6 +593,52 @@ export const useChainDataStore = defineStore('chainData', () => {
     remember(transactionFeeByKey, TRANSACTION_FEE_PREFIX, key, fee)
   }
 
+  /**
+   * Looks up what a mined transaction's assets — the amount, a swap's other
+   * leg, and the native coin its fee was paid in — were worth in USD when it
+   * was mined, and that day's FX rates. Only what's still missing is asked
+   * for; each lookup failing on its own just leaves that value out.
+   */
+  async function ensureTransactionRates(chain: ChainSlug, txn: Transaction) {
+    if (!txn.timestamp) return
+    await hydrate()
+    const key = keyFor(chain, txn.hash)
+    const unixSecs = new Date(txn.timestamp).getTime() / 1000
+    const known = transactionRatesByKey.value[key] ?? { usd: {}, fx: null }
+    // The native coin always — the fee is paid in it.
+    const contracts: (string | null)[] = [null, txn.contract_address]
+    if (txn.counter_asset !== null) contracts.push(txn.counter_contract_address)
+    const assets = [...new Map(contracts.map((c) => [txRateAsset(c), c])).values()]
+    const missingAssets = assets.filter((c) => {
+      const asset = txRateAsset(c)
+      return known.usd[asset] === undefined && !transactionRateMisses.has(`${key}:${asset}`)
+    })
+    const fxMissing = known.fx === null && !transactionRateMisses.has(`${key}:fx`)
+    if (!missingAssets.length && !fxMissing) return
+
+    const usd = { ...known.usd }
+    let fx = known.fx
+    await Promise.all([
+      ...missingAssets.map(async (c) => {
+        const asset = txRateAsset(c)
+        try {
+          usd[asset] = (await api.historicalPrice(chain, c, unixSecs)).usd
+        } catch {
+          transactionRateMisses.add(`${key}:${asset}`)
+        }
+      }),
+      fxMissing &&
+        (async () => {
+          try {
+            fx = (await api.fxRatesOn(txn.timestamp!.slice(0, 10))).rates
+          } catch {
+            transactionRateMisses.add(`${key}:fx`)
+          }
+        })(),
+    ])
+    remember(transactionRatesByKey, TX_RATES_PREFIX, key, { usd, fx })
+  }
+
   function recordSwapFees(chain: ChainSlug, hash: string, fees: RecordedSwapFee[]) {
     if (fees.length === 0) return
     const key = keyFor(chain, hash)
@@ -576,6 +669,8 @@ export const useChainDataStore = defineStore('chainData', () => {
     loadPriceHistory,
     ensureTransactionFee,
     recordSwapFees,
+    transactionRatesByKey,
+    ensureTransactionRates,
     clearPersonalData,
     prependTransaction,
     keyFor,

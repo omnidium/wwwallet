@@ -7,6 +7,7 @@ export default {
     launch: 'Uruchom portfel',
     home: 'Powrót do góry strony',
     sectionNavLabel: 'Nawigacja po sekcjach',
+    principles: 'Zasady',
   },
   settings: {
     open: 'Ustawienia',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Światło',
     themeDark: 'Ciemny',
     language: 'Język',
+    search: 'Wyszukiwanie',
+    noMatches: 'Brak wyników',
   },
   hero: {
-    eyebrow: 'Osobisty portfel Ethereum bez funkcji przechowywania środków',
+    eyebrow: 'Bezpłatny portfel Ethereum bez funkcji przechowywania środków',
     heading1: 'Twoje klucze.',
     heading2: 'Twoje urządzenie.',
-    heading3: 'Twój portfel.',
-    lede: 'wwwallet szyfruje Twój portfel na Twoim własnym urządzeniu i nigdy nie przesyła Twoich kluczy, haseł ani frazy odzyskiwania do żadnego innego miejsca. Nie musisz zakładać konta. Nie ma serwera, który można by zhakować. Tylko Ty i Twoje kryptowaluty.',
+    heading3: 'Bezpłatne dla wszystkich.',
+    lede: 'wwwallet działa w przeglądarce, a klucze są przechowywane w zaszyfrowanej postaci na Twoim urządzeniu. Nie trzeba zakładać konta, nic nie trzeba płacić i nie ma reklam — to po prostu portfel, który działa tak samo dla wszystkich.',
     ctaPrimary: 'Uruchom portfel',
     ctaSecondary: 'Zobacz, jak to działa',
+    note: 'Bez rejestracji · Bez reklam · Bez śledzenia · 31 języków',
   },
   wallet: {
     eyebrow: 'Portfel',
@@ -108,20 +112,40 @@ export default {
     heading: 'Najczęściej zadawane pytania',
     items: [
       {
-        q: 'Czy moje hasło odzyskiwania wystarczy, żeby odzyskać portfel?',
-        a: 'Nie sama w sobie. Fraza odzyskiwania odblokowuje zaszyfrowany sejf, ale sam sejf znajduje się wyłącznie na Twoim urządzeniu. Jeśli zgubisz lub wyczyścisz to urządzenie, nie tworząc wcześniej kopii zapasowej, fraza nie będzie miała czego odblokować. Zawsze łącz frazę odzyskiwania z kopią zapasową na Dysku Google lub w innym miejscu — zobacz następne pytanie.',
+        q: 'Czy wwwallet jest naprawdę darmowy?',
+        a: 'Tak. Korzystanie z serwisu jest bezpłatne, nie ma wersji premium ani żadnych treści dostępnych wyłącznie po opłaceniu, a wwwallet nie nalicza żadnych opłat za wysyłanie ani wymianę środków. Jedynym nieuniknionym kosztem jest opłata transakcyjna (gas) pobierana przez samą sieć, która trafia do sieci, a nie do wwwallet. Oferty wymiany pochodzą z agregatora giełdowego 0x, który w przypadku niektórych transakcji może naliczać własną opłatę — każda taka opłata jest widoczna na ekranie podsumowania przed potwierdzeniem transakcji.',
+      },
+      {
+        q: 'Czy są tam reklamy, moduły śledzące lub narzędzia analityczne?',
+        a: 'Nie. Witryna wwwallet nie wyświetla reklam, nie korzysta ze skryptów analitycznych ani śledzących i nie tworzy profilu użytkownika. Nie ma tam konta, więc nie ma do czego go przypisać.',
+      },
+      {
+        q: 'Czy do korzystania z tej usługi potrzebne jest konto lub dowód tożsamości?',
+        a: 'Nie. Nie trzeba się rejestrować, podawać adresu e-mail, numeru telefonu ani przechodzić weryfikacji tożsamości — wystarczy utworzyć portfel na swoim urządzeniu i zacząć z niego korzystać.',
+      },
+      {
+        q: 'Skoro to nic nie kosztuje, to w jaki sposób wwwallet się finansuje?',
+        a: 'Serwis nie czerpie zysków od użytkowników — nie pobiera opłat, nie wyświetla reklam ani nie sprzedaje danych. Koszty eksploatacji są z założenia niskie: sam portfel działa w przeglądarce, a serwer przesyła jedynie publiczne dane z łańcucha bloków oraz dane dotyczące cen.',
+      },
+      {
+        q: 'Czy ktoś może zablokować mój portfel?',
+        a: 'Nie ma tu żadnego konta, więc wwwallet – ani nikt inny – nie ma czego zablokować. Twoje klucze nigdy nie opuszczają Twojego urządzenia, a transakcje są tam podpisywane przed wysłaniem do sieci. Twoje środki znajdują się w sieci Ethereum, a nie w wwwallet: w menu każdego konta możesz wyświetlić jego klucz prywatny lub frazę odzyskiwania i zaimportować je do innego portfela Ethereum w dowolnym momencie.',
+      },
+      {
+        q: 'Czy hasło odzyskiwania wystarczy, żebym odzyskał portfel?',
+        a: 'Nie sama w sobie. Twoja fraza odzyskiwania odblokowuje zaszyfrowany sejf, ale sam sejf znajduje się wyłącznie na Twoim urządzeniu. Jeśli zgubisz lub wyczyścisz to urządzenie, nie tworząc wcześniej kopii zapasowej, fraza nie będzie miała czego odblokować. Zawsze łącz swoją frazę odzyskiwania z kopią zapasową na Dysku Google lub w innym miejscu — zobacz następne pytanie.',
       },
       {
         q: 'Jak wykonać kopię zapasową mojego portfela?',
-        a: 'W sekcji „Ustawienia” utwórz kopię zapasową zaszyfrowanego sejfu na swoim dysku Google Drive — zostanie ona zapisana w prywatnym folderze dostępnym wyłącznie dla aplikacji, do którego wwwallet nie ma wglądu — lub jako plik, który możesz pobrać i przechowywać samodzielnie. Należy to robić za każdym razem, gdy konfigurujesz portfel lub dodajesz nowe konta.',
+        a: 'W sekcji „Ustawienia” utwórz kopię zapasową zaszyfrowanego sejfu na swoim dysku Google Drive — zostanie ona zapisana w prywatnym folderze dostępnym wyłącznie dla aplikacji, do którego wwwallet nie ma wglądu — lub jako plik, który możesz pobrać i przechowywać samodzielnie. Wykonaj tę czynność za każdym razem, gdy konfigurujesz portfel lub dodajesz nowe konta.',
       },
       {
         q: 'Czy mogę korzystać z wwwallet na więcej niż jednym urządzeniu?',
-        a: 'Tak, ale synchronizacja nie odbywa się automatycznie — każde urządzenie posiada własny lokalny sejf. Aby korzystać z wwwallet na nowym urządzeniu, przywróć je z kopii zapasowej na Dysku lub z pliku, a następnie odblokuj za pomocą frazy odzyskiwania.',
+        a: 'Tak, ale synchronizacja nie odbywa się automatycznie — każde urządzenie posiada własny lokalny sejf. Aby korzystać z aplikacji wwwallet na nowym urządzeniu, przywróć ją na tym urządzeniu z kopii zapasowej na Dysku lub z pliku, a następnie odblokuj za pomocą frazy odzyskiwania.',
       },
       {
         q: 'Co się stanie, jeśli zgubię urządzenie i nigdy nie wykonałem kopii zapasowej?',
-        a: 'Twoich środków nie da się odzyskać. Tak zostało zaprojektowane: wwwallet nie posiada systemu kont i nigdzie nie przechowuje kopii Twojego sejfu, więc nikt — w tym my — nie może go dla Ciebie odtworzyć. Jest to cena, jaką trzeba zapłacić za portfel, do którego dostęp masz wyłącznie Ty.',
+        a: 'Twoich środków nie da się odzyskać. Tak zostało zaprojektowane: wwwallet nie posiada systemu kont i nigdzie nie przechowuje kopii Twojego skarbca, więc nikt — w tym my — nie może go dla Ciebie odtworzyć. To cena, jaką trzeba zapłacić za portfel, do którego dostęp masz wyłącznie Ty.',
       },
       {
         q: 'Czy klucze dostępu (Face ID / Touch ID) są przenoszone na nowe urządzenie?',
@@ -129,19 +153,19 @@ export default {
       },
       {
         q: 'Czy wwwallet jest oprogramowaniem typu open source?',
-        a: 'Nie — kod źródłowy jest dostępny. Pełny kod źródłowy jest opublikowany na GitHubie, więc każdy może go przeczytać, przejrzeć i poddać audytowi, ale nie jest to oprogramowanie typu open source: kod jest objęty licencją PolyForm Strict License 1.0.0.',
+        a: 'Nie — kod źródłowy jest dostępny. Pełna wersja kodu źródłowego jest opublikowana na GitHubie, więc każdy może ją przeczytać, przejrzeć i poddać audytowi, ale nie jest to oprogramowanie typu open source: kod jest objęty licencją PolyForm Strict License 1.0.0.',
       },
       {
         q: 'Co mogę robić z tym kodem?',
-        a: 'Możesz zapoznać się z całą treścią i ją sprawdzić, a także korzystać z niezmodyfikowanej kopii w celach niekomercyjnych, takich jak nauka własna, badania i testowanie. Nie wolno jej rozpowszechniać, modyfikować ani tworzyć dzieł pochodnych (w tym rozgałęzień), ani wykorzystywać jej w celach komercyjnych. Jeśli potrzebujesz czegoś, na co licencja nie zezwala, skontaktuj się z właścicielem praw autorskich w celu uzyskania odrębnej licencji.',
+        a: 'Możesz zapoznać się z całą treścią i ją zweryfikować, a także korzystać z niezmodyfikowanej kopii w celach niekomercyjnych, takich jak nauka własna, badania i testowanie. Nie wolno jej rozpowszechniać, modyfikować ani tworzyć dzieł pochodnych (w tym rozgałęzień), ani też wykorzystywać jej w celach komercyjnych. Jeśli potrzebujesz czegoś, na co licencja nie zezwala, skontaktuj się z właścicielem praw autorskich w celu uzyskania oddzielnej licencji.',
       },
       {
-        q: 'Czy korzystanie z serwisu wwwallet jest bezpieczne? Czy przysługuje jakaś gwarancja?',
-        a: 'wwwallet to oprogramowanie bez powiernictwa, udostępniane „tak jak jest”, bez jakiejkolwiek gwarancji. Tylko Ty masz kontrolę nad swoimi kluczami i środkami — nikt, w tym my, nie może odzyskać utraconej frazy odzyskiwania ani kopii zapasowej, cofnąć transakcji ani zrekompensować Ci strat. Korzystaj wyłącznie ze środków, których utratę możesz sobie pozwolić, dokładnie sprawdzaj adresy i sieci przed wysłaniem, a żadna z zawartych tu informacji nie stanowi porady finansowej, inwestycyjnej, prawnej ani podatkowej.',
+        q: 'Czy korzystanie z serwisu wwwallet jest bezpieczne? Czy istnieje jakakolwiek gwarancja?',
+        a: 'wwwallet to oprogramowanie bez powiernictwa, udostępniane „tak jak jest”, bez jakiejkolwiek gwarancji. Tylko Ty masz kontrolę nad swoimi kluczami i środkami — nikt, w tym my, nie może odzyskać utraconej frazy odzyskiwania ani kopii zapasowej, cofnąć transakcji ani zrekompensować Ci strat. Korzystaj wyłącznie ze środków, których utratę możesz sobie pozwolić, dokładnie sprawdzaj adresy i sieci przed wysłaniem, a żadna z informacji zawartych w niniejszym dokumencie nie stanowi porady finansowej, inwestycyjnej, prawnej ani podatkowej.',
       },
       {
         q: 'Jakie sieci obsługuje wwwallet?',
-        a: 'Sieć główna Ethereum oraz sieci warstwy drugiej: Polygon, Arbitrum, Base i Optimism — wszystko z tego samego zestawu kont.',
+        a: 'Sieć główna Ethereum oraz sieci warstwy drugiej: Polygon, Arbitrum, Base i Optimism — wszystkie z tego samego zestawu kont.',
       },
       {
         q: 'Jak doładować portfel?',
@@ -149,20 +173,70 @@ export default {
       },
       {
         q: 'Co mogę zrobić za pomocą wwwallet?',
-        a: 'Wyślij: przelej ETH lub dowolny token na adres, który wkleisz, zeskanujesz z kodu QR lub wybierzesz spośród własnych kont, a następnie sprawdź szczegóły przed potwierdzeniem. Wymiana: wymień jeden token na inny w tej samej sieci w zakładce „Wymiana”, gdzie od razu wyświetla się kurs wymiany i szacunkowa opłata. Odbiór: wyświetl swój adres w postaci kodu QR. Możesz również sprawdzić swoje salda w USD oraz historię transakcji we wszystkich obsługiwanych sieciach.',
+        a: 'Wyślij: przekaż ETH lub dowolny token na adres, który wkleisz, zeskanujesz z kodu QR lub wybierzesz spośród swoich kont, a następnie sprawdź szczegóły przed potwierdzeniem. Wymiana: wymień jeden token na inny w tej samej sieci w zakładce „Wymiana”, gdzie od razu wyświetlana jest oferta i szacunkowa opłata. Odbiór: wyświetl swój adres w postaci kodu QR. Możesz również sprawdzić swoje salda w USD oraz historię transakcji we wszystkich obsługiwanych sieciach.',
       },
       {
         q: 'Co serwis wwwallet wie o mnie?',
-        a: 'Nie ma tu nic, co pozwoliłoby zidentyfikować użytkownika. Nie ma konta, logowania ani bazy danych. Dane dotyczące salda i cen są pobierane za pośrednictwem własnego zaplecza serwisu wwwallet, a nie poprzez bezpośrednie połączenie przeglądarki z zewnętrznymi dostawcami, a zaplecze to nigdy nie ma dostępu do kluczy, haseł ani frazy odzyskiwania użytkownika.',
+        a: 'Nie ma tu żadnych danych umożliwiających identyfikację użytkownika. Nie ma konta, logowania ani bazy danych. Dane dotyczące salda i kursów są pobierane za pośrednictwem własnego zaplecza serwisu wwwallet, a nie poprzez bezpośrednie połączenie przeglądarki z zewnętrznymi dostawcami, a zaplecze to nigdy nie ma wglądu w klucze, hasła ani frazę odzyskiwania użytkownika.',
       },
     ],
   },
   footer: {
-    tagline: 'Osobisty portfel Ethereum bez funkcji przechowywania środków.',
-    sourceLink: 'Zobacz kod źródłowy na GitHubie',
+    tagline: 'Bezpłatny portfel Ethereum bez funkcji przechowywania środków, dostępny dla każdego.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Na licencji PolyForm Strict 1.0.0',
     disclaimer:
       'Oprogramowanie nieposiadające funkcji przechowywania środków jest udostępniane „tak jak jest”, bez gwarancji. Nie stanowi to porady finansowej. Użytkownik ponosi wyłączną odpowiedzialność za swoje klucze i środki.',
+  },
+  principles: {
+    eyebrow: 'Zasady',
+    heading: 'Bezpłatny, otwarty i stworzony z myślą o każdym',
+    lede: 'Portfel powinien być narzędziem, z którego korzystasz, a nie biznesem opartym na swoich użytkownikach. Właśnie na tych zasadach opiera się działalność wwwallet.',
+    items: [
+      {
+        title: 'Za darmo, bez żadnych haczyków',
+        body: 'Żadnych opłat, żadnego planu premium, żadnych płatnych funkcji. wwwallet nie nalicza żadnych własnych opłat — jedynym kosztem jest opłata transakcyjna pobierana przez samą sieć.',
+      },
+      {
+        title: 'Bez reklam, bez śledzenia',
+        body: 'Żadnych reklam, żadnych narzędzi analitycznych, żadnych skryptów śledzących ani sprzedaży danych jakimkolwiek podmiotom. Po pierwsze, nie istnieje żaden profil użytkownika, który można by sprzedać.',
+      },
+      {
+        title: 'Bez rejestracji',
+        body: 'Nie trzeba podawać adresu e-mail, numeru telefonu ani potwierdzać tożsamości. Wystarczy otworzyć aplikację, założyć portfel i gotowe.',
+      },
+      {
+        title: 'Klucze pozostają przy tobie',
+        body: 'Klucze są generowane i szyfrowane na Twoim urządzeniu i nigdy go nie opuszczają. wwwallet nie ma do nich wglądu, nie może przenosić Twoich środków ani zablokować Ci dostępu.',
+      },
+      {
+        title: 'Działa wszędzie',
+        body: 'Działa w każdej nowoczesnej przeglądarce na telefonie lub komputerze i instaluje się jak aplikacja — nie trzeba mieć konta w sklepie z aplikacjami.',
+      },
+      {
+        title: 'W 31 językach',
+        body: 'Korzystaj z niego w języku, który najbardziej Ci odpowiada, w trybie jasnym lub ciemnym.',
+      },
+      {
+        title: 'Kod w przestrzeni publicznej',
+        body: 'Pełny kod źródłowy został opublikowany, aby każdy mógł go przeczytać i poddać weryfikacji. Jest to kod dostępny, a nie open source — w sekcji FAQ wyjaśniono, na co zezwala licencja.',
+      },
+      {
+        title: 'Nie ma czego wyłączać',
+        body: 'Nie ma tu żadnych kont, które mogłyby zostać zablokowane. Twoje środki znajdują się bezpośrednio w sieci Ethereum, a klucz do każdego konta można w dowolnym momencie przenieść do innego portfela.',
+      },
+    ],
+  },
+  license: {
+    title: 'Licencja',
+    close: 'Zamknij',
+    summaryTitle: 'Mówiąc prostym językiem',
+    canUse:
+      'Z serwisu wwwallet można korzystać bezpłatnie do celów osobistych i innych celów niekomercyjnych.',
+    canRead: 'Można przeczytać i sprawdzić każdy wiersz jego kodu źródłowego.',
+    cannot: 'Nie wolno jej kopiować, modyfikować, rozpowszechniać ani sprzedawać.',
+    englishNote:
+      'Poniżej zamieszczono pełną treść licencji w oryginalnej wersji angielskiej — jest to tekst prawny.',
+    viewSource: 'Zobacz na GitHubie',
   },
 }

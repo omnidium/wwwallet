@@ -7,6 +7,7 @@ export default {
     launch: 'Portemonnee starten',
     home: 'Terug naar boven',
     sectionNavLabel: 'Navigatie door de rubrieken',
+    principles: 'Beginselen',
   },
   settings: {
     open: 'Instellingen',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Licht',
     themeDark: 'Donker',
     language: 'Taal',
+    search: 'Zoeken',
+    noMatches: 'Geen resultaten',
   },
   hero: {
-    eyebrow: 'Een persoonlijke Ethereum-wallet zonder bewaarfunctie',
+    eyebrow: 'Een gratis Ethereum-wallet zonder bewaring',
     heading1: 'Je sleutels.',
-    heading2: 'Uw apparaat.',
-    heading3: 'Je portemonnee.',
-    lede: 'wwwallet versleutelt je wallet op je eigen apparaat en verstuurt je sleutels, wachtwoorden of herstelzin nooit naar een andere locatie. Je hoeft geen account aan te maken. Er is geen server die gehackt kan worden. Alleen jij en je crypto.',
+    heading2: 'Je apparaat.',
+    heading3: 'Gratis voor iedereen.',
+    lede: 'wwwallet draait in je browser en bewaart je sleutels versleuteld op je eigen apparaat. Je hoeft geen account aan te maken, niets te betalen en er zijn geen advertenties — gewoon een portemonnee die voor iedereen op dezelfde manier werkt.',
     ctaPrimary: 'Portemonnee openen',
     ctaSecondary: 'Bekijk hoe het werkt',
+    note: 'Geen registratie · Geen advertenties · Geen tracking · 31 talen',
   },
   wallet: {
     eyebrow: 'Portemonnee',
@@ -107,23 +111,43 @@ export default {
     heading: 'Veelgestelde vragen',
     items: [
       {
+        q: 'Is wwwallet echt gratis?',
+        a: 'Ja. Het gebruik is gratis, er is geen premium-abonnement en er is niets achter een betaalmuur, en wwwallet rekent geen extra kosten aan voor wat je ook verstuurt of ruilt. De enige onvermijdelijke kosten zijn de transactiekosten (gas) van het netwerk zelf, die naar het netwerk gaan en niet naar wwwallet. Ruilkoersen zijn afkomstig van de 0x-beursaggregator, die bij sommige transacties een eigen vergoeding in rekening kan brengen — een dergelijke vergoeding wordt weergegeven op het bevestigingsscherm voordat je de transactie bevestigt.',
+      },
+      {
+        q: 'Zijn er advertenties, trackers of analyse-instrumenten?',
+        a: 'Nee. wwwallet toont geen advertenties, gebruikt geen analyse- of trackingscripts en stelt geen profiel van je samen. Er is geen account, dus er is niets waaraan je iets kunt koppelen.',
+      },
+      {
+        q: 'Heb ik een account of een identiteitsbewijs nodig om er gebruik van te maken?',
+        a: 'Nee. Je hoeft je niet te registreren en er is geen e-mailadres, telefoonnummer of identiteitscontrole nodig — je maakt gewoon een wallet aan op je apparaat en kunt deze meteen gebruiken.',
+      },
+      {
+        q: 'Als het gratis is, hoe verdient wwwallet dan geld?',
+        a: 'Het verdient geen geld aan zijn gebruikers — geen kosten, geen advertenties, geen verkoop van gegevens. De exploitatiekosten worden bewust laag gehouden: de wallet zelf draait in je browser en de backend geeft alleen openbare blockchain- en prijsgegevens door.',
+      },
+      {
+        q: 'Kan iemand mijn portemonnee blokkeren?',
+        a: 'Er is geen account, dus er valt niets te bevriezen voor wwwallet — of wie dan ook. Je sleutels verlaten je apparaat nooit, en transacties worden daar ondertekend voordat ze naar het netwerk worden verzonden. Je saldo staat op Ethereum, niet in wwwallet: je kunt de privésleutel of herstelzin van elke account bekijken via het menu en deze op elk gewenst moment importeren in een andere Ethereum-portemonnee.',
+      },
+      {
         q: 'Is mijn herstelzin voldoende om mijn portemonnee terug te krijgen?',
-        a: 'Op zichzelf niet. Je herstelzin ontgrendelt je versleutelde kluis, maar de kluis zelf staat alleen op je apparaat. Als je dat apparaat kwijtraakt of wist zonder ooit een back-up te hebben gemaakt, is er niets meer dat de herstelzin kan ontgrendelen. Zorg er altijd voor dat je je herstelzin combineert met een back-up op Google Drive of in een bestand — zie de volgende vraag.',
+        a: 'Op zichzelf niet. Je herstelzin ontgrendelt je versleutelde kluis, maar de kluis zelf staat alleen op je apparaat. Als je dat apparaat kwijtraakt of wist zonder ooit een back-up te hebben gemaakt, is er niets meer over dat met de herstelzin kan worden ontgrendeld. Zorg er altijd voor dat je je herstelzin combineert met een back-up op Google Drive of in een bestand — zie de volgende vraag.',
       },
       {
         q: 'Hoe maak ik een back-up van mijn wallet?',
-        a: 'Maak vanuit ‘Instellingen’ een back-up van je versleutelde kluis naar je eigen Google Drive — opgeslagen in een privé-map die alleen voor de app bestemd is en waarvan wwwallet de rest niet kan zien — of als een bestand dat je downloadt en zelf bewaart. Doe dit telkens wanneer je een portemonnee instelt of nieuwe rekeningen toevoegt.',
+        a: 'Maak via ‘Instellingen’ een back-up van je versleutelde kluis naar je eigen Google Drive — opgeslagen in een privé-map die alleen voor de app toegankelijk is en waarvan wwwallet de rest niet kan zien — of als een bestand dat je downloadt en zelf bewaart. Doe dit telkens wanneer je een portemonnee instelt of nieuwe rekeningen toevoegt.',
       },
       {
         q: 'Kan ik wwwallet op meer dan één apparaat gebruiken?',
-        a: 'Ja, maar het wordt niet automatisch gesynchroniseerd — elk apparaat heeft zijn eigen lokale kluis. Om wwwallet op een nieuw apparaat te gebruiken, moet je het daar herstellen vanuit een back-up op Drive of in een bestand, en het vervolgens ontgrendelen met je herstelzin.',
+        a: 'Ja, maar het wordt niet automatisch gesynchroniseerd — elk apparaat heeft zijn eigen lokale kluis. Om wwwallet op een nieuw apparaat te gebruiken, moet je het daar herstellen vanuit een back-up op Drive of in een bestand, en vervolgens ontgrendelen met je herstelzin.',
       },
       {
         q: 'Wat gebeurt er als ik mijn apparaat kwijtraak en er nooit een back-up van heb gemaakt?',
-        a: 'Uw geld is onherstelbaar. Dat is zo bedoeld: wwwallet heeft geen accountsysteem en bewaart nergens een kopie van uw kluis, dus niemand — ook wij niet — kan deze voor u herstellen. Dat is de prijs die u betaalt voor een portemonnee waar niemand anders dan uzelf toegang toe heeft.',
+        a: 'Uw geld is onherstelbaar. Dat is zo bedoeld: wwwallet heeft geen accountsysteem en bewaart nergens een kopie van uw kluis, dus niemand — ook wij niet — kan deze voor u herstellen. Dat is de afweging die hoort bij een portemonnee waar alleen u toegang toe hebt.',
       },
       {
-        q: 'Worden toegangscodes (Face ID / Touch ID) overgezet naar een nieuw apparaat?',
+        q: 'Worden de toegangscodes (Face ID / Touch ID) overgezet naar een nieuw apparaat?',
         a: 'Nee. Een toegangscode is gekoppeld aan het apparaat waarop deze is aangemaakt. Nadat je een back-up op een nieuw apparaat hebt hersteld, ontgrendel je het apparaat met je herstelzin en kun je daar een nieuwe toegangscode instellen.',
       },
       {
@@ -136,7 +160,7 @@ export default {
       },
       {
         q: 'Is wwwallet veilig in gebruik? Is er garantie?',
-        a: 'wwwallet is niet-bewarende software die wordt geleverd „zoals ze is“, zonder enige vorm van garantie. U bent als enige verantwoordelijk voor uw sleutels en uw geld — niemand, ook wij niet, kan een verloren herstelzin of back-up terugvinden, een transactie ongedaan maken of u schadeloos stellen voor verliezen. Gebruik alleen geld dat u zich kunt veroorloven te verliezen, controleer adressen en netwerken nogmaals voordat u geld verstuurt, en niets hier is financieel, beleggings-, juridisch of fiscaal advies.',
+        a: 'wwwallet is non-custodial software die wordt aangeboden “zoals ze is”, zonder enige vorm van garantie. U bent de enige die de controle heeft over uw sleutels en uw geld — niemand, ook wij niet, kan een verloren herstelzin of back-up terugvinden, een transactie ongedaan maken of u schadeloos stellen voor verliezen. Gebruik alleen geld dat u zich kunt veroorloven te verliezen, controleer adressen en netwerken zorgvuldig voordat u geld verstuurt, en niets in deze tekst is bedoeld als financieel, beleggings-, juridisch of fiscaal advies.',
       },
       {
         q: 'Welke netwerken ondersteunt wwwallet?',
@@ -144,24 +168,74 @@ export default {
       },
       {
         q: 'Hoe zet ik geld op mijn wallet?',
-        a: 'Open een account, kies ‘QR-code weergeven’ om het adres te zien en stuur geld naar dat adres vanuit een beurs of een andere wallet. Zorg ervoor dat je via het juiste netwerk verstuurt (Ethereum, Polygon, Arbitrum, Base of Optimism) — hetzelfde adres werkt op al deze netwerken, maar geld dat via één netwerk wordt verstuurd, verschijnt alleen op dat netwerk. Je hebt ook een klein beetje van de eigen munt van het netwerk (zoals ETH) nodig om de transactiekosten te betalen.',
+        a: 'Open een account, kies ‘QR-code weergeven’ om het adres te zien en stuur geld naar dat adres vanuit een beurs of een andere wallet. Zorg ervoor dat je via het juiste netwerk verstuurt (Ethereum, Polygon, Arbitrum, Base of Optimism) — hetzelfde adres werkt op al deze netwerken, maar geld dat via het ene netwerk wordt verstuurd, verschijnt alleen op dat netwerk. Je hebt ook een klein beetje van de eigen munt van het netwerk (zoals ETH) nodig om transactiekosten te betalen.',
       },
       {
         q: 'Wat kan ik doen met wwwallet?',
-        a: 'Verzenden: maak ETH of een willekeurig token over naar een adres dat je plakt, scant via een QR-code of selecteert uit je eigen accounts, en controleer de gegevens voordat je de transactie bevestigt. Ruilen: ruil het ene token in voor het andere binnen hetzelfde netwerk via het tabblad ‘Ruilen’, waarbij de koers en de geschatte kosten vooraf worden weergegeven. Ontvangen: toon je adres als QR-code. Je kunt ook je saldi in USD en je transactiegeschiedenis op alle ondersteunde netwerken bekijken.',
+        a: 'Verzenden: maak ETH of een willekeurig token over naar een adres dat je plakt, scant via een QR-code of selecteert uit je eigen accounts, en controleer de gegevens voordat je de transactie bevestigt. Ruilen: ruil het ene token in voor het andere binnen hetzelfde netwerk via het tabblad ‘Ruilen’, waarbij de koers en de geschatte kosten vooraf worden weergegeven. Ontvangen: toon je adres als een QR-code. Je kunt ook je saldi in USD bekijken en je transactiegeschiedenis over alle ondersteunde netwerken heen.',
       },
       {
         q: 'Wat weet wwwallet over mij?',
-        a: 'Niets waarmee je geïdentificeerd kunt worden. Er is geen account, geen inlogprocedure en geen database. Saldo- en prijsgegevens worden opgehaald via de eigen backend van wwwallet, in plaats van dat je browser rechtstreeks een beroep doet op externe aanbieders, en die backend krijgt nooit inzage in je sleutels, wachtwoorden of herstelzin.',
+        a: 'Niets waarmee je geïdentificeerd kunt worden. Er is geen account, geen aanmelding en geen database. Saldo- en prijsgegevens worden opgehaald via de eigen backend van wwwallet, in plaats van dat je browser rechtstreeks een beroep doet op externe aanbieders, en die backend krijgt nooit je sleutels, wachtwoorden of herstelzin te zien.',
       },
     ],
   },
   footer: {
-    tagline: 'Een persoonlijke Ethereum-wallet zonder bewaring.',
-    sourceLink: 'Bekijk de broncode op GitHub',
+    tagline: 'Een gratis Ethereum-portemonnee zonder bewaring voor iedereen.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Vrijgegeven onder de PolyForm Strict 1.0.0-licentie',
     disclaimer:
       'Software zonder bewaarplicht wordt geleverd “zoals ze is”, zonder garantie. Dit is geen financieel advies. U bent zelf volledig verantwoordelijk voor uw sleutels en uw geld.',
+  },
+  principles: {
+    eyebrow: 'Beginselen',
+    heading: 'Gratis, open en gemaakt voor iedereen',
+    lede: 'Een portemonnee moet een hulpmiddel zijn dat je gebruikt, geen bedrijf dat zijn winst haalt uit zijn gebruikers. Dit zijn de uitgangspunten waarop wwwallet is gebaseerd.',
+    items: [
+      {
+        title: 'Gratis, zonder addertjes onder het gras',
+        body: 'Geen prijs, geen premium-abonnement, geen betaalde functies. wwwallet brengt zelf geen kosten in rekening — de enige kosten zijn de transactiekosten van het netwerk zelf.',
+      },
+      {
+        title: 'Geen advertenties, geen tracking',
+        body: 'Geen advertenties, geen analysegegevens, geen trackingscripts en er worden geen gegevens aan wie dan ook verkocht. Er is immers helemaal geen profiel van jou om te verkopen.',
+      },
+      {
+        title: 'Geen registratie',
+        body: 'Geen e-mailadres, telefoonnummer of identiteitscontrole. Open de app, maak een portemonnee aan en je bent klaar.',
+      },
+      {
+        title: 'Je houdt je sleutels bij je',
+        body: 'Sleutels worden op je apparaat aangemaakt en versleuteld en verlaten het apparaat nooit. wwwallet kan ze niet inzien, je geld niet verplaatsen en je ook niet de toegang ontzeggen.',
+      },
+      {
+        title: 'Werkt overal',
+        body: 'Werkt in elke moderne browser op je telefoon of computer en kan net als een app worden geïnstalleerd — je hebt geen account bij een app store nodig.',
+      },
+      {
+        title: 'In 31 talen',
+        body: 'Gebruik het in de taal waarin je je het meest op je gemak voelt, in de lichte of donkere modus.',
+      },
+      {
+        title: 'Code in de openbaarheid',
+        body: 'De volledige broncode is gepubliceerd, zodat iedereen deze kan lezen en controleren. Het gaat hier om ‘source-available’ in plaats van ‘open source’ — in de veelgestelde vragen wordt uitgelegd wat de licentie toestaat.',
+      },
+      {
+        title: 'Niets om uit te schakelen',
+        body: 'Er is geen account dat kan worden geblokkeerd. Je geld staat op het Ethereum-netwerk zelf, en de sleutel van elk account kan op elk moment naar een andere wallet worden overgezet.',
+      },
+    ],
+  },
+  license: {
+    title: 'Licentie',
+    close: 'Sluiten',
+    summaryTitle: 'In gewone taal',
+    canUse:
+      'Je kunt wwwallet gratis gebruiken voor persoonlijke en andere niet-commerciële doeleinden.',
+    canRead: 'Je kunt elke regel van de broncode lezen en controleren.',
+    cannot: 'Je mag het niet kopiëren, wijzigen, doorgeven of verkopen.',
+    englishNote:
+      'Hieronder volgt de volledige vergunning in het oorspronkelijke Engels — dit is de juridische tekst.',
+    viewSource: 'Bekijk op GitHub',
   },
 }

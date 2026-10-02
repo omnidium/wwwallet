@@ -7,7 +7,7 @@ import { txnUrl, addressUrl } from '@/services/blockExplorer'
 import { addressDisplayLabel } from '@/services/addressLabel'
 import { truncateAddress } from '@/services/format'
 import { convertUsd, formatAmount, formatFiat } from '@/services/money'
-import { useChainDataStore } from '@/stores/chainData'
+import { txRateAsset, useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
 
@@ -38,38 +38,114 @@ const swapFees = computed(() => (txnKey.value ? (chainData.swapFeesByKey[txnKey.
 const feeLoading = ref(false)
 
 // Only once it's actually opened, and never again once known (see
-// chainData.ensureTransactionFee). A still-pending transaction has no
-// receipt yet, so that lookup just fails quietly and the row says so.
+// chainData.ensureTransactionFee / ensureTransactionRates). A still-pending
+// transaction has no receipt yet, so the fee lookup just fails quietly and
+// the row says so; it has no mined time to price at either.
+const ratesLoading = ref(false)
 watch(
   () => [props.modelValue, props.transaction?.hash] as const,
   ([open, hash]) => {
-    if (!open || !hash) return
+    const txn = props.transaction
+    if (!open || !hash || !txn) return
     feeLoading.value = true
     chainData
       .ensureTransactionFee(props.chain, hash)
       .catch(() => {})
       .finally(() => (feeLoading.value = false))
+    if (!txn.timestamp) return
+    ratesLoading.value = true
+    chainData
+      .ensureTransactionRates(props.chain, txn)
+      .catch(() => {})
+      .finally(() => (ratesLoading.value = false))
   },
   { immediate: true },
 )
 
+const rates = computed(() => (txnKey.value ? chainData.transactionRatesByKey[txnKey.value] : undefined))
+
+/**
+ * A fiat value in brackets, priced as of when the transaction was mined:
+ *  1. that day's price in the selected currency;
+ *  2. failing a rate for that day, its USD price then — marked "USD";
+ *  3. failing any price then, today's price in the selected currency — marked "*".
+ * A pending transaction has no mined time yet, so today's price is its price.
+ * Null while the historical lookup is still out (rather than flashing a
+ * fallback), or when no price is known at all.
+ */
+function fiatOf(human: number, contractAddress: string | null, opts: { fee?: boolean } = {}): string | null {
+  const txn = props.transaction
+  if (!txn || !Number.isFinite(human)) return null
+  const currency = settingsLocale.currency
+  let amount: number
+  let shownIn = currency
+  let mark = ''
+  const thenUsd = rates.value?.usd[txRateAsset(contractAddress)]
+  if (txn.timestamp && thenUsd !== undefined) {
+    const thenRate = currency === 'USD' ? 1 : rates.value?.fx?.[currency]
+    if (thenRate !== undefined) {
+      amount = human * thenUsd * thenRate
+    } else {
+      amount = human * thenUsd
+      shownIn = 'USD'
+      mark = ' USD'
+    }
+  } else {
+    if (txn.timestamp && ratesLoading.value) return null
+    const nowUsd =
+      contractAddress === null
+        ? chainData.nativePriceUsdByChain[props.chain]
+        : chainData.tokenMetadataByKey[chainData.keyFor(props.chain, contractAddress)]?.usd_price
+    if (nowUsd == null) return null
+    amount = convertUsd(human * nowUsd, currency, chainData.fxRates)
+    if (txn.timestamp) mark = '*'
+  }
+  // An L2 fee is routinely a fraction of a cent — "< $0.01", not "$0.00".
+  const text =
+    opts.fee && amount > 0 && amount < 0.01
+      ? `< ${formatFiat(0.01, shownIn, locale.value)}`
+      : formatFiat(amount, shownIn, locale.value)
+  return `(≈ ${text}${mark})`
+}
+
+const amountFiat = computed(() =>
+  props.transaction ? fiatOf(Number(props.transaction.value), props.transaction.contract_address) : null,
+)
+const counterFiat = computed(() =>
+  props.transaction?.counter_value
+    ? fiatOf(Number(props.transaction.counter_value), props.transaction.counter_contract_address)
+    : null,
+)
+
 // Significant digits rather than formatAmount's fixed six decimals: an L2
 // fee is routinely a few millionths of an ETH, which that would round to 0.
-// Fiat at today's native price — an approximation, hence the "≈".
+// Kept as two parts so the row can only wrap between them, never inside the bracket.
 const feeText = computed(() => {
   if (!fee.value) return null
   const human = Number(formatUnits(fee.value.fee_wei, 18))
   const amount = new Intl.NumberFormat(locale.value, { maximumSignificantDigits: 3 }).format(human)
-  const native = `${amount} ${NATIVE_ASSETS[props.chain].symbol}`
-  const priceUsd = chainData.nativePriceUsdByChain[props.chain]
-  if (priceUsd === undefined) return native
-  const fiatAmount = convertUsd(human * priceUsd, settingsLocale.currency, chainData.fxRates)
-  const fiat =
-    fiatAmount > 0 && fiatAmount < 0.01
-      ? `< ${formatFiat(0.01, settingsLocale.currency, locale.value)}`
-      : formatFiat(fiatAmount, settingsLocale.currency, locale.value)
-  return `${native} (≈ ${fiat})`
+  return { native: `${amount} ${NATIVE_ASSETS[props.chain].symbol}`, fiat: fiatOf(human, null, { fee: true }) }
 })
+
+// A recorded swap fee carries only its symbol — it's always in one of the
+// swap's two legs, which says which contract to price it by.
+const swapFeeRows = computed(() => {
+  const txn = props.transaction
+  return swapFees.value.map((f) => {
+    const contract =
+      f.symbol === txn?.counter_asset ? (txn.counter_contract_address ?? null)
+        : f.symbol === txn?.asset ? txn.contract_address : undefined
+    return { ...f, fiat: contract === undefined ? null : fiatOf(f.amount, contract, { fee: true }) }
+  })
+})
+
+/** Shown once under the table when any value fell back to today's price. */
+const usesTodaysPrice = computed(() =>
+  [amountFiat.value, counterFiat.value, feeText.value?.fiat, ...swapFeeRows.value.map((r) => r.fiat)].some((v) =>
+    v?.endsWith('*)'),
+  ),
+)
+
 const paidBySomeoneElse = computed(
   () => !!fee.value && !!props.myAddress && fee.value.payer.toLowerCase() !== props.myAddress.toLowerCase(),
 )
@@ -127,19 +203,24 @@ const paidBySomeoneElse = computed(
             </tr>
             <tr v-if="isSwap">
               <td>{{ t('transactionDetail.sold') }}</td>
-              <td class="text-send">−{{ formatAmount(Number(transaction.value)) }} {{ transaction.asset }}</td>
+              <td class="text-send">
+                <span class="text-no-wrap">−{{ formatAmount(Number(transaction.value)) }} {{ transaction.asset }}</span>
+                <template v-if="amountFiat">{{ ' ' }}<span class="text-no-wrap txn-detail-fiat">{{ amountFiat }}</span></template>
+              </td>
             </tr>
             <tr v-if="isSwap">
               <td>{{ t('transactionDetail.bought') }}</td>
               <td class="text-receive">
-                +{{ formatAmount(Number(transaction.counter_value)) }} {{ transaction.counter_asset }}
+                <span class="text-no-wrap">+{{ formatAmount(Number(transaction.counter_value)) }} {{ transaction.counter_asset }}</span>
+                <template v-if="counterFiat">{{ ' ' }}<span class="text-no-wrap txn-detail-fiat">{{ counterFiat }}</span></template>
               </td>
             </tr>
             <tr v-else>
               <td>{{ t('transactionDetail.amount') }}</td>
               <td :class="isOutgoing === null ? undefined : isOutgoing ? 'text-send' : 'text-receive'">
-                {{ isOutgoing === null ? '' : isOutgoing ? '−' : '+' }}{{ formatAmount(Number(transaction.value)) }}
-                {{ transaction.asset }}
+                <span class="text-no-wrap">{{ isOutgoing === null ? '' : isOutgoing ? '−' : '+' }}{{ formatAmount(Number(transaction.value)) }}
+                  {{ transaction.asset }}</span>
+                <template v-if="amountFiat">{{ ' ' }}<span class="text-no-wrap txn-detail-fiat">{{ amountFiat }}</span></template>
               </td>
             </tr>
             <tr>
@@ -149,7 +230,8 @@ const paidBySomeoneElse = computed(
               <td>{{ t('transactionDetail.networkFee') }}</td>
               <td>
                 <template v-if="feeText">
-                  {{ feeText }}
+                  <span class="text-no-wrap">{{ feeText.native }}</span>
+                  <template v-if="feeText.fiat">{{ ' ' }}<span class="text-no-wrap txn-detail-fiat">{{ feeText.fiat }}</span></template>
                   <span v-if="paidBySomeoneElse" class="d-block text-caption text-medium-emphasis">
                     {{ t('transactionDetail.paidBySender') }}
                   </span>
@@ -158,12 +240,18 @@ const paidBySomeoneElse = computed(
                 <span v-else class="text-medium-emphasis">{{ t('transactionDetail.feeUnavailable') }}</span>
               </td>
             </tr>
-            <tr v-for="swapFee in swapFees" :key="swapFee.kind">
+            <tr v-for="swapFee in swapFeeRows" :key="swapFee.kind">
               <td>{{ t(swapFee.kind === 'zero_ex' ? 'review.swapFee' : 'review.integratorFee') }}</td>
-              <td>{{ formatAmount(swapFee.amount) }} {{ swapFee.symbol }}</td>
+              <td>
+                <span class="text-no-wrap">{{ formatAmount(swapFee.amount) }} {{ swapFee.symbol }}</span>
+                <template v-if="swapFee.fiat">{{ ' ' }}<span class="text-no-wrap txn-detail-fiat">{{ swapFee.fiat }}</span></template>
+              </td>
             </tr>
           </tbody>
         </table>
+        <p v-if="usesTodaysPrice" class="text-caption text-medium-emphasis mt-3 mb-0">
+          {{ t('transactionDetail.todaysPriceNote') }}
+        </p>
       </v-card-text>
       <v-card-actions>
         <v-spacer />

@@ -1,10 +1,11 @@
 use async_trait::async_trait;
 
 use crate::chain::ChainId;
-use crate::error::ProviderResult;
+use crate::error::{ProviderError, ProviderResult};
 use crate::types::{
-    AddressActivity, ContractAbi, FxRates, NativePrice, PriceHistory, SwapQuote, TokenMetadata,
-    TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
+    AddressActivity, BridgeQuote, BridgeStatus, CoinSearchResult, ContractAbi, FxHistory, FxRates,
+    NativePrice, PriceHistory,
+    SwapQuote, TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 
 /// Fetches native + token balances and recent transactions for an address.
@@ -70,6 +71,11 @@ pub trait AbiProvider {
 pub trait FxRateProvider {
     fn name(&self) -> &'static str;
     async fn latest_rates(&self, base: &str) -> ProviderResult<FxRates>;
+    /// Rates as published on `date` ("YYYY-MM-DD"), or the business day
+    /// before it — for valuing a past transaction in the currency of the day.
+    async fn rates_on(&self, _base: &str, _date: &str) -> ProviderResult<FxRates> {
+        Err(ProviderError::Unavailable)
+    }
 }
 
 /// Fetches a chain's native currency price in USD. Backed by CoinGecko.
@@ -92,6 +98,41 @@ pub trait PriceHistoryProvider {
         chain: ChainId,
         contract_address: Option<&str>,
     ) -> ProviderResult<PriceHistory>;
+    /// USD price at the sample nearest a past moment — what a transaction
+    /// was worth when it was mined.
+    async fn usd_price_at(
+        &self,
+        _chain: ChainId,
+        _contract_address: Option<&str>,
+        _unix_secs: i64,
+    ) -> ProviderResult<f64> {
+        Err(ProviderError::Unavailable)
+    }
+}
+
+/// Free-text search over every coin a price source lists — chain-agnostic
+/// (Bitcoin, Solana…), unlike everything else here. For favourites only;
+/// none of these are holdable in this wallet. Backed by CoinGecko.
+#[async_trait(?Send)]
+pub trait CoinSearchProvider {
+    fn name(&self) -> &'static str;
+    async fn search_coins(&self, query: &str) -> ProviderResult<Vec<CoinSearchResult>>;
+}
+
+/// Past-24h USD price history for a coin from a CoinSearchProvider result.
+/// Takes both its id and ticker: CoinGecko looks coins up by id, Alchemy
+/// (the fallback) by ticker.
+#[async_trait(?Send)]
+pub trait CoinPriceHistoryProvider {
+    fn name(&self) -> &'static str;
+    async fn coin_price_history_24h(&self, id: &str, symbol: &str) -> ProviderResult<PriceHistory>;
+}
+
+/// Recent daily reference rates for one currency pair. Backed by Frankfurter.
+#[async_trait(?Send)]
+pub trait FxHistoryProvider {
+    fn name(&self) -> &'static str;
+    async fn fx_history(&self, base: &str, quote: &str) -> ProviderResult<FxHistory>;
 }
 
 /// Relays an already-signed raw transaction to the network. The backend never
@@ -158,6 +199,31 @@ pub trait SwapQuoteProvider {
         sell_amount_wei: &str,
         taker_address: &str,
     ) -> ProviderResult<SwapQuote>;
+}
+
+/// What a cross-chain transfer should do — tokens are an address (the zero or
+/// 0xEeee… address for native) or a symbol the aggregator resolves itself.
+pub struct BridgeQuoteRequest<'a> {
+    pub from_chain: ChainId,
+    pub to_chain: ChainId,
+    pub from_token: &'a str,
+    pub to_token: &'a str,
+    pub from_amount_wei: &'a str,
+    pub from_address: &'a str,
+    pub to_address: &'a str,
+}
+
+/// Quotes and tracks cross-chain transfers. Backed by LI.FI.
+#[async_trait(?Send)]
+pub trait BridgeProvider {
+    fn name(&self) -> &'static str;
+    async fn quote(&self, request: &BridgeQuoteRequest<'_>) -> ProviderResult<BridgeQuote>;
+    async fn status(
+        &self,
+        transaction_hash: &str,
+        from_chain: ChainId,
+        to_chain: ChainId,
+    ) -> ProviderResult<BridgeStatus>;
 }
 
 /// Reads an ERC-20 `allowance(owner, spender)` value. Used to decide whether

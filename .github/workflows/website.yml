@@ -29,6 +29,10 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
       - run: npm ci
+      # Every installed package must carry a valid npm registry signature
+      # (and, where published, a provenance attestation that checks out) —
+      # fails on a tampered or unsigned tarball before anything builds.
+      - run: npm audit signatures
       # Offline, no DEEPL_API_KEY needed — fails loudly if en.ts has drifted
       # from shared/i18n/master_en.ts, or if a locale file is out of sync
       # with en.ts — same check as frontend's own (see that workflow).
@@ -54,6 +58,7 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
       - run: npm ci
+      - run: npm audit signatures
       - run: npm run build
       # No VITE_API_BASE_URL/VITE_GOOGLE_CLIENT_ID here — this site never calls
       # the backend Worker, it's fully static content.

@@ -2,6 +2,7 @@
 // Edit that file instead, then run `node scripts/sync-i18n.mjs` from the repo root.
 export default {
   nav: {
+    principles: 'Principles',
     wallet: 'Wallet',
     ethereum: 'Ethereum',
     crypto: 'Crypto',
@@ -10,6 +11,16 @@ export default {
     home: 'Back to top',
     sectionNavLabel: 'Section navigation',
   },
+  license: {
+    title: 'License',
+    close: 'Close',
+    summaryTitle: 'In plain English',
+    canUse: 'You can use wwwallet for free, for personal and other noncommercial purposes.',
+    canRead: 'You can read and audit every line of its source code.',
+    cannot: "You can't copy, change, redistribute or sell it.",
+    englishNote: 'The full license follows, in its original English — it is the legal text.',
+    viewSource: 'View on GitHub',
+  },
   settings: {
     open: 'Settings',
     close: 'Close settings',
@@ -17,15 +28,57 @@ export default {
     themeLight: 'Light',
     themeDark: 'Dark',
     language: 'Language',
+    search: 'Search',
+    noMatches: 'No matches',
   },
   hero: {
-    eyebrow: 'A personal, non-custodial Ethereum wallet',
-    heading1: 'Your Keys.',
-    heading2: 'Your Device.',
-    heading3: 'Your Wallet.',
-    lede: 'wwwallet encrypts your wallet on your own device and never sends your keys, passwords, or recovery phrase anywhere else. No account to create. No server to breach. Just you and your crypto.',
+    eyebrow: 'A free, non-custodial Ethereum wallet',
+    heading1: 'Your keys.',
+    heading2: 'Your device.',
+    heading3: 'Free for everyone.',
+    lede: 'wwwallet runs in your browser and keeps your keys encrypted on your own device. There’s no account to create, nothing to pay and no ads — just a wallet that works the same way for everyone.',
     ctaPrimary: 'Launch Wallet',
     ctaSecondary: 'See how it works',
+    note: 'No sign-up · No ads · No tracking · 31 languages',
+  },
+  principles: {
+    eyebrow: 'Principles',
+    heading: 'Free, open and built for anyone',
+    lede: 'A wallet should be a tool you use, not a business built on its users. These are the commitments wwwallet is built around.',
+    items: [
+      {
+        title: 'Free, with no catch',
+        body: 'No price, no premium tier, no paid features. wwwallet adds no fees of its own — the only cost is the network’s own transaction fee.',
+      },
+      {
+        title: 'No ads, no tracking',
+        body: 'No adverts, no analytics, no tracking scripts, and no data sold to anyone. There’s no profile of you to sell in the first place.',
+      },
+      {
+        title: 'No sign-up',
+        body: 'No email, phone number or ID check. Open it, create a wallet, and you’re ready.',
+      },
+      {
+        title: 'Your keys stay with you',
+        body: 'Keys are created and encrypted on your device and never leave it. wwwallet can’t see them, move your funds or lock you out.',
+      },
+      {
+        title: 'Works anywhere',
+        body: 'Runs in any modern browser on phone or desktop, and installs like an app — no app store account needed.',
+      },
+      {
+        title: 'In 31 languages',
+        body: 'Use it in the language you’re most comfortable with, in light or dark mode.',
+      },
+      {
+        title: 'Code in the open',
+        body: 'The full source is published for anyone to read and audit. It’s source-available rather than open source — the FAQs explain what the licence allows.',
+      },
+      {
+        title: 'Nothing to switch off',
+        body: 'There’s no account for anyone to freeze. Your funds live on Ethereum itself, and any account’s key can be taken to another wallet at any time.',
+      },
+    ],
   },
   wallet: {
     eyebrow: 'Wallet',
@@ -109,6 +162,26 @@ export default {
     heading: 'Common questions',
     items: [
       {
+        q: 'Is wwwallet really free?',
+        a: 'Yes. There’s no charge to use it, no premium tier and nothing behind a paywall, and wwwallet adds no fee to anything you send or swap. The only unavoidable cost is the network’s own transaction (gas) fee, which goes to the network rather than to wwwallet. Swap quotes come from the 0x exchange aggregator, which can include its own fee on some trades — any such fee is listed on the review screen before you confirm.',
+      },
+      {
+        q: 'Are there ads, trackers or analytics?',
+        a: 'No. wwwallet shows no ads, runs no analytics or tracking scripts, and doesn’t build a profile of you. There’s no account, so there’s nothing to attach one to.',
+      },
+      {
+        q: 'Do I need an account or ID to use it?',
+        a: 'No. There’s no sign-up, email address, phone number or identity check — you create a wallet on your device and start using it.',
+      },
+      {
+        q: 'If it’s free, how does wwwallet pay for itself?',
+        a: 'It doesn’t make money from its users — no fees, no ads, no data sales. Running costs are kept small by design: the wallet itself runs in your browser, and the backend only relays public blockchain and price data.',
+      },
+      {
+        q: 'Can anyone freeze my wallet?',
+        a: 'There’s no account, so there’s nothing for wwwallet — or anyone else — to freeze. Your keys never leave your device, and transactions are signed there before they’re sent to the network. Your funds live on Ethereum, not in wwwallet: you can view any account’s private key or recovery phrase from its menu and import it into another Ethereum wallet whenever you like.',
+      },
+      {
         q: 'Is my recovery phrase enough to get my wallet back?',
         a: 'Not by itself. Your recovery phrase unlocks your encrypted vault, but the vault itself lives only on your device. If you lose or wipe that device without ever taking a backup, there’s nothing left for the phrase to unlock. Always pair your recovery phrase with a Google Drive or file backup — see the next question.',
       },
@@ -159,8 +232,7 @@ export default {
     ],
   },
   footer: {
-    tagline: 'A personal, non-custodial Ethereum wallet.',
-    sourceLink: 'View the source on GitHub',
+    tagline: 'A free, non-custodial Ethereum wallet for everyone.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Licensed under PolyForm Strict 1.0.0',
     disclaimer:

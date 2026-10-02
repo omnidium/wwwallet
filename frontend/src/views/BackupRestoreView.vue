@@ -139,10 +139,10 @@ function proceedWithRestore() {
     </v-dialog>
 
     <v-overlay :model-value="restoring" persistent class="d-flex align-center justify-center">
-      <div class="d-flex flex-column align-center">
+      <v-card class="d-flex flex-column align-center pa-8 busy-panel" elevation="8">
         <v-progress-circular indeterminate size="64" color="primary" class="mb-4" />
         <p class="text-body-1">{{ t('backup.recovering') }}</p>
-      </div>
+      </v-card>
     </v-overlay>
   </div>
 </template>

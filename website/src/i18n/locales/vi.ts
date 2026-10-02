@@ -7,6 +7,7 @@ export default {
     launch: 'Khởi chạy Ví',
     home: 'Quay lại đầu trang',
     sectionNavLabel: 'Điều hướng theo mục',
+    principles: 'Các nguyên tắc',
   },
   settings: {
     open: 'Cài đặt',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Ánh sáng',
     themeDark: 'Tối',
     language: 'Ngôn ngữ',
+    search: 'Tìm kiếm',
+    noMatches: 'Không có kết quả phù hợp',
   },
   hero: {
-    eyebrow: 'Ví Ethereum cá nhân, không lưu trữ',
+    eyebrow: 'Một ví Ethereum miễn phí, không lưu giữ tài sản',
     heading1: 'Chìa khóa của bạn.',
     heading2: 'Thiết bị của bạn.',
-    heading3: 'Ví của bạn.',
-    lede: 'wwwallet mã hóa ví của bạn ngay trên thiết bị của chính bạn và tuyệt đối không gửi khóa, mật khẩu hay cụm từ khôi phục của bạn đến bất kỳ nơi nào khác. Không cần tạo tài khoản. Không có máy chủ nào có thể bị xâm nhập. Chỉ có bạn và tiền điện tử của bạn.',
+    heading3: 'Miễn phí cho tất cả mọi người.',
+    lede: 'wwwallet hoạt động ngay trên trình duyệt của bạn và lưu trữ các khóa của bạn dưới dạng mã hóa trên chính thiết bị của bạn. Bạn không cần tạo tài khoản, không phải trả phí và không có quảng cáo — chỉ đơn giản là một ví hoạt động giống nhau cho tất cả mọi người.',
     ctaPrimary: 'Khởi chạy Ví',
     ctaSecondary: 'Hãy xem cách thức hoạt động của nó',
+    note: 'Không cần đăng ký · Không có quảng cáo · Không theo dõi · 31 ngôn ngữ',
   },
   wallet: {
     eyebrow: 'Ví',
@@ -108,61 +112,130 @@ export default {
     heading: 'Các câu hỏi thường gặp',
     items: [
       {
-        q: 'Cụm từ khôi phục của tôi có đủ để lấy lại ví của tôi không?',
-        a: 'Không phải chỉ riêng nó. Cụm từ khôi phục sẽ mở khóa kho dữ liệu được mã hóa của bạn, nhưng bản thân kho dữ liệu đó chỉ tồn tại trên thiết bị của bạn. Nếu bạn làm mất hoặc xóa sạch dữ liệu trên thiết bị đó mà chưa bao giờ sao lưu, thì sẽ không còn gì để cụm từ khôi phục có thể mở khóa nữa. Hãy luôn kết hợp cụm từ khôi phục với bản sao lưu trên Google Drive hoặc tệp tin — xem câu hỏi tiếp theo.',
+        q: 'wwwallet có thực sự miễn phí không?',
+        a: 'Đúng vậy. Việc sử dụng dịch vụ này hoàn toàn miễn phí, không có gói cao cấp và không có nội dung nào bị giới hạn bởi tường phí, đồng thời wwwallet cũng không thu thêm bất kỳ khoản phí nào đối với các giao dịch gửi hoặc trao đổi của bạn. Chi phí duy nhất không thể tránh khỏi là phí giao dịch (gas) của chính mạng lưới, khoản phí này được chuyển cho mạng lưới chứ không phải cho wwwallet. Báo giá trao đổi đến từ nền tảng tổng hợp giao dịch 0x, có thể bao gồm phí riêng của nền tảng này đối với một số giao dịch — bất kỳ khoản phí nào như vậy đều được liệt kê trên màn hình xác nhận trước khi bạn thực hiện giao dịch.',
+      },
+      {
+        q: 'Có quảng cáo, công cụ theo dõi hay công cụ phân tích không?',
+        a: 'Không. wwwallet không hiển thị quảng cáo, không chạy các tập lệnh phân tích hay theo dõi, và không tạo hồ sơ về bạn. Không có tài khoản nào cả, nên không có gì để liên kết với tài khoản đó.',
+      },
+      {
+        q: 'Tôi có cần tài khoản hoặc giấy tờ tùy thân để sử dụng nó không?',
+        a: 'Không. Không cần đăng ký, cung cấp địa chỉ email, số điện thoại hay xác minh danh tính — bạn chỉ cần tạo ví trên thiết bị của mình và bắt đầu sử dụng ngay.',
+      },
+      {
+        q: 'Nếu dịch vụ này miễn phí, thì wwwallet lấy nguồn thu từ đâu?',
+        a: 'Nền tảng này không kiếm tiền từ người dùng — không thu phí, không có quảng cáo, không bán dữ liệu. Chi phí vận hành được thiết kế để ở mức thấp: chính ví tiền điện tử này chạy trực tiếp trên trình duyệt của bạn, còn hệ thống phía sau chỉ đóng vai trò trung gian truyền tải dữ liệu blockchain công khai và dữ liệu giá.',
+      },
+      {
+        q: 'Có ai có thể khóa ví của tôi không?',
+        a: 'Không có tài khoản nào cả, nên wwwallet — hay bất kỳ ai khác — cũng không có gì để đóng băng. Khóa riêng tư của bạn không bao giờ rời khỏi thiết bị của bạn, và các giao dịch được ký tại đó trước khi được gửi lên mạng. Tiền của bạn được lưu trữ trên Ethereum, không phải trong wwwallet: bạn có thể xem khóa riêng tư hoặc cụm từ khôi phục của bất kỳ tài khoản nào từ menu của nó và nhập nó vào một ví Ethereum khác bất cứ lúc nào bạn muốn.',
+      },
+      {
+        q: 'Cụm từ khôi phục của tôi có đủ để lấy lại ví của mình không?',
+        a: 'Không phải chỉ riêng nó. Cụm từ khôi phục của bạn dùng để mở khóa kho dữ liệu được mã hóa, nhưng bản thân kho dữ liệu đó chỉ tồn tại trên thiết bị của bạn. Nếu bạn làm mất hoặc xóa sạch thiết bị đó mà chưa bao giờ sao lưu, thì sẽ không còn gì để cụm từ khôi phục có thể mở khóa nữa. Hãy luôn kết hợp cụm từ khôi phục với bản sao lưu trên Google Drive hoặc tệp tin — xem câu hỏi tiếp theo.',
       },
       {
         q: 'Làm thế nào để sao lưu ví của tôi?',
-        a: 'Từ mục Cài đặt, hãy sao lưu kho dữ liệu được mã hóa của bạn lên Google Drive cá nhân — được lưu trữ trong một thư mục riêng tư, chỉ ứng dụng mới có thể truy cập (wwwallet không thể xem các phần còn lại của thư mục này) — hoặc dưới dạng tệp tin mà bạn tải xuống và tự lưu giữ. Hãy thực hiện thao tác này mỗi khi bạn thiết lập ví hoặc thêm tài khoản mới.',
+        a: 'Từ mục Cài đặt, hãy sao lưu kho tiền được mã hóa của bạn lên Google Drive cá nhân — được lưu trữ trong một thư mục riêng tư, chỉ ứng dụng mới có thể truy cập (wwwallet không thể xem các phần còn lại của thư mục này) — hoặc dưới dạng tệp tin mà bạn tải xuống và tự lưu giữ. Hãy thực hiện thao tác này mỗi khi bạn thiết lập ví hoặc thêm tài khoản mới.',
       },
       {
         q: 'Tôi có thể sử dụng wwwallet trên nhiều thiết bị không?',
-        a: 'Đúng vậy, nhưng nó không tự động đồng bộ — mỗi thiết bị đều có kho lưu trữ cục bộ riêng. Để sử dụng wwwallet trên một thiết bị mới, hãy khôi phục dữ liệu từ bản sao lưu trên Drive hoặc tệp tin, sau đó mở khóa bằng cụm từ khôi phục của bạn.',
+        a: 'Đúng vậy, nhưng nó không tự động đồng bộ hóa — mỗi thiết bị đều có kho lưu trữ cục bộ riêng. Để sử dụng wwwallet trên một thiết bị mới, hãy khôi phục dữ liệu từ bản sao lưu trên Drive hoặc tệp tin, sau đó mở khóa bằng cụm từ khôi phục của bạn.',
       },
       {
         q: 'Nếu tôi làm mất thiết bị mà chưa bao giờ sao lưu thì sẽ ra sao?',
-        a: 'Số tiền của bạn không thể lấy lại được. Điều này là do thiết kế của hệ thống: wwwallet không có hệ thống tài khoản và không lưu giữ bản sao nào của kho tiền của bạn ở bất kỳ đâu, vì vậy không ai — kể cả chúng tôi — có thể khôi phục nó cho bạn. Đó là sự đánh đổi để có được một ví mà chỉ riêng bạn mới có thể truy cập.',
+        a: 'Số tiền của bạn không thể khôi phục được. Điều này là do thiết kế: wwwallet không có hệ thống tài khoản và không lưu giữ bản sao kho tiền của bạn ở bất kỳ đâu, vì vậy không ai — kể cả chúng tôi — có thể khôi phục nó cho bạn. Đó là sự đánh đổi để có được một ví mà chỉ riêng bạn mới có thể truy cập.',
       },
       {
-        q: 'Các mã thông báo (Face ID / Touch ID) có được chuyển sang thiết bị mới không?',
+        q: 'Các khóa truy cập (Face ID / Touch ID) có được chuyển sang thiết bị mới không?',
         a: 'Không. Mật khẩu chính được liên kết với thiết bị mà nó được tạo ra. Sau khi khôi phục bản sao lưu trên thiết bị mới, hãy mở khóa bằng cụm từ khôi phục của bạn và bạn có thể thiết lập một mật khẩu chính mới trên thiết bị đó.',
       },
       {
         q: 'wwwallet có phải là phần mềm mã nguồn mở không?',
-        a: 'Không — mã nguồn của nó được công khai. Toàn bộ mã nguồn được đăng tải công khai trên GitHub nên bất kỳ ai cũng có thể đọc, xem xét và kiểm tra, nhưng nó không phải là phần mềm mã nguồn mở: mã nguồn này được cấp phép theo Giấy phép PolyForm Strict 1.0.0.',
+        a: 'Không — đây là phần mềm có mã nguồn công khai. Toàn bộ mã nguồn được công bố công khai trên GitHub nên bất kỳ ai cũng có thể đọc, xem xét và kiểm tra, nhưng nó không phải là phần mềm mã nguồn mở: mã nguồn này được cấp phép theo Giấy phép PolyForm Strict 1.0.0.',
       },
       {
         q: 'Tôi được phép làm gì với đoạn mã này?',
-        a: 'Bạn có thể đọc và kiểm tra toàn bộ nội dung, đồng thời chạy một bản sao nguyên vẹn cho các mục đích phi thương mại như học tập cá nhân, nghiên cứu và thử nghiệm. Bạn không được phân phối, sửa đổi hoặc tạo ra các tác phẩm phái sinh (bao gồm cả các phiên bản phân nhánh), cũng như không được sử dụng nó cho mục đích thương mại. Nếu bạn cần thực hiện những việc mà giấy phép này không cho phép, hãy liên hệ với chủ sở hữu bản quyền để xin giấy phép riêng.',
+        a: 'Bạn có thể đọc và kiểm tra toàn bộ nội dung, đồng thời sử dụng một bản sao nguyên vẹn cho các mục đích phi thương mại như học tập cá nhân, nghiên cứu và thử nghiệm. Bạn không được phép phân phối, sửa đổi hoặc tạo ra các tác phẩm phái sinh (bao gồm cả các phiên bản phân nhánh), cũng như không được sử dụng nó cho mục đích thương mại. Nếu bạn cần thực hiện những việc mà giấy phép này không cho phép, hãy liên hệ với chủ sở hữu bản quyền để xin một giấy phép riêng.',
       },
       {
         q: 'wwwallet có an toàn khi sử dụng không? Có chế độ bảo hành nào không?',
-        a: 'wwwallet là phần mềm không lưu ký được cung cấp “nguyên trạng”, không kèm theo bất kỳ bảo đảm nào. Chỉ bạn mới có quyền kiểm soát các khóa và tài sản của mình — không ai, kể cả chúng tôi, có thể khôi phục cụm từ khôi phục hoặc bản sao lưu bị mất, hủy bỏ giao dịch, hoặc bồi thường cho bạn về các khoản lỗ. Chỉ nên sử dụng số tiền mà bạn có thể chấp nhận mất, kiểm tra kỹ địa chỉ và mạng lưới trước khi gửi, và những thông tin tại đây không phải là lời khuyên về tài chính, đầu tư, pháp lý hoặc thuế.',
+        a: 'wwwallet là phần mềm không lưu ký được cung cấp “nguyên trạng”, không kèm theo bất kỳ hình thức bảo hành nào. Chỉ bạn mới có quyền kiểm soát các khóa và số tiền của mình — không ai, kể cả chúng tôi, có thể khôi phục cụm từ khôi phục hoặc bản sao lưu bị mất, hủy bỏ giao dịch, hoặc bồi thường cho bạn về các khoản lỗ. Chỉ nên sử dụng số tiền mà bạn có thể chấp nhận mất, kiểm tra kỹ địa chỉ và mạng lưới trước khi gửi, và những thông tin ở đây không phải là lời khuyên về tài chính, đầu tư, pháp lý hoặc thuế.',
       },
       {
         q: 'wwwallet hỗ trợ những mạng nào?',
-        a: 'Mạng chính Ethereum, cùng với các mạng Lớp 2 như Polygon, Arbitrum, Base và Optimism — tất cả đều được quản lý từ cùng một bộ tài khoản.',
+        a: 'Mạng chính Ethereum, cùng với các mạng Layer-2 như Polygon, Arbitrum, Base và Optimism — tất cả đều được quản lý từ cùng một bộ tài khoản.',
       },
       {
         q: 'Làm thế nào để nạp tiền vào ví của tôi?',
-        a: 'Mở tài khoản, chọn “Xem mã QR” để xem địa chỉ của tài khoản, sau đó chuyển tiền đến địa chỉ đó từ sàn giao dịch hoặc ví khác. Hãy đảm bảo bạn gửi tiền trên mạng lưới đúng (Ethereum, Polygon, Arbitrum, Base hoặc Optimism) — cùng một địa chỉ hoạt động trên tất cả các mạng này, nhưng số tiền gửi trên một mạng lưới chỉ hiển thị trên mạng lưới đó. Bạn cũng cần có một ít đồng tiền gốc của mạng lưới đó (chẳng hạn như ETH) để thanh toán phí giao dịch.',
+        a: 'Mở tài khoản, chọn “Xem mã QR” để xem địa chỉ của tài khoản, sau đó chuyển tiền đến địa chỉ đó từ sàn giao dịch hoặc ví khác. Hãy đảm bảo bạn gửi tiền trên mạng đúng (Ethereum, Polygon, Arbitrum, Base hoặc Optimism) — cùng một địa chỉ hoạt động trên tất cả các mạng này, nhưng số tiền gửi trên một mạng chỉ hiển thị trên mạng đó. Bạn cũng cần có một ít đồng tiền gốc của mạng đó (chẳng hạn như ETH) để thanh toán phí giao dịch.',
       },
       {
         q: 'Tôi có thể làm gì với wwwallet?',
-        a: 'Gửi: chuyển ETH hoặc bất kỳ token nào đến một địa chỉ mà bạn dán, quét từ mã QR hoặc chọn từ các tài khoản của chính bạn, và kiểm tra lại thông tin chi tiết trước khi xác nhận. Hoán đổi: đổi một token lấy một token khác trên cùng một mạng lưới từ tab “Hoán đổi”, với báo giá và ước tính phí được hiển thị ngay từ đầu. Nhận: hiển thị địa chỉ của bạn dưới dạng mã QR. Bạn cũng có thể xem số dư của mình dưới dạng giá trị USD và lịch sử giao dịch trên tất cả các mạng được hỗ trợ.',
+        a: 'Gửi: chuyển ETH hoặc bất kỳ token nào đến địa chỉ mà bạn dán vào, quét từ mã QR hoặc chọn từ các tài khoản của chính bạn, và kiểm tra lại thông tin trước khi xác nhận. Hoán đổi: đổi một token lấy một token khác trên cùng một mạng từ tab “Hoán đổi”, với báo giá và ước tính phí được hiển thị ngay từ đầu. Nhận: hiển thị địa chỉ của bạn dưới dạng mã QR. Bạn cũng có thể xem số dư của mình dưới dạng giá trị USD và lịch sử giao dịch trên tất cả các mạng được hỗ trợ.',
       },
       {
         q: 'wwwallet biết những gì về tôi?',
-        a: 'Không có thông tin nào giúp nhận diện bạn. Không có tài khoản, thông tin đăng nhập hay cơ sở dữ liệu. Dữ liệu về số dư và giá được lấy thông qua hệ thống backend riêng của wwwallet, thay vì trình duyệt của bạn gọi trực tiếp đến các nhà cung cấp bên thứ ba, và hệ thống backend đó không bao giờ tiếp cận được khóa riêng, mật khẩu hay cụm từ khôi phục của bạn.',
+        a: 'Không có thông tin nào giúp xác định danh tính của bạn. Không có tài khoản, thông tin đăng nhập hay cơ sở dữ liệu. Dữ liệu về số dư và giá cả được lấy từ hệ thống backend riêng của wwwallet, thay vì trình duyệt của bạn gọi trực tiếp đến các nhà cung cấp bên thứ ba, và hệ thống backend đó hoàn toàn không tiếp cận được khóa riêng, mật khẩu hay cụm từ khôi phục của bạn.',
       },
     ],
   },
   footer: {
-    tagline: 'Một ví Ethereum cá nhân, không lưu trữ tài sản.',
-    sourceLink: 'Xem mã nguồn trên GitHub',
+    tagline: 'Một ví Ethereum miễn phí, không lưu giữ tài sản dành cho tất cả mọi người.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Được cấp phép theo Giấy phép PolyForm Strict 1.0.0',
     disclaimer:
       'Phần mềm không lưu giữ được cung cấp “nguyên trạng”, không kèm theo bất kỳ bảo hành nào. Đây không phải là lời khuyên tài chính. Bạn hoàn toàn chịu trách nhiệm về các khóa và số tiền của mình.',
+  },
+  license: {
+    title: 'Giấy phép',
+    close: 'Đóng',
+    summaryTitle: 'Nói một cách đơn giản',
+    canUse:
+      'Bạn có thể sử dụng wwwallet miễn phí cho mục đích cá nhân và các mục đích phi thương mại khác.',
+    canRead: 'Bạn có thể đọc và kiểm tra từng dòng mã nguồn của nó.',
+    cannot: 'Bạn không được sao chép, sửa đổi, phân phối lại hoặc bán tài liệu này.',
+    englishNote: 'Dưới đây là toàn văn giấy phép bằng tiếng Anh gốc — đây là văn bản pháp lý.',
+    viewSource: 'Xem trên GitHub',
+  },
+  principles: {
+    eyebrow: 'Các nguyên tắc',
+    heading: 'Miễn phí, mở và được thiết kế dành cho mọi người',
+    lede: 'Ví điện tử nên là một công cụ để bạn sử dụng, chứ không phải là một mô hình kinh doanh dựa vào người dùng. Đây chính là những cam kết mà wwwallet được xây dựng dựa trên.',
+    items: [
+      {
+        title: 'Miễn phí, không có điều kiện nào cả',
+        body: 'Không có giá, không có gói cao cấp, không có tính năng trả phí. wwwallet không thu thêm bất kỳ khoản phí nào — chi phí duy nhất là phí giao dịch của chính mạng lưới đó.',
+      },
+      {
+        title: 'Không có quảng cáo, không theo dõi',
+        body: 'Không có quảng cáo, không có công cụ phân tích, không có mã theo dõi và không bán dữ liệu cho bất kỳ ai. Ngay từ đầu, đã không có hồ sơ cá nhân nào của bạn để bán cả.',
+      },
+      {
+        title: 'Không cần đăng ký',
+        body: 'Không cần email, số điện thoại hay xác minh danh tính. Chỉ cần mở ứng dụng, tạo ví là bạn đã sẵn sàng.',
+      },
+      {
+        title: 'Bạn luôn mang theo chìa khóa bên mình',
+        body: 'Các khóa được tạo và mã hóa ngay trên thiết bị của bạn và không bao giờ rời khỏi thiết bị đó. wwwallet không thể xem các khóa này, không thể chuyển tiền của bạn cũng như không thể khóa tài khoản của bạn.',
+      },
+      {
+        title: 'Hoạt động ở mọi nơi',
+        body: 'Hoạt động trên mọi trình duyệt hiện đại trên điện thoại hoặc máy tính để bàn, và cài đặt giống như một ứng dụng — không cần tài khoản trên cửa hàng ứng dụng.',
+      },
+      {
+        title: 'Bằng 31 ngôn ngữ',
+        body: 'Hãy sử dụng nó bằng ngôn ngữ mà bạn cảm thấy thoải mái nhất, ở chế độ sáng hoặc tối.',
+      },
+      {
+        title: 'Mã nguồn mở',
+        body: 'Toàn bộ mã nguồn đã được công bố để bất kỳ ai cũng có thể đọc và kiểm tra. Đây là mã nguồn có sẵn chứ không phải mã nguồn mở — phần Câu hỏi thường gặp (FAQ) giải thích những gì giấy phép cho phép.',
+      },
+      {
+        title: 'Không có gì cần tắt cả',
+        body: 'Không có tài khoản nào bị đóng băng cả. Tiền của bạn được lưu trữ trực tiếp trên mạng Ethereum, và khóa của bất kỳ tài khoản nào cũng có thể được chuyển sang ví khác bất cứ lúc nào.',
+      },
+    ],
   },
 }

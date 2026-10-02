@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted } from 'vue'
 import AppHeader from './components/layout/AppHeader.vue'
 import AppFooter from './components/layout/AppFooter.vue'
 import HeroSection from './components/sections/HeroSection.vue'
+import PrinciplesSection from './components/sections/PrinciplesSection.vue'
 import WalletSection from './components/sections/WalletSection.vue'
 import EthereumSection from './components/sections/EthereumSection.vue'
 import CryptoSection from './components/sections/CryptoSection.vue'
@@ -41,6 +42,7 @@ function onVisibilityChange() {
   <AppHeader />
   <main>
     <HeroSection />
+    <PrinciplesSection />
     <WalletSection />
     <EthereumSection />
     <CryptoSection />

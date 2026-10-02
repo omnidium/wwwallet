@@ -38,6 +38,10 @@ const props = defineProps<{
   modelValue: PickedToken | null
   heldTokens: HeldToken[]
   label: string
+  /** Only the held tokens, no token-list search — for sending, where only what's held can go. */
+  heldOnly?: boolean
+  /** No block-explorer link beside the button — the transfer panel's tighter rows. */
+  compact?: boolean
 }>()
 const emit = defineEmits<{ 'update:modelValue': [value: PickedToken] }>()
 
@@ -71,8 +75,9 @@ const heldMatches = computed(() => {
   // permanently unselectable for an account that doesn't hold any yet, even
   // though "sell X to get some ETH for gas" is one of the most common
   // reasons to open this picker in the first place.
+  // Sending keeps unpriced tokens too: anything held can be sent, priced or not.
   const held = props.heldTokens.filter(
-    (t) => t.address === null || (t.usdValue != null && t.usdValue > 0),
+    (t) => t.address === null || (props.heldOnly ? t.balance > 0 : t.usdValue != null && t.usdValue > 0),
   )
   const matching = query
     ? held.filter(
@@ -97,6 +102,7 @@ watch(search, (query) => {
     loading.value = false
     return
   }
+  if (props.heldOnly) return
   loading.value = true
   debounceHandle = setTimeout(async () => {
     // Searched locally, against the chain's token list as cached on this
@@ -132,10 +138,11 @@ function openDialog() {
 </script>
 
 <template>
-  <div>
+  <div class="token-picker">
     <v-btn
       variant="tonal"
-      class="text-none"
+      class="text-none token-picker-btn"
+      rounded="pill"
       :aria-label="label"
       @click="openDialog"
     >
@@ -144,7 +151,7 @@ function openDialog() {
       {{ modelValue?.symbol ?? label }}
       <v-icon icon="mdi-menu-down" end />
     </v-btn>
-    <AppTooltip v-if="modelValue?.address" :text="t('swap.viewOnExplorer')">
+    <AppTooltip v-if="modelValue?.address && !compact" :text="t('swap.viewOnExplorer')">
       <template #default="{ activatorProps }">
         <a
           v-bind="activatorProps"
@@ -186,7 +193,13 @@ function openDialog() {
               </template>
             </v-list-item>
 
-            <template v-if="search.trim()">
+            <p
+              v-if="heldOnly && !heldMatches.length"
+              class="text-caption text-medium-emphasis text-center pa-4"
+            >
+              {{ t('swap.noResults') }}
+            </p>
+            <template v-if="search.trim() && !heldOnly">
               <v-progress-linear v-if="loading" indeterminate class="my-2" />
               <template v-else>
                 <v-list-subheader v-if="searchResults.length">{{ t('swap.allTokens') }}</v-list-subheader>

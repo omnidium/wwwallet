@@ -8,6 +8,7 @@ import { PrfNotSupportedError } from '@/services/webauthnLocal'
 import { generateRecoveryMnemonic, recoveryMnemonicWords } from '@/services/mnemonic'
 import { copyWithAutoClear } from '@/services/clipboard'
 import { displayErrorMessage } from '@/services/errors'
+import LicenseDialog from '@/components/LicenseDialog.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
@@ -98,6 +99,9 @@ function finish() {
   }
   router.push('/')
 }
+
+// Opened from the disclaimer's "Read the license" — in a panel, not a link out to GitHub.
+const licenseOpen = ref(false)
 </script>
 
 <template>
@@ -112,9 +116,8 @@ function finish() {
           <v-alert type="warning" variant="tonal" density="compact" class="text-body-2">
             <div class="font-weight-medium mb-1">{{ t('vaultSetup.disclaimerTitle') }}</div>
             {{ t('vaultSetup.disclaimerBody') }}
-            <a href="https://github.com/omnidium/wwwallet/blob/main/LICENSE" target="_blank"
-              rel="noopener noreferrer">{{
-                t('vaultSetup.disclaimerLicenseLink') }}</a>
+            <button type="button" class="text-link" @click="licenseOpen = true">{{
+              t('vaultSetup.disclaimerLicenseLink') }}</button>
           </v-alert>
           <v-checkbox v-model="termsAck" class="mt-2" density="compact" hide-details
             :label="t('vaultSetup.disclaimerAckLabel')" data-testid="terms-ack" />
@@ -203,10 +206,12 @@ function finish() {
     </v-dialog>
 
     <v-overlay :model-value="restoring" persistent class="d-flex align-center justify-center">
-      <div class="d-flex flex-column align-center">
+      <v-card class="d-flex flex-column align-center pa-8 busy-panel" elevation="8">
         <v-progress-circular indeterminate size="64" color="primary" class="mb-4" />
         <p class="text-body-1">{{ t('backup.recovering') }}</p>
-      </div>
+      </v-card>
     </v-overlay>
+
+    <LicenseDialog v-model="licenseOpen" />
   </v-container>
 </template>

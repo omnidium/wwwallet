@@ -5,6 +5,7 @@ import { useScrollSpy } from '@/composables/useScrollSpy'
 const { t } = useI18n()
 
 const sections = [
+  { id: 'principles', label: 'nav.principles' },
   { id: 'wallet', label: 'nav.wallet' },
   { id: 'ethereum', label: 'nav.ethereum' },
   { id: 'crypto', label: 'nav.crypto' },
@@ -105,10 +106,18 @@ function onNavClick(id: string, event: MouseEvent) {
     transform: none;
     max-width: none;
     justify-content: center;
+    gap: var(--space-3);
+    padding: 6px var(--space-3);
   }
 
+  /* Tighter so all five sections fit a phone's width without scrolling. */
   .scroll-spy-nav ul {
     min-width: 0;
+    gap: var(--space-2);
+  }
+
+  .scroll-spy-nav a:not(.wordmark) {
+    font-size: 0.85rem;
   }
 }
 </style>

@@ -230,11 +230,132 @@ pub struct SwapFee {
     pub amount: String,
 }
 
+/// A ready-to-sign cross-chain transfer (a plain bridge, or a bridge with a
+/// swap on either side) from a bridge aggregator. Unlike `SwapQuote`, the
+/// tokens on each side are echoed back as the aggregator resolved them —
+/// a destination token may be requested by symbol, so the client can't know
+/// its address or decimals until the quote says.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BridgeQuote {
+    pub to: String,
+    pub data: String,
+    /// Decimal wei strings, converted from the aggregator's own hex.
+    pub value: String,
+    pub gas_price: String,
+    pub gas_limit: String,
+    pub from_amount: String,
+    /// Expected amount delivered on the destination chain, raw units.
+    pub to_amount: String,
+    /// Least that can arrive after slippage — the transfer reverts below it.
+    pub to_amount_min: String,
+    /// ERC-20 spender to approve first; None when sending the native coin.
+    pub approval_address: Option<String>,
+    pub from_token: BridgeToken,
+    pub to_token: BridgeToken,
+    pub fees: Vec<BridgeFee>,
+    /// Source-chain network fee, as the aggregator priced it.
+    pub gas_cost_usd: Option<f64>,
+    /// Typical time from source confirmation to arrival.
+    pub execution_duration_secs: u64,
+    /// The bridge (or DEX) the route runs through, for display.
+    pub tool: String,
+    pub tool_logo_url: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BridgeToken {
+    pub address: String,
+    pub symbol: String,
+    pub decimals: u8,
+    pub logo_url: Option<String>,
+    pub usd_price: Option<f64>,
+}
+
+/// One non-gas fee charged by a bridge route.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BridgeFee {
+    pub name: String,
+    pub symbol: String,
+    /// Raw (undecimalized) amount, decimal string.
+    pub amount: String,
+    pub decimals: u8,
+    pub amount_usd: Option<f64>,
+    /// True when already taken out of `to_amount`; false when charged on top
+    /// (added to the transaction's `value`).
+    pub included: bool,
+}
+
+/// Where a cross-chain transfer is, once its source transaction is sent.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BridgeStatus {
+    /// `"pending"`, `"done"` or `"failed"`. A transfer the aggregator hasn't
+    /// indexed yet is reported as pending.
+    pub status: String,
+    /// e.g. `"COMPLETED"`, `"PARTIAL"` (arrived as a different token), `"REFUNDED"`.
+    pub substatus: Option<String>,
+    pub receiving_tx_hash: Option<String>,
+}
+
+/// An asset's USD price at a past moment — see `usd_price_at`.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct HistoricalPrice {
+    pub usd: f64,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FxRates {
     pub base: String,
     pub rates: std::collections::HashMap<String, f64>,
     pub as_of_unix: i64,
+}
+
+/// One hit from a free-text coin search (any coin the price source lists,
+/// not only the EVM chains this wallet holds) — see CoinSearchProvider.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CoinSearchResult {
+    /// The price source's own coin id (e.g. CoinGecko's "solana") — what the
+    /// coin price-history route takes.
+    pub id: String,
+    /// Upper-case ticker, e.g. "SOL".
+    pub symbol: String,
+    pub name: String,
+    pub logo_url: Option<String>,
+    /// Lower is bigger; None when the source doesn't rank it.
+    pub market_cap_rank: Option<u32>,
+}
+
+/// A currency pair's recent daily reference rates. Daily, not 24h like
+/// PriceHistory: the ECB publishes one rate per business day.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct FxHistory {
+    pub base: String,
+    pub quote: String,
+    /// Units of `quote` per one `base`, as of the latest business day.
+    pub rate: f64,
+    /// Percent change from the previous business day's rate.
+    pub change_1d_pct: f64,
+    /// One per business day over roughly the past month, oldest first; the
+    /// last one is always `rate`.
+    pub points: Vec<f64>,
+}
+
+impl FxHistory {
+    /// From an oldest-first daily rate series; None with fewer than two days.
+    pub fn from_series(base: &str, quote: &str, series: &[f64]) -> Option<Self> {
+        let series: Vec<f64> = series.iter().copied().filter(|r| r.is_finite() && *r > 0.0).collect();
+        if series.len() < 2 {
+            return None;
+        }
+        let last = series[series.len() - 1];
+        let previous = series[series.len() - 2];
+        Some(Self {
+            base: base.to_string(),
+            quote: quote.to_string(),
+            rate: last,
+            change_1d_pct: (last - previous) / previous * 100.0,
+            points: series,
+        })
+    }
 }
 
 #[cfg(test)]
@@ -292,4 +413,14 @@ mod tests {
         assert!(!token.is_unresolved());
         assert!(token.lacks_descriptive_fields(), "a price alone isn't a name/symbol/decimals/logo");
     }
+
+    #[test]
+    fn fx_history_change_is_day_over_day_and_keeps_every_point() {
+        let history = FxHistory::from_series("EUR", "USD", &[1.10, 1.12, 1.0, 1.05]).unwrap();
+        assert_eq!(history.rate, 1.05);
+        assert!((history.change_1d_pct - 5.0).abs() < 1e-9);
+        assert_eq!(history.points, vec![1.10, 1.12, 1.0, 1.05]);
+        assert!(FxHistory::from_series("EUR", "USD", &[1.1]).is_none());
+    }
+
 }

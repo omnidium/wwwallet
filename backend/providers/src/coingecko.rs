@@ -5,8 +5,10 @@ use std::collections::HashMap;
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
 use crate::http;
-use crate::traits::{NativePriceProvider, PriceHistoryProvider};
-use crate::types::{NativePrice, PriceHistory};
+use crate::traits::{
+    CoinPriceHistoryProvider, CoinSearchProvider, NativePriceProvider, PriceHistoryProvider,
+};
+use crate::types::{CoinSearchResult, NativePrice, PriceHistory};
 
 /// Every EVM chain here settles in ETH except Polygon (POL) — see
 /// ChainId::native_symbol. CoinGecko's `/simple/price` takes coin ids, not
@@ -33,6 +35,31 @@ struct SimplePriceEntry {
 #[derive(Deserialize)]
 struct MarketChart {
     prices: Vec<(f64, f64)>,
+}
+
+/// `/search`'s `coins`, already ordered by relevance then market cap.
+#[derive(Deserialize)]
+struct SearchResponse {
+    coins: Vec<SearchCoin>,
+}
+
+#[derive(Deserialize)]
+struct SearchCoin {
+    id: String,
+    symbol: String,
+    name: String,
+    market_cap_rank: Option<u32>,
+    large: Option<String>,
+}
+
+/// Plenty for a type-ahead list; `/search` returns up to a few dozen.
+const MAX_SEARCH_RESULTS: usize = 15;
+
+async fn market_chart_24h(id: &str) -> ProviderResult<PriceHistory> {
+    let url = format!("https://api.coingecko.com/api/v3/coins/{id}/market_chart?vs_currency=usd&days=1");
+    let chart: MarketChart = http::get_json_with_headers(&url, &[USER_AGENT]).await?;
+    let series: Vec<f64> = chart.prices.into_iter().map(|(_, usd)| usd).collect();
+    PriceHistory::from_series(&series).ok_or(ProviderError::Unavailable)
 }
 
 /// CoinGecko's free, keyless `/simple/price` endpoint. It rate-limits the
@@ -82,10 +109,42 @@ impl PriceHistoryProvider for CoinGeckoProvider {
         if contract_address.is_some() {
             return Err(ProviderError::Unavailable);
         }
-        let id = coingecko_id(chain);
-        let url = format!("https://api.coingecko.com/api/v3/coins/{id}/market_chart?vs_currency=usd&days=1");
-        let chart: MarketChart = http::get_json_with_headers(&url, &[USER_AGENT]).await?;
-        let series: Vec<f64> = chart.prices.into_iter().map(|(_, usd)| usd).collect();
-        PriceHistory::from_series(&series).ok_or(ProviderError::Unavailable)
+        market_chart_24h(coingecko_id(chain)).await
+    }
+}
+
+#[async_trait(?Send)]
+impl CoinSearchProvider for CoinGeckoProvider {
+    fn name(&self) -> &'static str {
+        "coingecko"
+    }
+
+    async fn search_coins(&self, query: &str) -> ProviderResult<Vec<CoinSearchResult>> {
+        let query: String = url::form_urlencoded::byte_serialize(query.as_bytes()).collect();
+        let url = format!("https://api.coingecko.com/api/v3/search?query={query}");
+        let resp: SearchResponse = http::get_json_with_headers(&url, &[USER_AGENT]).await?;
+        Ok(resp
+            .coins
+            .into_iter()
+            .take(MAX_SEARCH_RESULTS)
+            .map(|c| CoinSearchResult {
+                id: c.id,
+                symbol: c.symbol.to_uppercase(),
+                name: c.name,
+                logo_url: c.large.filter(|u| u.starts_with("https://")),
+                market_cap_rank: c.market_cap_rank,
+            })
+            .collect())
+    }
+}
+
+#[async_trait(?Send)]
+impl CoinPriceHistoryProvider for CoinGeckoProvider {
+    fn name(&self) -> &'static str {
+        "coingecko"
+    }
+
+    async fn coin_price_history_24h(&self, id: &str, _symbol: &str) -> ProviderResult<PriceHistory> {
+        market_chart_24h(id).await
     }
 }

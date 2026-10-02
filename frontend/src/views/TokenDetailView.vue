@@ -19,6 +19,7 @@ import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import type { Transaction } from '@/services/api'
 import InfoTooltip from '@/components/InfoTooltip.vue'
 import AppTooltip from '@/components/AppTooltip.vue'
+import SpinningCoin from '@/components/SpinningCoin.vue'
 import PriceSparkline from '@/components/PriceSparkline.vue'
 import TransactionRow from '@/components/TransactionRow.vue'
 import TransactionDetailDialog from '@/components/TransactionDetailDialog.vue'
@@ -143,16 +144,24 @@ function toggleMoreDetails() {
   showMoreDetails.value = !showMoreDetails.value
 }
 
-// Clicking the header's name: refreshes the price row above as well as the
-// 24h figures, so the two never disagree after a click.
+// Clicking the header's name refreshes everything this panel shows: the
+// price row and 24h figures (so the two never disagree after a click), plus,
+// with a holder, their balances and newest transactions — the same refresh
+// the accounts screen's auto-refresh runs. The header logo spins meanwhile,
+// matching the account card's chain logo.
 const refreshingPrice = ref(false)
-async function refreshPrice() {
-  if (refreshingPrice.value) return
+const refreshing = computed(() =>
+  refreshingPrice.value || (!!holderAddress && chainData.isLoading(chain, holderAddress)),
+)
+async function refresh() {
+  if (refreshing.value) return
   refreshingPrice.value = true
-  const results = await Promise.allSettled([
+  const loaders: Promise<unknown>[] = [
     address === null ? chainData.loadNativePrice(chain) : chainData.loadTokenMetadata(chain, address),
     loadPriceHistory(),
-  ])
+  ]
+  if (holderAddress) loaders.push(chainData.loadAddressActivity(chain, holderAddress), chainData.loadFxRates())
+  const results = await Promise.allSettled(loaders)
   refreshingPrice.value = false
   const failure = results.find((r) => r.status === 'rejected')
   if (failure) messages.push(displayErrorMessage(failure.reason), 'error')
@@ -197,14 +206,16 @@ function openTransaction(txn: Transaction) {
     <!-- <v-progress-linear v-if="loading" indeterminate class="mb-4" /> -->
 
     <div class="token-detail-header d-flex align-center mb-2">
-      <v-avatar v-if="metadata?.logo_url" :image="metadata.logo_url" size="30" class="mr-3" />
+      <div v-if="metadata?.logo_url" class="token-detail-logo mr-3">
+        <SpinningCoin :src="metadata.logo_url" :spinning="refreshing" />
+      </div>
       <v-icon v-else icon="mdi-cash-multiple" size="large" class="mr-3" />
       <AppTooltip :text="t('token.refreshPrice')">
         <template #default="{ activatorProps }">
           <h3 v-bind="activatorProps" class="token-detail-name"
-            :class="{ 'token-detail-name--refreshing': refreshingPrice }" role="button" tabindex="0"
-            :aria-busy="refreshingPrice" @click="refreshPrice" @keydown.enter="refreshPrice"
-            @keydown.space.prevent="refreshPrice">
+            :class="{ 'token-detail-name--refreshing': refreshing && !metadata?.logo_url }" role="button"
+            tabindex="0" :aria-busy="refreshing" @click="refresh" @keydown.enter="refresh"
+            @keydown.space.prevent="refresh">
             {{ metadata?.name ?? t('token.defaultLabel') }}
             <span v-if="metadata?.symbol" class="text-medium-emphasis">({{ metadata.symbol }})</span>
           </h3>
@@ -232,11 +243,6 @@ function openTransaction(txn: Transaction) {
         </a>
       </div>
 
-      <div v-if="metadata?.decimals != null" class="detail-row d-flex justify-space-between py-2">
-        <span class="text-medium-emphasis">{{ t('token.decimals') }}</span>
-        <span>{{ metadata.decimals }}</span>
-      </div>
-
       <div v-if="currentPriceUsd !== null" class="detail-row d-flex align-center justify-space-between py-2">
         <span class="text-medium-emphasis d-flex align-center">
           {{ t('token.currentPrice') }}
@@ -262,6 +268,10 @@ function openTransaction(txn: Transaction) {
       </div>
 
       <template v-if="showMoreDetails">
+        <div v-if="metadata?.decimals != null" class="detail-row d-flex justify-space-between py-2">
+          <span class="text-medium-emphasis">{{ t('token.decimals') }}</span>
+          <span>{{ metadata.decimals }}</span>
+        </div>
         <div class="detail-row d-flex align-center justify-space-between py-2">
           <span class="text-medium-emphasis">{{ t('token.change24h') }}</span>
           <span v-if="priceHistory"
@@ -291,7 +301,7 @@ function openTransaction(txn: Transaction) {
       <v-card class="pa-2 token-detail-txn-card" max-width="480">
         <div ref="txnListEl" class="token-detail-txn">
           <template v-for="group in transactionGroups" :key="group.dateLabel">
-            <p v-if="group.dateLabel" class="text-caption text-medium-emphasis px-2 mt-2">{{ group.dateLabel }}</p>
+            <p v-if="group.dateLabel" class="txn-date-label text-caption px-2">{{ group.dateLabel }}</p>
             <TransactionRow v-for="txn in group.transactions" :key="txn.hash" :transaction="txn"
               :my-address="holderAddress" :chain="chain" @click="openTransaction(txn)" />
           </template>

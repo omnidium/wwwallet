@@ -22,7 +22,8 @@ export function useDefaultAccountFallback() {
   async function reconcile(): Promise<void> {
     const chains = new Set(accounts.accounts.map((a) => a.chain))
     for (const chain of chains) {
-      const siblings = accounts.accounts.filter((a) => a.chain === chain)
+      // Discovered copies of another chain's account never become a default.
+      const siblings = accounts.accounts.filter((a) => a.chain === chain && !a.discovered)
       const visible = siblings.filter((a) => a.visible)
       const current = siblings.find((a) => a.isDefault)
       if (visible.length === 0 || (current && current.visible)) continue

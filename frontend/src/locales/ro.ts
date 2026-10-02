@@ -9,6 +9,8 @@ export default {
     address: 'Adresă',
     close: 'Închide',
     review: 'Recenzie',
+    search: 'Căutare',
+    noMatches: 'Nu s-au găsit rezultate',
   },
   nav: {
     settings: 'Setări',
@@ -22,8 +24,8 @@ export default {
     offlineServerUnreachable: 'Nu se poate stabili conexiunea cu serverul',
     backupReminder:
       'A trecut ceva timp de la ultima ta copie de rezervă. Fă copii de rezervă în mod regulat și de fiecare dată când faci modificări.',
-    viewHidden: 'Afișează conturile ascunse',
-    hideHidden: 'Ascunde conturile ascunse',
+    viewHidden: 'Afișează elementele ascunse',
+    hideHidden: 'Ascunde elementele ascunse',
   },
   addAccount: {
     title: 'Adaugă cont',
@@ -44,20 +46,17 @@ export default {
   send: {
     title: 'Trimite',
     fromLabel: 'De la',
-    recipientLabel: 'Adresa destinatarului',
     scanQrAria: 'Scanează codul QR',
-    amountLabel: 'Suma',
     submit: 'Trimite',
     tabSend: 'Trimite',
     tabSwap: 'Schimb',
-    chainLabel: 'Lanț',
     tokenLabel: 'Token',
     amountInLabel: 'Suma din {unit}',
     maxLabel: 'Max',
     toggleAmountUnitAria: 'Comută între suma tokenului și {currency}',
     addPayeeTitle: 'Să adaug această adresă ca beneficiar?',
     addPayeePrompt:
-      'Ai scanat această adresă folosind un cod QR. Salveaz-o ca beneficiar, astfel încât să poți trimite din nou bani cu ușurință.',
+      'Nu ai mai trimis niciodată la această adresă. Salveaz-o ca destinatar, ca să poți trimite din nou cu ușurință.',
     addPayeeLabelField: 'Etichetă',
     addPayeeSave: 'Salvare',
     addPayeeSkip: 'Sari peste',
@@ -69,12 +68,9 @@ export default {
     copyAria: 'Copiază adresa',
   },
   swap: {
-    title: 'Schimb',
     sellTokenLabel: 'Vinde',
     buyTokenLabel: 'Cumpără',
     sellAmountLabel: 'Suma de vânzare',
-    getQuote: 'Solicită o ofertă',
-    estimateText: 'Suma estimată de încasat: {amount} la prețul de {price}',
     signingNotice:
       'Semnezi o tranzacție pentru a încheia un contract cu {address} (prin intermediul agregatorului 0x).',
     submit: 'Schimb',
@@ -84,9 +80,6 @@ export default {
     allTokens: 'Toate jetoanele',
     noResults: 'Nu s-au găsit jetoane.',
     viewOnExplorer: 'Vizualizează tokenul în exploratorul de blocuri',
-    estimatedFee: 'Taxă estimată pentru rețea: {fee}',
-    swapFee: 'Comision de schimb: {fee}',
-    integratorFee: 'Taxă de serviciu: {fee}',
   },
   payees: {
     title: 'Beneficiari',
@@ -96,6 +89,9 @@ export default {
     labelField: 'Etichetă',
     addressField: 'Adresă',
     edit: 'Editează beneficiarul plății',
+    labelPlaceholder: 'de exemplu, Alice',
+    chainHint:
+      'Rețeaua pe care o recepționează — le transmite semnalul în mod implicit către aceasta.',
   },
   backup: {
     title: 'Copiere de rezervă și restaurare',
@@ -169,7 +165,6 @@ export default {
     removePasskeyBody:
       'Vei avea nevoie de fraza completă de recuperare de fiecare dată când deblochezi wwwallet, până când vei configura din nou o parolă.',
     removeAnyway: 'Elimină oricum',
-    transactionBatchSizeLabel: 'Tranzacții pe încărcare',
     version: 'Versiunea {version}',
     dangerZoneTitle: 'Zona de pericol',
     deleteWalletLabel: 'Șterge portofelul de pe acest dispozitiv',
@@ -205,9 +200,9 @@ export default {
     network: 'Rețea',
     addFavourite: 'Adaugă la favorite (afișat pe ecranul de blocare)',
     removeFavourite: 'Elimină din favorite',
-    refreshPrice: 'Faceți clic pentru a actualiza prețul',
-    moreDetails: 'Mai multe detalii',
-    lessDetails: 'Mai puține detalii',
+    refreshPrice: 'Faceți clic pentru a reîmprospăta pagina',
+    moreDetails: 'Mai mult',
+    lessDetails: 'Mai puțin',
     currentPrice: 'Prețul actual (USD)',
     change24h: 'Variația pe 24 de ore',
     chart24h: 'Ultimele 24 de ore',
@@ -229,7 +224,8 @@ export default {
     privateKeyRequired: 'Este necesară o cheie privată.',
     keystoreFileRequired: 'Alegeți un fișier de stocare a cheilor.',
     recoveryPhraseFormat: 'Nu pare a fi o frază de recuperare validă.',
-    insufficientGas: 'În acest cont nu există suficient ETH pentru a acoperi comisionul de rețea.',
+    insufficientGas:
+      'Soldul acestui cont nu este suficient pentru a acoperi comisionul de tranzacție.',
     sameTokenSwap: 'Vânzarea și cumpărarea de tokenuri trebuie să fie procese distincte.',
   },
   msg: {
@@ -250,16 +246,11 @@ export default {
       stillPending: 'Încă în așteptare — nu a fost confirmat încă. Hash: {hash}',
     },
     swap: {
-      approvalSubmitted: 'Cererea de aprobare a fost trimisă. Aștept confirmarea…',
       success: 'Schimbul a fost trimis.',
       submitting: 'Se trimite tranzacția…',
       waiting: 'Se așteaptă finalizarea tranzacției…',
       failed: 'Schimbul a eșuat. Hash: {hash}',
       stillPending: 'Încă în așteptare — nu a fost confirmat încă. Hash: {hash}',
-      approvalConfirmed: 'Aprobarea a fost confirmată. Se pregătește schimbul…',
-      approvalFailed: 'Aprobarea a eșuat. Hash: {hash}',
-      approvalStillPending:
-        'Aprobarea este încă în așteptare — nu a fost încă confirmată. Încearcă să faci schimbul din nou în scurt timp. Hash: {hash}',
     },
     backup: {
       driveSuccess: 'S-a făcut o copie de rezervă pe Google Drive.',
@@ -280,6 +271,21 @@ export default {
     },
     passkey: {
       ready: 'Deblocarea prin Face ID / Touch ID este gata.',
+    },
+    approval: {
+      submitted: 'Cererea de aprobare a fost trimisă. Se așteaptă confirmarea…',
+      confirmed: 'Aprobarea a fost confirmată. Se pregătește tranzacția…',
+      failed: 'Aprobarea a eșuat. Hash: {hash}',
+      stillPending:
+        'Aprobarea este încă în așteptare — nu a fost încă confirmată. Vă rugăm să încercați din nou în scurt timp. Hash: {hash}',
+    },
+    bridge: {
+      waiting: 'Puntea a fost trimisă. Aștept confirmarea…',
+      inFlight: 'În drum spre {network} — de obicei {eta}.',
+      arrived: 'A sosit la ora {network}.',
+      refunded: 'Bridge a rambursat acest transfer. Hash: {hash}',
+      failed: 'Transferul prin Bridge a eșuat. Hash: {hash}',
+      stillPending: 'Încă în curs — revino mai târziu. Hash: {hash}',
     },
   },
   errors: {
@@ -321,21 +327,12 @@ export default {
     rateLimited:
       'Sunt prea multe solicitări — vă rugăm să așteptați puțin și să încercați din nou.',
     noLiquidity:
-      'Această pereche de tokenuri nu poate fi tranzacționată în acest moment — încearcă un alt token.',
+      'În acest moment nu este disponibilă nicio rută — încearcă un alt token, o altă sumă sau o altă rețea.',
     transactionWouldFail:
       'Această tranzacție ar eșua dacă ar fi trimisă — verificați soldul și eventualele aprobări necesare.',
-  },
-  currency: {
-    USD: 'dolarul american',
-    EUR: 'Euro',
-    GBP: 'Lira sterlină',
-    AUD: 'dolarul australian',
-    CAD: 'dolarul canadian',
-    JPY: 'yenul japonez',
-    CHF: 'Franc elvețian',
-    CNH: 'Yuan',
-    SEK: 'Coroana suedeză',
-    NZD: 'Dolarul neozeelandez',
+    tokenNotOnChain: 'Acest token nu este acceptat pe una dintre aceste rețele.',
+    serviceBusy:
+      'wwwallet este ocupat în acest moment — vă rugăm să încercați din nou peste un minut.',
   },
   accountCard: {
     copyAddress: 'Copiază adresa',
@@ -350,14 +347,11 @@ export default {
     viewMnemonic: 'Vizualizează mnemonica',
     privateKeyNoun: 'cheie privată',
     mnemonicNoun: 'fraza mnemonică',
-    showTransactions: 'Afișează tranzacțiile recente',
-    hideTransactions: 'Ascunde tranzacțiile recente',
     showTokens: 'Afișează soldurile tokenurilor',
     hideTokens: 'Ascunde soldurile tokenurilor',
     hideDustTxns: 'Ascunde tranzacțiile sub 0,01 dolari',
     hideUnknownTokens: 'Ascunde tokenurile necunoscute',
     dragToReorder: 'Trageți pentru a reordona',
-    refresh: 'Reîmprospătează acest cont',
     viewOnEtherscan: 'Faceți clic pentru a vizualiza pe Etherscan',
     viewNativeToken: 'Vezi detaliile {symbol}',
   },
@@ -395,9 +389,11 @@ export default {
     amount: 'Suma',
     sold: 'Vândut',
     bought: 'Cumpărat',
-    networkFee: 'Taxă de rețea',
+    networkFee: 'Comision de tranzacție',
     paidBySender: 'Plătit de expeditor',
     feeUnavailable: 'Nu este încă disponibil',
+    todaysPriceNote:
+      '* La prețul actual — nu s-a găsit niciun preț pentru momentul în care a avut loc această tranzacție.',
   },
   transferPicker: {
     title: 'Selectați un cont sau un beneficiar pentru a efectua transferul',
@@ -408,7 +404,6 @@ export default {
     title: 'Confirmă tranzacția',
     from: 'De la',
     to: 'Către',
-    chain: 'Lanț',
     amount: 'Suma',
     fee: 'Taxă',
     total: 'Total',
@@ -417,5 +412,90 @@ export default {
     price: 'Preț',
     swapFee: 'Comision de schimb valutar',
     integratorFee: 'Taxă de serviciu',
+  },
+  transfer: {
+    fromNetwork: 'Din rețea',
+    toNetwork: 'Pentru a-și crea o rețea de contacte',
+    chainAria: '{label}: {network}. Schimbă rețeaua',
+    chooseAccount: 'Alegeți contul',
+    chooseRecipient: 'Alegeți destinatarul',
+    myAccounts: 'Conturile mele',
+    payees: 'Beneficiari',
+    noOptions: 'Nu e nimic din ce să alegi',
+    enterAddress: 'Lipiți sau introduceți o adresă (0x…)',
+    useAddress: 'Folosiți această adresă',
+    externalAddress: 'Adresă externă',
+    sameAccountSameChain:
+      'Acesta este contul de la care se efectuează transferul — alegeți un alt destinatar sau o altă rețea prin care să transferați fondurile.',
+    payeeOtherChain:
+      'Salvat ca beneficiar la {saved}. Asigură-te că poate primi plăți la {network}.',
+    movingOwnFunds: 'Transferul de fonduri către acest cont la data de {network}.',
+    receiveIntoSame: 'Tokenurile schimbate ajung în același cont',
+    flip: 'Schimbă direcția',
+    noPrice: 'Prețul nu este disponibil',
+    summaryTitle: 'Rezumat',
+    routeDirect: 'Direct',
+    routeBridge: 'Pod',
+    via: 'Traseu',
+    youSend: 'Tu trimiți',
+    youGet: 'Veți primi',
+    recipientGets: 'Destinatarul primește',
+    minReceived: 'Suma minimă primită',
+    minReceivedHint:
+      'Suma minimă care poate fi primită în cazul în care prețurile se modifică înainte de finalizarea tranzacției (slippage). Dacă suma ar fi mai mică, transferul nu se efectuează.',
+    rate: 'Rată',
+    bridgeFees: 'Taxe de trecere peste pod',
+    swapFees: 'Comisioane de schimb valutar',
+    networkFee: 'Comision de tranzacție',
+    arrives: 'Ajunge în',
+    etaNextBlock: 'Secunde',
+    etaSeconds: '~{n} sec',
+    etaMinutes: '~{n} min',
+    etaHours: '~{n} h',
+    placeholderRecipient:
+      'Alegeți destinatarul și introduceți suma pentru a vedea comisioanele și durata tranzacției.',
+    placeholderAmount: 'Introduceți o sumă pentru a vedea comisioanele și termenele.',
+    placeholderBuyToken:
+      'Alegeți un token pe care doriți să îl primiți și introduceți o sumă pentru a vedea cursul de schimb și comisioanele.',
+    bridgeSigningNotice:
+      'Semnezi o tranzacție pentru a încheia un contract cu {address} (prin intermediul agregatorului de bridge LI.FI).',
+    reviewBridge: 'Pod de revizuire',
+    submitBridge: 'Pod',
+    tokenNotOnChain:
+      '{symbol} nu poate fi conectat la {network} — alegeți o altă rețea sau un alt token.',
+    tokenNotOnChainSwap: 'Acest token nu poate fi conectat la {network} — alegeți un alt token.',
+  },
+  accountCarousel: {
+    label: '{name} pe fiecare rețea',
+    show: 'Afișează contul {network}',
+  },
+  favourites: {
+    title: 'Preferințe',
+    edit: 'Editează favoritele',
+    doneEditing: 'Gata',
+    hideCard: 'Ascunde această carte',
+    showCard: 'Afișează această carte',
+    empty:
+      'Nu există încă favorite — folosește creionul pentru a adăuga monede sau perechi valutare.',
+    dragToReorder: 'Trageți pentru a reordona',
+    remove: 'Elimină {name} din favorite',
+    add: 'Adaugă {name} la favorite',
+    addLabel: 'Adaugă la favorite',
+    addPlaceholder: 'Bitcoin, SOL, EUR/USD…',
+    fxPair: 'Pereche valutară',
+    searchFailed:
+      'Nu s-a putut efectua căutarea în acest moment — te rugăm să încerci din nou peste câteva clipe.',
+    noResults: 'Nu s-au găsit rezultate.',
+  },
+  license: {
+    title: 'Licență',
+    summaryTitle: 'Pe înțelesul tuturor',
+    canUse:
+      'Puteți utiliza wwwallet gratuit, în scopuri personale și în alte scopuri necomerciale.',
+    canRead: 'Puteți citi și verifica fiecare linie din codul sursă al acestuia.',
+    cannot: 'Nu ai voie să o copiezi, să o modifici, să o redistribuiezi sau să o vinzi.',
+    englishNote:
+      'În continuare este prezentată licența integrală, în limba engleză originală — acesta este textul juridic.',
+    viewSource: 'Vizualizare pe GitHub',
   },
 }

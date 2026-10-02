@@ -7,6 +7,8 @@ import { useMessagesStore } from '@/stores/messages'
 import { createWallet, importFromKeystoreJson, importFromMnemonic, importFromPrivateKey } from '@/services/wallet'
 import { displayErrorMessage, translatedError } from '@/services/errors'
 import type { ChainSlug } from '@/services/api'
+import { chainItems } from '@/services/chainItems'
+import AppSelect from '@/components/AppSelect.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const accounts = useAccountsStore()
@@ -23,7 +25,7 @@ const keystoreFile = ref<File | null>(null)
 const busy = ref(false)
 const formValid = ref(false)
 
-const chains: ChainSlug[] = ['ethereum', 'polygon', 'arbitrum', 'base', 'optimism']
+const networkItems = chainItems()
 
 const filePasswordRules = [(v: string) => !!v || t('validation.filePasswordRequired')]
 const mnemonicRules = [
@@ -85,7 +87,10 @@ function onKeystoreFileSelected(event: Event) {
     <v-card class="pa-4 mt-4 add-account-card" max-width="480">
       <v-form v-model="formValid">
         <v-text-field v-model="label" :label="t('common.label')" />
-        <v-select v-model="chain" :items="chains" :label="t('common.chain')" />
+        <div class="mb-5">
+          <span class="field-label">{{ t('common.chain') }}</span>
+          <AppSelect v-model="chain" :items="networkItems" :label="t('common.chain')" block />
+        </div>
 
         <v-textarea
           v-if="mode === 'mnemonic'"

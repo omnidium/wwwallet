@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, mergeProps, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import Sortable from 'sortablejs'
@@ -7,14 +7,16 @@ import { useAccountsStore, type WalletAccount } from '@/stores/accounts'
 import { usePayeesStore } from '@/stores/payees'
 import { useChainDataStore } from '@/stores/chainData'
 import { useVaultStore } from '@/stores/vault'
-import type { ChainSlug, Transaction } from '@/services/api'
 import { useDefaultAccountFallback } from '@/composables/useDefaultAccountFallback'
 import { useDragToTransfer } from '@/composables/useDragToTransfer'
+import { nativeBalanceUsd, useChainDiscovery } from '@/composables/useChainDiscovery'
+import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import { useBackupReminderDismissed } from '@/composables/useBackupReminder'
 import { BACKUP_REMINDER_FIRST_MS, BACKUP_REMINDER_RECURRING_MS, ACCOUNT_AUTO_REFRESH_MS } from '@/config/appSettings'
 import AccountCard from '@/components/AccountCard.vue'
+import AccountCarousel from '@/components/AccountCarousel.vue'
+import FavouritesCard from '@/components/FavouritesCard.vue'
 import TransferTargetPicker from '@/components/TransferTargetPicker.vue'
-import TransactionDetailDialog from '@/components/TransactionDetailDialog.vue'
 import AppTooltip from '@/components/AppTooltip.vue'
 
 const { t } = useI18n({ useScope: 'global' })
@@ -25,16 +27,13 @@ const chainData = useChainDataStore()
 const vault = useVaultStore()
 const { reconcile } = useDefaultAccountFallback()
 const dragToTransfer = useDragToTransfer(router)
+const { discover } = useChainDiscovery()
 const backupDismissed = useBackupReminderDismissed()
 
 const browserOnline = ref(navigator.onLine)
 const backendReachable = ref(true)
 const showHidden = ref(false)
 const visibleListEl = ref<HTMLElement | null>(null)
-const detailTransaction = ref<Transaction | null>(null)
-const detailChain = ref<ChainSlug>('ethereum')
-const detailAddress = ref<string | null>(null)
-const detailOpen = ref(false)
 let sortable: Sortable | null = null
 let refreshInFlight = false
 let refreshIntervalId: ReturnType<typeof setInterval> | undefined
@@ -49,19 +48,48 @@ const connectionTooltip = computed(() => {
 const visibleAccounts = computed(() => accounts.accounts.filter((a) => a.visible))
 const hiddenAccounts = computed(() => accounts.accounts.filter((a) => !a.visible))
 
+// One card — or, once the same address turns up on other chains (see
+// useChainDiscovery), one carousel — per address, its chains ordered by
+// account balance in USD, highest first. Until balances load: the original
+// account first, then the usual chain order.
+const CHAIN_ORDER = Object.keys(NATIVE_ASSETS)
+const visibleGroups = computed<WalletAccount[][]>(() => {
+  const groups = new Map<string, WalletAccount[]>()
+  for (const account of visibleAccounts.value) {
+    const address = account.address.toLowerCase()
+    groups.set(address, [...(groups.get(address) ?? []), account])
+  }
+  const usd = (a: WalletAccount) => nativeBalanceUsd(chainData, a.chain, a.address) ?? -1
+  return [...groups.values()].map((group) =>
+    [...group].sort(
+      (a, b) =>
+        usd(b) - usd(a) ||
+        Number(!!a.discovered) - Number(!!b.discovered) ||
+        CHAIN_ORDER.indexOf(a.chain) - CHAIN_ORDER.indexOf(b.chain),
+    ),
+  )
+})
+
+// The Favourites card's slot in the visible list — the key below never
+// collides with an account's, since those are 0x addresses.
+const FAVOURITES_ENTRY = 'favourites'
+type ListEntry = { key: string; group: WalletAccount[] | null }
+const visibleEntries = computed<ListEntry[]>(() => {
+  const entries: ListEntry[] = visibleGroups.value.map((group) => ({ key: group[0]!.address, group }))
+  if (accounts.favouritesCard.visible) {
+    const position = accounts.favouritesCard.position ?? entries.length
+    entries.splice(Math.min(position, entries.length), 0, { key: FAVOURITES_ENTRY, group: null })
+  }
+  return entries
+})
+const hasHiddenCards = computed(() => hiddenAccounts.value.length > 0 || !accounts.favouritesCard.visible)
+
 const showBackupReminder = computed(() => {
   if (backupDismissed.value || vault.createdAt === null) return false
   return vault.lastBackupAt === null
     ? Date.now() - vault.createdAt > BACKUP_REMINDER_FIRST_MS
     : Date.now() - vault.lastBackupAt > BACKUP_REMINDER_RECURRING_MS
 })
-
-function openTransaction(chain: ChainSlug, address: string, txn: Transaction) {
-  detailChain.value = chain
-  detailAddress.value = address
-  detailTransaction.value = txn
-  detailOpen.value = true
-}
 
 // Settles every load before reporting any failure, so one account's (or one
 // feed's) error neither cuts the others short nor skips the default-account
@@ -74,6 +102,8 @@ async function loadAllData() {
     ...accounts.accounts.map((a) => chainData.loadAddressActivity(a.chain, a.address)),
   ])
   await reconcile()
+  // After the known accounts' own data, so their cards fill in first.
+  await discover()
   const failure = results.find((r) => r.status === 'rejected')
   if (failure) throw failure.reason
 }
@@ -110,10 +140,11 @@ function initSortable() {
       const orderedAddresses = [...visibleListEl.value.children]
         .map((el) => (el as HTMLElement).dataset.address)
         .filter((a): a is string => !!a)
-      const newOrder = orderedAddresses
-        .map((address) => visibleAccounts.value.find((a) => a.address === address))
-        .filter((a): a is WalletAccount => !!a)
-      void accounts.reorderVisible(newOrder)
+      const favouritesIndex = orderedAddresses.indexOf(FAVOURITES_ENTRY)
+      void accounts.reorderVisible(
+        orderedAddresses.filter((address) => address !== FAVOURITES_ENTRY),
+        favouritesIndex === -1 ? undefined : favouritesIndex,
+      )
     },
   })
 }
@@ -128,7 +159,7 @@ onMounted(async () => {
 })
 
 watch(
-  () => visibleAccounts.value.length,
+  () => visibleEntries.value.length,
   async () => {
     await nextTick()
     initSortable()
@@ -154,6 +185,8 @@ watch(
           .map((chain) => chainData.loadNativePrice(chain)),
         ...added.map((a) => chainData.loadAddressActivity(a.chain, a.address)),
       ])
+      // A newly added (not discovered) account may already be in use elsewhere.
+      if (added.some((a) => !a.discovered)) await discover()
     } catch {
       // Silent, same reasoning as refresh() below — the connectivity badge
       // already surfaces this, and the next periodic refresh will retry.
@@ -180,29 +213,33 @@ onUnmounted(() => {
   </AppTooltip>
 
   <v-container class="pt-16">
-    <v-card v-if="showBackupReminder" class="pa-4 mb-4 backup-reminder position-relative">
-      <div class="d-flex align-center">
-        <v-icon icon="mdi-shield-alert-outline" class="mr-3" />
-        <p class="grow">{{ t('accounts.backupReminder') }}</p>
+    <v-alert v-if="showBackupReminder" type="warning" variant="tonal" icon="mdi-shield-alert-outline"
+      class="mb-4 backup-reminder">
+      {{ t('accounts.backupReminder') }}
+      <div>
+        <v-btn class="mt-3" variant="outlined" to="/backup-restore">{{ t('backup.backUpNow') }}</v-btn>
       </div>
-      <v-btn class="mt-3" variant="outlined" to="/backup-restore">{{ t('backup.backUpNow') }}</v-btn>
-      <AppTooltip :text="t('common.close')">
-        <template #default="{ activatorProps }">
-          <v-icon v-bind="activatorProps" icon="mdi-close" size="small" class="dismiss-btn" role="button"
-            :aria-label="t('common.close')" @click="backupDismissed = true" />
-        </template>
-      </AppTooltip>
-    </v-card>
+      <template #close="{ props: closeProps }">
+        <AppTooltip :text="t('common.close')">
+          <template #default="{ activatorProps }">
+            <v-btn v-bind="mergeProps(closeProps, activatorProps)" icon="mdi-close" variant="text" size="small"
+              density="comfortable" :aria-label="t('common.close')" @click="backupDismissed = true" />
+          </template>
+        </AppTooltip>
+      </template>
+    </v-alert>
 
     <v-alert v-if="accounts.accounts.length === 0" type="info" variant="tonal" class="mt-4">
       {{ t('accounts.empty') }}
     </v-alert>
 
     <div ref="visibleListEl">
-      <div v-for="account in visibleAccounts" :key="account.address" :data-address="account.address">
-        <AccountCard :account="account" reorderable
-          @transfer-pointerdown="(e) => dragToTransfer.onPointerDown(e, account, accounts.accounts, payees.payees)"
-          @open-transaction="(txn) => openTransaction(account.chain, account.address, txn)" />
+      <div v-for="entry in visibleEntries" :key="entry.key" :data-address="entry.key">
+        <FavouritesCard v-if="!entry.group" reorderable />
+        <AccountCard v-else-if="entry.group.length === 1" :account="entry.group[0]!" reorderable
+          @transfer-pointerdown="(e) => dragToTransfer.onPointerDown(e, entry.group![0]!, accounts.accounts, payees.payees)" />
+        <AccountCarousel v-else :accounts="entry.group" reorderable
+          @transfer-pointerdown="(e, account) => dragToTransfer.onPointerDown(e, account, accounts.accounts, payees.payees)" />
       </div>
     </div>
 
@@ -215,18 +252,16 @@ onUnmounted(() => {
       </AppTooltip>
     </div>
 
-    <template v-if="hiddenAccounts.length > 0">
+    <template v-if="hasHiddenCards">
       <p class="hidden-toggle text-medium-emphasis" @click="showHidden = !showHidden">
         {{ showHidden ? t('accounts.hideHidden') : t('accounts.viewHidden') }}
       </p>
       <div v-if="showHidden">
-        <AccountCard v-for="account in hiddenAccounts" :key="account.address" :account="account"
-          @open-transaction="(txn) => openTransaction(account.chain, account.address, txn)" />
+        <AccountCard v-for="account in hiddenAccounts" :key="account.address" :account="account" />
+        <FavouritesCard v-if="!accounts.favouritesCard.visible" />
       </div>
     </template>
 
-    <TransactionDetailDialog v-model="detailOpen" :chain="detailChain" :transaction="detailTransaction"
-      :my-address="detailAddress" />
     <TransferTargetPicker :open="dragToTransfer.pickerOpen.value" :targets="dragToTransfer.targets.value"
       :hovered-address="dragToTransfer.hoveredAddress.value" />
   </v-container>

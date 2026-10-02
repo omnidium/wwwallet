@@ -4,3 +4,9 @@ ALCHEMY_API_KEY=
 ETHPLORER_API_KEY=
 ETHERSCAN_API_KEY=
 ZEROX_API_KEY=
+# Optional: LI.FI (bridges/cross-chain swaps) works without one, at a lower rate limit.
+LIFI_API_KEY=
+# Signs the anonymous proof-of-work session tokens (src/session.rs): any
+# random string of 32+ characters, e.g. `openssl rand -base64 48`. Production:
+# `wrangler secret put SESSION_SECRET`. Without it, tokens are disabled.
+SESSION_SECRET=

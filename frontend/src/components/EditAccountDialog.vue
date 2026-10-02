@@ -39,7 +39,9 @@ async function save() {
       <v-card-text>
         <p class="text-caption text-medium-emphasis mb-2">{{ truncateAddress(account.address) }}</p>
         <v-text-field v-model="label" :label="t('editAccount.labelField')" autofocus />
-        <v-checkbox v-model="setAsDefault" :label="t('editAccount.setDefault')" density="compact" hide-details />
+        <!-- A discovered copy on another chain is never that chain's default. -->
+        <v-checkbox v-if="!account.discovered" v-model="setAsDefault" :label="t('editAccount.setDefault')"
+          density="compact" hide-details />
       </v-card-text>
       <v-card-actions>
         <v-btn variant="text" @click="emit('update:modelValue', false)">{{ t('common.cancel') }}</v-btn>

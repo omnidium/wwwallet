@@ -4,9 +4,11 @@ use serde_json::{json, Value};
 
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
+use crate::fxrate::unix_from_iso_date;
 use crate::http;
 use crate::traits::{
-    ActivityProvider, AllowanceProvider, NativePriceProvider, PriceHistoryProvider,
+    ActivityProvider, AllowanceProvider, CoinPriceHistoryProvider, NativePriceProvider,
+    PriceHistoryProvider,
     TokenMetadataProvider, TokenPriceProvider, TransactionBroadcaster, TransactionFeeProvider,
     TransactionPrepProvider, TransactionStatusProvider,
 };
@@ -115,6 +117,21 @@ impl AlchemyProvider {
             .as_str()?
             .parse()
             .ok()
+    }
+
+    /// The historical sample nearest `target` (Unix seconds), from a
+    /// historical Prices API response.
+    fn nearest_sample(resp: &Value, target: i64) -> Option<f64> {
+        resp.get("data")?
+            .as_array()?
+            .iter()
+            .filter_map(|s| {
+                let value: f64 = s.get("value")?.as_str()?.parse().ok()?;
+                let at = unix_from_iso_timestamp(s.get("timestamp")?.as_str()?)?;
+                Some((value, (at - target).abs()))
+            })
+            .min_by_key(|(_, distance)| *distance)
+            .map(|(value, _)| value)
     }
 
     /// The historical Prices API's `data` is an oldest-first list of
@@ -519,6 +536,65 @@ impl PriceHistoryProvider for AlchemyProvider {
         let resp: Value = http::post_json(&self.prices_url("tokens/historical"), &body).await?;
         PriceHistory::from_series(&Self::historical_series(&resp)).ok_or(ProviderError::Unavailable)
     }
+
+    /// Hourly samples first (the closer reading); daily ones for whatever
+    /// the hourly series doesn't reach back to.
+    async fn usd_price_at(
+        &self,
+        chain: ChainId,
+        contract_address: Option<&str>,
+        unix_secs: i64,
+    ) -> ProviderResult<f64> {
+        let now = (worker::Date::now().as_millis() / 1000) as i64;
+        for (interval, half_window) in [("1h", 2 * 3600), ("1d", 2 * 86_400)] {
+            let mut body = json!({
+                "startTime": unix_secs - half_window,
+                "endTime": (unix_secs + half_window).min(now),
+                "interval": interval,
+            });
+            match contract_address {
+                Some(address) => {
+                    body["network"] = json!(chain.alchemy_slug());
+                    body["address"] = json!(address);
+                }
+                None => body["symbol"] = json!(chain.native_symbol()),
+            }
+            let Ok(resp) = http::post_json::<_, Value>(&self.prices_url("tokens/historical"), &body).await else {
+                continue;
+            };
+            if let Some(price) = Self::nearest_sample(&resp, unix_secs) {
+                return Ok(price);
+            }
+        }
+        Err(ProviderError::Unavailable)
+    }
+}
+
+/// Unix seconds of an ISO-8601 UTC timestamp like "2026-09-28T06:00:00Z" —
+/// the only shape the Prices API returns.
+fn unix_from_iso_timestamp(ts: &str) -> Option<i64> {
+    let (date, time) = ts.trim_end_matches('Z').split_once('T')?;
+    let mut hms = time.split(':').map(|p| p.split('.').next()?.parse::<i64>().ok());
+    let (h, m, s) = (hms.next()??, hms.next()??, hms.next().flatten().unwrap_or(0));
+    Some(unix_from_iso_date(date)? + h * 3600 + m * 60 + s)
+}
+
+/// Fallback for CoinGecko's coin history (same keyless rate limits as its
+/// native-price endpoint). By ticker, so a ticker several coins share gets
+/// whichever one Alchemy picks — acceptable for a fallback.
+#[async_trait(?Send)]
+impl CoinPriceHistoryProvider for AlchemyProvider {
+    fn name(&self) -> &'static str {
+        "alchemy"
+    }
+
+    async fn coin_price_history_24h(&self, _id: &str, symbol: &str) -> ProviderResult<PriceHistory> {
+        let end = worker::Date::now().as_millis() / 1000;
+        let start = end - 24 * 60 * 60;
+        let body = json!({ "symbol": symbol, "startTime": start, "endTime": end, "interval": "5m" });
+        let resp: Value = http::post_json(&self.prices_url("tokens/historical"), &body).await?;
+        PriceHistory::from_series(&Self::historical_series(&resp)).ok_or(ProviderError::Unavailable)
+    }
 }
 
 #[async_trait(?Send)]
@@ -733,6 +809,25 @@ mod tests {
 
         assert_eq!(receipt_fee_wei(&Value::Null), None, "pending: no receipt yet");
         assert_eq!(receipt_fee_wei(&json!({ "gasUsed": "0x1", "effectiveGasPrice": "zz" })), None);
+    }
+
+    #[test]
+    fn nearest_sample_picks_the_closest_timestamp() {
+        let resp = json!({ "data": [
+            { "value": "100.0", "timestamp": "2026-09-28T06:00:00Z" },
+            { "value": "200.0", "timestamp": "2026-09-28T07:00:00Z" },
+            { "value": "300.0", "timestamp": "2026-09-28T08:00:00Z" },
+        ] });
+        let at_0710 = unix_from_iso_timestamp("2026-09-28T07:10:00Z").unwrap();
+        assert_eq!(AlchemyProvider::nearest_sample(&resp, at_0710), Some(200.0));
+        assert_eq!(AlchemyProvider::nearest_sample(&json!({ "data": [] }), at_0710), None);
+    }
+
+    #[test]
+    fn iso_timestamp_parses_to_unix_seconds() {
+        assert_eq!(unix_from_iso_timestamp("1970-01-02T01:00:05Z"), Some(86_400 + 3600 + 5));
+        assert_eq!(unix_from_iso_timestamp("2026-09-28T06:00:00.000Z"), unix_from_iso_timestamp("2026-09-28T06:00:00Z"));
+        assert_eq!(unix_from_iso_timestamp("garbage"), None);
     }
 
     #[test]

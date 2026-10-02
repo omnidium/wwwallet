@@ -18,5 +18,13 @@ tower-http = { version = "0.6", default-features = false, features = ["cors"] }
 
 wwwallet-providers = { path = "providers" }
 
+# Session tokens (src/session.rs): HMAC-signed, stateless, minted by proof
+# of work. getrandom's "js" feature draws from the Workers runtime's
+# crypto.getRandomValues.
+sha2 = "0.10"
+hmac = "0.12"
+base64 = "0.22"
+getrandom = { version = "0.2", features = ["js"] }
+
 [package.metadata.wasm-pack.profile.release]
 wasm-opt = false

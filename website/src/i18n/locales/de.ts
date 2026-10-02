@@ -7,6 +7,7 @@ export default {
     launch: 'Wallet starten',
     home: 'Zurück nach oben',
     sectionNavLabel: 'Abschnittsnavigation',
+    principles: 'Grundsätze',
   },
   settings: {
     open: 'Einstellungen',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Licht',
     themeDark: 'Dunkel',
     language: 'Sprache',
+    search: 'Suche',
+    noMatches: 'Keine Treffer',
   },
   hero: {
-    eyebrow: 'Eine persönliche Ethereum-Wallet ohne Verwahrung',
-    heading1: 'Ihre Schlüssel.',
+    eyebrow: 'Eine kostenlose, nicht-verwahrende Ethereum-Wallet',
+    heading1: 'Deine Schlüssel.',
     heading2: 'Ihr Gerät.',
-    heading3: 'Deine Geldbörse.',
-    lede: 'wwwallet verschlüsselt Ihr Wallet auf Ihrem eigenen Gerät und übermittelt Ihre Schlüssel, Passwörter oder Wiederherstellungsphrase niemals an Dritte. Sie müssen kein Konto erstellen. Es gibt keinen Server, der gehackt werden könnte. Nur Sie und Ihre Kryptowährung.',
+    heading3: 'Für alle kostenlos.',
+    lede: 'wwwallet läuft in Ihrem Browser und speichert Ihre Schlüssel verschlüsselt auf Ihrem eigenen Gerät. Sie müssen kein Konto erstellen, nichts bezahlen und es gibt keine Werbung – einfach nur eine Wallet, die für alle gleich funktioniert.',
     ctaPrimary: 'Wallet starten',
     ctaSecondary: 'So funktioniert es',
+    note: 'Keine Registrierung · Keine Werbung · Kein Tracking · 31 Sprachen',
   },
   wallet: {
     eyebrow: 'Geldbörse',
@@ -108,12 +112,32 @@ export default {
     heading: 'Häufig gestellte Fragen',
     items: [
       {
-        q: 'Reicht meine Wiederherstellungsphrase aus, um meine Wallet wiederherzustellen?',
-        a: 'Nicht allein. Ihre Wiederherstellungsphrase entsperrt Ihren verschlüsselten Tresor, aber der Tresor selbst befindet sich ausschließlich auf Ihrem Gerät. Wenn Sie dieses Gerät verlieren oder löschen, ohne jemals ein Backup erstellt zu haben, gibt es nichts mehr, was die Phrase entsperren könnte. Kombinieren Sie Ihre Wiederherstellungsphrase daher immer mit einem Backup auf Google Drive oder einem Dateispeicher – siehe die nächste Frage.',
+        q: 'Ist wwwallet wirklich kostenlos?',
+        a: 'Ja. Die Nutzung ist kostenlos, es gibt keine Premium-Stufe und nichts hinter einer Paywall, und wwwallet erhebt keine Gebühren für Ihre Überweisungen oder Tauschgeschäfte. Die einzigen unvermeidbaren Kosten sind die netzwerkinternen Transaktionsgebühren (Gasgebühren), die an das Netzwerk und nicht an wwwallet gehen. Die Swap-Angebote stammen vom 0x-Börsenaggregator, der bei einigen Transaktionen eine eigene Gebühr erheben kann – eine solche Gebühr wird auf dem Bestätigungsbildschirm angezeigt, bevor Sie den Vorgang bestätigen.',
+      },
+      {
+        q: 'Gibt es Werbung, Tracker oder Analysetools?',
+        a: 'Nein. wwwallet zeigt keine Werbung an, führt keine Analyse- oder Tracking-Skripte aus und erstellt kein Profil von Ihnen. Es gibt kein Konto, daher gibt es auch nichts, womit ein Profil verknüpft werden könnte.',
+      },
+      {
+        q: 'Brauche ich ein Konto oder einen Ausweis, um es zu nutzen?',
+        a: 'Nein. Es ist keine Registrierung, keine E-Mail-Adresse, keine Telefonnummer und keine Identitätsprüfung erforderlich – Sie erstellen einfach eine Wallet auf Ihrem Gerät und können sie sofort nutzen.',
+      },
+      {
+        q: 'Wenn es kostenlos ist, wie finanziert sich wwwallet dann?',
+        a: 'Das Unternehmen verdient kein Geld mit seinen Nutzern – keine Gebühren, keine Werbung, kein Verkauf von Daten. Die Betriebskosten werden bewusst gering gehalten: Die Wallet selbst läuft in Ihrem Browser, und das Backend leitet lediglich öffentliche Blockchain- und Kursdaten weiter.',
+      },
+      {
+        q: 'Kann jemand mein Portemonnaie sperren?',
+        a: 'Es gibt kein Konto, daher gibt es für wwwallet – oder irgendjemanden sonst – nichts, was gesperrt werden könnte. Ihre Schlüssel verlassen Ihr Gerät zu keinem Zeitpunkt, und Transaktionen werden dort signiert, bevor sie an das Netzwerk gesendet werden. Dein Guthaben befindet sich auf Ethereum, nicht in wwwallet: Du kannst den privaten Schlüssel oder die Wiederherstellungsphrase jedes Kontos über dessen Menü einsehen und jederzeit in eine andere Ethereum-Wallet importieren.',
+      },
+      {
+        q: 'Reicht meine Wiederherstellungsphrase aus, um meine Wallet wiederzuerlangen?',
+        a: 'Nicht allein. Ihre Wiederherstellungsphrase entsperrt Ihren verschlüsselten Tresor, aber der Tresor selbst befindet sich ausschließlich auf Ihrem Gerät. Wenn Sie dieses Gerät verlieren oder löschen, ohne jemals ein Backup erstellt zu haben, gibt es nichts mehr, was die Phrase entsperren könnte. Kombinieren Sie Ihre Wiederherstellungsphrase daher immer mit einem Backup auf Google Drive oder einer Dateisicherung – siehe die nächste Frage.',
       },
       {
         q: 'Wie erstelle ich ein Backup meiner Wallet?',
-        a: 'Sichern Sie in den Einstellungen Ihren verschlüsselten Tresor auf Ihrem eigenen Google Drive – dort wird er in einem privaten, ausschließlich für die App zugänglichen Ordner gespeichert, auf den wwwallet keinen Zugriff hat – oder als Datei, die Sie herunterladen und selbst aufbewahren. Führen Sie diesen Schritt jedes Mal durch, wenn Sie eine Wallet einrichten oder neue Konten hinzufügen.',
+        a: 'Sichern Sie in den Einstellungen Ihren verschlüsselten Tresor auf Ihrem eigenen Google Drive – dort wird er in einem privaten Ordner gespeichert, auf den nur die App Zugriff hat und dessen Inhalt wwwallet nicht einsehen kann – oder als Datei, die Sie herunterladen und selbst aufbewahren. Führen Sie diesen Vorgang jedes Mal durch, wenn Sie eine Wallet einrichten oder neue Konten hinzufügen.',
       },
       {
         q: 'Kann ich wwwallet auf mehr als einem Gerät nutzen?',
@@ -121,11 +145,11 @@ export default {
       },
       {
         q: 'Was passiert, wenn ich mein Gerät verliere und noch nie ein Backup erstellt habe?',
-        a: 'Ihr Guthaben ist unwiederherstellbar. Das ist beabsichtigt: wwwallet verfügt über kein Kontosystem und speichert nirgendwo eine Kopie Ihres Tresors, sodass niemand – auch wir nicht – diesen für Sie wiederherstellen kann. Das ist der Kompromiss, den Sie eingehen, wenn Sie eine Wallet nutzen, auf die niemand außer Ihnen Zugriff hat.',
+        a: 'Ihr Guthaben ist unwiederherstellbar. Das ist beabsichtigt: wwwallet verfügt über kein Kontosystem und speichert nirgendwo eine Kopie Ihres Tresors, sodass niemand – auch wir nicht – ihn für Sie wiederherstellen kann. Das ist der Kompromiss, den Sie eingehen, wenn Sie eine Wallet nutzen, auf die niemand außer Ihnen Zugriff hat.',
       },
       {
         q: 'Werden Passkeys (Face ID / Touch ID) auf ein neues Gerät übertragen?',
-        a: 'Nein. Ein Passkey ist an das Gerät gebunden, auf dem er erstellt wurde. Nachdem Sie ein Backup auf einem neuen Gerät wiederhergestellt haben, entsperren Sie es mit Ihrer Wiederherstellungsphrase, und Sie können dort einen neuen Passkey einrichten.',
+        a: 'Nein. Ein Passkey ist an das Gerät gebunden, auf dem er erstellt wurde. Nachdem Sie ein Backup auf einem neuen Gerät wiederhergestellt haben, entsperren Sie das Gerät mit Ihrer Wiederherstellungsphrase und können dort einen neuen Passkey einrichten.',
       },
       {
         q: 'Ist wwwallet Open Source?',
@@ -133,36 +157,85 @@ export default {
       },
       {
         q: 'Was darf ich mit dem Code machen?',
-        a: 'Sie dürfen das gesamte Werk lesen und prüfen sowie eine unveränderte Kopie für nichtkommerzielle Zwecke wie zum Beispiel zum persönlichen Studium, zur Forschung und zum Testen nutzen. Sie dürfen es jedoch nicht verbreiten, verändern oder abgeleitete Werke (einschließlich Forks) erstellen oder es kommerziell nutzen. Wenn Sie etwas benötigen, was die Lizenz nicht erlaubt, wenden Sie sich bitte an den Urheberrechtsinhaber, um eine gesonderte Lizenz zu erhalten.',
+        a: 'Sie dürfen das gesamte Werk lesen und prüfen sowie eine unveränderte Kopie für nichtkommerzielle Zwecke wie zum Beispiel zum persönlichen Studium, zur Forschung und zu Testzwecken nutzen. Sie dürfen es jedoch nicht verbreiten, verändern oder abgeleitete Werke (einschließlich Forks) erstellen oder es kommerziell nutzen. Wenn Sie etwas benötigen, was die Lizenz nicht erlaubt, wenden Sie sich bitte an den Urheberrechtsinhaber, um eine separate Lizenz zu erhalten.',
       },
       {
         q: 'Ist die Nutzung von wwwallet sicher? Gibt es eine Garantie?',
-        a: 'wwwallet ist eine nicht-verwahrende Software, die „wie besehen“ und ohne jegliche Gewährleistung bereitgestellt wird. Sie allein haben die Kontrolle über Ihre Schlüssel und Ihr Guthaben – niemand, auch nicht wir, kann eine verlorene Wiederherstellungsphrase oder ein Backup wiederherstellen, eine Transaktion rückgängig machen oder Ihnen Verluste ersetzen. Verwenden Sie nur Guthaben, dessen Verlust Sie sich leisten können, überprüfen Sie Adressen und Netzwerke vor dem Senden noch einmal sorgfältig, und beachten Sie, dass nichts hier eine Finanz-, Anlage-, Rechts- oder Steuerberatung darstellt.',
+        a: 'wwwallet ist eine nicht-verwahrende Software, die „wie besehen“ und ohne jegliche Gewährleistung bereitgestellt wird. Sie allein haben die Kontrolle über Ihre Schlüssel und Ihr Guthaben – niemand, auch nicht wir, kann eine verlorene Wiederherstellungsphrase oder ein Backup wiederherstellen, eine Transaktion rückgängig machen oder Ihnen Verluste ersetzen. Verwenden Sie nur Guthaben, dessen Verlust Sie sich leisten können, überprüfen Sie Adressen und Netzwerke vor dem Senden noch einmal gründlich, und beachten Sie, dass nichts hier eine Finanz-, Anlage-, Rechts- oder Steuerberatung darstellt.',
       },
       {
         q: 'Welche Netzwerke unterstützt wwwallet?',
         a: 'Das Ethereum-Mainnet sowie die Layer-2-Netzwerke Polygon, Arbitrum, Base und Optimism – alles über denselben Satz von Konten.',
       },
       {
-        q: 'Wie lade ich Guthaben auf mein Wallet?',
+        q: 'Wie lade ich Guthaben auf meine Wallet?',
         a: 'Eröffnen Sie ein Konto, wählen Sie „QR-Code anzeigen“, um die Adresse anzuzeigen, und senden Sie Guthaben von einer Börse oder einer anderen Wallet an diese Adresse. Achten Sie darauf, dass Sie über das richtige Netzwerk senden (Ethereum, Polygon, Arbitrum, Base oder Optimism) – dieselbe Adresse funktioniert zwar in allen Netzwerken, aber Guthaben, das über ein bestimmtes Netzwerk gesendet wird, erscheint nur in diesem Netzwerk. Außerdem benötigen Sie eine kleine Menge der nativen Kryptowährung des Netzwerks (z. B. ETH), um die Transaktionsgebühren zu bezahlen.',
       },
       {
         q: 'Was kann ich mit wwwallet machen?',
-        a: 'Senden: Überweisen Sie ETH oder einen beliebigen Token an eine Adresse, die Sie einfügen, über einen QR-Code einscannen oder aus Ihren eigenen Konten auswählen, und überprüfen Sie die Details, bevor Sie den Vorgang bestätigen. Tauschen: Tauschen Sie auf der Registerkarte „Tauschen“ einen Token gegen einen anderen im selben Netzwerk ein, wobei der Kurs und die voraussichtlichen Gebühren im Voraus angezeigt werden. Empfangen: Zeigen Sie Ihre Adresse als QR-Code an. Außerdem kannst du deine Guthaben in US-Dollar sowie deinen Transaktionsverlauf über alle unterstützten Netzwerke hinweg einsehen.',
+        a: 'Senden: Überweisen Sie ETH oder einen beliebigen Token an eine Adresse, die Sie einfügen, über einen QR-Code einscannen oder aus Ihren eigenen Konten auswählen, und überprüfen Sie die Details, bevor Sie den Vorgang bestätigen. Tauschen: Tauschen Sie auf der Registerkarte „Swap“ einen Token gegen einen anderen im selben Netzwerk, wobei der Kurs und die geschätzten Gebühren im Voraus angezeigt werden. Empfangen: Zeigen Sie Ihre Adresse als QR-Code an. Außerdem kannst du deine Guthaben in US-Dollar sowie deinen Transaktionsverlauf über alle unterstützten Netzwerke hinweg einsehen.',
       },
       {
         q: 'Was weiß wwwallet über mich?',
-        a: 'Nichts, was Rückschlüsse auf Ihre Identität zulässt. Es gibt weder ein Konto noch eine Anmeldung noch eine Datenbank. Kontostands- und Kursdaten werden über das eigene Backend von wwwallet abgerufen, anstatt dass Ihr Browser direkt auf Drittanbieter zugreift, und dieses Backend hat zu keinem Zeitpunkt Zugriff auf Ihre Schlüssel, Passwörter oder Ihre Wiederherstellungsphrase.',
+        a: 'Nichts, was Rückschlüsse auf Ihre Identität zulässt. Es gibt weder ein Konto noch eine Anmeldung noch eine Datenbank. Kontostands- und Kursdaten werden über das eigene Backend von wwwallet abgerufen, anstatt dass Ihr Browser Drittanbieter direkt anruft, und dieses Backend hat niemals Zugriff auf Ihre Schlüssel, Passwörter oder Ihre Wiederherstellungsphrase.',
       },
     ],
   },
   footer: {
-    tagline: 'Eine persönliche, nicht-verwahrende Ethereum-Wallet.',
-    sourceLink: 'Quellcode auf GitHub anzeigen',
+    tagline: 'Eine kostenlose, nicht-verwahrende Ethereum-Wallet für alle.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Lizenziert unter PolyForm Strict 1.0.0',
     disclaimer:
       'Nicht-verwahrende Software wird „wie besehen“ und ohne Gewährleistung bereitgestellt. Dies stellt keine Finanzberatung dar. Sie tragen die alleinige Verantwortung für Ihre Schlüssel und Ihr Guthaben.',
+  },
+  principles: {
+    eyebrow: 'Grundsätze',
+    heading: 'Kostenlos, offen und für jeden gedacht',
+    lede: 'Eine Wallet sollte ein Werkzeug sein, das man nutzt, und kein Geschäft, das auf seinen Nutzern basiert. Das sind die Grundsätze, auf denen wwwallet basiert.',
+    items: [
+      {
+        title: 'Kostenlos, ganz ohne Haken',
+        body: 'Keine Preise, keine Premium-Stufe, keine kostenpflichtigen Funktionen. wwwallet erhebt keine eigenen Gebühren – die einzigen Kosten sind die Transaktionsgebühren des Netzwerks.',
+      },
+      {
+        title: 'Keine Werbung, kein Tracking',
+        body: 'Keine Werbung, keine Analysen, keine Tracking-Skripte und keine Weitergabe von Daten an Dritte. Es gibt gar kein Profil von dir, das verkauft werden könnte.',
+      },
+      {
+        title: 'Keine Registrierung erforderlich',
+        body: 'Keine E-Mail-Adresse, keine Telefonnummer und keine Identitätsprüfung. Einfach öffnen, eine Wallet erstellen – und schon kann es losgehen.',
+      },
+      {
+        title: 'Ihre Schlüssel bleiben bei Ihnen',
+        body: 'Die Schlüssel werden auf Ihrem Gerät erstellt und verschlüsselt und verlassen dieses niemals. wwwallet kann sie nicht einsehen, Ihr Guthaben nicht bewegen und Sie nicht aussperren.',
+      },
+      {
+        title: 'Funktioniert überall',
+        body: 'Läuft in jedem modernen Browser auf dem Smartphone oder Desktop und lässt sich wie eine App installieren – ein App-Store-Konto ist nicht erforderlich.',
+      },
+      {
+        title: 'In 31 Sprachen',
+        body: 'Nutzen Sie es in der Sprache, mit der Sie am besten zurechtkommen – im hellen oder dunklen Modus.',
+      },
+      {
+        title: 'Code öffentlich zugänglich machen',
+        body: 'Der vollständige Quellcode ist für jedermann einsehbar und überprüfbar. Es handelt sich um „Source-Available“ und nicht um „Open Source“ – in den FAQs wird erläutert, was die Lizenz erlaubt.',
+      },
+      {
+        title: 'Nichts, was man ausschalten müsste',
+        body: 'Es gibt kein Konto, das gesperrt werden könnte. Ihr Guthaben befindet sich direkt auf Ethereum, und der Schlüssel zu jedem Konto kann jederzeit in eine andere Wallet übertragen werden.',
+      },
+    ],
+  },
+  license: {
+    title: 'Lizenz',
+    close: 'Schließen',
+    summaryTitle: 'Im Klartext',
+    canUse: 'Sie können wwwallet kostenlos für private und andere nichtkommerzielle Zwecke nutzen.',
+    canRead: 'Sie können jede Zeile des Quellcodes lesen und prüfen.',
+    cannot: 'Sie dürfen es weder kopieren, ändern, weiterverbreiten noch verkaufen.',
+    englishNote:
+      'Es folgt der vollständige Lizenztext in der englischen Originalfassung – dies ist der rechtsverbindliche Text.',
+    viewSource: 'Auf GitHub anzeigen',
   },
 }

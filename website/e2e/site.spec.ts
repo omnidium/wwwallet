@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('loads and shows the hero heading', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('heading', { level: 1 }).first()).toContainText('Your Keys.')
+  await expect(page.getByRole('heading', { level: 1 }).first()).toContainText('Your keys.')
 })
 
 test('nav links scroll to their section', async ({ page }) => {
@@ -14,7 +14,7 @@ test('nav links scroll to their section', async ({ page }) => {
 test('theme choice persists across reload', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: 'Settings' }).click()
-  await page.getByRole('button', { name: 'Dark', exact: true }).click()
+  await page.getByRole('radio', { name: 'Dark', exact: true }).click()
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
 
   await page.reload()

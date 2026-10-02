@@ -27,9 +27,10 @@ import {
 import { backupToGoogleDrive, restoreFromGoogleDrive } from '@/services/googleDrive'
 import { downloadEncryptedVaultBlob } from '@/services/fileBackup'
 import { db } from '@/services/db'
-import { useAccountsStore } from '@/stores/accounts'
+import { DEFAULT_FAVOURITES_CARD, useAccountsStore } from '@/stores/accounts'
 import { usePayeesStore } from '@/stores/payees'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
+import { isSupportedLocale } from '@/i18n'
 import { useChainDataStore } from '@/stores/chainData'
 import { useFavouritesStore } from '@/stores/favourites'
 import { useMessagesStore } from '@/stores/messages'
@@ -40,7 +41,9 @@ function emptyVaultData(): VaultData {
   return {
     wallets: [],
     payees: [],
-    settings: { locale: 'en', currency: 'USD', transactionBatchSize: DEFAULT_TRANSACTION_BATCH_SIZE },
+    // The locale already showing (detected or picked pre-auth), so creating a
+    // vault doesn't flip the UI back to English via loadIntoStores.
+    settings: { locale: useSettingsLocaleStore().locale, currency: 'USD', transactionBatchSize: DEFAULT_TRANSACTION_BATCH_SIZE },
   }
 }
 
@@ -64,9 +67,10 @@ export const useVaultStore = defineStore('vault', () => {
 
   function loadIntoStores(data: VaultData) {
     useAccountsStore().accounts = data.wallets
+    useAccountsStore().favouritesCard = data.settings.favouritesCard ?? { ...DEFAULT_FAVOURITES_CARD }
     usePayeesStore().payees = data.payees
     const settings = useSettingsLocaleStore()
-    settings.locale = data.settings.locale
+    if (isSupportedLocale(data.settings.locale)) settings.applyLocale(data.settings.locale)
     settings.currency = data.settings.currency
     useChainDataStore().transactionBatchSize = data.settings.transactionBatchSize ?? DEFAULT_TRANSACTION_BATCH_SIZE
     useFavouritesStore().rememberVisibleChains(data.wallets)
@@ -80,6 +84,7 @@ export const useVaultStore = defineStore('vault', () => {
         locale: useSettingsLocaleStore().locale,
         currency: useSettingsLocaleStore().currency,
         transactionBatchSize: useChainDataStore().transactionBatchSize,
+        favouritesCard: useAccountsStore().favouritesCard,
       },
     }
   }
@@ -124,6 +129,7 @@ export const useVaultStore = defineStore('vault', () => {
   // disk), and any on-screen messages, some of which quote transaction hashes.
   function clearStores(): void {
     useAccountsStore().accounts = []
+    useAccountsStore().favouritesCard = { ...DEFAULT_FAVOURITES_CARD }
     usePayeesStore().payees = []
     lockCache()
     useChainDataStore().clearPersonalData()

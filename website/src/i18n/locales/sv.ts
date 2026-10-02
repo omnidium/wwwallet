@@ -7,6 +7,7 @@ export default {
     launch: 'Starta plånboken',
     home: 'Tillbaka till toppen',
     sectionNavLabel: 'Avsnittsnavigering',
+    principles: 'Principer',
   },
   settings: {
     open: 'Inställningar',
@@ -15,15 +16,18 @@ export default {
     themeLight: 'Ljus',
     themeDark: 'Mörkt',
     language: 'Språk',
+    search: 'Sök',
+    noMatches: 'Inga träffar',
   },
   hero: {
-    eyebrow: 'En personlig Ethereum-plånbok utan förvaring',
+    eyebrow: 'En kostnadsfri Ethereum-plånbok utan förvaring',
     heading1: 'Dina nycklar.',
     heading2: 'Din enhet.',
-    heading3: 'Din plånbok.',
-    lede: 'wwwallet krypterar din plånbok på din egen enhet och skickar aldrig dina nycklar, lösenord eller återställningsfras någon annanstans. Du behöver inte skapa något konto. Det finns ingen server som kan hackas. Bara du och dina kryptovalutor.',
+    heading3: 'Gratis för alla.',
+    lede: 'wwwallet körs i din webbläsare och lagrar dina nycklar krypterade på din egen enhet. Du behöver inte skapa något konto, det kostar ingenting och det finns inga annonser – bara en plånbok som fungerar på samma sätt för alla.',
     ctaPrimary: 'Starta plånboken',
     ctaSecondary: 'Se hur det fungerar',
+    note: 'Ingen registrering · Inga annonser · Ingen spårning · 31 språk',
   },
   wallet: {
     eyebrow: 'Plånbok',
@@ -107,12 +111,32 @@ export default {
     heading: 'Vanliga frågor',
     items: [
       {
-        q: 'Räcker min återställningsfras för att få tillbaka min plånbok?',
-        a: 'Inte på egen hand. Din återställningsfras låser upp ditt krypterade valv, men själva valvet finns endast på din enhet. Om du tappar bort eller rensar enheten utan att någonsin ha gjort en säkerhetskopia finns det inget kvar som frasen kan låsa upp. Se alltid till att komplettera din återställningsfras med en säkerhetskopia på Google Drive eller i en fil – se nästa fråga.',
+        q: 'Är wwwallet verkligen gratis?',
+        a: 'Ja. Det kostar ingenting att använda tjänsten, det finns ingen premiumnivå och inget som kräver betalning, och wwwallet lägger inte på någon avgift på det du skickar eller byter. Den enda oundvikliga kostnaden är nätverkets egen transaktionsavgift (gasavgift), som går till nätverket och inte till wwwallet. Byteskurserna kommer från 0x-börsaggregatorn, som kan lägga på en egen avgift på vissa transaktioner – sådana avgifter visas på översiktsskärmen innan du bekräftar.',
+      },
+      {
+        q: 'Finns det annonser, spårningsverktyg eller analysverktyg?',
+        a: 'Nej. wwwallet visar inga annonser, använder inga analys- eller spårningsskript och skapar ingen profil av dig. Det finns inget konto, så det finns inget att koppla det till.',
+      },
+      {
+        q: 'Behöver jag ett konto eller ett ID för att kunna använda det?',
+        a: 'Nej. Det krävs ingen registrering, e-postadress, telefonnummer eller identitetskontroll – du skapar helt enkelt en plånbok på din enhet och börjar använda den.',
+      },
+      {
+        q: 'Om det är gratis, hur finansierar sig då wwwallet?',
+        a: 'Tjänsten tjänar inga pengar på sina användare – inga avgifter, inga annonser, ingen försäljning av data. Driftskostnaderna hålls låga genom själva utformningen: plånboken körs direkt i din webbläsare, och backend-systemet vidarebefordrar endast offentliga blockkedjedata och prisuppgifter.',
+      },
+      {
+        q: 'Kan någon spärra mitt konto?',
+        a: 'Det finns inget konto, så det finns inget som wwwallet – eller någon annan – kan spärra. Dina nycklar lämnar aldrig din enhet, och transaktionerna signeras där innan de skickas ut till nätverket. Dina medel finns på Ethereum, inte i wwwallet: du kan visa vilket kontos privata nyckel eller återställningsfras som helst från dess meny och importera den till en annan Ethereum-plånbok när du vill.',
+      },
+      {
+        q: 'Räcker det med min återställningsfras för att få tillbaka min plånbok?',
+        a: 'Inte på egen hand. Din återställningsfras låser upp ditt krypterade valv, men själva valvet finns endast på din enhet. Om du tappar bort eller raderar enheten utan att någonsin ha gjort en säkerhetskopia finns det inget kvar som frasen kan låsa upp. Se alltid till att komplettera din återställningsfras med en säkerhetskopia på Google Drive eller i en fil – se nästa fråga.',
       },
       {
         q: 'Hur säkerhetskopierar jag min plånbok?',
-        a: 'Gå till Inställningar och säkerhetskopiera ditt krypterade valv till ditt eget Google Drive – där det sparas i en privat mapp som endast är tillgänglig för appen och som wwwallet inte har åtkomst till – eller som en fil som du laddar ner och sparar själv. Gör detta varje gång du skapar en plånbok eller lägger till nya konton.',
+        a: 'Gå till Inställningar och säkerhetskopiera ditt krypterade valv till ditt eget Google Drive – där det sparas i en privat mapp som endast är tillgänglig för appen och som wwwallet inte har åtkomst till – eller som en fil som du laddar ner och sparar själv. Gör detta varje gång du konfigurerar en plånbok eller lägger till nya konton.',
       },
       {
         q: 'Kan jag använda wwwallet på fler än en enhet?',
@@ -120,23 +144,23 @@ export default {
       },
       {
         q: 'Vad händer om jag tappar bort min enhet och aldrig har gjort någon säkerhetskopia?',
-        a: 'Dina medel går inte att återfå. Det är avsiktligt: wwwallet har inget kontosystem och sparar ingen kopia av ditt valv någonstans, så ingen – inte ens vi – kan återställa det åt dig. Det är priset man får betala för en plånbok som ingen annan än du själv har tillgång till.',
+        a: 'Dina medel går inte att återställa. Det är avsiktligt: wwwallet har inget kontosystem och sparar ingen kopia av ditt valv någonstans, så ingen – inte ens vi – kan återställa det åt dig. Det är priset man får betala för en plånbok som ingen annan än du själv har tillgång till.',
       },
       {
-        q: 'Överförs passnycklar (Face ID/Touch ID) till en ny enhet?',
+        q: 'Överförs passordnycklar (Face ID/Touch ID) till en ny enhet?',
         a: 'Nej. En lösenkod är knuten till den enhet där den skapades. När du har återställt en säkerhetskopia på en ny enhet låser du upp den med din återställningsfras och kan sedan ställa in en ny lösenkod där.',
       },
       {
         q: 'Är wwwallet öppen källkod?',
-        a: 'Nej – källkoden är tillgänglig. Hela källkoden är offentlig på GitHub, så vem som helst kan läsa, granska och kontrollera den, men det är inte öppen källkod: koden är licensierad enligt PolyForm Strict License 1.0.0.',
+        a: 'Nej – källkoden är tillgänglig. Hela källkoden är offentlig på GitHub, så vem som helst kan läsa, granska och kontrollera den, men den är inte öppen källkod: koden är licensierad under PolyForm Strict License 1.0.0.',
       },
       {
         q: 'Vad får jag göra med koden?',
-        a: 'Du får läsa och granska allt material samt använda en oförändrad kopia för icke-kommersiella ändamål, såsom personliga studier, forskning och testning. Du får inte distribuera den, ändra den eller skapa härledda verk (inklusive förgreningar) eller använda den kommersiellt. Om du behöver göra något som licensen inte tillåter ska du kontakta upphovsrättsinnehavaren för att få en separat licens.',
+        a: 'Du får läsa och granska allt material samt använda en oförändrad kopia för icke-kommersiella ändamål, såsom personliga studier, forskning och testning. Du får inte distribuera det, ändra det eller skapa härledda verk (inklusive förgreningar), eller använda det kommersiellt. Om du behöver göra något som licensen inte tillåter, kontakta upphovsrättsinnehavaren för att få en separat licens.',
       },
       {
         q: 'Är det säkert att använda wwwallet? Finns det någon garanti?',
-        a: 'wwwallet är en icke-förvaringsbaserad programvara som tillhandahålls ”i befintligt skick”, utan någon form av garanti. Det är endast du som har kontroll över dina nycklar och dina medel – ingen, inte ens vi, kan återställa en förlorad återställningsfras eller säkerhetskopia, återkalla en transaktion eller ersätta dig för förluster. Använd endast medel som du har råd att förlora, kontrollera adresser och nätverk noggrant innan du skickar, och ingenting här utgör finansiell, investerings-, juridisk eller skatterådgivning.',
+        a: 'wwwallet är en icke-förvaringsbaserad programvara som tillhandahålls ”i befintligt skick”, utan någon form av garanti. Det är endast du som har kontroll över dina nycklar och dina medel – ingen, inte ens vi, kan återställa en förlorad återställningsfras eller säkerhetskopia, återkalla en transaktion eller ersätta dig för förluster. Använd endast medel som du har råd att förlora, dubbelkolla adresser och nätverk innan du skickar, och ingenting här utgör finansiell, investerings-, juridisk eller skatterådgivning.',
       },
       {
         q: 'Vilka nätverk stöder wwwallet?',
@@ -144,7 +168,7 @@ export default {
       },
       {
         q: 'Hur sätter jag in pengar på min plånbok?',
-        a: 'Öppna ett konto, välj ”Visa QR-kod” för att se adressen och skicka medel till den adressen från en börs eller en annan plånbok. Se till att du skickar via rätt nätverk (Ethereum, Polygon, Arbitrum, Base eller Optimism) – samma adress fungerar på alla nätverk, men medel som skickas via ett nätverk visas endast på det nätverket. Du behöver också lite av nätverkets egna mynt (t.ex. ETH) för att betala transaktionsavgifterna.',
+        a: 'Öppna ett konto, välj ”Visa QR-kod” för att se adressen och skicka medel till den adressen från en börs eller en annan plånbok. Se till att du skickar via rätt nätverk (Ethereum, Polygon, Arbitrum, Base eller Optimism) – samma adress fungerar på alla nätverk, men medel som skickas via ett nätverk visas endast på det nätverket. Du behöver också en liten mängd av nätverkets egna mynt (t.ex. ETH) för att betala transaktionsavgifterna.',
       },
       {
         q: 'Vad kan jag göra med wwwallet?',
@@ -152,16 +176,66 @@ export default {
       },
       {
         q: 'Vad vet wwwallet om mig?',
-        a: 'Ingenting som kan identifiera dig. Det finns varken något konto, någon inloggning eller någon databas. Uppgifter om saldo och pris hämtas via wwwallet:s egen backend, istället för att din webbläsare kontaktar tredjepartsleverantörer direkt, och den backenden får aldrig tillgång till dina nycklar, lösenord eller återställningsfras.',
+        a: 'Inget som kan identifiera dig. Det finns varken något konto, någon inloggning eller någon databas. Uppgifter om saldo och pris hämtas via wwwallet:s egen backend, istället för att din webbläsare ska kontakta tredjepartsleverantörer direkt, och den backenden får aldrig tillgång till dina nycklar, lösenord eller återställningsfras.',
       },
     ],
   },
   footer: {
-    tagline: 'En personlig Ethereum-plånbok utan förvaring.',
-    sourceLink: 'Visa källkoden på GitHub',
+    tagline: 'En kostnadsfri Ethereum-plånbok utan förvaring för alla.',
     copyright: '© {year} wwwallet',
     licenseLink: 'Licensierad enligt PolyForm Strict 1.0.0',
     disclaimer:
       'Programvara utan förvaring tillhandahålls ”i befintligt skick”, utan garanti. Detta utgör inte finansiell rådgivning. Du är ensam ansvarig för dina nycklar och dina medel.',
+  },
+  license: {
+    title: 'Licens',
+    close: 'Stäng',
+    summaryTitle: 'På klarspråk',
+    canUse:
+      'Du kan använda wwwallet gratis, för personligt bruk och andra icke-kommersiella ändamål.',
+    canRead: 'Du kan läsa och granska varje rad i källkoden.',
+    cannot: 'Du får inte kopiera, ändra, sprida vidare eller sälja det.',
+    englishNote:
+      'Här följer licensavtalet i sin helhet, på originalspråket engelska – detta är den juridiskt bindande texten.',
+    viewSource: 'Visa på GitHub',
+  },
+  principles: {
+    eyebrow: 'Principer',
+    heading: 'Gratis, öppet och utvecklat för alla',
+    lede: 'En plånbok ska vara ett verktyg som du använder, inte en affärsmodell som bygger på sina användare. Det är dessa principer som wwwallet bygger på.',
+    items: [
+      {
+        title: 'Gratis, utan några dolda villkor',
+        body: 'Inget pris, ingen premiumnivå, inga betalfunktioner. wwwallet tar inte ut några egna avgifter – den enda kostnaden är nätverkets egen transaktionsavgift.',
+      },
+      {
+        title: 'Inga annonser, ingen spårning',
+        body: 'Inga annonser, inga analysverktyg, inga spårningsskript och inga uppgifter som säljs vidare till någon. Det finns ju ingen profil på dig att sälja från början.',
+      },
+      {
+        title: 'Ingen registrering krävs',
+        body: 'Ingen e-postadress, inget telefonnummer och ingen identitetskontroll. Öppna appen, skapa en plånbok – och du är redo.',
+      },
+      {
+        title: 'Du behåller dina nycklar',
+        body: 'Nycklarna skapas och krypteras på din enhet och lämnar aldrig den. wwwallet kan varken se dem, flytta dina medel eller spärra ditt konto.',
+      },
+      {
+        title: 'Fungerar överallt',
+        body: 'Fungerar i alla moderna webbläsare på både mobil och dator, och installeras precis som en app – inget konto i en appbutik krävs.',
+      },
+      {
+        title: 'På 31 språk',
+        body: 'Använd den på det språk du känner dig mest bekväm med, i ljust eller mörkt läge.',
+      },
+      {
+        title: 'Öppen källkod',
+        body: 'Hela källkoden är publicerad så att vem som helst kan läsa och granska den. Det är ”source-available” snarare än ”open source” – i FAQ:en förklaras vad licensen tillåter.',
+      },
+      {
+        title: 'Inget att stänga av',
+        body: 'Det finns inga konton som kan frysas. Dina medel förvaras direkt på Ethereum-nätverket, och nyckeln till vilket konto som helst kan när som helst överföras till en annan plånbok.',
+      },
+    ],
   },
 }

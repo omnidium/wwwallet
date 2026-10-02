@@ -1,26 +1,56 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { useTheme } from 'vuetify'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useDisplay, useTheme } from 'vuetify'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { useVaultStore } from '@/stores/vault'
 import { getStoredTheme, setStoredTheme, applyDomTheme, type ThemeName } from '@/services/theme'
 import { clearLastActivity } from '@/services/lastActivity'
+import { currencySymbol } from '@/services/money'
+import AppSelect, { type SelectItem } from '@/components/AppSelect.vue'
+import AppSegmented from '@/components/AppSegmented.vue'
+import LicenseDialog from '@/components/LicenseDialog.vue'
 
 const emit = defineEmits<{ close: [] }>()
 
-const { t } = useI18n({ useScope: 'global' })
+const { t, locale } = useI18n({ useScope: 'global' })
 const settings = useSettingsLocaleStore()
 const vault = useVaultStore()
 const theme = useTheme()
 const router = useRouter()
 const currentTheme = ref<ThemeName>(getStoredTheme())
+const licenseOpen = ref(false)
 const appVersion = __APP_VERSION__
 // The marketing website lives on the apex domain (this app is on app.*); in
 // dev it runs separately on port 3002.
 const websiteUrl = import.meta.env.VITE_WEBSITE_URL ?? (import.meta.env.DEV ? 'http://localhost:3002' : 'https://wwwallet.me')
 const panelRef = ref<HTMLElement | null>(null)
+// Same 700px cut-off as the account cards' full-width breakpoint (main.css):
+// below it, Theme/Language/Currency collapse into one row of icon controls.
+const display = useDisplay()
+const compact = computed(() => display.width.value <= 700)
+const currentLanguageName = computed(() => settings.languages.find((lang) => lang.id === settings.locale)?.name ?? settings.locale)
+
+const themeOptions = computed(() => [
+  { value: 'light' as const, label: t('settings.themeLight'), icon: 'mdi-white-balance-sunny' },
+  { value: 'dark' as const, label: t('settings.themeDark'), icon: 'mdi-weather-night' },
+])
+
+const languageItems = computed<SelectItem[]>(() =>
+  settings.languages.map((lang) => ({ value: lang.id, title: lang.name, avatarText: lang.id.split('-')[0]!.toUpperCase() })),
+)
+
+// Each currency by its symbol and its name in the app's language.
+const currencyItems = computed<SelectItem[]>(() => {
+  const names = new Intl.DisplayNames([locale.value], { type: 'currency' })
+  return settings.currencies.map((code) => ({
+    value: code,
+    title: code,
+    subtitle: names.of(code) === code ? undefined : names.of(code),
+    avatarText: currencySymbol(code, locale.value),
+  }))
+})
 
 // v-navigation-drawer used to provide Escape-to-close and a scrim for free;
 // now that App.vue renders this as a plain overlay (see its fade-transition
@@ -36,6 +66,9 @@ function getFocusable(): HTMLElement[] {
 }
 
 function onKeydown(event: KeyboardEvent) {
+  // A menu open over the panel (language, currency) takes its own Escape and
+  // Tab — it's rendered outside the panel, so this listener hears them too.
+  if (event.target instanceof Element && event.target.closest('.v-overlay')) return
   if (event.key === 'Escape') {
     event.stopPropagation()
     emit('close')
@@ -72,12 +105,12 @@ function setTheme(next: ThemeName) {
   if (navigator.vibrate) navigator.vibrate(5)
 }
 
-function onLanguageChange(event: Event) {
-  settings.setLocale((event.target as HTMLSelectElement).value)
+function onLanguageChange(id: string) {
+  settings.setLocale(id)
 }
 
-function onCurrencyChange(event: Event) {
-  settings.currency = (event.target as HTMLSelectElement).value
+function onCurrencyChange(code: string) {
+  settings.currency = code
 }
 
 function lockNow() {
@@ -105,28 +138,47 @@ function lockNow() {
       </button>
     </div>
 
+    <!-- Compact (phone-width) variant: one row of icon controls, Language and
+      Currency opening the same menus as the full-size selects. -->
+    <div v-if="compact" class="settings-compact-row mt-2">
+      <button type="button" class="settings-icon-control"
+        :aria-label="`${t('settings.themeLabel')}: ${currentTheme === 'dark' ? t('settings.themeDark') : t('settings.themeLight')}`"
+        @click="setTheme(currentTheme === 'dark' ? 'light' : 'dark')">
+        <v-icon :icon="currentTheme === 'dark' ? 'mdi-weather-night' : 'mdi-white-balance-sunny'" size="20" />
+      </button>
+      <AppSelect :model-value="settings.locale" :items="languageItems" :label="t('settings.languageLabel')"
+        @update:model-value="onLanguageChange">
+        <template #activator="{ props: menuProps }">
+          <button v-bind="menuProps" type="button" class="settings-icon-control"
+            :aria-label="`${t('settings.languageLabel')}: ${currentLanguageName}`">
+            <v-icon icon="mdi-web" size="20" />
+          </button>
+        </template>
+      </AppSelect>
+      <!-- Locked-vault hiding: see the comment on the full-size currency section below. -->
+      <AppSelect v-if="vault.isUnlocked" :model-value="settings.currency" :items="currencyItems"
+        :label="t('settings.currencyLabel')" @update:model-value="onCurrencyChange">
+        <template #activator="{ props: menuProps }">
+          <button v-bind="menuProps" type="button" class="settings-icon-control"
+            :aria-label="`${t('settings.currencyLabel')}: ${settings.currency}`">
+            <v-icon icon="mdi-cash-multiple" size="20" />
+            <span class="settings-icon-control-text">{{ settings.currency }}</span>
+          </button>
+        </template>
+      </AppSelect>
+    </div>
+
+    <template v-else>
     <div class="settings-section mt-2">
       <p class="settings-section-label">{{ t('settings.themeLabel') }}</p>
-      <div class="theme-segmented" role="group" :aria-label="t('settings.themeLabel')">
-        <button type="button" class="theme-segment" :class="{ active: currentTheme === 'light' }"
-          :aria-pressed="currentTheme === 'light'" @click="setTheme('light')">
-          <v-icon icon="mdi-white-balance-sunny" size="16" />
-          {{ t('settings.themeLight') }}
-        </button>
-        <button type="button" class="theme-segment" :class="{ active: currentTheme === 'dark' }"
-          :aria-pressed="currentTheme === 'dark'" @click="setTheme('dark')">
-          <v-icon icon="mdi-weather-night" size="16" />
-          {{ t('settings.themeDark') }}
-        </button>
-      </div>
+      <AppSegmented :model-value="currentTheme" :options="themeOptions" :label="t('settings.themeLabel')" block
+        @update:model-value="setTheme" />
     </div>
 
     <div class="settings-section mt-2">
       <p class="settings-section-label">{{ t('settings.languageLabel') }}</p>
-      <select class="settings-select" :class="{ 'settings-select--dark': currentTheme === 'dark' }"
-        :value="settings.locale" @change="onLanguageChange">
-        <option v-for="lang in settings.languages" :key="lang.id" :value="lang.id">{{ lang.name }}</option>
-      </select>
+      <AppSelect :model-value="settings.locale" :items="languageItems" :label="t('settings.languageLabel')" block
+        @update:model-value="onLanguageChange" />
     </div>
 
     <!--
@@ -147,11 +199,10 @@ function lockNow() {
     -->
     <div v-if="vault.isUnlocked" class="settings-section mt-2">
       <p class="settings-section-label">{{ t('settings.currencyLabel') }}</p>
-      <select class="settings-select" :class="{ 'settings-select--dark': currentTheme === 'dark' }"
-        :value="settings.currency" @change="onCurrencyChange">
-        <option v-for="currency in settings.currencies" :key="currency" :value="currency">{{ currency }}</option>
-      </select>
+      <AppSelect :model-value="settings.currency" :items="currencyItems" :label="t('settings.currencyLabel')" block
+        @update:model-value="onCurrencyChange" />
     </div>
+    </template>
 
     <v-list class="mt-4" rounded="lg" bg-color="transparent">
       <v-list-item to="/backup-restore" :title="t('backup.title')" prepend-icon="mdi-cloud-upload"
@@ -160,6 +211,8 @@ function lockNow() {
         append-icon="mdi-chevron-right" @click="emit('close')" rounded="lg" />
       <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock"
         append-icon="mdi-chevron-right" @click="emit('close')" rounded="lg" />
+      <v-list-item :title="t('license.title')" prepend-icon="mdi-scale-balance" append-icon="mdi-chevron-right"
+        rounded="lg" @click="licenseOpen = true" />
     </v-list>
 
     <v-btn v-if="vault.isUnlocked" class="mt-4" color="error" variant="outlined" block prepend-icon="mdi-lock"
@@ -172,12 +225,15 @@ function lockNow() {
     </v-btn>
 
     <p class="settings-version text-medium-emphasis mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
+
+    <LicenseDialog v-model="licenseOpen" />
   </div>
 </template>
 
 <style scoped>
-/* Below: pixel-for-pixel matches of website/src/components/layout/SettingsPanel.vue,
-   ui/ThemeToggle.vue and ui/LanguageSelect.vue, built on the shared tokens
+/* Below: kept in step with website/src/components/layout/SettingsPanel.vue —
+   the theme toggle and selects there match AppSegmented/AppSelect here —
+   built on the shared tokens
    (shared/design-tokens.css, imported by assets/main.css) both projects use —
    not Vuetify's own theme tokens, so this stays byte-identical to the
    website's version rather than just similarly-colored. Vuetify-native
@@ -218,55 +274,36 @@ function lockNow() {
   margin-bottom: var(--space-1);
 }
 
-.theme-segmented {
+.settings-compact-row {
   display: flex;
-  gap: 4px;
-  padding: 4px;
-  border-radius: var(--radius-md);
-  background: rgb(var(--border-rgb) / 6%);
+  gap: var(--space-2);
 }
 
-.theme-segment {
-  flex: 1;
+.settings-icon-control {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: var(--space-2);
-  border: none;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid rgb(var(--border-rgb) / 16%);
+  border-radius: var(--radius-md);
+  background: rgb(var(--surface-rgb) / 100%);
+  color: var(--text);
   font-family: inherit;
   cursor: pointer;
 }
 
-.theme-segment.active {
-  background: rgb(var(--surface-rgb) / 100%);
-  color: var(--text);
-  box-shadow: var(--shadow-card);
+.settings-icon-control:focus-visible {
+  outline: 2px solid rgb(var(--v-theme-primary));
+  outline-offset: 2px;
 }
 
-.settings-select {
-  width: 100%;
-  padding: var(--space-2) var(--space-3);
-  padding-right: 2.5em;
-  border-radius: var(--radius-md);
-  border: 1px solid rgb(var(--border-rgb) / 16%);
-  background-color: rgb(var(--surface-rgb) / 100%);
-  color: var(--text);
-  font-size: 0.95rem;
-  font-family: inherit;
-  appearance: none;
-  -webkit-appearance: none;
-  background-repeat: no-repeat;
-  background-position: right var(--space-3) center;
-  background-size: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234d5f59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+.settings-icon-control-text {
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
-.settings-select--dark {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239db3ac' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-}
 </style>

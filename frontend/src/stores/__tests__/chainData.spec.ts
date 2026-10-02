@@ -15,6 +15,8 @@ vi.mock('@/services/api', () => ({
     tokenList: vi.fn<typeof api.tokenList>(),
     fxRates: vi.fn<typeof api.fxRates>(),
     nativePrice: vi.fn<typeof api.nativePrice>(),
+    historicalPrice: vi.fn<typeof api.historicalPrice>(),
+    fxRatesOn: vi.fn<typeof api.fxRatesOn>(),
   },
 }))
 const mockedApi = vi.mocked(api)
@@ -311,5 +313,66 @@ describe('chainData client-side cache', () => {
     await unlockCache(await vaultKey())
     expect((await reloadedStore()).activityByAddress).toEqual({})
     expect(await rawCacheContents()).toBe('[]')
+  })
+})
+
+describe('chainData store — native prices', () => {
+  beforeEach(async () => {
+    await clearCache()
+    setActivePinia(createPinia())
+    vi.clearAllMocks()
+  })
+
+  it('makes one request per native coin, shared by every chain using it, and retries after a failure', async () => {
+    const store = useChainDataStore()
+    mockedApi.nativePrice.mockResolvedValue({ usd: 2000 })
+    await Promise.all([store.loadNativePrice('ethereum'), store.loadNativePrice('base'), store.loadNativePrice('arbitrum')])
+    await store.loadNativePrice('optimism')
+    expect(mockedApi.nativePrice).toHaveBeenCalledTimes(1)
+    expect(store.nativePriceUsdByChain).toMatchObject({ ethereum: 2000, base: 2000, arbitrum: 2000, optimism: 2000 })
+
+    mockedApi.nativePrice.mockRejectedValueOnce(new Error('429')).mockResolvedValueOnce({ usd: 0.1 })
+    await expect(store.loadNativePrice('polygon')).rejects.toThrow('429')
+    await store.loadNativePrice('polygon')
+    expect(store.nativePriceUsdByChain.polygon).toBe(0.1)
+  })
+
+  describe('historical transaction rates', () => {
+    const MINED = { ...txn('0xswap'), timestamp: '2025-03-15T10:20:00Z', contract_address: TOKEN, asset: 'USDC', counter_asset: 'ETH', counter_value: '0.5' }
+
+    it('prices each asset and the day\'s FX once, and keeps them across a reload', async () => {
+      const store = useChainDataStore()
+      mockedApi.historicalPrice.mockImplementation(async (_c, token) => ({ usd: token ? 1 : 2000 }))
+      mockedApi.fxRatesOn.mockResolvedValue({ base: 'USD', rates: { EUR: 0.9 }, as_of_unix: 0 })
+      await store.ensureTransactionRates(CHAIN, MINED)
+      // The token leg, and native once (it's both the other leg and the fee's coin).
+      expect(mockedApi.historicalPrice).toHaveBeenCalledTimes(2)
+      expect(mockedApi.fxRatesOn).toHaveBeenCalledWith('2025-03-15')
+      await store.ensureTransactionRates(CHAIN, MINED)
+      expect(mockedApi.historicalPrice).toHaveBeenCalledTimes(2)
+
+      const reloaded = await reloadedStore()
+      expect(reloaded.transactionRatesByKey[`${CHAIN}:0xswap`]).toEqual({ usd: { [TOKEN]: 1, native: 2000 }, fx: { EUR: 0.9 } })
+    })
+
+    it('keeps what was found when one lookup fails, and doesn\'t retry the miss this session', async () => {
+      const store = useChainDataStore()
+      mockedApi.historicalPrice.mockImplementation(async (_c, token) => {
+        if (token) throw new Error('no market')
+        return { usd: 2000 }
+      })
+      mockedApi.fxRatesOn.mockRejectedValue(new Error('down'))
+      await store.ensureTransactionRates(CHAIN, MINED)
+      expect(store.transactionRatesByKey[`${CHAIN}:0xswap`]).toEqual({ usd: { native: 2000 }, fx: null })
+      await store.ensureTransactionRates(CHAIN, MINED)
+      expect(mockedApi.historicalPrice).toHaveBeenCalledTimes(2)
+      expect(mockedApi.fxRatesOn).toHaveBeenCalledTimes(1)
+    })
+
+    it('looks nothing up for a pending transaction', async () => {
+      const store = useChainDataStore()
+      await store.ensureTransactionRates(CHAIN, txn('0xpending'))
+      expect(mockedApi.historicalPrice).not.toHaveBeenCalled()
+    })
   })
 })

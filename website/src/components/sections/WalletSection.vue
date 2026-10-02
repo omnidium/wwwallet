@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import PointCard from '../ui/PointCard.vue'
+import type { IconName } from '../ui/LineIcon.vue'
 
 interface Point {
   title: string
@@ -8,6 +9,9 @@ interface Point {
 }
 
 const { t, tm } = useI18n()
+
+// One per entry in the section's points, in order.
+const ICONS: IconName[] = ['device-key', 'cipher', 'timer', 'mesh']
 </script>
 
 <template>
@@ -22,6 +26,7 @@ const { t, tm } = useI18n()
           :key="index"
           :title="point.title"
           :body="point.body"
+          :icon="ICONS[index]"
         />
       </div>
       <aside class="caveat">
@@ -59,7 +64,7 @@ const { t, tm } = useI18n()
 }
 
 .caveat a {
-  color: var(--accent);
+  color: var(--accent-ink);
   font-weight: 700;
   text-decoration: none;
 }

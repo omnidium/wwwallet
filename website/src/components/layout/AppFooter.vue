@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import LicenseModal from '../ui/LicenseModal.vue'
 
 const { t } = useI18n()
+// The licence opens in a panel here rather than linking out to GitHub.
+const licenseOpen = ref(false)
 const year = new Date().getFullYear()
 </script>
 
@@ -11,13 +15,13 @@ const year = new Date().getFullYear()
       <p class="footer-tagline">{{ t('footer.tagline') }}</p>
       <p class="footer-copyright">
         {{ t('footer.copyright', { year }) }} ·
-        <a class="footer-source" href="https://github.com/omnidium/wwwallet/blob/main/LICENSE" target="_blank"
-          rel="noopener noreferrer">
+        <button type="button" class="footer-source" @click="licenseOpen = true">
           {{ t('footer.licenseLink') }}
-        </a>
+        </button>
       </p>
       <p class="footer-disclaimer">{{ t('footer.disclaimer') }}</p>
     </div>
+    <LicenseModal :open="licenseOpen" @close="licenseOpen = false" />
   </footer>
 </template>
 
@@ -49,8 +53,18 @@ const year = new Date().getFullYear()
 }
 
 .footer-source {
-  color: var(--accent);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-ink);
+  font: inherit;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.footer-source:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 .footer-source:hover {
