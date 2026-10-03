@@ -520,5 +520,6 @@ export default {
     fxPair: 'Currency pair',
     searchFailed: "Couldn't search right now — try again in a moment.",
     noResults: 'No matches.',
+    refresh: 'Refresh prices',
   },
 }

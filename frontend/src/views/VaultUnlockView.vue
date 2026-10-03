@@ -138,7 +138,7 @@ async function submitPasskey() {
           </v-btn>
         </v-card-actions>
 
-        <FavouritesList class="px-4 pb-1 pt-2" />
+        <FavouritesList auto-refresh class="px-4 pb-1 pt-2" />
       </v-card>
     </v-container>
   </div>

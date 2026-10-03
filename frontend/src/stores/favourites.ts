@@ -23,6 +23,8 @@ const TOKEN_DISPLAY_KEY = 'favourite-tokens'
 const PRICES_KEY = 'favourite-prices'
 const EXTRAS_KEY = 'favourite-extras'
 const ORDER_KEY = 'favourite-order'
+// How long a price refresh still in flight is shared rather than replaced.
+const REFRESH_STALE_MS = 15_000
 
 export interface FavouriteAsset {
   chain: ChainSlug
@@ -275,12 +277,33 @@ export const useFavouritesStore = defineStore('favourites', () => {
   /**
    * Fresh prices for every row, each on its own — one that fails just keeps
    * its last known numbers. Straight from the API rather than through
-   * chainData, whose price cache is encrypted.
+   * chainData, whose price cache is encrypted. A call while one is already
+   * running (a tap during the on-load refresh) shares it rather than firing
+   * every request again — unless it has been going for a while, as one a
+   * mobile browser froze with the page in the background can, in which case
+   * a fresh one replaces it.
    */
-  async function refreshPrices(): Promise<void> {
-    await load()
-    await Promise.allSettled(items.value.map(refreshPrice))
-    save(PRICES_KEY, prices.value)
+  const refreshing = ref(false)
+  let refreshingPrices: Promise<void> | null = null
+  let refreshStartedAt = 0
+  function refreshPrices(): Promise<void> {
+    if (refreshingPrices && Date.now() - refreshStartedAt < REFRESH_STALE_MS) return refreshingPrices
+    const startedAt = (refreshStartedAt = Date.now())
+    refreshingPrices = (async () => {
+      refreshing.value = true
+      try {
+        await load()
+        await Promise.allSettled(items.value.map(refreshPrice))
+        save(PRICES_KEY, prices.value)
+      } finally {
+        // A stale run finishing late mustn't clear the one that replaced it.
+        if (refreshStartedAt === startedAt) {
+          refreshing.value = false
+          refreshingPrices = null
+        }
+      }
+    })()
+    return refreshingPrices
   }
 
   /** Drops everything in memory — for when the cache itself has just been wiped. */
@@ -309,6 +332,7 @@ export const useFavouritesStore = defineStore('favourites', () => {
     reorder,
     tokenDisplay,
     prices,
+    refreshing,
     refreshPrices,
     forget,
   }

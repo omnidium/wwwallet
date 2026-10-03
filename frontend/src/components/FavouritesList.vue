@@ -11,8 +11,10 @@ import PriceSparkline from '@/components/PriceSparkline.vue'
 // The favourites — on the lock screen, and in the accounts screen's
 // Favourites card, which also passes `editable` to reorder and remove them.
 // Everything here comes from the favourites store's own unencrypted record,
-// never from chainData — see stores/favourites.ts.
-const props = defineProps<{ editable?: boolean }>()
+// never from chainData — see stores/favourites.ts. The lock screen passes
+// `autoRefresh`: fresh prices whenever the page comes back into view
+// (switching back to the tab or app), and on a tap anywhere on the list.
+const props = defineProps<{ editable?: boolean; autoRefresh?: boolean }>()
 
 const { t, locale } = useI18n({ useScope: 'global' })
 const favourites = useFavouritesStore()
@@ -63,40 +65,69 @@ watch(() => props.editable, async () => {
   initSortable()
 })
 
+// Returning to the tab doesn't remount anything, and a lock screen mounted
+// while hidden (an idle lock in the background) may have had its fetch
+// frozen by a mobile browser — so it refreshes on becoming visible instead.
+function onVisibilityChange() {
+  if (document.visibilityState === 'visible') void favourites.refreshPrices()
+}
+function onPageShow(event: PageTransitionEvent) {
+  if (event.persisted) void favourites.refreshPrices()
+}
+
 // Last known prices render straight away, then refresh.
 onMounted(() => {
   initSortable()
-  void favourites.refreshPrices()
+  if (!props.autoRefresh || document.visibilityState === 'visible') void favourites.refreshPrices()
+  if (props.autoRefresh) {
+    document.addEventListener('visibilitychange', onVisibilityChange)
+    window.addEventListener('pageshow', onPageShow)
+  }
 })
-onBeforeUnmount(() => sortable?.destroy())
+onBeforeUnmount(() => {
+  sortable?.destroy()
+  document.removeEventListener('visibilitychange', onVisibilityChange)
+  window.removeEventListener('pageshow', onPageShow)
+})
+
+function onTap() {
+  if (props.autoRefresh) void favourites.refreshPrices()
+}
 </script>
 
 <template>
-  <div v-if="rows.length > 0" ref="listEl" class="favourites-list">
-    <div v-for="row in rows" :key="row.item.key" :data-key="row.item.key" class="favourite-row d-flex align-center py-2">
-      <v-icon v-if="editable" icon="mdi-drag" size="20" class="favourite-drag-handle mr-2"
-        :aria-label="t('favourites.dragToReorder')" />
-      <v-avatar v-if="row.logoUrl" :image="row.logoUrl" size="24" class="mr-3" />
-      <v-icon v-else :icon="row.icon ?? 'mdi-cash'" size="24" class="mr-3" />
-      <!-- A coin's full name ("Bitcoin" for BTC), on hover or a tap of its symbol. -->
-      <AppTooltip v-if="row.title" :text="row.title" info>
-        <template #default="{ activatorProps }">
-          <span v-bind="activatorProps" class="font-weight-medium text-truncate" tabindex="0">{{ row.label }}</span>
+  <div v-if="rows.length > 0" class="favourites-list" :class="{ 'favourites-list--tappable': autoRefresh }"
+    :role="autoRefresh ? 'button' : undefined" :tabindex="autoRefresh ? 0 : undefined"
+    :aria-label="autoRefresh ? t('favourites.refresh') : undefined" :aria-busy="favourites.refreshing"
+    @click="onTap" @keydown.enter="onTap" @keydown.space.prevent="onTap">
+    <v-progress-linear v-if="autoRefresh" :active="favourites.refreshing" indeterminate height="2"
+      class="favourites-refresh-bar" />
+    <div ref="listEl">
+      <div v-for="row in rows" :key="row.item.key" :data-key="row.item.key" class="favourite-row d-flex align-center py-2">
+        <v-icon v-if="editable" icon="mdi-drag" size="20" class="favourite-drag-handle mr-2"
+          :aria-label="t('favourites.dragToReorder')" />
+        <v-avatar v-if="row.logoUrl" :image="row.logoUrl" size="24" class="mr-3" />
+        <v-icon v-else :icon="row.icon ?? 'mdi-cash'" size="24" class="mr-3" />
+        <!-- A coin's full name ("Bitcoin" for BTC), on hover or a tap of its symbol. -->
+        <AppTooltip v-if="row.title" :text="row.title" info>
+          <template #default="{ activatorProps }">
+            <span v-bind="activatorProps" class="font-weight-medium text-truncate" tabindex="0">{{ row.label }}</span>
+          </template>
+        </AppTooltip>
+        <span v-else class="font-weight-medium text-truncate">{{ row.label }}</span>
+        <v-spacer />
+        <template v-if="row.history">
+          <span class="text-no-wrap">{{ formatValue(row.item, row.history.usd) }}</span>
+          <span class="favourite-change ml-3"
+            :class="row.history.change_24h_pct > 0 ? 'price-change--up' : 'price-change--down'">
+            {{ formatPercentChange(row.history.change_24h_pct, locale) }}
+          </span>
+          <PriceSparkline v-if="!editable" :points="row.history.points" class="ml-3" />
         </template>
-      </AppTooltip>
-      <span v-else class="font-weight-medium text-truncate">{{ row.label }}</span>
-      <v-spacer />
-      <template v-if="row.history">
-        <span class="text-no-wrap">{{ formatValue(row.item, row.history.usd) }}</span>
-        <span class="favourite-change ml-3"
-          :class="row.history.change_24h_pct > 0 ? 'price-change--up' : 'price-change--down'">
-          {{ formatPercentChange(row.history.change_24h_pct, locale) }}
-        </span>
-        <PriceSparkline v-if="!editable" :points="row.history.points" class="ml-3" />
-      </template>
-      <span v-else class="text-medium-emphasis">—</span>
-      <v-btn v-if="editable" icon="mdi-close" variant="text" size="small" density="comfortable" class="ml-2"
-        :aria-label="t('favourites.remove', { name: row.label })" @click="favourites.remove(row.item)" />
+        <span v-else class="text-medium-emphasis">—</span>
+        <v-btn v-if="editable" icon="mdi-close" variant="text" size="small" density="comfortable" class="ml-2"
+          :aria-label="t('favourites.remove', { name: row.label })" @click="favourites.remove(row.item)" />
+      </div>
     </div>
   </div>
 </template>

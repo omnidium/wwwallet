@@ -131,6 +131,41 @@ describe('favourites store', () => {
     await flushCacheWrites()
     expect(await getPublic('favourite-extras')).toEqual({})
   })
+
+  it('shares a price refresh already running, and starts a fresh one once it is done', async () => {
+    const history = vi.spyOn(api, 'nativePriceHistory')
+      .mockResolvedValue({ usd: 3000, change_24h_pct: 1, points: [2970, 3000] })
+    const favourites = useFavouritesStore()
+    favourites.rememberVisibleChains([account('ethereum')])
+
+    const first = favourites.refreshPrices()
+    expect(favourites.refreshing).toBe(true)
+    await Promise.all([first, favourites.refreshPrices()])
+    expect(favourites.refreshing).toBe(false)
+    expect(history).toHaveBeenCalledTimes(1)
+    expect(favourites.prices['ethereum:native']?.usd).toBe(3000)
+
+    await favourites.refreshPrices()
+    expect(history).toHaveBeenCalledTimes(2)
+  })
+
+  it('replaces a refresh that has hung, as one frozen in a background tab can', async () => {
+    const history = vi.spyOn(api, 'nativePriceHistory')
+      .mockReturnValueOnce(new Promise(() => {}))
+      .mockResolvedValue({ usd: 3000, change_24h_pct: 1, points: [2970, 3000] })
+    const favourites = useFavouritesStore()
+    favourites.rememberVisibleChains([account('ethereum')])
+
+    const now = Date.now()
+    const clock = vi.spyOn(Date, 'now').mockReturnValue(now)
+    void favourites.refreshPrices()
+    await vi.waitFor(() => expect(history).toHaveBeenCalledTimes(1))
+    clock.mockReturnValue(now + 60_000)
+    await favourites.refreshPrices()
+    expect(history).toHaveBeenCalledTimes(2)
+    expect(favourites.refreshing).toBe(false)
+    expect(favourites.prices['ethereum:native']?.usd).toBe(3000)
+  })
 })
 
 describe('fxPairsForQuery', () => {

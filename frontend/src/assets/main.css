@@ -1081,7 +1081,25 @@ html.pane-open {
 /* Favourites — the lock screen's FavouritesList and the token pane's star,
  * 24h change and PriceSparkline. */
 .favourites-list {
+  position: relative;
   border-top: 1px solid rgb(var(--v-border-color) / var(--border-opacity));
+}
+
+/* The lock screen's: a tap anywhere refreshes the prices, the bar riding the
+ * top border while it does. */
+.favourites-list--tappable {
+  cursor: pointer;
+}
+
+.favourites-list--tappable:focus-visible {
+  outline: 2px solid rgb(var(--v-theme-primary));
+  outline-offset: 2px;
+}
+
+.favourites-refresh-bar {
+  position: absolute !important;
+  top: -1px;
+  left: 0;
 }
 
 /* FavouritesCard.vue / FavouritesList.vue / FavouriteSearch.vue */
