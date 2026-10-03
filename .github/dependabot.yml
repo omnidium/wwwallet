@@ -1,0 +1,51 @@
+# Dependency update PRs. Security updates (enabled in the repo's settings)
+# keep arriving as soon as a fix is published regardless of this file; it
+# adds routine version updates, on a delay.
+#
+# The cooldown is the point: a hijacked release of a legitimate package is
+# usually spotted and pulled from the registry within days, so not proposing
+# anything until it has been public for a while sidesteps most of that
+# window. Majors wait longer, since they also need real review.
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: npm
+    directory: /website
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  # The Cargo workspace root (backend + backend/providers).
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
