@@ -484,6 +484,7 @@ export default {
     fxPair: 'Valūtu pāris',
     searchFailed: 'Šobrīd nevarēju veikt meklēšanu — mēģiniet vēlreiz pēc brīža.',
     noResults: 'Nav atbilžu.',
+    refresh: 'Atjaunināt cenas',
   },
   license: {
     title: 'Licence',

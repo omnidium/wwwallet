@@ -487,6 +487,7 @@ export default {
     fxPair: 'Coppia di valute',
     searchFailed: 'Non è possibile effettuare la ricerca in questo momento: riprova tra un attimo.',
     noResults: 'Nessun risultato.',
+    refresh: 'Aggiorna i prezzi',
   },
   license: {
     title: 'Licenza',

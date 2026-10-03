@@ -491,6 +491,7 @@ export default {
     searchFailed:
       'No se ha podido realizar la búsqueda ahora mismo; inténtalo de nuevo dentro de un momento.',
     noResults: 'No hay coincidencias.',
+    refresh: 'Actualizar precios',
   },
   license: {
     title: 'Licencia',

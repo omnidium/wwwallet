@@ -1583,6 +1583,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Tu gestor de contraseñas no ha podido guardar la clave de acceso. Si te está pidiendo que inicies sesión, que verifiques tu identidad o que introduzcas una frase de contraseña de sincronización (por ejemplo, el Gestor de contraseñas de Google cuando la sincronización de Chrome está en pausa), hazlo primero y luego vuelve a intentarlo."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Actualizar precios"
     }
   },
   "ar": {
@@ -3169,6 +3173,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "لم يتمكن مدير مفاتيح المرور الخاص بك من حفظ مفتاح المرور. إذا كان ينتظر منك تسجيل الدخول، أو التحقق من هويتك، أو إدخال عبارة مرور للمزامنة (مثل «مدير كلمات مرور Google» عند إيقاف مزامنة Chrome مؤقتًا)، فقم بإنهاء ذلك، ثم حاول مرة أخرى."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "تحديث الأسعار"
     }
   },
   "bg": {
@@ -4755,6 +4763,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Вашият мениджър на пароли не е успял да запази паролата. Ако чака да влезете в профила си, да потвърдите самоличността си или да въведете парола за синхронизация (например Google Password Manager, когато синхронизацията на Chrome е спряна), завършете тази стъпка и след това опитайте отново."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Актуализирайте цените"
     }
   },
   "cs": {
@@ -6341,6 +6353,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Váš správce přístupových klíčů nemohl přístupový klíč uložit. Pokud čeká na vaše přihlášení, ověření vaší identity nebo zadání synchronizační fráze (např. Správce hesel Google, když je synchronizace Chrome pozastavena), dokončete tento krok a zkuste to znovu."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Aktualizovat ceny"
     }
   },
   "da": {
@@ -7927,6 +7943,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Din adgangskodeadministrator kunne ikke gemme adgangskoden. Hvis den venter på, at du logger ind, bekræfter, at det er dig, eller indtaster en synkroniseringsadgangskode (f.eks. Google Password Manager, når Chrome-synkronisering er sat på pause), skal du afslutte det og derefter prøve igen."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Opdater priser"
     }
   },
   "de": {
@@ -9513,6 +9533,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Dein Passwort-Manager konnte das Passwort nicht speichern. Wenn er darauf wartet, dass du dich anmeldest, deine Identität bestätigst oder eine Synchronisierungs-Passphrase eingibst (z. B. bei Google Passwort-Manager, wenn die Chrome-Synchronisierung pausiert ist), erledige das erst und versuche es dann erneut."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Preise aktualisieren"
     }
   },
   "el": {
@@ -11099,6 +11123,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Ο διαχειριστής κωδικών πρόσβασης δεν μπόρεσε να αποθηκεύσει τον κωδικό πρόσβασης. Εάν σας ζητά να συνδεθείτε, να επιβεβαιώσετε την ταυτότητά σας ή να εισαγάγετε μια φράση πρόσβασης συγχρονισμού (π.χ. το Google Password Manager όταν ο συγχρονισμός του Chrome είναι σε παύση), ολοκληρώστε αυτή τη διαδικασία και, στη συνέχεια, δοκιμάστε ξανά."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Ενημέρωση τιμών"
     }
   },
   "et": {
@@ -12685,6 +12713,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Teie paroolihaldur ei suutnud parooli salvestada. Kui rakendus ootab, et te sisse logiksite, oma isikut kinnitaksite või sisestaksite sünkroniseerimise parooli (nt Google’i paroolihaldur, kui Chrome’i sünkroniseerimine on peatatud), viige see lõpule ja proovige uuesti."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Värskenda hinnad"
     }
   },
   "fi": {
@@ -14271,6 +14303,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Salasananhallintaohjelmasi ei pystynyt tallentamaan salasanaa. Jos se odottaa, että kirjaudut sisään, vahvistat henkilöllisyytesi tai syötät synkronointilauseen (esim. Google Password Manager, kun Chrome-synkronointi on keskeytetty), suorita nämä toimet ja yritä sitten uudelleen."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Päivitä hinnat"
     }
   },
   "fr": {
@@ -15857,6 +15893,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Ton gestionnaire de mots de passe n’a pas pu enregistrer le mot de passe. S’il t’invite à te connecter, à confirmer ton identité ou à saisir une phrase de synchronisation (par exemple, Google Password Manager lorsque la synchronisation Chrome est en pause), termine cette opération, puis réessaie."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Actualiser les prix"
     }
   },
   "hu": {
@@ -17443,6 +17483,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "A jelszókezelő nem tudta elmenteni a jelszót. Ha a rendszer arra vár, hogy bejelentkezz, igazold a személyazonosságodat, vagy add meg a szinkronizálási jelszót (pl. a Google Jelszókezelőben, amikor a Chrome szinkronizálása szünetel), akkor hajtsd végre ezeket a lépéseket, majd próbáld meg újra."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Árak frissítése"
     }
   },
   "id": {
@@ -19029,6 +19073,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Pengelola kata sandi Anda tidak dapat menyimpan kata sandi tersebut. Jika aplikasi tersebut menunggu Anda untuk masuk, memverifikasi identitas Anda, atau memasukkan frasa sandi sinkronisasi (misalnya, Google Password Manager saat sinkronisasi Chrome dijeda), selesaikan proses tersebut, lalu coba lagi."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Perbarui harga"
     }
   },
   "it": {
@@ -20615,6 +20663,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Il tuo gestore di password non è riuscito a salvare la password. Se ti sta chiedendo di effettuare l’accesso, di verificare la tua identità o di inserire una passphrase di sincronizzazione (ad es. Google Password Manager quando la sincronizzazione di Chrome è in pausa), completa l’operazione, poi riprova."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Aggiorna i prezzi"
     }
   },
   "iw": {
@@ -22201,6 +22253,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "מנהל הסיסמאות שלכם לא הצליח לשמור את סיסמת הגישה. אם הוא מחכה שתתחברו, תאמתו את זהותכם או תזינו סיסמת סנכרון (למשל, מנהל הסיסמאות של גוגל כאשר סנכרון Chrome מושעה), סיימו את התהליך ואז נסו שוב."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "רענן מחירים"
     }
   },
   "ja": {
@@ -23787,6 +23843,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "パスキーマネージャーがパスキーを保存できなかった。ログインを求められている場合、本人確認を求められている場合、または同期パスフレーズの入力を求められている場合（例：Chromeの同期が一時停止されている際のGoogleパスワードマネージャー）、その操作を完了してから、もう一度試してみてください。"
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "価格を更新する"
     }
   },
   "ko": {
@@ -25373,6 +25433,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "비밀번호 관리자가 비밀번호를 저장하지 못했습니다. 로그인, 본인 확인 또는 동기화 비밀번호 입력(예: Chrome 동기화가 일시 중지된 상태의 Google 비밀번호 관리자)을 기다리고 있다면, 해당 절차를 완료한 후 다시 시도해 주세요."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "가격 갱신"
     }
   },
   "lt": {
@@ -26959,6 +27023,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Jūsų slaptažodžių tvarkyklė negalėjo išsaugoti slaptažodžio. Jei ji laukia, kol prisijungsite, patvirtinsite savo tapatybę arba įvesite sinchronizavimo frazę (pvz., „Google Password Manager“, kai „Chrome“ sinchronizavimas sustabdytas), atlikite tai ir pabandykite dar kartą."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Atnaujinti kainas"
     }
   },
   "lv": {
@@ -28545,6 +28613,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Jūsu paroles pārvaldnieks nevarēja saglabāt paroli. Ja tas gaida, lai jūs pieteiktos, apstiprinātu savu identitāti vai ievadītu sinhronizācijas paroli (piemēram, Google Password Manager, ja Chrome sinhronizācija ir apturēta), pabeidziet šo darbību un mēģiniet vēlreiz."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Atjaunināt cenas"
     }
   },
   "nl": {
@@ -30131,6 +30203,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Je wachtwoordbeheerder kon de wachtwoordzin niet opslaan. Als hij wacht tot je inlogt, je identiteit verifieert of een synchronisatiewachtwoordzin invoert (bijv. Google Password Manager wanneer Chrome-synchronisatie is gepauzeerd), doe dat dan eerst en probeer het daarna opnieuw."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Prijzen vernieuwen"
     }
   },
   "no": {
@@ -31717,6 +31793,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Passordbehandleren din klarte ikke å lagre passordet. Hvis den venter på at du skal logge inn, bekrefte at det er deg eller oppgi en synkroniseringsfrase (f.eks. Google Password Manager når Chrome-synkroniseringen er satt på pause), må du fullføre dette før du prøver på nytt."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Oppdater priser"
     }
   },
   "pl": {
@@ -33303,6 +33383,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Twój menedżer haseł nie mógł zapisać hasła. Jeśli czeka, aż się zalogujesz, potwierdzisz swoją tożsamość lub wprowadzisz hasło synchronizacji (np. w Menedżerze haseł Google, gdy synchronizacja Chrome jest wstrzymana), zrób to, a potem spróbuj jeszcze raz."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Odśwież ceny"
     }
   },
   "ro": {
@@ -34889,6 +34973,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Managerul dvs. de chei de acces nu a putut salva cheia de acces. Dacă vă solicită să vă autentificați, să confirmați identitatea sau să introduceți o frază de sincronizare (de exemplu, Google Password Manager când sincronizarea Chrome este întreruptă), finalizați acea operațiune, apoi încercați din nou."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Actualizați prețurile"
     }
   },
   "ru": {
@@ -36475,6 +36563,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Твой менеджер паролей не смог сохранить пароль. Если он ждёт, пока ты войдёшь в систему, подтвердишь свою личность или введёшь парольную фразу для синхронизации (например, в Google Password Manager, когда синхронизация Chrome приостановлена), сначала заверши эту операцию, а потом попробуй ещё раз."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Обновить цены"
     }
   },
   "sk": {
@@ -38061,6 +38153,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Váš správca prístupových kľúčov nedokázal uložiť prístupový kľúč. Ak čaká na vaše prihlásenie, overenie vašej identity alebo zadanie synchronizačnej frázy (napr. Správca hesiel Google, keď je synchronizácia v prehliadači Chrome pozastavená), dokončite tento proces a potom to skúste znova."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Aktualizovať ceny"
     }
   },
   "sl": {
@@ -39647,6 +39743,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Vaš upravitelj gesel ni mogel shraniti gesla. Če čaka, da se prijavite, potrdite svojo identiteto ali vnesite geslo za sinhronizacijo (npr. Google Password Manager, ko je sinhronizacija Chrome začasno ustavljena), to najprej opravite, nato pa poskusite znova."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Osveži cene"
     }
   },
   "sv": {
@@ -41233,6 +41333,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Din lösenordshanterare kunde inte spara lösenordet. Om den väntar på att du ska logga in, verifiera att det är du eller ange en synkroniseringsfras (t.ex. Google Password Manager när Chrome-synkroniseringen är pausad), slutför det och försök sedan igen."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Uppdatera priser"
     }
   },
   "tr": {
@@ -42819,6 +42923,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Şifre yöneticiniz şifreyi kaydedemedi. Eğer oturum açmanızı, kimliğinizi doğrulamanızı veya bir senkronizasyon parolasını girmenizi bekliyorsa (örneğin, Chrome senkronizasyonu duraklatıldığında Google Şifre Yöneticisi), bu işlemi tamamlayın ve ardından tekrar deneyin."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Fiyatları yenile"
     }
   },
   "uk": {
@@ -44405,6 +44513,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Ваш менеджер паролів не зміг зберегти пароль. Якщо він чекає, поки ви увійдете в систему, підтвердите свою особу або введете парольну фразу для синхронізації (наприклад, у Google Password Manager, коли синхронізація Chrome призупинена), завершіть цю процедуру, а потім спробуйте ще раз."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Оновити ціни"
     }
   },
   "vi": {
@@ -45991,6 +46103,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "Trình quản lý mật khẩu của cậu không thể lưu mật khẩu. Nếu nó đang chờ cậu đăng nhập, xác minh danh tính hoặc nhập cụm mật khẩu đồng bộ hóa (ví dụ: Google Password Manager khi tính năng đồng bộ hóa Chrome bị tạm dừng), hãy hoàn tất các bước đó rồi thử lại nhé."
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "Cập nhật giá"
     }
   },
   "zh-CN": {
@@ -47577,6 +47693,10 @@
     "errors.passkeyProviderNotReady": {
       "enHash": "4db291c98c4dad36",
       "value": "您的密码管理器无法保存该密码。如果系统正在等待您登录、验证身份或输入同步密码（例如，当 Chrome 同步暂停时，Google 密码管理器会提示），请先完成这些操作，然后重试。"
+    },
+    "favourites.refresh": {
+      "enHash": "5610b22252f81d9f",
+      "value": "刷新价格"
     }
   }
 }

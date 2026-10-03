@@ -482,6 +482,7 @@ export default {
     fxPair: 'Valutapar',
     searchFailed: 'Kunne ikke søge lige nu — prøv igen om et øjeblik.',
     noResults: 'Ingen resultater.',
+    refresh: 'Opdater priser',
   },
   license: {
     title: 'Licens',

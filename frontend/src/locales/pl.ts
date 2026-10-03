@@ -482,6 +482,7 @@ export default {
     fxPair: 'Para walutowa',
     searchFailed: 'Nie udało się teraz wyszukać — spróbuj za chwilę.',
     noResults: 'Brak wyników.',
+    refresh: 'Odśwież ceny',
   },
   license: {
     title: 'Licencja',

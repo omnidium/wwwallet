@@ -482,6 +482,7 @@ export default {
     fxPair: 'Valuutapaar',
     searchFailed: 'Hetkel ei õnnestunud otsingut teha – proovi veidi aja pärast uuesti.',
     noResults: 'Tulemusi ei leitud.',
+    refresh: 'Värskenda hinnad',
   },
   license: {
     title: 'Litsents',

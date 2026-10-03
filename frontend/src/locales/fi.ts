@@ -481,6 +481,7 @@ export default {
     fxPair: 'Valuuttapari',
     searchFailed: 'Etsintää ei voitu suorittaa juuri nyt – yritä uudelleen hetken kuluttua.',
     noResults: 'Ei osumia.',
+    refresh: 'Päivitä hinnat',
   },
   license: {
     title: 'Lisenssi',

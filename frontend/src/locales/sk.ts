@@ -480,6 +480,7 @@ export default {
     fxPair: 'Menný pár',
     searchFailed: 'Momentálne nie je možné vyhľadávať – skúste to o chvíľu znova.',
     noResults: 'Žiadne zhody.',
+    refresh: 'Aktualizovať ceny',
   },
   license: {
     title: 'Licencia',

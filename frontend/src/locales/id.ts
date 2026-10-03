@@ -489,6 +489,7 @@ export default {
     fxPair: 'Pasangan mata uang',
     searchFailed: 'Tidak dapat melakukan pencarian saat ini — coba lagi sebentar lagi.',
     noResults: 'Tidak ada hasil yang cocok.',
+    refresh: 'Perbarui harga',
   },
   license: {
     title: 'Lisensi',

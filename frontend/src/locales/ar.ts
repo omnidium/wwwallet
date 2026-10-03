@@ -473,6 +473,7 @@ export default {
     fxPair: 'زوج العملات',
     searchFailed: 'تعذر إجراء البحث في الوقت الحالي — حاول مرة أخرى بعد قليل.',
     noResults: 'لا توجد نتائج مطابقة.',
+    refresh: 'تحديث الأسعار',
   },
   license: {
     title: 'الترخيص',

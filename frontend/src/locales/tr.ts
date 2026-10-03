@@ -482,6 +482,7 @@ export default {
     fxPair: 'Para çifti',
     searchFailed: 'Şu anda arama yapılamıyor — biraz sonra tekrar deneyin.',
     noResults: 'Eşleşme bulunamadı.',
+    refresh: 'Fiyatları yenile',
   },
   license: {
     title: 'Lisans',

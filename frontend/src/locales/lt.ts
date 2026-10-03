@@ -485,6 +485,7 @@ export default {
     fxPair: 'Valiutų pora',
     searchFailed: 'Šiuo metu negalima atlikti paieškos – pabandykite vėliau.',
     noResults: 'Nerasta atitikmenų.',
+    refresh: 'Atnaujinti kainas',
   },
   license: {
     title: 'Licencija',

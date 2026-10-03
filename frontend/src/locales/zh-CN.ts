@@ -458,6 +458,7 @@ export default {
     fxPair: '货币对',
     searchFailed: '目前无法搜索——请稍后再试。',
     noResults: '未找到匹配项。',
+    refresh: '刷新价格',
   },
   license: {
     title: '许可协议',

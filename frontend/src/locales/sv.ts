@@ -483,6 +483,7 @@ export default {
     fxPair: 'Valutapar',
     searchFailed: 'Det gick inte att söka just nu – försök igen om en stund.',
     noResults: 'Inga träffar.',
+    refresh: 'Uppdatera priser',
   },
   license: {
     title: 'Licens',

@@ -482,6 +482,7 @@ export default {
     fxPair: 'Valutni par',
     searchFailed: 'Trenutno ni mogoče izvesti iskanja – poskusite znova čez nekaj trenutkov.',
     noResults: 'Ni ujemanj.',
+    refresh: 'Osveži cene',
   },
   license: {
     title: 'Licenca',

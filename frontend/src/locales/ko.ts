@@ -480,6 +480,7 @@ export default {
     fxPair: '통화 쌍',
     searchFailed: '지금은 검색할 수 없습니다. 잠시 후 다시 시도해 주세요.',
     noResults: '일치하는 항목이 없습니다.',
+    refresh: '가격 갱신',
   },
   license: {
     title: '라이선스',

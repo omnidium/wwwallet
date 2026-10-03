@@ -479,6 +479,7 @@ export default {
     fxPair: '通貨ペア',
     searchFailed: '現在検索できない——少し待ってから再度試してみてください。',
     noResults: '一致する項目はありません。',
+    refresh: '価格を更新する',
   },
   license: {
     title: 'ライセンス',

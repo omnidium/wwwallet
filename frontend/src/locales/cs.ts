@@ -482,6 +482,7 @@ export default {
     fxPair: 'Měnový pár',
     searchFailed: 'V tuto chvíli nelze provést vyhledávání – zkuste to za chvíli znovu.',
     noResults: 'Žádné shody.',
+    refresh: 'Aktualizovat ceny',
   },
   license: {
     title: 'Licence',

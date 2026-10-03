@@ -467,6 +467,7 @@ export default {
     fxPair: 'צמד מטבעות',
     searchFailed: 'לא ניתן לבצע חיפוש כרגע — נסה שוב בעוד רגע.',
     noResults: 'אין תוצאות.',
+    refresh: 'רענן מחירים',
   },
   license: {
     title: 'רישיון',

@@ -491,6 +491,7 @@ export default {
     searchFailed:
       'Nu s-a putut efectua căutarea în acest moment — încercați din nou peste câteva momente.',
     noResults: 'Nu s-au găsit rezultate.',
+    refresh: 'Actualizați prețurile',
   },
   license: {
     title: 'Licență',

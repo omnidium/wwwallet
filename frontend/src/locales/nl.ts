@@ -485,6 +485,7 @@ export default {
     fxPair: 'Valutapaar',
     searchFailed: 'Ik kon nu even niet zoeken — probeer het straks nog eens.',
     noResults: 'Geen resultaten.',
+    refresh: 'Prijzen vernieuwen',
   },
   license: {
     title: 'Licentie',

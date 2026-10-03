@@ -495,6 +495,7 @@ export default {
     fxPair: 'Währungspaar',
     searchFailed: 'Die Suche war gerade nicht möglich – versuche es in einem Moment erneut.',
     noResults: 'Keine Treffer.',
+    refresh: 'Preise aktualisieren',
   },
   license: {
     title: 'Lizenz',

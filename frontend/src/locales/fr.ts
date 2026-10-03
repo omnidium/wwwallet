@@ -493,6 +493,7 @@ export default {
     fxPair: 'Paire de devises',
     searchFailed: "Impossible d'effectuer la recherche pour le moment — réessaie dans un instant.",
     noResults: 'Aucun résultat.',
+    refresh: 'Actualiser les prix',
   },
   license: {
     title: 'Licence',

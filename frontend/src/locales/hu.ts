@@ -491,6 +491,7 @@ export default {
     fxPair: 'Devizapár',
     searchFailed: 'Jelenleg nem sikerült keresni – próbálja meg újra egy pillanat múlva.',
     noResults: 'Nincs találat.',
+    refresh: 'Árak frissítése',
   },
   license: {
     title: 'Licenc',

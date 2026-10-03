@@ -480,6 +480,7 @@ export default {
     fxPair: 'Cặp tiền tệ',
     searchFailed: 'Hiện tại không thể tìm kiếm được — thử lại sau một lát nhé.',
     noResults: 'Không có kết quả phù hợp.',
+    refresh: 'Cập nhật giá',
   },
   license: {
     title: 'Giấy phép',
