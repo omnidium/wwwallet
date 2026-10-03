@@ -19,6 +19,14 @@ updates:
     groups:
       minor-and-patch:
         update-types: [minor, patch]
+    # Majors that need work elsewhere first: TypeScript until vue-tsc
+    # supports the new (native) compiler, and @types/node to match the
+    # Node version CI and Cloudflare run (22), not the latest.
+    ignore:
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
 
   - package-ecosystem: npm
     directory: /website
@@ -30,6 +38,11 @@ updates:
     groups:
       minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
 
   # The Cargo workspace root (backend + backend/providers).
   - package-ecosystem: cargo
