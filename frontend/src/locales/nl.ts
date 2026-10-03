@@ -306,8 +306,6 @@ export default {
     passkeyNotSetUp: 'Er is geen passkey ingesteld voor deze kluis.',
     vaultLocked: 'De kluis is vergrendeld',
     chooseKeystoreFile: 'Kies een keystore-bestand',
-    passkeyOperationFailed:
-      'Het invoeren van de toegangscode is mislukt. Probeer het nog eens, of gebruik in plaats daarvan je herstelzin.',
     invalidMnemonic:
       'Die herstelzin is ongeldig. Controleer de woorden nog eens goed en probeer het opnieuw.',
     invalidPrivateKey: 'Die privésleutel is ongeldig.',
@@ -325,6 +323,16 @@ export default {
     incorrectUnlockPassword: 'Verkeerd ontgrendelingswachtwoord.',
     recoveryPhraseNotSetUp: 'Er is geen herstelzin ingesteld voor deze kluis.',
     passwordNotSetUp: 'Er is geen wachtwoord ingesteld voor deze kluis.',
+    passkeyOperationFailedDetail:
+      'De passkey-bewerking is mislukt ({detail}). Als je passkey-manager of browsersynchronisatie wacht tot je inlogt, verifieert of een wachtwoordzin invoert, rond dat dan af en probeer het opnieuw — of gebruik in plaats daarvan je herstelzin.',
+    passkeyAlreadyRegistered:
+      'Dit apparaat heeft al een wwwallet-toegangscode. Verwijder deze uit je wachtwoordbeheerder en probeer het dan opnieuw.',
+    passkeyNotSupportedHere:
+      'De wachtwoordprovider van dit apparaat kan dit soort wachtwoorden niet aanmaken. Probeer in plaats daarvan een telefoon of beveiligingssleutel, of stel een ontgrendelingswachtwoord in.',
+    passkeyNeedsScreenLock:
+      'Stel eerst een schermvergrendeling in (vingerafdruk, gezichtsherkenning of pincode) op dit apparaat en probeer het daarna opnieuw.',
+    passkeyProviderNotReady:
+      'Je wachtwoordbeheerder kon de wachtwoordzin niet opslaan. Als hij wacht tot je inlogt, je identiteit verifieert of een synchronisatiewachtwoordzin invoert (bijv. Google Password Manager wanneer Chrome-synchronisatie is gepauzeerd), doe dat dan eerst en probeer het daarna opnieuw.',
   },
   accountCard: {
     copyAddress: 'Kopieer het adres',

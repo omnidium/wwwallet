@@ -308,8 +308,6 @@ export default {
     passkeyNotSetUp: 'Klucz dostępu nie jest skonfigurowany dla tego sejfu.',
     vaultLocked: 'Skarbiec jest zablokowany',
     chooseKeystoreFile: 'wybierz plik magazynu kluczy',
-    passkeyOperationFailed:
-      'Operacja z kluczem dostępu nie powiodła się. Spróbuj jeszcze raz albo użyj zamiast tego swojej frazy odzyskiwania.',
     invalidMnemonic:
       'Ta fraza odzyskiwania jest nieprawidłowa. Sprawdź jeszcze raz słowa i spróbuj ponownie.',
     invalidPrivateKey: 'Ten klucz prywatny jest nieprawidłowy.',
@@ -325,6 +323,16 @@ export default {
     incorrectUnlockPassword: 'Nieprawidłowe hasło odblokowujące.',
     recoveryPhraseNotSetUp: 'Dla tego sejfu nie skonfigurowano frazy odzyskiwania.',
     passwordNotSetUp: 'Dla tego sejfu nie ustawiono hasła.',
+    passkeyOperationFailedDetail:
+      'Operacja z kluczem dostępu nie powiodła się ({detail}). Jeśli menedżer kluczy dostępu lub synchronizacja przeglądarki czeka, aż się zalogujesz, potwierdzisz swoją tożsamość lub wprowadzisz hasło, zrób to i spróbuj ponownie – albo użyj zamiast tego frazy odzyskiwania.',
+    passkeyAlreadyRegistered:
+      'To urządzenie ma już hasło dostępu do wwwallet. Usuń je z menedżera haseł, a potem spróbuj jeszcze raz.',
+    passkeyNotSupportedHere:
+      'Dostawca klucza dostępu na tym urządzeniu nie może utworzyć tego rodzaju klucza. Spróbuj zamiast tego użyć telefonu lub klucza bezpieczeństwa albo ustaw hasło odblokowujące.',
+    passkeyNeedsScreenLock:
+      'Najpierw ustaw blokadę ekranu (odcisk palca, rozpoznawanie twarzy lub PIN) na tym urządzeniu, a potem spróbuj jeszcze raz.',
+    passkeyProviderNotReady:
+      'Twój menedżer haseł nie mógł zapisać hasła. Jeśli czeka, aż się zalogujesz, potwierdzisz swoją tożsamość lub wprowadzisz hasło synchronizacji (np. w Menedżerze haseł Google, gdy synchronizacja Chrome jest wstrzymana), zrób to, a potem spróbuj jeszcze raz.',
   },
   accountCard: {
     copyAddress: 'Skopiuj adres',

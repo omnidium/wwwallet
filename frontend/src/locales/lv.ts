@@ -307,8 +307,6 @@ export default {
     passkeyNotSetUp: 'Šim seifam nav iestatīta piekļuves atslēga.',
     vaultLocked: 'seifs ir aizslēgts',
     chooseKeystoreFile: 'izvēlieties atslēgu krātuves failu',
-    passkeyOperationFailed:
-      'Piekļuves atslēgas darbība neizdevās. Mēģiniet vēlreiz vai izmantojiet savu atjaunošanas frāzi.',
     invalidMnemonic:
       'Šī atjaunošanas frāze nav derīga. Pārbaudiet vārdus vēlreiz un mēģiniet vēlreiz.',
     invalidPrivateKey: 'Šī privātā atslēga nav derīga.',
@@ -325,6 +323,16 @@ export default {
     incorrectUnlockPassword: 'Nepareiza atbloķēšanas parole.',
     recoveryPhraseNotSetUp: 'Šim seifam atjaunošanas frāze nav iestatīta.',
     passwordNotSetUp: 'Šim seifam nav iestatīta parole.',
+    passkeyOperationFailedDetail:
+      'Piekļuves atslēgas darbība neizdevās ({detail}). Ja jūsu piekļuves atslēgas pārvaldnieks vai pārlūka sinhronizācija gaida, lai jūs pieteiktos, apstiprinātu savu identitāti vai ievadītu paroli, pabeidziet šo darbību un mēģiniet vēlreiz — vai arī izmantojiet savu atjaunošanas frāzi.',
+    passkeyAlreadyRegistered:
+      'Šai ierīcei jau ir wwwallet piekļuves atslēga. Izdzēsiet to no savas piekļuves atslēgu pārvaldnieka, tad mēģiniet vēlreiz.',
+    passkeyNotSupportedHere:
+      'Šīs ierīces paroles nodrošinātājs nevar izveidot šāda veida paroli. Izmēģiniet tālruni vai drošības atslēgu, vai arī iestatiet atbloķēšanas paroli.',
+    passkeyNeedsScreenLock:
+      'Vispirms iestatiet ekrāna bloķēšanu (pirksta nospiedums, sejas atpazīšana vai PIN kods) šajā ierīcē, pēc tam mēģiniet vēlreiz.',
+    passkeyProviderNotReady:
+      'Jūsu paroles pārvaldnieks nevarēja saglabāt paroli. Ja tas gaida, lai jūs pieteiktos, apstiprinātu savu identitāti vai ievadītu sinhronizācijas paroli (piemēram, Google Password Manager, ja Chrome sinhronizācija ir apturēta), pabeidziet šo darbību un mēģiniet vēlreiz.',
   },
   accountCard: {
     copyAddress: 'Kopējiet adresi',

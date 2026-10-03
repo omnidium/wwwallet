@@ -307,8 +307,6 @@ export default {
     passkeyNotSetUp: 'Passnyckel är inte konfigurerad för detta valv.',
     vaultLocked: 'valvet är låst',
     chooseKeystoreFile: 'Välj en nyckelfil',
-    passkeyOperationFailed:
-      'Inloggningen misslyckades. Försök igen, eller använd din återställningsfras istället.',
     invalidMnemonic: 'Den återställningsfrasen är ogiltig. Kontrollera orden noga och försök igen.',
     invalidPrivateKey: 'Den privata nyckeln är ogiltig.',
     invalidKeystoreFile:
@@ -324,6 +322,16 @@ export default {
     incorrectUnlockPassword: 'Felaktigt upplåsningslösenord.',
     recoveryPhraseNotSetUp: 'Återställningsfrasen är inte konfigurerad för detta valv.',
     passwordNotSetUp: 'Det finns inget lösenord inställt för detta valv.',
+    passkeyOperationFailedDetail:
+      'Passnyckelfunktionen misslyckades ({detail}). Om din passnyckelhanterare eller webbläsarsynkronisering väntar på att du ska logga in, verifiera att det är du eller ange en lösenfras, slutför det och försök igen – eller använd din återställningsfras istället.',
+    passkeyAlreadyRegistered:
+      'Den här enheten har redan en wwwallet-lösenfras. Ta bort den från din lösenfrashanterare och försök sedan igen.',
+    passkeyNotSupportedHere:
+      'Den här enhetens lösenordsleverantör kan inte skapa den här typen av lösenord. Prova istället en telefon eller en säkerhetsnyckel, eller ställ in ett upplåsningslösenord.',
+    passkeyNeedsScreenLock:
+      'Ställ först in ett skärmlås (fingeravtryck, ansiktsigenkänning eller PIN-kod) på den här enheten och försök sedan igen.',
+    passkeyProviderNotReady:
+      'Din lösenordshanterare kunde inte spara lösenordet. Om den väntar på att du ska logga in, verifiera att det är du eller ange en synkroniseringsfras (t.ex. Google Password Manager när Chrome-synkroniseringen är pausad), slutför det och försök sedan igen.',
   },
   accountCard: {
     copyAddress: 'Kopiera adressen',

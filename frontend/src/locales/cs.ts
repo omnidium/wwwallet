@@ -307,8 +307,6 @@ export default {
     passkeyNotSetUp: 'Pro tento trezor není nastaven přístupový klíč.',
     vaultLocked: 'trezor je uzamčen',
     chooseKeystoreFile: 'vyberte soubor úložiště klíčů',
-    passkeyOperationFailed:
-      'Operace s přístupovým klíčem se nezdařila. Zkuste to znovu nebo místo toho použijte svou obnovovací frázi.',
     invalidMnemonic: 'Tato obnovovací fráze není platná. Zkontrolujte slova a zkuste to znovu.',
     invalidPrivateKey: 'Tento soukromý klíč není platný.',
     invalidKeystoreFile:
@@ -324,6 +322,16 @@ export default {
     incorrectUnlockPassword: 'Nesprávné heslo pro odemknutí.',
     recoveryPhraseNotSetUp: 'Obnovovací fráze není pro tento trezor nastavena.',
     passwordNotSetUp: 'Pro tento trezor není nastaveno heslo.',
+    passkeyOperationFailedDetail:
+      'Operace s přístupovým klíčem selhala ({detail}). Pokud váš správce přístupových klíčů nebo synchronizace prohlížeče čeká na vaše přihlášení, ověření identity nebo zadání přístupové fráze, dokončete tento krok a zkuste to znovu – nebo místo toho použijte svou obnovovací frázi.',
+    passkeyAlreadyRegistered:
+      'Toto zařízení již má přístupový klíč pro wwwallet. Odstraňte jej ze svého správce přístupových klíčů a zkuste to znovu.',
+    passkeyNotSupportedHere:
+      'Poskytovatel přístupových klíčů tohoto zařízení nemůže tento typ přístupového klíče vytvořit. Zkuste místo toho použít telefon nebo bezpečnostní klíč, případně nastavte odemykací heslo.',
+    passkeyNeedsScreenLock:
+      'Nejprve na tomto zařízení nastavte zámek obrazovky (otisk prstu, rozpoznání obličeje nebo PIN) a poté to zkuste znovu.',
+    passkeyProviderNotReady:
+      'Váš správce přístupových klíčů nemohl přístupový klíč uložit. Pokud čeká na vaše přihlášení, ověření vaší identity nebo zadání synchronizační fráze (např. Správce hesel Google, když je synchronizace Chrome pozastavena), dokončete tento krok a zkuste to znovu.',
   },
   accountCard: {
     copyAddress: 'Zkopírujte adresu',

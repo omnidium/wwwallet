@@ -313,8 +313,6 @@ export default {
     passkeyNotSetUp: 'A jelszó nem van beállítva ehhez a tárhelyhez.',
     vaultLocked: 'A széf zárva van',
     chooseKeystoreFile: 'Válasszon egy kulcstároló fájlt',
-    passkeyOperationFailed:
-      'A jelszó megadása sikertelen volt. Próbálja meg újra, vagy használja helyette a helyreállítási kifejezést.',
     invalidMnemonic:
       'Ez a helyreállítási kifejezés érvénytelen. Ellenőrizd újra a szavakat, és próbáld meg újra.',
     invalidPrivateKey: 'Ez a privát kulcs érvénytelen.',
@@ -332,6 +330,16 @@ export default {
     incorrectUnlockPassword: 'Helytelen feloldási jelszó.',
     recoveryPhraseNotSetUp: 'Ehhez a tárcához nincs beállítva helyreállítási kifejezés.',
     passwordNotSetUp: 'Ehhez a tárhelyhez nincs beállítva jelszó.',
+    passkeyOperationFailedDetail:
+      'A jelszókezelés sikertelen volt ({detail}). Ha a jelszókezelő vagy a böngésző szinkronizálása arra vár, hogy bejelentkezz, igazold a személyazonosságodat, vagy add meg a jelszavadat, fejezd be ezt a műveletet, majd próbáld meg újra – vagy használd helyette a helyreállítási kifejezést.',
+    passkeyAlreadyRegistered:
+      'Ezen az eszközön már van egy wwwallet jelszó. Távolítsa el a jelszókezelőjéből, majd próbálja meg újra.',
+    passkeyNotSupportedHere:
+      'Ennek az eszköznek a jelszavas szolgáltatója nem tud ilyen típusú jelszót létrehozni. Próbálkozzon inkább egy telefonnal vagy biztonsági kulccsal, vagy állítson be egy feloldási jelszót.',
+    passkeyNeedsScreenLock:
+      'Először állítson be képernyőzárást (ujjlenyomat, arcfelismerés vagy PIN-kód) ezen az eszközön, majd próbálja meg újra.',
+    passkeyProviderNotReady:
+      'A jelszókezelő nem tudta elmenteni a jelszót. Ha a rendszer arra vár, hogy bejelentkezz, igazold a személyazonosságodat, vagy add meg a szinkronizálási jelszót (pl. a Google Jelszókezelőben, amikor a Chrome szinkronizálása szünetel), akkor hajtsd végre ezeket a lépéseket, majd próbáld meg újra.',
   },
   accountCard: {
     copyAddress: 'Másolja ki a címet',

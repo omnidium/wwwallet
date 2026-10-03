@@ -314,8 +314,6 @@ export default {
     passkeyNotSetUp: "La clé d'accès n'est pas configurée pour ce coffre-fort.",
     vaultLocked: 'Le coffre-fort est verrouillé',
     chooseKeystoreFile: 'Choisis un fichier de stockage de clés',
-    passkeyOperationFailed:
-      "L'opération avec la clé d'accès a échoué. Réessaie, ou utilise plutôt ta phrase de récupération.",
     invalidMnemonic:
       "Cette phrase de récupération n'est pas valide. Vérifie bien les mots et réessaie.",
     invalidPrivateKey: "Cette clé privée n'est pas valide.",
@@ -332,6 +330,16 @@ export default {
     incorrectUnlockPassword: 'Mot de passe de déverrouillage incorrect.',
     recoveryPhraseNotSetUp: 'Aucune phrase de récupération n’a été configurée pour ce coffre-fort.',
     passwordNotSetUp: 'Aucun mot de passe n’est configuré pour ce coffre-fort.',
+    passkeyOperationFailedDetail:
+      "L'opération avec la clé d'accès a échoué ({detail}). Si ton gestionnaire de clés d'accès ou la synchronisation de ton navigateur t'invite à te connecter, à confirmer ton identité ou à saisir une phrase de passe, termine cette étape puis réessaie — ou utilise ta phrase de récupération à la place.",
+    passkeyAlreadyRegistered:
+      'Cet appareil dispose déjà d’une phrase de passe wwwallet. Supprime-la de ton gestionnaire de mots de passe, puis réessaie.',
+    passkeyNotSupportedHere:
+      "Le fournisseur de clés d'accès de cet appareil ne peut pas créer ce type de clé d'accès. Essaie plutôt un téléphone ou une clé de sécurité, ou définis un mot de passe de déverrouillage.",
+    passkeyNeedsScreenLock:
+      "Configure d'abord un verrouillage d'écran (empreinte digitale, reconnaissance faciale ou code PIN) sur cet appareil, puis réessaie.",
+    passkeyProviderNotReady:
+      'Ton gestionnaire de mots de passe n’a pas pu enregistrer le mot de passe. S’il t’invite à te connecter, à confirmer ton identité ou à saisir une phrase de synchronisation (par exemple, Google Password Manager lorsque la synchronisation Chrome est en pause), termine cette opération, puis réessaie.',
   },
   accountCard: {
     copyAddress: "Copie l'adresse",

@@ -308,8 +308,6 @@ export default {
     passkeyNotSetUp: 'Šiam saugyklos sąskaitai „Passkey“ nėra nustatytas.',
     vaultLocked: 'seifas užrakintas',
     chooseKeystoreFile: 'Pasirinkite raktų saugyklos failą',
-    passkeyOperationFailed:
-      'Prieigos rakto operacija nepavyko. Bandykite dar kartą arba vietoj to naudokite atkūrimo frazę.',
     invalidMnemonic:
       'Ši atkūrimo frazė yra neteisinga. Dar kartą patikrinkite žodžius ir pabandykite iš naujo.',
     invalidPrivateKey: 'Tas privatus raktas yra negaliojantis.',
@@ -326,6 +324,16 @@ export default {
     incorrectUnlockPassword: 'Neteisingas atrakinimo slaptažodis.',
     recoveryPhraseNotSetUp: 'Šiam saugyklai atkūrimo frazė nėra nustatyta.',
     passwordNotSetUp: 'Šiam saugyklos sąskaitai slaptažodis nenustatytas.',
+    passkeyOperationFailedDetail:
+      'Prieigos rakto operacija nepavyko ({detail}). Jei jūsų prieigos raktų tvarkyklė arba naršyklės sinchronizavimas laukia, kol prisijungsite, patvirtinsite savo tapatybę arba įvesite slaptažodžio frazę, užbaigite šį veiksmą ir pabandykite dar kartą – arba vietoj to naudokite atkūrimo frazę.',
+    passkeyAlreadyRegistered:
+      'Šiame įrenginyje jau yra „wwwallet“ slaptažodis. Pašalinkite jį iš savo slaptažodžių tvarkyklės, tada pabandykite dar kartą.',
+    passkeyNotSupportedHere:
+      'Šio įrenginio slaptažodžių teikėjas negali sukurti tokio tipo slaptažodžio. Vietoj to pabandykite naudoti telefoną arba saugumo raktą, arba nustatykite atrakinimo slaptažodį.',
+    passkeyNeedsScreenLock:
+      'Pirmiausia šiame įrenginyje nustatykite ekrano užraktą (piršto atspaudą, veido atpažinimą arba PIN kodą), tada bandykite dar kartą.',
+    passkeyProviderNotReady:
+      'Jūsų slaptažodžių tvarkyklė negalėjo išsaugoti slaptažodžio. Jei ji laukia, kol prisijungsite, patvirtinsite savo tapatybę arba įvesite sinchronizavimo frazę (pvz., „Google Password Manager“, kai „Chrome“ sinchronizavimas sustabdytas), atlikite tai ir pabandykite dar kartą.',
   },
   accountCard: {
     copyAddress: 'Nukopijuokite adresą',

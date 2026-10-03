@@ -307,8 +307,6 @@ export default {
     passkeyNotSetUp: 'Khóa truy cập chưa được thiết lập cho kho này.',
     vaultLocked: 'kho tiền đã bị khóa',
     chooseKeystoreFile: 'chọn một tệp keystore',
-    passkeyOperationFailed:
-      'Việc nhập mật khẩu đã thất bại. Hãy thử lại hoặc dùng cụm từ khôi phục của cậu thay thế nhé.',
     invalidMnemonic: 'Cụm từ khôi phục đó không hợp lệ. Hãy kiểm tra lại các từ và thử lại nhé.',
     invalidPrivateKey: 'Khóa riêng tư đó không hợp lệ.',
     invalidKeystoreFile: 'Không thể mở tệp keystore này — có thể tệp đã bị hỏng hoặc mật khẩu sai.',
@@ -323,6 +321,16 @@ export default {
     incorrectUnlockPassword: 'Mật khẩu mở khóa không chính xác.',
     recoveryPhraseNotSetUp: 'Cụm từ khôi phục chưa được thiết lập cho kho này.',
     passwordNotSetUp: 'Kho này chưa được thiết lập mật khẩu.',
+    passkeyOperationFailedDetail:
+      'Thao tác với mật khẩu đã thất bại ({detail}). Nếu trình quản lý mật khẩu hoặc tính năng đồng bộ hóa trình duyệt của cậu đang yêu cầu cậu đăng nhập, xác minh danh tính hoặc nhập cụm mật khẩu, hãy hoàn tất thao tác đó rồi thử lại — hoặc dùng cụm từ khôi phục thay thế.',
+    passkeyAlreadyRegistered:
+      'Thiết bị này đã có sẵn mật khẩu wwwallet rồi. Hãy xóa nó khỏi trình quản lý mật khẩu của cậu, sau đó thử lại nhé.',
+    passkeyNotSupportedHere:
+      'Nhà cung cấp mật khẩu của thiết bị này không thể tạo loại mật khẩu này. Thử dùng điện thoại hoặc khóa bảo mật thay thế, hoặc đặt mật khẩu mở khóa nhé.',
+    passkeyNeedsScreenLock:
+      'Hãy thiết lập khóa màn hình (vân tay, nhận diện khuôn mặt hoặc mã PIN) trên thiết bị này trước, sau đó thử lại nhé.',
+    passkeyProviderNotReady:
+      'Trình quản lý mật khẩu của cậu không thể lưu mật khẩu. Nếu nó đang chờ cậu đăng nhập, xác minh danh tính hoặc nhập cụm mật khẩu đồng bộ hóa (ví dụ: Google Password Manager khi tính năng đồng bộ hóa Chrome bị tạm dừng), hãy hoàn tất các bước đó rồi thử lại nhé.',
   },
   accountCard: {
     copyAddress: 'Sao chép địa chỉ',

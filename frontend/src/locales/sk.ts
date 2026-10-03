@@ -306,8 +306,6 @@ export default {
     passkeyNotSetUp: 'Pre tento trezor nie je nastavený prístupový kľúč.',
     vaultLocked: 'trezor je uzamknutý',
     chooseKeystoreFile: 'vyberte súbor úložiska kľúčov',
-    passkeyOperationFailed:
-      'Operácia s prístupovým kľúčom zlyhala. Skúste to znovu alebo namiesto toho použite svoju obnovovaciu frázu.',
     invalidMnemonic: 'Táto obnovovacia fráza nie je platná. Skontrolujte slová a skúste to znovu.',
     invalidPrivateKey: 'Tento súkromný kľúč nie je platný.',
     invalidKeystoreFile:
@@ -323,6 +321,16 @@ export default {
     incorrectUnlockPassword: 'Nesprávne heslo na odomknutie.',
     recoveryPhraseNotSetUp: 'Obnovovacia fráza nie je pre tento trezor nastavená.',
     passwordNotSetUp: 'Pre tento trezor nie je nastavené heslo.',
+    passkeyOperationFailedDetail:
+      'Operácia s prístupovým kľúčom zlyhala ({detail}). Ak váš správca prístupových kľúčov alebo synchronizácia prehliadača čaká na vaše prihlásenie, overenie vašej identity alebo zadanie hesla, dokončite tento proces a skúste to znova – alebo namiesto toho použite svoju obnovovaciu frázu.',
+    passkeyAlreadyRegistered:
+      'Toto zariadenie už má prístupový kľúč pre wwwallet. Odstráňte ho zo svojho správcu prístupových kľúčov a potom to skúste znova.',
+    passkeyNotSupportedHere:
+      'Poskytovateľ prístupových kľúčov tohto zariadenia nemôže vytvoriť tento typ prístupového kľúča. Skúste namiesto toho použiť telefón alebo bezpečnostný kľúč, alebo nastavte heslo na odomknutie.',
+    passkeyNeedsScreenLock:
+      'Najprv na tomto zariadení nastavte uzamknutie obrazovky (odtlačok prsta, rozpoznanie tváre alebo PIN) a potom to skúste znova.',
+    passkeyProviderNotReady:
+      'Váš správca prístupových kľúčov nedokázal uložiť prístupový kľúč. Ak čaká na vaše prihlásenie, overenie vašej identity alebo zadanie synchronizačnej frázy (napr. Správca hesiel Google, keď je synchronizácia v prehliadači Chrome pozastavená), dokončite tento proces a potom to skúste znova.',
   },
   accountCard: {
     copyAddress: 'Skopírujte adresu',

@@ -312,8 +312,6 @@ export default {
     passkeyNotSetUp: 'La clave de acceso no está configurada para esta bóveda.',
     vaultLocked: 'La caja fuerte está cerrada con llave',
     chooseKeystoreFile: 'Elige un archivo de almacenamiento de claves',
-    passkeyOperationFailed:
-      'La operación con la clave de acceso ha fallado. Inténtalo de nuevo o utiliza tu frase de recuperación en su lugar.',
     invalidMnemonic:
       'Esa frase de recuperación no es válida. Comprueba bien las palabras e inténtalo de nuevo.',
     invalidPrivateKey: 'Esa clave privada no es válida.',
@@ -331,6 +329,16 @@ export default {
     incorrectUnlockPassword: 'Contraseña de desbloqueo incorrecta.',
     recoveryPhraseNotSetUp: 'La frase de recuperación no está configurada para esta bóveda.',
     passwordNotSetUp: 'No se ha configurado ninguna contraseña para esta caja fuerte.',
+    passkeyOperationFailedDetail:
+      'La operación con la clave de acceso ha fallado ({detail}). Si tu gestor de claves de acceso o la sincronización del navegador te piden que inicies sesión, que confirmes que eres tú o que introduzcas una frase de contraseña, hazlo y vuelve a intentarlo; o bien, usa tu frase de recuperación.',
+    passkeyAlreadyRegistered:
+      'Este dispositivo ya tiene una clave de acceso de wwwallet. Elimínala de tu gestor de claves y vuelve a intentarlo.',
+    passkeyNotSupportedHere:
+      'El proveedor de claves de acceso de este dispositivo no puede crear este tipo de clave de acceso. Prueba con un teléfono o una llave de seguridad, o configura una contraseña de desbloqueo.',
+    passkeyNeedsScreenLock:
+      'Configura primero un bloqueo de pantalla (huella dactilar, reconocimiento facial o PIN) en este dispositivo y, a continuación, vuelve a intentarlo.',
+    passkeyProviderNotReady:
+      'Tu gestor de contraseñas no ha podido guardar la clave de acceso. Si te está pidiendo que inicies sesión, que verifiques tu identidad o que introduzcas una frase de contraseña de sincronización (por ejemplo, el Gestor de contraseñas de Google cuando la sincronización de Chrome está en pausa), hazlo primero y luego vuelve a intentarlo.',
   },
   accountCard: {
     copyAddress: 'Copia la dirección',

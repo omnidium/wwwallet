@@ -305,8 +305,6 @@ export default {
     passkeyNotSetUp: 'Tälle säilytystilalle ei ole määritetty salasanaa.',
     vaultLocked: 'holvi on lukittu',
     chooseKeystoreFile: 'Valitse avainvarastotiedosto',
-    passkeyOperationFailed:
-      'Salasanan syöttö epäonnistui. Yritä uudelleen tai käytä sen sijaan palautuslausekettasi.',
     invalidMnemonic:
       'Tuo palautuslause ei ole kelvollinen. Tarkista sanat huolellisesti ja yritä uudelleen.',
     invalidPrivateKey: 'Tuo yksityinen avain ei ole kelvollinen.',
@@ -323,6 +321,16 @@ export default {
     incorrectUnlockPassword: 'Virheellinen avaussalasana.',
     recoveryPhraseNotSetUp: 'Palautuslause ei ole määritetty tälle säilytystilalle.',
     passwordNotSetUp: 'Tälle säilytystilalle ei ole määritetty salasanaa.',
+    passkeyOperationFailedDetail:
+      'Salasanan käyttö epäonnistui ({detail}). Jos salasananhallintaohjelma tai selaimen synkronointi odottaa, että kirjaudut sisään, vahvistat henkilöllisyytesi tai syötät salasanalauseen, suorita nämä toimet ja yritä uudelleen – tai käytä sen sijaan palautuslauseesi.',
+    passkeyAlreadyRegistered:
+      'Tällä laitteella on jo wwwallet-salasana. Poista se salasananhallintaohjelmastasi ja yritä sitten uudelleen.',
+    passkeyNotSupportedHere:
+      'Tämän laitteen salasanapalvelu ei voi luoda tällaista salasanaa. Kokeile sen sijaan puhelinta tai turva-avainta tai aseta lukituksen avaussalasana.',
+    passkeyNeedsScreenLock:
+      'Aseta ensin näytön lukitus (sormenjälki, kasvojentunnistus tai PIN-koodi) tälle laitteelle ja yritä sitten uudelleen.',
+    passkeyProviderNotReady:
+      'Salasananhallintaohjelmasi ei pystynyt tallentamaan salasanaa. Jos se odottaa, että kirjaudut sisään, vahvistat henkilöllisyytesi tai syötät synkronointilauseen (esim. Google Password Manager, kun Chrome-synkronointi on keskeytetty), suorita nämä toimet ja yritä sitten uudelleen.',
   },
   accountCard: {
     copyAddress: 'Kopioi osoite',

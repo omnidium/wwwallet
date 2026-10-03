@@ -315,8 +315,6 @@ export default {
     passkeyNotSetUp: 'Für diesen Tresor ist kein Passkey eingerichtet.',
     vaultLocked: 'Der Tresor ist gesperrt',
     chooseKeystoreFile: 'Wähle eine Keystore-Datei aus',
-    passkeyOperationFailed:
-      'Die Passkey-Eingabe ist fehlgeschlagen. Versuche es erneut oder verwende stattdessen deine Wiederherstellungsphrase.',
     invalidMnemonic:
       'Diese Wiederherstellungsphrase ist ungültig. Überprüfe die Wörter noch einmal und versuche es erneut.',
     invalidPrivateKey: 'Dieser private Schlüssel ist ungültig.',
@@ -335,6 +333,16 @@ export default {
     recoveryPhraseNotSetUp:
       'Für diesen Tresor wurde noch keine Wiederherstellungsphrase eingerichtet.',
     passwordNotSetUp: 'Für diesen Tresor ist kein Passwort eingerichtet.',
+    passkeyOperationFailedDetail:
+      'Die Passkey-Operation ist fehlgeschlagen ({detail}). Wenn dein Passkey-Manager oder die Browser-Synchronisierung darauf wartet, dass du dich anmeldest, deine Identität bestätigst oder eine Passphrase eingibst, schließe diesen Vorgang ab und versuche es erneut – oder verwende stattdessen deine Wiederherstellungsphrase.',
+    passkeyAlreadyRegistered:
+      'Dieses Gerät verfügt bereits über einen wwwallet-Passkey. Lösche ihn aus deinem Passkey-Manager und versuche es dann erneut.',
+    passkeyNotSupportedHere:
+      'Der Passwort-Anbieter dieses Geräts kann diese Art von Passwort nicht erstellen. Versuche es stattdessen mit einem Smartphone oder einem Sicherheitsschlüssel oder lege ein Entsperrpasswort fest.',
+    passkeyNeedsScreenLock:
+      'Richte zuerst eine Bildschirmsperre (Fingerabdruck, Gesichtserkennung oder PIN) auf diesem Gerät ein und versuche es dann erneut.',
+    passkeyProviderNotReady:
+      'Dein Passwort-Manager konnte das Passwort nicht speichern. Wenn er darauf wartet, dass du dich anmeldest, deine Identität bestätigst oder eine Synchronisierungs-Passphrase eingibst (z. B. bei Google Passwort-Manager, wenn die Chrome-Synchronisierung pausiert ist), erledige das erst und versuche es dann erneut.',
   },
   accountCard: {
     copyAddress: 'Kopiere die Adresse',

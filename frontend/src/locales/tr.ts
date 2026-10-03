@@ -306,8 +306,6 @@ export default {
     passkeyNotSetUp: 'Bu kasa için şifre anahtarı ayarlanmamıştır.',
     vaultLocked: 'kasası kilitli',
     chooseKeystoreFile: 'bir anahtar deposu dosyası seçin',
-    passkeyOperationFailed:
-      'Şifre anahtarı işlemi başarısız oldu. Tekrar deneyin veya bunun yerine kurtarma ifadenizi kullanın.',
     invalidMnemonic:
       'Bu kurtarma ifadesi geçerli değil. Kelimeleri tekrar kontrol edin ve yeniden deneyin.',
     invalidPrivateKey: 'Bu özel anahtar geçerli değil.',
@@ -324,6 +322,16 @@ export default {
     incorrectUnlockPassword: 'Yanlış kilit açma şifresi.',
     recoveryPhraseNotSetUp: 'Bu cüzdan için kurtarma ifadesi ayarlanmamıştır.',
     passwordNotSetUp: 'Bu kasa için şifre ayarlanmamıştır.',
+    passkeyOperationFailedDetail:
+      'Şifre anahtarı işlemi başarısız oldu ({detail}). Şifre anahtarı yöneticiniz veya tarayıcı senkronizasyonunuz, oturum açmanızı, kimliğinizi doğrulamanızı veya bir şifre ifadesi girmenizi bekliyorsa, bu işlemi tamamlayıp tekrar deneyin — ya da bunun yerine kurtarma ifadenizi kullanın.',
+    passkeyAlreadyRegistered:
+      'Bu cihazda zaten bir wwwallet şifresi bulunuyor. Şifre yöneticinizden bu şifreyi silin, ardından tekrar deneyin.',
+    passkeyNotSupportedHere:
+      'Bu cihazın şifre sağlayıcısı bu tür bir şifre oluşturamaz. Bunun yerine bir telefon veya güvenlik anahtarı kullanmayı deneyin ya da bir kilit açma şifresi belirleyin.',
+    passkeyNeedsScreenLock:
+      'Önce bu cihazda bir ekran kilidi (parmak izi, yüz tanıma veya PIN) ayarlayın, ardından tekrar deneyin.',
+    passkeyProviderNotReady:
+      'Şifre yöneticiniz şifreyi kaydedemedi. Eğer oturum açmanızı, kimliğinizi doğrulamanızı veya bir senkronizasyon parolasını girmenizi bekliyorsa (örneğin, Chrome senkronizasyonu duraklatıldığında Google Şifre Yöneticisi), bu işlemi tamamlayın ve ardından tekrar deneyin.',
   },
   accountCard: {
     copyAddress: 'Adresi kopyalayın',

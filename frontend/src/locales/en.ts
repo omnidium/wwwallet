@@ -478,8 +478,16 @@ export default {
     passwordNotSetUp: 'Password is not set up for this vault.',
     vaultLocked: 'vault is locked',
     chooseKeystoreFile: 'choose a keystore file',
-    passkeyOperationFailed:
-      'The passkey operation failed. Try again, or use your recovery phrase instead.',
+    passkeyOperationFailedDetail:
+      "The passkey operation failed ({detail}). If your passkey manager or browser sync is waiting for you to sign in, verify it's you, or enter a passphrase, finish that and try again — or use your recovery phrase instead.",
+    passkeyProviderNotReady:
+      "Your passkey manager couldn't save the passkey. If it's waiting for you to sign in, verify it's you, or enter a sync passphrase (e.g. Google Password Manager when Chrome sync is paused), finish that, then try again.",
+    passkeyAlreadyRegistered:
+      'This device already has a wwwallet passkey. Remove it from your passkey manager, then try again.',
+    passkeyNotSupportedHere:
+      "This device's passkey provider can't create this kind of passkey. Try a phone or security key instead, or set an unlock password.",
+    passkeyNeedsScreenLock:
+      'Set up a screen lock (fingerprint, face or PIN) on this device first, then try again.',
     invalidMnemonic: 'That recovery phrase is not valid. Double-check the words and try again.',
     invalidPrivateKey: 'That private key is not valid.',
     invalidKeystoreFile:

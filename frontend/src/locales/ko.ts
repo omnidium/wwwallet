@@ -304,8 +304,6 @@ export default {
     passkeyNotSetUp: '이 볼트에는 패스키가 설정되어 있지 않습니다.',
     vaultLocked: '금고가 잠겨 있습니다',
     chooseKeystoreFile: '키스토어 파일 선택',
-    passkeyOperationFailed:
-      '패스키 작업이 실패했습니다. 다시 시도하거나, 대신 복구 문구를 사용해 보세요.',
     invalidMnemonic:
       '해당 복구 문구가 유효하지 않습니다. 단어를 다시 한 번 확인하고 다시 시도해 주세요.',
     invalidPrivateKey: '해당 개인 키는 유효하지 않습니다.',
@@ -322,6 +320,16 @@ export default {
     incorrectUnlockPassword: '잠금 해제 비밀번호가 잘못되었습니다.',
     recoveryPhraseNotSetUp: '이 금고에는 복구 문구가 설정되어 있지 않습니다.',
     passwordNotSetUp: '이 금고에는 비밀번호가 설정되어 있지 않습니다.',
+    passkeyOperationFailedDetail:
+      '패스키 작업이 실패했습니다 ({detail}). 패스키 관리자나 브라우저 동기화 기능이 로그인, 본인 확인 또는 패스프레이즈 입력을 기다리고 있다면, 해당 절차를 완료한 후 다시 시도하거나 대신 복구 문구를 사용해 보세요.',
+    passkeyAlreadyRegistered:
+      '이 기기에는 이미 wwwallet 패스키가 등록되어 있습니다. 패스키 관리자에서 해당 항목을 삭제한 후 다시 시도해 주세요.',
+    passkeyNotSupportedHere:
+      '이 기기의 패스키 제공자는 이러한 종류의 패스키를 생성할 수 없습니다. 대신 휴대폰이나 보안 키를 사용하거나, 잠금 해제 비밀번호를 설정해 보세요.',
+    passkeyNeedsScreenLock:
+      '먼저 이 기기에서 화면 잠금(지문, 얼굴 인식 또는 PIN)을 설정한 후 다시 시도해 주세요.',
+    passkeyProviderNotReady:
+      '비밀번호 관리자가 비밀번호를 저장하지 못했습니다. 로그인, 본인 확인 또는 동기화 비밀번호 입력(예: Chrome 동기화가 일시 중지된 상태의 Google 비밀번호 관리자)을 기다리고 있다면, 해당 절차를 완료한 후 다시 시도해 주세요.',
   },
   accountCard: {
     copyAddress: '주소를 복사하세요',

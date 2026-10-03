@@ -944,10 +944,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Aún pendiente: todavía no se ha confirmado. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "La operación con la clave de acceso ha fallado. Inténtalo de nuevo o utiliza tu frase de recuperación en su lugar."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Esa frase de recuperación no es válida. Comprueba bien las palabras e inténtalo de nuevo."
@@ -1567,6 +1563,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "No se ha configurado ninguna contraseña para esta caja fuerte."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "La operación con la clave de acceso ha fallado ({detail}). Si tu gestor de claves de acceso o la sincronización del navegador te piden que inicies sesión, que confirmes que eres tú o que introduzcas una frase de contraseña, hazlo y vuelve a intentarlo; o bien, usa tu frase de recuperación."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Este dispositivo ya tiene una clave de acceso de wwwallet. Elimínala de tu gestor de claves y vuelve a intentarlo."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "El proveedor de claves de acceso de este dispositivo no puede crear este tipo de clave de acceso. Prueba con un teléfono o una llave de seguridad, o configura una contraseña de desbloqueo."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Configura primero un bloqueo de pantalla (huella dactilar, reconocimiento facial o PIN) en este dispositivo y, a continuación, vuelve a intentarlo."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Tu gestor de contraseñas no ha podido guardar la clave de acceso. Si te está pidiendo que inicies sesión, que verifiques tu identidad o que introduzcas una frase de contraseña de sincronización (por ejemplo, el Gestor de contraseñas de Google cuando la sincronización de Chrome está en pausa), hazlo primero y luego vuelve a intentarlo."
     }
   },
   "ar": {
@@ -2514,10 +2530,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "لا يزال الأمر معلقًا — لم يتم تأكيده بعد. الهاش: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "فشلت عملية إدخال مفتاح المرور. حاول مرة أخرى، أو استخدم عبارة الاسترداد بدلاً من ذلك."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "عبارة الاسترداد هذه غير صالحة. تحقق جيدًا من الكلمات وحاول مرة أخرى."
@@ -3137,6 +3149,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "لم يتم تعيين كلمة مرور لهذا الخزنة."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "فشلت عملية مفتاح المرور ({detail}). إذا كان مدير مفتاح المرور أو مزامنة المتصفح في انتظار قيامك بتسجيل الدخول، أو التحقق من هويتك، أو إدخال عبارة مرور، فقم بإنهاء ذلك وحاول مرة أخرى — أو استخدم عبارة الاسترداد بدلاً من ذلك."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "يحتوي هذا الجهاز بالفعل على مفتاح مرور wwwallet. احذفه من مدير مفاتيح المرور الخاص بك، ثم حاول مرة أخرى."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "لا يمكن لمزود مفتاح المرور الخاص بهذا الجهاز إنشاء هذا النوع من مفاتيح المرور. جرب استخدام هاتف أو مفتاح أمان بدلاً من ذلك، أو قم بتعيين كلمة مرور لإلغاء القفل."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "قم أولاً بإعداد قفل الشاشة (بصمة الإصبع أو التعرف على الوجه أو رقم التعريف الشخصي) على هذا الجهاز، ثم حاول مرة أخرى."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "لم يتمكن مدير مفاتيح المرور الخاص بك من حفظ مفتاح المرور. إذا كان ينتظر منك تسجيل الدخول، أو التحقق من هويتك، أو إدخال عبارة مرور للمزامنة (مثل «مدير كلمات مرور Google» عند إيقاف مزامنة Chrome مؤقتًا)، فقم بإنهاء ذلك، ثم حاول مرة أخرى."
     }
   },
   "bg": {
@@ -4084,10 +4116,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Все още в очакване — все още не е потвърдено. Хеш: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Операцията с паролата се провали. Опитайте отново или използвайте фразата за възстановяване."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Тази фраза за възстановяване не е валидна. Проверете отново думите и опитайте още веднъж."
@@ -4707,6 +4735,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "За това хранилище не е зададена парола."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Операцията с паролата се провали ({detail}). Ако мениджърът на паролите ви или синхронизацията на браузъра ви чака да влезете, да потвърдите, че сте вие, или да въведете парола, завършете това и опитайте отново — или вместо това използвайте фразата за възстановяване."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Това устройство вече има парола за wwwallet. Премахнете я от мениджъра си за пароли, след което опитайте отново."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Доставчикът на пароли на това устройство не може да създаде такъв тип парола. Опитайте вместо това с телефон или ключ за сигурност, или задайте парола за отключване."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Първо настройте заключване на екрана (с пръстов отпечатък, лицево разпознаване или ПИН) на това устройство, след което опитайте отново."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Вашият мениджър на пароли не е успял да запази паролата. Ако чака да влезете в профила си, да потвърдите самоличността си или да въведете парола за синхронизация (например Google Password Manager, когато синхронизацията на Chrome е спряна), завършете тази стъпка и след това опитайте отново."
     }
   },
   "cs": {
@@ -5654,10 +5702,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Stále čeká na schválení – zatím nebylo potvrzeno. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Operace s přístupovým klíčem se nezdařila. Zkuste to znovu nebo místo toho použijte svou obnovovací frázi."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Tato obnovovací fráze není platná. Zkontrolujte slova a zkuste to znovu."
@@ -6277,6 +6321,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Pro tento trezor není nastaveno heslo."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Operace s přístupovým klíčem selhala ({detail}). Pokud váš správce přístupových klíčů nebo synchronizace prohlížeče čeká na vaše přihlášení, ověření identity nebo zadání přístupové fráze, dokončete tento krok a zkuste to znovu – nebo místo toho použijte svou obnovovací frázi."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Toto zařízení již má přístupový klíč pro wwwallet. Odstraňte jej ze svého správce přístupových klíčů a zkuste to znovu."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Poskytovatel přístupových klíčů tohoto zařízení nemůže tento typ přístupového klíče vytvořit. Zkuste místo toho použít telefon nebo bezpečnostní klíč, případně nastavte odemykací heslo."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Nejprve na tomto zařízení nastavte zámek obrazovky (otisk prstu, rozpoznání obličeje nebo PIN) a poté to zkuste znovu."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Váš správce přístupových klíčů nemohl přístupový klíč uložit. Pokud čeká na vaše přihlášení, ověření vaší identity nebo zadání synchronizační fráze (např. Správce hesel Google, když je synchronizace Chrome pozastavena), dokončete tento krok a zkuste to znovu."
     }
   },
   "da": {
@@ -7224,10 +7288,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Stadig uafklaret — det er endnu ikke bekræftet. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Adgangsnøglen kunne ikke bruges. Prøv igen, eller brug i stedet din gendannelsesfrase."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Den gendannelsesfrase er ikke gyldig. Tjek ordene igen, og prøv på ny."
@@ -7847,6 +7907,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Der er ikke oprettet en adgangskode til denne opbevaringsplads."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Passkey-operationen mislykkedes ({detail}). Hvis din passkey-manager eller browsersynkronisering venter på, at du logger ind, bekræfter, at det er dig, eller indtaster en adgangskode, skal du afslutte det og prøve igen — eller bruge din gendannelsesfrase i stedet."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Denne enhed har allerede en wwwallet-adgangsnøgle. Fjern den fra din adgangsnøgleadministrator, og prøv derefter igen."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Denne enheds adgangskodeudbyder kan ikke oprette denne type adgangskode. Prøv i stedet en telefon eller en sikkerhedsnøgle, eller indstil en oplåsningsadgangskode."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Indstil først en skærmlås (fingeraftryk, ansigtsgenkendelse eller PIN-kode) på denne enhed, og prøv derefter igen."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Din adgangskodeadministrator kunne ikke gemme adgangskoden. Hvis den venter på, at du logger ind, bekræfter, at det er dig, eller indtaster en synkroniseringsadgangskode (f.eks. Google Password Manager, når Chrome-synkronisering er sat på pause), skal du afslutte det og derefter prøve igen."
     }
   },
   "de": {
@@ -8794,10 +8874,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Noch ausstehend – es wurde noch nicht bestätigt. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Die Passkey-Eingabe ist fehlgeschlagen. Versuche es erneut oder verwende stattdessen deine Wiederherstellungsphrase."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Diese Wiederherstellungsphrase ist ungültig. Überprüfe die Wörter noch einmal und versuche es erneut."
@@ -9417,6 +9493,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Für diesen Tresor ist kein Passwort eingerichtet."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Die Passkey-Operation ist fehlgeschlagen ({detail}). Wenn dein Passkey-Manager oder die Browser-Synchronisierung darauf wartet, dass du dich anmeldest, deine Identität bestätigst oder eine Passphrase eingibst, schließe diesen Vorgang ab und versuche es erneut – oder verwende stattdessen deine Wiederherstellungsphrase."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Dieses Gerät verfügt bereits über einen wwwallet-Passkey. Lösche ihn aus deinem Passkey-Manager und versuche es dann erneut."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Der Passwort-Anbieter dieses Geräts kann diese Art von Passwort nicht erstellen. Versuche es stattdessen mit einem Smartphone oder einem Sicherheitsschlüssel oder lege ein Entsperrpasswort fest."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Richte zuerst eine Bildschirmsperre (Fingerabdruck, Gesichtserkennung oder PIN) auf diesem Gerät ein und versuche es dann erneut."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Dein Passwort-Manager konnte das Passwort nicht speichern. Wenn er darauf wartet, dass du dich anmeldest, deine Identität bestätigst oder eine Synchronisierungs-Passphrase eingibst (z. B. bei Google Passwort-Manager, wenn die Chrome-Synchronisierung pausiert ist), erledige das erst und versuche es dann erneut."
     }
   },
   "el": {
@@ -10364,10 +10460,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Εξακολουθεί να εκκρεμεί — δεν έχει επιβεβαιωθεί ακόμη. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Η λειτουργία του κλειδιού πρόσβασης απέτυχε. Προσπαθήστε ξανά ή χρησιμοποιήστε τη φράση ανάκτησης."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Αυτή η φράση ανάκτησης δεν είναι έγκυρη. Ελέγξτε ξανά τις λέξεις και δοκιμάστε ξανά."
@@ -10987,6 +11079,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Δεν έχει οριστεί κωδικός πρόσβασης για αυτό το θησαυροφυλάκιο."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Η λειτουργία του κλειδιού πρόσβασης απέτυχε ({detail}). Εάν ο διαχειριστής κλειδιών πρόσβασης ή ο συγχρονισμός του προγράμματος περιήγησης περιμένει να συνδεθείτε, να επιβεβαιώσετε την ταυτότητά σας ή να εισαγάγετε μια φράση πρόσβασης, ολοκληρώστε τη διαδικασία και δοκιμάστε ξανά — ή χρησιμοποιήστε τη φράση ανάκτησης αντ' αυτού."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Αυτή η συσκευή διαθέτει ήδη ένα κλειδί πρόσβασης wwwallet. Διαγράψτε το από τον διαχειριστή κλειδιών πρόσβασης και, στη συνέχεια, δοκιμάστε ξανά."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Ο πάροχος κωδικού πρόσβασης αυτής της συσκευής δεν μπορεί να δημιουργήσει αυτόν τον τύπο κωδικού πρόσβασης. Δοκιμάστε αντ’ αυτού ένα τηλέφωνο ή ένα κλειδί ασφαλείας, ή ορίστε έναν κωδικό πρόσβασης ξεκλειδώματος."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Ρυθμίστε πρώτα ένα κλείδωμα οθόνης (δακτυλικό αποτύπωμα, αναγνώριση προσώπου ή PIN) σε αυτή τη συσκευή και, στη συνέχεια, δοκιμάστε ξανά."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Ο διαχειριστής κωδικών πρόσβασης δεν μπόρεσε να αποθηκεύσει τον κωδικό πρόσβασης. Εάν σας ζητά να συνδεθείτε, να επιβεβαιώσετε την ταυτότητά σας ή να εισαγάγετε μια φράση πρόσβασης συγχρονισμού (π.χ. το Google Password Manager όταν ο συγχρονισμός του Chrome είναι σε παύση), ολοκληρώστε αυτή τη διαδικασία και, στη συνέχεια, δοκιμάστε ξανά."
     }
   },
   "et": {
@@ -11934,10 +12046,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Veel ootel – pole veel kinnitatud. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Parooli sisestamine ebaõnnestus. Proovi uuesti või kasuta selle asemel oma taastamislauset."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "See taastamislause ei ole kehtiv. Kontrollige sõnu veel kord ja proovige uuesti."
@@ -12557,6 +12665,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Sellele hoiukambrile ei ole parooli seatud."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Paroolivõtme operatsioon ebaõnnestus ({detail}). Kui teie paroolivõtme haldur või brauseri sünkroniseerimine ootab, et te sisse logiksite, oma isikut kinnitaksite või sisestaksite paroolifraasi, viige see lõpule ja proovige uuesti – või kasutage selle asemel oma taastamisfraasi."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Sellel seadmel on juba wwwallet’i parool. Eemalda see oma paroolihaldurist ja proovi uuesti."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Selle seadme paroolipakkuja ei saa sellist parooli luua. Proovi selle asemel telefoni või turvavõtit või määra lukustuse avamise parool."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Seadista sellele seadmele esmalt ekraanilukk (sõrmejälg, näotuvastus või PIN-kood) ja proovi uuesti."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Teie paroolihaldur ei suutnud parooli salvestada. Kui rakendus ootab, et te sisse logiksite, oma isikut kinnitaksite või sisestaksite sünkroniseerimise parooli (nt Google’i paroolihaldur, kui Chrome’i sünkroniseerimine on peatatud), viige see lõpule ja proovige uuesti."
     }
   },
   "fi": {
@@ -13504,10 +13632,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Vielä odottamassa – ei ole vielä vahvistettu. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Salasanan syöttö epäonnistui. Yritä uudelleen tai käytä sen sijaan palautuslausekettasi."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Tuo palautuslause ei ole kelvollinen. Tarkista sanat huolellisesti ja yritä uudelleen."
@@ -14127,6 +14251,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Tälle säilytystilalle ei ole määritetty salasanaa."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Salasanan käyttö epäonnistui ({detail}). Jos salasananhallintaohjelma tai selaimen synkronointi odottaa, että kirjaudut sisään, vahvistat henkilöllisyytesi tai syötät salasanalauseen, suorita nämä toimet ja yritä uudelleen – tai käytä sen sijaan palautuslauseesi."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Tällä laitteella on jo wwwallet-salasana. Poista se salasananhallintaohjelmastasi ja yritä sitten uudelleen."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Tämän laitteen salasanapalvelu ei voi luoda tällaista salasanaa. Kokeile sen sijaan puhelinta tai turva-avainta tai aseta lukituksen avaussalasana."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Aseta ensin näytön lukitus (sormenjälki, kasvojentunnistus tai PIN-koodi) tälle laitteelle ja yritä sitten uudelleen."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Salasananhallintaohjelmasi ei pystynyt tallentamaan salasanaa. Jos se odottaa, että kirjaudut sisään, vahvistat henkilöllisyytesi tai syötät synkronointilauseen (esim. Google Password Manager, kun Chrome-synkronointi on keskeytetty), suorita nämä toimet ja yritä sitten uudelleen."
     }
   },
   "fr": {
@@ -15074,10 +15218,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Toujours en attente — ça n’a pas encore été confirmé. Hash : {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "L'opération avec la clé d'accès a échoué. Réessaie, ou utilise plutôt ta phrase de récupération."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Cette phrase de récupération n'est pas valide. Vérifie bien les mots et réessaie."
@@ -15697,6 +15837,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Aucun mot de passe n’est configuré pour ce coffre-fort."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "L'opération avec la clé d'accès a échoué ({detail}). Si ton gestionnaire de clés d'accès ou la synchronisation de ton navigateur t'invite à te connecter, à confirmer ton identité ou à saisir une phrase de passe, termine cette étape puis réessaie — ou utilise ta phrase de récupération à la place."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Cet appareil dispose déjà d’une phrase de passe wwwallet. Supprime-la de ton gestionnaire de mots de passe, puis réessaie."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Le fournisseur de clés d'accès de cet appareil ne peut pas créer ce type de clé d'accès. Essaie plutôt un téléphone ou une clé de sécurité, ou définis un mot de passe de déverrouillage."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Configure d'abord un verrouillage d'écran (empreinte digitale, reconnaissance faciale ou code PIN) sur cet appareil, puis réessaie."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Ton gestionnaire de mots de passe n’a pas pu enregistrer le mot de passe. S’il t’invite à te connecter, à confirmer ton identité ou à saisir une phrase de synchronisation (par exemple, Google Password Manager lorsque la synchronisation Chrome est en pause), termine cette opération, puis réessaie."
     }
   },
   "hu": {
@@ -16644,10 +16804,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Még függőben van – még nem erősítették meg. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "A jelszó megadása sikertelen volt. Próbálja meg újra, vagy használja helyette a helyreállítási kifejezést."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Ez a helyreállítási kifejezés érvénytelen. Ellenőrizd újra a szavakat, és próbáld meg újra."
@@ -17267,6 +17423,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Ehhez a tárhelyhez nincs beállítva jelszó."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "A jelszókezelés sikertelen volt ({detail}). Ha a jelszókezelő vagy a böngésző szinkronizálása arra vár, hogy bejelentkezz, igazold a személyazonosságodat, vagy add meg a jelszavadat, fejezd be ezt a műveletet, majd próbáld meg újra – vagy használd helyette a helyreállítási kifejezést."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Ezen az eszközön már van egy wwwallet jelszó. Távolítsa el a jelszókezelőjéből, majd próbálja meg újra."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Ennek az eszköznek a jelszavas szolgáltatója nem tud ilyen típusú jelszót létrehozni. Próbálkozzon inkább egy telefonnal vagy biztonsági kulccsal, vagy állítson be egy feloldási jelszót."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Először állítson be képernyőzárást (ujjlenyomat, arcfelismerés vagy PIN-kód) ezen az eszközön, majd próbálja meg újra."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "A jelszókezelő nem tudta elmenteni a jelszót. Ha a rendszer arra vár, hogy bejelentkezz, igazold a személyazonosságodat, vagy add meg a szinkronizálási jelszót (pl. a Google Jelszókezelőben, amikor a Chrome szinkronizálása szünetel), akkor hajtsd végre ezeket a lépéseket, majd próbáld meg újra."
     }
   },
   "id": {
@@ -18214,10 +18390,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Masih tertunda — belum dikonfirmasi. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Operasi kunci sandi gagal. Coba lagi, atau gunakan frasa pemulihan Anda sebagai gantinya."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Frasa pemulihan tersebut tidak valid. Periksa kembali kata-katanya dan coba lagi."
@@ -18837,6 +19009,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Kata sandi tidak diatur untuk brankas ini."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Operasi kunci sandi gagal ({detail}). Jika pengelola kunci sandi atau sinkronisasi browser Anda meminta Anda untuk masuk, memverifikasi identitas Anda, atau memasukkan frasa sandi, selesaikan proses tersebut dan coba lagi — atau gunakan frasa pemulihan Anda sebagai gantinya."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Perangkat ini sudah memiliki frasa sandi wwwallet. Hapus frasa tersebut dari pengelola frasa sandi Anda, lalu coba lagi."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Penyedia kunci sandi pada perangkat ini tidak dapat membuat kunci sandi jenis ini. Cobalah menggunakan ponsel atau kunci keamanan sebagai gantinya, atau atur kata sandi untuk membuka kunci."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Atur kunci layar (sidik jari, pengenalan wajah, atau PIN) pada perangkat ini terlebih dahulu, lalu coba lagi."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Pengelola kata sandi Anda tidak dapat menyimpan kata sandi tersebut. Jika aplikasi tersebut menunggu Anda untuk masuk, memverifikasi identitas Anda, atau memasukkan frasa sandi sinkronisasi (misalnya, Google Password Manager saat sinkronisasi Chrome dijeda), selesaikan proses tersebut, lalu coba lagi."
     }
   },
   "it": {
@@ -19784,10 +19976,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Ancora in sospeso — non è stato ancora confermato. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "L'operazione con la passkey non è andata a buon fine. Prova di nuovo oppure usa la tua frase di recupero."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Quella frase di recupero non è valida. Ricontrolla le parole e riprova."
@@ -20407,6 +20595,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Per questo vault non è stata impostata alcuna password."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "L’operazione con la passkey non è andata a buon fine ({detail}). Se il tuo gestore di passkey o la sincronizzazione del browser ti chiedono di effettuare l’accesso, di confermare la tua identità o di inserire una passphrase, completa l’operazione e riprova — oppure usa la tua frase di recupero."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Questo dispositivo ha già una passkey di wwwallet. Rimuovila dal tuo gestore di passkey, poi riprova."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Il provider di passkey di questo dispositivo non può creare questo tipo di passkey. Prova invece con un telefono o una chiave di sicurezza, oppure imposta una password di sblocco."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Imposta prima un blocco dello schermo (impronta digitale, riconoscimento facciale o PIN) su questo dispositivo, poi riprova."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Il tuo gestore di password non è riuscito a salvare la password. Se ti sta chiedendo di effettuare l’accesso, di verificare la tua identità o di inserire una passphrase di sincronizzazione (ad es. Google Password Manager quando la sincronizzazione di Chrome è in pausa), completa l’operazione, poi riprova."
     }
   },
   "iw": {
@@ -21354,10 +21562,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "עדיין בהמתנה — טרם אושר. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "פעולת מפתח הגישה נכשלה. נסה שוב, או השתמש בביטוי השחזור שלך במקום זאת."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "משפט השחזור הזה אינו תקף. בדקו שוב את המילים ונסו שוב."
@@ -21977,6 +22181,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "לא הוגדרה סיסמה לכספת זו."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "פעולת מפתח הגישה נכשלה ({detail}). אם מנהל מפתחות הגישה או סנכרון הדפדפן מחכים שתתחבר, תאמת את זהותך או תזין סיסמה, השלם את התהליך ונסה שוב — או השתמש בביטוי השחזור שלך במקום זאת."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "למכשיר זה כבר יש מפתח גישה ל-wwwallet. הסר אותו ממנהל המפתחות שלך, ואז נסה שוב."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "ספק מפתח הגישה של המכשיר הזה אינו יכול ליצור מפתח גישה מסוג זה. נסה במקום זאת להשתמש בטלפון או במפתח אבטחה, או הגדר סיסמת נעילה."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "הגדר תחילה נעילת מסך (טביעת אצבע, זיהוי פנים או PIN) במכשיר זה, ואז נסה שוב."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "מנהל הסיסמאות שלכם לא הצליח לשמור את סיסמת הגישה. אם הוא מחכה שתתחברו, תאמתו את זהותכם או תזינו סיסמת סנכרון (למשל, מנהל הסיסמאות של גוגל כאשר סנכרון Chrome מושעה), סיימו את התהליך ואז נסו שוב."
     }
   },
   "ja": {
@@ -22924,10 +23148,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "まだ保留中 — まだ確認されていない。ハッシュ：{hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "パスキーの操作に失敗した。もう一度試すか、代わりにリカバリーフレーズを使用する。"
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "そのリカバリーフレーズは無効だ。単語を再確認して、もう一度試してほしい。"
@@ -23547,6 +23767,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "この保管庫にはパスワードが設定されていない。"
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "パスキーの操作に失敗した（{detail}）。パスキーマネージャーやブラウザの同期機能で、ログイン、本人確認、またはパスフレーズの入力が求められている場合は、その操作を完了してから再試行するか、代わりにリカバリーフレーズを使用する。"
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "このデバイスにはすでにwwwalletのパスキーが登録されている。パスキーマネージャーからそれを削除してから、もう一度試してみてください。"
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "このデバイスのパスキープロバイダーでは、この種のパスキーを作成できない。代わりにスマートフォンやセキュリティキーを試すか、ロック解除パスワードを設定する。"
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "まずこの端末で画面ロック（指紋、顔認証、またはPIN）を設定してから、もう一度試してみてください。"
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "パスキーマネージャーがパスキーを保存できなかった。ログインを求められている場合、本人確認を求められている場合、または同期パスフレーズの入力を求められている場合（例：Chromeの同期が一時停止されている際のGoogleパスワードマネージャー）、その操作を完了してから、もう一度試してみてください。"
     }
   },
   "ko": {
@@ -24494,10 +24734,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "아직 보류 중 — 아직 확정되지 않았습니다. 해시: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "패스키 작업이 실패했습니다. 다시 시도하거나, 대신 복구 문구를 사용해 보세요."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "해당 복구 문구가 유효하지 않습니다. 단어를 다시 한 번 확인하고 다시 시도해 주세요."
@@ -25117,6 +25353,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "이 금고에는 비밀번호가 설정되어 있지 않습니다."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "패스키 작업이 실패했습니다 ({detail}). 패스키 관리자나 브라우저 동기화 기능이 로그인, 본인 확인 또는 패스프레이즈 입력을 기다리고 있다면, 해당 절차를 완료한 후 다시 시도하거나 대신 복구 문구를 사용해 보세요."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "이 기기에는 이미 wwwallet 패스키가 등록되어 있습니다. 패스키 관리자에서 해당 항목을 삭제한 후 다시 시도해 주세요."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "이 기기의 패스키 제공자는 이러한 종류의 패스키를 생성할 수 없습니다. 대신 휴대폰이나 보안 키를 사용하거나, 잠금 해제 비밀번호를 설정해 보세요."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "먼저 이 기기에서 화면 잠금(지문, 얼굴 인식 또는 PIN)을 설정한 후 다시 시도해 주세요."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "비밀번호 관리자가 비밀번호를 저장하지 못했습니다. 로그인, 본인 확인 또는 동기화 비밀번호 입력(예: Chrome 동기화가 일시 중지된 상태의 Google 비밀번호 관리자)을 기다리고 있다면, 해당 절차를 완료한 후 다시 시도해 주세요."
     }
   },
   "lt": {
@@ -26064,10 +26320,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Dar nepatvirtinta — kol kas nėra patvirtinta. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Prieigos rakto operacija nepavyko. Bandykite dar kartą arba vietoj to naudokite atkūrimo frazę."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Ši atkūrimo frazė yra neteisinga. Dar kartą patikrinkite žodžius ir pabandykite iš naujo."
@@ -26687,6 +26939,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Šiam saugyklos sąskaitai slaptažodis nenustatytas."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Prieigos rakto operacija nepavyko ({detail}). Jei jūsų prieigos raktų tvarkyklė arba naršyklės sinchronizavimas laukia, kol prisijungsite, patvirtinsite savo tapatybę arba įvesite slaptažodžio frazę, užbaigite šį veiksmą ir pabandykite dar kartą – arba vietoj to naudokite atkūrimo frazę."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Šiame įrenginyje jau yra „wwwallet“ slaptažodis. Pašalinkite jį iš savo slaptažodžių tvarkyklės, tada pabandykite dar kartą."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Šio įrenginio slaptažodžių teikėjas negali sukurti tokio tipo slaptažodžio. Vietoj to pabandykite naudoti telefoną arba saugumo raktą, arba nustatykite atrakinimo slaptažodį."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Pirmiausia šiame įrenginyje nustatykite ekrano užraktą (piršto atspaudą, veido atpažinimą arba PIN kodą), tada bandykite dar kartą."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Jūsų slaptažodžių tvarkyklė negalėjo išsaugoti slaptažodžio. Jei ji laukia, kol prisijungsite, patvirtinsite savo tapatybę arba įvesite sinchronizavimo frazę (pvz., „Google Password Manager“, kai „Chrome“ sinchronizavimas sustabdytas), atlikite tai ir pabandykite dar kartą."
     }
   },
   "lv": {
@@ -27634,10 +27906,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Vēl nav apstiprināts — tas vēl nav apstiprināts. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Piekļuves atslēgas darbība neizdevās. Mēģiniet vēlreiz vai izmantojiet savu atjaunošanas frāzi."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Šī atjaunošanas frāze nav derīga. Pārbaudiet vārdus vēlreiz un mēģiniet vēlreiz."
@@ -28257,6 +28525,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Šim seifam nav iestatīta parole."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Piekļuves atslēgas darbība neizdevās ({detail}). Ja jūsu piekļuves atslēgas pārvaldnieks vai pārlūka sinhronizācija gaida, lai jūs pieteiktos, apstiprinātu savu identitāti vai ievadītu paroli, pabeidziet šo darbību un mēģiniet vēlreiz — vai arī izmantojiet savu atjaunošanas frāzi."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Šai ierīcei jau ir wwwallet piekļuves atslēga. Izdzēsiet to no savas piekļuves atslēgu pārvaldnieka, tad mēģiniet vēlreiz."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Šīs ierīces paroles nodrošinātājs nevar izveidot šāda veida paroli. Izmēģiniet tālruni vai drošības atslēgu, vai arī iestatiet atbloķēšanas paroli."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Vispirms iestatiet ekrāna bloķēšanu (pirksta nospiedums, sejas atpazīšana vai PIN kods) šajā ierīcē, pēc tam mēģiniet vēlreiz."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Jūsu paroles pārvaldnieks nevarēja saglabāt paroli. Ja tas gaida, lai jūs pieteiktos, apstiprinātu savu identitāti vai ievadītu sinhronizācijas paroli (piemēram, Google Password Manager, ja Chrome sinhronizācija ir apturēta), pabeidziet šo darbību un mēģiniet vēlreiz."
     }
   },
   "nl": {
@@ -29204,10 +29492,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Nog in behandeling — het is nog niet bevestigd. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Het invoeren van de toegangscode is mislukt. Probeer het nog eens, of gebruik in plaats daarvan je herstelzin."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Die herstelzin is ongeldig. Controleer de woorden nog eens goed en probeer het opnieuw."
@@ -29827,6 +30111,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Er is geen wachtwoord ingesteld voor deze kluis."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "De passkey-bewerking is mislukt ({detail}). Als je passkey-manager of browsersynchronisatie wacht tot je inlogt, verifieert of een wachtwoordzin invoert, rond dat dan af en probeer het opnieuw — of gebruik in plaats daarvan je herstelzin."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Dit apparaat heeft al een wwwallet-toegangscode. Verwijder deze uit je wachtwoordbeheerder en probeer het dan opnieuw."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "De wachtwoordprovider van dit apparaat kan dit soort wachtwoorden niet aanmaken. Probeer in plaats daarvan een telefoon of beveiligingssleutel, of stel een ontgrendelingswachtwoord in."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Stel eerst een schermvergrendeling in (vingerafdruk, gezichtsherkenning of pincode) op dit apparaat en probeer het daarna opnieuw."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Je wachtwoordbeheerder kon de wachtwoordzin niet opslaan. Als hij wacht tot je inlogt, je identiteit verifieert of een synchronisatiewachtwoordzin invoert (bijv. Google Password Manager wanneer Chrome-synchronisatie is gepauzeerd), doe dat dan eerst en probeer het daarna opnieuw."
     }
   },
   "no": {
@@ -30774,10 +31078,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Fortsatt uavklart – det er ikke bekreftet ennå. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Passordnøkkelen kunne ikke brukes. Prøv på nytt, eller bruk gjenopprettingsfrasen din i stedet."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Den gjenopprettingsfrasen er ikke gyldig. Sjekk ordene nøye og prøv på nytt."
@@ -31397,6 +31697,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Det er ikke angitt noe passord for dette hvelvet."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Passordnøkkelen kunne ikke brukes ({detail}). Hvis passordnøkkeladministratoren eller nettlesersynkroniseringen ber deg om å logge inn, bekrefte at det er deg eller oppgi en passordfrase, må du fullføre dette og prøve på nytt – eller bruke gjenopprettingsfrasen i stedet."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Denne enheten har allerede en wwwallet-passordnøkkel. Fjern den fra passordnøkkelbehandleren din, og prøv deretter på nytt."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Passordleverandøren til denne enheten kan ikke opprette denne typen passord. Prøv en telefon eller sikkerhetsnøkkel i stedet, eller angi et opplåsingspassord."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Sett først opp en skjermlås (fingeravtrykk, ansiktsgjenkjenning eller PIN-kode) på denne enheten, og prøv deretter på nytt."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Passordbehandleren din klarte ikke å lagre passordet. Hvis den venter på at du skal logge inn, bekrefte at det er deg eller oppgi en synkroniseringsfrase (f.eks. Google Password Manager når Chrome-synkroniseringen er satt på pause), må du fullføre dette før du prøver på nytt."
     }
   },
   "pl": {
@@ -32344,10 +32664,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Wciąż w toku – nie zostało to jeszcze potwierdzone. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Operacja z kluczem dostępu nie powiodła się. Spróbuj jeszcze raz albo użyj zamiast tego swojej frazy odzyskiwania."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Ta fraza odzyskiwania jest nieprawidłowa. Sprawdź jeszcze raz słowa i spróbuj ponownie."
@@ -32967,6 +33283,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Dla tego sejfu nie ustawiono hasła."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Operacja z kluczem dostępu nie powiodła się ({detail}). Jeśli menedżer kluczy dostępu lub synchronizacja przeglądarki czeka, aż się zalogujesz, potwierdzisz swoją tożsamość lub wprowadzisz hasło, zrób to i spróbuj ponownie – albo użyj zamiast tego frazy odzyskiwania."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "To urządzenie ma już hasło dostępu do wwwallet. Usuń je z menedżera haseł, a potem spróbuj jeszcze raz."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Dostawca klucza dostępu na tym urządzeniu nie może utworzyć tego rodzaju klucza. Spróbuj zamiast tego użyć telefonu lub klucza bezpieczeństwa albo ustaw hasło odblokowujące."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Najpierw ustaw blokadę ekranu (odcisk palca, rozpoznawanie twarzy lub PIN) na tym urządzeniu, a potem spróbuj jeszcze raz."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Twój menedżer haseł nie mógł zapisać hasła. Jeśli czeka, aż się zalogujesz, potwierdzisz swoją tożsamość lub wprowadzisz hasło synchronizacji (np. w Menedżerze haseł Google, gdy synchronizacja Chrome jest wstrzymana), zrób to, a potem spróbuj jeszcze raz."
     }
   },
   "ro": {
@@ -33914,10 +34250,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Încă în așteptare — nu a fost încă confirmat. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Operațiunea cu cheia de acces a eșuat. Încercați din nou sau folosiți în schimb fraza de recuperare."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Această frază de recuperare nu este validă. Verificați din nou cuvintele și încercați din nou."
@@ -34537,6 +34869,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Nu este configurată nicio parolă pentru acest seif."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Operațiunea cu cheia de acces a eșuat ({detail}). Dacă managerul de chei de acces sau sincronizarea browserului așteaptă să vă autentificați, să confirmați că sunteți dvs. sau să introduceți o frază de acces, finalizați acest pas și încercați din nou — sau utilizați în schimb fraza de recuperare."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Acest dispozitiv are deja o parolă wwwallet. Ștergeți-o din managerul de parole, apoi încercați din nou."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Furnizorul de chei de acces al acestui dispozitiv nu poate crea acest tip de cheie de acces. Încercați în schimb un telefon sau o cheie de securitate, sau setați o parolă de deblocare."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Configurați mai întâi o blocare a ecranului (amprentă digitală, recunoaștere facială sau cod PIN) pe acest dispozitiv, apoi încercați din nou."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Managerul dvs. de chei de acces nu a putut salva cheia de acces. Dacă vă solicită să vă autentificați, să confirmați identitatea sau să introduceți o frază de sincronizare (de exemplu, Google Password Manager când sincronizarea Chrome este întreruptă), finalizați acea operațiune, apoi încercați din nou."
     }
   },
   "ru": {
@@ -35484,10 +35836,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Пока в процессе — ещё не подтверждено. Хеш: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Ошибка при вводе пароля. Попробуй ещё раз или воспользуйся фразой восстановления."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Эта фраза восстановления недействительна. Ещё раз проверь слова и попробуй заново."
@@ -36107,6 +36455,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Для этого хранилища пароль не настроен."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Ошибка при работе с паролем ({detail}). Если твой менеджер паролей или синхронизация браузера ждут, пока ты войдёшь в систему, подтверди свою личность или введи парольную фразу, заверши эту операцию и попробуй ещё раз — или воспользуйся вместо этого своей фразой восстановления."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "На этом устройстве уже есть пароль wwwallet. Удали его из своего менеджера паролей, а затем попробуй ещё раз."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Поставщик паролей на этом устройстве не может создать такой пароль. Попробуй вместо этого использовать телефон или ключ безопасности, либо установи пароль для разблокировки."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Сначала набери блокировку экрана (по отпечатку пальца, лицу или PIN-коду) на этом устройстве, а потом попробуй ещё раз."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Твой менеджер паролей не смог сохранить пароль. Если он ждёт, пока ты войдёшь в систему, подтвердишь свою личность или введёшь парольную фразу для синхронизации (например, в Google Password Manager, когда синхронизация Chrome приостановлена), сначала заверши эту операцию, а потом попробуй ещё раз."
     }
   },
   "sk": {
@@ -37054,10 +37422,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Stále čaká na schválenie – zatiaľ nebolo potvrdené. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Operácia s prístupovým kľúčom zlyhala. Skúste to znovu alebo namiesto toho použite svoju obnovovaciu frázu."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Táto obnovovacia fráza nie je platná. Skontrolujte slová a skúste to znovu."
@@ -37677,6 +38041,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Pre tento trezor nie je nastavené heslo."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Operácia s prístupovým kľúčom zlyhala ({detail}). Ak váš správca prístupových kľúčov alebo synchronizácia prehliadača čaká na vaše prihlásenie, overenie vašej identity alebo zadanie hesla, dokončite tento proces a skúste to znova – alebo namiesto toho použite svoju obnovovaciu frázu."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Toto zariadenie už má prístupový kľúč pre wwwallet. Odstráňte ho zo svojho správcu prístupových kľúčov a potom to skúste znova."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Poskytovateľ prístupových kľúčov tohto zariadenia nemôže vytvoriť tento typ prístupového kľúča. Skúste namiesto toho použiť telefón alebo bezpečnostný kľúč, alebo nastavte heslo na odomknutie."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Najprv na tomto zariadení nastavte uzamknutie obrazovky (odtlačok prsta, rozpoznanie tváre alebo PIN) a potom to skúste znova."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Váš správca prístupových kľúčov nedokázal uložiť prístupový kľúč. Ak čaká na vaše prihlásenie, overenie vašej identity alebo zadanie synchronizačnej frázy (napr. Správca hesiel Google, keď je synchronizácia v prehliadači Chrome pozastavená), dokončite tento proces a potom to skúste znova."
     }
   },
   "sl": {
@@ -38624,10 +39008,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Še v obravnavi – še ni bilo potrjeno. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Operacija z geslom ni uspela. Poskusite znova ali namesto tega uporabite svojo obnovitveno frazo."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Ta obnovitvena fraza ni veljavna. Ponovno preverite besede in poskusite znova."
@@ -39247,6 +39627,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Za ta trezor ni nastavljeno geslo."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Operacija z geslom ni uspela ({detail}). Če vaš upravitelj gesel ali sinhronizacija brskalnika čaka, da se prijavite, potrdite svojo identiteto ali vnesete geslo, to najprej opravite in poskusite znova – ali pa namesto tega uporabite svojo obnovitveno frazo."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Ta naprava že ima geslo za wwwallet. Odstranite ga iz upravitelja gesel, nato poskusite znova."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Ponudnik gesel za to napravo ne more ustvariti te vrste gesla. Namesto tega poskusite z mobilnim telefonom ali varnostnim ključem ali nastavite geslo za odklepanje."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Najprej nastavite zaklepanje zaslona (prstni odtis, prepoznavanje obraza ali PIN) na tej napravi, nato poskusite znova."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Vaš upravitelj gesel ni mogel shraniti gesla. Če čaka, da se prijavite, potrdite svojo identiteto ali vnesite geslo za sinhronizacijo (npr. Google Password Manager, ko je sinhronizacija Chrome začasno ustavljena), to najprej opravite, nato pa poskusite znova."
     }
   },
   "sv": {
@@ -40194,10 +40594,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Fortfarande väntande – det har inte bekräftats ännu. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Inloggningen misslyckades. Försök igen, eller använd din återställningsfras istället."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Den återställningsfrasen är ogiltig. Kontrollera orden noga och försök igen."
@@ -40817,6 +41213,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Det finns inget lösenord inställt för detta valv."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Passnyckelfunktionen misslyckades ({detail}). Om din passnyckelhanterare eller webbläsarsynkronisering väntar på att du ska logga in, verifiera att det är du eller ange en lösenfras, slutför det och försök igen – eller använd din återställningsfras istället."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Den här enheten har redan en wwwallet-lösenfras. Ta bort den från din lösenfrashanterare och försök sedan igen."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Den här enhetens lösenordsleverantör kan inte skapa den här typen av lösenord. Prova istället en telefon eller en säkerhetsnyckel, eller ställ in ett upplåsningslösenord."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Ställ först in ett skärmlås (fingeravtryck, ansiktsigenkänning eller PIN-kod) på den här enheten och försök sedan igen."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Din lösenordshanterare kunde inte spara lösenordet. Om den väntar på att du ska logga in, verifiera att det är du eller ange en synkroniseringsfras (t.ex. Google Password Manager när Chrome-synkroniseringen är pausad), slutför det och försök sedan igen."
     }
   },
   "tr": {
@@ -41764,10 +42180,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Hala beklemede — henüz onaylanmadı. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Şifre anahtarı işlemi başarısız oldu. Tekrar deneyin veya bunun yerine kurtarma ifadenizi kullanın."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Bu kurtarma ifadesi geçerli değil. Kelimeleri tekrar kontrol edin ve yeniden deneyin."
@@ -42387,6 +42799,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Bu kasa için şifre ayarlanmamıştır."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Şifre anahtarı işlemi başarısız oldu ({detail}). Şifre anahtarı yöneticiniz veya tarayıcı senkronizasyonunuz, oturum açmanızı, kimliğinizi doğrulamanızı veya bir şifre ifadesi girmenizi bekliyorsa, bu işlemi tamamlayıp tekrar deneyin — ya da bunun yerine kurtarma ifadenizi kullanın."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Bu cihazda zaten bir wwwallet şifresi bulunuyor. Şifre yöneticinizden bu şifreyi silin, ardından tekrar deneyin."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Bu cihazın şifre sağlayıcısı bu tür bir şifre oluşturamaz. Bunun yerine bir telefon veya güvenlik anahtarı kullanmayı deneyin ya da bir kilit açma şifresi belirleyin."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Önce bu cihazda bir ekran kilidi (parmak izi, yüz tanıma veya PIN) ayarlayın, ardından tekrar deneyin."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Şifre yöneticiniz şifreyi kaydedemedi. Eğer oturum açmanızı, kimliğinizi doğrulamanızı veya bir senkronizasyon parolasını girmenizi bekliyorsa (örneğin, Chrome senkronizasyonu duraklatıldığında Google Şifre Yöneticisi), bu işlemi tamamlayın ve ardından tekrar deneyin."
     }
   },
   "uk": {
@@ -43334,10 +43766,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Ще в процесі — поки що не підтверджено. Хеш: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Операція з введенням пароля не вдалася. Спробуйте ще раз або скористайтеся фразою відновлення."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Ця фраза відновлення недійсна. Перевірте слова ще раз і спробуйте знову."
@@ -43957,6 +44385,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Для цього сховища пароль не встановлено."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Помилка під час роботи з паролем ({detail}). Якщо ваш менеджер паролів або синхронізація браузера вимагає, щоб ви увійшли в систему, підтвердили свою особу або ввели парольну фразу, виконайте ці дії та спробуйте ще раз — або скористайтеся замість цього фразою відновлення."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "На цьому пристрої вже є пароль wwwallet. Видаліть його з менеджера паролів, а потім спробуйте ще раз."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Постачальник паролів цього пристрою не може створити такий пароль. Спробуйте скористатися телефоном або ключем безпеки, або встановіть пароль для розблокування."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Спочатку налаштуйте блокування екрана (відбиток пальця, розпізнавання обличчя або PIN-код) на цьому пристрої, а потім спробуйте ще раз."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Ваш менеджер паролів не зміг зберегти пароль. Якщо він чекає, поки ви увійдете в систему, підтвердите свою особу або введете парольну фразу для синхронізації (наприклад, у Google Password Manager, коли синхронізація Chrome призупинена), завершіть цю процедуру, а потім спробуйте ще раз."
     }
   },
   "vi": {
@@ -44904,10 +45352,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "Vẫn đang chờ xử lý — chưa được xác nhận. Hash: {hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "Việc nhập mật khẩu đã thất bại. Hãy thử lại hoặc dùng cụm từ khôi phục của cậu thay thế nhé."
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "Cụm từ khôi phục đó không hợp lệ. Hãy kiểm tra lại các từ và thử lại nhé."
@@ -45527,6 +45971,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "Kho này chưa được thiết lập mật khẩu."
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "Thao tác với mật khẩu đã thất bại ({detail}). Nếu trình quản lý mật khẩu hoặc tính năng đồng bộ hóa trình duyệt của cậu đang yêu cầu cậu đăng nhập, xác minh danh tính hoặc nhập cụm mật khẩu, hãy hoàn tất thao tác đó rồi thử lại — hoặc dùng cụm từ khôi phục thay thế."
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "Thiết bị này đã có sẵn mật khẩu wwwallet rồi. Hãy xóa nó khỏi trình quản lý mật khẩu của cậu, sau đó thử lại nhé."
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "Nhà cung cấp mật khẩu của thiết bị này không thể tạo loại mật khẩu này. Thử dùng điện thoại hoặc khóa bảo mật thay thế, hoặc đặt mật khẩu mở khóa nhé."
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "Hãy thiết lập khóa màn hình (vân tay, nhận diện khuôn mặt hoặc mã PIN) trên thiết bị này trước, sau đó thử lại nhé."
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "Trình quản lý mật khẩu của cậu không thể lưu mật khẩu. Nếu nó đang chờ cậu đăng nhập, xác minh danh tính hoặc nhập cụm mật khẩu đồng bộ hóa (ví dụ: Google Password Manager khi tính năng đồng bộ hóa Chrome bị tạm dừng), hãy hoàn tất các bước đó rồi thử lại nhé."
     }
   },
   "zh-CN": {
@@ -46474,10 +46938,6 @@
       "enHash": "e1ee423b2ac4b427",
       "value": "仍在等待确认——尚未最终确定。哈希值：{hash}"
     },
-    "errors.passkeyOperationFailed": {
-      "enHash": "d3fc32abf86385bd",
-      "value": "密钥操作失败。请重试，或改用您的恢复短语。"
-    },
     "errors.invalidMnemonic": {
       "enHash": "813227e3483b87f8",
       "value": "该恢复短语无效。请仔细核对单词并重试。"
@@ -47097,6 +47557,26 @@
     "errors.passwordNotSetUp": {
       "enHash": "f3433cd9c0c94f26",
       "value": "此保险库未设置密码。"
+    },
+    "errors.passkeyOperationFailedDetail": {
+      "enHash": "6bd23f6974fc1d17",
+      "value": "密钥操作失败 ({detail})。如果您的密钥管理器或浏览器同步功能正在等待您登录、验证身份或输入密码短语，请先完成这些操作后再试一次——或者改用您的恢复短语。"
+    },
+    "errors.passkeyAlreadyRegistered": {
+      "enHash": "54d44091ed411e44",
+      "value": "该设备已存在 wwwallet 密钥。请将其从密钥管理器中删除，然后重试。"
+    },
+    "errors.passkeyNotSupportedHere": {
+      "enHash": "2062bc872a9e1fce",
+      "value": "此设备的密钥生成器无法生成此类密钥。请改用手机或安全密钥，或设置解锁密码。"
+    },
+    "errors.passkeyNeedsScreenLock": {
+      "enHash": "bed6453c969cdf54",
+      "value": "请先在此设备上设置屏幕锁定（指纹、面部识别或 PIN 码），然后重试。"
+    },
+    "errors.passkeyProviderNotReady": {
+      "enHash": "4db291c98c4dad36",
+      "value": "您的密码管理器无法保存该密码。如果系统正在等待您登录、验证身份或输入同步密码（例如，当 Chrome 同步暂停时，Google 密码管理器会提示），请先完成这些操作，然后重试。"
     }
   }
 }

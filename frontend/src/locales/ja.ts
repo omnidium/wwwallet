@@ -305,8 +305,6 @@ export default {
     passkeyNotSetUp: 'この保管庫にはパスキーが設定されていない。',
     vaultLocked: '金庫はロックされている',
     chooseKeystoreFile: 'キーストアファイルを選択する',
-    passkeyOperationFailed:
-      'パスキーの操作に失敗した。もう一度試すか、代わりにリカバリーフレーズを使用する。',
     invalidMnemonic: 'そのリカバリーフレーズは無効だ。単語を再確認して、もう一度試してほしい。',
     invalidPrivateKey: 'その秘密鍵は無効だ。',
     invalidKeystoreFile:
@@ -321,6 +319,16 @@ export default {
     incorrectUnlockPassword: 'ロック解除パスワードが間違っている。',
     recoveryPhraseNotSetUp: 'この保管庫にはリカバリーフレーズが設定されていない。',
     passwordNotSetUp: 'この保管庫にはパスワードが設定されていない。',
+    passkeyOperationFailedDetail:
+      'パスキーの操作に失敗した（{detail}）。パスキーマネージャーやブラウザの同期機能で、ログイン、本人確認、またはパスフレーズの入力が求められている場合は、その操作を完了してから再試行するか、代わりにリカバリーフレーズを使用する。',
+    passkeyAlreadyRegistered:
+      'このデバイスにはすでにwwwalletのパスキーが登録されている。パスキーマネージャーからそれを削除してから、もう一度試してみてください。',
+    passkeyNotSupportedHere:
+      'このデバイスのパスキープロバイダーでは、この種のパスキーを作成できない。代わりにスマートフォンやセキュリティキーを試すか、ロック解除パスワードを設定する。',
+    passkeyNeedsScreenLock:
+      'まずこの端末で画面ロック（指紋、顔認証、またはPIN）を設定してから、もう一度試してみてください。',
+    passkeyProviderNotReady:
+      'パスキーマネージャーがパスキーを保存できなかった。ログインを求められている場合、本人確認を求められている場合、または同期パスフレーズの入力を求められている場合（例：Chromeの同期が一時停止されている際のGoogleパスワードマネージャー）、その操作を完了してから、もう一度試してみてください。',
   },
   accountCard: {
     copyAddress: 'アドレスをコピーする',

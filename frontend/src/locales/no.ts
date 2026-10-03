@@ -308,8 +308,6 @@ export default {
     passkeyNotSetUp: 'Passordnøkkel er ikke konfigurert for dette hvelvet.',
     vaultLocked: 'Hvelvet er låst',
     chooseKeystoreFile: 'Velg en nøkkelarkivfil',
-    passkeyOperationFailed:
-      'Passordnøkkelen kunne ikke brukes. Prøv på nytt, eller bruk gjenopprettingsfrasen din i stedet.',
     invalidMnemonic: 'Den gjenopprettingsfrasen er ikke gyldig. Sjekk ordene nøye og prøv på nytt.',
     invalidPrivateKey: 'Den private nøkkelen er ikke gyldig.',
     invalidKeystoreFile:
@@ -325,6 +323,16 @@ export default {
     incorrectUnlockPassword: 'Feil opplåsingspassord.',
     recoveryPhraseNotSetUp: 'Gjenopprettingsfrasen er ikke konfigurert for dette hvelvet.',
     passwordNotSetUp: 'Det er ikke angitt noe passord for dette hvelvet.',
+    passkeyOperationFailedDetail:
+      'Passordnøkkelen kunne ikke brukes ({detail}). Hvis passordnøkkeladministratoren eller nettlesersynkroniseringen ber deg om å logge inn, bekrefte at det er deg eller oppgi en passordfrase, må du fullføre dette og prøve på nytt – eller bruke gjenopprettingsfrasen i stedet.',
+    passkeyAlreadyRegistered:
+      'Denne enheten har allerede en wwwallet-passordnøkkel. Fjern den fra passordnøkkelbehandleren din, og prøv deretter på nytt.',
+    passkeyNotSupportedHere:
+      'Passordleverandøren til denne enheten kan ikke opprette denne typen passord. Prøv en telefon eller sikkerhetsnøkkel i stedet, eller angi et opplåsingspassord.',
+    passkeyNeedsScreenLock:
+      'Sett først opp en skjermlås (fingeravtrykk, ansiktsgjenkjenning eller PIN-kode) på denne enheten, og prøv deretter på nytt.',
+    passkeyProviderNotReady:
+      'Passordbehandleren din klarte ikke å lagre passordet. Hvis den venter på at du skal logge inn, bekrefte at det er deg eller oppgi en synkroniseringsfrase (f.eks. Google Password Manager når Chrome-synkroniseringen er satt på pause), må du fullføre dette før du prøver på nytt.',
   },
   accountCard: {
     copyAddress: 'Kopier adressen',

@@ -311,8 +311,6 @@ export default {
     passkeyNotSetUp: 'La passkey non è configurata per questo vault.',
     vaultLocked: 'Il vault è bloccato',
     chooseKeystoreFile: 'Scegli un file keystore',
-    passkeyOperationFailed:
-      "L'operazione con la passkey non è andata a buon fine. Prova di nuovo oppure usa la tua frase di recupero.",
     invalidMnemonic: 'Quella frase di recupero non è valida. Ricontrolla le parole e riprova.',
     invalidPrivateKey: 'Quella chiave privata non è valida.',
     invalidKeystoreFile:
@@ -328,6 +326,16 @@ export default {
     incorrectUnlockPassword: 'Password di sblocco errata.',
     recoveryPhraseNotSetUp: 'La frase di recupero non è stata impostata per questo vault.',
     passwordNotSetUp: 'Per questo vault non è stata impostata alcuna password.',
+    passkeyOperationFailedDetail:
+      'L’operazione con la passkey non è andata a buon fine ({detail}). Se il tuo gestore di passkey o la sincronizzazione del browser ti chiedono di effettuare l’accesso, di confermare la tua identità o di inserire una passphrase, completa l’operazione e riprova — oppure usa la tua frase di recupero.',
+    passkeyAlreadyRegistered:
+      'Questo dispositivo ha già una passkey di wwwallet. Rimuovila dal tuo gestore di passkey, poi riprova.',
+    passkeyNotSupportedHere:
+      'Il provider di passkey di questo dispositivo non può creare questo tipo di passkey. Prova invece con un telefono o una chiave di sicurezza, oppure imposta una password di sblocco.',
+    passkeyNeedsScreenLock:
+      'Imposta prima un blocco dello schermo (impronta digitale, riconoscimento facciale o PIN) su questo dispositivo, poi riprova.',
+    passkeyProviderNotReady:
+      'Il tuo gestore di password non è riuscito a salvare la password. Se ti sta chiedendo di effettuare l’accesso, di verificare la tua identità o di inserire una passphrase di sincronizzazione (ad es. Google Password Manager quando la sincronizzazione di Chrome è in pausa), completa l’operazione, poi riprova.',
   },
   accountCard: {
     copyAddress: 'Copia l’indirizzo',

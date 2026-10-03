@@ -311,8 +311,6 @@ export default {
     passkeyNotSetUp: 'Kunci sandi belum diatur untuk brankas ini.',
     vaultLocked: 'brankas terkunci',
     chooseKeystoreFile: 'pilih berkas keystore',
-    passkeyOperationFailed:
-      'Operasi kunci sandi gagal. Coba lagi, atau gunakan frasa pemulihan Anda sebagai gantinya.',
     invalidMnemonic:
       'Frasa pemulihan tersebut tidak valid. Periksa kembali kata-katanya dan coba lagi.',
     invalidPrivateKey: 'Kunci pribadi tersebut tidak valid.',
@@ -329,6 +327,16 @@ export default {
     incorrectUnlockPassword: 'Kata sandi pembuka yang salah.',
     recoveryPhraseNotSetUp: 'Frasa pemulihan belum diatur untuk brankas ini.',
     passwordNotSetUp: 'Kata sandi tidak diatur untuk brankas ini.',
+    passkeyOperationFailedDetail:
+      'Operasi kunci sandi gagal ({detail}). Jika pengelola kunci sandi atau sinkronisasi browser Anda meminta Anda untuk masuk, memverifikasi identitas Anda, atau memasukkan frasa sandi, selesaikan proses tersebut dan coba lagi — atau gunakan frasa pemulihan Anda sebagai gantinya.',
+    passkeyAlreadyRegistered:
+      'Perangkat ini sudah memiliki frasa sandi wwwallet. Hapus frasa tersebut dari pengelola frasa sandi Anda, lalu coba lagi.',
+    passkeyNotSupportedHere:
+      'Penyedia kunci sandi pada perangkat ini tidak dapat membuat kunci sandi jenis ini. Cobalah menggunakan ponsel atau kunci keamanan sebagai gantinya, atau atur kata sandi untuk membuka kunci.',
+    passkeyNeedsScreenLock:
+      'Atur kunci layar (sidik jari, pengenalan wajah, atau PIN) pada perangkat ini terlebih dahulu, lalu coba lagi.',
+    passkeyProviderNotReady:
+      'Pengelola kata sandi Anda tidak dapat menyimpan kata sandi tersebut. Jika aplikasi tersebut menunggu Anda untuk masuk, memverifikasi identitas Anda, atau memasukkan frasa sandi sinkronisasi (misalnya, Google Password Manager saat sinkronisasi Chrome dijeda), selesaikan proses tersebut, lalu coba lagi.',
   },
   accountCard: {
     copyAddress: 'Salin alamatnya',

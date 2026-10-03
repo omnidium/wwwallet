@@ -306,8 +306,6 @@ export default {
     passkeyNotSetUp: 'Selle hoiukambri jaoks ei ole parooli seadistatud.',
     vaultLocked: 'hoiukamber on lukustatud',
     chooseKeystoreFile: 'Vali võtmehoidja fail',
-    passkeyOperationFailed:
-      'Parooli sisestamine ebaõnnestus. Proovi uuesti või kasuta selle asemel oma taastamislauset.',
     invalidMnemonic:
       'See taastamislause ei ole kehtiv. Kontrollige sõnu veel kord ja proovige uuesti.',
     invalidPrivateKey: 'See privaatvõti ei ole kehtiv.',
@@ -325,6 +323,16 @@ export default {
     incorrectUnlockPassword: 'Vale avamissõna.',
     recoveryPhraseNotSetUp: 'Selle hoiukoha jaoks pole taastamislause seadistatud.',
     passwordNotSetUp: 'Sellele hoiukambrile ei ole parooli seatud.',
+    passkeyOperationFailedDetail:
+      'Paroolivõtme operatsioon ebaõnnestus ({detail}). Kui teie paroolivõtme haldur või brauseri sünkroniseerimine ootab, et te sisse logiksite, oma isikut kinnitaksite või sisestaksite paroolifraasi, viige see lõpule ja proovige uuesti – või kasutage selle asemel oma taastamisfraasi.',
+    passkeyAlreadyRegistered:
+      'Sellel seadmel on juba wwwallet’i parool. Eemalda see oma paroolihaldurist ja proovi uuesti.',
+    passkeyNotSupportedHere:
+      'Selle seadme paroolipakkuja ei saa sellist parooli luua. Proovi selle asemel telefoni või turvavõtit või määra lukustuse avamise parool.',
+    passkeyNeedsScreenLock:
+      'Seadista sellele seadmele esmalt ekraanilukk (sõrmejälg, näotuvastus või PIN-kood) ja proovi uuesti.',
+    passkeyProviderNotReady:
+      'Teie paroolihaldur ei suutnud parooli salvestada. Kui rakendus ootab, et te sisse logiksite, oma isikut kinnitaksite või sisestaksite sünkroniseerimise parooli (nt Google’i paroolihaldur, kui Chrome’i sünkroniseerimine on peatatud), viige see lõpule ja proovige uuesti.',
   },
   accountCard: {
     copyAddress: 'Kopeeri aadress',

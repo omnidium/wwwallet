@@ -30,12 +30,40 @@ export class PrfNotSupportedError extends TranslatedError {
  * "cancelled/timed out" case still gets a translated, if generic, fallback
  * rather than that raw platform text.
  */
+// The other failures WebAuthn names, each with something the user can act on.
+const CEREMONY_ERRORS: Record<string, string> = {
+  // An authenticator says it already holds a credential for this — rare
+  // here, since none are excluded, but some providers report it anyway.
+  InvalidStateError: 'errors.passkeyAlreadyRegistered',
+  // No authenticator here can do what was asked (this kind of passkey, on
+  // this device or provider).
+  NotSupportedError: 'errors.passkeyNotSupportedHere',
+  // User verification required, but nothing to verify with — usually no
+  // screen lock, fingerprint or face unlock set up.
+  ConstraintError: 'errors.passkeyNeedsScreenLock',
+  // The passkey provider itself failed — on Android, the names Credential
+  // Manager reports when, say, Google Password Manager can't open its
+  // end-to-end-encrypted store because Chrome sync is paused waiting for a
+  // passphrase or "verify it's you". Seen in practice (sync paused on a
+  // Pixel), though which of the two names it was isn't known.
+  NotReadableError: 'errors.passkeyProviderNotReady',
+  UnknownError: 'errors.passkeyProviderNotReady',
+}
+
 async function runCeremony<T>(promise: Promise<T>, cancelledKey: string): Promise<T> {
   try {
     return await promise
   } catch (err) {
     if (err instanceof DOMException && err.name === 'NotAllowedError') throw translatedError(cancelledKey)
-    throw translatedError('errors.passkeyOperationFailed')
+    // Kept for remote debugging (e.g. chrome://inspect on a phone): the
+    // message shown is translated and short, this is the platform's own.
+    console.error('Passkey operation failed', err)
+    // Read off any object, not just an Error: a DOMException isn't one everywhere.
+    const name = typeof (err as { name?: unknown } | null)?.name === 'string' ? (err as { name: string }).name : ''
+    const known = CEREMONY_ERRORS[name]
+    if (known) throw translatedError(known)
+    // Anything else still names what the platform said, so it can be reported.
+    throw translatedError('errors.passkeyOperationFailedDetail', { detail: name || String(err) })
   }
 }
 
@@ -130,7 +158,12 @@ export async function registerLocalPasskeyWithPrf(
         challenge,
         rp: { name: RP_NAME, id: location.hostname },
         user: { id: userId, name: displayName, displayName },
-        pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
+        // ES256, with RS256 as the spec's recommended fallback — an authenticator
+        // or passkey provider supporting neither fails with NotSupportedError.
+        pubKeyCredParams: [
+          { type: 'public-key', alg: -7 },
+          { type: 'public-key', alg: -257 },
+        ],
         authenticatorSelection: {
           authenticatorAttachment: where === 'device' ? 'platform' : 'cross-platform',
           userVerification: 'required',

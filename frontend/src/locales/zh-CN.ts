@@ -294,7 +294,6 @@ export default {
     passkeyNotSetUp: '此保险库未设置通行密钥。',
     vaultLocked: '保险库已锁定',
     chooseKeystoreFile: '选择一个密钥库文件',
-    passkeyOperationFailed: '密钥操作失败。请重试，或改用您的恢复短语。',
     invalidMnemonic: '该恢复短语无效。请仔细核对单词并重试。',
     invalidPrivateKey: '该私钥无效。',
     invalidKeystoreFile: '无法打开此密钥库文件——可能是文件已损坏，或者密码输入错误。',
@@ -307,6 +306,14 @@ export default {
     incorrectUnlockPassword: '解锁密码错误。',
     recoveryPhraseNotSetUp: '此保险库尚未设置恢复短语。',
     passwordNotSetUp: '此保险库未设置密码。',
+    passkeyOperationFailedDetail:
+      '密钥操作失败 ({detail})。如果您的密钥管理器或浏览器同步功能正在等待您登录、验证身份或输入密码短语，请先完成这些操作后再试一次——或者改用您的恢复短语。',
+    passkeyAlreadyRegistered: '该设备已存在 wwwallet 密钥。请将其从密钥管理器中删除，然后重试。',
+    passkeyNotSupportedHere:
+      '此设备的密钥生成器无法生成此类密钥。请改用手机或安全密钥，或设置解锁密码。',
+    passkeyNeedsScreenLock: '请先在此设备上设置屏幕锁定（指纹、面部识别或 PIN 码），然后重试。',
+    passkeyProviderNotReady:
+      '您的密码管理器无法保存该密码。如果系统正在等待您登录、验证身份或输入同步密码（例如，当 Chrome 同步暂停时，Google 密码管理器会提示），请先完成这些操作，然后重试。',
   },
   accountCard: {
     copyAddress: '复制地址',

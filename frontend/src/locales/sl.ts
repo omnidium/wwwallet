@@ -305,8 +305,6 @@ export default {
     passkeyNotSetUp: 'Za ta trezor ni nastavljen ključ za dostop.',
     vaultLocked: 'trezor je zaklenjen',
     chooseKeystoreFile: 'izberite datoteko s ključi',
-    passkeyOperationFailed:
-      'Operacija z geslom ni uspela. Poskusite znova ali namesto tega uporabite svojo obnovitveno frazo.',
     invalidMnemonic:
       'Ta obnovitvena fraza ni veljavna. Ponovno preverite besede in poskusite znova.',
     invalidPrivateKey: 'Ta zasebni ključ ni veljaven.',
@@ -323,6 +321,16 @@ export default {
     incorrectUnlockPassword: 'Nepravilno geslo za odklepanje.',
     recoveryPhraseNotSetUp: 'Za ta trezor ni nastavljena obnovitvena fraza.',
     passwordNotSetUp: 'Za ta trezor ni nastavljeno geslo.',
+    passkeyOperationFailedDetail:
+      'Operacija z geslom ni uspela ({detail}). Če vaš upravitelj gesel ali sinhronizacija brskalnika čaka, da se prijavite, potrdite svojo identiteto ali vnesete geslo, to najprej opravite in poskusite znova – ali pa namesto tega uporabite svojo obnovitveno frazo.',
+    passkeyAlreadyRegistered:
+      'Ta naprava že ima geslo za wwwallet. Odstranite ga iz upravitelja gesel, nato poskusite znova.',
+    passkeyNotSupportedHere:
+      'Ponudnik gesel za to napravo ne more ustvariti te vrste gesla. Namesto tega poskusite z mobilnim telefonom ali varnostnim ključem ali nastavite geslo za odklepanje.',
+    passkeyNeedsScreenLock:
+      'Najprej nastavite zaklepanje zaslona (prstni odtis, prepoznavanje obraza ali PIN) na tej napravi, nato poskusite znova.',
+    passkeyProviderNotReady:
+      'Vaš upravitelj gesel ni mogel shraniti gesla. Če čaka, da se prijavite, potrdite svojo identiteto ali vnesite geslo za sinhronizacijo (npr. Google Password Manager, ko je sinhronizacija Chrome začasno ustavljena), to najprej opravite, nato pa poskusite znova.',
   },
   accountCard: {
     copyAddress: 'Kopirajte naslov',

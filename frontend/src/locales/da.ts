@@ -307,8 +307,6 @@ export default {
     passkeyNotSetUp: 'Der er ikke oprettet en adgangskode til denne opbevaringsplads.',
     vaultLocked: 'Boks er låst',
     chooseKeystoreFile: 'Vælg en nøglefil',
-    passkeyOperationFailed:
-      'Adgangsnøglen kunne ikke bruges. Prøv igen, eller brug i stedet din gendannelsesfrase.',
     invalidMnemonic: 'Den gendannelsesfrase er ikke gyldig. Tjek ordene igen, og prøv på ny.',
     invalidPrivateKey: 'Den private nøgle er ikke gyldig.',
     invalidKeystoreFile:
@@ -325,6 +323,16 @@ export default {
     incorrectUnlockPassword: 'Forkert adgangskode til oplåsning.',
     recoveryPhraseNotSetUp: 'Der er ikke oprettet en gendannelsesfrase for denne wallet.',
     passwordNotSetUp: 'Der er ikke oprettet en adgangskode til denne opbevaringsplads.',
+    passkeyOperationFailedDetail:
+      'Passkey-operationen mislykkedes ({detail}). Hvis din passkey-manager eller browsersynkronisering venter på, at du logger ind, bekræfter, at det er dig, eller indtaster en adgangskode, skal du afslutte det og prøve igen — eller bruge din gendannelsesfrase i stedet.',
+    passkeyAlreadyRegistered:
+      'Denne enhed har allerede en wwwallet-adgangsnøgle. Fjern den fra din adgangsnøgleadministrator, og prøv derefter igen.',
+    passkeyNotSupportedHere:
+      'Denne enheds adgangskodeudbyder kan ikke oprette denne type adgangskode. Prøv i stedet en telefon eller en sikkerhedsnøgle, eller indstil en oplåsningsadgangskode.',
+    passkeyNeedsScreenLock:
+      'Indstil først en skærmlås (fingeraftryk, ansigtsgenkendelse eller PIN-kode) på denne enhed, og prøv derefter igen.',
+    passkeyProviderNotReady:
+      'Din adgangskodeadministrator kunne ikke gemme adgangskoden. Hvis den venter på, at du logger ind, bekræfter, at det er dig, eller indtaster en synkroniseringsadgangskode (f.eks. Google Password Manager, når Chrome-synkronisering er sat på pause), skal du afslutte det og derefter prøve igen.',
   },
   accountCard: {
     copyAddress: 'Kopier adressen',

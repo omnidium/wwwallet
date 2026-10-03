@@ -310,8 +310,6 @@ export default {
     passkeyNotSetUp: 'Cheia de acces nu este configurată pentru acest seif.',
     vaultLocked: 'seiful este blocat',
     chooseKeystoreFile: 'Alegeți un fișier de stocare a cheilor',
-    passkeyOperationFailed:
-      'Operațiunea cu cheia de acces a eșuat. Încercați din nou sau folosiți în schimb fraza de recuperare.',
     invalidMnemonic:
       'Această frază de recuperare nu este validă. Verificați din nou cuvintele și încercați din nou.',
     invalidPrivateKey: 'Cheia privată respectivă nu este validă.',
@@ -330,6 +328,16 @@ export default {
     incorrectUnlockPassword: 'Parolă de deblocare incorectă.',
     recoveryPhraseNotSetUp: 'Fraza de recuperare nu este configurată pentru acest seif.',
     passwordNotSetUp: 'Nu este configurată nicio parolă pentru acest seif.',
+    passkeyOperationFailedDetail:
+      'Operațiunea cu cheia de acces a eșuat ({detail}). Dacă managerul de chei de acces sau sincronizarea browserului așteaptă să vă autentificați, să confirmați că sunteți dvs. sau să introduceți o frază de acces, finalizați acest pas și încercați din nou — sau utilizați în schimb fraza de recuperare.',
+    passkeyAlreadyRegistered:
+      'Acest dispozitiv are deja o parolă wwwallet. Ștergeți-o din managerul de parole, apoi încercați din nou.',
+    passkeyNotSupportedHere:
+      'Furnizorul de chei de acces al acestui dispozitiv nu poate crea acest tip de cheie de acces. Încercați în schimb un telefon sau o cheie de securitate, sau setați o parolă de deblocare.',
+    passkeyNeedsScreenLock:
+      'Configurați mai întâi o blocare a ecranului (amprentă digitală, recunoaștere facială sau cod PIN) pe acest dispozitiv, apoi încercați din nou.',
+    passkeyProviderNotReady:
+      'Managerul dvs. de chei de acces nu a putut salva cheia de acces. Dacă vă solicită să vă autentificați, să confirmați identitatea sau să introduceți o frază de sincronizare (de exemplu, Google Password Manager când sincronizarea Chrome este întreruptă), finalizați acea operațiune, apoi încercați din nou.',
   },
   accountCard: {
     copyAddress: 'Copiați adresa',
