@@ -42,6 +42,12 @@ async function addAccount(page: Page, label: string) {
   await page.getByRole('button', { name: 'Add account' }).click()
 
   await expect(page).toHaveURL(/\/$/)
+
+  // A new account with no passkey set up brings up the passkey nudge
+  // (PasskeyNudge.vue) as a dialog over the accounts screen — declined here,
+  // as the vault was set up without quick unlock.
+  await page.getByRole('button', { name: 'Not now' }).click()
+  await expect(page.getByRole('button', { name: 'Not now' })).toBeHidden()
 }
 
 test('create a vault, add a wallet, and confirm it survives a reload', async ({ page }) => {
