@@ -12,64 +12,64 @@ use crate::state::AppState;
 pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
     Router::new()
         .route(
-            "/api/v1/chains/:chain/address/:address",
+            "/api/v1/chains/{chain}/address/{address}",
             get(chains::address_activity),
         )
         .route(
-            "/api/v1/chains/:chain/address/:address/transactions/more",
+            "/api/v1/chains/{chain}/address/{address}/transactions/more",
             post(chains::transaction_page),
         )
         .route(
-            "/api/v1/chains/:chain/token/:address",
+            "/api/v1/chains/{chain}/token/{address}",
             get(chains::token_metadata),
         )
         .route(
-            "/api/v1/chains/:chain/token/:address/price-history",
+            "/api/v1/chains/{chain}/token/{address}/price-history",
             get(chains::token_price_history),
         )
         .route(
-            "/api/v1/chains/:chain/tokens",
+            "/api/v1/chains/{chain}/tokens",
             get(chains::token_list),
         )
         .route(
-            "/api/v1/chains/:chain/native-price",
+            "/api/v1/chains/{chain}/native-price",
             get(chains::native_price),
         )
         .route(
-            "/api/v1/chains/:chain/native-price-history",
+            "/api/v1/chains/{chain}/native-price-history",
             get(chains::native_price_history),
         )
         .route(
-            "/api/v1/chains/:chain/abi/:address",
+            "/api/v1/chains/{chain}/abi/{address}",
             get(chains::contract_abi),
         )
         .route(
-            "/api/v1/chains/:chain/tx-prep/:address",
+            "/api/v1/chains/{chain}/tx-prep/{address}",
             get(chains::transaction_prep),
         )
         .route(
-            "/api/v1/chains/:chain/broadcast",
+            "/api/v1/chains/{chain}/broadcast",
             post(chains::broadcast_transaction),
         )
         .route(
-            "/api/v1/chains/:chain/tx-status/:hash",
+            "/api/v1/chains/{chain}/tx-status/{hash}",
             get(chains::transaction_status),
         )
         .route(
-            "/api/v1/chains/:chain/tx-fee/:hash",
+            "/api/v1/chains/{chain}/tx-fee/{hash}",
             get(chains::transaction_fee),
         )
         .route(
-            "/api/v1/chains/:chain/historical-price",
+            "/api/v1/chains/{chain}/historical-price",
             get(chains::historical_price),
         )
-        .route("/api/v1/chains/:chain/allowance", get(chains::allowance))
-        .route("/api/v1/chains/:chain/swap-quote", get(chains::swap_quote))
+        .route("/api/v1/chains/{chain}/allowance", get(chains::allowance))
+        .route("/api/v1/chains/{chain}/swap-quote", get(chains::swap_quote))
         .route("/api/v1/bridge/quote", get(chains::bridge_quote))
         .route("/api/v1/bridge/status", get(chains::bridge_status))
         .route("/api/v1/fx-rates", get(chains::fx_rates))
         .route("/api/v1/coins/search", get(markets::coin_search))
-        .route("/api/v1/coins/:id/price-history", get(markets::coin_price_history))
+        .route("/api/v1/coins/{id}/price-history", get(markets::coin_price_history))
         .route("/api/v1/fx-history", get(markets::fx_history))
         .route("/api/v1/session/challenge", get(session::challenge))
         .route("/api/v1/session", post(session::redeem))

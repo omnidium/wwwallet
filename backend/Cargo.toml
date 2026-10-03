@@ -12,7 +12,7 @@ crate-type = ["cdylib", "rlib"]
 worker.workspace = true
 serde.workspace = true
 serde_json.workspace = true
-axum = { version = "0.7", default-features = false, features = ["json", "query"] }
+axum = { version = "0.8", default-features = false, features = ["json", "query"] }
 tower = { version = "0.5", default-features = false }
 tower-http = { version = "0.6", default-features = false, features = ["cors"] }
 
@@ -21,8 +21,8 @@ wwwallet-providers = { path = "providers" }
 # Session tokens (src/session.rs): HMAC-signed, stateless, minted by proof
 # of work. getrandom's "js" feature draws from the Workers runtime's
 # crypto.getRandomValues.
-sha2 = "0.10"
-hmac = "0.12"
+sha2 = "0.11"
+hmac = "0.13"
 base64 = "0.23"
 getrandom = { version = "0.2", features = ["js"] }
 
