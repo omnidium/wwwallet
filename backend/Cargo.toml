@@ -23,7 +23,7 @@ wwwallet-providers = { path = "providers" }
 # crypto.getRandomValues.
 sha2 = "0.10"
 hmac = "0.12"
-base64 = "0.22"
+base64 = "0.23"
 getrandom = { version = "0.2", features = ["js"] }
 
 [package.metadata.wasm-pack.profile.release]
