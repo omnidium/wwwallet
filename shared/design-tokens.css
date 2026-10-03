@@ -85,7 +85,7 @@
    --ink-1: #0a7d5c;
    --ink-2: #04807e;
    --ink-3: #0566b8;
-   --flash-hue: #678f92;
+   --flash-hue: #c7b67f;
 
    /* Secondary brand blue and the app's semantic transaction/link/warning
      accents — unrelated to the favicon gradient above, carried over as-is
@@ -115,7 +115,7 @@
 :root[data-theme='dark'] {
    --bg: #0d1f1a;
    --bg-alt: #122820;
-   --bg-rgb: 13 31 26;
+   --bg-rgb: 18 53 64;
    --on-bg-rgb: 255 255 255;
    --surface-rgb: 24 42 36;
    --on-surface-rgb: 255 255 255;
@@ -133,6 +133,7 @@
    --ink-2: var(--grad-3);
    --ink-3: var(--grad-4);
    --flash-hue: #88f3e5;
+   --test: rgb(18, 53, 94);
 
    /* Light enough to read as text/icon color on the dark surfaces — which is
      all they're used as (transaction amounts and arrows, price changes). */

@@ -47,7 +47,7 @@ const FLASH_AT = 0.95
  *  every flash to be the same. */
 const FLASH_COLOUR: string | null = 'var(--flash-hue)' //null
 /** Brightness at the burst's peak, from 0 (invisible) to 1 (full). */
-const FLASH_PEAK_OPACITY = 0.8
+const FLASH_PEAK_OPACITY = 0.95
 /** Seconds from nothing to full brightness: the "burst". Keep it short. */
 const FLASH_BURST_SECONDS = 0.05
 /** Seconds the glow around the node takes to fade out after the burst. */

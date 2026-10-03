@@ -2176,8 +2176,8 @@ html.pane-open {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(120vw, 118vh);
-  height: min(120vw, 118vh);
+  height: 95vh;
+  width: auto;
 }
 
 /* On a phone the width would cap it at well under half the screen, so it's
@@ -2185,10 +2185,8 @@ html.pane-open {
  * the globe spanning top to bottom and cropped at the sides. */
 @media (max-width: 600px) {
   .lock-watermark .hero-graphic.hero-graphic--fill {
-    width: 118vh;
-    height: 118vh;
-    width: 118dvh;
-    height: 118dvh;
+    height: 95vh;
+    width: auto
   }
 }
 
