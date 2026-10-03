@@ -17,16 +17,27 @@ website/node_modules/
 website/dist/
 website/.vite/
 
-# Env / secrets
+# Env / secrets — including the .example templates, which document setup
+# locally but aren't needed to build, test or deploy.
 .env
 .env.*
-!.env.example
-backend/.dev.vars
-!backend/.dev.vars.example
+backend/.dev.vars*
 
 # OS / editor
 .DS_Store
 *.swp
+*.code-workspace
+.editorconfig
+.prettierrc*
+
+# Only what's needed to build, test or deploy the app, website and backend
+# is kept in the repo. Local-only tools and leftovers:
+frontend/zz-shots/
+frontend/scripts/
+website/scripts/sync-locales.mjs
+shared/frontend-public/icons/*_old.*
+shared/frontend-public/icons/*maskable2.*
+shared/frontend-public/icons/*.py
 
 # Never carry these kinds of artifacts into this repo (see migration plan):
 # full project backups/tarballs, python venvs, checked-in TLS certs, service-account keys
@@ -41,4 +52,4 @@ google_api.json
 .playwright-mcp/
 
 docs/
-.*
+.cheat_sheet.txt
