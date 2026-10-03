@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useTheme } from 'vuetify'
 import { useI18n } from 'vue-i18n'
@@ -132,7 +133,7 @@ watch(() => route.fullPath, () => {
       @update:model-value="messages.dismiss(message.id)"
     >
       <v-icon v-if="message.severity !== 'success'" icon="mdi-alert" class="mr-2" />
-      {{ message.text }}
+      <BrandText :text="message.text" />
 
       <template #actions>
         <AppTooltip :text="t('nav.dismiss')">

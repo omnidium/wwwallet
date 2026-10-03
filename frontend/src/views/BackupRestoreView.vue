@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -82,7 +83,7 @@ function proceedWithRestore() {
       <h1 class="text-h5">{{ t('backup.title') }}</h1>
     </div>
     <v-alert type="info" variant="tonal" class="mt-6">
-      {{ t('backup.intro') }}
+      <BrandText :text="t('backup.intro')" />
     </v-alert>
 
     <!-- The two cards stacked (the pane is narrow at every screen size); the

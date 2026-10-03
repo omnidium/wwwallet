@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { useI18n } from 'vue-i18n'
 import LineIcon, { type IconName } from '../ui/LineIcon.vue'
 
@@ -25,15 +26,15 @@ const ICONS: IconName[] = [
 <template>
   <section id="principles" class="section principles">
     <div class="container">
-      <p class="section-eyebrow">{{ t('principles.eyebrow') }}</p>
+      <p class="section-eyebrow"><BrandText :text="t('principles.eyebrow')" /></p>
       <h2 class="section-heading">{{ t('principles.heading') }}</h2>
-      <p class="section-lede">{{ t('principles.lede') }}</p>
+      <p class="section-lede"><BrandText :text="t('principles.lede')" /></p>
       <ul class="principles-grid">
         <li v-for="(item, index) in tm('principles.items') as Principle[]" :key="index" class="principle">
           <span class="principle-icon"><LineIcon :name="ICONS[index] ?? 'mesh'" :size="22" /></span>
           <div>
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.body }}</p>
+            <h3><BrandText :text="item.title" /></h3>
+            <p><BrandText :text="item.body" /></p>
           </div>
         </li>
       </ul>

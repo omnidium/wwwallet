@@ -268,8 +268,8 @@ function openInNewTab(url: string): void {
     <EditAccountDialog v-model="editOpen" :account="account" />
     <HideAccountConfirmDialog v-model="hideOpen" :account="account" />
     <SecretRevealDialog v-model="revealPrivateKeyOpen" :title="t('accountCard.viewPrivateKey')"
-      :secret-noun="t('accountCard.privateKeyNoun')" :secret="account.privateKey" />
+      kind="privateKey" :secret="account.privateKey" />
     <SecretRevealDialog v-if="account.mnemonic" v-model="revealMnemonicOpen" :title="t('accountCard.viewMnemonic')"
-      :secret-noun="t('accountCard.mnemonicNoun')" :secret="account.mnemonic" />
+      kind="mnemonic" :secret="account.mnemonic" />
   </v-card>
 </template>

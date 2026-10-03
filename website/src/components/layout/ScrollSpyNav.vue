@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { useI18n } from 'vue-i18n'
 import { useScrollSpy } from '@/composables/useScrollSpy'
 
@@ -29,7 +30,7 @@ function onNavClick(id: string, event: MouseEvent) {
       <li v-for="section in sections" :key="section.id">
         <a :href="`#${section.id}`" :class="{ active: activeId === section.id }"
           @click="onNavClick(section.id, $event)">
-          {{ t(section.label) }}
+          <BrandText :text="t(section.label)" />
         </a>
       </li>
     </ul>

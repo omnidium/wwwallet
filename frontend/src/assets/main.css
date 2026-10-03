@@ -716,6 +716,12 @@ input[type='number'] {
   --pane-max-height: 90vh;
 }
 
+/* See PaneOverlay.vue. */
+html.pane-open {
+  overflow: hidden;
+  padding-right: var(--pane-scrollbar-width, 0px);
+}
+
 .pane-scrim {
   position: fixed;
   inset: 0;
@@ -742,6 +748,9 @@ input[type='number'] {
   max-width: 60vw;
   max-height: var(--pane-max-height);
   overflow-y: auto;
+  /* Reaching the top or bottom of the pane stops there, rather than
+   * handing the rest of the scroll to whatever's behind it. */
+  overscroll-behavior: contain;
   padding: 1em;
   border-radius: 0.5em;
   background: linear-gradient(160deg, rgb(var(--v-theme-surface) / 1), rgb(var(--v-theme-surface-variant) / 1));
@@ -1000,10 +1009,31 @@ input[type='number'] {
 }
 
 .settings-version {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
   margin-top: auto;
   margin-bottom: 0rem;
-  font-size: 0.7rem;
-  justify-items: end;
+  font-size: 0.8rem;
+}
+
+.settings-license-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgb(var(--v-theme-primary));
+  font: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.settings-license-link:hover {
+  text-decoration: underline;
+}
+
+.settings-license-link:focus-visible {
+  outline: 2px solid rgb(var(--v-theme-primary));
+  outline-offset: 2px;
 }
 
 .settings-back {
@@ -1069,8 +1099,35 @@ input[type='number'] {
 }
 
 .favourite-search-row {
-  padding: 0.2em 0;
+  width: 100%;
   min-width: 0;
+  min-height: 44px;
+  padding: 0.4em 0.5em;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.favourite-search-row:hover:not(:disabled) {
+  background: rgb(var(--border-rgb) / 8%);
+}
+
+.favourite-search-row:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+/* Already a favourite: a tick instead, and nothing to do on a tap. */
+.favourite-search-row:disabled {
+  cursor: default;
+}
+
+.favourite-search-added {
+  color: rgb(var(--v-theme-primary));
 }
 
 .favourite-change {
@@ -1952,6 +2009,7 @@ input[type='number'] {
   gap: 8px;
   margin-top: 8px;
 }
+
 /* LicenseDialog.vue */
 .license-card {
   border-radius: var(--radius-lg) !important;
@@ -2083,7 +2141,7 @@ input[type='number'] {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.25;
 }
 
 :root[data-theme='dark'] .lock-watermark {
@@ -2102,6 +2160,18 @@ input[type='number'] {
   transform: translate(-50%, -50%);
   width: min(120vw, 118vh);
   height: min(120vw, 118vh);
+}
+
+/* On a phone the width would cap it at well under half the screen, so it's
+ * sized by the visible height instead (dvh: between the browser's toolbars),
+ * the globe spanning top to bottom and cropped at the sides. */
+@media (max-width: 600px) {
+  .lock-watermark .hero-graphic.hero-graphic--fill {
+    width: 118vh;
+    height: 118vh;
+    width: 118dvh;
+    height: 118dvh;
+  }
 }
 
 .lock-screen {

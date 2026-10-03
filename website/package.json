@@ -9,7 +9,7 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:e2e": "playwright test",
-    "build-only": "vite build",
+    "build-only": "vite build && vite build --ssr src/entry-server.ts --outDir dist-ssr && node scripts/prerender.mjs",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write --experimental-cli src/",

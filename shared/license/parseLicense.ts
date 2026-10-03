@@ -8,6 +8,10 @@
 // headings, blank-line-separated paragraphs (a lone line ending a paragraph
 // is joined to it), and `<https://…>` autolinks. Output is plain data, never
 // HTML — the panels render it as elements, so nothing is ever injected.
+//
+// The "Required Notice:" line's bare repo URL is left out of what's shown:
+// the panels link to the repo themselves ("View source on GitHub"), so it
+// would only repeat that link as raw text at the top of the licence.
 
 export type LicenseInline = { text: string } | { href: string }
 
@@ -17,6 +21,7 @@ export type LicenseBlock =
   | { kind: 'paragraph'; parts: LicenseInline[] }
 
 const AUTOLINK = /<(https?:\/\/[^>\s]+)>/g
+const PARENTHESISED_URL = /\s*\(https?:\/\/[^)\s]+\)/g
 
 function inlineParts(text: string): LicenseInline[] {
   const parts: LicenseInline[] = []
@@ -37,7 +42,11 @@ export function parseLicense(source: string): LicenseBlock[] {
     if (!text) continue
     if (text.startsWith('## ')) blocks.push({ kind: 'heading', text: text.slice(3).trim() })
     else if (text.startsWith('# ')) blocks.push({ kind: 'title', text: text.slice(2).trim() })
-    else blocks.push({ kind: 'paragraph', parts: inlineParts(text.replace(/\s*\n\s*/g, ' ')) })
+    else {
+      let paragraph = text.replace(/\s*\n\s*/g, ' ')
+      if (paragraph.startsWith('Required Notice:')) paragraph = paragraph.replace(PARENTHESISED_URL, '')
+      blocks.push({ kind: 'paragraph', parts: inlineParts(paragraph) })
+    }
   }
   return blocks
 }

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import LineIcon, { type IconName } from './LineIcon.vue'
 
 defineProps<{ title: string; body: string; icon?: IconName }>()
@@ -9,8 +10,8 @@ defineProps<{ title: string; body: string; icon?: IconName }>()
     <span v-if="icon" class="point-icon">
       <LineIcon :name="icon" :size="22" />
     </span>
-    <h3>{{ title }}</h3>
-    <p>{{ body }}</p>
+    <h3><BrandText :text="title" /></h3>
+    <p><BrandText :text="body" /></p>
   </article>
 </template>
 

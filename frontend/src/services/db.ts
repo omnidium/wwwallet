@@ -4,6 +4,10 @@ import Dexie, { type EntityTable } from 'dexie'
 type KeyWrap =
   | { method: 'mnemonic'; iv: ArrayBuffer; wrappedKey: ArrayBuffer }
   | { method: 'passkeyPrf'; credentialId: ArrayBuffer; prfSalt: ArrayBuffer; iv: ArrayBuffer; wrappedKey: ArrayBuffer }
+  // A user-chosen unlock password, for devices that can't do a passkey —
+  // see crypto/vault.ts's addPasswordWrap. The KDF parameters travel with
+  // it so they can be raised later without stranding older wraps.
+  | { method: 'password'; salt: ArrayBuffer; iterations: number; iv: ArrayBuffer; wrappedKey: ArrayBuffer }
 
 
 /**

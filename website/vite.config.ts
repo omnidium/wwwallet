@@ -2,9 +2,13 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { getAppVersion } from '../shared/config/appVersion'
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    __APP_VERSION__: JSON.stringify(getAppVersion()),
+  },
   plugins: [vue()],
   resolve: {
     // A shared/ component imports 'vue' from outside this project, where

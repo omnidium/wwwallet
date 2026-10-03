@@ -95,14 +95,19 @@ onMounted(async () => {
   await Promise.allSettled([metadataLoad, ...loaders])
 })
 
+// The balance entry carries its own decimals, so this doesn't wait on (or
+// need) the token's metadata.
 const amountHeld = computed(() => {
-  if (!metadata.value || !heldBalance.value) return null
-  return toHumanAmount(heldBalance.value.balance, metadata.value.decimals ?? heldBalance.value.decimals)
+  if (!heldBalance.value) return null
+  return toHumanAmount(heldBalance.value.balance, metadata.value?.decimals ?? heldBalance.value.decimals)
 })
 
+// Priced like the current-price row above it — the metadata's price can be
+// missing (the token price lookup is the most rate-limited upstream call)
+// while the price history has one, and the two rows must never disagree.
 const totalFormatted = computed(() => {
-  if (amountHeld.value === null || metadata.value?.usd_price == null) return null
-  const usd = amountHeld.value * metadata.value.usd_price
+  if (amountHeld.value === null || currentPriceUsd.value === null) return null
+  const usd = amountHeld.value * currentPriceUsd.value
   return formatFiat(
     convertUsd(usd, settingsLocale.currency, chainData.fxRates),
     settingsLocale.currency,
@@ -176,8 +181,8 @@ const tokenTransactions = computed(
 )
 const visibleTokenTransactions = computed(() => {
   if (!hideDustTxns.value) return tokenTransactions.value
-  const priceUsd = metadata.value?.usd_price
-  if (priceUsd == null) return tokenTransactions.value
+  const priceUsd = currentPriceUsd.value
+  if (priceUsd === null) return tokenTransactions.value
   return tokenTransactions.value.filter((t) => Number(t.value) * priceUsd >= DUST_THRESHOLD_USD)
 })
 const transactionGroups = computed(() => groupTransactionsByDate(visibleTokenTransactions.value, locale.value))

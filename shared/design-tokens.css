@@ -14,137 +14,139 @@
    by eye) so the override is visually identical to what Vuetify generated
    before this file existed. */
 :root {
-  --font-heading: 'Manrope', system-ui, sans-serif;
-  --font-body: 'Roboto', system-ui, sans-serif;
+   --font-heading: 'Manrope', system-ui, sans-serif;
+   --font-body: 'Roboto', system-ui, sans-serif;
 
-  /* Brand gradient — sampled directly from the app's current favicon.ico
+   /* Brand gradient — sampled directly from the app's current favicon.ico
      (green -> teal -> cyan -> blue), not the app's flatter Vuetify tokens. */
-  --grad-1: #7ef0ad;
-  --grad-2: #51f2cd;
-  --grad-3: #20f4ed;
-  --grad-4: #0494fc;
-  --gradient-brand: linear-gradient(135deg,
-      var(--grad-1) 0%,
-      var(--grad-2) 35%,
-      var(--grad-3) 60%,
-      var(--grad-4) 100%);
+   --grad-1: #7ef0ad;
+   --grad-2: #51f2cd;
+   --grad-3: #20f4ed;
+   --grad-4: #0494fc;
+   --gradient-brand: linear-gradient(135deg,
+         var(--grad-1) 0%,
+         var(--grad-2) 35%,
+         var(--grad-3) 60%,
+         var(--grad-4) 100%);
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-full: 999px;
+   --radius-sm: 8px;
+   --radius-md: 14px;
+   --radius-lg: 20px;
+   --radius-full: 999px;
 
-  --shadow-fab: 0 4px 16px rgb(0 0 0 / 25%);
-  --shadow-panel: 0 12px 40px rgb(0 0 0 / 35%);
-  --shadow-card: 0 2px 12px rgb(0 0 0 / 6%);
-  --blur-glass: 14px;
+   --shadow-fab: 0 4px 16px rgb(0 0 0 / 25%);
+   --shadow-panel: 0 12px 40px rgb(0 0 0 / 35%);
+   --shadow-card: 0 2px 12px rgb(0 0 0 / 6%);
+   --blur-glass: 14px;
 
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 10px;
-  --space-4: 24px;
-  --space-5: 40px;
-  --space-6: 64px;
-  --space-7: 96px;
+   --space-1: 4px;
+   --space-2: 8px;
+   --space-3: 10px;
+   --space-4: 24px;
+   --space-5: 40px;
+   --space-6: 64px;
+   --space-7: 96px;
 
-  --container-max: 1080px;
-  --header-height: 32px;
+   --container-max: 1080px;
+   --header-height: 32px;
 
-  /* Sunken-panel effect for the expanded transaction/token list (see
+   /* Sunken-panel effect for the expanded transaction/token list (see
      .expanded-list in frontend/src/assets/main.css) — starts flush with the
      surrounding card's own surface color, fading to something visibly
      darker/greyer so the panel actually reads as recessed. Needs its own
      dark-mode override below: unlike --surface-rgb/--surface-variant-rgb,
      reusing those for both stops produced zero visible contrast against the
      card's own identical surface-to-surface-variant background. */
-  --exp-txns-bg1: #ffffff;
-  --exp-txns-bg2: #eeeeee;
-  --border-opacity: 0.2;
+   --exp-txns-bg1: #ffffff;
+   --exp-txns-bg2: #eeeeee;
+   --border-opacity: 0.2;
 
-  /* Light mode (default) */
-  --bg: #f4fbf8;
-  --bg-alt: #e9f5f0;
-  --bg-rgb: 244 251 248;
-  --on-bg-rgb: 0 0 0;
-  --surface-rgb: 255 255 255;
-  --on-surface-rgb: 0 0 0;
-  --surface-variant-rgb: 218 220 236;
-  --on-surface-variant-rgb: 0 0 0;
-  --text: #0d1f1a;
-  --text-muted: #4d5f59;
-  --border-rgb: 13 31 26;
-  --accent: #04918f;
-  --accent-rgb: 4 145 143;
-  --on-accent-rgb: 255 255 255;
-  --focus-ring: #04918f;
-  /* "Ink" versions of the accent and brand gradient for text on the light
+   /* Light mode (default) */
+   --bg: #f4fbf8;
+   --bg-alt: #e9f5f0;
+   --bg-rgb: 244 251 248;
+   --on-bg-rgb: 0 0 0;
+   --surface-rgb: 255 255 255;
+   --on-surface-rgb: 0 0 0;
+   --surface-variant-rgb: 218 220 236;
+   --on-surface-variant-rgb: 0 0 0;
+   --text: #0d1f1a;
+   --text-muted: #4d5f59;
+   --border-rgb: 13 31 26;
+   --accent: #04918f;
+   --accent-rgb: 4 145 143;
+   --on-accent-rgb: 255 255 255;
+   --focus-ring: #04918f;
+   /* "Ink" versions of the accent and brand gradient for text on the light
      background — the brand stops themselves are 1.3:1 against --bg (and
      --accent 3.7:1), too faint for headings and small links. Each stop here
      is >= 4.5:1. Dark mode just points these back at the brand colors. */
-  --accent-ink: #04807e;
-  --ink-1: #0a7d5c;
-  --ink-2: #04807e;
-  --ink-3: #0566b8;
+   --accent-ink: #04807e;
+   --ink-1: #0a7d5c;
+   --ink-2: #04807e;
+   --ink-3: #0566b8;
+   --flash-hue: #678f92;
 
-  /* Secondary brand blue and the app's semantic transaction/link/warning
+   /* Secondary brand blue and the app's semantic transaction/link/warning
      accents — unrelated to the favicon gradient above, carried over as-is
      from frontend/src/plugins/vuetify.ts's former hand-authored values (see
      this file's own header). error/secondary are identical in both themes,
      so they only need this one entry. */
-  --secondary-rgb: 4 148 252;
-  --on-secondary-rgb: 255 255 255;
-  --error-rgb: 244 67 54;
-  --on-error-rgb: 255 255 255;
-  /* Dark enough to read as text/icon color on the light surfaces — which is
+   --secondary-rgb: 4 148 252;
+   --on-secondary-rgb: 255 255 255;
+   --error-rgb: 244 67 54;
+   --on-error-rgb: 255 255 255;
+   /* Dark enough to read as text/icon color on the light surfaces — which is
      all they're used as (transaction amounts and arrows, price changes). */
-  --send-rgb: 190 30 30;
-  --on-send-rgb: 255 255 255;
-  --receive-rgb: 35 120 35;
-  --on-receive-rgb: 255 255 255;
-  /* Not currently used as a Vuetify color prop anywhere in the app — carried
+   --send-rgb: 190 30 30;
+   --on-send-rgb: 255 255 255;
+   --receive-rgb: 35 120 35;
+   --on-receive-rgb: 255 255 255;
+   /* Not currently used as a Vuetify color prop anywhere in the app — carried
      over for parity with the old vuetify.ts rather than dropped outright. */
-  --link-rgb: 9 9 194;
-  --on-link-rgb: 255 255 255;
-  /* Dark enough to read as text in the tonal info alerts on a light surface
+   --link-rgb: 9 9 194;
+   --on-link-rgb: 255 255 255;
+   /* Dark enough to read as text in the tonal info alerts on a light surface
      (5:1), with white text when it's a fill (toasts — 5.9:1). */
-  --info-rgb: 138 90 0;
-  --on-info-rgb: 255 255 255;
+   --info-rgb: 138 90 0;
+   --on-info-rgb: 255 255 255;
 }
 
 :root[data-theme='dark'] {
-  --bg: #0d1f1a;
-  --bg-alt: #122820;
-  --bg-rgb: 13 31 26;
-  --on-bg-rgb: 255 255 255;
-  --surface-rgb: 24 42 36;
-  --on-surface-rgb: 255 255 255;
-  --surface-variant-rgb: 31 80 60;
-  --on-surface-variant-rgb: 255 255 255;
-  --text: #eef7f3;
-  --text-muted: #9db3ac;
-  --border-rgb: 255 255 255;
-  --accent: #55e8dd;
-  --accent-rgb: 85 232 221;
-  --on-accent-rgb: 0 0 0;
-  --focus-ring: #55e8dd;
-  --accent-ink: #55e8dd;
-  --ink-1: var(--grad-1);
-  --ink-2: var(--grad-3);
-  --ink-3: var(--grad-4);
+   --bg: #0d1f1a;
+   --bg-alt: #122820;
+   --bg-rgb: 13 31 26;
+   --on-bg-rgb: 255 255 255;
+   --surface-rgb: 24 42 36;
+   --on-surface-rgb: 255 255 255;
+   --surface-variant-rgb: 31 80 60;
+   --on-surface-variant-rgb: 255 255 255;
+   --text: #eef7f3;
+   --text-muted: #9db3ac;
+   --border-rgb: 255 255 255;
+   --accent: #55e8dd;
+   --accent-rgb: 85 232 221;
+   --on-accent-rgb: 0 0 0;
+   --focus-ring: #55e8dd;
+   --accent-ink: #55e8dd;
+   --ink-1: var(--grad-1);
+   --ink-2: var(--grad-3);
+   --ink-3: var(--grad-4);
+   --flash-hue: #88f3e5;
 
-  /* Light enough to read as text/icon color on the dark surfaces — which is
+   /* Light enough to read as text/icon color on the dark surfaces — which is
      all they're used as (transaction amounts and arrows, price changes). */
-  --send-rgb: 255 102 102;
-  --receive-rgb: 121 174 87;
-  --link-rgb: 179 179 255;
-  --on-link-rgb: 0 0 0;
-  /* Light enough to read as text in the tonal info alerts on a dark surface
+   --send-rgb: 255 102 102;
+   --receive-rgb: 121 174 87;
+   --link-rgb: 179 179 255;
+   --on-link-rgb: 0 0 0;
+   /* Light enough to read as text in the tonal info alerts on a dark surface
      (6.7:1), with black text when it's a fill (toasts — 12:1). */
-  --info-rgb: 255 183 77;
-  --on-info-rgb: 0 0 0;
+   --info-rgb: 255 183 77;
+   --on-info-rgb: 0 0 0;
 
-  --exp-txns-bg1: #182a24;
-  --exp-txns-bg2: #0d1f1a;
+   --exp-txns-bg1: #182a24;
+   --exp-txns-bg2: #0d1f1a;
 
-  --test: rgb(31, 78, 62);
+   --test: rgb(31, 78, 62);
 }

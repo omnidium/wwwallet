@@ -6,6 +6,8 @@ export type ThemeName = 'light' | 'dark'
 const COOKIE_KEY = 'wwwallet.theme'
 
 function readInitialTheme(): ThemeName {
+  // Prerendering (src/entry-server.ts) has no page to read it from.
+  if (typeof document === 'undefined') return 'light'
   // index.html's inline blocking script already resolved and applied the
   // initial theme (shared cookie, else prefers-color-scheme) before any Vue
   // code runs, so we just read it back rather than re-deriving it.
@@ -31,7 +33,7 @@ function attachSystemPreferenceListener() {
 watch(
   theme,
   (next) => {
-    document.documentElement.setAttribute('data-theme', next)
+    if (typeof document !== 'undefined') document.documentElement.setAttribute('data-theme', next)
   },
   { immediate: true },
 )

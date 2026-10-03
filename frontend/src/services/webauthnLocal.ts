@@ -39,6 +39,54 @@ async function runCeremony<T>(promise: Promise<T>, cancelledKey: string): Promis
   }
 }
 
+export type CapabilityAnswer = 'supported' | 'unsupported' | 'unknown'
+
+/** Where a passkey is created — see registerLocalPasskeyWithPrf. */
+export type PasskeyLocation = 'device' | 'phone' | 'securityKey'
+
+let capabilities: Promise<Record<string, boolean> | null> | null = null
+function clientCapabilities(): Promise<Record<string, boolean> | null> {
+  capabilities ??= (async () => {
+    const getCapabilities = (
+      PublicKeyCredential as unknown as { getClientCapabilities?: () => Promise<Record<string, boolean>> }
+    ).getClientCapabilities
+    if (typeof getCapabilities !== 'function') return null
+    try {
+      return await getCapabilities.call(PublicKeyCredential)
+    } catch {
+      return null
+    }
+  })()
+  return capabilities
+}
+
+async function capability(name: string): Promise<CapabilityAnswer> {
+  if (typeof PublicKeyCredential === 'undefined' || !navigator.credentials) return 'unsupported'
+  const value = (await clientCapabilities())?.[name]
+  return value === true ? 'supported' : value === false ? 'unsupported' : 'unknown'
+}
+
+/**
+ * Whether this browser can do the PRF extension at all, asked up front
+ * (WebAuthn's getClientCapabilities) instead of found out from a failed
+ * registration. "unknown" — the browser can't say — means try and see.
+ * "supported" is about the browser: a particular authenticator (say, a
+ * laptop's built-in one) can still lack PRF, which registration reports as
+ * PrfNotSupportedError — a phone or security key may still work then.
+ */
+export function prfAvailability(): Promise<CapabilityAnswer> {
+  return capability('extension:prf')
+}
+
+/**
+ * Whether this browser can use a passkey on a phone, by QR code ("hybrid"
+ * transport) — not, say, Firefox on Linux, or Chrome without Bluetooth to
+ * check the phone is nearby.
+ */
+export function phoneAvailability(): Promise<CapabilityAnswer> {
+  return capability('hybridTransport')
+}
+
 export async function hasLocalPasskey(): Promise<boolean> {
   return (await db.localWebAuthnCredential.get(CREDENTIAL_ID)) !== undefined
 }
@@ -66,6 +114,9 @@ function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
  */
 export async function registerLocalPasskeyWithPrf(
   displayName: string,
+  // 'phone' (by QR code) or 'securityKey': for when this device's own
+  // authenticator lacks PRF.
+  where: PasskeyLocation = 'device',
 ): Promise<{ credentialId: Uint8Array<ArrayBuffer>; prfSalt: Uint8Array<ArrayBuffer>; prfSecret: ArrayBuffer }> {
   if (!navigator.credentials) throw translatedError('errors.webauthnUnavailable')
 
@@ -81,12 +132,17 @@ export async function registerLocalPasskeyWithPrf(
         user: { id: userId, name: displayName, displayName },
         pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
         authenticatorSelection: {
-          authenticatorAttachment: 'platform',
+          authenticatorAttachment: where === 'device' ? 'platform' : 'cross-platform',
           userVerification: 'required',
           residentKey: 'preferred',
         },
         attestation: 'none',
         timeout: 60_000,
+        // Which of the browser's own options to lead with — the QR code for
+        // a phone, the "insert your key" prompt for a security key — in
+        // browsers that read hints (WebAuthn Level 3); others ignore it.
+        // (Spread in: not in every TS lib.dom version yet, same as PRF's types.)
+        ...({ hints: [where === 'phone' ? 'hybrid' : where === 'securityKey' ? 'security-key' : 'client-device'] } as object),
         // Evaluating PRF right here, not just probing for support, lets browsers
         // that implement PRF-at-creation return the derived secret in this same
         // response — skipping the second navigator.credentials.get() ceremony

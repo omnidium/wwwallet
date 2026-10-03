@@ -1,14 +1,18 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
-import { PrfNotSupportedError } from '@/services/webauthnLocal'
 import { generateRecoveryMnemonic, recoveryMnemonicWords } from '@/services/mnemonic'
 import { copyWithAutoClear } from '@/services/clipboard'
 import { displayErrorMessage } from '@/services/errors'
 import LicenseDialog from '@/components/LicenseDialog.vue'
+import { deferPasskeyNudge } from '@/composables/usePasskeyNudge'
+import { useQuickUnlock } from '@/composables/useQuickUnlock'
+import UnlockPasswordDialog from '@/components/UnlockPasswordDialog.vue'
+import PasskeyAlternatives from '@/components/PasskeyAlternatives.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
@@ -21,7 +25,8 @@ const recoveryPhraseWords = ref<string[]>([])
 const savedAck = ref(false)
 const termsAck = ref(false)
 const restoreFileInput = ref<HTMLInputElement | null>(null)
-const passkeyUnsupported = ref(false)
+const quick = useQuickUnlock()
+const passwordDialogOpen = ref(false)
 const skipWarningOpen = ref(false)
 const restoring = ref(false)
 
@@ -78,22 +83,18 @@ async function onRestoreFileSelected(event: Event) {
   }
 }
 
-async function addPasskey() {
-  try {
-    await vault.registerPasskey('wwwallet')
-    messages.push(t('msg.passkey.ready'), 'success')
-  } catch (err) {
-    if (err instanceof PrfNotSupportedError) {
-      passkeyUnsupported.value = true
-      messages.push(err.message, 'warning')
-    } else {
-      messages.push(displayErrorMessage(err), 'error')
-    }
-  }
+function addPasskey() {
+  void quick.setUpPasskey('device')
+}
+
+// Just declined it — the daily reminder starts tomorrow, not on the next screen.
+function continueWithoutPasskey() {
+  deferPasskeyNudge()
+  router.push('/')
 }
 
 function finish() {
-  if (!vault.hasPasskey) {
+  if (!vault.hasPasskey && !vault.hasPassword) {
     skipWarningOpen.value = true
     return
   }
@@ -115,7 +116,7 @@ const licenseOpen = ref(false)
         <v-card-text class="pt-0">
           <v-alert type="warning" variant="tonal" density="compact" class="text-body-2">
             <div class="font-weight-medium mb-1">{{ t('vaultSetup.disclaimerTitle') }}</div>
-            {{ t('vaultSetup.disclaimerBody') }}
+            <BrandText :text="t('vaultSetup.disclaimerBody')" />
             <button type="button" class="text-link" @click="licenseOpen = true">{{
               t('vaultSetup.disclaimerLicenseLink') }}</button>
           </v-alert>
@@ -124,7 +125,7 @@ const licenseOpen = ref(false)
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block :disabled="!termsAck" @click="startCreate">{{ t('vaultSetup.createWalletCta')
-            }}</v-btn>
+          }}</v-btn>
         </v-card-actions>
 
         <v-divider class="my-4" />
@@ -143,9 +144,10 @@ const licenseOpen = ref(false)
       <template v-else-if="step === 'recoveryPhrase'">
         <v-card-title>{{ t('vaultSetup.createTitle') }}</v-card-title>
         <v-card-text>
-          <i18n-t keypath="vaultSetup.recoveryExplainer" tag="span" scope="global">
-            <template #phrase><strong>{{ t('vaultSetup.recoveryExplainerPhrase') }}</strong></template>
-          </i18n-t>
+          <BrandText :text="t('vaultSetup.recoveryExplainer')" />
+          <v-alert type="warning" variant="tonal" density="compact" class="mt-3">
+            {{ t('vaultSetup.recoveryOnlyWayBack') }}
+          </v-alert>
         </v-card-text>
         <v-card-text>
           <v-sheet class="passphrase_box pa-3" rounded="lg" color="surface" variant="tonal"
@@ -167,23 +169,34 @@ const licenseOpen = ref(false)
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block :disabled="!savedAck" @click="createVault">{{ t('vaultSetup.createVault')
-          }}</v-btn>
+            }}</v-btn>
         </v-card-actions>
       </template>
 
       <template v-else>
         <v-card-title>{{ t('vaultSetup.quickUnlockTitle') }}</v-card-title>
-        <v-card-text class="text-body-2 text-medium-emphasis">
+        <v-card-text v-if="quick.passkeyPossible.value" class="text-body-2 text-medium-emphasis">
           {{ t('vaultSetup.quickUnlockBody') }}
         </v-card-text>
         <v-card-text>
-          <v-btn class="mb-4" variant="outlined" block prepend-icon="mdi-fingerprint" @click="addPasskey"
-            :disabled="vault.hasPasskey || passkeyUnsupported">
-            {{ vault.hasPasskey ? t('vaultSetup.passkeyEnabledLabel') : t('vaultSetup.enablePasskey') }}
+          <template v-if="quick.passkeyPossible.value">
+            <v-btn v-if="vault.hasPasskey || !quick.platformLacksPrf.value" class="mb-2" variant="outlined" block
+              prepend-icon="mdi-fingerprint" :loading="quick.busy.value" :disabled="vault.hasPasskey"
+              @click="addPasskey">
+              {{ vault.hasPasskey ? t('vaultSetup.passkeyEnabledLabel') : t('vaultSetup.enablePasskey') }}
+            </v-btn>
+            <div v-if="!vault.hasPasskey" class="d-flex flex-column ga-1 mb-4">
+              <PasskeyAlternatives :variant="quick.platformLacksPrf.value ? 'outlined' : 'text'"
+                :small="!quick.platformLacksPrf.value" />
+            </div>
+          </template>
+          <p v-else class="text-body-2 text-medium-emphasis mb-4"><BrandText :text="t('quickUnlock.passkeyUnavailableBody')" /></p>
+          <!-- The fallback, offered once a passkey is known not to work here. -->
+          <v-btn v-if="!vault.hasPasskey && (!quick.passkeyPossible.value || quick.platformLacksPrf.value)" class="mb-4"
+            variant="outlined" block prepend-icon="mdi-form-textbox-password" :disabled="vault.hasPassword"
+            @click="passwordDialogOpen = true">
+            {{ vault.hasPassword ? t('quickUnlock.passwordEnabled') : t('quickUnlock.setPassword') }}
           </v-btn>
-          <p v-if="passkeyUnsupported" class="text-caption text-error mb-4">
-            {{ t('vaultSetup.passkeyUnsupportedNote') }}
-          </p>
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block @click="finish">{{ t('common.done') }}</v-btn>
@@ -191,16 +204,18 @@ const licenseOpen = ref(false)
       </template>
     </v-card>
 
+    <UnlockPasswordDialog v-model="passwordDialogOpen" />
+
     <v-dialog v-model="skipWarningOpen" max-width="420">
       <v-card>
         <v-card-title>{{ t('vaultSetup.skipTitle') }}</v-card-title>
         <v-card-text>
-          {{ t('vaultSetup.skipBody') }}
+          <BrandText :text="t('vaultSetup.skipBody')" />
         </v-card-text>
         <v-card-actions>
           <v-btn variant="text" @click="skipWarningOpen = false">{{ t('common.goBack') }}</v-btn>
           <v-spacer />
-          <v-btn color="primary" @click="router.push('/')">{{ t('vaultSetup.continueAnyway') }}</v-btn>
+          <v-btn color="primary" @click="continueWithoutPasskey">{{ t('vaultSetup.continueAnyway') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

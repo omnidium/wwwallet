@@ -25,6 +25,7 @@ import {
 import { createConcurrencyLimiter } from '@/services/concurrencyLimit'
 import { tokenUsdValue } from '@/services/money'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
+import type { PickedToken } from '@/components/TokenPickerField.vue'
 import {
   DEFAULT_TRANSACTION_BATCH_SIZE,
   DUST_THRESHOLD_USD,
@@ -53,6 +54,10 @@ const SWAP_FEES_PREFIX = 'swap-fees:'
 // details pane's fiat values. Fetched only when a transaction is opened, and
 // never again once found: a past price doesn't change.
 const TX_RATES_PREFIX = 'tx-rates:'
+// Per chain: the tokens most recently swapped from or to on this device,
+// newest first — suggested first in the swap token picker.
+const RECENT_SWAP_TOKENS_PREFIX = 'recent-swap-tokens:'
+const RECENT_SWAP_TOKENS_MAX = 5
 
 /** What a transaction's assets were worth when it was mined. */
 export interface TransactionRates {
@@ -163,6 +168,7 @@ export const useChainDataStore = defineStore('chainData', () => {
   const priceHistoryByAsset = ref<Record<string, PriceHistory>>({})
   const transactionFeeByKey = ref<Record<string, TransactionFee>>({})
   const swapFeesByKey = ref<Record<string, RecordedSwapFee[]>>({})
+  const recentSwapTokensByChain = ref<Record<string, PickedToken[]>>({})
   const transactionRatesByKey = ref<Record<string, TransactionRates>>({})
   // Lookups that found nothing this session — not retried until the next
   // one, so reopening the same transaction doesn't re-ask every time.
@@ -212,6 +218,8 @@ export const useChainDataStore = defineStore('chainData', () => {
       transactionFeeByKey.value[key.slice(TRANSACTION_FEE_PREFIX.length)] ??= data as TransactionFee
     } else if (key.startsWith(SWAP_FEES_PREFIX)) {
       swapFeesByKey.value[key.slice(SWAP_FEES_PREFIX.length)] ??= data as RecordedSwapFee[]
+    } else if (key.startsWith(RECENT_SWAP_TOKENS_PREFIX)) {
+      recentSwapTokensByChain.value[key.slice(RECENT_SWAP_TOKENS_PREFIX.length)] ??= data as PickedToken[]
     } else if (key.startsWith(TX_RATES_PREFIX)) {
       transactionRatesByKey.value[key.slice(TX_RATES_PREFIX.length)] ??= data as TransactionRates
     }
@@ -251,6 +259,17 @@ export const useChainDataStore = defineStore('chainData', () => {
     persist(prefix + key, value)
   }
 
+  /**
+   * Forgets what's been read from the cache, public data included, so the
+   * next load reads it all again — for when the cache itself has just been
+   * replaced underneath (a restored backup's, see stores/vault.ts).
+   */
+  function resetHydration() {
+    clearPersonalData()
+    publicHydration = null
+    tokenListByChain.clear()
+  }
+
   /** Called on lock — see stores/vault.ts. Public market data stays. */
   function clearPersonalData() {
     activityByAddress.value = {}
@@ -258,6 +277,7 @@ export const useChainDataStore = defineStore('chainData', () => {
     priceHistoryByAsset.value = {}
     transactionFeeByKey.value = {}
     swapFeesByKey.value = {}
+    recentSwapTokensByChain.value = {}
     transactionRatesByKey.value = {}
     transactionRateMisses.clear()
     loadingCounts.value = {}
@@ -639,6 +659,13 @@ export const useChainDataStore = defineStore('chainData', () => {
     remember(transactionRatesByKey, TX_RATES_PREFIX, key, { usd, fx })
   }
 
+  /** Moves `token` to the front of `chain`'s recent swap tokens. */
+  function recordSwappedToken(chain: ChainSlug, token: PickedToken) {
+    const sameToken = (t: PickedToken) => (t.address?.toLowerCase() ?? null) === (token.address?.toLowerCase() ?? null)
+    const recent = [token, ...(recentSwapTokensByChain.value[chain] ?? []).filter((t) => !sameToken(t))]
+    remember(recentSwapTokensByChain, RECENT_SWAP_TOKENS_PREFIX, chain, recent.slice(0, RECENT_SWAP_TOKENS_MAX))
+  }
+
   function recordSwapFees(chain: ChainSlug, hash: string, fees: RecordedSwapFee[]) {
     if (fees.length === 0) return
     const key = keyFor(chain, hash)
@@ -653,6 +680,7 @@ export const useChainDataStore = defineStore('chainData', () => {
     priceHistoryByAsset,
     transactionFeeByKey,
     swapFeesByKey,
+    recentSwapTokensByChain,
     transactionBatchSize,
     setTransactionBatchSize,
     isLoading,
@@ -669,9 +697,11 @@ export const useChainDataStore = defineStore('chainData', () => {
     loadPriceHistory,
     ensureTransactionFee,
     recordSwapFees,
+    recordSwappedToken,
     transactionRatesByKey,
     ensureTransactionRates,
     clearPersonalData,
+    resetHydration,
     prependTransaction,
     keyFor,
     assetKey,

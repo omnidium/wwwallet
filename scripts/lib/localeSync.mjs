@@ -105,6 +105,22 @@ function restorePlaceholders(str, tokens) {
   return str.replace(/@@\s*(\d+)\s*@@/g, (_, i) => tokens[Number(i)] ?? '')
 }
 
+// Sent with every request. DeepL reads the context to choose words but
+// doesn't translate or bill it: without it, "wallet" came out as a purse,
+// "mnemonic" as a memory trick and "non-custodial" as a literal phrase
+// nobody uses.
+const DEEPL_CONTEXT =
+  'Interface and website text for wwwallet, a free, non-custodial cryptocurrency wallet app for Ethereum. ' +
+  '"Wallet" always means a crypto wallet. "Non-custodial" means users hold their own keys; use the term the ' +
+  'crypto community in this language uses. A "recovery phrase" or "mnemonic" is a crypto seed phrase. ' +
+  'Keep "wwwallet", "Ethereum", "ETH", token symbols and network names unchanged. Friendly, plain, direct tone.'
+
+// Informal address (du, tu, ты…) wherever a language distinguishes it,
+// consistently — the copy's tone is casual, and without this DeepL mixed the
+// two from one string to the next. "prefer_" falls back silently for
+// languages with no such distinction.
+const DEEPL_FORMALITY = 'prefer_less'
+
 async function translateBatch({ texts, deeplTargetLang, apiKey, apiHost }) {
   if (texts.length === 0) return []
   // DeepL's documented limit is 50 text items per request, tighter than
@@ -122,7 +138,13 @@ async function translateBatch({ texts, deeplTargetLang, apiKey, apiHost }) {
             'Content-Type': 'application/json',
             Authorization: `DeepL-Auth-Key ${apiKey}`,
           },
-          body: JSON.stringify({ text: chunk, source_lang: 'EN', target_lang: deeplTargetLang }),
+          body: JSON.stringify({
+            text: chunk,
+            source_lang: 'EN',
+            target_lang: deeplTargetLang,
+            context: DEEPL_CONTEXT,
+            formality: DEEPL_FORMALITY,
+          }),
         })
         if (!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`)
         const data = await res.json()
@@ -151,6 +173,7 @@ async function translateBatch({ texts, deeplTargetLang, apiKey, apiHost }) {
  * @param {boolean} [config.dryRun]
  * @param {boolean} [config.checkMode]
  * @param {Set<string>|null} [config.onlyLangs]
+ * @param {boolean} [config.retranslateAll] - redo every tracked, not hand-edited translation, changed or not
  * @returns {Promise<boolean>} true if the sync succeeded (or there was nothing to do / dry-run), false on failure or (in check mode) drift
  */
 export async function syncProjectLocales(config) {
@@ -165,6 +188,7 @@ export async function syncProjectLocales(config) {
     dryRun = false,
     checkMode = false,
     onlyLangs = null,
+    retranslateAll = false,
   } = config
 
   if (!dryRun && !apiKey) {
@@ -200,7 +224,7 @@ export async function syncProjectLocales(config) {
       if (!tracked) return false // pre-dates this tool tracking it — leave as-is
       const enChanged = tracked.enHash !== hash(enFlat[k])
       const handEdited = tracked.value !== currentFlat[k]
-      return enChanged && !handEdited
+      return (enChanged || retranslateAll) && !handEdited
     })
     const needsReview = [...enKeys].filter((k) => {
       const tracked = localeState[k]

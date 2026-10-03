@@ -23,3 +23,21 @@ export function searchTokenList(list: TokenListItem[], query: string, limit = 20
   ranked.sort((a, b) => a.rank - b.rank || a.index - b.index)
   return ranked.slice(0, limit).map((r) => r.item)
 }
+
+/**
+ * The tokens behind `symbols`, in that order — each only when exactly one
+ * token in the list has that symbol. A shared symbol is skipped rather than
+ * guessed at: suggesting the wrong one of two "USDC"s in a swap picker is how
+ * a lookalike token gets bought.
+ */
+export function popularTokens(list: TokenListItem[], symbols: string[]): TokenListItem[] {
+  const bySymbol = new Map<string, TokenListItem[]>()
+  for (const item of list) {
+    const key = item.symbol.toUpperCase()
+    bySymbol.set(key, [...(bySymbol.get(key) ?? []), item])
+  }
+  return symbols.flatMap((symbol) => {
+    const matches = bySymbol.get(symbol.toUpperCase()) ?? []
+    return matches.length === 1 ? matches : []
+  })
+}

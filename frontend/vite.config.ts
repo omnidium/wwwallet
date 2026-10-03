@@ -1,23 +1,11 @@
 import { fileURLToPath, URL } from 'node:url'
-import { execSync } from 'node:child_process'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import vuetify from 'vite-plugin-vuetify'
 import { VitePWA } from 'vite-plugin-pwa'
-
-// The commit itself is the version — no separate number to bump, and it
-// points straight at exactly what's deployed for debugging. Falls back to
-// 'dev' outside a git checkout (e.g. a source tarball) rather than failing
-// the build over a version string nothing depends on functionally.
-function getAppVersion(): string {
-  try {
-    return execSync('git rev-parse --short HEAD').toString().trim()
-  } catch {
-    return 'dev'
-  }
-}
+import { getAppVersion } from '../shared/config/appVersion'
 
 // https://vite.dev/config/
 export default defineConfig({

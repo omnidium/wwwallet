@@ -26,7 +26,7 @@ function closePanel() {
       />
     </svg>
   </button>
-  <Teleport to="body">
+  <Teleport to="#teleports">
     <Transition name="settings-fade">
       <div v-if="open" class="settings-overlay" @click.self="closePanel">
         <Transition name="settings-slide" appear>
@@ -41,7 +41,7 @@ function closePanel() {
 .settings-fab {
   position: fixed;
   top: 16px;
-  left: 16px;
+  inset-inline-start: 16px;
   z-index: 1005;
   width: 44px;
   height: 44px;
@@ -86,5 +86,11 @@ function closePanel() {
 .settings-slide-leave-to {
   transform: translateX(-16px);
   opacity: 0;
+}
+
+/* Right-to-left pages open it from the other side. */
+:global([dir='rtl']) .settings-slide-enter-from,
+:global([dir='rtl']) .settings-slide-leave-to {
+  transform: translateX(16px);
 }
 </style>

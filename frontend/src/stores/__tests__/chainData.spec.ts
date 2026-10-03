@@ -375,4 +375,19 @@ describe('chainData store — native prices', () => {
       expect(mockedApi.historicalPrice).not.toHaveBeenCalled()
     })
   })
+
+  it('remembers the last five tokens swapped per chain, newest first, encrypted and dropped on lock', async () => {
+    const store = useChainDataStore()
+    const token = (n: number) => ({ address: `0x${String(n).repeat(40)}`, symbol: `T${n}`, name: `Token ${n}`, decimals: 18, logoUrl: null })
+    for (const n of [1, 2, 3, 4, 5, 6]) store.recordSwappedToken(CHAIN, token(n))
+    store.recordSwappedToken(CHAIN, token(3))
+    expect(store.recentSwapTokensByChain[CHAIN]?.map((t) => t.symbol)).toEqual(['T3', 'T6', 'T5', 'T4', 'T2'])
+
+    expect((await reloadedStore()).recentSwapTokensByChain[CHAIN]?.map((t) => t.symbol)).toEqual(['T3', 'T6', 'T5', 'T4', 'T2'])
+    expect(await rawCacheContents()).not.toContain('Token 3')
+
+    lockCache()
+    const locked = await reloadedStore()
+    expect(locked.recentSwapTokensByChain).toEqual({})
+  })
 })

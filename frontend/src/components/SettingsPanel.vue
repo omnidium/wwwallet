@@ -11,6 +11,7 @@ import { currencySymbol } from '@/services/money'
 import AppSelect, { type SelectItem } from '@/components/AppSelect.vue'
 import AppSegmented from '@/components/AppSegmented.vue'
 import LicenseDialog from '@/components/LicenseDialog.vue'
+import { WEBSITE_URL } from '@shared/config/links'
 
 const emit = defineEmits<{ close: [] }>()
 
@@ -24,7 +25,7 @@ const licenseOpen = ref(false)
 const appVersion = __APP_VERSION__
 // The marketing website lives on the apex domain (this app is on app.*); in
 // dev it runs separately on port 3002.
-const websiteUrl = import.meta.env.VITE_WEBSITE_URL ?? (import.meta.env.DEV ? 'http://localhost:3002' : 'https://wwwallet.me')
+const websiteUrl = import.meta.env.VITE_WEBSITE_URL ?? (import.meta.env.DEV ? 'http://localhost:3002' : WEBSITE_URL)
 const panelRef = ref<HTMLElement | null>(null)
 // Same 700px cut-off as the account cards' full-width breakpoint (main.css):
 // below it, Theme/Language/Currency collapse into one row of icon controls.
@@ -169,19 +170,19 @@ function lockNow() {
     </div>
 
     <template v-else>
-    <div class="settings-section mt-2">
-      <p class="settings-section-label">{{ t('settings.themeLabel') }}</p>
-      <AppSegmented :model-value="currentTheme" :options="themeOptions" :label="t('settings.themeLabel')" block
-        @update:model-value="setTheme" />
-    </div>
+      <div class="settings-section mt-2">
+        <p class="settings-section-label">{{ t('settings.themeLabel') }}</p>
+        <AppSegmented :model-value="currentTheme" :options="themeOptions" :label="t('settings.themeLabel')" block
+          @update:model-value="setTheme" />
+      </div>
 
-    <div class="settings-section mt-2">
-      <p class="settings-section-label">{{ t('settings.languageLabel') }}</p>
-      <AppSelect :model-value="settings.locale" :items="languageItems" :label="t('settings.languageLabel')" block
-        @update:model-value="onLanguageChange" />
-    </div>
+      <div class="settings-section mt-2">
+        <p class="settings-section-label">{{ t('settings.languageLabel') }}</p>
+        <AppSelect :model-value="settings.locale" :items="languageItems" :label="t('settings.languageLabel')" block
+          @update:model-value="onLanguageChange" />
+      </div>
 
-    <!--
+      <!--
       Everything below except Backup & Restore and Security is hidden
       outright (not just disabled) while the vault is locked — someone
       glancing at an unattended, locked device shouldn't even see that these
@@ -197,11 +198,11 @@ function lockNow() {
       parts (backing up, passkey management) behind vault.isUnlocked itself;
       see their own v-if for that.
     -->
-    <div v-if="vault.isUnlocked" class="settings-section mt-2">
-      <p class="settings-section-label">{{ t('settings.currencyLabel') }}</p>
-      <AppSelect :model-value="settings.currency" :items="currencyItems" :label="t('settings.currencyLabel')" block
-        @update:model-value="onCurrencyChange" />
-    </div>
+      <div v-if="vault.isUnlocked" class="settings-section mt-2">
+        <p class="settings-section-label">{{ t('settings.currencyLabel') }}</p>
+        <AppSelect :model-value="settings.currency" :items="currencyItems" :label="t('settings.currencyLabel')" block
+          @update:model-value="onCurrencyChange" />
+      </div>
     </template>
 
     <v-list class="mt-4" rounded="lg" bg-color="transparent">
@@ -211,8 +212,6 @@ function lockNow() {
         append-icon="mdi-chevron-right" @click="emit('close')" rounded="lg" />
       <v-list-item to="/security" :title="t('settings.securityTitle')" prepend-icon="mdi-shield-lock"
         append-icon="mdi-chevron-right" @click="emit('close')" rounded="lg" />
-      <v-list-item :title="t('license.title')" prepend-icon="mdi-scale-balance" append-icon="mdi-chevron-right"
-        rounded="lg" @click="licenseOpen = true" />
     </v-list>
 
     <v-btn v-if="vault.isUnlocked" class="mt-4" color="error" variant="outlined" block prepend-icon="mdi-lock"
@@ -224,7 +223,12 @@ function lockNow() {
       {{ t('settings.backToWebsite') }}
     </v-btn>
 
-    <p class="settings-version text-medium-emphasis mt-4">{{ t('settings.version', { version: appVersion }) }}</p>
+    <p class="settings-version mt-4">
+      <span class="text-medium-emphasis">{{ t('settings.version', { version: appVersion }) }}</span>
+      <span class="flex-grow-1"></span>
+      <button type="button" class="settings-license-link mr-2" @click="licenseOpen = true">{{ t('license.title')
+      }}</button>
+    </p>
 
     <LicenseDialog v-model="licenseOpen" />
   </div>
@@ -305,5 +309,4 @@ function lockNow() {
   font-size: 0.85rem;
   font-weight: 700;
 }
-
 </style>

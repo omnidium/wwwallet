@@ -23,6 +23,6 @@ test('theme choice persists across reload', async ({ page }) => {
 
 test('Launch button links out to the wallet app', async ({ page }) => {
   await page.goto('/')
-  const launchLink = page.getByRole('link', { name: 'Launch Wallet' }).first()
+  const launchLink = page.getByRole('link', { name: 'Launch wwwallet' }).first()
   await expect(launchLink).toHaveAttribute('href', /^https?:\/\//)
 })

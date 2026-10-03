@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LicenseModal from '../ui/LicenseModal.vue'
@@ -12,9 +13,9 @@ const year = new Date().getFullYear()
 <template>
   <footer class="app-footer">
     <div class="container footer-inner">
-      <p class="footer-tagline">{{ t('footer.tagline') }}</p>
+      <p class="footer-tagline"><BrandText :text="t('footer.tagline')" /></p>
       <p class="footer-copyright">
-        {{ t('footer.copyright', { year }) }} ·
+        <BrandText :text="t('footer.copyright', { year })" /> ·
         <button type="button" class="footer-source" @click="licenseOpen = true">
           {{ t('footer.licenseLink') }}
         </button>

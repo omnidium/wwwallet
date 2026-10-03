@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import AppTooltip from '@/components/AppTooltip.vue'
@@ -9,6 +10,20 @@ const { t } = useI18n({ useScope: 'global' })
 function close() {
   router.push('/')
 }
+
+// The page behind (the accounts list) scrolls the window, so a wheel or
+// swipe over the backdrop — or over a pane with nothing left to scroll —
+// would otherwise scroll it instead. Locked for as long as any pane is
+// open; padded by the scrollbar's width so hiding it doesn't shift the
+// layout sideways.
+onMounted(() => {
+  const root = document.documentElement
+  root.style.setProperty('--pane-scrollbar-width', `${window.innerWidth - root.clientWidth}px`)
+  root.classList.add('pane-open')
+})
+onBeforeUnmount(() => {
+  document.documentElement.classList.remove('pane-open')
+})
 </script>
 
 <template>

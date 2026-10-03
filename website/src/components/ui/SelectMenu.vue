@@ -30,7 +30,7 @@ const trigger = ref<HTMLButtonElement | null>(null)
 const searchInput = ref<HTMLInputElement | null>(null)
 const listEl = ref<HTMLElement | null>(null)
 // Fixed to the viewport, under (or, without room, over) the chip, and
-// teleported to <body>: the settings panel scrolls, and its backdrop-filter
+// teleported to #teleports (index.html), a child of <body>: the settings panel scrolls, and its backdrop-filter
 // makes it the containing block for fixed descendants — a menu left inside
 // it would be clipped by, and scroll, the panel.
 const popover = ref<HTMLElement | null>(null)
@@ -69,8 +69,10 @@ async function toggle() {
   search.value = ''
   activeIndex.value = Math.max(0, props.items.findIndex((i) => i.value === props.modelValue))
   await nextTick()
-  // No scrolling to reveal it — the menu is fixed in view, and a scroll closes it.
-  if (showSearch.value) searchInput.value?.focus({ preventScroll: true })
+  // No scrolling to reveal it — the menu is fixed in view. On touch screens
+  // the search box isn't focused for you: that would raise the on-screen
+  // keyboard over the list before you've seen it.
+  if (showSearch.value && !matchMedia('(pointer: coarse)').matches) searchInput.value?.focus({ preventScroll: true })
   else listEl.value?.focus({ preventScroll: true })
   scrollActiveIntoView()
 }
@@ -124,14 +126,24 @@ function onDocumentPointerDown(e: PointerEvent) {
   close(false)
 }
 
-// Scrolling the panel or page under an open menu would leave it floating
-// away from its chip — it closes instead, as a native select's does.
+// The menu follows its chip when the panel or page scrolls, or the window
+// resizes — rather than closing, since phones do both on their own when the
+// search box is focused (the keyboard opening resizes the viewport on
+// Android; iOS scrolls the focused input into view), which made the menu
+// flash open and shut. It closes only once the chip is off screen.
+let placeFrame = 0
 function onScrollOrResize(e: Event) {
   if (e.target instanceof Node && listEl.value?.contains(e.target)) return
-  close(false)
+  cancelAnimationFrame(placeFrame)
+  placeFrame = requestAnimationFrame(() => {
+    const rect = trigger.value?.getBoundingClientRect()
+    if (!rect || rect.bottom < 0 || rect.top > window.innerHeight) return close(false)
+    place()
+  })
 }
 
 function stopListening() {
+  cancelAnimationFrame(placeFrame)
   document.removeEventListener('pointerdown', onDocumentPointerDown, true)
   window.removeEventListener('scroll', onScrollOrResize, true)
   window.removeEventListener('resize', onScrollOrResize)
@@ -163,7 +175,7 @@ onBeforeUnmount(stopListening)
       </svg>
     </button>
 
-    <Teleport to="body">
+    <Teleport to="#teleports">
     <div v-if="open" ref="popover" class="select-popover" :style="popoverStyle" @keydown="onMenuKeydown">
       <div v-if="showSearch" class="select-search">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
@@ -211,7 +223,7 @@ onBeforeUnmount(stopListening)
   background: rgb(var(--surface-rgb));
   color: var(--text);
   font: inherit;
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   transition: border-color 0.15s ease;
 }
@@ -263,7 +275,7 @@ onBeforeUnmount(stopListening)
 
 .select-caret {
   flex: none;
-  margin-left: auto;
+  margin-inline-start: auto;
   opacity: 0.6;
 }
 
@@ -335,7 +347,7 @@ onBeforeUnmount(stopListening)
 
 .select-check {
   flex: none;
-  margin-left: auto;
+  margin-inline-start: auto;
   color: var(--accent-ink);
 }
 

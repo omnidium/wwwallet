@@ -55,6 +55,10 @@ cacheDb.on('versionchange', () => {
 const PRIVATE_PREFIX = '#'
 const ENCRYPTION_INFO = 'wwwallet.cache.encrypt.v1'
 const NAMING_INFO = 'wwwallet.cache.name.v1'
+const BACKUP_INFO = 'wwwallet.cache.backup.v1'
+// Where a restored backup's cache waits for the first unlock, the only point
+// its key is available — see stageCacheRestore/unlockCache.
+const PENDING_RESTORE_KEY = '!restore-pending'
 
 let keys: { encryption: CryptoKey; naming: CryptoKey } | null = null
 
@@ -84,17 +88,25 @@ async function deriveNamingKey(masterKeyBytes: Uint8Array<ArrayBuffer>): Promise
   )
 }
 
-/** Called with the vault's master key as soon as it's unlocked (or created). */
-export async function unlockCache(masterKey: CryptoKey): Promise<void> {
+/**
+ * Called with the vault's master key as soon as it's unlocked (or created).
+ * Resolves true when this unlock also put back the cache of a backup that
+ * was just restored (see stageCacheRestore) — whatever's been read from the
+ * cache in memory so far is then out of date.
+ */
+export async function unlockCache(masterKey: CryptoKey): Promise<boolean> {
   const masterKeyBytes = await exportAesKeyBytes(masterKey)
+  let backupKey: CryptoKey
   try {
     keys = {
       encryption: await deriveWrapKeyFromBytes(masterKeyBytes, ENCRYPTION_INFO),
       naming: await deriveNamingKey(masterKeyBytes),
     }
+    backupKey = await deriveWrapKeyFromBytes(masterKeyBytes, BACKUP_INFO)
   } finally {
     masterKeyBytes.fill(0)
   }
+  return applyPendingRestore(backupKey)
 }
 
 export function lockCache(): void {
@@ -173,4 +185,117 @@ export async function privateEntries(): Promise<SealedPayload[]> {
 /** Everything, public and private — for deleteFromDevice. */
 export function clearCache(): Promise<void> {
   return enqueue(() => cacheDb.entries.clear())
+}
+
+/* -------------------------------- Backups -------------------------------- */
+
+/**
+ * The whole cache as it travels inside a backup file: every entry, public
+ * and private, compressed and then encrypted under its own key derived from
+ * the vault's master key. A restore brings that same master key back, so
+ * the private entries (already encrypted under keys derived from it) are
+ * readable again as they are — and nothing has to be refetched.
+ */
+export interface BackupCacheSection {
+  iv: string
+  ciphertext: string
+  compression: 'gzip' | 'none'
+}
+
+/** The cache, for a backup — see BackupCacheSection. */
+export async function exportCacheForBackup(masterKey: CryptoKey): Promise<BackupCacheSection> {
+  await flushCacheWrites()
+  const entries = (await cacheDb.entries.toArray()).filter((e) => e.key !== PENDING_RESTORE_KEY)
+  const json = new TextEncoder().encode(JSON.stringify(entries, encodeBuffers))
+  const { bytes, compression } = await compress(json)
+  const masterKeyBytes = await exportAesKeyBytes(masterKey)
+  let backupKey: CryptoKey
+  try {
+    backupKey = await deriveWrapKeyFromBytes(masterKeyBytes, BACKUP_INFO)
+  } finally {
+    masterKeyBytes.fill(0)
+  }
+  const iv = generateIv()
+  const ciphertext = await encrypt(backupKey, iv, bytes)
+  return { iv: toBase64(iv), ciphertext: toBase64(new Uint8Array(ciphertext)), compression }
+}
+
+/**
+ * Parks a restored backup's cache until the next unlock, replacing whatever
+ * the cache held — it can't be decrypted before then.
+ */
+export function stageCacheRestore(section: BackupCacheSection): Promise<void> {
+  return enqueue(async () => {
+    await cacheDb.entries.clear()
+    await cacheDb.entries.put({ key: PENDING_RESTORE_KEY, data: section, fetchedAt: Date.now() })
+  })
+}
+
+async function applyPendingRestore(backupKey: CryptoKey): Promise<boolean> {
+  await flushCacheWrites()
+  const pending = (await cacheDb.entries.get(PENDING_RESTORE_KEY))?.data as BackupCacheSection | undefined
+  if (!pending) return false
+  let restored = false
+  await enqueue(async () => {
+    try {
+      const plaintext = await decrypt(backupKey, fromBase64(pending.iv), fromBase64(pending.ciphertext).buffer)
+      const json = await decompress(new Uint8Array(plaintext), pending.compression)
+      const entries = JSON.parse(new TextDecoder().decode(json), decodeBuffers) as CacheEntry[]
+      await cacheDb.entries.bulkPut(entries)
+      restored = true
+    } catch (err) {
+      // A cache that won't decrypt (a damaged file) is just a cache: the
+      // vault itself restored fine, and everything refetches as usual.
+      console.warn('Could not restore the backed-up cache', err)
+    }
+    await cacheDb.entries.delete(PENDING_RESTORE_KEY)
+  })
+  return restored
+}
+
+// Private entries hold raw ArrayBuffers (IV and ciphertext), which JSON
+// can't carry as they are.
+// Checked by tag, not instanceof: a buffer read back from IndexedDB can come
+// from another realm, where instanceof ArrayBuffer is false.
+function encodeBuffers(_key: string, value: unknown): unknown {
+  return Object.prototype.toString.call(value) === '[object ArrayBuffer]'
+    ? { $bytes: toBase64(new Uint8Array(value as ArrayBuffer)) }
+    : value
+}
+
+function decodeBuffers(_key: string, value: unknown): unknown {
+  if (value && typeof value === 'object' && typeof (value as { $bytes?: unknown }).$bytes === 'string') {
+    return fromBase64((value as { $bytes: string }).$bytes).buffer
+  }
+  return value
+}
+
+// Token lists make up most of the cache, and compress to a fraction of their size.
+async function compress(bytes: Uint8Array<ArrayBuffer>): Promise<{ bytes: Uint8Array<ArrayBuffer>; compression: 'gzip' | 'none' }> {
+  if (typeof CompressionStream !== 'function') return { bytes, compression: 'none' }
+  const stream = new Response(bytes).body!.pipeThrough(new CompressionStream('gzip'))
+  return { bytes: new Uint8Array(await new Response(stream).arrayBuffer()), compression: 'gzip' }
+}
+
+async function decompress(bytes: Uint8Array<ArrayBuffer>, compression: 'gzip' | 'none'): Promise<Uint8Array<ArrayBuffer>> {
+  if (compression === 'none') return bytes
+  const stream = new Response(bytes).body!.pipeThrough(new DecompressionStream('gzip'))
+  return new Uint8Array(await new Response(stream).arrayBuffer())
+}
+
+// In chunks: spreading a multi-megabyte array into one String.fromCharCode
+// call overflows the call stack.
+function toBase64(bytes: Uint8Array): string {
+  let binary = ''
+  for (let i = 0; i < bytes.length; i += 0x8000) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
+  }
+  return btoa(binary)
+}
+
+function fromBase64(text: string): Uint8Array<ArrayBuffer> {
+  const binary = atob(text)
+  const bytes = new Uint8Array(binary.length)
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i)
+  return bytes
 }

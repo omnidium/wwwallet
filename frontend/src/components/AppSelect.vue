@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppTooltip from '@/components/AppTooltip.vue'
+import { isTouchFirst } from '@/services/touchInput'
 
 export interface SelectItem {
   value: string
@@ -144,7 +145,7 @@ defineExpose({ close })
       <slot name="header" :close="close" />
       <div v-if="showSearch" class="pa-3 pb-1">
         <v-text-field v-model="search" :placeholder="t('common.search')" density="compact" hide-details
-          prepend-inner-icon="mdi-magnify" autofocus autocomplete="off" />
+          prepend-inner-icon="mdi-magnify" :autofocus="!isTouchFirst()" autocomplete="off" />
       </div>
       <v-list density="comfortable" class="app-select-list">
         <v-list-subheader v-if="!$slots.header && !showSearch && !groups.some((g) => g.group)">{{ label }}</v-list-subheader>

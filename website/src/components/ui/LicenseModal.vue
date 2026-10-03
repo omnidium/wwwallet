@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import licenseSource from '../../../../LICENSE?raw'
 import { parseLicense } from '../../../../shared/license/parseLicense'
+import { GITHUB_REPO_URL } from '@shared/config/links'
 
 const props = defineProps<{ open: boolean }>()
 const emit = defineEmits<{ close: [] }>()
@@ -14,7 +16,6 @@ const { t } = useI18n()
 // summary, then the full text (in its original English), read from the
 // repo's LICENSE at build time.
 const blocks = parseLicense(licenseSource)
-const GITHUB_LICENSE_URL = 'https://github.com/omnidium/wwwallet/blob/main/LICENSE'
 
 const dialogEl = ref<HTMLElement | null>(null)
 let returnFocusTo: HTMLElement | null = null
@@ -68,7 +69,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Teleport to="body">
+  <Teleport to="#teleports">
     <Transition name="license-fade">
       <div v-if="open" class="license-scrim" @click.self="emit('close')">
         <div ref="dialogEl" class="license-dialog glass-surface" role="dialog" aria-modal="true"
@@ -86,7 +87,7 @@ onBeforeUnmount(() => {
             <section class="license-summary">
               <p class="license-summary-title">{{ t('license.summaryTitle') }}</p>
               <ul>
-                <li class="yes">{{ t('license.canUse') }}</li>
+                <li class="yes"><BrandText :text="t('license.canUse')" /></li>
                 <li class="yes">{{ t('license.canRead') }}</li>
                 <li class="no">{{ t('license.cannot') }}</li>
               </ul>
@@ -109,7 +110,7 @@ onBeforeUnmount(() => {
           </div>
 
           <footer class="license-foot">
-            <a :href="GITHUB_LICENSE_URL" target="_blank" rel="noopener noreferrer">{{ t('license.viewSource') }} ↗</a>
+            <a :href="GITHUB_REPO_URL" target="_blank" rel="noopener noreferrer">{{ t('license.viewSource') }} ↗</a>
             <button type="button" class="btn btn-primary" @click="emit('close')">{{ t('license.close') }}</button>
           </footer>
         </div>
@@ -212,12 +213,12 @@ onBeforeUnmount(() => {
 
 .license-summary li {
   position: relative;
-  padding-left: 26px;
+  padding-inline-start: 26px;
 }
 
 .license-summary li::before {
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 0;
   font-weight: 700;
 }

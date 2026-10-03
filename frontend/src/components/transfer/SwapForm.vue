@@ -384,6 +384,7 @@ async function confirm() {
   const buy = buyToken.value
   if (!account || !sell || !buy) return
   const txChain = props.fromChain
+  const buyChain = toChain.value
   const destChain = toChain.value
   const cross = isCross.value
 
@@ -405,6 +406,9 @@ async function confirm() {
       quote = (await activeQuote.value.refresh()) ?? quote
     }
     const hash = await ctx.signAndBroadcast(account, quote)
+    // Sell side first, so the token bought ends up most recent.
+    chainData.recordSwappedToken(txChain, sell)
+    chainData.recordSwappedToken(buyChain, buy)
     const v = viewOf(quote)!
     if (!cross) {
       // Kept for the transaction details pane — the quote is the only record of them.
@@ -446,7 +450,7 @@ async function confirm() {
     else if (status === 'failed') messages.update(msgId, t('msg.swap.failed', { hash }), 'error')
     else messages.update(msgId, t('msg.swap.stillPending', { hash }), 'warning')
     // Also picks up the bought token's metadata, which may be new to this account.
-    chainData.loadAddressActivity(txChain, account.address).catch(() => {})
+    chainData.loadAddressActivity(txChain, account.address).catch(() => { })
   } catch (err) {
     messages.update(msgId, displayErrorMessage(err), 'error')
     busy.value = false
@@ -473,24 +477,25 @@ const signingNotice = computed(() => {
               :placeholder="t('transfer.chooseAccount')" @update:model-value="onFromAddress" />
             <ChainSelect :model-value="fromChain" :options="ctx.ownChainOptions(fromAddress)"
               :label="t('transfer.fromNetwork')" @update:model-value="setFromChain" />
+            <span v-if="sellBalance !== null" class="xfer-balance ml-4">
+              <v-icon icon="mdi-wallet-outline" size="14" />
+              {{ formatAmount(sellBalance) }} {{ sellToken?.symbol }}
+            </span>
           </div>
         </header>
         <div class="xfer-amount-row">
           <input class="xfer-amount-input" :class="{ 'xfer-amount-input--error': amountError }" :value="sellAmount"
             inputmode="decimal" autocomplete="off" placeholder="0" :aria-label="t('swap.sellAmountLabel')"
             @input="onSellAmountInput(($event.target as HTMLInputElement).value)" />
-          <TokenPickerField compact :chain="fromChain" :model-value="sellToken" :held-tokens="sellHeld.heldTokens.value"
-            :label="t('swap.selectToken')" @update:model-value="(picked) => (sellToken = picked)" />
+          <TokenPickerField compact held-only :chain="fromChain" :model-value="sellToken"
+            :held-tokens="sellHeld.heldTokens.value" :label="t('swap.selectToken')"
+            @update:model-value="(picked) => (sellToken = picked)" />
         </div>
         <div class="xfer-leg-foot">
           <span class="xfer-equiv xfer-equiv--static">
             ≈ {{ sellUsdPrice != null && sellAmount ? ctx.fiat(Number(sellAmount) * sellUsdPrice) : '—' }}
           </span>
           <div class="xfer-quick">
-            <span v-if="sellBalance !== null" class="xfer-balance">
-              <v-icon icon="mdi-wallet-outline" size="14" />
-              {{ formatAmount(sellBalance) }}
-            </span>
             <button type="button" class="xfer-chip" :disabled="!sellToken" @click="applyPercent(0.25)">25%</button>
             <button type="button" class="xfer-chip" :disabled="!sellToken" @click="applyPercent(0.5)">50%</button>
             <button type="button" class="xfer-chip" :disabled="!sellToken" @click="applyPercent(0.75)">75%</button>
@@ -506,7 +511,8 @@ const signingNotice = computed(() => {
         <AppTooltip :text="t('transfer.flip')">
           <template #default="{ activatorProps }">
             <button v-bind="activatorProps" type="button" class="xfer-divider-icon xfer-divider-icon--button"
-              :class="{ 'xfer-divider-icon--bridge': isCross }" :disabled="!canFlip" :aria-label="t('transfer.flip')" @click="flip">
+              :class="{ 'xfer-divider-icon--bridge': isCross }" :disabled="!canFlip" :aria-label="t('transfer.flip')"
+              @click="flip">
               <v-icon icon="mdi-swap-vertical" size="18" />
             </button>
           </template>
@@ -528,12 +534,13 @@ const signingNotice = computed(() => {
                 </span>
               </template>
             </AppTooltip>
-            <ChainSelect :model-value="toChain" :options="ctx.anyChainOptions(fromAddress)" :label="t('transfer.toNetwork')"
-              @update:model-value="setToChain" />
+            <ChainSelect :model-value="toChain" :options="ctx.anyChainOptions(fromAddress)"
+              :label="t('transfer.toNetwork')" @update:model-value="setToChain" />
           </div>
         </header>
         <div class="xfer-amount-row">
-          <div class="xfer-amount-input xfer-amount-input--readonly" :aria-label="t('transfer.youGet')" aria-live="polite">
+          <div class="xfer-amount-input xfer-amount-input--readonly" :aria-label="t('transfer.youGet')"
+            aria-live="polite">
             <v-progress-circular v-if="quoteLoading" indeterminate size="22" width="2" color="primary" />
             <template v-else-if="view">≈ {{ formatAmount(view.buyHuman) }}</template>
             <span v-else class="xfer-receive-amount--empty">0</span>
@@ -558,7 +565,8 @@ const signingNotice = computed(() => {
       <p v-if="signingNotice" class="route-summary-notice">{{ signingNotice }}</p>
       <template #actions>
         <v-btn variant="text" size="large" @click="emit('close')">{{ t('common.cancel') }}</v-btn>
-        <v-btn color="primary" size="large" class="flex-grow-1" :disabled="!canReview" :loading="busy" @click="openReview">
+        <v-btn color="primary" size="large" class="flex-grow-1" :disabled="!canReview" :loading="busy"
+          @click="openReview">
           {{ t('common.review') }}
         </v-btn>
       </template>

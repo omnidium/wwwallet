@@ -1,5 +1,6 @@
 import { i18n } from '@/i18n'
 import { db, type VaultRecord, type KeyWrap } from '@/services/db'
+import type { BackupCacheSection } from '@/services/secureCache'
 import { deriveWrapKeyFromBytes } from './kdf'
 import { decrypt, encrypt, exportAesKeyBytes, generateIv, importAesKey } from './aesGcm'
 import { normalizeMnemonic } from '@/services/mnemonic'
@@ -33,6 +34,11 @@ const VAULT_ID = 'default' as const
 // key material accidentally unwrapping the wrong thing.
 const MNEMONIC_HKDF_INFO = 'wwwallet.vault.wrap.mnemonic.v1'
 const PASSKEY_HKDF_INFO = 'wwwallet.vault.wrap.passkeyPrf.v1'
+// OWASP's current recommendation for PBKDF2-HMAC-SHA256. Unlike the
+// mnemonic and PRF secret, a password is low-entropy, so it needs a slow KDF
+// to make each guess costly — and it's still only as strong as the password,
+// hence the minimum length (UNLOCK_PASSWORD_MIN_LENGTH) enforced on setup.
+const PASSWORD_PBKDF2_ITERATIONS = 600_000
 
 export async function hasVault(): Promise<boolean> {
   return (await db.vault.get(VAULT_ID)) !== undefined
@@ -70,9 +76,27 @@ export class VaultUnlockError extends TranslatedError {
   }
 }
 
+/** A VaultUnlockError that can only mean a mistyped password — said as such. */
+export class IncorrectUnlockPasswordError extends VaultUnlockError {
+  constructor() {
+    super()
+    this.message = i18n.global.t('errors.incorrectUnlockPassword')
+    this.name = 'IncorrectUnlockPasswordError'
+  }
+}
+
+// A whole sentence per method, rather than one with the method's name
+// dropped in: the name was English in every language, and a translated one
+// wouldn't agree with the sentence around it in all of them.
+const NOT_ENROLLED_MESSAGES = {
+  mnemonic: 'errors.recoveryPhraseNotSetUp',
+  passkey: 'errors.passkeyNotSetUp',
+  password: 'errors.passwordNotSetUp',
+} as const
+
 export class UnlockMethodNotEnrolledError extends TranslatedError {
-  constructor(method: string) {
-    super(i18n.global.t('errors.unlockMethodNotEnrolled', { method }))
+  constructor(method: keyof typeof NOT_ENROLLED_MESSAGES) {
+    super(i18n.global.t(NOT_ENROLLED_MESSAGES[method]))
     this.name = 'UnlockMethodNotEnrolledError'
   }
 }
@@ -156,7 +180,7 @@ export async function unlockWithMnemonic(mnemonic: string): Promise<{ key: Crypt
   const record = await db.vault.get(VAULT_ID)
   if (!record) throw translatedError('errors.noVaultOnDevice')
   const wrap = record.wraps.find((w) => w.method === 'mnemonic')
-  if (!wrap || wrap.method !== 'mnemonic') throw new UnlockMethodNotEnrolledError('Recovery phrase')
+  if (!wrap || wrap.method !== 'mnemonic') throw new UnlockMethodNotEnrolledError('mnemonic')
 
   const kek = await mnemonicKek(mnemonic)
   const masterKeyBytes = await unwrapMasterKey(wrap.wrappedKey, kek, new Uint8Array(wrap.iv))
@@ -175,7 +199,7 @@ export async function unlockWithPasskey(prfSecret: ArrayBuffer): Promise<{ key: 
   const record = await db.vault.get(VAULT_ID)
   if (!record) throw translatedError('errors.noVaultOnDevice')
   const wrap = record.wraps.find((w) => w.method === 'passkeyPrf')
-  if (!wrap || wrap.method !== 'passkeyPrf') throw new UnlockMethodNotEnrolledError('Passkey')
+  if (!wrap || wrap.method !== 'passkeyPrf') throw new UnlockMethodNotEnrolledError('passkey')
 
   const kek = await deriveWrapKeyFromBytes(prfSecret, PASSKEY_HKDF_INFO)
   const masterKeyBytes = await unwrapMasterKey(wrap.wrappedKey, kek, new Uint8Array(wrap.iv))
@@ -235,8 +259,76 @@ export async function addPasskeyWrap(
   })
 }
 
+async function passwordKek(password: string, salt: Uint8Array<ArrayBuffer>, iterations: number): Promise<CryptoKey> {
+  const material = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(password.normalize('NFKC')),
+    'PBKDF2',
+    false,
+    ['deriveKey'],
+  )
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', hash: 'SHA-256', salt, iterations },
+    material,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['encrypt', 'decrypt'],
+  )
+}
+
+/**
+ * Adds (or replaces) an unlock-password wrap — quick unlock for devices that
+ * can't do a passkey. Same transaction discipline as addPasskeyWrap. Never
+ * part of a backup (only the mnemonic wrap is exported), so like a passkey
+ * it's set up per device.
+ */
+export async function addPasswordWrap(masterKey: CryptoKey, password: string): Promise<void> {
+  const masterKeyBytes = await exportAesKeyBytes(masterKey)
+  const salt = crypto.getRandomValues(new Uint8Array(16))
+  const kek = await passwordKek(password, salt, PASSWORD_PBKDF2_ITERATIONS)
+  const iv = generateIv()
+  const wrappedKey = await wrapMasterKey(masterKeyBytes, kek, iv)
+
+  await db.transaction('rw', db.vault, async () => {
+    const record = await db.vault.get(VAULT_ID)
+    if (!record) throw translatedError('errors.noVaultOnDevice')
+    const wraps: KeyWrap[] = record.wraps.filter((w) => w.method !== 'password')
+    wraps.push({
+      method: 'password',
+      salt: toArrayBuffer(salt),
+      iterations: PASSWORD_PBKDF2_ITERATIONS,
+      iv: toArrayBuffer(iv),
+      wrappedKey,
+    })
+    await db.vault.put({ ...record, wraps, updatedAt: Date.now() })
+  })
+}
+
+export async function unlockWithPassword(password: string): Promise<{ key: CryptoKey; data: VaultData }> {
+  const record = await db.vault.get(VAULT_ID)
+  if (!record) throw translatedError('errors.noVaultOnDevice')
+  const wrap = record.wraps.find((w) => w.method === 'password')
+  if (!wrap || wrap.method !== 'password') throw new UnlockMethodNotEnrolledError('password')
+
+  const kek = await passwordKek(password, new Uint8Array(wrap.salt), wrap.iterations)
+  let masterKeyBytes: Uint8Array<ArrayBuffer>
+  try {
+    masterKeyBytes = await unwrapMasterKey(wrap.wrappedKey, kek, new Uint8Array(wrap.iv))
+  } catch {
+    throw new IncorrectUnlockPasswordError()
+  }
+  const masterKey = await importAesKey(masterKeyBytes, true)
+
+  try {
+    const data = await decryptVaultData(record, masterKey)
+    return { key: masterKey, data }
+  } catch {
+    throw new VaultUnlockError()
+  }
+}
+
 /** The recovery-mnemonic wrap can never be removed — it's the only universal recovery method. */
-export async function removeWrap(method: 'passkeyPrf'): Promise<void> {
+export async function removeWrap(method: 'passkeyPrf' | 'password'): Promise<void> {
   await db.transaction('rw', db.vault, async () => {
     const record = await db.vault.get(VAULT_ID)
     if (!record) throw translatedError('errors.noVaultOnDevice')
@@ -270,25 +362,42 @@ function isByteArrayLike(value: unknown): value is number[] {
  * re-enrolled fresh after a restore, the same way you'd re-pair a platform
  * authenticator on any new device regardless of this app.
  */
-export async function exportEncryptedVaultBlob(): Promise<Blob> {
+/**
+ * `cache`, when given, rides along so a restore needn't refetch anything —
+ * already encrypted (see services/secureCache.ts's exportCacheForBackup).
+ * Version 3 is version 2 plus that optional section.
+ */
+export async function exportEncryptedVaultBlob(cache: BackupCacheSection | null = null): Promise<Blob> {
   const record = await db.vault.get(VAULT_ID)
   if (!record) throw translatedError('errors.noVaultOnDevice')
   const mnemonicWrap = record.wraps.find((w) => w.method === 'mnemonic')
   if (!mnemonicWrap) throw translatedError('errors.noRecoveryWrapToExport')
 
   const payload = {
-    version: 2,
+    version: 3,
     iv: Array.from(new Uint8Array(record.iv)),
     ciphertext: Array.from(new Uint8Array(record.ciphertext)),
     mnemonicWrap: {
       iv: Array.from(new Uint8Array(mnemonicWrap.iv)),
       wrappedKey: Array.from(new Uint8Array(mnemonicWrap.wrappedKey)),
     },
+    ...(cache ? { cache } : {}),
   }
   return new Blob([JSON.stringify(payload)], { type: 'application/json' })
 }
 
-export async function importEncryptedVaultBlob(blob: Blob): Promise<void> {
+function isBackupCacheSection(value: unknown): value is BackupCacheSection {
+  const v = value as Partial<BackupCacheSection> | null
+  return (
+    !!v &&
+    typeof v.iv === 'string' &&
+    typeof v.ciphertext === 'string' &&
+    (v.compression === 'gzip' || v.compression === 'none')
+  )
+}
+
+/** Resolves to the backup's cache section, if it carries one, for the caller to stage. */
+export async function importEncryptedVaultBlob(blob: Blob): Promise<{ cache: BackupCacheSection | null }> {
   let payload
   try {
     payload = JSON.parse(await blob.text())
@@ -297,7 +406,7 @@ export async function importEncryptedVaultBlob(blob: Blob): Promise<void> {
   }
 
   if (
-    payload?.version !== 2 ||
+    (payload?.version !== 2 && payload?.version !== 3) ||
     !isByteArrayLike(payload.iv) ||
     !isByteArrayLike(payload.ciphertext) ||
     !isByteArrayLike(payload.mnemonicWrap?.iv) ||
@@ -323,4 +432,5 @@ export async function importEncryptedVaultBlob(blob: Blob): Promise<void> {
     createdAt: Date.now(),
   }
   await db.vault.put(record)
+  return { cache: isBackupCacheSection(payload.cache) ? payload.cache : null }
 }

@@ -15,7 +15,7 @@ import { test, expect, type Page } from '@playwright/test'
 // rather than hardcoded.
 async function createVaultSkippingQuickUnlock(page: Page): Promise<string> {
   await page.getByRole('checkbox').check()
-  await page.getByRole('button', { name: 'Create Wallet' }).click()
+  await page.getByRole('button', { name: 'Create wallet' }).click()
 
   const words = await page.getByTestId('recovery-phrase-word').allTextContents()
   const recoveryPhrase = words.join(' ')

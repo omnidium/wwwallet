@@ -77,3 +77,13 @@ export const BRIDGE_STATUS_MAX_WAIT_MS = 60 * 60_000
 // How long the Send icon on an account card must be held before the
 // drag-to-transfer target picker opens (shorter presses just open Send).
 export const TRANSFER_LONG_PRESS_MS = 400
+
+/** How often the accounts screen reminds about setting up a passkey, until it's done or turned off. */
+export const PASSKEY_NUDGE_INTERVAL_MS = 24 * 60 * 60_000
+
+/**
+ * Shortest unlock password accepted (see crypto/vault.ts's addPasswordWrap).
+ * Length, not character rules: a password can be guessed offline by anyone
+ * who copies the device's storage, so only a long one holds up.
+ */
+export const UNLOCK_PASSWORD_MIN_LENGTH = 12

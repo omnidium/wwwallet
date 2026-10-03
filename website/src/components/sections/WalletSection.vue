@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { useI18n } from 'vue-i18n'
 import PointCard from '../ui/PointCard.vue'
 import type { IconName } from '../ui/LineIcon.vue'
@@ -17,9 +18,9 @@ const ICONS: IconName[] = ['device-key', 'cipher', 'timer', 'mesh']
 <template>
   <section id="wallet" class="section">
     <div class="container">
-      <p class="section-eyebrow">{{ t('wallet.eyebrow') }}</p>
+      <p class="section-eyebrow"><BrandText :text="t('wallet.eyebrow')" /></p>
       <h2 class="section-heading">{{ t('wallet.heading') }}</h2>
-      <p class="section-lede">{{ t('wallet.lede') }}</p>
+      <p class="section-lede"><BrandText :text="t('wallet.lede')" /></p>
       <div class="points-grid">
         <PointCard
           v-for="(point, index) in tm('wallet.points') as Point[]"
@@ -30,9 +31,9 @@ const ICONS: IconName[] = ['device-key', 'cipher', 'timer', 'mesh']
         />
       </div>
       <aside class="caveat">
-        <h3>{{ t('wallet.caveatTitle') }}</h3>
-        <p>{{ t('wallet.caveatBody') }}</p>
-        <a href="#faqs">{{ t('wallet.caveatLink') }} →</a>
+        <h3><BrandText :text="t('wallet.caveatTitle')" /></h3>
+        <p><BrandText :text="t('wallet.caveatBody')" /></p>
+        <a href="#faqs">{{ t('wallet.caveatLink') }} <span class="dir-arrow" aria-hidden="true">→</span></a>
       </aside>
     </div>
   </section>

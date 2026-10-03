@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -20,6 +21,11 @@ const router = useRouter()
 const recoveryPhrase = ref('')
 const showRecoveryPhraseField = ref(false)
 const hasPasskeyWrap = ref(false)
+// An unlock password (see crypto/vault.ts's addPasswordWrap) — offered ahead
+// of the recovery phrase, behind the passkey.
+const hasPasswordWrap = ref(false)
+const password = ref('')
+const revealPassword = ref(false)
 const busy = ref(false)
 
 const recoveryPhraseRules = [
@@ -29,7 +35,8 @@ const recoveryPhraseRules = [
 onMounted(async () => {
   const methods = await availableUnlockMethods()
   hasPasskeyWrap.value = methods.includes('passkeyPrf')
-  if (!hasPasskeyWrap.value) {
+  hasPasswordWrap.value = methods.includes('password')
+  if (!hasPasskeyWrap.value && !hasPasswordWrap.value) {
     // No quick-unlock method is set up — the recovery phrase is the only option, so show it directly.
     showRecoveryPhraseField.value = true
     return
@@ -42,7 +49,7 @@ onMounted(async () => {
   // requires the actual biometric gesture; it only skips a redundant click.
   // An explicit "Lock now" clears the persisted timestamp precisely so it
   // doesn't trigger this.
-  if (lastActivityAt !== null && Date.now() - lastActivityAt < AUTO_LOCK_MS) {
+  if (hasPasskeyWrap.value && lastActivityAt !== null && Date.now() - lastActivityAt < AUTO_LOCK_MS) {
     await submitPasskey()
   }
 })
@@ -56,6 +63,20 @@ async function submitRecoveryPhrase() {
     messages.push(displayErrorMessage(err), 'error')
   } finally {
     busy.value = false
+  }
+}
+
+async function submitPassword() {
+  if (!password.value) return
+  busy.value = true
+  try {
+    await vault.unlockWithPassword(password.value)
+    router.push('/')
+  } catch (err) {
+    messages.push(displayErrorMessage(err), 'error')
+  } finally {
+    busy.value = false
+    password.value = ''
   }
 }
 
@@ -80,12 +101,25 @@ async function submitPasskey() {
     </div>
     <v-container class="lock-content fill-height d-flex align-center justify-center">
       <v-card width="400" class="pa-4">
-        <v-card-title>{{ t('vaultUnlock.title') }}</v-card-title>
+        <v-card-title><BrandText :text="t('vaultUnlock.title')" /></v-card-title>
 
         <v-card-text v-if="hasPasskeyWrap">
           <v-btn color="primary" block :loading="busy" prepend-icon="mdi-fingerprint" @click="submitPasskey">
             {{ t('vaultUnlock.unlockWithPasskey') }}
           </v-btn>
+        </v-card-text>
+
+        <v-card-text v-if="hasPasswordWrap && !showRecoveryPhraseField" :class="{ 'pt-0': hasPasskeyWrap }">
+          <v-form @submit.prevent="submitPassword">
+            <v-text-field v-model="password" :label="t('quickUnlock.passwordField')"
+              :type="revealPassword ? 'text' : 'password'" autocomplete="current-password" hide-details
+              :autofocus="!hasPasskeyWrap" :append-inner-icon="revealPassword ? 'mdi-eye-off' : 'mdi-eye'"
+              @click:append-inner="revealPassword = !revealPassword" />
+            <v-btn type="submit" :color="hasPasskeyWrap ? undefined : 'primary'"
+              :variant="hasPasskeyWrap ? 'outlined' : 'flat'" block class="mt-3" :loading="busy" :disabled="!password">
+              {{ t('vaultUnlock.unlock') }}
+            </v-btn>
+          </v-form>
         </v-card-text>
 
         <template v-if="showRecoveryPhraseField">

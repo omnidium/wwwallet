@@ -13,8 +13,9 @@ const props = defineProps<{
   modelValue: boolean
   /** Dialog title, e.g. "View private key" — an action-phrased label. */
   title: string
-  /** The plain noun form, e.g. "private key" — used mid-sentence in the warning, where the action-phrased title reads wrong. */
-  secretNoun: string
+  /** Which secret it is — picks the warning, a whole sentence per kind (a
+   *  noun dropped into one sentence can't agree with it in every language). */
+  kind: 'privateKey' | 'mnemonic'
   secret: string
 }>()
 const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
@@ -95,7 +96,7 @@ async function copySecret() {
     <v-card class="pa-4">
       <template v-if="stage === 'warning'">
         <v-card-title>{{ title }}</v-card-title>
-        <v-card-text>{{ t('secretReveal.warning', { secret: secretNoun }) }}</v-card-text>
+        <v-card-text>{{ kind === 'privateKey' ? t('secretReveal.warningPrivateKey') : t('secretReveal.warningMnemonic') }}</v-card-text>
         <v-card-actions>
           <v-btn variant="text" @click="close">{{ t('common.cancel') }}</v-btn>
           <v-spacer />

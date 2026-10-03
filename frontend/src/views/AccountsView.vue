@@ -14,6 +14,7 @@ import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import { useBackupReminderDismissed } from '@/composables/useBackupReminder'
 import { BACKUP_REMINDER_FIRST_MS, BACKUP_REMINDER_RECURRING_MS, ACCOUNT_AUTO_REFRESH_MS } from '@/config/appSettings'
 import AccountCard from '@/components/AccountCard.vue'
+import PasskeyNudge from '@/components/PasskeyNudge.vue'
 import AccountCarousel from '@/components/AccountCarousel.vue'
 import FavouritesCard from '@/components/FavouritesCard.vue'
 import TransferTargetPicker from '@/components/TransferTargetPicker.vue'
@@ -229,7 +230,9 @@ onUnmounted(() => {
       </template>
     </v-alert>
 
-    <v-alert v-if="accounts.accounts.length === 0" type="info" variant="tonal" class="mt-4">
+    <PasskeyNudge />
+
+    <v-alert v-if="accounts.accounts.length === 0" type="info" variant="tonal" class="backup-reminder mt-4 mb-4">
       {{ t('accounts.empty') }}
     </v-alert>
 

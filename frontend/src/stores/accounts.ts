@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { ChainSlug } from '@/services/api'
 import { useVaultStore } from '@/stores/vault'
+import { requestStrongPasskeyNudge } from '@/composables/usePasskeyNudge'
 import type { FavouritesCardLayout } from '@/crypto/vault'
 
 export interface WalletAccount {
@@ -43,7 +44,10 @@ export const useAccountsStore = defineStore('accounts', () => {
   async function addAccount(account: NewWalletAccount): Promise<void> {
     const isFirstForChain = !accounts.value.some((a) => a.chain === account.chain)
     accounts.value.push({ ...account, isDefault: isFirstForChain, visible: true })
-    await useVaultStore().persist()
+    const vault = useVaultStore()
+    await vault.persist()
+    // A new account is more to lose to a mistyped or exposed recovery phrase.
+    if (!vault.hasPasskey) requestStrongPasskeyNudge()
   }
 
   async function removeAccount(address: string): Promise<void> {

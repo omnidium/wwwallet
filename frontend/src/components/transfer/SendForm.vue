@@ -603,8 +603,8 @@ async function confirm() {
       else if (status === 'failed') messages.update(msgId, t('msg.send.failed', { hash }), 'error')
       else messages.update(msgId, t('msg.send.stillPending', { hash }), 'warning')
       // Refreshed whatever the outcome — a failed send still spent gas.
-      chainData.loadAddressActivity(txChain, props.fromAddress).catch(() => {})
-      if (toOwn) chainData.loadAddressActivity(txChain, to).catch(() => {})
+      chainData.loadAddressActivity(txChain, props.fromAddress).catch(() => { })
+      if (toOwn) chainData.loadAddressActivity(txChain, to).catch(() => { })
       return
     }
 
@@ -672,14 +672,20 @@ const signingNotice = computed(() => {
               :placeholder="t('transfer.chooseAccount')" @update:model-value="onFromAddress" />
             <ChainSelect :model-value="fromChain" :options="ctx.ownChainOptions(fromAddress)"
               :label="t('transfer.fromNetwork')" @update:model-value="setFromChain" />
+            <span v-if="tokenBalance !== null" class="xfer-balance ml-4">
+              <v-icon icon="mdi-wallet-outline" size="14" />
+              {{ formatAmount(tokenBalance) }} {{ selectedToken?.symbol }}
+            </span>
           </div>
         </header>
 
         <div class="xfer-amount-row">
           <AppTooltip :text="t('send.toggleAmountUnitAria', { currency: settingsLocale.currency })">
             <template #default="{ activatorProps }">
-              <button v-bind="activatorProps" type="button" class="xfer-unit" :disabled="selectedToken?.usdPrice == null"
-                :aria-label="t('send.toggleAmountUnitAria', { currency: settingsLocale.currency })" @click="toggleAmountMode">
+              <button v-bind="activatorProps" type="button" class="xfer-unit"
+                :disabled="selectedToken?.usdPrice == null"
+                :aria-label="t('send.toggleAmountUnitAria', { currency: settingsLocale.currency })"
+                @click="toggleAmountMode">
                 {{ unitSymbol }}
               </button>
             </template>
@@ -688,23 +694,20 @@ const signingNotice = computed(() => {
             inputmode="decimal" autocomplete="off" placeholder="0"
             :aria-label="t('send.amountInLabel', { unit: amountMode === 'token' ? (selectedToken?.symbol ?? '') : settingsLocale.currency })"
             @input="onAmountInput(($event.target as HTMLInputElement).value)" />
-          <TokenPickerField compact held-only :chain="fromChain" :model-value="pickedToken" :held-tokens="held.heldTokens.value"
-            :label="t('send.tokenLabel')" @update:model-value="onTokenPicked" />
+          <TokenPickerField compact held-only :chain="fromChain" :model-value="pickedToken"
+            :held-tokens="held.heldTokens.value" :label="t('send.tokenLabel')" @update:model-value="onTokenPicked" />
         </div>
 
         <div class="xfer-leg-foot">
-          <button type="button" class="xfer-equiv" :disabled="selectedToken?.usdPrice == null" @click="toggleAmountMode">
-            <v-icon icon="mdi-swap-vertical" size="14" />
+          <button type="button" class="xfer-equiv" :disabled="selectedToken?.usdPrice == null"
+            @click="toggleAmountMode">
             <span>≈ {{ equivalentText }}</span>
           </button>
           <div class="xfer-quick">
-            <span v-if="tokenBalance !== null" class="xfer-balance">
-              <v-icon icon="mdi-wallet-outline" size="14" />
-              {{ formatAmount(tokenBalance) }}
-            </span>
             <button type="button" class="xfer-chip" :disabled="!selectedToken" @click="applyPercent(0.25)">25%</button>
             <button type="button" class="xfer-chip" :disabled="!selectedToken" @click="applyPercent(0.5)">50%</button>
-            <button type="button" class="xfer-chip xfer-chip--max" :disabled="!selectedToken || busy" @click="setMaxAmount">
+            <button type="button" class="xfer-chip xfer-chip--max" :disabled="!selectedToken || busy"
+              @click="setMaxAmount">
               {{ t('send.maxLabel') }}
             </button>
           </div>
@@ -744,7 +747,8 @@ const signingNotice = computed(() => {
                 {{ receiveText.symbol }}
               </span>
             </template>
-            <v-progress-circular v-else-if="bridgeQuote.loading.value" indeterminate size="20" width="2" color="primary" />
+            <v-progress-circular v-else-if="bridgeQuote.loading.value" indeterminate size="20" width="2"
+              color="primary" />
             <span v-else class="xfer-receive-amount xfer-receive-amount--empty">—</span>
           </div>
         </div>
@@ -756,18 +760,23 @@ const signingNotice = computed(() => {
           <v-icon icon="mdi-alert-outline" size="16" /> {{ payeeChainWarning }}
         </p>
         <p v-else-if="isBridge && recipientIsSelf" class="xfer-field-hint">
-          <v-icon icon="mdi-information-outline" size="16" /> {{ t('transfer.movingOwnFunds', { network: NATIVE_ASSETS[toChain].networkName }) }}
+          <v-icon icon="mdi-information-outline" size="16" /> {{ t('transfer.movingOwnFunds', {
+            network:
+              NATIVE_ASSETS[toChain].networkName
+          }) }}
         </p>
       </section>
     </div>
 
-    <RouteSummary :from-chain="fromChain" :to-chain="toChain" :via="isBridge ? (bridgeQuote.quote.value?.tool ?? null) : null"
-      :via-logo-url="isBridge ? bridgeQuote.quote.value?.tool_logo_url : null" :rows="summaryRows" :loading="quoteLoading"
-      :error="quoteError" :placeholder="placeholder">
+    <RouteSummary :from-chain="fromChain" :to-chain="toChain"
+      :via="isBridge ? (bridgeQuote.quote.value?.tool ?? null) : null"
+      :via-logo-url="isBridge ? bridgeQuote.quote.value?.tool_logo_url : null" :rows="summaryRows"
+      :loading="quoteLoading" :error="quoteError" :placeholder="placeholder">
       <p v-if="signingNotice" class="route-summary-notice">{{ signingNotice }}</p>
       <template #actions>
         <v-btn variant="text" size="large" @click="emit('close')">{{ t('common.cancel') }}</v-btn>
-        <v-btn color="primary" size="large" class="flex-grow-1" :disabled="!canReview" :loading="busy" @click="openReview">
+        <v-btn color="primary" size="large" class="flex-grow-1" :disabled="!canReview" :loading="busy"
+          @click="openReview">
           {{ isBridge ? t('transfer.reviewBridge') : t('common.review') }}
         </v-btn>
       </template>

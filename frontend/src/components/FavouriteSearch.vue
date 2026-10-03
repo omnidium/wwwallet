@@ -69,25 +69,27 @@ function addFx(base: string, quote: string) {
       prepend-inner-icon="mdi-magnify" density="compact" variant="outlined" hide-details clearable
       :loading="searching" autocomplete="off" />
     <div class="favourite-search-results">
-      <div v-for="pair in fxPairs" :key="fxKey(pair.base, pair.quote)" class="favourite-search-row d-flex align-center">
+      <!-- The whole row adds it; a tick marks one that's already a favourite. -->
+      <button v-for="pair in fxPairs" :key="fxKey(pair.base, pair.quote)" type="button"
+        class="favourite-search-row d-flex align-center" :disabled="favourites.has(fxKey(pair.base, pair.quote))"
+        :aria-label="t('favourites.add', { name: `${pair.base}/${pair.quote}` })" @click="addFx(pair.base, pair.quote)">
         <v-icon icon="mdi-swap-horizontal" size="24" class="mr-3" />
         <span class="font-weight-medium">{{ pair.base }}/{{ pair.quote }}</span>
         <span class="text-caption text-medium-emphasis ml-2 text-truncate">{{ t('favourites.fxPair') }}</span>
         <v-spacer />
-        <v-btn :icon="favourites.has(fxKey(pair.base, pair.quote)) ? 'mdi-check' : 'mdi-plus'" variant="text"
-          size="small" density="comfortable" :disabled="favourites.has(fxKey(pair.base, pair.quote))"
-          :aria-label="t('favourites.add', { name: `${pair.base}/${pair.quote}` })" @click="addFx(pair.base, pair.quote)" />
-      </div>
-      <div v-for="coin in coins" :key="coin.id" class="favourite-search-row d-flex align-center">
+        <v-icon v-if="favourites.has(fxKey(pair.base, pair.quote))" icon="mdi-check" size="20"
+          class="favourite-search-added ml-2" />
+      </button>
+      <button v-for="coin in coins" :key="coin.id" type="button" class="favourite-search-row d-flex align-center"
+        :disabled="favourites.has(coinKey(coin.id))" :aria-label="t('favourites.add', { name: coin.name })"
+        @click="addCoin(coin)">
         <v-avatar v-if="coin.logo_url" :image="coin.logo_url" size="24" class="mr-3" />
         <v-icon v-else icon="mdi-cash" size="24" class="mr-3" />
         <span class="font-weight-medium">{{ coin.symbol }}</span>
         <span class="text-caption text-medium-emphasis ml-2 text-truncate">{{ coin.name }}</span>
         <v-spacer />
-        <v-btn :icon="favourites.has(coinKey(coin.id)) ? 'mdi-check' : 'mdi-plus'" variant="text" size="small"
-          density="comfortable" :disabled="favourites.has(coinKey(coin.id))"
-          :aria-label="t('favourites.add', { name: coin.name })" @click="addCoin(coin)" />
-      </div>
+        <v-icon v-if="favourites.has(coinKey(coin.id))" icon="mdi-check" size="20" class="favourite-search-added ml-2" />
+      </button>
       <p v-if="failed" class="text-caption text-medium-emphasis pa-2">{{ t('favourites.searchFailed') }}</p>
       <p v-else-if="!searching && query.trim().length >= MIN_QUERY_LENGTH && coins.length === 0 && fxPairs.length === 0"
         class="text-caption text-medium-emphasis pa-2">

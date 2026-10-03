@@ -62,8 +62,6 @@ export const frontendEn = {
     show: 'Show account',
     viewPrivateKey: 'View private key',
     viewMnemonic: 'View mnemonic',
-    privateKeyNoun: 'private key',
-    mnemonicNoun: 'mnemonic phrase',
     showTokens: 'Show token balances',
     hideTokens: 'Hide token balances',
     hideDustTxns: 'Hide transactions under $0.01',
@@ -82,8 +80,10 @@ export const frontendEn = {
     hide: 'Hide',
   },
   secretReveal: {
-    warning:
-      'Anyone with this {secret} can have full access to that account. Make sure you are somewhere private and on a personal device before viewing it.',
+    warningPrivateKey:
+      'Anyone with this private key can have full access to that account. Make sure you are somewhere private and on a personal device before viewing it.',
+    warningMnemonic:
+      'Anyone with this recovery phrase (mnemonic) can have full access to that account. Make sure you are somewhere private and on a personal device before viewing it.',
     ok: 'OK',
     confirmIdentity: 'Confirm it’s you',
     confirmWithPasskey: 'Confirm with Face ID / Touch ID to continue.',
@@ -109,6 +109,38 @@ export const frontendEn = {
     paidBySender: 'Paid by the sender',
     feeUnavailable: 'Not available yet',
     todaysPriceNote: "* At today's price — no price was found for when this transaction was made.",
+  },
+  quickUnlock: {
+    title: 'Set up quick unlock',
+    usePhone: 'Use a phone instead',
+    useSecurityKey: 'Use a security key instead',
+    passkeyUnavailable: 'Not available in this browser — set an unlock password below instead',
+    passkeyUnavailableBody:
+      "This browser can't use Face ID / Touch ID to unlock wwwallet. Set an unlock password for this device instead, so you're not typing your whole recovery phrase every time.",
+    platformLacksPrfBody:
+      "This device's built-in Face ID / Touch ID can't unlock wwwallet. You can use a passkey on your phone (by scanning a QR code) or a security key instead — or set an unlock password for this device.",
+    reminder:
+      "You're still unlocking with your full recovery phrase. Set up quick unlock on this device to get in faster and keep your phrase out of sight.",
+    setPassword: 'Set an unlock password',
+    passwordTitle: 'Unlock password',
+    passwordIntro:
+      "Unlocks wwwallet on this device only. Make it long — at least {min} characters; a phrase of several words works well. Anyone who copied this device's storage could try to guess it, so length matters more than symbols.",
+    passwordField: 'Unlock password',
+    confirmField: 'Repeat unlock password',
+    tooShort: 'At least {min} characters',
+    mismatch: "Passwords don't match",
+    passwordSet: 'Unlock password set.',
+    passwordEnabled: 'Set on this device',
+    passwordNotSet: 'Not set — for devices where a passkey isn\'t available',
+    change: 'Change',
+  },
+  passkeyNudge: {
+    title: 'Set up Face ID / Touch ID',
+    body: "Right now, unlocking wwwallet means typing your whole recovery phrase — slow, and every time it's on screen is a chance for it to be seen. A passkey unlocks in a second with your face, fingerprint or device PIN, and your recovery phrase stays put away.",
+    deviceOnly: 'The passkey stays on this device. Your recovery phrase still works as before, on any device.',
+    reminder: "You're still unlocking with your full recovery phrase. Set up Face ID / Touch ID on this device to unlock in a second and keep your phrase out of sight.",
+    notNow: 'Not now',
+    dontShowAgain: "Don't show again",
   },
   transferPicker: {
     title: 'Drop on an account or payee to transfer',
@@ -223,6 +255,7 @@ export const frontendEn = {
     searchTokenPlaceholder: 'Search name or symbol',
     yourTokens: 'Your tokens',
     allTokens: 'All tokens',
+    popularTokens: 'Popular tokens',
     noResults: 'No tokens found.',
     viewOnExplorer: 'View token on block explorer',
     signingNotice: "You're signing a transaction to contract {address} (via the 0x aggregator).",
@@ -262,21 +295,25 @@ export const frontendEn = {
     canRead: 'You can read and audit every line of its source code.',
     cannot: "You can't copy, change, redistribute or sell it.",
     englishNote: 'The full license follows, in its original English — it is the legal text.',
-    viewSource: 'View on GitHub',
+    viewSource: 'View source on GitHub',
   },
   vaultSetup: {
     createTitle: 'Create your wallet',
     createIntroBody:
       "Generates a new recovery phrase and vault on this device. Nothing is sent to a server — you're fully in control from the start.",
-    createWalletCta: 'Create Wallet',
+    createWalletCta: 'Create wallet',
     disclaimerTitle: 'Before you continue',
     disclaimerBody:
       'wwwallet is non-custodial software provided “as is”, without warranty of any kind. You alone control your keys and funds: a lost recovery phrase or backup cannot be recovered by anyone, and blockchain transactions are irreversible. wwwallet is not financial, investment, legal, or tax advice. Use it at your own risk. The code is source-available under the PolyForm Strict License 1.0.0 — you may read and audit it, but not copy, modify, redistribute, or use it commercially.',
     disclaimerLicenseLink: 'Read the license',
     disclaimerAckLabel: 'I have read and accept these terms',
+    // Whole sentences, never split around an emphasised word or a noun
+    // dropped in: word order and grammar differ between languages, so
+    // fragments translated apart don't fit back together.
     recoveryExplainer:
-      "This is your {phrase}. It encrypts everything on this device and is the only way back in if you ever lose access to your passkey — including restoring a backup on a new device. Write it down or copy it somewhere safe, offline. You won't need it day-to-day once quick unlock is set up on the next screen, and wwwallet will never show it to you again.",
-    recoveryExplainerPhrase: 'recovery phrase',
+      "This is your recovery phrase. It encrypts everything on this device. Write it down or copy it somewhere safe, offline. You won't need it day-to-day once quick unlock is set up on the next screen, and wwwallet will never show it to you again.",
+    recoveryOnlyWayBack:
+      "This is the only way back into your wallet if you ever lose access to your passkey — including restoring a backup on a new device. Without it, any funds stored in the wallet are completely and irretrievably lost.",
     copyRecoveryPhrase: 'Copy recovery phrase',
     savedAckLabel: "I've saved my recovery phrase somewhere safe",
     createVault: 'Create vault',
@@ -288,8 +325,6 @@ export const frontendEn = {
       'Use Face ID or Touch ID to unlock day-to-day, instead of your recovery phrase.',
     enablePasskey: 'Enable Face ID / Touch ID',
     passkeyEnabledLabel: 'Face ID / Touch ID enabled',
-    passkeyUnsupportedNote:
-      'Not supported on this device or browser — you can still unlock with your recovery phrase, or try again later from Settings.',
     skipTitle: 'Skip quick unlock?',
     skipBody:
       "Without a passkey, you'll enter your full recovery phrase every time you open wwwallet. You can set this up later from Settings.",
@@ -443,7 +478,7 @@ export const frontendEn = {
     passkeyNoPrfSecret: 'passkey did not return a PRF secret',
     passkeyUnlockCancelled: 'passkey unlock was cancelled',
     prfNotSupported:
-      'This device or browser does not support passwordless passkey unlock (WebAuthn PRF). You can still unlock with your recovery phrase, or try a different device/browser.',
+      "This device's built-in Face ID / Touch ID can't unlock wwwallet (it lacks the WebAuthn PRF feature). Try a passkey on your phone or a security key instead, or set an unlock password for this device.",
     googleDriveNotConfigured:
       'Google Drive backup is not configured (VITE_GOOGLE_CLIENT_ID missing)',
     gisLoadFailed: 'failed to load Google Identity Services',
@@ -457,8 +492,10 @@ export const frontendEn = {
     noRecoveryWrapToExport: 'vault has no recovery-phrase wrap to export',
     invalidBackupFile: 'This file is not a valid wwwallet backup.',
     vaultUnlockFailed: 'Incorrect recovery phrase or corrupted vault.',
-    unlockMethodNotEnrolled: '{method} is not set up for this vault.',
+    incorrectUnlockPassword: 'Incorrect unlock password.',
+    recoveryPhraseNotSetUp: 'Recovery phrase is not set up for this vault.',
     passkeyNotSetUp: 'Passkey is not set up for this vault.',
+    passwordNotSetUp: 'Password is not set up for this vault.',
     vaultLocked: 'vault is locked',
     chooseKeystoreFile: 'choose a keystore file',
     passkeyOperationFailed:
@@ -498,13 +535,21 @@ export const frontendEn = {
 }
 
 export const websiteEn = {
+  // The page's title and description in search results and link previews
+  // (set per language by scripts/prerender.mjs). Keep the title under ~60
+  // characters and the description under ~160, or search engines cut them.
+  meta: {
+    title: 'wwwallet — Free, non-custodial Ethereum wallet',
+    description:
+      'Free Ethereum wallet in your browser. No sign-up, no ads, no tracking — your keys stay encrypted on your device. Ethereum, Arbitrum, Base, Optimism and Polygon.',
+  },
   nav: {
     principles: 'Principles',
-    wallet: 'Wallet',
+    wallet: 'wwwallet',
     ethereum: 'Ethereum',
     crypto: 'Crypto',
     faqs: 'FAQs',
-    launch: 'Launch Wallet',
+    launch: 'Launch wwwallet',
     home: 'Back to top',
     sectionNavLabel: 'Section navigation',
   },
@@ -516,7 +561,7 @@ export const websiteEn = {
     canRead: 'You can read and audit every line of its source code.',
     cannot: "You can't copy, change, redistribute or sell it.",
     englishNote: 'The full license follows, in its original English — it is the legal text.',
-    viewSource: 'View on GitHub',
+    viewSource: 'View source on GitHub',
   },
   settings: {
     open: 'Settings',
@@ -527,21 +572,22 @@ export const websiteEn = {
     language: 'Language',
     search: 'Search',
     noMatches: 'No matches',
+    version: 'Version {version}',
   },
   hero: {
     eyebrow: 'A free, non-custodial Ethereum wallet',
     heading1: 'Your keys.',
     heading2: 'Your device.',
     heading3: 'Free for everyone.',
-    lede: 'wwwallet runs in your browser and keeps your keys encrypted on your own device. There’s no account to create, nothing to pay and no ads — just a wallet that works the same way for everyone.',
-    ctaPrimary: 'Launch Wallet',
+    lede: 'wwwallet runs in your browser and keeps your keys encrypted on your own device. There’s no account to create, nothing to pay and no ads, and it works the same way for everyone.',
+    ctaPrimary: 'Launch wwwallet',
     ctaSecondary: 'See how it works',
     note: 'No sign-up · No ads · No tracking · 31 languages',
   },
   principles: {
     eyebrow: 'Principles',
     heading: 'Free, open and built for anyone',
-    lede: 'A wallet should be a tool you use, not a business built on its users. These are the commitments wwwallet is built around.',
+    lede: 'Software that holds your money should be a tool you use, not a business built on its users. These are the commitments wwwallet is built around.',
     items: [
       {
         title: 'Free, with no catch',
@@ -578,13 +624,13 @@ export const websiteEn = {
     ],
   },
   wallet: {
-    eyebrow: 'Wallet',
+    eyebrow: 'wwwallet',
     heading: 'Built so only you can open it',
     lede: "wwwallet doesn't hold your funds — it helps you hold them yourself. Here's what that means in practice.",
     points: [
       {
         title: 'Non-custodial, always',
-        body: "Your private keys are generated and encrypted on your own device. wwwallet's servers never see them — there's no database of wallets to breach, because there isn't a database at all.",
+        body: "Your private keys are generated and encrypted on your own device. wwwallet's servers never see them — there's no database of keys to breach, because there isn't a database at all.",
       },
       {
         title: 'Encrypted with AES-256, unlocked your way',
@@ -595,8 +641,8 @@ export const websiteEn = {
         body: 'wwwallet locks after a short period of inactivity, and never writes your unlocked session to disk — close the tab and it forgets, on purpose.',
       },
       {
-        title: 'One wallet, five Ethereum networks',
-        body: 'Hold and send across Ethereum mainnet, Polygon, Arbitrum, Base, and Optimism from the same set of accounts.',
+        title: 'Five Ethereum networks, one set of accounts',
+        body: 'Hold and send across Ethereum mainnet, Polygon, Arbitrum, Base, and Optimism with the same accounts and addresses.',
       },
     ],
     caveatTitle: 'Your recovery phrase unlocks your vault — it’s not a magic backup',
@@ -636,7 +682,7 @@ export const websiteEn = {
     points: [
       {
         title: 'Custodial vs. non-custodial',
-        body: 'A custodial wallet or exchange holds your keys for you — convenient, but you’re trusting someone else not to freeze, lose, or misuse your funds. A non-custodial wallet like wwwallet puts the keys, and the responsibility, in your hands alone.',
+        body: 'A custodial wallet or exchange holds your keys for you — convenient, but you’re trusting someone else not to freeze, lose, or misuse your funds. A non-custodial wallet such as wwwallet leaves the keys, and the responsibility, in your hands alone.',
       },
       {
         title: 'Staking vs. mining',
@@ -648,7 +694,7 @@ export const websiteEn = {
       },
       {
         title: 'Nobody legitimate asks for your phrase',
-        body: 'Whatever wallet you use: no exchange, no support agent, and no wwwallet employee will ever ask for your recovery phrase. Anyone who does is trying to rob you.',
+        body: 'No exchange, no support agent and nobody from wwwallet will ever ask for your recovery phrase — whichever app you use. Anyone who does is trying to rob you.',
       },
     ],
     linkLabel: 'Go deeper with the Bankless podcast',
@@ -672,11 +718,11 @@ export const websiteEn = {
       },
       {
         q: 'If it’s free, how does wwwallet pay for itself?',
-        a: 'It doesn’t make money from its users — no fees, no ads, no data sales. Running costs are kept small by design: the wallet itself runs in your browser, and the backend only relays public blockchain and price data.',
+        a: 'It doesn’t make money from its users — no fees, no ads, no data sales. Running costs are kept small by design: the app itself runs in your browser, and the backend only relays public blockchain and price data.',
       },
       {
         q: 'Can anyone freeze my wallet?',
-        a: 'There’s no account, so there’s nothing for wwwallet — or anyone else — to freeze. Your keys never leave your device, and transactions are signed there before they’re sent to the network. Your funds live on Ethereum, not in wwwallet: you can view any account’s private key or recovery phrase from its menu and import it into another Ethereum wallet whenever you like.',
+        a: 'There’s no account, so there’s nothing for wwwallet — or anyone else — to freeze. Your keys never leave your device, and transactions are signed there before they’re sent to the network. Your funds live on Ethereum, not in wwwallet: you can view any account’s private key or recovery phrase from its menu and import it into any other Ethereum wallet app whenever you like.',
       },
       {
         q: 'Is my recovery phrase enough to get my wallet back?',
@@ -684,7 +730,7 @@ export const websiteEn = {
       },
       {
         q: 'How do I back up my wallet?',
-        a: 'From Settings, back up your encrypted vault to your own Google Drive — stored in a private, app-only folder wwwallet can’t see the rest of — or as a file you download and keep yourself. Do this whenever you set up a wallet or add new accounts.',
+        a: 'From Settings, back up your encrypted vault to your own Google Drive or as a file you download and keep yourself. A Drive backup goes in a private app folder, and wwwallet can’t see anything else in your Drive. Back up when you first set up, and again whenever you add accounts.',
       },
       {
         q: 'Can I use wwwallet on more than one device?',
@@ -692,7 +738,7 @@ export const websiteEn = {
       },
       {
         q: 'What happens if I lose my device and never backed up?',
-        a: 'Your funds are unrecoverable. That’s by design: wwwallet has no account system and keeps no copy of your vault anywhere, so nobody — including us — can restore it for you. It’s the trade-off of a wallet nobody but you can access.',
+        a: 'Your funds are unrecoverable. That’s by design: wwwallet has no account system and keeps no copy of your vault anywhere, so nobody — including us — can restore it for you. It’s the trade-off for keys nobody but you can access.',
       },
       {
         q: 'Do passkeys (Face ID / Touch ID) carry over to a new device?',

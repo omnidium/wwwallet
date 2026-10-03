@@ -59,7 +59,7 @@ button {
 
 ul,
 ol {
-  padding-left: 1.2em;
+  padding-inline-start: 1.2em;
 }
 
 :focus-visible {
@@ -86,6 +86,15 @@ ol {
   text-transform: uppercase;
   color: var(--accent-ink);
   margin: 0 0 var(--space-2);
+}
+
+/* The brand as an eyebrow (the wwwallet section) is set like every other
+ * eyebrow — capitals, spaced, bold — rather than kept lowercase as it is in
+ * running text (shared/ui/BrandText.vue). */
+.section-eyebrow .brand-name {
+  font-weight: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
 }
 
 .section-heading {
@@ -159,4 +168,14 @@ ol {
   background: rgb(var(--border-rgb) / 8%);
   color: var(--text);
   border: 1px solid rgb(var(--border-rgb) / 16%);
+}
+
+/* Arrows that point "onward" — forward is leftward on right-to-left pages
+ * (Arabic, Hebrew), so they turn around there. */
+.dir-arrow {
+  display: inline-block;
+}
+
+[dir='rtl'] .dir-arrow {
+  transform: scaleX(-1);
 }

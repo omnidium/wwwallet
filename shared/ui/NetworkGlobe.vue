@@ -17,14 +17,69 @@
 // (where it's a full-screen watermark — `fill`), so the two stay one
 // artwork. Uses only shared/design-tokens.css variables, which both load.
 
+// ─── Tuning ────────────────────────────────────────────────────────────────
+// Everything about how the animation looks and moves. Sizes are in the
+// artwork's own units: the globe is 392 across (R × 2) in a 380 box.
+// (On the wallet's lock screen the whole globe is also dimmed — see
+// `.lock-watermark`'s opacity in frontend/src/assets/main.css.)
+
+/** Pills (the signals travelling along the links) */
+
+/** Seconds a pill takes to travel its link, picked per link at random from
+ *  this range: higher is slower; a narrower range, more even speeds. */
+const PILL_TRIP_SECONDS = { min: 4, max: 12.6 }
+/** Each link's first pill sets off at a random point within this many
+ *  seconds of the page loading, so they don't all move in step. */
+const PILL_START_SPREAD_SECONDS = PILL_TRIP_SECONDS.max
+/** How long a pill is, as a percentage of its link's length. */
+const PILL_LENGTH_PERCENT = 6
+/** How thick a pill is (the links themselves are 1.4). */
+const PILL_WIDTH = 2.9
+
+/** Flashes (a node lighting up as a pill reaches it) */
+
+/** How far through its trip a pill is when its node flashes, from 0 to 1.
+ *  The pill's front touches the node at 1 − PILL_LENGTH_PERCENT / 100
+ *  (0.94); raise it slightly if the flash seems to fire before the pill lands. */
+const FLASH_AT = 0.95
+/** The flash's colour: null to light each node in its own colour (one of
+ *  the three brand hues), or any CSS colour — '#fff', 'var(--accent)' — for
+ *  every flash to be the same. */
+const FLASH_COLOUR: string | null = 'var(--flash-hue)' //null
+/** Brightness at the burst's peak, from 0 (invisible) to 1 (full). */
+const FLASH_PEAK_OPACITY = 0.8
+/** Seconds from nothing to full brightness: the "burst". Keep it short. */
+const FLASH_BURST_SECONDS = 0.05
+/** Seconds the glow around the node takes to fade out after the burst. */
+const FLASH_GLOW_FADE_SECONDS = 1
+/** Seconds the node's lit-up centre takes to fade out after the burst. */
+const FLASH_CORE_FADE_SECONDS = 1.5
+/** The fade's shape. 'ease-out': most of the light goes quickly and the
+ *  last of it lingers. 'linear': an even fade. 'ease-in': holds bright,
+ *  then drops away. Any CSS easing works. Fades are cut short if they'd
+ *  run into the same link's next flash. */
+const FLASH_FADE_EASING = 'ease-out'
+/** Radius of the glow around the node (the node's ring is 4.2; its
+ *  always-on halo, 9). */
+const FLASH_GLOW_RADIUS = 22
+/** How much the glow swells as it fades: 1 for not at all. */
+const FLASH_GLOW_GROWTH = 1.35
+/** The glow's strength from 0 to 1, at its centre and halfway out; it
+ *  always fades to nothing at its edge. Higher is a brighter, harder glow. */
+const FLASH_GLOW_STRENGTH = { centre: 0.85, halfway: 0.35 }
+/** Radius of the node's centre filling with light. Much past 3.4 starts to
+ *  cover the node's ring (4.2). */
+const FLASH_CORE_RADIUS = 3
+// ───────────────────────────────────────────────────────────────────────────
+
 const props = defineProps<{
   /** Grow to whatever size the container gives it, rather than the hero's 460px cap. */
   fill?: boolean
 }>()
 
-const SIZE = 440
+const SIZE = 380
 const C = SIZE / 2
-const R = 176
+const R = 196
 // Tilts the globe toward the viewer so the dot rows read as latitude lines.
 const TILT = (22 * Math.PI) / 180
 
@@ -140,14 +195,81 @@ const links = edges.map(([i, j], k) => {
     d: `M${a.x.toFixed(1)} ${a.y.toFixed(1)}Q${cx.toFixed(1)} ${cy.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`,
     from: { x: a.x, y: a.y, hue: nodeHue[i]! },
     to: { x: b.x, y: b.y, hue: nodeHue[j]! },
-    delay: rand(0, 5),
-    dur: rand(3.2, 5.6),
+    toNode: j,
+    delay: rand(0, PILL_START_SPREAD_SECONDS),
+    dur: rand(PILL_TRIP_SECONDS.min, PILL_TRIP_SECONDS.max),
   }
 })
+
+const signalStyle = (link: (typeof links)[number]) => ({
+  animationDelay: `${link.delay}s`,
+  animationDuration: `${link.dur}s`,
+  strokeWidth: PILL_WIDTH,
+  strokeDasharray: `${PILL_LENGTH_PERCENT} ${100 - PILL_LENGTH_PERCENT}`,
+})
+
+// Each link lights its far node as its pill arrives: the flash repeats on
+// the pill's cycle, started FLASH_AT of the way into it, so the burst lands
+// on the impact and the fade can run on past the cycle's end into the next.
+const flashes = links.map((link) => ({
+  key: link.id,
+  x: nodes[link.toNode]!.x,
+  y: nodes[link.toNode]!.y,
+  hueIndex: HUES.indexOf(nodeHue[link.toNode]!),
+  delay: link.delay + FLASH_AT * link.dur,
+  dur: link.dur,
+}))
+const flashGlowColours = FLASH_COLOUR ? [FLASH_COLOUR] : HUES
+const flashGlowFill = (hueIndex: number) => `url(#hero-flash-${uid}-${FLASH_COLOUR ? 0 : hueIndex})`
+const flashCoreColour = (hueIndex: number) => FLASH_COLOUR ?? HUES[hueIndex]!
+
+// Run with the Web Animations API rather than CSS keyframes, whose
+// percentages couldn't come from the settings above: burst and fade are set
+// in seconds, so they hold whatever a link's trip time. They run on the
+// compositor, like the pills; nothing here runs per frame.
+function flashKeyframes(dur: number, fadeSeconds: number, grow: boolean): Keyframe[] {
+  const burst = Math.min(FLASH_BURST_SECONDS / dur, 0.5)
+  // Out by the time the same link's next flash starts.
+  const faded = Math.min(burst + fadeSeconds / dur, 0.98)
+  const scale = (value: number) => (grow ? { transform: `scale(${value})` } : {})
+  return [
+    { offset: 0, opacity: 0, ...scale(0.4), easing: 'ease-out' },
+    { offset: burst, opacity: Math.min(Math.random(), FLASH_PEAK_OPACITY), ...scale(1), easing: FLASH_FADE_EASING },
+    { offset: faded, opacity: 0, ...scale(FLASH_GLOW_GROWTH) },
+    { offset: 1, opacity: 0, ...scale(FLASH_GLOW_GROWTH) },
+  ]
+}
+
+const reducedMotion = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches
+const running = new Map<string, Animation>()
+
+// A template ref callback: Vue calls it with the element once it's in the
+// page (start its flash) and with null once it's gone (stop it).
+function flashRef(flash: (typeof flashes)[number], part: 'glow' | 'core') {
+  const key = `${part}:${flash.key}`
+  return (el: unknown) => {
+    if (!(el instanceof Element)) {
+      running.get(key)?.cancel()
+      running.delete(key)
+      return
+    }
+    if (running.has(key) || reducedMotion || typeof el.animate !== 'function') return
+    const fade = part === 'glow' ? FLASH_GLOW_FADE_SECONDS : FLASH_CORE_FADE_SECONDS
+    running.set(
+      key,
+      el.animate(flashKeyframes(flash.dur, fade, part === 'glow'), {
+        duration: flash.dur * 1000,
+        delay: flash.delay * 1000,
+        iterations: Infinity,
+      }),
+    )
+  }
+}
 </script>
 
 <template>
-  <svg class="hero-graphic" :class="{ 'hero-graphic--fill': props.fill }" :viewBox="`0 0 ${SIZE} ${SIZE}`" role="img" aria-hidden="true">
+  <svg class="hero-graphic" :class="{ 'hero-graphic--fill': props.fill }" :viewBox="`0 0 ${SIZE} ${SIZE}`" role="img"
+    aria-hidden="true">
     <defs>
       <!-- One per link, running end to end along it in its two nodes' hues. -->
       <linearGradient v-for="link in links" :id="link.id" :key="link.id" gradientUnits="userSpaceOnUse"
@@ -155,6 +277,12 @@ const links = edges.map(([i, j], k) => {
         <stop offset="0%" :style="{ stopColor: link.from.hue }" />
         <stop offset="100%" :style="{ stopColor: link.to.hue }" />
       </linearGradient>
+      <!-- A soft burst of light per hue, for the nodes' flashes. -->
+      <radialGradient v-for="(colour, h) in flashGlowColours" :id="`hero-flash-${uid}-${h}`" :key="`f${h}`">
+        <stop offset="0%" :style="{ stopColor: colour, stopOpacity: FLASH_GLOW_STRENGTH.centre }" />
+        <stop offset="50%" :style="{ stopColor: colour, stopOpacity: FLASH_GLOW_STRENGTH.halfway }" />
+        <stop offset="100%" :style="{ stopColor: colour, stopOpacity: 0 }" />
+      </radialGradient>
       <radialGradient id="hero-glow" cx="50%" cy="45%" r="55%">
         <stop offset="0%" style="stop-color: rgb(var(--accent-rgb) / 0.16)" />
         <stop offset="100%" style="stop-color: rgb(var(--accent-rgb) / 0)" />
@@ -171,13 +299,21 @@ const links = edges.map(([i, j], k) => {
     <g fill="none" stroke-linecap="round">
       <path v-for="link in links" :key="`l${link.id}`" :d="link.d" :stroke="`url(#${link.id})`" class="hero-link" />
       <path v-for="link in links" :key="`s${link.id}`" :d="link.d" :stroke="`url(#${link.id})`" pathLength="100"
-        class="hero-signal" :style="{ animationDelay: `${link.delay}s`, animationDuration: `${link.dur}s` }" />
+        class="hero-signal" :style="signalStyle(link)" />
     </g>
+
+    <!-- Under the nodes: the glow each arriving signal sets off. -->
+    <circle v-for="flash in flashes" :key="`g${flash.key}`" :ref="flashRef(flash, 'glow')" :cx="flash.x" :cy="flash.y"
+      :r="FLASH_GLOW_RADIUS" :fill="flashGlowFill(flash.hueIndex)" class="hero-flash" />
 
     <g v-for="(node, i) in nodes" :key="`n${i}`" :style="{ color: nodeHue[i] }">
       <circle :cx="node.x" :cy="node.y" r="9" class="hero-node-halo" />
       <circle :cx="node.x" :cy="node.y" r="4.2" class="hero-node" />
     </g>
+
+    <!-- Over them: the hollow centre filling with light at the same moment. -->
+    <circle v-for="flash in flashes" :key="`c${flash.key}`" :ref="flashRef(flash, 'core')" :cx="flash.x" :cy="flash.y"
+      :r="FLASH_CORE_RADIUS" :style="{ fill: flashCoreColour(flash.hueIndex) }" class="hero-flash" />
   </svg>
 </template>
 
@@ -210,8 +346,7 @@ const links = edges.map(([i, j], k) => {
 }
 
 .hero-signal {
-  stroke-width: 2.6;
-  stroke-dasharray: 6 94;
+  /* Width and length: PILL_WIDTH, PILL_LENGTH_PERCENT. */
   stroke-dashoffset: 100;
   opacity: 0;
   animation: hero-signal linear infinite;
@@ -227,7 +362,8 @@ const links = edges.map(([i, j], k) => {
     opacity: 1;
   }
 
-  80% {
+  /* Fully lit until it reaches its node, then gone into it. */
+  93% {
     opacity: 1;
   }
 
@@ -235,6 +371,15 @@ const links = edges.map(([i, j], k) => {
     stroke-dashoffset: 0;
     opacity: 0;
   }
+}
+
+/* A node lighting up as a signal arrives — animated from the script (see
+ * the FLASH_ settings), and invisible until then. */
+.hero-flash {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  pointer-events: none;
 }
 
 .hero-node {
@@ -250,6 +395,8 @@ const links = edges.map(([i, j], k) => {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
+  /* The flashes check this themselves, before starting. */
   .hero-signal {
     animation: none;
   }

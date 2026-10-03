@@ -1,13 +1,18 @@
 // AUTO-GENERATED from shared/i18n/master_en.ts — do not edit directly.
 // Edit that file instead, then run `node scripts/sync-i18n.mjs` from the repo root.
 export default {
+  meta: {
+    title: 'wwwallet — Free, non-custodial Ethereum wallet',
+    description:
+      'Free Ethereum wallet in your browser. No sign-up, no ads, no tracking — your keys stay encrypted on your device. Ethereum, Arbitrum, Base, Optimism and Polygon.',
+  },
   nav: {
     principles: 'Principles',
-    wallet: 'Wallet',
+    wallet: 'wwwallet',
     ethereum: 'Ethereum',
     crypto: 'Crypto',
     faqs: 'FAQs',
-    launch: 'Launch Wallet',
+    launch: 'Launch wwwallet',
     home: 'Back to top',
     sectionNavLabel: 'Section navigation',
   },
@@ -19,7 +24,7 @@ export default {
     canRead: 'You can read and audit every line of its source code.',
     cannot: "You can't copy, change, redistribute or sell it.",
     englishNote: 'The full license follows, in its original English — it is the legal text.',
-    viewSource: 'View on GitHub',
+    viewSource: 'View source on GitHub',
   },
   settings: {
     open: 'Settings',
@@ -30,21 +35,22 @@ export default {
     language: 'Language',
     search: 'Search',
     noMatches: 'No matches',
+    version: 'Version {version}',
   },
   hero: {
     eyebrow: 'A free, non-custodial Ethereum wallet',
     heading1: 'Your keys.',
     heading2: 'Your device.',
     heading3: 'Free for everyone.',
-    lede: 'wwwallet runs in your browser and keeps your keys encrypted on your own device. There’s no account to create, nothing to pay and no ads — just a wallet that works the same way for everyone.',
-    ctaPrimary: 'Launch Wallet',
+    lede: 'wwwallet runs in your browser and keeps your keys encrypted on your own device. There’s no account to create, nothing to pay and no ads, and it works the same way for everyone.',
+    ctaPrimary: 'Launch wwwallet',
     ctaSecondary: 'See how it works',
     note: 'No sign-up · No ads · No tracking · 31 languages',
   },
   principles: {
     eyebrow: 'Principles',
     heading: 'Free, open and built for anyone',
-    lede: 'A wallet should be a tool you use, not a business built on its users. These are the commitments wwwallet is built around.',
+    lede: 'Software that holds your money should be a tool you use, not a business built on its users. These are the commitments wwwallet is built around.',
     items: [
       {
         title: 'Free, with no catch',
@@ -81,13 +87,13 @@ export default {
     ],
   },
   wallet: {
-    eyebrow: 'Wallet',
+    eyebrow: 'wwwallet',
     heading: 'Built so only you can open it',
     lede: "wwwallet doesn't hold your funds — it helps you hold them yourself. Here's what that means in practice.",
     points: [
       {
         title: 'Non-custodial, always',
-        body: "Your private keys are generated and encrypted on your own device. wwwallet's servers never see them — there's no database of wallets to breach, because there isn't a database at all.",
+        body: "Your private keys are generated and encrypted on your own device. wwwallet's servers never see them — there's no database of keys to breach, because there isn't a database at all.",
       },
       {
         title: 'Encrypted with AES-256, unlocked your way',
@@ -98,8 +104,8 @@ export default {
         body: 'wwwallet locks after a short period of inactivity, and never writes your unlocked session to disk — close the tab and it forgets, on purpose.',
       },
       {
-        title: 'One wallet, five Ethereum networks',
-        body: 'Hold and send across Ethereum mainnet, Polygon, Arbitrum, Base, and Optimism from the same set of accounts.',
+        title: 'Five Ethereum networks, one set of accounts',
+        body: 'Hold and send across Ethereum mainnet, Polygon, Arbitrum, Base, and Optimism with the same accounts and addresses.',
       },
     ],
     caveatTitle: 'Your recovery phrase unlocks your vault — it’s not a magic backup',
@@ -139,7 +145,7 @@ export default {
     points: [
       {
         title: 'Custodial vs. non-custodial',
-        body: 'A custodial wallet or exchange holds your keys for you — convenient, but you’re trusting someone else not to freeze, lose, or misuse your funds. A non-custodial wallet like wwwallet puts the keys, and the responsibility, in your hands alone.',
+        body: 'A custodial wallet or exchange holds your keys for you — convenient, but you’re trusting someone else not to freeze, lose, or misuse your funds. A non-custodial wallet such as wwwallet leaves the keys, and the responsibility, in your hands alone.',
       },
       {
         title: 'Staking vs. mining',
@@ -151,7 +157,7 @@ export default {
       },
       {
         title: 'Nobody legitimate asks for your phrase',
-        body: 'Whatever wallet you use: no exchange, no support agent, and no wwwallet employee will ever ask for your recovery phrase. Anyone who does is trying to rob you.',
+        body: 'No exchange, no support agent and nobody from wwwallet will ever ask for your recovery phrase — whichever app you use. Anyone who does is trying to rob you.',
       },
     ],
     linkLabel: 'Go deeper with the Bankless podcast',
@@ -175,11 +181,11 @@ export default {
       },
       {
         q: 'If it’s free, how does wwwallet pay for itself?',
-        a: 'It doesn’t make money from its users — no fees, no ads, no data sales. Running costs are kept small by design: the wallet itself runs in your browser, and the backend only relays public blockchain and price data.',
+        a: 'It doesn’t make money from its users — no fees, no ads, no data sales. Running costs are kept small by design: the app itself runs in your browser, and the backend only relays public blockchain and price data.',
       },
       {
         q: 'Can anyone freeze my wallet?',
-        a: 'There’s no account, so there’s nothing for wwwallet — or anyone else — to freeze. Your keys never leave your device, and transactions are signed there before they’re sent to the network. Your funds live on Ethereum, not in wwwallet: you can view any account’s private key or recovery phrase from its menu and import it into another Ethereum wallet whenever you like.',
+        a: 'There’s no account, so there’s nothing for wwwallet — or anyone else — to freeze. Your keys never leave your device, and transactions are signed there before they’re sent to the network. Your funds live on Ethereum, not in wwwallet: you can view any account’s private key or recovery phrase from its menu and import it into any other Ethereum wallet app whenever you like.',
       },
       {
         q: 'Is my recovery phrase enough to get my wallet back?',
@@ -187,7 +193,7 @@ export default {
       },
       {
         q: 'How do I back up my wallet?',
-        a: 'From Settings, back up your encrypted vault to your own Google Drive — stored in a private, app-only folder wwwallet can’t see the rest of — or as a file you download and keep yourself. Do this whenever you set up a wallet or add new accounts.',
+        a: 'From Settings, back up your encrypted vault to your own Google Drive or as a file you download and keep yourself. A Drive backup goes in a private app folder, and wwwallet can’t see anything else in your Drive. Back up when you first set up, and again whenever you add accounts.',
       },
       {
         q: 'Can I use wwwallet on more than one device?',
@@ -195,7 +201,7 @@ export default {
       },
       {
         q: 'What happens if I lose my device and never backed up?',
-        a: 'Your funds are unrecoverable. That’s by design: wwwallet has no account system and keeps no copy of your vault anywhere, so nobody — including us — can restore it for you. It’s the trade-off of a wallet nobody but you can access.',
+        a: 'Your funds are unrecoverable. That’s by design: wwwallet has no account system and keeps no copy of your vault anywhere, so nobody — including us — can restore it for you. It’s the trade-off for keys nobody but you can access.',
       },
       {
         q: 'Do passkeys (Face ID / Touch ID) carry over to a new device?',

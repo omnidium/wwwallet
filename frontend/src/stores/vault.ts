@@ -4,6 +4,8 @@ import { ref } from 'vue'
 import { i18n } from '@/i18n'
 import {
   addPasskeyWrap,
+  addPasswordWrap,
+  availableUnlockMethods,
   createVault as createVaultRecord,
   deleteVault as deleteVaultRecord,
   exportEncryptedVaultBlob,
@@ -17,12 +19,14 @@ import {
   saveVault as saveVaultRecord,
   unlockWithPasskey as unlockWithPasskeyRecord,
   unlockWithMnemonic as unlockWithMnemonicRecord,
+  unlockWithPassword as unlockWithPasswordRecord,
   type VaultData,
 } from '@/crypto/vault'
 import {
   hasLocalPasskey,
   registerLocalPasskeyWithPrf,
   unlockPasskeyPrfSecret,
+  type PasskeyLocation,
 } from '@/services/webauthnLocal'
 import { backupToGoogleDrive, restoreFromGoogleDrive } from '@/services/googleDrive'
 import { downloadEncryptedVaultBlob } from '@/services/fileBackup'
@@ -34,7 +38,8 @@ import { isSupportedLocale } from '@/i18n'
 import { useChainDataStore } from '@/stores/chainData'
 import { useFavouritesStore } from '@/stores/favourites'
 import { useMessagesStore } from '@/stores/messages'
-import { clearCache, lockCache, unlockCache } from '@/services/secureCache'
+import { clearCache, exportCacheForBackup, lockCache, stageCacheRestore, unlockCache, type BackupCacheSection } from '@/services/secureCache'
+import { requestStrongPasskeyNudge, resetPasskeyNudge } from '@/composables/usePasskeyNudge'
 import { DEFAULT_TRANSACTION_BATCH_SIZE } from '@/config/appSettings'
 
 function emptyVaultData(): VaultData {
@@ -51,6 +56,7 @@ export const useVaultStore = defineStore('vault', () => {
   const isUnlocked = ref(false)
   const hasVault = ref(false)
   const hasPasskey = ref(false)
+  const hasPassword = ref(false)
   const lastBackupAt = ref<number | null>(null)
   const createdAt = ref<number | null>(null)
 
@@ -60,6 +66,7 @@ export const useVaultStore = defineStore('vault', () => {
   async function refreshFlags() {
     hasVault.value = await hasVaultRecord()
     hasPasskey.value = await hasLocalPasskey()
+    hasPassword.value = (await availableUnlockMethods()).includes('password')
     lastBackupAt.value = await getLastBackupAt()
     createdAt.value = await getCreatedAt()
   }
@@ -89,10 +96,20 @@ export const useVaultStore = defineStore('vault', () => {
     }
   }
 
+  // A restored backup's cache goes back in place on the first unlock after
+  // the restore (see secureCache's stageCacheRestore) — anything already
+  // read from the old one is then stale.
+  async function openCache(key: CryptoKey): Promise<void> {
+    if (await unlockCache(key)) {
+      useChainDataStore().resetHydration()
+      useFavouritesStore().forget()
+    }
+  }
+
   async function createVault(recoveryMnemonic: string): Promise<void> {
     const data = emptyVaultData()
     sessionKey = await createVaultRecord(recoveryMnemonic, data)
-    await unlockCache(sessionKey)
+    await openCache(sessionKey)
     loadIntoStores(data)
     isUnlocked.value = true
     hasVault.value = true
@@ -102,7 +119,15 @@ export const useVaultStore = defineStore('vault', () => {
   async function unlockWithMnemonic(recoveryMnemonic: string): Promise<void> {
     const { key, data } = await unlockWithMnemonicRecord(recoveryMnemonic)
     sessionKey = key
-    await unlockCache(key)
+    await openCache(key)
+    loadIntoStores(data)
+    isUnlocked.value = true
+  }
+
+  async function unlockWithPassword(password: string): Promise<void> {
+    const { key, data } = await unlockWithPasswordRecord(password)
+    sessionKey = key
+    await openCache(key)
     loadIntoStores(data)
     isUnlocked.value = true
   }
@@ -113,7 +138,7 @@ export const useVaultStore = defineStore('vault', () => {
     const prfSecret = await unlockPasskeyPrfSecret(meta.credentialId, meta.prfSalt)
     const { key, data } = await unlockWithPasskeyRecord(prfSecret)
     sessionKey = key
-    await unlockCache(key)
+    await openCache(key)
     loadIntoStores(data)
     isUnlocked.value = true
   }
@@ -153,10 +178,12 @@ export const useVaultStore = defineStore('vault', () => {
     await db.localWebAuthnCredential.delete('default')
     await clearCache()
     useFavouritesStore().forget()
+    resetPasskeyNudge()
     sessionKey = null
     isUnlocked.value = false
     hasVault.value = false
     hasPasskey.value = false
+    hasPassword.value = false
     lastBackupAt.value = null
     createdAt.value = null
     clearStores()
@@ -168,11 +195,23 @@ export const useVaultStore = defineStore('vault', () => {
     useFavouritesStore().rememberVisibleChains(useAccountsStore().accounts)
   }
 
-  async function registerPasskey(displayName: string): Promise<void> {
+  async function registerPasskey(displayName: string, where?: PasskeyLocation): Promise<void> {
     if (!sessionKey) throw new Error(i18n.global.t('errors.vaultLocked'))
-    const { credentialId, prfSalt, prfSecret } = await registerLocalPasskeyWithPrf(displayName)
+    const { credentialId, prfSalt, prfSecret } = await registerLocalPasskeyWithPrf(displayName, where)
     await addPasskeyWrap(sessionKey, credentialId, prfSalt, prfSecret)
     hasPasskey.value = true
+  }
+
+  /** Quick unlock where a passkey isn't possible — see crypto/vault.ts's addPasswordWrap. */
+  async function setUnlockPassword(password: string): Promise<void> {
+    if (!sessionKey) throw new Error(i18n.global.t('errors.vaultLocked'))
+    await addPasswordWrap(sessionKey, password)
+    hasPassword.value = true
+  }
+
+  async function removeUnlockPassword(): Promise<void> {
+    await removeWrap('password')
+    hasPassword.value = false
   }
 
   /** Warn the caller before calling this if it would leave the vault with no fast-unlock method. */
@@ -182,8 +221,16 @@ export const useVaultStore = defineStore('vault', () => {
     hasPasskey.value = false
   }
 
+  // Everything but the passkey (per device): the vault, plus the whole cache
+  // when unlocked, so a restore shows everything straight away instead of
+  // refetching it all.
+  async function backupBlob(): Promise<Blob> {
+    const cache = sessionKey ? await exportCacheForBackup(sessionKey) : null
+    return exportEncryptedVaultBlob(cache)
+  }
+
   async function backupToDrive(): Promise<void> {
-    const blob = await exportEncryptedVaultBlob()
+    const blob = await backupBlob()
     await backupToGoogleDrive(blob)
     await recordBackup()
     lastBackupAt.value = Date.now()
@@ -191,34 +238,37 @@ export const useVaultStore = defineStore('vault', () => {
 
   // Only the recovery-phrase wrap travels with a backup (see crypto/vault.ts) —
   // any passkey set up on THIS device no longer matches the restored vault, so
-  // clear that local state too rather than leave it dangling.
-  // The cache goes too: anything private in it is encrypted under the
-  // previous vault's key, and the rest (favourites included) belonged to
-  // whichever wallet was here before.
-  async function clearLocalFastUnlockState(): Promise<void> {
+  // clear that local state too rather than leave it dangling, and ask for a
+  // new one once unlocked.
+  // The device's cache is replaced by the backup's (applied at the next
+  // unlock), or simply cleared for a backup without one: what's there now
+  // belonged to whichever wallet was here before.
+  async function replaceLocalState(cache: BackupCacheSection | null): Promise<void> {
     await db.localWebAuthnCredential.delete('default')
-    await clearCache()
+    if (cache) await stageCacheRestore(cache)
+    else await clearCache()
     useFavouritesStore().forget()
+    requestStrongPasskeyNudge()
   }
 
   async function restoreFromDrive(): Promise<void> {
     const blob = await restoreFromGoogleDrive()
-    await importEncryptedVaultBlob(blob)
-    await clearLocalFastUnlockState()
+    const { cache } = await importEncryptedVaultBlob(blob)
+    await replaceLocalState(cache)
     await refreshFlags()
     lock()
   }
 
   async function backupToFile(): Promise<void> {
-    const blob = await exportEncryptedVaultBlob()
+    const blob = await backupBlob()
     downloadEncryptedVaultBlob(blob)
     await recordBackup()
     lastBackupAt.value = Date.now()
   }
 
   async function restoreFromFile(file: File): Promise<void> {
-    await importEncryptedVaultBlob(file)
-    await clearLocalFastUnlockState()
+    const { cache } = await importEncryptedVaultBlob(file)
+    await replaceLocalState(cache)
     await refreshFlags()
     lock()
   }
@@ -227,6 +277,7 @@ export const useVaultStore = defineStore('vault', () => {
     isUnlocked,
     hasVault,
     hasPasskey,
+    hasPassword,
     lastBackupAt,
     createdAt,
     createVault,
@@ -236,6 +287,9 @@ export const useVaultStore = defineStore('vault', () => {
     deleteFromDevice,
     persist,
     registerPasskey,
+    setUnlockPassword,
+    removeUnlockPassword,
+    unlockWithPassword,
     removePasskey,
     backupToDrive,
     restoreFromDrive,

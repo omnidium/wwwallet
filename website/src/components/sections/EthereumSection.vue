@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { useI18n } from 'vue-i18n'
 import PointCard from '../ui/PointCard.vue'
 import type { IconName } from '../ui/LineIcon.vue'
@@ -19,7 +20,7 @@ const ICONS: IconName[] = ['cube', 'stack', 'balance', 'layers']
     <div class="container">
       <p class="section-eyebrow">{{ t('ethereum.eyebrow') }}</p>
       <h2 class="section-heading">{{ t('ethereum.heading') }}</h2>
-      <p class="section-lede">{{ t('ethereum.lede') }}</p>
+      <p class="section-lede"><BrandText :text="t('ethereum.lede')" /></p>
       <div class="points-grid">
         <PointCard
           v-for="(point, index) in tm('ethereum.points') as Point[]"
@@ -35,7 +36,7 @@ const ICONS: IconName[] = ['cube', 'stack', 'balance', 'layers']
         target="_blank"
         rel="noopener noreferrer"
       >
-        {{ t('ethereum.linkLabel') }} →
+        {{ t('ethereum.linkLabel') }} <span class="dir-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </section>

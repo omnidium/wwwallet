@@ -8,31 +8,12 @@
     <meta name="theme-color" content="#0d1f1a" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f4fbf8" media="(prefers-color-scheme: light)" />
 
-    <title>wwwallet — Your keys. Your Ethereum. Your device.</title>
-    <meta
-      name="description"
-      content="wwwallet is a personal, non-custodial Ethereum wallet. Your keys are encrypted and stored only on your device — we never see them, and there's no account to hack."
-    />
-    <link rel="canonical" href="https://wwwallet.me/" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="wwwallet" />
-    <meta property="og:url" content="https://wwwallet.me/" />
-    <meta property="og:title" content="wwwallet — Your keys. Your Ethereum. Your device." />
-    <meta
-      property="og:description"
-      content="A personal, non-custodial Ethereum wallet. Your keys are encrypted and stored only on your device — we never see them, and there's no account to hack."
-    />
-    <meta property="og:image" content="https://wwwallet.me/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="wwwallet — Your keys. Your Ethereum. Your device." />
-    <meta
-      name="twitter:description"
-      content="A personal, non-custodial Ethereum wallet. Your keys are encrypted and stored only on your device — we never see them, and there's no account to hack."
-    />
-    <meta name="twitter:image" content="https://wwwallet.me/og-image.png" />
+    <title>wwwallet</title>
+    <meta name="description" content="" />
+    <!-- Filled in per language by the build (scripts/prerender.mjs): title,
+         description, canonical and alternate-language links, link-preview
+         tags and structured data. -->
+    <!--seo-head-->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,43 +22,16 @@
       rel="stylesheet"
     />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "wwwallet",
-        "url": "https://wwwallet.me/",
-        "description": "A personal, non-custodial Ethereum wallet. Your keys are encrypted and stored only on your device."
-      }
-    </script>
 
-    <script>
-      // Applied before any CSS/JS loads so there's no flash of the wrong
-      // theme — this page is public/SEO-facing (unlike the wallet app,
-      // which sits behind an auth gate where a brief flash goes unnoticed).
-      ;(function () {
-        try {
-          // A cookie, not localStorage: this value is shared with the wallet
-          // app at app.wwwallet.me (see src/composables/sharedPrefs.ts) —
-          // localStorage doesn't cross that origin boundary, a cookie scoped
-          // to the parent domain does.
-          var match = document.cookie.match(/(?:^|; )wwwallet\.theme=([^;]*)/)
-          var stored = match ? decodeURIComponent(match[1]) : null
-          var theme =
-            stored === 'light' || stored === 'dark'
-              ? stored
-              : window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light'
-          document.documentElement.setAttribute('data-theme', theme)
-        } catch {
-          document.documentElement.setAttribute('data-theme', 'light')
-        }
-      })()
-    </script>
+    <!-- Blocking on purpose: sets the theme before the page paints. -->
+    <script src="/theme-init.js"></script>
   </head>
   <body>
     <div id="app"></div>
+    <!-- Where panels and menus open (<Teleport to="#teleports">): a container
+         of their own rather than <body>, which also holds the prerendered
+         page — Vue couldn't tell where the one ends and the other begins. -->
+    <div id="teleports"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { useI18n } from 'vue-i18n'
 import PointCard from '../ui/PointCard.vue'
 import type { IconName } from '../ui/LineIcon.vue'
@@ -19,7 +20,7 @@ const ICONS: IconName[] = ['handover', 'gauge', 'compass', 'no-ask']
     <div class="container">
       <p class="section-eyebrow">{{ t('crypto.eyebrow') }}</p>
       <h2 class="section-heading">{{ t('crypto.heading') }}</h2>
-      <p class="section-lede">{{ t('crypto.lede') }}</p>
+      <p class="section-lede"><BrandText :text="t('crypto.lede')" /></p>
       <div class="points-grid">
         <PointCard
           v-for="(point, index) in tm('crypto.points') as Point[]"
@@ -30,7 +31,7 @@ const ICONS: IconName[] = ['handover', 'gauge', 'compass', 'no-ask']
         />
       </div>
       <a class="external-link" :href="t('crypto.linkUrl')" target="_blank" rel="noopener noreferrer">
-        {{ t('crypto.linkLabel') }} →
+        {{ t('crypto.linkLabel') }} <span class="dir-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </section>

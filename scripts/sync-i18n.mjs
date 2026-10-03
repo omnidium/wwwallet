@@ -18,6 +18,13 @@
 //   node scripts/sync-i18n.mjs --check                # CI mode (see below)
 //   node scripts/sync-i18n.mjs --project=frontend      # scope to one project
 //   node scripts/sync-i18n.mjs --langs=es,fr,de        # scope to these locale codes
+//   node scripts/sync-i18n.mjs --retranslate           # redo every machine translation
+//
+// --retranslate sends every string again, not just those whose English
+// changed — for when the translation settings themselves change (tone,
+// context; see lib/localeSync.mjs). Hand-edited translations are still left
+// alone. It's a whole project's copy per language, so check the estimate
+// with --dry-run first.
 //
 // --check exits 1 if a project's en.ts doesn't exactly match master_en.ts,
 // or if any locale file is out of sync with en.ts — same as --dry-run
@@ -56,6 +63,7 @@ const checkMode = args.includes('--check')
 const dryRun = args.includes('--dry-run') || checkMode
 const langsArg = args.find((a) => a.startsWith('--langs='))
 const onlyLangs = langsArg ? new Set(langsArg.slice('--langs='.length).split(',')) : null
+const retranslateAll = args.includes('--retranslate')
 const projectArg = args.find((a) => a.startsWith('--project='))
 const onlyProjects = projectArg ? [projectArg.slice('--project='.length)] : Object.keys(PROJECTS)
 
@@ -108,6 +116,7 @@ async function main() {
       dryRun,
       checkMode,
       onlyLangs,
+      retranslateAll,
     })
     if (!localesOk) ok = false
   }

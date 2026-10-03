@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import BrandText from '@shared/ui/BrandText.vue'
 import { useI18n } from 'vue-i18n'
 import licenseSource from '../../../LICENSE?raw'
 import { parseLicense } from '../../../shared/license/parseLicense'
+import { GITHUB_REPO_URL } from '@shared/config/links'
 
 defineProps<{ modelValue: boolean }>()
 const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
@@ -13,7 +15,6 @@ const { t } = useI18n({ useScope: 'global' })
 // English — it's the legal document itself), read from the repo's LICENSE
 // at build time.
 const blocks = parseLicense(licenseSource)
-const GITHUB_LICENSE_URL = 'https://github.com/omnidium/wwwallet/blob/main/LICENSE'
 </script>
 
 <template>
@@ -33,7 +34,7 @@ const GITHUB_LICENSE_URL = 'https://github.com/omnidium/wwwallet/blob/main/LICEN
         <section class="license-summary">
           <p class="field-label">{{ t('license.summaryTitle') }}</p>
           <ul>
-            <li><v-icon icon="mdi-check-circle-outline" size="18" class="license-yes" /> {{ t('license.canUse') }}</li>
+            <li><v-icon icon="mdi-check-circle-outline" size="18" class="license-yes" /> <BrandText :text="t('license.canUse')" /></li>
             <li><v-icon icon="mdi-check-circle-outline" size="18" class="license-yes" /> {{ t('license.canRead') }}</li>
             <li><v-icon icon="mdi-close-circle-outline" size="18" class="license-no" /> {{ t('license.cannot') }}</li>
           </ul>
@@ -56,7 +57,7 @@ const GITHUB_LICENSE_URL = 'https://github.com/omnidium/wwwallet/blob/main/LICEN
       </v-card-text>
 
       <footer class="license-foot">
-        <a :href="GITHUB_LICENSE_URL" target="_blank" rel="noopener noreferrer" class="license-source">
+        <a :href="GITHUB_REPO_URL" target="_blank" rel="noopener noreferrer" class="license-source">
           {{ t('license.viewSource') }} <v-icon icon="mdi-open-in-new" size="14" />
         </a>
         <v-btn color="primary" @click="emit('update:modelValue', false)">{{ t('common.close') }}</v-btn>

@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "../shared/license/*.ts", "../shared/ui/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "../shared/license/*.ts", "../shared/config/links.ts", "../shared/ui/*.vue"],
   "compilerOptions": {
     "noUncheckedIndexedAccess": true,
     "paths": {
