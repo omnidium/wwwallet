@@ -60,7 +60,7 @@ jobs:
       # block at all ("Unexpected fields found... ratelimits") and just drops
       # it — deploying a Worker with no RATE_LIMITER_DEFAULT/_BROADCAST
       # binding, which then 500s on every request that checks it.
-      - uses: cloudflare/wrangler-action@v3
+      - uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
