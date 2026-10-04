@@ -32,16 +32,16 @@ const PILL_TRIP_SECONDS = { min: 4, max: 12.6 }
  *  seconds of the page loading, so they don't all move in step. */
 const PILL_START_SPREAD_SECONDS = PILL_TRIP_SECONDS.max
 /** How long a pill is, as a percentage of its link's length. */
-const PILL_LENGTH_PERCENT = 6
+const PILL_LENGTH_PERCENT_MAX = 8
 /** How thick a pill is (the links themselves are 1.4). */
-const PILL_WIDTH = 2.9
+const PILL_WIDTH_MAX = 4
 
 /** Flashes (a node lighting up as a pill reaches it) */
 
 /** How far through its trip a pill is when its node flashes, from 0 to 1.
  *  The pill's front touches the node at 1 − PILL_LENGTH_PERCENT / 100
  *  (0.94); raise it slightly if the flash seems to fire before the pill lands. */
-const FLASH_AT = 0.95
+const FLASH_AT = .98
 /** The flash's colour: null to light each node in its own colour (one of
  *  the three brand hues), or any CSS colour — '#fff', 'var(--accent)' — for
  *  every flash to be the same. */
@@ -201,12 +201,16 @@ const links = edges.map(([i, j], k) => {
   }
 })
 
-const signalStyle = (link: (typeof links)[number]) => ({
-  animationDelay: `${link.delay}s`,
-  animationDuration: `${link.dur}s`,
-  strokeWidth: PILL_WIDTH,
-  strokeDasharray: `${PILL_LENGTH_PERCENT} ${100 - PILL_LENGTH_PERCENT}`,
-})
+const signalStyle = (link: (typeof links)[number]) => {
+  const p_len = Number(Math.random() * PILL_LENGTH_PERCENT_MAX)
+  const p_wid = Math.max(Math.random() * PILL_WIDTH_MAX, 2)
+  return {
+    animationDelay: `${link.delay}s`,
+    animationDuration: `${link.dur}s`,
+    strokeWidth: p_wid,
+    strokeDasharray: `${p_len} ${100 - p_len}`,
+  }
+}
 
 // Each link lights its far node as its pill arrives: the flash repeats on
 // the pill's cycle, started FLASH_AT of the way into it, so the burst lands
