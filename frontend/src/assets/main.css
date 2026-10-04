@@ -151,8 +151,8 @@ input[type='number'] {
   top: 16px;
   left: 16px;
   z-index: 1005;
-  width: 44px;
-  height: 44px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   border: none;
   display: flex;

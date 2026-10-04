@@ -88,8 +88,9 @@ watch(() => route.fullPath, () => {
   <v-app>
     <AppTooltip v-if="!settingsOpen" :text="t('nav.settings')" location="bottom">
       <template #default="{ activatorProps }">
-        <button v-bind="activatorProps" class="floating-settings-btn" :aria-label="t('nav.settings')" @click="settingsOpen = true">
-          <v-icon icon="mdi-cog" size="20" />
+        <button v-bind="activatorProps" class="floating-settings-btn" :aria-label="t('nav.settings')"
+          @click="settingsOpen = true">
+          <v-icon icon="mdi-cog" size="30" />
         </button>
       </template>
     </AppTooltip>
@@ -123,29 +124,16 @@ watch(() => route.fullPath, () => {
       <RouterView v-else />
     </v-main>
 
-    <v-snackbar
-      v-for="message in messages.messages"
-      :key="message.id"
-      :model-value="true"
-      :color="message.severity"
-      :timeout="message.timeout"
-      location="bottom"
-      @update:model-value="messages.dismiss(message.id)"
-    >
+    <v-snackbar v-for="message in messages.messages" :key="message.id" :model-value="true" :color="message.severity"
+      :timeout="message.timeout" location="bottom" @update:model-value="messages.dismiss(message.id)">
       <v-icon v-if="message.severity !== 'success'" icon="mdi-alert" class="mr-2" />
       <BrandText :text="message.text" />
 
       <template #actions>
         <AppTooltip :text="t('nav.dismiss')">
           <template #default="{ activatorProps }">
-            <v-btn
-              v-bind="activatorProps"
-              icon="mdi-close"
-              variant="text"
-              density="comfortable"
-              :aria-label="t('nav.dismiss')"
-              @click="messages.dismiss(message.id)"
-            />
+            <v-btn v-bind="activatorProps" icon="mdi-close" variant="text" density="comfortable"
+              :aria-label="t('nav.dismiss')" @click="messages.dismiss(message.id)" />
           </template>
         </AppTooltip>
       </template>
