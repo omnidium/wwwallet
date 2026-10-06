@@ -106,17 +106,26 @@ struct LifiQuoteResponse {
     transaction_request: Option<LifiTransactionRequest>,
 }
 
+/// One leg of a transfer in a status response — `sending` on the source
+/// chain, `receiving` on the destination.
 #[derive(Deserialize)]
-struct LifiReceiving {
+struct LifiTransferLeg {
     #[serde(rename = "txHash")]
     tx_hash: Option<String>,
+    #[serde(rename = "chainId")]
+    chain_id: Option<u64>,
 }
 
 #[derive(Deserialize)]
 struct LifiStatusResponse {
     status: String,
     substatus: Option<String>,
-    receiving: Option<LifiReceiving>,
+    sending: Option<LifiTransferLeg>,
+    receiving: Option<LifiTransferLeg>,
+    #[serde(rename = "fromAddress")]
+    from_address: Option<String>,
+    #[serde(rename = "toAddress")]
+    to_address: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -179,25 +188,33 @@ impl BridgeProvider for LifiProvider {
         extract_quote(response)
     }
 
+    /// Either leg's hash finds the transfer. The chains are optional hints:
+    /// without them LI.FI searches every chain, which is what a lookup from
+    /// a transaction's details needs — it can't know which end it's at.
     async fn status(
         &self,
         transaction_hash: &str,
-        from_chain: ChainId,
-        to_chain: ChainId,
+        from_chain: Option<ChainId>,
+        to_chain: Option<ChainId>,
     ) -> ProviderResult<BridgeStatus> {
         let mut url = url::Url::parse(&format!("{LIFI_BASE_URL}/status"))
             .map_err(|e| ProviderError::InvalidInput(e.to_string()))?;
-        url.query_pairs_mut()
-            .append_pair("txHash", transaction_hash)
-            .append_pair("fromChain", &from_chain.eip155_id().to_string())
-            .append_pair("toChain", &to_chain.eip155_id().to_string());
+        {
+            let mut query = url.query_pairs_mut();
+            query.append_pair("txHash", transaction_hash);
+            if let Some(chain) = from_chain {
+                query.append_pair("fromChain", &chain.eip155_id().to_string());
+            }
+            if let Some(chain) = to_chain {
+                query.append_pair("toChain", &chain.eip155_id().to_string());
+            }
+        }
 
         match self.get::<LifiStatusResponse>(url.as_str()).await {
             Ok(response) => Ok(extract_status(response)),
-            // Just broadcast — LI.FI picks it up once mined.
-            Err(err) if error_code(&err) == Some(NOT_FOUND_CODE) => {
-                Ok(BridgeStatus { status: "pending".into(), substatus: None, receiving_tx_hash: None })
-            }
+            // Just broadcast — LI.FI picks it up once mined. Or never a
+            // LI.FI transfer at all, for a lookup from a transaction's details.
+            Err(err) if error_code(&err) == Some(NOT_FOUND_CODE) => Ok(BridgeStatus::not_indexed()),
             Err(err) => Err(err),
         }
     }
@@ -287,11 +304,22 @@ fn extract_status(response: LifiStatusResponse) -> BridgeStatus {
         "FAILED" | "INVALID" => "failed",
         _ => "pending",
     };
+    let (sending_tx_hash, sending_chain) = leg_parts(response.sending);
+    let (receiving_tx_hash, receiving_chain) = leg_parts(response.receiving);
     BridgeStatus {
         status: status.to_string(),
         substatus: response.substatus,
-        receiving_tx_hash: response.receiving.and_then(|r| r.tx_hash),
+        receiving_tx_hash,
+        sending_tx_hash,
+        from_address: response.from_address,
+        to_address: response.to_address,
+        from_chain: sending_chain.and_then(ChainId::from_eip155_id),
+        to_chain: receiving_chain.and_then(ChainId::from_eip155_id),
     }
+}
+
+fn leg_parts(leg: Option<LifiTransferLeg>) -> (Option<String>, Option<u64>) {
+    leg.map(|l| (l.tx_hash, l.chain_id)).unwrap_or_default()
 }
 
 #[cfg(test)]
@@ -372,5 +400,28 @@ mod tests {
         assert_eq!(extract_status(pending).status, "pending");
         let failed: LifiStatusResponse = serde_json::from_str(r#"{"status":"FAILED"}"#).unwrap();
         assert_eq!(extract_status(failed).status, "failed");
+    }
+
+    #[test]
+    fn status_keeps_both_ends_of_the_transfer() {
+        // Trimmed from a real Base → Solana transfer.
+        let response: LifiStatusResponse = serde_json::from_str(
+            r#"{
+                "status": "DONE",
+                "fromAddress": "0x1e87d6ef0c6bc53434ce54ebc98a823ba319d9f2",
+                "toAddress": "6GJ5pQb8xR3Wn3aUBH2uDvo4mYdUQ1mpkeUH37hn9pQx",
+                "sending": { "txHash": "0x4f5d", "chainId": 8453 },
+                "receiving": { "txHash": "2dEvHG6x", "chainId": 1151111081099710 }
+            }"#,
+        )
+        .unwrap();
+        let s = extract_status(response);
+        assert_eq!(s.sending_tx_hash.as_deref(), Some("0x4f5d"));
+        assert_eq!(s.receiving_tx_hash.as_deref(), Some("2dEvHG6x"));
+        assert_eq!(s.from_address.as_deref(), Some("0x1e87d6ef0c6bc53434ce54ebc98a823ba319d9f2"));
+        assert_eq!(s.to_address.as_deref(), Some("6GJ5pQb8xR3Wn3aUBH2uDvo4mYdUQ1mpkeUH37hn9pQx"));
+        assert_eq!(s.from_chain, Some(ChainId::Base));
+        // Solana: a chain this wallet doesn't support.
+        assert_eq!(s.to_chain, None);
     }
 }

@@ -273,10 +273,6 @@ function openTransaction(txn: Transaction) {
       </div>
 
       <template v-if="showMoreDetails">
-        <div v-if="metadata?.decimals != null" class="detail-row d-flex justify-space-between py-2">
-          <span class="text-medium-emphasis">{{ t('token.decimals') }}</span>
-          <span>{{ metadata.decimals }}</span>
-        </div>
         <div class="detail-row d-flex align-center justify-space-between py-2">
           <span class="text-medium-emphasis">{{ t('token.change24h') }}</span>
           <span v-if="priceHistory"

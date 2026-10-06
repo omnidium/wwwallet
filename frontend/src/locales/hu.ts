@@ -190,7 +190,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Tizedesjegyek',
     priceTooltip: '1 {symbol} token ára USD-ben',
     amount: 'Összeg',
     amountTooltip: 'A birtokolt {symbol} tokenek mennyisége',
@@ -401,6 +400,10 @@ export default {
     feeUnavailable: 'Még nem elérhető',
     todaysPriceNote:
       '* A mai árfolyamon — a tranzakció végrehajtásának időpontjára vonatkozó árfolyam nem található.',
+    originalSender: 'Eredeti feladó',
+    finalRecipient: 'Végső címzett',
+    onNetwork: 'a {network}-on, hídon keresztül',
+    onOtherNetwork: 'egy másik hálózaton, hídon keresztül',
   },
   transferPicker: {
     title: 'Válasszon ki egy számlát vagy kedvezményezettet az átutaláshoz',

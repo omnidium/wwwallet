@@ -190,7 +190,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Desimal',
     priceTooltip: 'Harga 1 token {symbol} dalam USD',
     amount: 'Jumlah',
     amountTooltip: 'Jumlah token {symbol} yang dimiliki',
@@ -398,6 +397,10 @@ export default {
     feeUnavailable: 'Belum tersedia',
     todaysPriceNote:
       '* Berdasarkan harga hari ini — tidak ditemukan harga pada saat transaksi ini dilakukan.',
+    originalSender: 'Pengirim asli',
+    finalRecipient: 'Penerima akhir',
+    onNetwork: 'di {network}, melalui jembatan',
+    onOtherNetwork: 'di jaringan lain, melalui jembatan',
   },
   transferPicker: {
     title: 'Ketuk akun atau penerima pembayaran untuk mentransfer',

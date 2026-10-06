@@ -189,7 +189,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Decimali',
     priceTooltip: 'Prezzo di 1 token {symbol} in USD',
     amount: 'Importo',
     amountTooltip: 'Quantità di token {symbol} detenuti',
@@ -397,6 +396,10 @@ export default {
     feeUnavailable: 'Non ancora disponibile',
     todaysPriceNote:
       '* Al prezzo di oggi — non è stato trovato alcun prezzo relativo al momento in cui è stata effettuata questa transazione.',
+    originalSender: 'Mittente originale',
+    finalRecipient: 'Destinatario finale',
+    onNetwork: 'su {network}, tramite un bridge',
+    onOtherNetwork: 'su un’altra rete, tramite un bridge',
   },
   transferPicker: {
     title: 'Seleziona un conto o un beneficiario per effettuare il trasferimento',

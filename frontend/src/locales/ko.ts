@@ -187,7 +187,6 @@ export default {
   },
   token: {
     defaultLabel: '토큰',
-    decimals: '소수점',
     priceTooltip: '1 {symbol} 토큰의 가격(USD)',
     amount: '금액',
     amountTooltip: '보유 중인 {symbol} 토큰 수량',
@@ -390,6 +389,10 @@ export default {
     paidBySender: '발신자가 비용을 지불함',
     feeUnavailable: '아직 이용 불가',
     todaysPriceNote: '* 오늘의 가격 기준 — 이 거래가 이루어졌을 당시의 가격은 확인되지 않았습니다.',
+    originalSender: '원본 발신자',
+    finalRecipient: '최종 수신자',
+    onNetwork: '{network}에서, 브릿지를 통해',
+    onOtherNetwork: '다른 네트워크에서, 브리지를 통해',
   },
   transferPicker: {
     title: '계정이나 수취인을 선택하여 송금하세요',

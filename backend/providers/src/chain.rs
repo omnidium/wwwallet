@@ -23,6 +23,18 @@ impl ChainId {
         }
     }
 
+    /// The inverse of `eip155_id`; None for any chain this wallet doesn't support.
+    pub fn from_eip155_id(id: u64) -> Option<Self> {
+        match id {
+            1 => Some(ChainId::Ethereum),
+            137 => Some(ChainId::Polygon),
+            42161 => Some(ChainId::Arbitrum),
+            8453 => Some(ChainId::Base),
+            10 => Some(ChainId::Optimism),
+            _ => None,
+        }
+    }
+
     pub fn native_symbol(self) -> &'static str {
         match self {
             ChainId::Ethereum | ChainId::Arbitrum | ChainId::Base | ChainId::Optimism => "ETH",
@@ -71,6 +83,14 @@ mod tests {
             let slug = format!("{:?}", chain).to_lowercase();
             assert_eq!(ChainId::from_slug(&slug), Some(chain));
         }
+    }
+
+    #[test]
+    fn every_chain_round_trips_through_its_eip155_id() {
+        for chain in ALL_CHAINS {
+            assert_eq!(ChainId::from_eip155_id(chain.eip155_id()), Some(chain));
+        }
+        assert_eq!(ChainId::from_eip155_id(56), None);
     }
 
     #[test]

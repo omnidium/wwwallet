@@ -189,7 +189,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Số thập phân',
     priceTooltip: 'Giá của 1 token {symbol} tính bằng USD',
     amount: 'Số lượng',
     amountTooltip: 'Số lượng token {symbol} đang nắm giữ',
@@ -391,6 +390,10 @@ export default {
     paidBySender: 'Người gửi thanh toán',
     feeUnavailable: 'Chưa có sẵn',
     todaysPriceNote: '* Theo giá hôm nay — không tìm thấy giá tại thời điểm giao dịch này diễn ra.',
+    originalSender: 'Người gửi ban đầu',
+    finalRecipient: 'Người nhận cuối cùng',
+    onNetwork: 'trên {network}, qua cầu nối',
+    onOtherNetwork: 'trên một mạng khác, thông qua cầu nối',
   },
   transferPicker: {
     title: 'Chọn tài khoản hoặc người nhận để chuyển tiền',

@@ -190,7 +190,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Dezimalstellen',
     priceTooltip: 'Preis von 1 {symbol}-Token in USD',
     amount: 'Betrag',
     amountTooltip: 'Anzahl der gehaltenen {symbol}-Token',
@@ -404,6 +403,10 @@ export default {
     feeUnavailable: 'Noch nicht verfügbar',
     todaysPriceNote:
       '* Zum heutigen Kurs – für den Zeitpunkt dieser Transaktion wurde kein Kurs gefunden.',
+    originalSender: 'Ursprünglicher Absender',
+    finalRecipient: 'Endempfänger',
+    onNetwork: 'auf {network}, über eine Bridge',
+    onOtherNetwork: 'in einem anderen Netzwerk, über eine Bridge',
   },
   transferPicker: {
     title: 'Auf ein Konto oder an einen Empfänger überweisen',

@@ -87,14 +87,17 @@ describe('favourites store', () => {
 
   it('adds coins and currency pairs after the wallet assets, and keeps them across a reload', async () => {
     vi.spyOn(api, 'coinPriceHistory').mockResolvedValue({ usd: 150, change_24h_pct: 2, points: [147, 150] })
-    vi.spyOn(api, 'fxHistory').mockResolvedValue({ base: 'EUR', quote: 'USD', rate: 1.13, change_1d_pct: -0.5, points: [1.14, 1.13] })
+    vi.spyOn(api, 'fxHistory').mockResolvedValue({
+      base: 'EUR', quote: 'USD', rate: 1.13, change_1d_pct: -0.5, points: [1.1, 1.12, 1.14, 1.13],
+    })
     const before = useFavouritesStore()
     before.rememberVisibleChains([account('ethereum')])
     await before.addCoin(SOLANA)
     await before.addFx('EUR', 'USD')
     await vi.waitFor(() => expect(before.prices['fx:EUR/USD']?.usd).toBe(1.13))
     expect(before.items.map((i) => i.key)).toEqual(['ethereum:native', 'coin:solana', 'fx:EUR/USD'])
-    // A pair's rate and day-over-day change ride in the PriceHistory shape.
+    // A pair's rate and day-over-day change ride in the PriceHistory shape,
+    // its line just the last two daily rates — there's no intraday series.
     expect(before.prices['fx:EUR/USD']).toEqual({ usd: 1.13, change_24h_pct: -0.5, points: [1.14, 1.13] })
     await flushCacheWrites()
 

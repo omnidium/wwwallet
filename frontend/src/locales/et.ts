@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Komaarvud',
     priceTooltip: '1 {symbol} tokeni hind USA dollarites',
     amount: 'Summa',
     amountTooltip: '{symbol} tokenite kogus',
@@ -393,6 +392,10 @@ export default {
     paidBySender: 'Maksab saatja',
     feeUnavailable: 'Veel pole saadaval',
     todaysPriceNote: '* Tänase hinna järgi – selle tehingu tegemise ajal ei leitud hinda.',
+    originalSender: 'Algne saatja',
+    finalRecipient: 'Lõplik saaja',
+    onNetwork: '{network} kaudu, silla kaudu',
+    onOtherNetwork: 'teises võrgus, silla kaudu',
   },
   transferPicker: {
     title: 'Vali ülekanne tegemiseks konto või saaja',

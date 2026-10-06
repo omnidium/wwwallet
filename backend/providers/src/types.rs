@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 
+use crate::chain::ChainId;
+
 /// A native or token balance, kept as a decimal string to avoid float precision loss.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Balance {
@@ -294,6 +296,34 @@ pub struct BridgeStatus {
     /// e.g. `"COMPLETED"`, `"PARTIAL"` (arrived as a different token), `"REFUNDED"`.
     pub substatus: Option<String>,
     pub receiving_tx_hash: Option<String>,
+    pub sending_tx_hash: Option<String>,
+    /// The accounts at either end — the one that sent it on the source
+    /// chain and the one it was for on the destination chain — rather than
+    /// the bridge contracts and relayers each leg's own transaction shows
+    /// as its counterparty. None until the aggregator has indexed it.
+    pub from_address: Option<String>,
+    pub to_address: Option<String>,
+    /// None when that end is a chain this wallet doesn't support (or isn't
+    /// known yet).
+    pub from_chain: Option<ChainId>,
+    pub to_chain: Option<ChainId>,
+}
+
+impl BridgeStatus {
+    /// What the aggregator reports for a transaction it hasn't indexed —
+    /// one just broadcast, or one that was never a bridge in the first place.
+    pub fn not_indexed() -> Self {
+        Self {
+            status: "pending".into(),
+            substatus: None,
+            receiving_tx_hash: None,
+            sending_tx_hash: None,
+            from_address: None,
+            to_address: None,
+            from_chain: None,
+            to_chain: None,
+        }
+    }
 }
 
 /// An asset's USD price at a past moment — see `usd_price_at`.

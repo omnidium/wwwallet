@@ -48,6 +48,7 @@ watch(
     const txn = props.transaction
     if (!open || !hash || !txn) return
     feeLoading.value = true
+    void chainData.ensureBridgeEnds(props.chain, txn)
     chainData
       .ensureTransactionFee(props.chain, hash)
       .catch(() => {})
@@ -63,6 +64,13 @@ watch(
 )
 
 const rates = computed(() => (txnKey.value ? chainData.transactionRatesByKey[txnKey.value] : undefined))
+
+// A bridged transfer's From (arriving) or To (leaving) is the bridge's own
+// contract or relayer — shown as is, since that's who this chain's
+// transaction was really with, plus the account at the far end beside it.
+const bridgeEnds = computed(() => (txnKey.value ? chainData.bridgeEndsByKey[txnKey.value] : undefined))
+const bridgedFrom = computed(() => (bridgeEnds.value?.leg === 'receiving' ? bridgeEnds.value : null))
+const bridgedTo = computed(() => (bridgeEnds.value?.leg === 'sending' ? bridgeEnds.value : null))
 
 /**
  * A fiat value in brackets, priced as of when the transaction was mined:
@@ -182,6 +190,17 @@ const paidBySomeoneElse = computed(
             <tr>
               <td colspan="2"><v-divider class="my-2" /></td>
             </tr>
+            <tr v-if="bridgedFrom">
+              <td>{{ t('transactionDetail.originalSender') }}</td>
+              <td>
+                <a v-if="bridgedFrom.chain" :href="addressUrl(bridgedFrom.chain, bridgedFrom.address)" target="_blank"
+                  rel="noopener noreferrer">{{ addressDisplayLabel(bridgedFrom.chain, bridgedFrom.address) }}</a>
+                <span v-else>{{ truncateAddress(bridgedFrom.address) }}</span>
+                <span class="d-block text-caption text-medium-emphasis">{{ bridgedFrom.chain
+                  ? t('transactionDetail.onNetwork', { network: NATIVE_ASSETS[bridgedFrom.chain].networkName })
+                  : t('transactionDetail.onOtherNetwork') }}</span>
+              </td>
+            </tr>
             <tr>
               <td>{{ t('transactionDetail.from') }}</td>
               <td>
@@ -196,6 +215,17 @@ const paidBySomeoneElse = computed(
                 <a :href="addressUrl(props.chain, transaction.to)" target="_blank" rel="noopener noreferrer">{{
                   addressDisplayLabel(props.chain, transaction.to)
                 }}</a>
+              </td>
+            </tr>
+            <tr v-if="bridgedTo">
+              <td>{{ t('transactionDetail.finalRecipient') }}</td>
+              <td>
+                <a v-if="bridgedTo.chain" :href="addressUrl(bridgedTo.chain, bridgedTo.address)" target="_blank"
+                  rel="noopener noreferrer">{{ addressDisplayLabel(bridgedTo.chain, bridgedTo.address) }}</a>
+                <span v-else>{{ truncateAddress(bridgedTo.address) }}</span>
+                <span class="d-block text-caption text-medium-emphasis">{{ bridgedTo.chain
+                  ? t('transactionDetail.onNetwork', { network: NATIVE_ASSETS[bridgedTo.chain].networkName })
+                  : t('transactionDetail.onOtherNetwork') }}</span>
               </td>
             </tr>
             <tr>

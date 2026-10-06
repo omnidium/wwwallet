@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Ondalık sayılar',
     priceTooltip: '1 {symbol} tokeninin USD cinsinden fiyatı',
     amount: 'Miktar',
     amountTooltip: 'Elinde bulunan {symbol} token miktarı',
@@ -393,6 +392,10 @@ export default {
     feeUnavailable: 'Henüz mevcut değil',
     todaysPriceNote:
       '* Bugünkü fiyat üzerinden — bu işlemin yapıldığı tarihte fiyat bilgisi bulunamadı.',
+    originalSender: 'Orijinal gönderen',
+    finalRecipient: 'Nihai alıcı',
+    onNetwork: '{network} üzerinde, bir köprü aracılığıyla',
+    onOtherNetwork: 'başka bir ağda, bir köprü aracılığıyla',
   },
   transferPicker: {
     title: 'Para transferi yapmak için bir hesaba veya alıcıya dokunun',

@@ -181,7 +181,6 @@ export default {
   },
   token: {
     defaultLabel: '代币',
-    decimals: '小数',
     priceTooltip: '1 {symbol} 代币的美元价格',
     amount: '金额',
     amountTooltip: '持有的 {symbol} 代币数量',
@@ -374,6 +373,10 @@ export default {
     paidBySender: '由发件人支付',
     feeUnavailable: '暂不可用',
     todaysPriceNote: '* 按今日价格计算——未找到该笔交易发生时的价格。',
+    originalSender: '原始发件人',
+    finalRecipient: '最终收件人',
+    onNetwork: '在 {network} 上，通过跨链桥',
+    onOtherNetwork: '在另一个网络上，通过跨链桥',
   },
   transferPicker: {
     title: '点击账户或收款人即可转账',

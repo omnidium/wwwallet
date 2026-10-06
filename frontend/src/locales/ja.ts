@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'トークン',
-    decimals: '小数点',
     priceTooltip: '1 {symbol} トークンの価格（米ドル）',
     amount: '金額',
     amountTooltip: '保有している{symbol}トークンの数量',
@@ -389,6 +388,10 @@ export default {
     paidBySender: '送信者負担',
     feeUnavailable: 'まだ利用できない',
     todaysPriceNote: '* 今日の価格 — この取引が行われた時点での価格は確認できなかった。',
+    originalSender: '元の送信者',
+    finalRecipient: '最終受信者',
+    onNetwork: '{network}上で、ブリッジ経由で',
+    onOtherNetwork: '別のネットワーク上で、ブリッジを介して',
   },
   transferPicker: {
     title: '送金先アカウントまたは受取人をタップして送金する',

@@ -17,6 +17,7 @@ vi.mock('@/services/api', () => ({
     nativePrice: vi.fn<typeof api.nativePrice>(),
     historicalPrice: vi.fn<typeof api.historicalPrice>(),
     fxRatesOn: vi.fn<typeof api.fxRatesOn>(),
+    bridgeLookup: vi.fn<typeof api.bridgeLookup>(),
   },
 }))
 const mockedApi = vi.mocked(api)
@@ -373,6 +374,53 @@ describe('chainData store — native prices', () => {
       const store = useChainDataStore()
       await store.ensureTransactionRates(CHAIN, txn('0xpending'))
       expect(mockedApi.historicalPrice).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('bridged transfers', () => {
+    const SENDER = `0x${'c'.repeat(40)}`
+    const RECIPIENT = `0x${'d'.repeat(40)}`
+    const transfer = (overrides = {}) => ({
+      status: 'done' as const,
+      substatus: 'COMPLETED',
+      sending_tx_hash: '0xsend',
+      receiving_tx_hash: '0xRECEIVE',
+      from_address: SENDER,
+      to_address: RECIPIENT,
+      from_chain: 'ethereum' as const,
+      to_chain: null,
+      ...overrides,
+    })
+
+    it('finds the far end of either leg, and keeps a settled one across a reload', async () => {
+      const store = useChainDataStore()
+      mockedApi.bridgeLookup.mockResolvedValue(transfer())
+      await store.ensureBridgeEnds(CHAIN, txn('0xsend'))
+      await store.ensureBridgeEnds('base', txn('0xreceive'))
+      expect(store.bridgeEndsByKey[`${CHAIN}:0xsend`]).toEqual({ leg: 'sending', address: RECIPIENT, chain: null })
+      expect(store.bridgeEndsByKey['base:0xreceive']).toEqual({ leg: 'receiving', address: SENDER, chain: 'ethereum' })
+
+      await store.ensureBridgeEnds(CHAIN, txn('0xsend'))
+      expect(mockedApi.bridgeLookup).toHaveBeenCalledTimes(2)
+      expect((await reloadedStore()).bridgeEndsByKey[`${CHAIN}:0xsend`]?.address).toBe(RECIPIENT)
+    })
+
+    it('asks once a session about a transaction that isn\'t a bridge, or a same-chain swap LI.FI routed', async () => {
+      const store = useChainDataStore()
+      mockedApi.bridgeLookup.mockResolvedValueOnce({ status: 'pending', substatus: null, receiving_tx_hash: null })
+      await store.ensureBridgeEnds(CHAIN, txn('0xplain'))
+      await store.ensureBridgeEnds(CHAIN, txn('0xplain'))
+      mockedApi.bridgeLookup.mockResolvedValueOnce(transfer({ sending_tx_hash: '0xswap', receiving_tx_hash: '0xswap' }))
+      await store.ensureBridgeEnds(CHAIN, txn('0xswap'))
+      expect(mockedApi.bridgeLookup).toHaveBeenCalledTimes(2)
+      expect(store.bridgeEndsByKey).toEqual({})
+    })
+
+    it('doesn\'t ask about a pending transaction or a same-hash swap', async () => {
+      const store = useChainDataStore()
+      await store.ensureBridgeEnds(CHAIN, { ...txn('0xpending'), status: 'pending' })
+      await store.ensureBridgeEnds(CHAIN, { ...txn('0xswap'), counter_asset: 'ETH', counter_value: '1' })
+      expect(mockedApi.bridgeLookup).not.toHaveBeenCalled()
     })
   })
 

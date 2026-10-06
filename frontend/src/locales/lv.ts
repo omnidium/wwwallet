@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Decimāldaļas',
     priceTooltip: '1 {symbol} žetona cena USD',
     amount: 'Summa',
     amountTooltip: '{symbol} turēto žetonu skaits',
@@ -394,6 +393,10 @@ export default {
     feeUnavailable: 'Vēl nav pieejams',
     todaysPriceNote:
       '* Pēc šodienas cenas — netika atrasta cena, kas būtu spēkā šī darījuma veikšanas brīdī.',
+    originalSender: 'Sākotnējais sūtītājs',
+    finalRecipient: 'Galīgais saņēmējs',
+    onNetwork: 'uz {network}, izmantojot tiltu',
+    onOtherNetwork: 'citā tīklā, izmantojot tiltu',
   },
   transferPicker: {
     title: 'Noklikšķiniet uz konta vai saņēmēja, lai veiktu pārskaitījumu',

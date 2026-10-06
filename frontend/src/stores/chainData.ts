@@ -4,6 +4,7 @@ import {
   api,
   type AddressActivity,
   type Balance,
+  type BridgeStatus,
   type ChainSlug,
   type FxRates,
   type NativePrice,
@@ -54,6 +55,10 @@ const SWAP_FEES_PREFIX = 'swap-fees:'
 // details pane's fiat values. Fetched only when a transaction is opened, and
 // never again once found: a past price doesn't change.
 const TX_RATES_PREFIX = 'tx-rates:'
+// Keyed like the above: the accounts at either end of a bridged transfer,
+// for the details pane. Looked up when a transaction is opened, and kept
+// once the transfer has settled — neither end changes after that.
+const BRIDGE_ENDS_PREFIX = 'bridge-ends:'
 // Per chain: the tokens most recently swapped from or to on this device,
 // newest first — suggested first in the swap token picker.
 const RECENT_SWAP_TOKENS_PREFIX = 'recent-swap-tokens:'
@@ -70,6 +75,18 @@ export interface TransactionRates {
 /** A transaction asset's key in TransactionRates.usd. */
 export function txRateAsset(contractAddress: string | null): string {
   return contractAddress?.toLowerCase() ?? 'native'
+}
+
+/**
+ * Which end of a bridged transfer a transaction is, and the account at the
+ * other one: for the leg leaving this chain, who it was for and on which
+ * chain; for the leg arriving, who sent it and from where. Chain is null
+ * for one this wallet doesn't support.
+ */
+export interface BridgeEnds {
+  leg: 'sending' | 'receiving'
+  address: string
+  chain: ChainSlug | null
 }
 
 /** A swap's aggregator fee as quoted, already resolved to its token's units. */
@@ -170,9 +187,11 @@ export const useChainDataStore = defineStore('chainData', () => {
   const swapFeesByKey = ref<Record<string, RecordedSwapFee[]>>({})
   const recentSwapTokensByChain = ref<Record<string, PickedToken[]>>({})
   const transactionRatesByKey = ref<Record<string, TransactionRates>>({})
+  const bridgeEndsByKey = ref<Record<string, BridgeEnds>>({})
   // Lookups that found nothing this session — not retried until the next
   // one, so reopening the same transaction doesn't re-ask every time.
   const transactionRateMisses = new Set<string>()
+  const bridgeEndsMisses = new Set<string>()
   // A count rather than a flag: the same account can be refreshing from two
   // places at once (the periodic refresh plus a manual one, or SendView's own
   // load), and the first to finish mustn't clear the spinner for the other.
@@ -222,6 +241,8 @@ export const useChainDataStore = defineStore('chainData', () => {
       recentSwapTokensByChain.value[key.slice(RECENT_SWAP_TOKENS_PREFIX.length)] ??= data as PickedToken[]
     } else if (key.startsWith(TX_RATES_PREFIX)) {
       transactionRatesByKey.value[key.slice(TX_RATES_PREFIX.length)] ??= data as TransactionRates
+    } else if (key.startsWith(BRIDGE_ENDS_PREFIX)) {
+      bridgeEndsByKey.value[key.slice(BRIDGE_ENDS_PREFIX.length)] ??= data as BridgeEnds
     }
   }
 
@@ -280,6 +301,8 @@ export const useChainDataStore = defineStore('chainData', () => {
     recentSwapTokensByChain.value = {}
     transactionRatesByKey.value = {}
     transactionRateMisses.clear()
+    bridgeEndsByKey.value = {}
+    bridgeEndsMisses.clear()
     loadingCounts.value = {}
     loadingMoreKeys.value = new Set()
     tokenMetadataCheckedAt.clear()
@@ -659,6 +682,46 @@ export const useChainDataStore = defineStore('chainData', () => {
     remember(transactionRatesByKey, TX_RATES_PREFIX, key, { usd, fx })
   }
 
+  /**
+   * Whether a mined transaction is one leg of a bridged transfer (as far as
+   * LI.FI, which routes this wallet's own, knows) and if so, the account at
+   * its other end. A swap is one chain's business only, so isn't asked about.
+   * Asked once per session at most; once known and settled, never again.
+   */
+  async function ensureBridgeEnds(chain: ChainSlug, txn: Transaction) {
+    if (txn.status === 'pending' || txn.counter_asset !== null) return
+    await hydrate()
+    const key = keyFor(chain, txn.hash)
+    if (bridgeEndsByKey.value[key] || bridgeEndsMisses.has(key)) return
+    let status: BridgeStatus
+    try {
+      status = await api.bridgeLookup(txn.hash)
+    } catch {
+      bridgeEndsMisses.add(key)
+      return
+    }
+    // Matched against the legs it reports rather than trusted outright: LI.FI
+    // has been seen answering a hash it doesn't know with an unrelated transfer.
+    const hash = txn.hash.toLowerCase()
+    const sending = status.sending_tx_hash?.toLowerCase() === hash
+    const receiving = status.receiving_tx_hash?.toLowerCase() === hash
+    // Both legs the same transaction is a same-chain swap LI.FI routed.
+    let ends: BridgeEnds | null = null
+    if (sending && !receiving && status.to_address) {
+      ends = { leg: 'sending', address: status.to_address, chain: status.to_chain ?? null }
+    } else if (receiving && !sending && status.from_address) {
+      ends = { leg: 'receiving', address: status.from_address, chain: status.from_chain ?? null }
+    }
+    if (!ends) {
+      bridgeEndsMisses.add(key)
+    } else if (status.status === 'pending') {
+      // Where it's headed can still change (a refund lands back on the source chain).
+      bridgeEndsByKey.value[key] = ends
+    } else {
+      remember(bridgeEndsByKey, BRIDGE_ENDS_PREFIX, key, ends)
+    }
+  }
+
   /** Moves `token` to the front of `chain`'s recent swap tokens. */
   function recordSwappedToken(chain: ChainSlug, token: PickedToken) {
     const sameToken = (t: PickedToken) => (t.address?.toLowerCase() ?? null) === (token.address?.toLowerCase() ?? null)
@@ -700,6 +763,8 @@ export const useChainDataStore = defineStore('chainData', () => {
     recordSwappedToken,
     transactionRatesByKey,
     ensureTransactionRates,
+    bridgeEndsByKey,
+    ensureBridgeEnds,
     clearPersonalData,
     resetHydration,
     prependTransaction,

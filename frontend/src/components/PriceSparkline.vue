@@ -2,7 +2,8 @@
 import { computed } from 'vue'
 
 // A bare line of the past 24h's prices — no axes or labels, just the shape,
-// green when the window ended higher than it started and red otherwise.
+// green when the window ended higher than it started and red otherwise. A
+// currency pair has only daily rates, so its two points make a straight line.
 const props = withDefaults(defineProps<{ points: number[]; width?: number; height?: number }>(), {
   width: 64,
   height: 20,

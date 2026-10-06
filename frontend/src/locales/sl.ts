@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Decimalna mesta',
     priceTooltip: 'Cena 1 {symbol} tokena v USD',
     amount: 'Znesek',
     amountTooltip: 'Število imenovanih {symbol} tokenov',
@@ -392,6 +391,10 @@ export default {
     feeUnavailable: 'Še ni na voljo',
     todaysPriceNote:
       '* Po današnji ceni – cena v trenutku izvedbe te transakcije ni bila ugotovljena.',
+    originalSender: 'Izvirni pošiljatelj',
+    finalRecipient: 'Končni prejemnik',
+    onNetwork: 'na {network}, prek mostu',
+    onOtherNetwork: 'v drugem omrežju prek mostu',
   },
   transferPicker: {
     title: 'Za prenos izberite račun ali prejemnika',

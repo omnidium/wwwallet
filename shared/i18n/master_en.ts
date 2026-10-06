@@ -102,6 +102,10 @@ export const frontendEn = {
     timestamp: 'Timestamp',
     from: 'From',
     to: 'To',
+    originalSender: 'Original sender',
+    finalRecipient: 'Final recipient',
+    onNetwork: 'on {network}, via a bridge',
+    onOtherNetwork: 'on another network, via a bridge',
     amount: 'Amount',
     sold: 'Sold',
     bought: 'Bought',
@@ -380,7 +384,6 @@ export const frontendEn = {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Decimals',
     priceTooltip: 'Price of 1 {symbol} token in USD',
     amount: 'Amount',
     amountTooltip: 'Amount of {symbol} tokens held',

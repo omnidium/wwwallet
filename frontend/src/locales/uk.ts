@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'Токен',
-    decimals: 'Десятичні знаки',
     priceTooltip: 'Ціна 1 токена {symbol} у доларах США',
     amount: 'Сума',
     amountTooltip: 'Кількість токенів {symbol} у володінні',
@@ -394,6 +393,10 @@ export default {
     feeUnavailable: 'Поки що недоступно',
     todaysPriceNote:
       '* За сьогоднішнім курсом — ціна на момент здійснення цієї транзакції не була знайдена.',
+    originalSender: 'Оригінальний відправник',
+    finalRecipient: 'Кінцевий одержувач',
+    onNetwork: 'на {network}, через міст',
+    onOtherNetwork: 'в іншій мережі, через міст',
   },
   transferPicker: {
     title: 'Наведіть курсор на рахунок або одержувача, щоб здійснити переказ',

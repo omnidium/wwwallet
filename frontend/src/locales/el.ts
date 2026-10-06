@@ -191,7 +191,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Δεκαδικά',
     priceTooltip: 'Τιμή 1 token {symbol} σε δολάρια ΗΠΑ',
     amount: 'Ποσό',
     amountTooltip: 'Ποσότητα των token {symbol} που κατέχετε',
@@ -403,6 +402,10 @@ export default {
     feeUnavailable: 'Δεν είναι ακόμη διαθέσιμο',
     todaysPriceNote:
       '* Στη σημερινή τιμή — δεν βρέθηκε τιμή για τη στιγμή που πραγματοποιήθηκε αυτή η συναλλαγή.',
+    originalSender: 'Αρχικός αποστολέας',
+    finalRecipient: 'Τελικός παραλήπτης',
+    onNetwork: 'στο {network}, μέσω μιας γέφυρας',
+    onOtherNetwork: 'σε άλλο δίκτυο, μέσω μιας γέφυρας',
   },
   transferPicker: {
     title: 'Επιλέξτε έναν λογαριασμό ή έναν δικαιούχο για να πραγματοποιήσετε τη μεταφορά',

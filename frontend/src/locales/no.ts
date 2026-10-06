@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Desimaler',
     priceTooltip: 'Pris på 1 {symbol}-token i USD',
     amount: 'Beløp',
     amountTooltip: 'Antall {symbol}-tokens i behold',
@@ -394,6 +393,10 @@ export default {
     feeUnavailable: 'Ikke tilgjengelig ennå',
     todaysPriceNote:
       '* Til dagens pris – det ble ikke funnet noen pris for da denne transaksjonen ble gjennomført.',
+    originalSender: 'Opprinnelig avsender',
+    finalRecipient: 'Endelig mottaker',
+    onNetwork: 'på {network}, via en bro',
+    onOtherNetwork: 'på et annet nettverk, via en bro',
   },
   transferPicker: {
     title: 'Velg en konto eller mottaker for å overføre',

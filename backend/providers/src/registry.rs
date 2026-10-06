@@ -443,8 +443,8 @@ impl ProviderRegistry {
     pub async fn bridge_status(
         &self,
         transaction_hash: &str,
-        from_chain: ChainId,
-        to_chain: ChainId,
+        from_chain: Option<ChainId>,
+        to_chain: Option<ChainId>,
     ) -> ProviderResult<BridgeStatus> {
         self.bridge.status(transaction_hash, from_chain, to_chain).await
     }

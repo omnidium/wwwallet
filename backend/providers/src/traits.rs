@@ -221,8 +221,8 @@ pub trait BridgeProvider {
     async fn status(
         &self,
         transaction_hash: &str,
-        from_chain: ChainId,
-        to_chain: ChainId,
+        from_chain: Option<ChainId>,
+        to_chain: Option<ChainId>,
     ) -> ProviderResult<BridgeStatus>;
 }
 

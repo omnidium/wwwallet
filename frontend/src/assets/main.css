@@ -1197,6 +1197,39 @@ html.pane-open {
   max-width: min(1040px, 96vw);
 }
 
+/* On a phone, the token pane (details and its transactions) and the
+ * Send/Swap pane take the whole screen instead of floating as a card —
+ * there's no room for the scrim around them to show anything anyway, and
+ * every pixel goes to the transaction list or the form. Stacked over
+ * .floating-settings-btn and .connectivity-badge (1005), which would
+ * otherwise sit on top of the pane's own header and close button. */
+@media (max-width: 600px) {
+  .pane-scrim:has(.token-detail-view, .xfer-view) {
+    z-index: 1006;
+    padding: 0;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .pane-card:has(.token-detail-view, .xfer-view) {
+    --pane-max-height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+    padding-top: max(1em, env(safe-area-inset-top));
+    padding-bottom: max(1em, env(safe-area-inset-bottom));
+  }
+
+  /* Its content is still capped at 480px — centred in the space, not flush left. */
+  .token-detail-view {
+    width: 100%;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+}
+
 .xfer-view {
   container-type: inline-size;
   width: 100%;

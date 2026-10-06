@@ -269,7 +269,11 @@ export const useFavouritesStore = defineStore('favourites', () => {
       history = await api.coinPriceHistory(item.id, item.symbol)
     } else {
       const fx = await api.fxHistory(item.base, item.quote)
-      history = { usd: fx.rate, change_24h_pct: fx.change_1d_pct, points: fx.points }
+      // The ECB publishes one rate per business day, so there's no intraday
+      // series to draw — just the last two rates, a straight line sloped by
+      // the same day-over-day change shown beside it, rather than a month's
+      // curve passed off as the past 24 hours like the other rows.
+      history = { usd: fx.rate, change_24h_pct: fx.change_1d_pct, points: fx.points.slice(-2) }
     }
     prices.value[item.key] = history
   }

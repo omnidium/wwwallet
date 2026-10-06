@@ -29,4 +29,11 @@ export function setStoredTheme(name: ThemeName): void {
 // theme.change() call for the two to switch together.
 export function applyDomTheme(name: ThemeName): void {
   document.documentElement.setAttribute('data-theme', name)
+  // The installed app's status bar (Android, iOS) is painted in this color —
+  // matched to the page's own background so the bar reads as part of the
+  // page rather than as a colored title strip across the top of it. Read
+  // back from the tokens rather than duplicated here, so the two can't drift.
+  const background = getComputedStyle(document.documentElement).getPropertyValue('--bg-rgb').trim()
+  const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+  if (meta && background) meta.content = `rgb(${background})`
 }

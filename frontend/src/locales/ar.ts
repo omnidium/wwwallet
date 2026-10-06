@@ -187,7 +187,6 @@ export default {
   },
   token: {
     defaultLabel: 'الرمز المميز',
-    decimals: 'الأرقام العشرية',
     priceTooltip: 'سعر 1 توكن {symbol} بالدولار الأمريكي',
     amount: 'المبلغ',
     amountTooltip: 'مقدار الرموز {symbol} المملوكة',
@@ -386,6 +385,10 @@ export default {
     paidBySender: 'يدفع المرسل',
     feeUnavailable: 'غير متوفر بعد',
     todaysPriceNote: '* بالسعر الحالي — لم يتم العثور على سعر وقت إجراء هذه المعاملة.',
+    originalSender: 'المرسل الأصلي',
+    finalRecipient: 'المستلم النهائي',
+    onNetwork: 'على {network}، عبر جسر',
+    onOtherNetwork: 'على شبكة أخرى، عبر جسر',
   },
   transferPicker: {
     title: 'اضغط على حساب أو مستفيد لإجراء التحويل',

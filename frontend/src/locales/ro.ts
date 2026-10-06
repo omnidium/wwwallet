@@ -190,7 +190,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Zecimale',
     priceTooltip: 'Prețul unui token {symbol} în USD',
     amount: 'Suma',
     amountTooltip: 'Numărul de tokenuri {symbol} deținute',
@@ -399,6 +398,10 @@ export default {
     feeUnavailable: 'Nu este încă disponibil',
     todaysPriceNote:
       '* La prețul de astăzi — nu s-a găsit niciun preț pentru momentul în care a fost efectuată această tranzacție.',
+    originalSender: 'Expeditorul original',
+    finalRecipient: 'Destinatarul final',
+    onNetwork: 'pe {network}, prin intermediul unui bridge',
+    onOtherNetwork: 'pe o altă rețea, prin intermediul unui bridge',
   },
   transferPicker: {
     title: 'Selectați un cont sau un beneficiar pentru a efectua transferul',

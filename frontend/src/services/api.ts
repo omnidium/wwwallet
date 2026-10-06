@@ -275,6 +275,18 @@ export interface BridgeStatus {
   status: 'pending' | 'done' | 'failed'
   substatus: string | null
   receiving_tx_hash: string | null
+  // The rest is absent from a backend older than these fields.
+  sending_tx_hash?: string | null
+  /**
+   * The accounts at either end — the sender on the source chain and the
+   * recipient on the destination — rather than the bridge contracts and
+   * relayers each leg's own transaction shows. Null until LI.FI has indexed it.
+   */
+  from_address?: string | null
+  to_address?: string | null
+  /** Null for a chain this wallet doesn't support (another EVM chain, Solana…). */
+  from_chain?: ChainSlug | null
+  to_chain?: ChainSlug | null
 }
 
 export interface TokenListItem {
@@ -358,6 +370,8 @@ export const api = {
     }),
   bridgeStatus: (hash: string, fromChain: ChainSlug, toChain: ChainSlug) =>
     getJson<BridgeStatus>('/api/v1/bridge/status', { tx_hash: hash, from_chain: fromChain, to_chain: toChain }),
+  /** By either leg's hash, without knowing which it is — or whether it's a bridge at all. */
+  bridgeLookup: (hash: string) => getJson<BridgeStatus>('/api/v1/bridge/status', { tx_hash: hash }),
   /** The chain's whole token list — searched client-side, see services/tokenSearch.ts. */
   tokenList: (chain: ChainSlug) => getJson<TokenListItem[]>(`/api/v1/chains/${chain}/tokens`),
 }

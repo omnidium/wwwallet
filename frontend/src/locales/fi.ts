@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Desimaalit',
     priceTooltip: '1 {symbol}-tokenin hinta Yhdysvaltain dollareina',
     amount: 'Määrä',
     amountTooltip: 'Hallussa olevien {symbol}-tokenien määrä',
@@ -392,6 +391,10 @@ export default {
     feeUnavailable: 'Ei vielä saatavilla',
     todaysPriceNote:
       '* Tämänhetkiseen hintaan — tämän transaktion tekohetkeltä ei löytynyt hintaa.',
+    originalSender: 'Alkuperäinen lähettäjä',
+    finalRecipient: 'Lopullinen vastaanottaja',
+    onNetwork: '{network}:ssa, sillan kautta',
+    onOtherNetwork: 'toisessa verkossa, sillan kautta',
   },
   transferPicker: {
     title: 'Valitse tili tai maksunsaaja siirtoa varten',

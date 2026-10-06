@@ -189,7 +189,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Desetinná místa',
     priceTooltip: 'Cena 1 tokenu {symbol} v USD',
     amount: 'Částka',
     amountTooltip: 'Počet držených tokenů {symbol}',
@@ -393,6 +392,10 @@ export default {
     feeUnavailable: 'Zatím není k dispozici',
     todaysPriceNote:
       '* Při dnešní ceně – pro okamžik provedení této transakce nebyla nalezena žádná cena.',
+    originalSender: 'Původní odesílatel',
+    finalRecipient: 'Konečný příjemce',
+    onNetwork: 'na {network}, přes most',
+    onOtherNetwork: 'na jiné síti, prostřednictvím mostu',
   },
   transferPicker: {
     title: 'Klikněte na účet nebo příjemce platby a proveďte převod',

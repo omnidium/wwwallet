@@ -396,11 +396,13 @@ pub async fn bridge_quote(
     Ok(Json(state.providers.bridge_quote(&request).await?))
 }
 
+/// The chains are optional: a transaction's details pane looks a hash up
+/// without knowing whether it's a bridge at all, let alone which end.
 #[derive(Deserialize)]
 pub struct BridgeStatusQuery {
     tx_hash: String,
-    from_chain: String,
-    to_chain: String,
+    from_chain: Option<String>,
+    to_chain: Option<String>,
 }
 
 #[worker::send]
@@ -413,8 +415,8 @@ pub async fn bridge_status(
         .providers
         .check_rate_limit(client_ip(&headers), "bridge_status")
         .await?;
-    let from_chain = parse_chain(&query.from_chain)?;
-    let to_chain = parse_chain(&query.to_chain)?;
+    let from_chain = query.from_chain.as_deref().map(parse_chain).transpose()?;
+    let to_chain = query.to_chain.as_deref().map(parse_chain).transpose()?;
     let is_hash = query.tx_hash.len() == 66
         && query.tx_hash.starts_with("0x")
         && query.tx_hash[2..].chars().all(|c| c.is_ascii_hexdigit());

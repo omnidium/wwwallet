@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'Token',
-    decimals: 'Decimalen',
     priceTooltip: 'Prijs van 1 {symbol}-token in USD',
     amount: 'Bedrag',
     amountTooltip: 'Aantal {symbol}-tokens in bezit',
@@ -394,6 +393,10 @@ export default {
     feeUnavailable: 'Nog niet beschikbaar',
     todaysPriceNote:
       '* Tegen de huidige prijs — er kon geen prijs worden gevonden voor het moment waarop deze transactie plaatsvond.',
+    originalSender: 'Oorspronkelijke afzender',
+    finalRecipient: 'Eindontvanger',
+    onNetwork: 'op {network}, via een bridge',
+    onOtherNetwork: 'op een ander netwerk, via een bridge',
   },
   transferPicker: {
     title: 'Klik op een account of ontvanger om geld over te maken',

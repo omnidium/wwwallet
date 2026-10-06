@@ -188,7 +188,6 @@ export default {
   },
   token: {
     defaultLabel: 'Žetonas',
-    decimals: 'Dešimtainiai skaičiai',
     priceTooltip: '1 {symbol} žetono kaina JAV doleriais',
     amount: 'Suma',
     amountTooltip: 'Turimų {symbol} žetonų kiekis',
@@ -395,6 +394,10 @@ export default {
     feeUnavailable: 'Dar nėra prieinama',
     todaysPriceNote:
       '* Pagal šiandienos kainą — nebuvo rasta kainos, galiojusios šios transakcijos metu.',
+    originalSender: 'Pirminis siuntėjas',
+    finalRecipient: 'Galutinis gavėjas',
+    onNetwork: 'per {network}, naudojant tiltą',
+    onOtherNetwork: 'kitame tinkle, per tiltą',
   },
   transferPicker: {
     title: 'Norėdami atlikti pervedimą, pasirinkite sąskaitą arba gavėją',

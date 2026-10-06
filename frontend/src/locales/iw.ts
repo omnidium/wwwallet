@@ -187,7 +187,6 @@ export default {
   },
   token: {
     defaultLabel: 'אסימון',
-    decimals: 'עשרוניות',
     priceTooltip: 'מחיר של אסימון אחד {symbol} בדולר ארה"ב',
     amount: 'סכום',
     amountTooltip: 'כמות אסימוני {symbol} המוחזקים',
@@ -383,6 +382,10 @@ export default {
     paidBySender: 'משולם על ידי השולח',
     feeUnavailable: 'עדיין לא זמין',
     todaysPriceNote: '* לפי המחיר הנוכחי — לא נמצא מחיר למועד ביצוע העסקה.',
+    originalSender: 'השולח המקורי',
+    finalRecipient: 'נמען סופי',
+    onNetwork: 'ב-{network}, דרך גשר',
+    onOtherNetwork: 'ברשת אחרת, באמצעות גשר',
   },
   transferPicker: {
     title: 'לחצו על חשבון או על מקבל תשלום כדי לבצע העברה',

@@ -884,10 +884,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Elimina «monedero»"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Decimales"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Precio de 1 token {symbol} en USD"
@@ -1587,6 +1583,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Actualizar precios"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Remitente original"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Destinatario final"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "en {network}, a través de un puente"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "en otra red, a través de un puente"
     }
   },
   "ar": {
@@ -2474,10 +2486,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "احذف كلمة «محفظة»"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "الأرقام العشرية"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "سعر 1 توكن {symbol} بالدولار الأمريكي"
@@ -3177,6 +3185,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "تحديث الأسعار"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "المرسل الأصلي"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "المستلم النهائي"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "على {network}، عبر جسر"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "على شبكة أخرى، عبر جسر"
     }
   },
   "bg": {
@@ -4064,10 +4088,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Изтрийте „портфейл“"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Десетични знаци"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Цена на 1 {symbol} токен в USD"
@@ -4767,6 +4787,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Актуализирайте цените"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Оригинален изпращач"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Краен получател"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "на {network}, чрез мост"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "в друга мрежа, чрез мост"
     }
   },
   "cs": {
@@ -5654,10 +5690,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Odstranit peněženku"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Desetinná místa"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Cena 1 tokenu {symbol} v USD"
@@ -6357,6 +6389,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Aktualizovat ceny"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Původní odesílatel"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Konečný příjemce"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "na {network}, přes most"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "na jiné síti, prostřednictvím mostu"
     }
   },
   "da": {
@@ -7244,10 +7292,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Slet tegnebog"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Decimaler"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prisen på 1 {symbol}-token i USD"
@@ -7947,6 +7991,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Opdater priser"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Oprindelig afsender"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Endelig modtager"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "på {network}, via en bro"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "på et andet netværk via en bro"
     }
   },
   "de": {
@@ -8834,10 +8894,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Wallet löschen"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Dezimalstellen"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Preis von 1 {symbol}-Token in USD"
@@ -9537,6 +9593,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Preise aktualisieren"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Ursprünglicher Absender"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Endempfänger"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "auf {network}, über eine Bridge"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "in einem anderen Netzwerk, über eine Bridge"
     }
   },
   "el": {
@@ -10424,10 +10496,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Διαγραφή πορτοφολιού"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Δεκαδικά"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Τιμή 1 token {symbol} σε δολάρια ΗΠΑ"
@@ -11127,6 +11195,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Ενημέρωση τιμών"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Αρχικός αποστολέας"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Τελικός παραλήπτης"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "στο {network}, μέσω μιας γέφυρας"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "σε άλλο δίκτυο, μέσω μιας γέφυρας"
     }
   },
   "et": {
@@ -12014,10 +12098,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Kustuta rahakott"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Komaarvud"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} tokeni hind USA dollarites"
@@ -12717,6 +12797,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Värskenda hinnad"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Algne saatja"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Lõplik saaja"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "{network} kaudu, silla kaudu"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "teises võrgus, silla kaudu"
     }
   },
   "fi": {
@@ -13604,10 +13700,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Poista lompakko"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Desimaalit"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol}-tokenin hinta Yhdysvaltain dollareina"
@@ -14307,6 +14399,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Päivitä hinnat"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Alkuperäinen lähettäjä"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Lopullinen vastaanottaja"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "{network}:ssa, sillan kautta"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "toisessa verkossa, sillan kautta"
     }
   },
   "fr": {
@@ -15194,10 +15302,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Supprimer le portefeuille"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Décimales"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prix d’un token {symbol} en USD"
@@ -15897,6 +16001,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Actualiser les prix"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Expéditeur d'origine"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Destinataire final"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "sur {network}, via un pont"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "sur un autre réseau, via un pont"
     }
   },
   "hu": {
@@ -16784,10 +16904,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Tárca törlése"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Tizedesjegyek"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} token ára USD-ben"
@@ -17487,6 +17603,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Árak frissítése"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Eredeti feladó"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Végső címzett"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "a {network}-on, hídon keresztül"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "egy másik hálózaton, hídon keresztül"
     }
   },
   "id": {
@@ -18374,10 +18506,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Hapus dompet"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Desimal"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Harga 1 token {symbol} dalam USD"
@@ -19077,6 +19205,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Perbarui harga"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Pengirim asli"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Penerima akhir"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "di {network}, melalui jembatan"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "di jaringan lain, melalui jembatan"
     }
   },
   "it": {
@@ -19964,10 +20108,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Elimina \"portafoglio\""
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Decimali"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prezzo di 1 token {symbol} in USD"
@@ -20667,6 +20807,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Aggiorna i prezzi"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Mittente originale"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Destinatario finale"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "su {network}, tramite un bridge"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "su un’altra rete, tramite un bridge"
     }
   },
   "iw": {
@@ -21554,10 +21710,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "מחק את המילה \"ארנק\""
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "עשרוניות"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "מחיר של אסימון אחד {symbol} בדולר ארה\"ב"
@@ -22257,6 +22409,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "רענן מחירים"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "השולח המקורי"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "נמען סופי"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "ב-{network}, דרך גשר"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "ברשת אחרת, באמצעות גשר"
     }
   },
   "ja": {
@@ -23144,10 +23312,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "ウォレットを削除する"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "小数点"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} トークンの価格（米ドル）"
@@ -23847,6 +24011,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "価格を更新する"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "元の送信者"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "最終受信者"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "{network}上で、ブリッジ経由で"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "別のネットワーク上で、ブリッジを介して"
     }
   },
   "ko": {
@@ -24734,10 +24914,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "지갑 삭제"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "소수점"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} 토큰의 가격(USD)"
@@ -25437,6 +25613,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "가격 갱신"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "원본 발신자"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "최종 수신자"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "{network}에서, 브릿지를 통해"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "다른 네트워크에서, 브리지를 통해"
     }
   },
   "lt": {
@@ -26324,10 +26516,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Ištrinti piniginę"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Dešimtainiai skaičiai"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} žetono kaina JAV doleriais"
@@ -27027,6 +27215,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Atnaujinti kainas"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Pirminis siuntėjas"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Galutinis gavėjas"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "per {network}, naudojant tiltą"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "kitame tinkle, per tiltą"
     }
   },
   "lv": {
@@ -27914,10 +28118,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Dzēst maku"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Decimāldaļas"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} žetona cena USD"
@@ -28617,6 +28817,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Atjaunināt cenas"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Sākotnējais sūtītājs"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Galīgais saņēmējs"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "uz {network}, izmantojot tiltu"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "citā tīklā, izmantojot tiltu"
     }
   },
   "nl": {
@@ -29504,10 +29720,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Verwijder 'wallet'"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Decimalen"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prijs van 1 {symbol}-token in USD"
@@ -30207,6 +30419,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Prijzen vernieuwen"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Oorspronkelijke afzender"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Eindontvanger"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "op {network}, via een bridge"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "op een ander netwerk, via een bridge"
     }
   },
   "no": {
@@ -31094,10 +31322,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Slett lommebok"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Desimaler"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Pris på 1 {symbol}-token i USD"
@@ -31797,6 +32021,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Oppdater priser"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Opprinnelig avsender"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Endelig mottaker"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "på {network}, via en bro"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "på et annet nettverk, via en bro"
     }
   },
   "pl": {
@@ -32684,10 +32924,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Usuń portfel"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Miejsca po przecinku"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Cena 1 tokenu {symbol} w USD"
@@ -33387,6 +33623,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Odśwież ceny"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Pierwotny nadawca"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Ostateczny odbiorca"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "na {network}, przez most"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "w innej sieci, za pośrednictwem mostka"
     }
   },
   "ro": {
@@ -34274,10 +34526,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Ștergeți „portofel”"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Zecimale"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Prețul unui token {symbol} în USD"
@@ -34977,6 +35225,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Actualizați prețurile"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Expeditorul original"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Destinatarul final"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "pe {network}, prin intermediul unui bridge"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "pe o altă rețea, prin intermediul unui bridge"
     }
   },
   "ru": {
@@ -35864,10 +36128,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Удалить кошелек"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Десятичные знаки"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Цена 1 токена {symbol} в долларах США"
@@ -36567,6 +36827,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Обновить цены"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Первоначальный отправитель"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Конечный получатель"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "на {network}, через мост"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "в другой сети через мост"
     }
   },
   "sk": {
@@ -37454,10 +37730,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Odstráňte peňaženku"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Desatinné miesta"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Cena 1 tokenu {symbol} v USD"
@@ -38157,6 +38429,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Aktualizovať ceny"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Pôvodný odosielateľ"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Konečný príjemca"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "na {network}, cez most"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "v inej sieti, prostredníctvom mosta"
     }
   },
   "sl": {
@@ -39044,10 +39332,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Izbriši denarnico"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Decimalna mesta"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Cena 1 {symbol} tokena v USD"
@@ -39747,6 +40031,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Osveži cene"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Izvirni pošiljatelj"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Končni prejemnik"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "na {network}, prek mostu"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "v drugem omrežju prek mostu"
     }
   },
   "sv": {
@@ -40634,10 +40934,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Ta bort plånbok"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Decimaler"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Pris per 1 {symbol}-token i USD"
@@ -41337,6 +41633,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Uppdatera priser"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Ursprunglig avsändare"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Slutmottagare"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "på {network}, via en brygga"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "på ett annat nätverk, via en brygga"
     }
   },
   "tr": {
@@ -42224,10 +42536,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Cüzdanı sil"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Ondalık sayılar"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} tokeninin USD cinsinden fiyatı"
@@ -42927,6 +43235,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Fiyatları yenile"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Orijinal gönderen"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Nihai alıcı"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "{network} üzerinde, bir köprü aracılığıyla"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "başka bir ağda, bir köprü aracılığıyla"
     }
   },
   "uk": {
@@ -43814,10 +44138,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Видалити гаманець"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Десятичні знаки"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Ціна 1 токена {symbol} у доларах США"
@@ -44517,6 +44837,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Оновити ціни"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Оригінальний відправник"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Кінцевий одержувач"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "на {network}, через міст"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "в іншій мережі, через міст"
     }
   },
   "vi": {
@@ -45404,10 +45740,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "Xóa ví"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "Số thập phân"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "Giá của 1 token {symbol} tính bằng USD"
@@ -46107,6 +46439,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "Cập nhật giá"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "Người gửi ban đầu"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "Người nhận cuối cùng"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "trên {network}, qua cầu nối"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "trên một mạng khác, thông qua cầu nối"
     }
   },
   "zh-CN": {
@@ -46994,10 +47342,6 @@
       "enHash": "65684f308cb12bf2",
       "value": "删除钱包"
     },
-    "token.decimals": {
-      "enHash": "74672912045e226a",
-      "value": "小数"
-    },
     "token.priceTooltip": {
       "enHash": "fb65f172e36fddfe",
       "value": "1 {symbol} 代币的美元价格"
@@ -47697,6 +48041,22 @@
     "favourites.refresh": {
       "enHash": "5610b22252f81d9f",
       "value": "刷新价格"
+    },
+    "transactionDetail.originalSender": {
+      "enHash": "a569c1ec77a9caff",
+      "value": "原始发件人"
+    },
+    "transactionDetail.finalRecipient": {
+      "enHash": "6221f1886f204642",
+      "value": "最终收件人"
+    },
+    "transactionDetail.onNetwork": {
+      "enHash": "f08f8a4547a9c6f3",
+      "value": "在 {network} 上，通过跨链桥"
+    },
+    "transactionDetail.onOtherNetwork": {
+      "enHash": "ae0937676af0d1f5",
+      "value": "在另一个网络上，通过跨链桥"
     }
   }
 }
