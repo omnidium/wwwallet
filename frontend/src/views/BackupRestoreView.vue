@@ -14,35 +14,57 @@ const router = useRouter()
 const fileInput = ref<HTMLInputElement | null>(null)
 const restoreWarningOpen = ref(false)
 const restoring = ref(false)
+// A backup has no overlay of its own (a restore does) — the tiles stay
+// clickable otherwise, and a second tap would start a second backup.
+const backingUp = ref(false)
 let pendingRestore: (() => void) | null = null
 
+// Each backup and restore shows a toast for as long as it runs (Google's
+// sign-in and the encryption can take a while), which then becomes its
+// outcome — the same toast, rather than a second one after it, except for a
+// restore that succeeded (see restoreFromDrive).
 async function backupToDrive() {
+  if (backingUp.value) return
+  backingUp.value = true
+  const msgId = messages.push(t('msg.backup.driveInProgress'), 'info', -1)
   try {
     await vault.backupToDrive()
-    messages.push(t('msg.backup.driveSuccess'), 'success')
+    messages.update(msgId, t('msg.backup.driveSuccess'), 'success')
   } catch (err) {
-    messages.push(displayErrorMessage(err), 'error')
+    messages.update(msgId, displayErrorMessage(err), 'error')
+  } finally {
+    backingUp.value = false
   }
 }
 
 async function restoreFromDrive() {
   restoring.value = true
+  const msgId = messages.push(t('msg.restore.driveInProgress'), 'info', -1)
   try {
     await vault.restoreFromDrive()
+    // A new toast rather than updating the in-progress one: restoring ends
+    // by locking the vault, and locking clears every toast (stores/vault.ts).
+    messages.dismiss(msgId)
     messages.push(t('msg.restore.driveSuccess'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
-    messages.push(displayErrorMessage(err), 'error')
+    messages.update(msgId, displayErrorMessage(err), 'error')
   } finally {
     restoring.value = false
   }
 }
 
 async function backupToFile() {
+  if (backingUp.value) return
+  backingUp.value = true
+  const msgId = messages.push(t('msg.backup.fileInProgress'), 'info', -1)
   try {
     await vault.backupToFile()
+    messages.update(msgId, t('msg.backup.fileSuccess'), 'success')
   } catch (err) {
-    messages.push(displayErrorMessage(err), 'error')
+    messages.update(msgId, displayErrorMessage(err), 'error')
+  } finally {
+    backingUp.value = false
   }
 }
 
@@ -50,12 +72,16 @@ async function onFileSelected(event: Event) {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (!file) return
   restoring.value = true
+  const msgId = messages.push(t('msg.restore.fileInProgress'), 'info', -1)
   try {
     await vault.restoreFromFile(file)
+    // A new toast rather than updating the in-progress one: restoring ends
+    // by locking the vault, and locking clears every toast (stores/vault.ts).
+    messages.dismiss(msgId)
     messages.push(t('msg.restore.fileSuccess'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
-    messages.push(displayErrorMessage(err), 'error')
+    messages.update(msgId, displayErrorMessage(err), 'error')
   } finally {
     restoring.value = false
   }
@@ -95,7 +121,8 @@ function proceedWithRestore() {
           <span class="text-subtitle-1 font-weight-medium">{{ t('backup.googleDriveTitle') }}</span>
         </div>
         <div class="backup-tiles">
-          <button v-if="vault.isUnlocked" type="button" class="backup-tile backup-tile--backup" @click="backupToDrive">
+          <button v-if="vault.isUnlocked" type="button" class="backup-tile backup-tile--backup" :disabled="backingUp"
+            @click="backupToDrive">
             <v-icon icon="mdi-cloud-upload-outline" size="32" />
             <span>{{ t('backup.backUpNow') }}</span>
           </button>
@@ -111,7 +138,8 @@ function proceedWithRestore() {
           <span class="text-subtitle-1 font-weight-medium">{{ t('backup.localFileTitle') }}</span>
         </div>
         <div class="backup-tiles">
-          <button v-if="vault.isUnlocked" type="button" class="backup-tile backup-tile--backup" @click="backupToFile">
+          <button v-if="vault.isUnlocked" type="button" class="backup-tile backup-tile--backup" :disabled="backingUp"
+            @click="backupToFile">
             <v-icon icon="mdi-file-download-outline" size="32" />
             <span>{{ t('backup.downloadBackup') }}</span>
           </button>

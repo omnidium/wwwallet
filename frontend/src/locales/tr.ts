@@ -248,6 +248,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Google Drive’a yedeklenir.',
+      driveInProgress: 'Google Drive’a yedekleme…',
+      fileInProgress: 'Yedekleme dosyanız hazırlanıyor…',
+      fileSuccess: 'Yedekleme dosyası indirildi.',
     },
     restore: {
       driveSuccess:
@@ -256,6 +259,8 @@ export default {
       driveSuccessSetup:
         "Google Drive'dan geri yüklendi. Kilidi açmak için kurtarma ifadenizi girin.",
       fileSuccessSetup: 'Dosyadan geri yüklendi. Kilidi açmak için kurtarma ifadenizi girin.',
+      driveInProgress: "Google Drive'dan geri yükleme…",
+      fileInProgress: 'Dosyadan geri yükleme…',
     },
     recoveryPhrase: {
       copied: 'Kurtarma ifadesi kopyalandı — 45 saniye içinde panonuzdan silinecektir.',

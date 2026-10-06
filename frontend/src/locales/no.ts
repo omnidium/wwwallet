@@ -248,6 +248,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Sikkerhetskopiert til Google Drive.',
+      driveInProgress: 'Sikkerhetskopiering til Google Drive…',
+      fileInProgress: 'Forbereder sikkerhetskopifilen din…',
+      fileSuccess: 'Sikkerhetskopifilen er lastet ned.',
     },
     restore: {
       driveSuccess:
@@ -257,6 +260,8 @@ export default {
         'Gjenopprettet fra Google Drive. Skriv inn gjenopprettingsfrasen din for å låse opp.',
       fileSuccessSetup:
         'Gjenopprettet fra fil. Skriv inn gjenopprettingsfrasen din for å låse opp.',
+      driveInProgress: 'Gjenoppretting fra Google Drive…',
+      fileInProgress: 'Gjenoppretting fra fil…',
     },
     recoveryPhrase: {
       copied:

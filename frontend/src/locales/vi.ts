@@ -249,6 +249,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Đã sao lưu lên Google Drive.',
+      driveInProgress: 'Sao lưu lên Google Drive…',
+      fileInProgress: 'Đang chuẩn bị tệp sao lưu của cậu…',
+      fileSuccess: 'Tệp sao lưu đã được tải xuống.',
     },
     restore: {
       driveSuccess:
@@ -256,6 +259,8 @@ export default {
       fileSuccess: 'Đã khôi phục từ tệp. Mở khóa bằng cụm từ khôi phục của cậu để tiếp tục nhé.',
       driveSuccessSetup: 'Đã khôi phục từ Google Drive. Nhập cụm từ khôi phục của cậu để mở khóa.',
       fileSuccessSetup: 'Đã khôi phục từ tệp. Nhập cụm từ khôi phục của cậu để mở khóa.',
+      driveInProgress: 'Đang khôi phục từ Google Drive…',
+      fileInProgress: 'Khôi phục từ tệp…',
     },
     recoveryPhrase: {
       copied:

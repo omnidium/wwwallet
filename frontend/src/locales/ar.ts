@@ -247,12 +247,17 @@ export default {
     },
     backup: {
       driveSuccess: 'تم النسخ الاحتياطي إلى Google Drive.',
+      driveInProgress: 'النسخ الاحتياطي إلى Google Drive…',
+      fileInProgress: 'جاري إعداد ملف النسخ الاحتياطي…',
+      fileSuccess: 'تم تنزيل ملف النسخ الاحتياطي.',
     },
     restore: {
       driveSuccess: 'تم الاستعادة من Google Drive. افتح القفل باستخدام عبارة الاستعادة للمتابعة.',
       fileSuccess: 'تم استعادة الملف. افتح القفل باستخدام عبارة الاسترداد الخاصة بك للمتابعة.',
       driveSuccessSetup: 'تم الاستعادة من Google Drive. أدخل عبارة الاسترداد لفتح القفل.',
       fileSuccessSetup: 'تم الاستعادة من الملف. أدخل عبارة الاسترداد لفتح القفل.',
+      driveInProgress: 'الاستعادة من Google Drive…',
+      fileInProgress: 'الاستعادة من ملف…',
     },
     recoveryPhrase: {
       copied: 'تم نسخ عبارة الاسترداد — سيتم مسحها من الحافظة خلال 45 ثانية.',

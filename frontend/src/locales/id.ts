@@ -250,6 +250,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Tersimpan di Google Drive.',
+      driveInProgress: 'Mencadangkan ke Google Drive…',
+      fileInProgress: 'Mempersiapkan file cadangan Anda…',
+      fileSuccess: 'File cadangan telah diunduh.',
     },
     restore: {
       driveSuccess:
@@ -259,6 +262,8 @@ export default {
       driveSuccessSetup:
         'Dipulihkan dari Google Drive. Masukkan frasa pemulihan Anda untuk membuka kunci.',
       fileSuccessSetup: 'Dipulihkan dari file. Masukkan frasa pemulihan Anda untuk membuka kunci.',
+      driveInProgress: 'Memulihkan dari Google Drive…',
+      fileInProgress: 'Memulihkan dari file…',
     },
     recoveryPhrase: {
       copied:

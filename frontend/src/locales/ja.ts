@@ -247,6 +247,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Google Driveにバックアップされる。',
+      driveInProgress: 'Google Driveへのバックアップ…',
+      fileInProgress: 'バックアップファイルの準備中…',
+      fileSuccess: 'バックアップファイルがダウンロードされた。',
     },
     restore: {
       driveSuccess: 'Google ドライブから復元された。リカバリーフレーズでロックを解除して続行する。',
@@ -255,6 +258,8 @@ export default {
         'Google ドライブから復元された。ロックを解除するには、リカバリーフレーズを入力する。',
       fileSuccessSetup:
         'ファイルから復元された。ロックを解除するにはリカバリーフレーズを入力せよ。',
+      driveInProgress: 'Google ドライブからの復元中…',
+      fileInProgress: 'ファイルからの復元…',
     },
     recoveryPhrase: {
       copied: 'リカバリーフレーズがコピーされた。45秒後にクリップボードから削除される。',

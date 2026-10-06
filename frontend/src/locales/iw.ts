@@ -246,12 +246,17 @@ export default {
     },
     backup: {
       driveSuccess: 'מגובה ב-Google Drive.',
+      driveInProgress: 'גיבוי ל-Google Drive…',
+      fileInProgress: 'הכנת קובץ הגיבוי...',
+      fileSuccess: 'קובץ הגיבוי הורד.',
     },
     restore: {
       driveSuccess: 'שוחזר מ-Google Drive. בטל את הנעילה באמצעות ביטוי השחזור שלך כדי להמשיך.',
       fileSuccess: 'שוחזר מקובץ. בטל את הנעילה באמצעות ביטוי השחזור שלך כדי להמשיך.',
       driveSuccessSetup: 'שוחזר מ-Google Drive. הזן את ביטוי השחזור שלך כדי לבטל את הנעילה.',
       fileSuccessSetup: 'שוחזר מהקובץ. הזן את ביטוי השחזור שלך כדי לבטל את הנעילה.',
+      driveInProgress: 'שחזור מ-Google Drive…',
+      fileInProgress: 'שחזור מקובץ…',
     },
     recoveryPhrase: {
       copied: 'ביטוי השחזור הועתק — הוא יימחק מהלוח שלך בעוד 45 שניות.',

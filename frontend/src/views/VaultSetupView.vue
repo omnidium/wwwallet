@@ -57,12 +57,17 @@ async function createVault() {
 
 async function restoreFromDrive() {
   restoring.value = true
+  // Shown for as long as it runs, then turned into its outcome — see BackupRestoreView.
+  const msgId = messages.push(t('msg.restore.driveInProgress'), 'info', -1)
   try {
     await vault.restoreFromDrive()
+    // A new toast rather than updating the in-progress one: restoring ends
+    // by locking the vault, and locking clears every toast (stores/vault.ts).
+    messages.dismiss(msgId)
     messages.push(t('msg.restore.driveSuccessSetup'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
-    messages.push(displayErrorMessage(err), 'error')
+    messages.update(msgId, displayErrorMessage(err), 'error')
   } finally {
     restoring.value = false
   }
@@ -72,12 +77,16 @@ async function onRestoreFileSelected(event: Event) {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (!file) return
   restoring.value = true
+  const msgId = messages.push(t('msg.restore.fileInProgress'), 'info', -1)
   try {
     await vault.restoreFromFile(file)
+    // A new toast rather than updating the in-progress one: restoring ends
+    // by locking the vault, and locking clears every toast (stores/vault.ts).
+    messages.dismiss(msgId)
     messages.push(t('msg.restore.fileSuccessSetup'), 'success')
     router.push({ name: 'vault-unlock' })
   } catch (err) {
-    messages.push(displayErrorMessage(err), 'error')
+    messages.update(msgId, displayErrorMessage(err), 'error')
   } finally {
     restoring.value = false
   }

@@ -142,6 +142,16 @@ input[type='number'] {
   opacity: 0;
 }
 
+/* Toasts sit above every other overlay. Vuetify stacks overlays in the
+ * order they open, so a modal opened in the same moment as the toast that
+ * explains it — BackupRestoreView's "Recovering wallet…" with its
+ * "Restoring from file…" — would otherwise put its scrim over that toast,
+ * dimming it and its close button. !important: the stack's z-index is an
+ * inline style. */
+.v-snackbar.v-overlay {
+  z-index: 3000 !important;
+}
+
 .passphrase_box {
   border: 1px solid rgba(var(--v-border-color));
 }
@@ -463,6 +473,110 @@ input[type='number'] {
 @media (prefers-reduced-motion: reduce) {
   .coin--spinning {
     animation: none;
+  }
+}
+
+/* CircuitSpinner.vue — a signal runs along each faint trace (a dash a third
+ * of its length, starting and ending off the path), and its node flares as
+ * it arrives. Each row runs --row × 0.22s behind the one above. Lengths are
+ * in the viewBox's units: the 512px icon's. */
+.circuit-spinner {
+  flex: none;
+  height: 26px;
+  width: auto;
+  aspect-ratio: 246 / 286;
+  /* A flaring top or bottom node pokes just past the viewBox. */
+  overflow: visible;
+}
+
+.circuit-spinner-trace,
+.circuit-spinner-signal {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.circuit-spinner-trace {
+  stroke-width: 20;
+  opacity: 0.3;
+}
+
+.circuit-spinner-signal {
+  stroke-width: 28;
+  stroke-dasharray: 30 200;
+  stroke-dashoffset: 32;
+  animation: circuit-signal 1.35s ease-in infinite;
+  animation-delay: calc(var(--row) * 0.22s);
+}
+
+.circuit-spinner-node {
+  fill: currentColor;
+  opacity: 0.35;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: circuit-node 1.35s ease-out infinite;
+  animation-delay: calc(var(--row) * 0.22s);
+}
+
+@keyframes circuit-signal {
+  0% {
+    stroke-dashoffset: 32;
+  }
+
+  45%,
+  100% {
+    stroke-dashoffset: -102;
+  }
+}
+
+@keyframes circuit-node {
+
+  0%,
+  38% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.45);
+  }
+
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+}
+
+/* As a button's loading state (its #loader slot): fitted to the button. */
+.v-btn__loader .circuit-spinner {
+  height: 22px;
+}
+
+/* Still says "working", without anything travelling. */
+@media (prefers-reduced-motion: reduce) {
+
+  .circuit-spinner-signal,
+  .circuit-spinner-node {
+    animation: none;
+  }
+
+  .circuit-spinner {
+    animation: circuit-breathe 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes circuit-breathe {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
   }
 }
 
@@ -858,10 +972,16 @@ html.pane-open {
     filter 0.15s ease;
 }
 
-.backup-tile:hover {
+.backup-tile:hover:not(:disabled) {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
   filter: brightness(1.05);
+}
+
+/* While a backup runs — its toast says so. */
+.backup-tile:disabled {
+  opacity: 0.6;
+  cursor: progress;
 }
 
 .backup-tile:focus-visible {

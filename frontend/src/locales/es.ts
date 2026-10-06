@@ -252,6 +252,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Copias de seguridad en Google Drive.',
+      driveInProgress: 'Hacer una copia de seguridad en Google Drive…',
+      fileInProgress: 'Preparando tu archivo de copia de seguridad…',
+      fileSuccess: 'Archivo de copia de seguridad descargado.',
     },
     restore: {
       driveSuccess:
@@ -262,6 +265,8 @@ export default {
         'Restaurado desde Google Drive. Introduce tu frase de recuperación para desbloquearlo.',
       fileSuccessSetup:
         'Restaurado desde el archivo. Introduce tu frase de recuperación para desbloquearlo.',
+      driveInProgress: 'Restaurando desde Google Drive…',
+      fileInProgress: 'Restaurando desde un archivo…',
     },
     recoveryPhrase: {
       copied: 'Frase de recuperación copiada: se borrará de tu portapapeles en 45 segundos.',

@@ -247,6 +247,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Varundatud Google Drive’i.',
+      driveInProgress: 'Varundamine Google Drive’i…',
+      fileInProgress: 'Valmistame ette teie varukoopiafaili…',
+      fileSuccess: 'Varukoopiafail on alla laaditud.',
     },
     restore: {
       driveSuccess: 'Taastatud Google Drive’ist. Jätkamiseks avage lukustus oma taastamislausega.',
@@ -254,6 +257,8 @@ export default {
       driveSuccessSetup:
         'Taastatud Google Drive’ist. Sisesta taastamislause, et lukust lahti saada.',
       fileSuccessSetup: 'Taastatud failist. Sisesta taastamislause, et lukust lahti saada.',
+      driveInProgress: 'Taastamine Google Drive’ist…',
+      fileInProgress: 'Taastamine failist…',
     },
     recoveryPhrase: {
       copied:

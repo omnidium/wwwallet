@@ -457,9 +457,14 @@ export const frontendEn = {
       stillPending: "Still pending — it hasn't been confirmed yet. Hash: {hash}",
     },
     backup: {
+      driveInProgress: 'Backing up to Google Drive…',
       driveSuccess: 'Backed up to Google Drive.',
+      fileInProgress: 'Preparing your backup file…',
+      fileSuccess: 'Backup file downloaded.',
     },
     restore: {
+      driveInProgress: 'Restoring from Google Drive…',
+      fileInProgress: 'Restoring from file…',
       driveSuccess: 'Restored from Google Drive. Unlock with your recovery phrase to continue.',
       fileSuccess: 'Restored from file. Unlock with your recovery phrase to continue.',
       driveSuccessSetup: 'Restored from Google Drive. Enter your recovery phrase to unlock.',

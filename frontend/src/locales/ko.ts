@@ -246,6 +246,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Google 드라이브에 백업됩니다.',
+      driveInProgress: 'Google 드라이브에 백업 중…',
+      fileInProgress: '백업 파일 준비 중…',
+      fileSuccess: '백업 파일이 다운로드되었습니다.',
     },
     restore: {
       driveSuccess:
@@ -254,6 +257,8 @@ export default {
       driveSuccessSetup:
         'Google 드라이브에서 복원되었습니다. 잠금을 해제하려면 복구 문구를 입력하세요.',
       fileSuccessSetup: '파일에서 복원되었습니다. 잠금을 해제하려면 복구 문구를 입력하세요.',
+      driveInProgress: 'Google 드라이브에서 복원 중…',
+      fileInProgress: '파일에서 복원 중…',
     },
     recoveryPhrase: {
       copied: '복구 문구가 복사되었습니다. 45초 후 클립보드에서 삭제됩니다.',

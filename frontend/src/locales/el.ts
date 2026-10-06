@@ -252,6 +252,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Δημιουργήθηκε αντίγραφο ασφαλείας στο Google Drive.',
+      driveInProgress: 'Δημιουργία αντιγράφου ασφαλείας στο Google Drive…',
+      fileInProgress: 'Προετοιμασία του αρχείου αντιγράφου ασφαλείας…',
+      fileSuccess: 'Το αρχείο αντιγράφου ασφαλείας κατεβάστηκε.',
     },
     restore: {
       driveSuccess:
@@ -262,6 +265,8 @@ export default {
         'Αποκαταστάθηκε από το Google Drive. Εισάγετε τη φράση ανάκτησης για να ξεκλειδώσετε.',
       fileSuccessSetup:
         'Αποκαταστάθηκε από αρχείο. Εισάγετε τη φράση ανάκτησης για να ξεκλειδώσετε.',
+      driveInProgress: 'Επαναφορά από το Google Drive…',
+      fileInProgress: 'Επαναφορά από αρχείο…',
     },
     recoveryPhrase: {
       copied:

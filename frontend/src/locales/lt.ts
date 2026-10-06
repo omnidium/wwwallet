@@ -249,6 +249,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Atsarginė kopija saugoma „Google Drive“.',
+      driveInProgress: 'Atsarginė kopija į „Google Drive“…',
+      fileInProgress: 'Rengiama atsarginė kopija…',
+      fileSuccess: 'Atsarginė kopija atsisiųsta.',
     },
     restore: {
       driveSuccess:
@@ -257,6 +260,8 @@ export default {
       driveSuccessSetup:
         'Atkurta iš „Google Drive“. Įveskite savo atkūrimo frazę, kad atrakintumėte.',
       fileSuccessSetup: 'Atkurta iš failo. Įveskite atkūrimo frazę, kad atrakintumėte.',
+      driveInProgress: 'Atkūrimas iš „Google Drive“…',
+      fileInProgress: 'Atkūrimas iš failo…',
     },
     recoveryPhrase: {
       copied: 'Atkūrimo frazė nukopijuota — ji bus ištrinta iš jūsų iškarpinės po 45 sekundžių.',

@@ -251,6 +251,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Biztonsági másolatot készít a Google Drive-ra.',
+      driveInProgress: 'Biztonsági másolat készítése a Google Drive-ra…',
+      fileInProgress: 'A biztonsági mentési fájl előkészítése…',
+      fileSuccess: 'A biztonsági másolat fájl letöltve.',
     },
     restore: {
       driveSuccess:
@@ -261,6 +264,8 @@ export default {
         'A Google Drive-ról állítva vissza. Írja be a helyreállítási kifejezést a feloldáshoz.',
       fileSuccessSetup:
         'Fájlból állítva vissza. Írja be a helyreállítási kifejezést a feloldáshoz.',
+      driveInProgress: 'Visszaállítás a Google Drive-ról…',
+      fileInProgress: 'Visszaállítás fájlból…',
     },
     recoveryPhrase: {
       copied: 'A helyreállítási kifejezés másolva – 45 másodperc múlva törlődik a vágólapról.',

@@ -253,6 +253,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Auf Google Drive gesichert.',
+      driveInProgress: 'Sichern auf Google Drive…',
+      fileInProgress: 'Deine Sicherungsdatei wird vorbereitet…',
+      fileSuccess: 'Sicherungsdatei heruntergeladen.',
     },
     restore: {
       driveSuccess:
@@ -263,6 +266,8 @@ export default {
         'Von Google Drive wiederhergestellt. Gib deine Wiederherstellungsphrase ein, um die App zu entsperren.',
       fileSuccessSetup:
         'Aus Datei wiederhergestellt. Gib deine Wiederherstellungsphrase ein, um die Wallet zu entsperren.',
+      driveInProgress: 'Wiederherstellung über Google Drive…',
+      fileInProgress: 'Wiederherstellung aus einer Datei…',
     },
     recoveryPhrase: {
       copied:

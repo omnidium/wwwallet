@@ -248,12 +248,17 @@ export default {
     },
     backup: {
       driveSuccess: 'Varmuuskopioitu Google Driveen.',
+      driveInProgress: 'Varmuuskopiointi Google Driveen…',
+      fileInProgress: 'Varmuuskopiotiedoston valmistelu…',
+      fileSuccess: 'Varmuuskopiotiedosto ladattu.',
     },
     restore: {
       driveSuccess: 'Palautettu Google Drivesta. Avaa lukkaus palautuslauseellasi jatkaaksesi.',
       fileSuccess: 'Palautettu tiedostosta. Avaa lukitus palautuslauseellasi jatkaaksesi.',
       driveSuccessSetup: 'Palautettu Google Drivesta. Syötä palautuslause avataksesi lompakon.',
       fileSuccessSetup: 'Palautettu tiedostosta. Syötä palautuslause avataksesi lukituksen.',
+      driveInProgress: 'Palautus Google Drivesta…',
+      fileInProgress: 'Palautus tiedostosta…',
     },
     recoveryPhrase: {
       copied: 'Palautuslause on kopioitu – se poistetaan leikepöydältäsi 45 sekunnin kuluttua.',

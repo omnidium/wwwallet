@@ -249,6 +249,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Резервне копіювання на Google Drive.',
+      driveInProgress: 'Створення резервної копії на Google Drive…',
+      fileInProgress: 'Підготовка файлу резервної копії…',
+      fileSuccess: 'Файл резервної копії завантажено.',
     },
     restore: {
       driveSuccess:
@@ -258,6 +261,8 @@ export default {
       driveSuccessSetup:
         'Відновлено з Google Drive. Введіть свою фразу відновлення, щоб розблокувати.',
       fileSuccessSetup: 'Відновлено з файлу. Введіть свою фразу відновлення, щоб розблокувати.',
+      driveInProgress: 'Відновлення з Google Drive…',
+      fileInProgress: 'Відновлення з файлу…',
     },
     recoveryPhrase: {
       copied:

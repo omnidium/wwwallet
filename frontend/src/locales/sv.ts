@@ -249,6 +249,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Säkerhetskopierad till Google Drive.',
+      driveInProgress: 'Säkerhetskopiering till Google Drive…',
+      fileInProgress: 'Förbereder din säkerhetskopia…',
+      fileSuccess: 'Säkerhetskopian har laddats ner.',
     },
     restore: {
       driveSuccess:
@@ -257,6 +260,8 @@ export default {
       driveSuccessSetup:
         'Återställd från Google Drive. Ange din återställningsfras för att låsa upp.',
       fileSuccessSetup: 'Återställd från fil. Ange din återställningsfras för att låsa upp.',
+      driveInProgress: 'Återställer från Google Drive…',
+      fileInProgress: 'Återställning från fil…',
     },
     recoveryPhrase: {
       copied: 'Återställningsfrasen har kopierats – den raderas från urklipp om 45 sekunder.',

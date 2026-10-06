@@ -249,6 +249,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Sikkerhedskopieret til Google Drive.',
+      driveInProgress: 'Sikkerhedskopiering til Google Drive…',
+      fileInProgress: 'Forbereder din sikkerhedskopifil…',
+      fileSuccess: 'Sikkerhedskopifil downloadet.',
     },
     restore: {
       driveSuccess:
@@ -257,6 +260,8 @@ export default {
       driveSuccessSetup:
         'Gendannet fra Google Drive. Indtast din gendannelsesfrase for at låse op.',
       fileSuccessSetup: 'Gendannet fra fil. Indtast din gendannelsesfrase for at låse op.',
+      driveInProgress: 'Gendannelse fra Google Drive…',
+      fileInProgress: 'Gendannelse fra fil…',
     },
     recoveryPhrase: {
       copied: 'Gendannelsesfrasen er kopieret — den slettes fra dit udklipsholder om 45 sekunder.',

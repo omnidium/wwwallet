@@ -11,6 +11,7 @@ import { getLastActivityAt } from '@/services/lastActivity'
 import { AUTO_LOCK_MS } from '@/config/appSettings'
 import { displayErrorMessage } from '@/services/errors'
 import FavouritesList from '@/components/FavouritesList.vue'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 import NetworkGlobe from '@shared/ui/NetworkGlobe.vue'
 
 const { t } = useI18n({ useScope: 'global' })
@@ -106,6 +107,9 @@ async function submitPasskey() {
         <v-card-text v-if="hasPasskeyWrap">
           <v-btn color="primary" block :loading="busy" prepend-icon="mdi-fingerprint" @click="submitPasskey">
             {{ t('vaultUnlock.unlockWithPasskey') }}
+            <template #loader>
+              <CircuitSpinner />
+            </template>
           </v-btn>
         </v-card-text>
 
@@ -118,6 +122,9 @@ async function submitPasskey() {
             <v-btn type="submit" :color="hasPasskeyWrap ? undefined : 'primary'"
               :variant="hasPasskeyWrap ? 'outlined' : 'flat'" block class="mt-3" :loading="busy" :disabled="!password">
               {{ t('vaultUnlock.unlock') }}
+              <template #loader>
+                <CircuitSpinner />
+              </template>
             </v-btn>
           </v-form>
         </v-card-text>
@@ -128,8 +135,12 @@ async function submitPasskey() {
               autofocus :rules="recoveryPhraseRules" />
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" block :loading="busy" @click="submitRecoveryPhrase">{{ t('vaultUnlock.unlock')
-            }}</v-btn>
+            <v-btn color="primary" block :loading="busy" @click="submitRecoveryPhrase">
+              {{ t('vaultUnlock.unlock') }}
+              <template #loader>
+                <CircuitSpinner />
+              </template>
+            </v-btn>
           </v-card-actions>
         </template>
         <v-card-actions v-else>

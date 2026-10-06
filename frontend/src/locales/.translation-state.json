@@ -1599,6 +1599,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "en otra red, a través de un puente"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Hacer una copia de seguridad en Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Preparando tu archivo de copia de seguridad…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Archivo de copia de seguridad descargado."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Restaurando desde Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Restaurando desde un archivo…"
     }
   },
   "ar": {
@@ -3201,6 +3221,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "على شبكة أخرى، عبر جسر"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "النسخ الاحتياطي إلى Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "جاري إعداد ملف النسخ الاحتياطي…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "تم تنزيل ملف النسخ الاحتياطي."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "الاستعادة من Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "الاستعادة من ملف…"
     }
   },
   "bg": {
@@ -4803,6 +4843,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "в друга мрежа, чрез мост"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Архивиране в Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Подготвяне на вашия резервен файл…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Файлът за архивиране е изтеглен."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Възстановяване от Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Възстановяване от файл…"
     }
   },
   "cs": {
@@ -6405,6 +6465,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "na jiné síti, prostřednictvím mostu"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Zálohování na Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Připravujeme váš záložní soubor…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Záložní soubor byl stažen."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Obnovení z Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Obnovení ze souboru…"
     }
   },
   "da": {
@@ -8007,6 +8087,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "på et andet netværk via en bro"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Sikkerhedskopiering til Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Forbereder din sikkerhedskopifil…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Sikkerhedskopifil downloadet."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Gendannelse fra Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Gendannelse fra fil…"
     }
   },
   "de": {
@@ -9609,6 +9709,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "in einem anderen Netzwerk, über eine Bridge"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Sichern auf Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Deine Sicherungsdatei wird vorbereitet…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Sicherungsdatei heruntergeladen."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Wiederherstellung über Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Wiederherstellung aus einer Datei…"
     }
   },
   "el": {
@@ -11211,6 +11331,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "σε άλλο δίκτυο, μέσω μιας γέφυρας"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Δημιουργία αντιγράφου ασφαλείας στο Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Προετοιμασία του αρχείου αντιγράφου ασφαλείας…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Το αρχείο αντιγράφου ασφαλείας κατεβάστηκε."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Επαναφορά από το Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Επαναφορά από αρχείο…"
     }
   },
   "et": {
@@ -12813,6 +12953,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "teises võrgus, silla kaudu"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Varundamine Google Drive’i…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Valmistame ette teie varukoopiafaili…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Varukoopiafail on alla laaditud."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Taastamine Google Drive’ist…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Taastamine failist…"
     }
   },
   "fi": {
@@ -14415,6 +14575,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "toisessa verkossa, sillan kautta"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Varmuuskopiointi Google Driveen…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Varmuuskopiotiedoston valmistelu…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Varmuuskopiotiedosto ladattu."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Palautus Google Drivesta…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Palautus tiedostosta…"
     }
   },
   "fr": {
@@ -16017,6 +16197,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "sur un autre réseau, via un pont"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Sauvegarde sur Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Préparation de ton fichier de sauvegarde…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Fichier de sauvegarde téléchargé."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Restauration depuis Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Restauration à partir d’un fichier…"
     }
   },
   "hu": {
@@ -17619,6 +17819,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "egy másik hálózaton, hídon keresztül"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Biztonsági másolat készítése a Google Drive-ra…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "A biztonsági mentési fájl előkészítése…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "A biztonsági másolat fájl letöltve."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Visszaállítás a Google Drive-ról…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Visszaállítás fájlból…"
     }
   },
   "id": {
@@ -19221,6 +19441,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "di jaringan lain, melalui jembatan"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Mencadangkan ke Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Mempersiapkan file cadangan Anda…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "File cadangan telah diunduh."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Memulihkan dari Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Memulihkan dari file…"
     }
   },
   "it": {
@@ -20823,6 +21063,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "su un’altra rete, tramite un bridge"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Esegui il backup su Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Preparazione del file di backup…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "File di backup scaricato."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Ripristino da Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Ripristino da file…"
     }
   },
   "iw": {
@@ -22425,6 +22685,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "ברשת אחרת, באמצעות גשר"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "גיבוי ל-Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "הכנת קובץ הגיבוי..."
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "קובץ הגיבוי הורד."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "שחזור מ-Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "שחזור מקובץ…"
     }
   },
   "ja": {
@@ -24027,6 +24307,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "別のネットワーク上で、ブリッジを介して"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Google Driveへのバックアップ…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "バックアップファイルの準備中…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "バックアップファイルがダウンロードされた。"
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Google ドライブからの復元中…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "ファイルからの復元…"
     }
   },
   "ko": {
@@ -25629,6 +25929,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "다른 네트워크에서, 브리지를 통해"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Google 드라이브에 백업 중…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "백업 파일 준비 중…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "백업 파일이 다운로드되었습니다."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Google 드라이브에서 복원 중…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "파일에서 복원 중…"
     }
   },
   "lt": {
@@ -27231,6 +27551,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "kitame tinkle, per tiltą"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Atsarginė kopija į „Google Drive“…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Rengiama atsarginė kopija…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Atsarginė kopija atsisiųsta."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Atkūrimas iš „Google Drive“…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Atkūrimas iš failo…"
     }
   },
   "lv": {
@@ -28833,6 +29173,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "citā tīklā, izmantojot tiltu"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Datu dublēšana uz Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Sagatavojam jūsu rezerves kopijas failu…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Dublējuma fails ir lejupielādēts."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Atjaunošana no Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Atjaunošana no faila…"
     }
   },
   "nl": {
@@ -30435,6 +30795,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "op een ander netwerk, via een bridge"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Een back-up maken naar Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Je back-upbestand wordt voorbereid…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Back-upbestand gedownload."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Terugzetten vanaf Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Herstellen vanuit een bestand…"
     }
   },
   "no": {
@@ -32037,6 +32417,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "på et annet nettverk, via en bro"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Sikkerhetskopiering til Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Forbereder sikkerhetskopifilen din…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Sikkerhetskopifilen er lastet ned."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Gjenoppretting fra Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Gjenoppretting fra fil…"
     }
   },
   "pl": {
@@ -33639,6 +34039,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "w innej sieci, za pośrednictwem mostka"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Tworzenie kopii zapasowej na Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Przygotowywanie pliku kopii zapasowej…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Plik kopii zapasowej został pobrany."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Przywracanie z Dysku Google…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Przywracanie z pliku…"
     }
   },
   "ro": {
@@ -35241,6 +35661,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "pe o altă rețea, prin intermediul unui bridge"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Copierea de rezervă pe Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Se pregătește fișierul de rezervă…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Fișierul de rezervă a fost descărcat."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Restaurare din Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Restaurare din fișier…"
     }
   },
   "ru": {
@@ -36843,6 +37283,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "в другой сети через мост"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Резервное копирование на Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Подготовка файла резервной копии…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Файл резервной копии загружен."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Восстановление с Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Восстановление из файла…"
     }
   },
   "sk": {
@@ -38445,6 +38905,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "v inej sieti, prostredníctvom mosta"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Zálohovanie na Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Pripravujeme váš záložný súbor…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Záložný súbor bol stiahnutý."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Obnovenie z Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Obnovenie zo súboru…"
     }
   },
   "sl": {
@@ -40047,6 +40527,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "v drugem omrežju prek mostu"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Varnostno kopiranje na Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Pripravljamo vašo varnostno kopijo…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Varnostna kopija datoteke je prenesena."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Obnavljanje iz Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Obnavljanje iz datoteke…"
     }
   },
   "sv": {
@@ -41649,6 +42149,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "på ett annat nätverk, via en brygga"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Säkerhetskopiering till Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Förbereder din säkerhetskopia…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Säkerhetskopian har laddats ner."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Återställer från Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Återställning från fil…"
     }
   },
   "tr": {
@@ -43251,6 +43771,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "başka bir ağda, bir köprü aracılığıyla"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Google Drive’a yedekleme…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Yedekleme dosyanız hazırlanıyor…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Yedekleme dosyası indirildi."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Google Drive'dan geri yükleme…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Dosyadan geri yükleme…"
     }
   },
   "uk": {
@@ -44853,6 +45393,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "в іншій мережі, через міст"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Створення резервної копії на Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Підготовка файлу резервної копії…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Файл резервної копії завантажено."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Відновлення з Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Відновлення з файлу…"
     }
   },
   "vi": {
@@ -46455,6 +47015,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "trên một mạng khác, thông qua cầu nối"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "Sao lưu lên Google Drive…"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "Đang chuẩn bị tệp sao lưu của cậu…"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "Tệp sao lưu đã được tải xuống."
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "Đang khôi phục từ Google Drive…"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "Khôi phục từ tệp…"
     }
   },
   "zh-CN": {
@@ -48057,6 +48637,26 @@
     "transactionDetail.onOtherNetwork": {
       "enHash": "ae0937676af0d1f5",
       "value": "在另一个网络上，通过跨链桥"
+    },
+    "msg.backup.driveInProgress": {
+      "enHash": "63adcd53081ad482",
+      "value": "正在备份至 Google 云端硬盘……"
+    },
+    "msg.backup.fileInProgress": {
+      "enHash": "1bd718d18e105e79",
+      "value": "正在准备您的备份文件……"
+    },
+    "msg.backup.fileSuccess": {
+      "enHash": "8c90772625a908b2",
+      "value": "备份文件已下载。"
+    },
+    "msg.restore.driveInProgress": {
+      "enHash": "6aa75163678c0ad7",
+      "value": "正在从 Google 云端硬盘恢复……"
+    },
+    "msg.restore.fileInProgress": {
+      "enHash": "15d8fdb22e9830c6",
+      "value": "从文件中恢复……"
     }
   }
 }

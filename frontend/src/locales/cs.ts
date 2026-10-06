@@ -249,6 +249,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Zálohováno na Google Drive.',
+      driveInProgress: 'Zálohování na Google Drive…',
+      fileInProgress: 'Připravujeme váš záložní soubor…',
+      fileSuccess: 'Záložní soubor byl stažen.',
     },
     restore: {
       driveSuccess:
@@ -257,6 +260,8 @@ export default {
         'Obnoveno ze souboru. Chcete-li pokračovat, odemkněte pomocí své obnovovací fráze.',
       driveSuccessSetup: 'Obnoveno z Google Drive. Zadejte svou obnovovací frázi k odemčení.',
       fileSuccessSetup: 'Obnoveno ze souboru. Zadejte svou obnovovací frázi k odemčení.',
+      driveInProgress: 'Obnovení z Google Drive…',
+      fileInProgress: 'Obnovení ze souboru…',
     },
     recoveryPhrase: {
       copied: 'Obnovovací fráze byla zkopírována — za 45 sekund bude ze schránky odstraněna.',

@@ -249,6 +249,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Архивирано в Google Drive.',
+      driveInProgress: 'Архивиране в Google Drive…',
+      fileInProgress: 'Подготвяне на вашия резервен файл…',
+      fileSuccess: 'Файлът за архивиране е изтеглен.',
     },
     restore: {
       driveSuccess:
@@ -258,6 +261,8 @@ export default {
         'Възстановено от Google Drive. Въведете фразата за възстановяване, за да отключите.',
       fileSuccessSetup:
         'Възстановено от файл. Въведете фразата за възстановяване, за да отключите.',
+      driveInProgress: 'Възстановяване от Google Drive…',
+      fileInProgress: 'Възстановяване от файл…',
     },
     recoveryPhrase: {
       copied:

@@ -252,6 +252,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Se face o copie de rezervă pe Google Drive.',
+      driveInProgress: 'Copierea de rezervă pe Google Drive…',
+      fileInProgress: 'Se pregătește fișierul de rezervă…',
+      fileSuccess: 'Fișierul de rezervă a fost descărcat.',
     },
     restore: {
       driveSuccess:
@@ -260,6 +263,8 @@ export default {
       driveSuccessSetup:
         'Restaurat din Google Drive. Introduceți fraza de recuperare pentru a debloca.',
       fileSuccessSetup: 'Restaurat din fișier. Introduceți fraza de recuperare pentru a debloca.',
+      driveInProgress: 'Restaurare din Google Drive…',
+      fileInProgress: 'Restaurare din fișier…',
     },
     recoveryPhrase: {
       copied: 'Fraza de recuperare a fost copiată — va fi ștersă din clipboard în 45 de secunde.',

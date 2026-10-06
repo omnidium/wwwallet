@@ -4,7 +4,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useTheme } from 'vuetify'
 import { useI18n } from 'vue-i18n'
 import { RouterView, useRoute } from 'vue-router'
-import { useMessagesStore } from '@/stores/messages'
+import { isInProgress, useMessagesStore } from '@/stores/messages'
 import { useVaultStore } from '@/stores/vault'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { getStoredTheme, applyDomTheme } from '@/services/theme'
@@ -15,6 +15,7 @@ import SettingsPanel from '@/components/SettingsPanel.vue'
 import AccountsView from '@/views/AccountsView.vue'
 import PaneOverlay from '@/components/PaneOverlay.vue'
 import AppTooltip from '@/components/AppTooltip.vue'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const messages = useMessagesStore()
@@ -126,7 +127,8 @@ watch(() => route.fullPath, () => {
 
     <v-snackbar v-for="message in messages.messages" :key="message.id" :model-value="true" :color="message.severity"
       :timeout="message.timeout" location="bottom" @update:model-value="messages.dismiss(message.id)">
-      <v-icon v-if="message.severity !== 'success'" icon="mdi-alert" class="mr-2" />
+      <CircuitSpinner v-if="isInProgress(message)" class="mr-3" />
+      <v-icon v-else-if="message.severity !== 'success'" icon="mdi-alert" class="mr-2" />
       <BrandText :text="message.text" />
 
       <template #actions>

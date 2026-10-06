@@ -248,6 +248,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Dublējums saglabāts Google Drive.',
+      driveInProgress: 'Datu dublēšana uz Google Drive…',
+      fileInProgress: 'Sagatavojam jūsu rezerves kopijas failu…',
+      fileSuccess: 'Dublējuma fails ir lejupielādēts.',
     },
     restore: {
       driveSuccess:
@@ -256,6 +259,8 @@ export default {
       driveSuccessSetup:
         'Atjaunota no Google Drive. Ievadiet savu atjaunošanas frāzi, lai atbloķētu.',
       fileSuccessSetup: 'Atjaunots no faila. Ievadiet savu atjaunošanas frāzi, lai atbloķētu.',
+      driveInProgress: 'Atjaunošana no Google Drive…',
+      fileInProgress: 'Atjaunošana no faila…',
     },
     recoveryPhrase: {
       copied:

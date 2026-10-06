@@ -250,12 +250,17 @@ export default {
     },
     backup: {
       driveSuccess: 'Er is een back-up gemaakt op Google Drive.',
+      driveInProgress: 'Een back-up maken naar Google Drive…',
+      fileInProgress: 'Je back-upbestand wordt voorbereid…',
+      fileSuccess: 'Back-upbestand gedownload.',
     },
     restore: {
       driveSuccess: 'Hersteld vanuit Google Drive. Ontgrendel met je herstelzin om door te gaan.',
       fileSuccess: 'Hersteld vanuit bestand. Ontgrendel met je herstelzin om door te gaan.',
       driveSuccessSetup: 'Hersteld vanuit Google Drive. Voer je herstelzin in om te ontgrendelen.',
       fileSuccessSetup: 'Hersteld vanuit bestand. Voer je herstelzin in om te ontgrendelen.',
+      driveInProgress: 'Terugzetten vanaf Google Drive…',
+      fileInProgress: 'Herstellen vanuit een bestand…',
     },
     recoveryPhrase: {
       copied: 'Herstelzin gekopieerd — deze wordt over 45 seconden van je klembord gewist.',

@@ -250,6 +250,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Kopia zapasowa na Google Drive.',
+      driveInProgress: 'Tworzenie kopii zapasowej na Google Drive…',
+      fileInProgress: 'Przygotowywanie pliku kopii zapasowej…',
+      fileSuccess: 'Plik kopii zapasowej został pobrany.',
     },
     restore: {
       driveSuccess:
@@ -258,6 +261,8 @@ export default {
       driveSuccessSetup:
         'Przywrócono z Google Drive. Wpisz swoją frazę odzyskiwania, żeby odblokować.',
       fileSuccessSetup: 'Przywrócono z pliku. Wpisz swoją frazę odzyskiwania, żeby odblokować.',
+      driveInProgress: 'Przywracanie z Dysku Google…',
+      fileInProgress: 'Przywracanie z pliku…',
     },
     recoveryPhrase: {
       copied: 'Frazę odzyskiwania skopiowano — zostanie ona usunięta ze schowka za 45 sekund.',

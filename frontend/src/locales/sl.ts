@@ -248,6 +248,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Varnostna kopija na Google Drive.',
+      driveInProgress: 'Varnostno kopiranje na Google Drive…',
+      fileInProgress: 'Pripravljamo vašo varnostno kopijo…',
+      fileSuccess: 'Varnostna kopija datoteke je prenesena.',
     },
     restore: {
       driveSuccess: 'Obnovljeno iz Google Drive. Odkleni z obnovitveno frazo, da nadaljuješ.',
@@ -255,6 +258,8 @@ export default {
       driveSuccessSetup:
         'Obnovljeno iz Google Drive. Vnesite svojo obnovitveno frazo, da odklenete.',
       fileSuccessSetup: 'Obnovljeno iz datoteke. Vnesite svojo obnovitveno frazo, da odklenete.',
+      driveInProgress: 'Obnavljanje iz Google Drive…',
+      fileInProgress: 'Obnavljanje iz datoteke…',
     },
     recoveryPhrase: {
       copied: 'Fraz za obnovo je bila kopirana – v 45 sekundah bo izbrisana iz vašega odložišča.',

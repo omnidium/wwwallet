@@ -10,6 +10,15 @@ export interface AppMessage {
   timeout: number
 }
 
+/**
+ * Work still under way — a send, a swap, a backup — rather than its outcome:
+ * every such toast is an 'info' one that stays up until it's updated with
+ * how things turned out. Shown with a spinner instead of an icon.
+ */
+export function isInProgress(message: AppMessage): boolean {
+  return message.severity === 'info' && message.timeout === -1
+}
+
 let nextId = 1
 
 export const useMessagesStore = defineStore('messages', () => {

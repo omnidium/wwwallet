@@ -251,6 +251,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Salvato su Google Drive.',
+      driveInProgress: 'Esegui il backup su Google Drive…',
+      fileInProgress: 'Preparazione del file di backup…',
+      fileSuccess: 'File di backup scaricato.',
     },
     restore: {
       driveSuccess:
@@ -259,6 +262,8 @@ export default {
       driveSuccessSetup:
         'Ripristinato da Google Drive. Inserisci la tua frase di recupero per sbloccare.',
       fileSuccessSetup: 'Ripristinato dal file. Inserisci la tua frase di recupero per sbloccare.',
+      driveInProgress: 'Ripristino da Google Drive…',
+      fileInProgress: 'Ripristino da file…',
     },
     recoveryPhrase: {
       copied: 'Frase di recupero copiata — verrà cancellata dagli appunti tra 45 secondi.',

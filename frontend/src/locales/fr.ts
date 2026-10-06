@@ -251,6 +251,9 @@ export default {
     },
     backup: {
       driveSuccess: 'Sauvegardé sur Google Drive.',
+      driveInProgress: 'Sauvegarde sur Google Drive…',
+      fileInProgress: 'Préparation de ton fichier de sauvegarde…',
+      fileSuccess: 'Fichier de sauvegarde téléchargé.',
     },
     restore: {
       driveSuccess:
@@ -261,6 +264,8 @@ export default {
         'Restauré depuis Google Drive. Saisis ta phrase de récupération pour déverrouiller.',
       fileSuccessSetup:
         "Restauré à partir d'un fichier. Saisis ta phrase de récupération pour déverrouiller.",
+      driveInProgress: 'Restauration depuis Google Drive…',
+      fileInProgress: 'Restauration à partir d’un fichier…',
     },
     recoveryPhrase: {
       copied:

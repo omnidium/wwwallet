@@ -240,12 +240,17 @@ export default {
     },
     backup: {
       driveSuccess: '已备份至 Google 云端硬盘。',
+      driveInProgress: '正在备份至 Google 云端硬盘……',
+      fileInProgress: '正在准备您的备份文件……',
+      fileSuccess: '备份文件已下载。',
     },
     restore: {
       driveSuccess: '已从 Google 云端硬盘恢复。请使用您的恢复短语解锁以继续。',
       fileSuccess: '已从文件中恢复。请使用您的恢复短语解锁以继续。',
       driveSuccessSetup: '已从 Google 云端硬盘恢复。请输入您的恢复短语以解锁。',
       fileSuccessSetup: '已从文件中恢复。请输入您的恢复短语以解锁。',
+      driveInProgress: '正在从 Google 云端硬盘恢复……',
+      fileInProgress: '从文件中恢复……',
     },
     recoveryPhrase: {
       copied: '恢复短语已复制——45 秒后将从剪贴板中清除。',
