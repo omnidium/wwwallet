@@ -11,6 +11,7 @@ export default {
     review: 'Tarkista',
     search: 'Haku',
     noMatches: 'Ei osumia',
+    loading: 'Ladataan',
   },
   nav: {
     settings: 'Asetukset',

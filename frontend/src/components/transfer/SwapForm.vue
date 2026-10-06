@@ -16,6 +16,7 @@ import TokenPickerField, { type HeldToken, type PickedToken } from '@/components
 import ChainSelect from '@/components/transfer/ChainSelect.vue'
 import PartySelect from '@/components/transfer/PartySelect.vue'
 import RouteSummary, { type SummaryRow } from '@/components/transfer/RouteSummary.vue'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 const props = defineProps<{ fromAddress: string; fromChain: ChainSlug }>()
 const emit = defineEmits<{
@@ -541,7 +542,7 @@ const signingNotice = computed(() => {
         <div class="xfer-amount-row">
           <div class="xfer-amount-input xfer-amount-input--readonly" :aria-label="t('transfer.youGet')"
             aria-live="polite">
-            <v-progress-circular v-if="quoteLoading" indeterminate size="22" width="2" color="primary" />
+            <CircuitSpinner v-if="quoteLoading" :size="24" :label="t('common.loading')" class="text-primary" />
             <template v-else-if="view">≈ {{ formatAmount(view.buyHuman) }}</template>
             <span v-else class="xfer-receive-amount--empty">0</span>
           </div>
@@ -568,6 +569,9 @@ const signingNotice = computed(() => {
         <v-btn color="primary" size="large" class="flex-grow-1" :disabled="!canReview" :loading="busy"
           @click="openReview">
           {{ t('common.review') }}
+          <template #loader>
+            <CircuitSpinner />
+          </template>
         </v-btn>
       </template>
     </RouteSummary>

@@ -11,6 +11,7 @@ export default {
     review: 'סקירה',
     search: 'חיפוש',
     noMatches: 'אין תוצאות',
+    loading: 'טוען',
   },
   nav: {
     settings: 'הגדרות',

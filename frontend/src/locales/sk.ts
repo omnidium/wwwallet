@@ -11,6 +11,7 @@ export default {
     review: 'Kontrola',
     search: 'Vyhľadávanie',
     noMatches: 'Žiadne zhody',
+    loading: 'Načítava sa',
   },
   nav: {
     settings: 'Nastavenia',

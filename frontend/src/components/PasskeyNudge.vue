@@ -6,6 +6,7 @@ import AppTooltip from '@/components/AppTooltip.vue'
 import UnlockPasswordDialog from '@/components/UnlockPasswordDialog.vue'
 import PasskeyAlternatives from '@/components/PasskeyAlternatives.vue'
 import { usePasskeyNudge } from '@/composables/usePasskeyNudge'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 // The accounts screen's quick-unlock nudges — see composables/usePasskeyNudge.ts
 // for when each shows and what it offers. The daily one follows the backup
@@ -38,6 +39,9 @@ const passwordDialogOpen = ref(false)
           <v-btn color="primary" variant="flat" block prepend-icon="mdi-fingerprint" :loading="busy"
             @click="setUpPasskey()">
             {{ t('vaultSetup.enablePasskey') }}
+            <template #loader>
+              <CircuitSpinner />
+            </template>
           </v-btn>
           <PasskeyAlternatives small @done="quickUnlockSet" />
         </template>
@@ -62,6 +66,9 @@ const passwordDialogOpen = ref(false)
     <div class="d-flex align-center flex-wrap ga-4 mt-3">
       <v-btn v-if="mode === 'passkey'" variant="outlined" :loading="busy" @click="setUpPasskey()">
         {{ t('vaultSetup.enablePasskey') }}
+        <template #loader>
+          <CircuitSpinner />
+        </template>
       </v-btn>
       <PasskeyAlternatives v-else-if="mode === 'alternatives'" variant="outlined" :block="false"
         @done="quickUnlockSet" />

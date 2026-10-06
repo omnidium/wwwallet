@@ -11,6 +11,7 @@ export default {
     review: 'İnceleme',
     search: 'Arama',
     noMatches: 'Eşleşme yok',
+    loading: 'Yükleniyor',
   },
   nav: {
     settings: 'Ayarlar',

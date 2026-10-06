@@ -13,6 +13,7 @@ export default {
     chain: 'Chain',
     address: 'Address',
     review: 'Review',
+    loading: 'Loading',
   },
   nav: {
     settings: 'Settings',

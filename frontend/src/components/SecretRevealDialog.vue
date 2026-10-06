@@ -8,6 +8,7 @@ import { isValidRecoveryMnemonic, normalizeMnemonic } from '@/services/mnemonic'
 import { copyWithAutoClear } from '@/services/clipboard'
 import { useMessagesStore } from '@/stores/messages'
 import AppTooltip from '@/components/AppTooltip.vue'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 const props = defineProps<{
   modelValue: boolean
@@ -111,6 +112,9 @@ async function copySecret() {
           <v-alert v-if="reauthFailed" type="error" variant="tonal" class="mb-2">{{ t('secretReveal.reauthFailed') }}</v-alert>
           <v-btn color="primary" block :loading="reauthing" prepend-icon="mdi-fingerprint" @click="tryPasskeyReauth">
             {{ t('secretReveal.tryAgain') }}
+            <template #loader>
+              <CircuitSpinner />
+            </template>
           </v-btn>
         </v-card-text>
         <v-card-text v-else>
@@ -121,7 +125,12 @@ async function copySecret() {
         <v-card-actions>
           <v-btn variant="text" @click="close">{{ t('common.cancel') }}</v-btn>
           <v-spacer />
-          <v-btn v-if="!hasPasskey" color="primary" :loading="reauthing" @click="tryPhraseReauth">{{ t('secretReveal.ok') }}</v-btn>
+          <v-btn v-if="!hasPasskey" color="primary" :loading="reauthing" @click="tryPhraseReauth">
+            {{ t('secretReveal.ok') }}
+            <template #loader>
+              <CircuitSpinner />
+            </template>
+          </v-btn>
         </v-card-actions>
       </template>
 

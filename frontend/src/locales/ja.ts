@@ -11,6 +11,7 @@ export default {
     review: 'レビュー',
     search: '検索',
     noMatches: '一致する項目なし',
+    loading: '読み込み中',
   },
   nav: {
     settings: '設定',

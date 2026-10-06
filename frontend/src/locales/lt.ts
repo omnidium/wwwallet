@@ -11,6 +11,7 @@ export default {
     review: 'Peržiūrėkite',
     search: 'Paieška',
     noMatches: 'Nerasta atitikmenų',
+    loading: 'Įkeliama',
   },
   nav: {
     settings: 'Nustatymai',

@@ -11,6 +11,7 @@ export default {
     review: 'Pārskatīt',
     search: 'Meklēt',
     noMatches: 'Nav atbilžu',
+    loading: 'Ielādējas',
   },
   nav: {
     settings: 'Iestatījumi',

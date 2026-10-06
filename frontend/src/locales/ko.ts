@@ -11,6 +11,7 @@ export default {
     review: '검토',
     search: '검색',
     noMatches: '일치하는 항목 없음',
+    loading: '로딩 중',
   },
   nav: {
     settings: '설정',

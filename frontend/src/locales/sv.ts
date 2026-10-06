@@ -11,6 +11,7 @@ export default {
     review: 'Granska',
     search: 'Sök',
     noMatches: 'Inga träffar',
+    loading: 'Laddar',
   },
   nav: {
     settings: 'Inställningar',

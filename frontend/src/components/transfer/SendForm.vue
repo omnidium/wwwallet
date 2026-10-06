@@ -20,6 +20,7 @@ import TokenPickerField, { type PickedToken } from '@/components/TokenPickerFiel
 import ChainSelect from '@/components/transfer/ChainSelect.vue'
 import PartySelect from '@/components/transfer/PartySelect.vue'
 import RouteSummary, { type SummaryRow } from '@/components/transfer/RouteSummary.vue'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 const props = defineProps<{
   fromAddress: string
@@ -747,8 +748,8 @@ const signingNotice = computed(() => {
                 {{ receiveText.symbol }}
               </span>
             </template>
-            <v-progress-circular v-else-if="bridgeQuote.loading.value" indeterminate size="20" width="2"
-              color="primary" />
+            <CircuitSpinner v-else-if="bridgeQuote.loading.value" :size="22" :label="t('common.loading')"
+              class="text-primary" />
             <span v-else class="xfer-receive-amount xfer-receive-amount--empty">—</span>
           </div>
         </div>
@@ -778,6 +779,9 @@ const signingNotice = computed(() => {
         <v-btn color="primary" size="large" class="flex-grow-1" :disabled="!canReview" :loading="busy"
           @click="openReview">
           {{ isBridge ? t('transfer.reviewBridge') : t('common.review') }}
+          <template #loader>
+            <CircuitSpinner />
+          </template>
         </v-btn>
       </template>
     </RouteSummary>

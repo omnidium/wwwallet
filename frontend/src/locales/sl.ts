@@ -11,6 +11,7 @@ export default {
     review: 'Pregled',
     search: 'Iskanje',
     noMatches: 'Ni ujemanj',
+    loading: 'Nalaganje',
   },
   nav: {
     settings: 'Nastavitve',

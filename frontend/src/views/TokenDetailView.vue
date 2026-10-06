@@ -23,6 +23,7 @@ import SpinningCoin from '@/components/SpinningCoin.vue'
 import PriceSparkline from '@/components/PriceSparkline.vue'
 import TransactionRow from '@/components/TransactionRow.vue'
 import TransactionDetailDialog from '@/components/TransactionDetailDialog.vue'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 const { t, locale } = useI18n({ useScope: 'global' })
 const route = useRoute()
@@ -284,7 +285,7 @@ function openTransaction(txn: Transaction) {
         <div class="detail-row d-flex align-center justify-space-between py-2">
           <span class="text-medium-emphasis">{{ t('token.chart24h') }}</span>
           <PriceSparkline v-if="priceHistory" :points="priceHistory.points" :width="160" :height="40" />
-          <v-progress-circular v-else-if="loadingPriceHistory" indeterminate size="20" width="2" color="primary" />
+          <CircuitSpinner v-else-if="loadingPriceHistory" :size="22" :label="t('common.loading')" class="text-primary" />
           <span v-else>—</span>
         </div>
       </template>
@@ -307,13 +308,13 @@ function openTransaction(txn: Transaction) {
               :my-address="holderAddress" :chain="chain" @click="openTransaction(txn)" />
           </template>
           <div v-if="!activityLoaded" class="d-flex justify-center pa-2">
-            <v-progress-circular indeterminate size="20" width="2" color="primary" />
+            <CircuitSpinner :size="22" :label="t('common.loading')" class="text-primary" />
           </div>
           <p v-else-if="transactionGroups.length === 0" class="text-caption text-medium-emphasis pa-2">
             {{ t('transactions.empty') }}
           </p>
           <div v-if="loadingMoreTxns" class="d-flex justify-center pa-2">
-            <v-progress-circular indeterminate size="20" width="2" color="primary" />
+            <CircuitSpinner :size="22" :label="t('common.loading')" class="text-primary" />
           </div>
         </div>
 

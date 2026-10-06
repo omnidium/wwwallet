@@ -6,6 +6,7 @@ import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { displayErrorMessage } from '@/services/errors'
 import { UNLOCK_PASSWORD_MIN_LENGTH } from '@/config/appSettings'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 // Sets (or changes) this device's unlock password — quick unlock where a
 // passkey can't work. See crypto/vault.ts's addPasswordWrap.
@@ -76,6 +77,9 @@ async function save() {
         <v-spacer />
         <v-btn color="primary" variant="flat" :disabled="!valid" :loading="busy" @click="save">
           {{ t('common.save') }}
+          <template #loader>
+            <CircuitSpinner />
+          </template>
         </v-btn>
       </v-card-actions>
     </v-card>

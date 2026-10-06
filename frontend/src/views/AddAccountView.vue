@@ -9,6 +9,7 @@ import { displayErrorMessage, translatedError } from '@/services/errors'
 import type { ChainSlug } from '@/services/api'
 import { chainItems } from '@/services/chainItems'
 import AppSelect from '@/components/AppSelect.vue'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const accounts = useAccountsStore()
@@ -111,7 +112,12 @@ function onKeystoreFileSelected(event: Event) {
           {{ t('addAccount.noPasswordHint') }}
         </p>
 
-        <v-btn color="primary" block class="mt-2" :disabled="!formValid" :loading="busy" @click="submit">{{ t('addAccount.submit') }}</v-btn>
+        <v-btn color="primary" block class="mt-2" :disabled="!formValid" :loading="busy" @click="submit">
+          {{ t('addAccount.submit') }}
+          <template #loader>
+            <CircuitSpinner />
+          </template>
+        </v-btn>
       </v-form>
     </v-card>
   </div>

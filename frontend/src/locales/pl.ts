@@ -11,6 +11,7 @@ export default {
     review: 'Sprawdź',
     search: 'Wyszukiwanie',
     noMatches: 'Brak wyników',
+    loading: 'Ładowanie',
   },
   nav: {
     settings: 'Ustawienia',

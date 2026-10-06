@@ -10,6 +10,7 @@ import { convertUsd, formatAmount, formatFiat } from '@/services/money'
 import { txRateAsset, useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 const props = defineProps<{
   modelValue: boolean
@@ -266,7 +267,7 @@ const paidBySomeoneElse = computed(
                     {{ t('transactionDetail.paidBySender') }}
                   </span>
                 </template>
-                <v-progress-circular v-else-if="feeLoading" indeterminate size="16" width="2" color="primary" />
+                <CircuitSpinner v-else-if="feeLoading" :size="18" :label="t('common.loading')" class="text-primary" />
                 <span v-else class="text-medium-emphasis">{{ t('transactionDetail.feeUnavailable') }}</span>
               </td>
             </tr>

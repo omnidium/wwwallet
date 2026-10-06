@@ -11,6 +11,7 @@ export default {
     review: 'Tinjau',
     search: 'Cari',
     noMatches: 'Tidak ada hasil yang cocok',
+    loading: 'Memuat',
   },
   nav: {
     settings: 'Pengaturan',

@@ -11,6 +11,7 @@ export default {
     review: 'Αναθεώρηση',
     search: 'Αναζήτηση',
     noMatches: 'Δεν βρέθηκαν αποτελέσματα',
+    loading: 'Φόρτωση',
   },
   nav: {
     settings: 'Ρυθμίσεις',

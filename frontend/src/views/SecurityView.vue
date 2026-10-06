@@ -9,6 +9,7 @@ import { displayErrorMessage } from '@/services/errors'
 import { useQuickUnlock } from '@/composables/useQuickUnlock'
 import UnlockPasswordDialog from '@/components/UnlockPasswordDialog.vue'
 import PasskeyAlternatives from '@/components/PasskeyAlternatives.vue'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const router = useRouter()
@@ -83,6 +84,9 @@ async function performDeleteWallet() {
           <v-btn v-else-if="quick.passkeyPossible.value && !quick.platformLacksPrf.value" variant="outlined"
             :loading="quick.busy.value" @click="addPasskey">
             {{ t('settings.enable') }}
+            <template #loader>
+              <CircuitSpinner />
+            </template>
           </v-btn>
         </div>
         <!-- This device's own authenticator may lack PRF where a phone or security key has it. -->

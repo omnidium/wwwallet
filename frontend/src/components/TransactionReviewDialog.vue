@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 export interface ReviewRow {
   label: string
@@ -42,7 +43,12 @@ const { t } = useI18n({ useScope: 'global' })
       <v-card-actions>
         <v-btn variant="text" :disabled="busy" @click="emit('update:modelValue', false)">{{ t('common.cancel') }}</v-btn>
         <v-spacer />
-        <v-btn color="primary" :loading="busy" @click="emit('confirm')">{{ confirmLabel }}</v-btn>
+        <v-btn color="primary" :loading="busy" @click="emit('confirm')">
+          {{ confirmLabel }}
+          <template #loader>
+            <CircuitSpinner />
+          </template>
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

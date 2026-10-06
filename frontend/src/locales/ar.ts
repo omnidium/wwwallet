@@ -11,6 +11,7 @@ export default {
     review: 'مراجعة',
     search: 'بحث',
     noMatches: 'لا توجد نتائج مطابقة',
+    loading: 'جاري التحميل',
   },
   nav: {
     settings: 'الإعدادات',

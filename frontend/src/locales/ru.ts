@@ -11,6 +11,7 @@ export default {
     review: 'Проверь',
     search: 'Поиск',
     noMatches: 'Нет совпадений',
+    loading: 'Загрузка',
   },
   nav: {
     settings: 'Настройки',

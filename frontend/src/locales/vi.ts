@@ -11,6 +11,7 @@ export default {
     review: 'Xem lại',
     search: 'Tìm kiếm',
     noMatches: 'Không có kết quả phù hợp',
+    loading: 'Đang tải',
   },
   nav: {
     settings: 'Cài đặt',

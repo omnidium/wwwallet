@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router'
 import { useVaultStore } from '@/stores/vault'
 import { useMessagesStore } from '@/stores/messages'
 import { displayErrorMessage } from '@/services/errors'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const vault = useVaultStore()
@@ -169,7 +170,7 @@ function proceedWithRestore() {
 
     <v-overlay :model-value="restoring" persistent class="d-flex align-center justify-center">
       <v-card class="d-flex flex-column align-center pa-8 busy-panel" elevation="8">
-        <v-progress-circular indeterminate size="64" color="primary" class="mb-4" />
+        <CircuitSpinner :size="64" class="text-primary mb-4" />
         <p class="text-body-1">{{ t('backup.recovering') }}</p>
       </v-card>
     </v-overlay>

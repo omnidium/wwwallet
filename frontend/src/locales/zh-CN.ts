@@ -11,6 +11,7 @@ export default {
     review: '审阅',
     search: '搜索',
     noMatches: '无匹配结果',
+    loading: '正在加载',
   },
   nav: {
     settings: '设置',

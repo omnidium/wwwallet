@@ -11,6 +11,7 @@ export default {
     review: 'Gjennomgang',
     search: 'Søk',
     noMatches: 'Ingen treff',
+    loading: 'Laster',
   },
   nav: {
     settings: 'Innstillinger',

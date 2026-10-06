@@ -485,6 +485,8 @@ input[type='number'] {
   height: 26px;
   width: auto;
   aspect-ratio: 246 / 286;
+  /* Level with the text when it stands in for a value on a line. */
+  vertical-align: middle;
   /* A flaring top or bottom node pokes just past the viewBox. */
   overflow: visible;
 }

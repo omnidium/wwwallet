@@ -11,6 +11,7 @@ export default {
     review: 'Áttekintés',
     search: 'Keresés',
     noMatches: 'Nincs találat',
+    loading: 'Betöltés',
   },
   nav: {
     settings: 'Beállítások',

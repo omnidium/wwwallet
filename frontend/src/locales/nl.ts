@@ -11,6 +11,7 @@ export default {
     review: 'Controleer',
     search: 'Zoeken',
     noMatches: 'Geen resultaten',
+    loading: 'Bezig met laden',
   },
   nav: {
     settings: 'Instellingen',

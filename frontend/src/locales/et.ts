@@ -11,6 +11,7 @@ export default {
     review: 'Läbivaatamine',
     search: 'Otsing',
     noMatches: 'Ei leitud vasteid',
+    loading: 'Laadimine',
   },
   nav: {
     settings: 'Seaded',

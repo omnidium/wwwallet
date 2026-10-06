@@ -11,6 +11,7 @@ export default {
     review: 'Rivedi',
     search: 'Cerca',
     noMatches: 'Nessun risultato',
+    loading: 'Caricamento in corso',
   },
   nav: {
     settings: 'Impostazioni',

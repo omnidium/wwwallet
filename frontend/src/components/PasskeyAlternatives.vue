@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import { useQuickUnlock } from '@/composables/useQuickUnlock'
 import type { PasskeyLocation } from '@/services/webauthnLocal'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 // "Use a phone / a security key instead" — for when this device's own
 // authenticator can't (or might not) do a passkey. The phone option shows
@@ -25,6 +26,9 @@ async function setUp(where: PasskeyLocation) {
   <v-btn v-if="quick.phonePossible.value" :variant="variant" :size="small ? 'small' : undefined" :block="block"
     prepend-icon="mdi-cellphone-key" :loading="quick.busy.value" @click="setUp('phone')">
     {{ t('quickUnlock.usePhone') }}
+    <template #loader>
+      <CircuitSpinner />
+    </template>
   </v-btn>
   <v-btn :variant="variant" :size="small ? 'small' : undefined" :block="block" prepend-icon="mdi-usb-flash-drive"
     :disabled="quick.busy.value" @click="setUp('securityKey')">

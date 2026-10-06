@@ -11,6 +11,7 @@ export default {
     review: 'Revizuire',
     search: 'Căutare',
     noMatches: 'Nu s-au găsit rezultate',
+    loading: 'Se încarcă',
   },
   nav: {
     settings: 'Setări',
