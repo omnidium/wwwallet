@@ -6,12 +6,14 @@ import Sortable from 'sortablejs'
 import { useAccountsStore, type WalletAccount } from '@/stores/accounts'
 import { usePayeesStore } from '@/stores/payees'
 import { useChainDataStore } from '@/stores/chainData'
+import { useNftsStore } from '@/stores/nfts'
 import { isChainUnavailableError } from '@/services/api'
 import { useVaultStore } from '@/stores/vault'
 import { useDefaultAccountFallback } from '@/composables/useDefaultAccountFallback'
 import { useDragToTransfer } from '@/composables/useDragToTransfer'
 import { nativeBalanceUsd, useChainDiscovery } from '@/composables/useChainDiscovery'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
+import { hasNftData } from '@/config/nfts'
 import { useBackupReminderDismissed } from '@/composables/useBackupReminder'
 import { BACKUP_REMINDER_FIRST_MS, BACKUP_REMINDER_RECURRING_MS, ACCOUNT_AUTO_REFRESH_MS } from '@/config/appSettings'
 import AccountCard from '@/components/AccountCard.vue'
@@ -26,6 +28,7 @@ const router = useRouter()
 const accounts = useAccountsStore()
 const payees = usePayeesStore()
 const chainData = useChainDataStore()
+const nfts = useNftsStore()
 const vault = useVaultStore()
 const { reconcile } = useDefaultAccountFallback()
 const dragToTransfer = useDragToTransfer(router)
@@ -106,6 +109,12 @@ async function loadAllData() {
   await reconcile()
   // After the known accounts' own data, so their cards fill in first.
   await discover()
+  // Only accounts known to hold NFTs, and far less often than balances
+  // (see refreshIfStale). Never held against reachability: the cards show
+  // their last-known count either way.
+  for (const a of accounts.accounts) {
+    if (hasNftData(a.chain)) nfts.refreshIfStale(a.chain, a.address).catch(() => { })
+  }
   // A chain the backend can't serve says so on its own cards; the server
   // answered, so it doesn't count against being reachable.
   const failure = results.find(

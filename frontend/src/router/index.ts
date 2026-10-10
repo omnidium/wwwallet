@@ -27,6 +27,16 @@ const router = createRouter({
       name: 'native-token-detail',
       component: () => import('../views/TokenDetailView.vue'),
     },
+    {
+      path: '/accounts/:chain/:address/nfts',
+      name: 'nft-collections',
+      component: () => import('../views/NftCollectionsView.vue'),
+    },
+    {
+      path: '/accounts/:chain/:address/nfts/:contract',
+      name: 'nft-collection',
+      component: () => import('../views/NftCollectionView.vue'),
+    },
     { path: '/payees', name: 'payees', component: () => import('../views/PayeesView.vue') },
     { path: '/security', name: 'security', component: () => import('../views/SecurityView.vue') },
     {

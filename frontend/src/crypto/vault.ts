@@ -7,10 +7,14 @@ import { normalizeMnemonic } from '@/services/mnemonic'
 import { TranslatedError, translatedError } from '@/services/errors'
 import type { WalletAccount } from '@/stores/accounts'
 import type { Payee } from '@/stores/payees'
+import type { NftVisibility } from '@/stores/nfts'
 
 export interface VaultData {
   wallets: WalletAccount[]
   payees: Payee[]
+  // Optional, like the settings below: which NFTs and collections the user
+  // has hidden or chosen to show — see stores/nfts.ts.
+  nftVisibility?: NftVisibility
   // Optional: a vault backed up before this setting existed won't have it —
   // callers fall back to a default rather than treating it as required.
   settings: {

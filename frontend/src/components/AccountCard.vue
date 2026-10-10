@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { computed, mergeProps, ref } from 'vue'
+import { computed, mergeProps, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import type { WalletAccount } from '@/stores/accounts'
 import { useAccountsStore } from '@/stores/accounts'
 import { useChainDataStore } from '@/stores/chainData'
+import { useNftsStore } from '@/stores/nfts'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { toHumanAmount, tokenUsdValue, convertUsd, formatFiat, formatAmount } from '@/services/money'
 import { DUST_THRESHOLD_USD } from '@/config/appSettings'
+import { hasNftData } from '@/config/nfts'
 import EditAccountDialog from '@/components/EditAccountDialog.vue'
 import HideAccountConfirmDialog from '@/components/HideAccountConfirmDialog.vue'
 import SecretRevealDialog from '@/components/SecretRevealDialog.vue'
@@ -24,6 +26,7 @@ const { t, locale } = useI18n({ useScope: 'global' })
 const router = useRouter()
 const accounts = useAccountsStore()
 const chainData = useChainDataStore()
+const nfts = useNftsStore()
 const settingsLocale = useSettingsLocaleStore()
 
 const expandedTokens = ref(false)
@@ -120,6 +123,28 @@ const tokenFiatTotal = computed(() =>
 const visibleTokenRows = computed(() =>
   hideUnknownTokens.value ? tokenRows.value.filter((r) => r.logoUrl != null) : tokenRows.value,
 )
+
+// The NFTs row: what's cached from the last time this account's NFTs were
+// looked at. The card itself never fetches them — opening the gallery does,
+// and the accounts screen re-checks accounts known to hold some.
+const showNftRow = computed(() => hasNftData(props.account.chain) && !chainUnavailable.value)
+const nftCount = computed(() => {
+  const visible = nfts.visibleCount(props.account.chain, props.account.address)
+  if (!visible || visible.count === 0) return null
+  return `${visible.count}${visible.more ? '+' : ''}`
+})
+const MAX_NFT_WATERMARKS = 3
+const nftWatermarks = computed(() =>
+  (nfts.collectionsOf(props.account.chain, props.account.address)?.items ?? [])
+    .filter((c) => c.image.thumbnail && !nfts.isCollectionHidden(props.account.chain, c))
+    .slice(0, MAX_NFT_WATERMARKS),
+)
+onMounted(() => {
+  if (showNftRow.value) void nfts.readCachedCollections(props.account.chain, props.account.address)
+})
+function goToNfts() {
+  router.push(`/accounts/${props.account.chain}/${props.account.address}/nfts`)
+}
 
 async function copyAddress() {
   await navigator.clipboard.writeText(props.account.address)
@@ -268,6 +293,23 @@ function openInNewTab(url: string): void {
           </template>
         </v-list-item>
       </div>
+    </div>
+
+    <div v-if="showNftRow" class="balance-row token-row pa-3 d-flex align-center" role="button" tabindex="0"
+      :aria-label="t('nfts.view')" @click="goToNfts" @keydown.enter="goToNfts" @keydown.space.prevent="goToNfts">
+      <v-icon icon="mdi-image-multiple" class="mr-2" />
+      <span>{{ t('nfts.title') }}</span>
+      <span v-if="nftCount" class="text-medium-emphasis ml-2">{{ nftCount }}</span>
+      <v-spacer />
+      <div v-if="nftWatermarks.length > 0" class="token-watermarks mr-2" aria-hidden="true">
+        <img v-for="collection in nftWatermarks" :key="collection.contract_address" :src="collection.image.thumbnail!"
+          alt="" referrerpolicy="no-referrer" class="token-watermark" />
+      </div>
+      <AppTooltip :text="t('nfts.view')">
+        <template #default="{ activatorProps }">
+          <v-icon v-bind="activatorProps" icon="mdi-chevron-right" />
+        </template>
+      </AppTooltip>
     </div>
 
     <EditAccountDialog v-model="editOpen" :account="account" />

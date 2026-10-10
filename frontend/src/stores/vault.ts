@@ -37,6 +37,7 @@ import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { isSupportedLocale } from '@/i18n'
 import { useChainDataStore } from '@/stores/chainData'
 import { useFavouritesStore } from '@/stores/favourites'
+import { useNftsStore } from '@/stores/nfts'
 import { useMessagesStore } from '@/stores/messages'
 import { clearCache, exportCacheForBackup, lockCache, stageCacheRestore, unlockCache, type BackupCacheSection } from '@/services/secureCache'
 import { requestStrongPasskeyNudge, resetPasskeyNudge } from '@/composables/usePasskeyNudge'
@@ -62,6 +63,10 @@ export const useVaultStore = defineStore('vault', () => {
 
   // Held only in memory for the unlocked session — never persisted.
   let sessionKey: CryptoKey | null = null
+  // The vault's contents as last loaded, so saving keeps whatever this
+  // version of the app doesn't know about — a field a newer version added
+  // mustn't vanish because a stale copy of the app saved over it.
+  let loadedData: VaultData | null = null
 
   async function refreshFlags() {
     hasVault.value = await hasVaultRecord()
@@ -73,6 +78,7 @@ export const useVaultStore = defineStore('vault', () => {
   refreshFlags()
 
   function loadIntoStores(data: VaultData) {
+    loadedData = data
     useAccountsStore().accounts = data.wallets
     useAccountsStore().favouritesCard = data.settings.favouritesCard ?? { ...DEFAULT_FAVOURITES_CARD }
     usePayeesStore().payees = data.payees
@@ -81,13 +87,17 @@ export const useVaultStore = defineStore('vault', () => {
     settings.currency = data.settings.currency
     useChainDataStore().transactionBatchSize = data.settings.transactionBatchSize ?? DEFAULT_TRANSACTION_BATCH_SIZE
     useFavouritesStore().rememberVisibleChains(data.wallets)
+    useNftsStore().loadVisibility(data.nftVisibility)
   }
 
   function collectFromStores(): VaultData {
     return {
+      ...loadedData,
       wallets: useAccountsStore().accounts,
       payees: usePayeesStore().payees,
+      nftVisibility: useNftsStore().visibility(),
       settings: {
+        ...loadedData?.settings,
         locale: useSettingsLocaleStore().locale,
         currency: useSettingsLocaleStore().currency,
         transactionBatchSize: useChainDataStore().transactionBatchSize,
@@ -102,6 +112,7 @@ export const useVaultStore = defineStore('vault', () => {
   async function openCache(key: CryptoKey): Promise<void> {
     if (await unlockCache(key)) {
       useChainDataStore().resetHydration()
+      useNftsStore().clearPersonalData()
       useFavouritesStore().forget()
     }
   }
@@ -158,7 +169,9 @@ export const useVaultStore = defineStore('vault', () => {
     usePayeesStore().payees = []
     lockCache()
     useChainDataStore().clearPersonalData()
+    useNftsStore().clearPersonalData()
     useMessagesStore().messages = []
+    loadedData = null
   }
 
   function lock(): void {

@@ -87,3 +87,11 @@ export const PASSKEY_NUDGE_INTERVAL_MS = 24 * 60 * 60_000
  * who copies the device's storage, so only a long one holds up.
  */
 export const UNLOCK_PASSWORD_MIN_LENGTH = 12
+
+/**
+ * How often the accounts screen re-checks the NFTs of an account it already
+ * knows holds some — far less often than balances: NFT calls cost the
+ * backend many times more, and a holding rarely changes unseen. An account
+ * never seen holding any is only checked when its NFTs are opened.
+ */
+export const NFT_REFRESH_MS = 60 * 60_000

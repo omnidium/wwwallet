@@ -29,3 +29,17 @@ export function addressUrl(chain: ChainSlug, address: string): string {
 export function tokenUrl(chain: ChainSlug, contractAddress: string): string {
   return `${EXPLORER_BASE_URL[chain]}/token/${contractAddress}`
 }
+
+// Etherscan-run explorers, which give each NFT its own page; elsewhere an
+// NFT links to its collection's.
+const NFT_PAGE_CHAINS: ReadonlySet<ChainSlug> = new Set<ChainSlug>([
+  'ethereum', 'polygon', 'arbitrum', 'base', 'optimism', 'robinhood', 'worldchain', 'linea', 'gnosis', 'celo',
+  'zksync', 'unichain', 'scroll',
+])
+
+/** `tokenId` is decimal. */
+export function nftUrl(chain: ChainSlug, contractAddress: string, tokenId: string): string {
+  return NFT_PAGE_CHAINS.has(chain)
+    ? `${EXPLORER_BASE_URL[chain]}/nft/${contractAddress}/${tokenId}`
+    : tokenUrl(chain, contractAddress)
+}

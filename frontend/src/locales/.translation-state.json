@@ -1631,6 +1631,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Comisión de LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Ver NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "Los NFT en {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "No hay NFT en esta cuenta."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Aquí todos los NFT están ocultos."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Mostrar oculto"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Oculto"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Colección verificada"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Colección sin nombre"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Volver a todos los NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Ocultar colección"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Mostrar colección"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Ocultar NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Mostrar NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Oculto porque parece spam. Nunca sigas enlaces ni visites sitios web a los que te dirija un NFT inesperado."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID del token"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Colección"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Estándar"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Cantidad"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Contrato"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Características"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Ver en el explorador"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Copia el ID del token"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Eso aún no está disponible en esta red."
     }
   },
   "ar": {
@@ -3265,6 +3361,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "رسوم LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFTs"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "عرض NFTs"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFTs على {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "لا توجد NFTs في هذا الحساب."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "جميع NFT هنا مخفية."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "إظهار المحتوى المخفي"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "مخفي"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "مجموعة مُثبتة"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "مجموعة غير مسماة"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "العودة إلى جميع NFTs"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "إخفاء المجموعة"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "عرض المجموعة"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "إخفاء NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "عرض NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "تم إخفاؤها لأنها تبدو كرسالة غير مرغوب فيها. لا تتبع أبدًا الروابط أو تزور المواقع الإلكترونية التي توجهك إليها NFT غير متوقعة."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "معرف الرمز"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "المجموعة"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "قياسي"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "الكمية"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "العقد"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "السمات"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "عرض على المستكشف"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "انسخ معرّف الرمز المميز"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "هذا غير متاح على هذه الشبكة حتى الآن."
     }
   },
   "bg": {
@@ -4899,6 +5091,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Такса за LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Преглед на NFT-та"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT-та на {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Няма NFT в този акаунт."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Всички NFT тук са скрити."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Покажи скритото"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Скрито"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Проверена колекция"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Колекция без име"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Назад към всички NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Скриване на колекцията"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Покажи колекцията"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Скрийте NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Покажи NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Скрито, защото прилича на спам. Никога не следвайте линкове и не посещавайте уебсайтове, към които ви насочва неочаквано NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Идентификатор на токена"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Колекция"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Стандарт"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Количество"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Договор"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Характеристики"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Преглед в експлорера"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Копирайте идентификатора на токена"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Това все още не е достъпно в тази мрежа."
     }
   },
   "cs": {
@@ -6533,6 +6821,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Poplatek LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Zobrazit NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT na {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Na tomto účtu nejsou žádné NFT."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Všechny NFT jsou zde skryté."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Zobrazit skryté"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Skryté"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Ověřená kolekce"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Bezejmenná kolekce"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Zpět na všechny NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Skrýt sbírku"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Zobrazit sbírku"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Skrýt NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Zobrazit NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Skryto, protože to vypadá jako spam. Nikdy neklikejte na odkazy ani nenavštěvujte webové stránky, na které vás nečekaně nasměruje NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID tokenu"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Kolekce"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Množství"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Smlouva"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Charakteristické rysy"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Zobrazit v prohlížeči"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Zkopírujte ID tokenu"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "To v této síti zatím není k dispozici."
     }
   },
   "da": {
@@ -8167,6 +8551,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI-gebyr"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT'er"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Se NFT’er"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT'er på {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Ingen NFT'er på denne konto."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Alle NFT'er her er skjulte."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Vis skjult"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Skjult"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Verificeret samling"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Unavngiven samling"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Tilbage til alle NFT'er"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Skjul samling"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Vis samling"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Skjul NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Vis NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Skjult, fordi det ligner spam. Følg aldrig links eller besøg hjemmesider, som en uventet NFT henviser dig til."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token-ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Samling"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Mængde"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Kontrakt"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Karaktertræk"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Vis i explorer"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Kopier token-ID'et"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Det er endnu ikke tilgængeligt på dette netværk."
     }
   },
   "de": {
@@ -9801,6 +10281,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI-Gebühr"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFTs"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "NFTs anzeigen"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFTs auf {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Keine NFTs auf diesem Konto."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Jedes NFT hier ist versteckt."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Versteckt anzeigen"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Versteckt"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Verifizierte Sammlung"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Unbenannte Sammlung"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Zurück zu allen NFTs"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Sammlung ausblenden"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Sammlung anzeigen"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "NFT ausblenden"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "NFT anzeigen"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Ausgeblendet, weil es nach Spam aussieht. Folge niemals Links und besuche keine Websites, auf die dich ein unerwartetes NFT verweist."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token-ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Sammlung"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Umfang"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Vertrag"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Merkmale"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Im Explorer anzeigen"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Kopiere die Token-ID"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Das ist in diesem Netzwerk noch nicht verfügbar."
     }
   },
   "el": {
@@ -11435,6 +12011,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Τέλος LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Προβολή NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "Τα NFT στο {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Δεν υπάρχουν NFT σε αυτόν τον λογαριασμό."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Όλα τα NFT εδώ είναι κρυμμένα."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Εμφάνιση κρυφών"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Κρυφό"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Επαληθευμένη συλλογή"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Ανώνυμη συλλογή"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Επιστροφή σε όλα τα NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Απόκρυψη συλλογής"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Εμφάνιση συλλογής"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Απόκρυψη NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Εμφάνιση NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Κρύψτε το, επειδή μοιάζει με spam. Μην ακολουθείτε ποτέ συνδέσμους ούτε επισκέπτεστε ιστότοπους στους οποίους σας παραπέμπει ένα απροσδόκητο NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Αναγνωριστικό token"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Συλλογή"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Πρότυπο"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Ποσότητα"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Σύμβαση"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Χαρακτηριστικά"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Προβολή στον εξερευνητή"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Αντιγράψτε το αναγνωριστικό του token"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Αυτό δεν είναι ακόμη διαθέσιμο σε αυτό το δίκτυο."
     }
   },
   "et": {
@@ -13069,6 +13741,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI teenustasu"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT-d"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Vaata NFT-sid"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT-d {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Sellel kontol ei ole NFT-sid."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Kõik siinsed NFT-d on peidetud."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Näita peidetud"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Peidetud"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Kinnitatud kogumik"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Nimetu kogumik"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Tagasi kõigi NFT-de juurde"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Peida kogumik"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Näita kogumikku"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Peida NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Näita NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Peidetud, kuna see näeb välja nagu rämpspost. Ära kunagi järgi linke ega külasta veebisaite, millele ootamatu NFT sind suunab."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Kogumik"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Kogus"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Leping"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Omadused"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Vaata eksploreris"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Kopeeri tokeni ID"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "See pole selles võrgus veel saadaval."
     }
   },
   "fi": {
@@ -14703,6 +15471,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI-maksu"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT:t"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Tarkastele NFT:itä"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT:t {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Tällä tilillä ei ole NFT:itä."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Kaikki NFT:t ovat tässä piilotettuja."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Näytä piilotettu"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Piilotettu"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Vahvistettu kokoelma"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Nimetön kokoelma"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Takaisin kaikkiin NFT:ihin"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Piilota kokoelma"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Näytä kokoelma"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Piilota NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Näytä NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Piilotettu, koska se näyttää roskapostilta. Älä koskaan seuraa linkkejä tai vieraile verkkosivustoilla, joihin odottamaton NFT sinut ohjaa."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token-tunnus"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Kokoelma"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Vakiomuoto"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Määrä"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Sopimus"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Ominaisuudet"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Näytä explorerissa"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Kopioi tokenin tunnus"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Tätä ei ole vielä saatavilla tässä verkossa."
     }
   },
   "fr": {
@@ -16337,6 +17201,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Frais LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "Les NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Voir les NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "Les NFT sur {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Pas de NFT sur ce compte."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Tous les NFT sont masqués ici."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Afficher le contenu masqué"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Caché"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Collection vérifiée"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Collection sans nom"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Retour à tous les NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Masquer la collection"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Afficher la collection"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Masquer les NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Afficher les NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Masqué car ça ressemble à du spam. Ne suis jamais les liens et ne te rends jamais sur les sites web vers lesquels un NFT inattendu te redirige."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID du token"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Collection"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Quantité"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Contrat"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Caractéristiques"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Afficher sur l'explorateur"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Copie l'identifiant du token"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Ce n'est pas encore disponible sur ce réseau."
     }
   },
   "hu": {
@@ -17971,6 +18931,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI díj"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT-k"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "NFT-k megtekintése"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT-k a {network} oldalon"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Ezen a fiókon ne legyenek NFT-k."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Itt minden NFT rejtve van."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Rejtett tartalom megjelenítése"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Rejtett"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Ellenőrzött gyűjtemény"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Névtelen gyűjtemény"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Vissza az összes NFT-hez"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Gyűjtemény elrejtése"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Gyűjtemény megjelenítése"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "NFT elrejtése"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "NFT megjelenítése"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Elrejtve, mert spamnek tűnik. Soha ne kövess linkeket, és ne látogass el olyan weboldalakra, amelyekre egy váratlan NFT irányít."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token-azonosító"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Gyűjtemény"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Szabványos"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Mennyiség"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Szerződés"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Jellemzők"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Megtekintés az explorerben"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Másolja ki a token azonosítóját"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Ez még nem érhető el ezen a hálózaton."
     }
   },
   "id": {
@@ -19605,6 +20661,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Biaya LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Lihat NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT di {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Tidak ada NFT di akun ini."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Setiap NFT di sini disembunyikan."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Tampilkan yang tersembunyi"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Tersembunyi"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Koleksi terverifikasi"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Koleksi tanpa nama"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Kembali ke semua NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Sembunyikan koleksi"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Tampilkan koleksi"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Sembunyikan NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Tampilkan NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Disembunyikan karena terlihat seperti spam. Jangan pernah mengikuti tautan atau mengunjungi situs web yang ditunjukkan oleh NFT yang tidak terduga."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID Token"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Koleksi"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standar"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Jumlah"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Kontrak"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Ciri-ciri"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Lihat di explorer"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Salin ID token"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Fitur tersebut belum tersedia di jaringan ini."
     }
   },
   "it": {
@@ -21239,6 +22391,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Commissione LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Visualizza gli NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "Gli NFT su {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Nessun NFT su questo account."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Qui tutti gli NFT sono nascosti."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Mostra nascosto"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Nascosto"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Collezione verificata"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Collezione senza nome"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Torna a tutti gli NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Nascondi raccolta"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Mostra la raccolta"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Nascondi NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Mostra NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Nascosto perché sembra spam. Non seguire mai link né visitare siti web a cui ti rimanda un NFT inaspettato."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID del token"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Raccolta"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Quantità"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Contratto"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Caratteristiche"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Visualizza sull’explorer"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Copia l’ID del token"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Non è ancora disponibile su questa rete."
     }
   },
   "iw": {
@@ -22873,6 +24121,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "עמלת LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFTs"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "הצגת NFTs"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFTs ב-{network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "אין NFTs בחשבון זה."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "כל ה-NFT כאן מוסתרים."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "הצג מוסתר"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "מוסתר"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "אוסף מאומת"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "אוסף ללא שם"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "חזרה לכל ה-NFTs"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "הסתר את האוסף"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "הצג את האוסף"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "הסתר NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "הצג NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "הוסתר מכיוון שנראה כמו דואר זבל. לעולם אל תלחצו על קישורים או תבקרו באתרים שאליהם מפנה אתכם NFT בלתי צפוי."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "מזהה האסימון"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "אוסף"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "סטנדרטי"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "כמות"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "חוזה"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "מאפיינים"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "הצג באקספלורר"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "העתיקו את מזהה האסימון"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "זה עדיין לא זמין ברשת זו."
     }
   },
   "ja": {
@@ -24507,6 +25851,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FIの手数料"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "NFTを表示する"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "{network}上のNFT"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "このアカウントではNFTは扱わない。"
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "ここにあるNFTはすべて非表示になっている。"
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "非表示部分を表示"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "非表示"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "検証済みコレクション"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "無題のコレクション"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "すべてのNFTに戻る"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "コレクションを非表示にする"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "コレクションを表示"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "NFTを非表示にする"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "NFTを表示"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "スパムのように見えるため非表示にしている。予期しないNFTが誘導するリンクやウェブサイトには、決してアクセスしてはならない。"
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "トークンID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "コレクション"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "標準"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "分量"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "契約"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "特徴"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "エクスプローラーで表示"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "トークンIDをコピーする"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "このネットワークではまだ利用できない。"
     }
   },
   "ko": {
@@ -26141,6 +27581,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI 수수료"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "NFT 보기"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "{network}의 NFT"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "이 계정에서는 NFT를 다루지 않습니다."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "여기 있는 모든 NFT는 숨겨져 있습니다."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "숨김 내용 표시"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "숨김"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "검증된 컬렉션"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "이름 없는 컬렉션"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "모든 NFT로 돌아가기"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "컬렉션 숨기기"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "컬렉션 표시"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "NFT 숨기기"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "NFT 표시"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "스팸으로 보일 수 있으므로 숨겨두었습니다. 예상치 못한 NFT가 안내하는 링크를 절대 클릭하거나 해당 웹사이트를 방문하지 마십시오."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "토큰 ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "컬렉션"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "표준"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "분량"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "계약"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "특징"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "블록체인 탐색기에서 보기"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "토큰 ID를 복사하세요"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "이 네트워크에서는 아직 해당 기능을 사용할 수 없습니다."
     }
   },
   "lt": {
@@ -27775,6 +29311,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "„LI.FI“ mokestis"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Peržiūrėti NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Šioje paskyroje nėra NFT."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Čia visi NFT yra paslėpti."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Rodyti paslėptą tekstą"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Paslėpta"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Patvirtinta kolekcija"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Nepavadinta kolekcija"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Grįžti prie visų NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Paslėpti kolekciją"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Rodyti kolekciją"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Paslėpti NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Rodyti NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Paslėpta, nes atrodo kaip šlamštas. Niekada nesekite nuorodų ir neapsilankykite svetainėse, į kurias nukreipia netikėtas NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Žetono ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Kolekcija"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standartas"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Kiekis"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Sutartis"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Būdingos savybės"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Peržiūrėti naršyklėje"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Nukopijuokite žetono ID"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Tai šiame tinkle dar nėra prieinama."
     }
   },
   "lv": {
@@ -29409,6 +31041,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI maksa"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Apskatīt NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Šajā kontā nav NFT."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Šeit visi NFT ir paslēpti."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Rādīt slēpto"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Paslēpts"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Pārbaudīta kolekcija"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Nenosaukta kolekcija"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Atgriezties pie visiem NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Paslēpt kolekciju"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Rādīt kolekciju"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Paslēpt NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Rādīt NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Slēpts, jo izskatās pēc surogātpasta. Nekad neklikšķiniet uz saitēm un neapmeklējiet tīmekļa vietnes, uz kurām jūs novirza negaidīts NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Kolekcija"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standarts"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Daudzums"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Līgums"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Raksturīgās iezīmes"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Skatīt eksploratorā"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Kopējiet žetona ID"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Tas šajā tīklā vēl nav pieejams."
     }
   },
   "nl": {
@@ -31043,6 +32771,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI-kosten"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT's"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Bekijk NFT’s"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT’s op {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Geen NFT’s op dit account."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Elke NFT is hier verborgen."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Verborgen weergeven"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Verborgen"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Geverifieerde collectie"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Naamloze collectie"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Terug naar alle NFT's"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Verberg verzameling"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Collectie weergeven"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "NFT verbergen"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Toon NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Verborgen omdat het op spam lijkt. Volg nooit links en bezoek nooit websites waar een onverwachte NFT je naartoe leidt."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token-ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Collectie"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standaard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Aantal"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Contract"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Kenmerken"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Bekijk op de explorer"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Kopieer de token-ID"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Dat is op dit netwerk nog niet beschikbaar."
     }
   },
   "no": {
@@ -32677,6 +34501,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI-gebyr"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT-er"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Vis NFT-er"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT-er på {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Ingen NFT-er på denne kontoen."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Alle NFT-er her er skjult."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Vis skjult"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Skjult"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Verifisert samling"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Ubenavnet samling"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Tilbake til alle NFT-er"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Skjul samlingen"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Vis samlingen"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Skjul NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Vis NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Skjult fordi det ser ut som spam. Følg aldri lenker eller besøk nettsteder som en uventet NFT henviser deg til."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token-ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Samling"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Antall"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Kontrakt"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Kjennetegn"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Vis i utforskeren"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Kopier token-ID-en"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Det er ikke tilgjengelig på dette nettverket ennå."
     }
   },
   "pl": {
@@ -34311,6 +36231,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Opłata LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Zobacz NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT na {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Na tym koncie nie ma żadnych NFT."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Wszystkie NFT są tu ukryte."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Pokaż ukryte"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Ukryte"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Zweryfikowana kolekcja"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Kolekcja bez nazwy"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Powrót do wszystkich NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Ukryj kolekcję"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Pokaż kolekcję"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Ukryj NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Pokaż NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Ukryto, bo wygląda to na spam. Nigdy nie klikaj w linki ani nie wchodź na strony, do których kieruje cię nieoczekiwany NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID tokenu"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Kolekcja"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Ilość"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Umowa"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Cechy"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Zobacz w eksploratorze"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Skopiuj identyfikator tokenu"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "To nie jest jeszcze dostępne w tej sieci."
     }
   },
   "ro": {
@@ -35945,6 +37961,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Comision LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT-uri"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Vizualizați NFT-urile"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT-urile pe {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Nu există NFT-uri pe acest cont."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Toate NFT-urile de aici sunt ascunse."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Afișați conținutul ascuns"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Ascuns"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Colecție verificată"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Colecție fără titlu"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Înapoi la toate NFT-urile"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Ascunde colecția"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Afișați colecția"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Ascunde NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Afișați NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Ascuns deoarece pare a fi spam. Nu urmați niciodată linkuri și nu vizitați site-uri web către care vă direcționează un NFT neașteptat."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID-ul tokenului"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Colecție"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Cantitate"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Contract"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Caracteristici"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Vizualizare în explorator"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Copiați ID-ul tokenului"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Această funcție nu este încă disponibilă pe această rețea."
     }
   },
   "ru": {
@@ -37579,6 +39691,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Комиссия LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Просмотр NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT на {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "На этом аккаунте нет NFT."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Здесь все NFT скрыты."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Показать скрытое"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Скрыто"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Проверенная коллекция"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Безымянная коллекция"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Вернуться ко всем NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Скрыть коллекцию"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Показать коллекцию"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Скрыть NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Показать NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Скрыто, потому что выглядит как спам. Никогда не переходи по ссылкам и не заходи на сайты, на которые тебя направляет неожиданный NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Идентификатор токена"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Коллекция"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Стандарт"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Количество"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Контракт"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Особенности"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Посмотреть в блокчейн-браузере"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Скопируй ID токена"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Эта функция пока недоступна в этой сети."
     }
   },
   "sk": {
@@ -39213,6 +41421,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Poplatok LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Zobraziť NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT na {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Na tomto účte nie sú žiadne NFT."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Všetky NFT sú tu skryté."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Zobraziť skryté"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Skryté"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Overená zbierka"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Neoznačená zbierka"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Späť na všetky NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Skryť zbierku"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Zobraziť zbierku"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Skryť NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Zobraziť NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Skryté, pretože to vyzerá ako spam. Nikdy neklikajte na odkazy ani nenavštevujte webové stránky, na ktoré vás nasmeruje neočakávaný NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID tokenu"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Kolekcia"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Štandard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Množstvo"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Zmluva"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Charakteristické črty"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Zobraziť v prehliadači"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Skopírujte ID tokenu"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Táto funkcia v tejto sieti zatiaľ nie je k dispozícii."
     }
   },
   "sl": {
@@ -40847,6 +43151,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Provizija LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT-ji"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Ogled NFT-jev"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT-ji na {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Na tem računu ni NFT-jev."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Vsi NFT-ji so tukaj skriti."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Pokaži skrito"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Skrito"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Preverjena zbirka"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Neimenovana zbirka"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Nazaj na vse NFT-je"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Skrij zbirko"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Prikaži zbirko"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Skrij NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Prikaži NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Skrito, ker izgleda kot spam. Nikoli ne sledite povezavam ali obiskujte spletnih strani, na katere vas usmerja nepričakovani NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID tokena"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Zbirka"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Količina"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Pogodba"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Značilnosti"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Ogled v raziskovalcu"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Prepišite ID tokena"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "To na tem omrežju še ni na voljo."
     }
   },
   "sv": {
@@ -42481,6 +44881,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI-avgift"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT:er"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Visa NFT:er"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT:er på {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Inga NFT:er på detta konto."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Alla NFT:er här är dolda."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Visa dold text"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Dold"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Verifierad samling"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Namnlös samling"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Tillbaka till alla NFT:er"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Dölj samlingen"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Visa samlingen"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Dölj NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Visa NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Dold eftersom det ser ut som spam. Följ aldrig länkar eller besök webbplatser som en oväntad NFT hänvisar dig till."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token-ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Samling"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standard"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Antal"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Kontrakt"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Egenskaper"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Visa i utforskaren"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Kopiera token-ID:t"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Det finns inte tillgängligt på det här nätverket ännu."
     }
   },
   "tr": {
@@ -44115,6 +46611,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI ücreti"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT'ler"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "NFT’leri Görüntüle"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "{network}'daki NFT'ler"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Bu hesapta NFT bulunmamaktadır."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Buradaki tüm NFT’ler gizlidir."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Gizlileri göster"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Gizli"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Doğrulanmış koleksiyon"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "İsimsiz koleksiyon"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Tüm NFT’lere geri dön"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Koleksiyonu gizle"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Koleksiyonu göster"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "NFT'yi gizle"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "NFT'yi göster"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Spam gibi göründüğü için gizlenmiştir. Beklenmedik bir NFT'nin yönlendirdiği bağlantıları asla takip etmeyin veya web sitelerini ziyaret etmeyin."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Token Kimliği"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Koleksiyon"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Standart"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Miktar"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Sözleşme"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Özellikler"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Explorer'da görüntüle"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Token kimliğini kopyalayın"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Bu ağda henüz mevcut değildir."
     }
   },
   "uk": {
@@ -45749,6 +48341,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Комісія LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Переглянути NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT на {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "На цьому акаунті не використовуються NFT."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Усі NFT тут приховані."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Показати приховане"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Приховано"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Перевірена колекція"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Колекція без назви"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Повернутися до всіх NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Приховати колекцію"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Показати колекцію"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Приховати NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Показати NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Приховано, оскільки виглядає як спам. Ніколи не переходьте за посиланнями та не відвідуйте веб-сайти, на які вас направляє несподіваний NFT."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "Ідентифікатор токена"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Колекція"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Стандарт"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Кількість"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Контракт"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Характеристики"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Переглянути в експлорері"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Скопіюйте ідентифікатор токена"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Ця функція у цій мережі поки що недоступна."
     }
   },
   "vi": {
@@ -47383,6 +50071,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "Phí LI.FI"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "Xem NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "NFT trên {network}"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "Không có NFT nào trên tài khoản này đâu nhé."
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "Tất cả các NFT ở đây đều được ẩn đi."
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "Hiển thị nội dung ẩn"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "Ẩn"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "Bộ sưu tập đã được xác minh"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "Bộ sưu tập chưa có tên"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "Quay lại danh sách tất cả NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "Ẩn bộ sưu tập"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "Hiển thị bộ sưu tập"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "Ẩn NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "Hiển thị NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "Bài viết bị ẩn vì trông giống spam. Đừng bao giờ nhấp vào liên kết hay truy cập các trang web mà một NFT bất ngờ nào đó chỉ dẫn cho cậu."
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "ID token"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "Bộ sưu tập"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "Tiêu chuẩn"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "Số lượng"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "Hợp đồng"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "Đặc điểm"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "Xem trên trình khám phá"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "Sao chép ID token"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "Tính năng đó hiện vẫn chưa có trên mạng lưới này."
     }
   },
   "zh-CN": {
@@ -49017,6 +51801,102 @@
     "review.lifiFee": {
       "enHash": "66cfa9717f95f3d1",
       "value": "LI.FI 手续费"
+    },
+    "nfts.title": {
+      "enHash": "d185ae0e6c3b6711",
+      "value": "NFT"
+    },
+    "nfts.view": {
+      "enHash": "15d51030a681673f",
+      "value": "查看 NFT"
+    },
+    "nfts.galleryTitle": {
+      "enHash": "7143b92b33829f9f",
+      "value": "{network} 上的 NFT"
+    },
+    "nfts.empty": {
+      "enHash": "d39f63fe93461221",
+      "value": "该账号不涉及 NFT。"
+    },
+    "nfts.allHidden": {
+      "enHash": "d0238a5bcf5d8529",
+      "value": "此处的每个 NFT 均处于隐藏状态。"
+    },
+    "nfts.showHidden": {
+      "enHash": "88ee90bc2e344724",
+      "value": "显示隐藏内容"
+    },
+    "nfts.hidden": {
+      "enHash": "7e6fefff0f0aeb6c",
+      "value": "隐藏"
+    },
+    "nfts.verified": {
+      "enHash": "6e5e7f8951d16450",
+      "value": "已验证的集合"
+    },
+    "nfts.unnamedCollection": {
+      "enHash": "e26bd19104498e2a",
+      "value": "未命名的收藏集"
+    },
+    "nfts.backToCollections": {
+      "enHash": "f4e69d761ae0b71f",
+      "value": "返回所有 NFT"
+    },
+    "nfts.hideCollection": {
+      "enHash": "2525b515e7c24c16",
+      "value": "隐藏收藏"
+    },
+    "nfts.showCollection": {
+      "enHash": "ea0c33132f316109",
+      "value": "显示收藏集"
+    },
+    "nfts.hideNft": {
+      "enHash": "c9bc7786f2ed0b54",
+      "value": "隐藏 NFT"
+    },
+    "nfts.showNft": {
+      "enHash": "75efafcb47023d10",
+      "value": "显示 NFT"
+    },
+    "nfts.spamNotice": {
+      "enHash": "2808a98f76da0ac6",
+      "value": "因疑似垃圾信息而被隐藏。切勿点击链接或访问意外出现的 NFT 指向的网站。"
+    },
+    "nfts.tokenId": {
+      "enHash": "15ef844f362fb110",
+      "value": "代币 ID"
+    },
+    "nfts.collection": {
+      "enHash": "7b790708ff1b1713",
+      "value": "系列"
+    },
+    "nfts.standard": {
+      "enHash": "ef6691545d2c5523",
+      "value": "标准"
+    },
+    "nfts.quantity": {
+      "enHash": "822bab8d41bca8d7",
+      "value": "数量"
+    },
+    "nfts.contract": {
+      "enHash": "a6f5b0e592fa68e4",
+      "value": "合约"
+    },
+    "nfts.traits": {
+      "enHash": "e0ab4adb01b26f98",
+      "value": "特点"
+    },
+    "nfts.viewOnExplorer": {
+      "enHash": "071086e79dc7b059",
+      "value": "在区块链浏览器上查看"
+    },
+    "nfts.copyTokenId": {
+      "enHash": "9dc4a60d45c347b7",
+      "value": "复制代币 ID"
+    },
+    "errors.unsupportedOnChain": {
+      "enHash": "331c3e44d62d8a25",
+      "value": "该功能在此网络上尚不可用。"
     }
   }
 }

@@ -64,6 +64,12 @@ async function requestFailedError(res: Response, path: string): Promise<Error> {
       err.code = code
       return err
     }
+    // Nothing of this kind exists on this chain with the backend's provider (NFTs on Ink).
+    if (code === 'unsupported_on_chain') {
+      const err = translatedError('errors.unsupportedOnChain')
+      err.code = code
+      return err
+    }
     if (code === 'would_revert') return translatedError('errors.transactionWouldFail')
     if (code === 'token_not_on_chain') {
       const err = translatedError('errors.tokenNotOnChain')
@@ -164,6 +170,70 @@ export interface AddressActivity {
 export interface TransactionPage {
   transactions: Transaction[]
   next_cursor: ActivityCursor | null
+}
+
+/** Where an NFT's picture loads from — only the backend's provider's own image caches. */
+export interface NftImage {
+  thumbnail: string | null
+  full: string | null
+}
+
+/** One NFT contract an address holds tokens of — see the backend's NftCollection. */
+export interface NftCollection {
+  contract_address: string
+  name: string | null
+  symbol: string | null
+  /** "ERC721" or "ERC1155"; anything else can't be sent. */
+  token_type: string
+  /** Distinct tokens of it held. */
+  owned_count: number
+  /** The provider's spam verdict; null where it doesn't classify the chain. */
+  is_spam: boolean | null
+  /** Has a marketplace's verified badge. Display only. */
+  verified: boolean
+  /** Lowest marketplace listing, in the chain's native coin. */
+  floor_price: number | null
+  image: NftImage
+}
+
+export interface NftCollectionPage {
+  collections: NftCollection[]
+  next_page_key: string | null
+}
+
+export interface NftAttribute {
+  trait_type: string | null
+  value: string
+}
+
+/** One NFT an address holds — see the backend's Nft. */
+export interface Nft {
+  contract_address: string
+  /** Decimal; up to 256 bits, so never parsed into a Number. */
+  token_id: string
+  token_type: string
+  name: string | null
+  description: string | null
+  /** How many of it are held: always 1 for ERC-721. */
+  balance: string
+  image: NftImage
+  attributes: NftAttribute[]
+}
+
+export interface NftPage {
+  nfts: Nft[]
+  next_page_key: string | null
+}
+
+/** One movement of a single NFT into or out of an address. */
+export interface NftTransfer {
+  hash: string
+  from: string
+  to: string
+  block_number: number | null
+  timestamp: string | null
+  /** Copies moved, decimal: always 1 for ERC-721. */
+  amount: string
 }
 
 export interface TokenMetadata {
@@ -349,6 +419,22 @@ export const api = {
     getJson<AddressActivity>(`/api/v1/chains/${chain}/address/${encodeURIComponent(address)}`),
   addressPresence: (chain: ChainSlug, address: string) =>
     getJson<AddressPresence>(`/api/v1/chains/${chain}/address/${encodeURIComponent(address)}/presence`),
+  nftCollections: (chain: ChainSlug, address: string, pageKey?: string | null) =>
+    getJson<NftCollectionPage>(
+      `/api/v1/chains/${chain}/address/${encodeURIComponent(address)}/nft-collections`,
+      pageKey ? { page_key: pageKey } : undefined,
+    ),
+  nfts: (chain: ChainSlug, address: string, contract: string, pageKey?: string | null) =>
+    getJson<NftPage>(`/api/v1/chains/${chain}/address/${encodeURIComponent(address)}/nfts`, {
+      contract,
+      ...(pageKey ? { page_key: pageKey } : {}),
+    }),
+  /** `tokenIdHex` is 0x-prefixed hex. */
+  nftTransfers: (chain: ChainSlug, address: string, contract: string, tokenIdHex: string) =>
+    getJson<NftTransfer[]>(`/api/v1/chains/${chain}/address/${encodeURIComponent(address)}/nft-transfers`, {
+      contract,
+      token_id: tokenIdHex,
+    }),
   transactionPage: (chain: ChainSlug, address: string, cursor: ActivityCursor) =>
     postJson<TransactionPage>(
       `/api/v1/chains/${chain}/address/${encodeURIComponent(address)}/transactions/more`,

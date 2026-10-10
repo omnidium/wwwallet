@@ -158,6 +158,27 @@ export function putPrivate(key: string, data: unknown): Promise<void> {
 }
 
 /**
+ * One private entry by its real name — undefined when there's none, it
+ * can't be read, or the cache is locked. For data only needed now and then,
+ * which has no reason to be decrypted along with everything else at unlock.
+ */
+export async function getPrivate<T>(key: string): Promise<T | undefined> {
+  if (!keys) return undefined
+  const { encryption, naming } = keys
+  await flushCacheWrites()
+  const entry = await cacheDb.entries.get(await sealedName(naming, key))
+  if (!entry) return undefined
+  const sealed = entry.data as SealedEntry
+  try {
+    const plaintext = await decrypt(encryption, new Uint8Array(sealed.iv), sealed.ciphertext)
+    const payload = JSON.parse(new TextDecoder().decode(plaintext)) as SealedPayload
+    return payload.key === key ? (payload.data as T) : undefined
+  } catch {
+    return undefined
+  }
+}
+
+/**
  * Every private entry this key can read. One it can't — written under a
  * different vault's key, e.g. before a restore from backup — is deleted
  * rather than kept around unreadable forever.
