@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Prodaja',
     buyTokenLabel: 'Kupite',
     sellAmountLabel: 'Znesek prodaje',
-    signingNotice: 'Podpisujete transakcijo za pogodbo {address} (prek agregatorja 0x).',
+    signingNotice: 'Podpisujete transakcijo za pogodbo {address} (prek {provider}).',
     submit: 'Zamenjava',
     selectToken: 'Izberite token',
     searchTokenPlaceholder: 'Ime ali simbol za iskanje',
@@ -336,6 +336,7 @@ export default {
       'Najprej nastavite zaklepanje zaslona (prstni odtis, prepoznavanje obraza ali PIN) na tej napravi, nato poskusite znova.',
     passkeyProviderNotReady:
       'Vaš upravitelj gesel ni mogel shraniti gesla. Če čaka, da se prijavite, potrdite svojo identiteto ali vnesite geslo za sinhronizacijo (npr. Google Password Manager, ko je sinhronizacija Chrome začasno ustavljena), to najprej opravite, nato pa poskusite znova.',
+    chainUnavailable: 'To omrežje v wwwallet še ni na voljo.',
   },
   accountCard: {
     copyAddress: 'Kopirajte naslov',
@@ -419,6 +420,7 @@ export default {
     price: 'Cena',
     swapFee: 'Provizija za zamenjavo',
     integratorFee: 'Stroški storitve',
+    lifiFee: 'Provizija LI.FI',
   },
   transfer: {
     fromNetwork: 'Iz omrežja',

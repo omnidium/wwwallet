@@ -73,7 +73,7 @@ export default {
     buyTokenLabel: 'Beli',
     sellAmountLabel: 'Jumlah yang dijual',
     signingNotice:
-      'Anda sedang menandatangani transaksi ke kontrak {address} (melalui agregator 0x).',
+      'Anda sedang menandatangani transaksi ke kontrak {address} (melalui {provider}).',
     submit: 'Tukar',
     selectToken: 'Pilih token',
     searchTokenPlaceholder: 'Cari nama atau simbol',
@@ -342,6 +342,7 @@ export default {
       'Atur kunci layar (sidik jari, pengenalan wajah, atau PIN) pada perangkat ini terlebih dahulu, lalu coba lagi.',
     passkeyProviderNotReady:
       'Pengelola kata sandi Anda tidak dapat menyimpan kata sandi tersebut. Jika aplikasi tersebut menunggu Anda untuk masuk, memverifikasi identitas Anda, atau memasukkan frasa sandi sinkronisasi (misalnya, Google Password Manager saat sinkronisasi Chrome dijeda), selesaikan proses tersebut, lalu coba lagi.',
+    chainUnavailable: 'Jaringan ini belum tersedia di wwwallet.',
   },
   accountCard: {
     copyAddress: 'Salin alamatnya',
@@ -425,6 +426,7 @@ export default {
     price: 'Harga',
     swapFee: 'Biaya swap',
     integratorFee: 'Biaya layanan',
+    lifiFee: 'Biaya LI.FI',
   },
   transfer: {
     fromNetwork: 'Dari jaringan',

@@ -137,8 +137,8 @@
       "value": "Importe de la venta"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Estás firmando una transacción para el contrato {address} (a través del agregador 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Estás firmando una transacción para el contrato {address} (a través de {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -1623,6 +1623,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Cargando"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Esta red aún no está disponible en wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Comisión de LI.FI"
     }
   },
   "ar": {
@@ -1763,8 +1771,8 @@
       "value": "مبلغ البيع"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "أنت تقوم بالتوقيع على معاملة مع العقد {address} (عبر مجمع 0x)."
+      "enHash": "a11f625213861228",
+      "value": "أنت تقوم بالتوقيع على معاملة مع العقد {address} (عبر {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -3249,6 +3257,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "جاري التحميل"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "هذه الشبكة غير متوفرة في wwwallet حتى الآن."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "رسوم LI.FI"
     }
   },
   "bg": {
@@ -3389,8 +3405,8 @@
       "value": "Сума за продажба"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Подписвате транзакция към договора {address} (чрез агрегатора 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Подписвате транзакция към договор {address} (чрез {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -4875,6 +4891,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Зареждане"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Тази мрежа все още не е достъпна в wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Такса за LI.FI"
     }
   },
   "cs": {
@@ -5015,8 +5039,8 @@
       "value": "Prodané množství"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Podepisujete transakci směrem ke smlouvě {address} (prostřednictvím agregátoru 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Podepisujete transakci směrem ke smlouvě {address} (prostřednictvím {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -6501,6 +6525,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Načítání"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Tato síť zatím není v wwwallet k dispozici."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Poplatek LI.FI"
     }
   },
   "da": {
@@ -6641,8 +6673,8 @@
       "value": "Salgsbeløb"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Du underskriver en transaktion til kontrakten {address} (via 0x-aggregatoren)."
+      "enHash": "a11f625213861228",
+      "value": "Du underskriver en transaktion til kontrakt {address} (via {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -8127,6 +8159,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Indlæser"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Dette netværk er endnu ikke tilgængeligt i wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI-gebyr"
     }
   },
   "de": {
@@ -8267,8 +8307,8 @@
       "value": "Verkaufsbetrag"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Du unterschreibst eine Transaktion an den Vertrag {address} (über den 0x-Aggregator)."
+      "enHash": "a11f625213861228",
+      "value": "Du unterschreibst eine Transaktion an den Vertrag {address} (über {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -9753,6 +9793,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Wird geladen"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Dieses Netzwerk ist in wwwallet noch nicht verfügbar."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI-Gebühr"
     }
   },
   "el": {
@@ -9893,8 +9941,8 @@
       "value": "Ποσό πώλησης"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Υπογράφετε μια συναλλαγή προς το συμβόλαιο {address} (μέσω του συγκεντρωτή 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Υπογράφετε μια συναλλαγή προς το συμβόλαιο {address} (μέσω του {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -11379,6 +11427,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Φόρτωση"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Αυτό το δίκτυο δεν είναι ακόμη διαθέσιμο στο wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Τέλος LI.FI"
     }
   },
   "et": {
@@ -11519,8 +11575,8 @@
       "value": "Müügisumma"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Sa allkirjastad tehingut lepingule {address} (0x-agregaatori kaudu)."
+      "enHash": "a11f625213861228",
+      "value": "Sa allkirjastad tehingut lepingule {address} (kaudu {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -13005,6 +13061,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Laadimine"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "See võrk ei ole wwwalletis veel saadaval."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI teenustasu"
     }
   },
   "fi": {
@@ -13145,8 +13209,8 @@
       "value": "Myyntimäärä"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Allekirjoitat transaktion sopimukselle {address} (0x-aggregaattorin kautta)."
+      "enHash": "a11f625213861228",
+      "value": "Olet allekirjoittamassa transaktiota sopimukseen {address} (välittäjänä {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -14631,6 +14695,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Ladataan"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Tämä verkko ei ole vielä käytettävissä wwwalletissa."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI-maksu"
     }
   },
   "fr": {
@@ -14771,8 +14843,8 @@
       "value": "Montant de la vente"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Tu signes une transaction vers le contrat {address} (via l’agrégateur 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Tu signes une transaction vers le contrat {address} (via {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -16257,6 +16329,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Chargement"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Ce réseau n'est pas encore disponible dans wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Frais LI.FI"
     }
   },
   "hu": {
@@ -16397,8 +16477,8 @@
       "value": "Eladási összeg"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Tranzakciót írsz alá a {address} szerződéshez (a 0x aggregátoron keresztül)."
+      "enHash": "a11f625213861228",
+      "value": "Tranzakciót írsz alá a {address} szerződéshez (a {provider}-en keresztül)."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -17883,6 +17963,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Betöltés"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Ez a hálózat még nem érhető el a wwwallet-ben."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI díj"
     }
   },
   "id": {
@@ -18023,8 +18111,8 @@
       "value": "Jumlah yang dijual"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Anda sedang menandatangani transaksi ke kontrak {address} (melalui agregator 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Anda sedang menandatangani transaksi ke kontrak {address} (melalui {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -19509,6 +19597,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Memuat"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Jaringan ini belum tersedia di wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Biaya LI.FI"
     }
   },
   "it": {
@@ -19649,8 +19745,8 @@
       "value": "Importo di vendita"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Stai firmando una transazione per il contratto {address} (tramite l’aggregatore 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Stai firmando una transazione per il contratto {address} (tramite {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -21135,6 +21231,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Caricamento in corso"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Questa rete non è ancora disponibile su wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Commissione LI.FI"
     }
   },
   "iw": {
@@ -21275,8 +21379,8 @@
       "value": "סכום המכירה"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "אתה חותם על עסקה לחוזה {address} (באמצעות האגרגטור 0x)."
+      "enHash": "a11f625213861228",
+      "value": "אתה חותם על עסקה לחוזה {address} (באמצעות {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -22761,6 +22865,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "טוען"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "רשת זו אינה זמינה עדיין ב-wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "עמלת LI.FI"
     }
   },
   "ja": {
@@ -22901,8 +23013,8 @@
       "value": "売却数量"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "{address} 契約（0xアグリゲーター経由）へのトランザクションに署名している。"
+      "enHash": "a11f625213861228",
+      "value": "{address} 契約（{provider} 経由）へのトランザクションに署名している。"
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -24387,6 +24499,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "読み込み中"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "このネットワークは、現時点ではwwwalletでは利用できない。"
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FIの手数料"
     }
   },
   "ko": {
@@ -24527,8 +24647,8 @@
       "value": "매도 수량"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "{address} 계약(0x 애그리게이터를 통해)에 대한 트랜잭션에 서명하고 있습니다."
+      "enHash": "a11f625213861228",
+      "value": "{address} 계약({provider}을 통해)에 대한 트랜잭션에 서명하고 있습니다."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -26013,6 +26133,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "로딩 중"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "이 네트워크는 아직 wwwallet에서 지원되지 않습니다."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI 수수료"
     }
   },
   "lt": {
@@ -26153,8 +26281,8 @@
       "value": "Parduodama suma"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Jūs pasirašote sandorį su sutartimi {address} (per 0x agregatorių)."
+      "enHash": "a11f625213861228",
+      "value": "Jūs pasirašote sandorį su sutartimi {address} (per {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -27639,6 +27767,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Įkeliama"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Šis tinklas dar nėra prieinamas „wwwallet“ programėlėje."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "„LI.FI“ mokestis"
     }
   },
   "lv": {
@@ -27779,8 +27915,8 @@
       "value": "Pārdošanas summa"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Jūs parakstāt darījumu ar līgumu {address} (izmantojot 0x agregatoru)."
+      "enHash": "a11f625213861228",
+      "value": "Jūs parakstāt darījumu, lai noslēgtu līgumu ar {address} (caur {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -29265,6 +29401,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Ielādējas"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Šis tīkls pagaidām nav pieejams wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI maksa"
     }
   },
   "nl": {
@@ -29405,8 +29549,8 @@
       "value": "Verkoopbedrag"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Je ondertekent een transactie naar contract {address} (via de 0x-aggregator)."
+      "enHash": "a11f625213861228",
+      "value": "Je ondertekent een transactie naar contract {address} (via {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -30891,6 +31035,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Bezig met laden"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Dit netwerk is nog niet beschikbaar in wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI-kosten"
     }
   },
   "no": {
@@ -31031,8 +31183,8 @@
       "value": "Salgsbeløp"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Du signerer en transaksjon til kontrakten {address} (via 0x-aggregatoren)."
+      "enHash": "a11f625213861228",
+      "value": "Du signerer en transaksjon til kontrakten {address} (via {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -32517,6 +32669,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Laster"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Dette nettverket er ikke tilgjengelig i wwwallet ennå."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI-gebyr"
     }
   },
   "pl": {
@@ -32657,8 +32817,8 @@
       "value": "Kwota sprzedaży"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Podpisujesz transakcję do kontraktu {address} (przez agregator 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Podpisujesz transakcję do kontraktu {address} (przez {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -34143,6 +34303,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Ładowanie"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Ta sieć nie jest jeszcze dostępna w wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Opłata LI.FI"
     }
   },
   "ro": {
@@ -34283,8 +34451,8 @@
       "value": "Suma de vânzare"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Semnați o tranzacție către contractul {address} (prin intermediul agregatorului 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Semnați o tranzacție către contractul {address} (prin intermediul {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -35769,6 +35937,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Se încarcă"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Această rețea nu este încă disponibilă în wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Comision LI.FI"
     }
   },
   "ru": {
@@ -35909,8 +36085,8 @@
       "value": "Сумма продажи"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Ты подписываешь транзакцию для контракта {address} (через агрегатор 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Ты подписываешь транзакцию для контракта {address} (через {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -37395,6 +37571,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Загрузка"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Эта сеть пока недоступна в wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Комиссия LI.FI"
     }
   },
   "sk": {
@@ -37535,8 +37719,8 @@
       "value": "Predávaná suma"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Podpisujete transakciu na zmluvu {address} (prostredníctvom agregátora 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Podpisujete transakciu na zmluvu {address} (prostredníctvom {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -39021,6 +39205,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Načítava sa"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Táto sieť zatiaľ nie je v aplikácii wwwallet dostupná."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Poplatok LI.FI"
     }
   },
   "sl": {
@@ -39161,8 +39353,8 @@
       "value": "Znesek prodaje"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Podpisujete transakcijo za pogodbo {address} (prek agregatorja 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Podpisujete transakcijo za pogodbo {address} (prek {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -40647,6 +40839,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Nalaganje"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "To omrežje v wwwallet še ni na voljo."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Provizija LI.FI"
     }
   },
   "sv": {
@@ -40787,8 +40987,8 @@
       "value": "Försäljningsbelopp"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Du signerar en transaktion till kontraktet {address} (via 0x-aggregatorn)."
+      "enHash": "a11f625213861228",
+      "value": "Du signerar en transaktion till kontraktet {address} (via {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -42273,6 +42473,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Laddar"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Detta nätverk är ännu inte tillgängligt i wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI-avgift"
     }
   },
   "tr": {
@@ -42413,8 +42621,8 @@
       "value": "Satış tutarı"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "{address} sözleşmesine (0x toplayıcı aracılığıyla) bir işlem imzalıyorsunuz."
+      "enHash": "a11f625213861228",
+      "value": "{address} sözleşmesine ({provider} aracılığıyla) bir işlem imzalıyorsunuz."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -43899,6 +44107,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Yükleniyor"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Bu ağ henüz wwwallet'te mevcut değildir."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI ücreti"
     }
   },
   "uk": {
@@ -44039,8 +44255,8 @@
       "value": "Сума продажу"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Ви підписуєте транзакцію для контракту {address} (через агрегатор 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Ви підписуєте транзакцію для контракту {address} (через {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -45525,6 +45741,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Завантаження"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Ця мережа поки що недоступна у wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Комісія LI.FI"
     }
   },
   "vi": {
@@ -45665,8 +45889,8 @@
       "value": "Số lượng bán"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "Cậu đang ký một giao dịch cho hợp đồng {address} (qua trình tổng hợp 0x)."
+      "enHash": "a11f625213861228",
+      "value": "Cậu đang ký một giao dịch cho hợp đồng {address} (qua {provider})."
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -47151,6 +47375,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "Đang tải"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "Mạng này hiện vẫn chưa có sẵn trên wwwallet."
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "Phí LI.FI"
     }
   },
   "zh-CN": {
@@ -47291,8 +47523,8 @@
       "value": "卖出金额"
     },
     "swap.signingNotice": {
-      "enHash": "a1b1807e17f3596b",
-      "value": "您正在向合约 {address} 签署一笔交易（通过 0x 聚合器）。"
+      "enHash": "a11f625213861228",
+      "value": "您正在向合约 {address}（通过 {provider}）签署一笔交易。"
     },
     "swap.submit": {
       "enHash": "6ec282d40a8a71fe",
@@ -48777,6 +49009,14 @@
     "common.loading": {
       "enHash": "dc380888c4e2c776",
       "value": "正在加载"
+    },
+    "errors.chainUnavailable": {
+      "enHash": "2b9235cdc41d84e2",
+      "value": "wwwallet 目前尚不支持该网络。"
+    },
+    "review.lifiFee": {
+      "enHash": "66cfa9717f95f3d1",
+      "value": "LI.FI 手续费"
     }
   }
 }

@@ -72,8 +72,7 @@ export default {
     sellTokenLabel: 'Vinde',
     buyTokenLabel: 'Cumpărați',
     sellAmountLabel: 'Suma de vânzare',
-    signingNotice:
-      'Semnați o tranzacție către contractul {address} (prin intermediul agregatorului 0x).',
+    signingNotice: 'Semnați o tranzacție către contractul {address} (prin intermediul {provider}).',
     submit: 'Schimb',
     selectToken: 'Selectați tokenul',
     searchTokenPlaceholder: 'Căutați numele sau simbolul',
@@ -343,6 +342,7 @@ export default {
       'Configurați mai întâi o blocare a ecranului (amprentă digitală, recunoaștere facială sau cod PIN) pe acest dispozitiv, apoi încercați din nou.',
     passkeyProviderNotReady:
       'Managerul dvs. de chei de acces nu a putut salva cheia de acces. Dacă vă solicită să vă autentificați, să confirmați identitatea sau să introduceți o frază de sincronizare (de exemplu, Google Password Manager când sincronizarea Chrome este întreruptă), finalizați acea operațiune, apoi încercați din nou.',
+    chainUnavailable: 'Această rețea nu este încă disponibilă în wwwallet.',
   },
   accountCard: {
     copyAddress: 'Copiați adresa',
@@ -426,6 +426,7 @@ export default {
     price: 'Preț',
     swapFee: 'Comision de swap',
     integratorFee: 'Comision de serviciu',
+    lifiFee: 'Comision LI.FI',
   },
   transfer: {
     fromNetwork: 'Din rețea',

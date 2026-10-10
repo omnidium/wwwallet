@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet se verrouille après une courte période d’inactivité et n’enregistre jamais ta session déverrouillée sur le disque : si tu fermes l’onglet, l’appli oublie tout, et c’est voulu.',
       },
       {
-        title: 'Cinq réseaux Ethereum, un seul ensemble de comptes',
-        body: "Conserve et envoie des cryptomonnaies sur le réseau principal d'Ethereum, Polygon, Arbitrum, Base et Optimism avec les mêmes comptes et adresses.",
+        title: 'Quinze réseaux Ethereum, un seul ensemble de comptes',
+        body: 'Conserve et envoie des cryptomonnaies sur le réseau principal d’Ethereum et 14 autres réseaux — dont Arbitrum, Base, Optimism, Polygon, Linea et ZKsync — avec les mêmes comptes et adresses.',
       },
     ],
     caveatTitle:
@@ -114,7 +114,7 @@ export default {
     items: [
       {
         q: 'Est-ce que wwwallet est vraiment gratuit ?',
-        a: "Oui. Son utilisation est gratuite, il n’y a pas de formule premium ni de contenu payant, et wwwallet n’ajoute aucun frais aux transactions que tu envoies ou échanges. Le seul coût inévitable est le frais de transaction (gas) propre au réseau, qui revient au réseau et non à wwwallet. Les cotations d'échange proviennent de l'agrégateur d'échanges 0x, qui peut ajouter ses propres frais sur certaines transactions — ces frais sont indiqués sur l'écran de vérification avant que tu ne confirmes.",
+        a: "Oui. Son utilisation est gratuite, il n’y a pas de formule premium ni de contenu payant, et wwwallet n’ajoute aucun frais aux transferts ou aux échanges que tu effectues. Le seul coût inévitable est le frais de transaction (gas) propre au réseau, qui revient au réseau et non à wwwallet. Les cotations d'échange proviennent de l'agrégateur 0x (ou de LI.FI, sur les réseaux non couverts par 0x), qui peut appliquer ses propres frais sur certaines transactions — ces frais sont indiqués sur l'écran de vérification avant que tu ne confirmes.",
       },
       {
         q: "Y a-t-il des publicités, des traceurs ou des outils d'analyse ?",
@@ -166,11 +166,11 @@ export default {
       },
       {
         q: 'Quels réseaux wwwallet prend-il en charge ?',
-        a: 'Le réseau principal d’Ethereum, ainsi que les réseaux de couche 2 Polygon, Arbitrum, Base et Optimism — le tout à partir du même ensemble de comptes.',
+        a: 'Le réseau principal d’Ethereum, ainsi qu’Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain et Scroll — le tout à partir du même ensemble de comptes.',
       },
       {
         q: 'Comment approvisionner mon portefeuille ?',
-        a: 'Crée un compte, choisis « Afficher le code QR » pour voir son adresse, puis envoie des fonds à cette adresse depuis une plateforme d’échange ou un autre portefeuille. Assure-toi d’envoyer les fonds sur le bon réseau (Ethereum, Polygon, Arbitrum, Base ou Optimism) : la même adresse fonctionne sur tous ces réseaux, mais les fonds envoyés sur un réseau n’apparaissent que sur ce réseau-là. Tu auras également besoin d’un peu de la cryptomonnaie native du réseau (comme l’ETH) pour payer les frais de transaction.',
+        a: 'Ouvre un compte, choisis « Afficher le code QR » pour voir son adresse, puis envoie des fonds vers cette adresse depuis une plateforme d’échange ou un autre portefeuille. Assure-toi d’envoyer les fonds sur le bon réseau (comme Ethereum, Base ou Arbitrum) : la même adresse fonctionne sur tous les réseaux pris en charge, mais les fonds envoyés sur un réseau n’apparaissent que sur ce réseau-là. Tu auras également besoin d’un peu de la cryptomonnaie native du réseau (comme l’ETH) pour payer les frais de transaction.',
       },
       {
         q: 'Que puis-je faire avec wwwallet ?',
@@ -243,6 +243,6 @@ export default {
   meta: {
     title: 'wwwallet — Portefeuille Ethereum gratuit et non custodial',
     description:
-      'Portefeuille Ethereum gratuit dans ton navigateur. Pas d’inscription, pas de pubs, pas de suivi — tes clés restent cryptées sur ton appareil. Ethereum, Arbitrum, Base, Optimism et Polygon.',
+      'Portefeuille Ethereum gratuit dans ton navigateur. Pas d’inscription, pas de pubs, pas de suivi — tes clés restent cryptées sur ton appareil. Ethereum, Base, Arbitrum, Optimism, Polygon et 10 autres réseaux.',
   },
 }

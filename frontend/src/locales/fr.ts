@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Vendre',
     buyTokenLabel: 'Acheter',
     sellAmountLabel: 'Montant de la vente',
-    signingNotice: 'Tu signes une transaction vers le contrat {address} (via l’agrégateur 0x).',
+    signingNotice: 'Tu signes une transaction vers le contrat {address} (via {provider}).',
     submit: 'Swap',
     selectToken: 'Sélectionne un token',
     searchTokenPlaceholder: 'Recherche par nom ou symbole',
@@ -345,6 +345,7 @@ export default {
       "Configure d'abord un verrouillage d'écran (empreinte digitale, reconnaissance faciale ou code PIN) sur cet appareil, puis réessaie.",
     passkeyProviderNotReady:
       'Ton gestionnaire de mots de passe n’a pas pu enregistrer le mot de passe. S’il t’invite à te connecter, à confirmer ton identité ou à saisir une phrase de synchronisation (par exemple, Google Password Manager lorsque la synchronisation Chrome est en pause), termine cette opération, puis réessaie.',
+    chainUnavailable: "Ce réseau n'est pas encore disponible dans wwwallet.",
   },
   accountCard: {
     copyAddress: "Copie l'adresse",
@@ -428,6 +429,7 @@ export default {
     price: 'Prix',
     swapFee: 'Frais de swap',
     integratorFee: 'Frais de service',
+    lifiFee: 'Frais LI.FI',
   },
   transfer: {
     fromNetwork: 'Depuis le réseau',

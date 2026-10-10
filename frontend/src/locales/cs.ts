@@ -73,7 +73,7 @@ export default {
     buyTokenLabel: 'Koupit',
     sellAmountLabel: 'Prodané množství',
     signingNotice:
-      'Podepisujete transakci směrem ke smlouvě {address} (prostřednictvím agregátoru 0x).',
+      'Podepisujete transakci směrem ke smlouvě {address} (prostřednictvím {provider}).',
     submit: 'Swap',
     selectToken: 'Vyberte token',
     searchTokenPlaceholder: 'Vyhledejte název nebo symbol',
@@ -337,6 +337,7 @@ export default {
       'Nejprve na tomto zařízení nastavte zámek obrazovky (otisk prstu, rozpoznání obličeje nebo PIN) a poté to zkuste znovu.',
     passkeyProviderNotReady:
       'Váš správce přístupových klíčů nemohl přístupový klíč uložit. Pokud čeká na vaše přihlášení, ověření vaší identity nebo zadání synchronizační fráze (např. Správce hesel Google, když je synchronizace Chrome pozastavena), dokončete tento krok a zkuste to znovu.',
+    chainUnavailable: 'Tato síť zatím není v wwwallet k dispozici.',
   },
   accountCard: {
     copyAddress: 'Zkopírujte adresu',
@@ -420,6 +421,7 @@ export default {
     price: 'Cena',
     swapFee: 'Poplatek za swap',
     integratorFee: 'Poplatek za službu',
+    lifiFee: 'Poplatek LI.FI',
   },
   transfer: {
     fromNetwork: 'Ze sítě',

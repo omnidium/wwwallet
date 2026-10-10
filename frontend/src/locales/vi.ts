@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Bán',
     buyTokenLabel: 'Mua',
     sellAmountLabel: 'Số lượng bán',
-    signingNotice: 'Cậu đang ký một giao dịch cho hợp đồng {address} (qua trình tổng hợp 0x).',
+    signingNotice: 'Cậu đang ký một giao dịch cho hợp đồng {address} (qua {provider}).',
     submit: 'Swap',
     selectToken: 'Chọn token',
     searchTokenPlaceholder: 'Tìm kiếm theo tên hoặc ký hiệu',
@@ -336,6 +336,7 @@ export default {
       'Hãy thiết lập khóa màn hình (vân tay, nhận diện khuôn mặt hoặc mã PIN) trên thiết bị này trước, sau đó thử lại nhé.',
     passkeyProviderNotReady:
       'Trình quản lý mật khẩu của cậu không thể lưu mật khẩu. Nếu nó đang chờ cậu đăng nhập, xác minh danh tính hoặc nhập cụm mật khẩu đồng bộ hóa (ví dụ: Google Password Manager khi tính năng đồng bộ hóa Chrome bị tạm dừng), hãy hoàn tất các bước đó rồi thử lại nhé.',
+    chainUnavailable: 'Mạng này hiện vẫn chưa có sẵn trên wwwallet.',
   },
   accountCard: {
     copyAddress: 'Sao chép địa chỉ',
@@ -418,6 +419,7 @@ export default {
     price: 'Giá',
     swapFee: 'Phí hoán đổi',
     integratorFee: 'Phí dịch vụ',
+    lifiFee: 'Phí LI.FI',
   },
   transfer: {
     fromNetwork: 'Từ mạng',

@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'למכור',
     buyTokenLabel: 'קנו',
     sellAmountLabel: 'סכום המכירה',
-    signingNotice: 'אתה חותם על עסקה לחוזה {address} (באמצעות האגרגטור 0x).',
+    signingNotice: 'אתה חותם על עסקה לחוזה {address} (באמצעות {provider}).',
     submit: 'החלפה',
     selectToken: 'בחרו אסימון',
     searchTokenPlaceholder: 'חפשו שם או סמל',
@@ -328,6 +328,7 @@ export default {
       'הגדר תחילה נעילת מסך (טביעת אצבע, זיהוי פנים או PIN) במכשיר זה, ואז נסה שוב.',
     passkeyProviderNotReady:
       'מנהל הסיסמאות שלכם לא הצליח לשמור את סיסמת הגישה. אם הוא מחכה שתתחברו, תאמתו את זהותכם או תזינו סיסמת סנכרון (למשל, מנהל הסיסמאות של גוגל כאשר סנכרון Chrome מושעה), סיימו את התהליך ואז נסו שוב.',
+    chainUnavailable: 'רשת זו אינה זמינה עדיין ב-wwwallet.',
   },
   accountCard: {
     copyAddress: 'העתיקו את הכתובת',
@@ -410,6 +411,7 @@ export default {
     price: 'מחיר',
     swapFee: 'עמלת החלפה',
     integratorFee: 'דמי שירות',
+    lifiFee: 'עמלת LI.FI',
   },
   transfer: {
     fromNetwork: 'מהרשת',

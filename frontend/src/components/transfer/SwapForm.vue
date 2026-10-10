@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, toRef, watch } from 'vue'
 import { formatUnits, parseUnits } from 'ethers'
-import { api, type BridgeQuote, type ChainSlug, type SwapQuote, type Transaction } from '@/services/api'
+import { api, SWAP_FEE_LABEL_KEYS, type BridgeQuote, type ChainSlug, type SwapQuote, type Transaction } from '@/services/api'
 import { formatAmount, unitsToSignificant } from '@/services/money'
 import { truncateAddress } from '@/services/format'
 import { waitForTransactionConfirmation } from '@/services/transactionStatus'
@@ -213,17 +213,17 @@ function viewOf(quote: SwapQuote | BridgeQuote | null): QuoteView | null {
       buyUsdPrice: null,
       gasWei: BigInt(quote.gas_price) * BigInt(quote.estimated_gas),
       // Each fee is charged in the sell or buy token; one that's neither
-      // (shouldn't happen with 0x) is read in the buy token's units.
+      // (shouldn't happen) is read in the buy token's units.
       fees: (quote.fees ?? []).map((f) => {
         const match = [sell, buy].find((tk) => (tk.address ?? NATIVE_PSEUDO_ADDRESS).toLowerCase() === f.token.toLowerCase()) ?? buy
         return {
-          label: t(f.kind === 'zero_ex' ? 'review.swapFee' : 'review.integratorFee'),
+          label: t(SWAP_FEE_LABEL_KEYS[f.kind] ?? 'review.integratorFee'),
           text: `${formatAmount(Number(formatUnits(f.amount, match.decimals)))} ${match.symbol}`,
           usd: null,
         }
       }),
       etaSecs: null,
-      via: '0x',
+      via: quote.provider,
       viaLogoUrl: null,
       price: Number(quote.price),
     }
@@ -396,8 +396,10 @@ async function confirm() {
     if (!quote) throw new Error('no quote')
     const spender = 'allowance_target' in quote ? quote.allowance_target : quote.approval_address
     const amount = 'sell_amount' in quote ? quote.sell_amount : quote.from_amount
-    if (sell.address !== null && spender) {
-      const approved = await ctx.ensureAllowance(account, sell.address, spender, amount)
+    // A native coin needs no approval, unless it's sold as its own ERC-20 (CELO via LI.FI).
+    const approveToken = sell.address ?? NATIVE_ASSETS[txChain].tokenAddress ?? null
+    if (approveToken !== null && spender) {
+      const approved = await ctx.ensureAllowance(account, approveToken, spender, amount)
       if (!approved) {
         busy.value = false
         messages.dismiss(msgId)
@@ -459,11 +461,12 @@ async function confirm() {
 }
 
 const signingNotice = computed(() => {
-  const quote = activeQuote.value.quote.value
-  if (!quote) return null
-  return isCross.value
-    ? t('transfer.bridgeSigningNotice', { address: truncateAddress(quote.to) })
-    : t('swap.signingNotice', { address: truncateAddress(quote.to) })
+  if (isCross.value) {
+    const quote = bridgeQuote.quote.value
+    return quote ? t('transfer.bridgeSigningNotice', { address: truncateAddress(quote.to) }) : null
+  }
+  const quote = swapQuote.quote.value
+  return quote ? t('swap.signingNotice', { address: truncateAddress(quote.to), provider: quote.provider }) : null
 })
 </script>
 

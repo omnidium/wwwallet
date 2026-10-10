@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet si blocca dopo un breve periodo di inattività e non salva mai la tua sessione sbloccata sul disco: chiudi la scheda e l’app se ne dimentica, di proposito.',
       },
       {
-        title: 'Cinque reti Ethereum, un unico set di account',
-        body: 'Conserva e invia sulla mainnet di Ethereum, su Polygon, Arbitrum, Base e Optimism utilizzando gli stessi account e indirizzi.',
+        title: 'Quindici reti Ethereum, un unico set di account',
+        body: 'Conserva e invia sulla mainnet di Ethereum e su altre 14 reti — tra cui Arbitrum, Base, Optimism, Polygon, Linea e ZKsync — utilizzando gli stessi account e indirizzi.',
       },
     ],
     caveatTitle: 'La tua frase di recupero sblocca il tuo caveau: non è un backup magico',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'wwwallet è davvero gratis?',
-        a: 'Sì. L’uso è gratuito, non ci sono livelli premium né contenuti a pagamento, e wwwallet non aggiunge commissioni a nulla di ciò che invii o scambi. L’unico costo inevitabile è la commissione di transazione (gas) della rete stessa, che va alla rete piuttosto che a wwwallet. Le quotazioni di scambio provengono dall’aggregatore di exchange 0x, che può includere una propria commissione su alcune operazioni: eventuali commissioni di questo tipo sono indicate nella schermata di riepilogo prima della conferma.',
+        a: 'Sì. L’uso è gratuito, non ci sono livelli premium né contenuti a pagamento, e wwwallet non aggiunge commissioni a nulla di ciò che invii o scambi. L’unico costo inevitabile è la commissione di transazione (gas) della rete stessa, che va alla rete piuttosto che a wwwallet. Le quotazioni di scambio provengono dall’aggregatore di exchange 0x (o da LI.FI, sulle reti non coperte da 0x), che può includere una propria commissione su alcune operazioni: eventuali commissioni di questo tipo sono indicate nella schermata di riepilogo prima che tu confermi.',
       },
       {
         q: 'Ci sono pubblicità, tracker o strumenti di analisi?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'Quali reti supporta wwwallet?',
-        a: 'La mainnet di Ethereum, oltre alle reti Layer-2 Polygon, Arbitrum, Base e Optimism — tutte gestite dallo stesso insieme di account.',
+        a: 'Mainnet di Ethereum, oltre ad Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain e Scroll — il tutto dallo stesso insieme di account.',
       },
       {
         q: 'Come faccio a ricaricare il mio portafoglio?',
-        a: 'Apri un conto, scegli “Visualizza codice QR” per vedere il tuo indirizzo e invia fondi a quell’indirizzo da un exchange o da un altro portafoglio. Assicurati di inviare i fondi sulla rete giusta (Ethereum, Polygon, Arbitrum, Base o Optimism): lo stesso indirizzo funziona su tutte queste reti, ma i fondi inviati su una rete appariranno solo su quella rete. Ti servirà anche un po’ della moneta nativa della rete (come ETH) per pagare le commissioni di transazione.',
+        a: 'Apri un account, scegli “Visualizza codice QR” per vedere il tuo indirizzo e invia fondi a quell’indirizzo da un exchange o da un altro portafoglio. Assicurati di inviare sulla rete giusta (come Ethereum, Base o Arbitrum): lo stesso indirizzo funziona su tutte le reti supportate, ma i fondi inviati su una rete appariranno solo su quella rete. Ti servirà anche un po’ della moneta nativa della rete (come ETH) per pagare le commissioni di transazione.',
       },
       {
         q: 'Cosa posso fare con wwwallet?',
@@ -241,6 +241,6 @@ export default {
   meta: {
     title: 'wwwallet — Portafoglio Ethereum gratuito e non custodito',
     description:
-      'Portafoglio Ethereum gratuito nel tuo browser. Nessuna registrazione, nessuna pubblicità, nessun tracciamento: le tue chiavi rimangono crittografate sul tuo dispositivo. Ethereum, Arbitrum, Base, Optimism e Polygon.',
+      'Portafoglio Ethereum gratuito nel tuo browser. Nessuna registrazione, nessuna pubblicità, nessun tracciamento: le tue chiavi rimangono crittografate sul tuo dispositivo. Ethereum, Base, Arbitrum, Optimism, Polygon e altre 10 reti.',
   },
 }

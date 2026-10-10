@@ -19,7 +19,9 @@ use crate::traits::TransactionBroadcaster;
 /// trace — unlike a normal public broadcast, where even a losing transaction
 /// still gets mined and shows up as failed. That's indistinguishable from
 /// wwwallet's own broadcast just not working. These endpoints (Foundation/
-/// chain-team-operated, no API key) skip that layer entirely.
+/// chain-team-operated, no API key) skip that layer entirely — publicnode's
+/// where it covers the chain, otherwise the one the chain's own docs list
+/// (World Chain's non-Alchemy one).
 pub struct PublicRpcProvider;
 
 impl PublicRpcProvider {
@@ -34,6 +36,16 @@ impl PublicRpcProvider {
             ChainId::Arbitrum => "https://arbitrum-one-rpc.publicnode.com",
             ChainId::Base => "https://base-rpc.publicnode.com",
             ChainId::Optimism => "https://optimism-rpc.publicnode.com",
+            ChainId::Robinhood => "https://robinhood-rpc.publicnode.com",
+            ChainId::WorldChain => "https://worldchain-mainnet.gateway.tenderly.co",
+            ChainId::Ink => "https://ink-rpc.publicnode.com",
+            ChainId::Linea => "https://linea-rpc.publicnode.com",
+            ChainId::Gnosis => "https://gnosis-rpc.publicnode.com",
+            ChainId::Celo => "https://celo-rpc.publicnode.com",
+            ChainId::ZkSync => "https://mainnet.era.zksync.io",
+            ChainId::Ronin => "https://api.roninchain.com/rpc",
+            ChainId::Unichain => "https://unichain-rpc.publicnode.com",
+            ChainId::Scroll => "https://scroll-rpc.publicnode.com",
         }
     }
 
@@ -122,13 +134,7 @@ mod tests {
 
     #[test]
     fn every_chain_has_a_distinct_rpc_url() {
-        let chains = [
-            ChainId::Ethereum,
-            ChainId::Polygon,
-            ChainId::Arbitrum,
-            ChainId::Base,
-            ChainId::Optimism,
-        ];
+        let chains = ChainId::ALL;
         let urls: std::collections::HashSet<&str> =
             chains.iter().map(|c| PublicRpcProvider::rpc_url(*c)).collect();
         assert_eq!(urls.len(), chains.len());

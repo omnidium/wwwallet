@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'بيع',
     buyTokenLabel: 'شراء',
     sellAmountLabel: 'مبلغ البيع',
-    signingNotice: 'أنت تقوم بالتوقيع على معاملة مع العقد {address} (عبر مجمع 0x).',
+    signingNotice: 'أنت تقوم بالتوقيع على معاملة مع العقد {address} (عبر {provider}).',
     submit: 'المبادلة',
     selectToken: 'اختر الرمز المميز',
     searchTokenPlaceholder: 'ابحث عن الاسم أو الرمز',
@@ -331,6 +331,7 @@ export default {
       'قم أولاً بإعداد قفل الشاشة (بصمة الإصبع أو التعرف على الوجه أو رقم التعريف الشخصي) على هذا الجهاز، ثم حاول مرة أخرى.',
     passkeyProviderNotReady:
       'لم يتمكن مدير مفاتيح المرور الخاص بك من حفظ مفتاح المرور. إذا كان ينتظر منك تسجيل الدخول، أو التحقق من هويتك، أو إدخال عبارة مرور للمزامنة (مثل «مدير كلمات مرور Google» عند إيقاف مزامنة Chrome مؤقتًا)، فقم بإنهاء ذلك، ثم حاول مرة أخرى.',
+    chainUnavailable: 'هذه الشبكة غير متوفرة في wwwallet حتى الآن.',
   },
   accountCard: {
     copyAddress: 'انسخ العنوان',
@@ -413,6 +414,7 @@ export default {
     price: 'السعر',
     swapFee: 'رسوم المبادلة',
     integratorFee: 'رسوم الخدمة',
+    lifiFee: 'رسوم LI.FI',
   },
   transfer: {
     fromNetwork: 'من الشبكة',

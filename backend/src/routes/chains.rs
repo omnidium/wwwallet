@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 use crate::error::ApiError;
 use crate::state::AppState;
 use wwwallet_providers::types::{
-    AddressActivity, BridgeQuote, BridgeStatus, ContractAbi, HistoricalPrice, FxRates, NativePrice, PriceHistory, SwapQuote, TokenListItem,
+    AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, ContractAbi, HistoricalPrice, FxRates, NativePrice, PriceHistory, SwapQuote, TokenListItem,
     TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 use wwwallet_providers::traits::BridgeQuoteRequest;
@@ -48,6 +48,22 @@ pub async fn address_activity(
         state
             .providers
             .address_activity(chain, &address, client_ip(&headers))
+            .await?,
+    ))
+}
+
+#[worker::send]
+pub async fn address_presence(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path((chain, address)): Path<(String, String)>,
+) -> Result<Json<AddressPresence>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    validate_address(&address)?;
+    Ok(Json(
+        state
+            .providers
+            .address_presence(chain, &address, client_ip(&headers))
             .await?,
     ))
 }

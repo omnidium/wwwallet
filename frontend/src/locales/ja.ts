@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: '売却',
     buyTokenLabel: '購入',
     sellAmountLabel: '売却数量',
-    signingNotice: '{address} 契約（0xアグリゲーター経由）へのトランザクションに署名している。',
+    signingNotice: '{address} 契約（{provider} 経由）へのトランザクションに署名している。',
     submit: 'スワップ',
     selectToken: 'トークンを選択',
     searchTokenPlaceholder: '名前またはシンボルで検索',
@@ -334,6 +334,7 @@ export default {
       'まずこの端末で画面ロック（指紋、顔認証、またはPIN）を設定してから、もう一度試してみてください。',
     passkeyProviderNotReady:
       'パスキーマネージャーがパスキーを保存できなかった。ログインを求められている場合、本人確認を求められている場合、または同期パスフレーズの入力を求められている場合（例：Chromeの同期が一時停止されている際のGoogleパスワードマネージャー）、その操作を完了してから、もう一度試してみてください。',
+    chainUnavailable: 'このネットワークは、現時点ではwwwalletでは利用できない。',
   },
   accountCard: {
     copyAddress: 'アドレスをコピーする',
@@ -416,6 +417,7 @@ export default {
     price: '価格',
     swapFee: 'スワップ手数料',
     integratorFee: 'サービス手数料',
+    lifiFee: 'LI.FIの手数料',
   },
   transfer: {
     fromNetwork: 'ネットワークより',

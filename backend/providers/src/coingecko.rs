@@ -10,14 +10,28 @@ use crate::traits::{
 };
 use crate::types::{CoinSearchResult, NativePrice, PriceHistory};
 
-/// Every EVM chain here settles in ETH except Polygon (POL) — see
-/// ChainId::native_symbol. CoinGecko's `/simple/price` takes coin ids, not
-/// ticker symbols. Not "matic-network": that id still tracks the legacy MATIC
-/// token, whose price has drifted away from POL's since the migration.
+/// Every EVM chain here settles in ETH except Polygon (POL), Gnosis (xDAI),
+/// Celo and Ronin — see ChainId::native_symbol. CoinGecko's `/simple/price`
+/// takes coin ids, not ticker symbols. Not "matic-network": that id still
+/// tracks the legacy MATIC token, whose price has drifted away from POL's
+/// since the migration.
 fn coingecko_id(chain: ChainId) -> &'static str {
     match chain {
-        ChainId::Ethereum | ChainId::Arbitrum | ChainId::Base | ChainId::Optimism => "ethereum",
         ChainId::Polygon => "polygon-ecosystem-token",
+        ChainId::Gnosis => "xdai",
+        ChainId::Celo => "celo",
+        ChainId::Ronin => "ronin",
+        ChainId::Ethereum
+        | ChainId::Arbitrum
+        | ChainId::Base
+        | ChainId::Optimism
+        | ChainId::Robinhood
+        | ChainId::WorldChain
+        | ChainId::Ink
+        | ChainId::Linea
+        | ChainId::ZkSync
+        | ChainId::Unichain
+        | ChainId::Scroll => "ethereum",
     }
 }
 

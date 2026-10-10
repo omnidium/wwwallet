@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Sælg',
     buyTokenLabel: 'Køb',
     sellAmountLabel: 'Salgsbeløb',
-    signingNotice: 'Du underskriver en transaktion til kontrakten {address} (via 0x-aggregatoren).',
+    signingNotice: 'Du underskriver en transaktion til kontrakt {address} (via {provider}).',
     submit: 'Swap',
     selectToken: 'Vælg token',
     searchTokenPlaceholder: 'Søg efter navn eller symbol',
@@ -338,6 +338,7 @@ export default {
       'Indstil først en skærmlås (fingeraftryk, ansigtsgenkendelse eller PIN-kode) på denne enhed, og prøv derefter igen.',
     passkeyProviderNotReady:
       'Din adgangskodeadministrator kunne ikke gemme adgangskoden. Hvis den venter på, at du logger ind, bekræfter, at det er dig, eller indtaster en synkroniseringsadgangskode (f.eks. Google Password Manager, når Chrome-synkronisering er sat på pause), skal du afslutte det og derefter prøve igen.',
+    chainUnavailable: 'Dette netværk er endnu ikke tilgængeligt i wwwallet.',
   },
   accountCard: {
     copyAddress: 'Kopier adressen',
@@ -421,6 +422,7 @@ export default {
     price: 'Pris',
     swapFee: 'Swap-gebyr',
     integratorFee: 'Servicegebyr',
+    lifiFee: 'LI.FI-gebyr',
   },
   transfer: {
     fromNetwork: 'Fra netværket',

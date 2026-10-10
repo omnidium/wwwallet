@@ -6,6 +6,7 @@ import Sortable from 'sortablejs'
 import { useAccountsStore, type WalletAccount } from '@/stores/accounts'
 import { usePayeesStore } from '@/stores/payees'
 import { useChainDataStore } from '@/stores/chainData'
+import { isChainUnavailableError } from '@/services/api'
 import { useVaultStore } from '@/stores/vault'
 import { useDefaultAccountFallback } from '@/composables/useDefaultAccountFallback'
 import { useDragToTransfer } from '@/composables/useDragToTransfer'
@@ -105,7 +106,11 @@ async function loadAllData() {
   await reconcile()
   // After the known accounts' own data, so their cards fill in first.
   await discover()
-  const failure = results.find((r) => r.status === 'rejected')
+  // A chain the backend can't serve says so on its own cards; the server
+  // answered, so it doesn't count against being reachable.
+  const failure = results.find(
+    (r): r is PromiseRejectedResult => r.status === 'rejected' && !isChainUnavailableError(r.reason),
+  )
   if (failure) throw failure.reason
 }
 
@@ -179,19 +184,19 @@ watch(
     const previous = new Set(previousAddresses ?? [])
     const added = accounts.accounts.filter((a) => !previous.has(`${a.chain}:${a.address}`))
     if (added.length === 0) return
-    try {
-      await Promise.all([
-        ...[...new Set(added.map((a) => a.chain))]
-          .filter((chain) => chainData.nativePriceUsdByChain[chain] === undefined)
-          .map((chain) => chainData.loadNativePrice(chain)),
-        ...added.map((a) => chainData.loadAddressActivity(a.chain, a.address)),
-      ])
-      // A newly added (not discovered) account may already be in use elsewhere.
-      if (added.some((a) => !a.discovered)) await discover()
-    } catch {
-      // Silent, same reasoning as refresh() below — the connectivity badge
-      // already surfaces this, and the next periodic refresh will retry.
-    }
+    // Settled, like loadAllData: one account's failure (a chain the backend
+    // can't serve, say) mustn't keep the others from discovery.
+    await Promise.allSettled([
+      ...[...new Set(added.map((a) => a.chain))]
+        .filter((chain) => chainData.nativePriceUsdByChain[chain] === undefined)
+        .map((chain) => chainData.loadNativePrice(chain)),
+      ...added.map((a) => chainData.loadAddressActivity(a.chain, a.address)),
+    ])
+    // A newly added (not discovered) account may already be in use elsewhere.
+    // Failures stay silent, same reasoning as refresh() below — the
+    // connectivity badge already surfaces them, and the next periodic
+    // refresh retries.
+    if (added.some((a) => !a.discovered)) await discover().catch(() => { })
   },
 )
 

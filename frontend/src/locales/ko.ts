@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: '매도',
     buyTokenLabel: '구매',
     sellAmountLabel: '매도 수량',
-    signingNotice: '{address} 계약(0x 애그리게이터를 통해)에 대한 트랜잭션에 서명하고 있습니다.',
+    signingNotice: '{address} 계약({provider}을 통해)에 대한 트랜잭션에 서명하고 있습니다.',
     submit: '스왑',
     selectToken: '토큰 선택',
     searchTokenPlaceholder: '이름 또는 심볼 검색',
@@ -335,6 +335,7 @@ export default {
       '먼저 이 기기에서 화면 잠금(지문, 얼굴 인식 또는 PIN)을 설정한 후 다시 시도해 주세요.',
     passkeyProviderNotReady:
       '비밀번호 관리자가 비밀번호를 저장하지 못했습니다. 로그인, 본인 확인 또는 동기화 비밀번호 입력(예: Chrome 동기화가 일시 중지된 상태의 Google 비밀번호 관리자)을 기다리고 있다면, 해당 절차를 완료한 후 다시 시도해 주세요.',
+    chainUnavailable: '이 네트워크는 아직 wwwallet에서 지원되지 않습니다.',
   },
   accountCard: {
     copyAddress: '주소를 복사하세요',
@@ -417,6 +418,7 @@ export default {
     price: '가격',
     swapFee: '스왑 수수료',
     integratorFee: '서비스 수수료',
+    lifiFee: 'LI.FI 수수료',
   },
   transfer: {
     fromNetwork: '출처: 네트워크',

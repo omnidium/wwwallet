@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { formatUnits } from 'ethers'
-import type { ChainSlug, Transaction } from '@/services/api'
+import { SWAP_FEE_LABEL_KEYS, type ChainSlug, type Transaction } from '@/services/api'
 import { txnUrl, addressUrl } from '@/services/blockExplorer'
 import { addressDisplayLabel } from '@/services/addressLabel'
 import { truncateAddress } from '@/services/format'
@@ -271,8 +271,8 @@ const paidBySomeoneElse = computed(
                 <span v-else class="text-medium-emphasis">{{ t('transactionDetail.feeUnavailable') }}</span>
               </td>
             </tr>
-            <tr v-for="swapFee in swapFeeRows" :key="swapFee.kind">
-              <td>{{ t(swapFee.kind === 'zero_ex' ? 'review.swapFee' : 'review.integratorFee') }}</td>
+            <tr v-for="(swapFee, i) in swapFeeRows" :key="i">
+              <td>{{ t(SWAP_FEE_LABEL_KEYS[swapFee.kind] ?? 'review.integratorFee') }}</td>
               <td>
                 <span class="text-no-wrap">{{ formatAmount(swapFee.amount) }} {{ swapFee.symbol }}</span>
                 <template v-if="swapFee.fiat">{{ ' ' }}<span class="text-no-wrap txn-detail-fiat">{{ swapFee.fiat }}</span></template>

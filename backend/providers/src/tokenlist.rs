@@ -16,6 +16,16 @@ fn list_url(chain: ChainId) -> &'static str {
         ChainId::Arbitrum => "https://tokens.coingecko.com/arbitrum-one/all.json",
         ChainId::Base => "https://tokens.coingecko.com/base/all.json",
         ChainId::Optimism => "https://tokens.coingecko.com/optimistic-ethereum/all.json",
+        ChainId::Robinhood => "https://tokens.coingecko.com/robinhood/all.json",
+        ChainId::WorldChain => "https://tokens.coingecko.com/world-chain/all.json",
+        ChainId::Ink => "https://tokens.coingecko.com/ink/all.json",
+        ChainId::Linea => "https://tokens.coingecko.com/linea/all.json",
+        ChainId::Gnosis => "https://tokens.coingecko.com/xdai/all.json",
+        ChainId::Celo => "https://tokens.coingecko.com/celo/all.json",
+        ChainId::ZkSync => "https://tokens.coingecko.com/zksync/all.json",
+        ChainId::Ronin => "https://tokens.coingecko.com/ronin/all.json",
+        ChainId::Unichain => "https://tokens.coingecko.com/unichain/all.json",
+        ChainId::Scroll => "https://tokens.coingecko.com/scroll/all.json",
     }
 }
 
@@ -72,13 +82,7 @@ mod tests {
 
     #[test]
     fn every_chain_has_a_distinct_list_url() {
-        let chains = [
-            ChainId::Ethereum,
-            ChainId::Polygon,
-            ChainId::Arbitrum,
-            ChainId::Base,
-            ChainId::Optimism,
-        ];
+        let chains = ChainId::ALL;
         let urls: std::collections::HashSet<&str> = chains.iter().map(|c| list_url(*c)).collect();
         assert_eq!(urls.len(), chains.len());
     }

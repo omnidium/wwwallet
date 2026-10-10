@@ -72,7 +72,8 @@ export default {
     sellTokenLabel: 'Myy',
     buyTokenLabel: 'Osta',
     sellAmountLabel: 'Myyntimäärä',
-    signingNotice: 'Allekirjoitat transaktion sopimukselle {address} (0x-aggregaattorin kautta).',
+    signingNotice:
+      'Olet allekirjoittamassa transaktiota sopimukseen {address} (välittäjänä {provider}).',
     submit: 'Vaihda',
     selectToken: 'Valitse token',
     searchTokenPlaceholder: 'Hae nimen tai tunnuksen perusteella',
@@ -336,6 +337,7 @@ export default {
       'Aseta ensin näytön lukitus (sormenjälki, kasvojentunnistus tai PIN-koodi) tälle laitteelle ja yritä sitten uudelleen.',
     passkeyProviderNotReady:
       'Salasananhallintaohjelmasi ei pystynyt tallentamaan salasanaa. Jos se odottaa, että kirjaudut sisään, vahvistat henkilöllisyytesi tai syötät synkronointilauseen (esim. Google Password Manager, kun Chrome-synkronointi on keskeytetty), suorita nämä toimet ja yritä sitten uudelleen.',
+    chainUnavailable: 'Tämä verkko ei ole vielä käytettävissä wwwalletissa.',
   },
   accountCard: {
     copyAddress: 'Kopioi osoite',
@@ -419,6 +421,7 @@ export default {
     price: 'Hinta',
     swapFee: 'Vaihtomaksu',
     integratorFee: 'Palvelumaksu',
+    lifiFee: 'LI.FI-maksu',
   },
   transfer: {
     fromNetwork: 'Verkosta',

@@ -48,8 +48,8 @@ export default {
         body: '„wwwallet“ užsirakina po trumpo neveikimo laikotarpio ir niekada neįrašo jūsų atrakintos sesijos į diską – uždarykite skirtuką, ir programa tai sąmoningai pamirš.',
       },
       {
-        title: 'Penki „Ethereum“ tinklai, vienas sąskaitų rinkinys',
-        body: 'Laikykite ir siųskite per „Ethereum“ pagrindinį tinklą, „Polygon“, „Arbitrum“, „Base“ ir „Optimism“ naudodami tuos pačius paskyrus ir adresus.',
+        title: 'Penkiolika „Ethereum“ tinklų, vienas sąskaitų rinkinys',
+        body: 'Laikykite ir siųskite per „Ethereum“ pagrindinį tinklą ir dar 14 tinklų – įskaitant „Arbitrum“, „Base“, „Optimism“, „Polygon“, „Linea“ ir „ZKsync“ – naudodami tuos pačius paskyrus ir adresus.',
       },
     ],
     caveatTitle:
@@ -114,7 +114,7 @@ export default {
     items: [
       {
         q: 'Ar „wwwallet“ tikrai nemokama?',
-        a: 'Taip. Naudotis ja nemokama, nėra jokio „premium“ lygio ir nieko už mokamos sienos, o „wwwallet“ nepriskaičiuoja jokių mokesčių už siunčiamus ar keičiamus turtus. Vienintelė neišvengiama išlaida yra pačio tinklo sandorio (dujų) mokestis, kuris atitenka tinklui, o ne „wwwallet“. Keitimo kainos pateikiamos iš „0x“ biržų agregatoriaus, kuris kai kuriose operacijose gali taikyti savo mokestį – bet koks toks mokestis yra nurodytas peržiūros ekrane prieš jums patvirtinant.',
+        a: 'Taip. Naudotis ja nemokama, nėra jokio „premium“ lygio ir nieko už mokamos sienos, o „wwwallet“ nepriskaičiuoja jokių mokesčių už siunčiamus ar keičiamus turimus. Vienintelė neišvengiama išlaida yra pačio tinklo sandorio (dujų) mokestis, kuris atitenka tinklui, o ne „wwwallet“. Keitimo kainos pateikiamos iš „0x“ biržų agregatoriaus (arba „LI.FI“, tinkle, kurio „0x“ neapima), kuris kai kuriose operacijose gali taikyti savo mokestį – bet koks toks mokestis yra nurodytas peržiūros ekrane prieš jums patvirtinant.',
       },
       {
         q: 'Ar yra reklamų, sekimo įrankių ar analizės priemonių?',
@@ -166,11 +166,11 @@ export default {
       },
       {
         q: 'Kokius tinklus palaiko „wwwallet“?',
-        a: '„Ethereum“ pagrindinis tinklas, taip pat 2-ojo lygmens tinklai „Polygon“, „Arbitrum“, „Base“ ir „Optimism“ – visi iš to paties sąskaitų rinkinio.',
+        a: '„Ethereum“ pagrindinis tinklas, taip pat „Arbitrum“, „Base“, „Optimism“, „Polygon“, „Robinhood Chain“, „World Chain“, „Ink“, „Linea“, „Gnosis“, „Celo“, „ZKsync Era“, „Ronin“, „Unichain“ ir „Scroll“ – visi iš to paties sąskaitų rinkinio.',
       },
       {
         q: 'Kaip įnešti lėšų į savo piniginę?',
-        a: 'Atidarykite sąskaitą, pasirinkite „Peržiūrėti QR kodą“, kad pamatytumėte jos adresą, ir iš biržos ar kitos piniginės perveskite lėšas į tą adresą. Įsitikinkite, kad siunčiate per tinkamą tinklą („Ethereum“, „Polygon“, „Arbitrum“, „Base“ arba „Optimism“) – tas pats adresas veikia visuose juose, tačiau per vieną tinklą siunčiamos lėšos atsiranda tik tame tinkle. Be to, jums reikės šiek tiek to tinklo vietinės valiutos (pavyzdžiui, ETH), kad galėtumėte sumokėti sandorio mokesčius.',
+        a: 'Atidarykite sąskaitą, pasirinkite „Peržiūrėti QR kodą“, kad pamatytumėte jos adresą, ir iš biržos ar kitos piniginės nusiųskite lėšas į tą adresą. Įsitikinkite, kad siunčiate per tinkamą tinklą (pavyzdžiui, „Ethereum“, „Base“ ar „Arbitrum“) – tas pats adresas veikia visuose palaikomuose tinkluose, tačiau viename tinkle išsiųstos lėšos atsiranda tik tame tinkle. Taip pat reikės šiek tiek tinklo vietinės valiutos (pavyzdžiui, ETH), kad galėtumėte sumokėti sandorio mokesčius.',
       },
       {
         q: 'Ką galiu daryti su „wwwallet“?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Nemokama, nekustodinė „Ethereum“ piniginė',
     description:
-      'Nemokama „Ethereum“ piniginė jūsų naršyklėje. Nereikia registruotis, nėra reklamų, nėra sekimo – jūsų raktų duomenys lieka užšifruoti jūsų įrenginyje. „Ethereum“, „Arbitrum“, „Base“, „Optimism“ ir „Polygon“.',
+      'Nemokama „Ethereum“ piniginė jūsų naršyklėje. Nereikia registruotis, nėra reklamų, nėra sekimo – jūsų raktų duomenys lieka užšifruoti jūsų įrenginyje. „Ethereum“, „Base“, „Arbitrum“, „Optimism“, „Polygon“ ir dar 10 tinklų.',
   },
 }

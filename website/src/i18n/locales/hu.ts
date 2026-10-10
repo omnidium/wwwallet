@@ -48,8 +48,8 @@ export default {
         body: 'A wwwallet rövid inaktivitás után lezárul, és soha nem menti a feloldott munkamenetet a merevlemezre – ha bezárja a lapot, az alkalmazás szándékosan elfelejti az adatokat.',
       },
       {
-        title: 'Öt Ethereum-hálózat, egy fiókkészlet',
-        body: 'Tartson és küldjön az Ethereum főhálózaton, a Polygonon, az Arbitrumon, a Base-en és az Optimism-en ugyanazokkal a fiókokkal és címekkel.',
+        title: 'Tizenöt Ethereum-hálózat, egy fiókkészlet',
+        body: 'Tartson és küldjön az Ethereum főhálózaton és további 14 hálózaton – beleértve az Arbitrumot, a Base-t, az Optimismet, a Polygont, a Lineát és a ZKsync-et – ugyanazokkal a fiókokkal és címekkel.',
       },
     ],
     caveatTitle:
@@ -114,7 +114,7 @@ export default {
     items: [
       {
         q: 'A wwwallet valóban ingyenes?',
-        a: 'Igen. A használata ingyenes, nincs prémium szint és nincs fizetős tartalom, és a wwwallet semmilyen díjat nem számol fel az elküldött vagy cserélt összegekre. Az egyetlen elkerülhetetlen költség a hálózat saját tranzakciós (gáz) díja, amely a hálózatnak, nem pedig a wwwalletnek jut. A csereárak a 0x tőzsde-összesítőtől származnak, amely egyes tranzakciókhoz saját díjat számíthat fel – az ilyen díjakat a megerősítés előtt a felülvizsgálati képernyőn jeleníti meg a rendszer.',
+        a: 'Igen. A használata ingyenes, nincs prémium szint és nincs fizetős tartalom, és a wwwallet semmilyen díjat nem számol fel az elküldött vagy cserélt összegekre. Az egyetlen elkerülhetetlen költség a hálózat saját tranzakciós (gáz) díja, amely a hálózatnak jut, nem pedig a wwwalletnek. A csereárak a 0x tőzsde-összesítőtől származnak (vagy a LI.FI-től, azokon a hálózatokon, amelyeket a 0x nem fed le), amely egyes tranzakciók esetén saját díjat számíthat fel – az ilyen díjakat a megerősítés előtt a visszajelzési képernyőn feltüntetik.',
       },
       {
         q: 'Vannak hirdetések, nyomkövetők vagy elemzések?',
@@ -166,11 +166,11 @@ export default {
       },
       {
         q: 'Mely hálózatokat támogatja a wwwallet?',
-        a: 'Az Ethereum főhálózata, valamint a Layer-2 hálózatok: Polygon, Arbitrum, Base és Optimism – mindegyik ugyanabból a fiókcsoportból.',
+        a: 'Az Ethereum főhálózata, valamint az Arbitrum, a Base, az Optimism, a Polygon, a Robinhood Chain, a World Chain, az Ink, a Linea, a Gnosis, a Celo, a ZKsync Era, a Ronin, az Unichain és a Scroll – mind ugyanabból a fiókkészletből.',
       },
       {
         q: 'Hogyan tölthetem fel a pénztárcámat?',
-        a: 'Nyisson fiókot, válassza a „QR-kód megtekintése” lehetőséget a cím megtekintéséhez, majd küldjön pénzt arra a címre egy tőzsdéről vagy egy másik pénztárcából. Győződjön meg róla, hogy a megfelelő hálózaton (Ethereum, Polygon, Arbitrum, Base vagy Optimism) küldi el a pénzt – ugyanaz a cím mindegyiken működik, de az egyik hálózaton elküldött pénzeszközök csak azon a hálózaton jelennek meg. Szüksége lesz egy kis mennyiségű hálózati natív érmére (például ETH-ra) is a tranzakciós díjak kifizetéséhez.',
+        a: 'Nyisson fiókot, válassza a „QR-kód megtekintése” lehetőséget a cím megtekintéséhez, majd küldjön pénzt arra a címre egy tőzsdéről vagy egy másik pénztárcából. Győződjön meg arról, hogy a megfelelő hálózaton (például Ethereum, Base vagy Arbitrum) küldi el a pénzt – ugyanaz a cím minden támogatott hálózaton működik, de az egyik hálózaton elküldött pénzeszközök csak azon a hálózaton jelennek meg. Szüksége lesz egy kis mennyiségű hálózati natív érmére (például ETH-ra) is a tranzakciós díjak kifizetéséhez.',
       },
       {
         q: 'Mit tehetek a wwwallet segítségével?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Ingyenes, nem letéti Ethereum-pénztárca',
     description:
-      'Ingyenes Ethereum-pénztárca a böngészőjében. Nincs regisztráció, nincsenek hirdetések, nincs nyomon követés – a kulcsai titkosítva maradnak a készülékén. Ethereum, Arbitrum, Base, Optimism és Polygon.',
+      'Ingyenes Ethereum-pénztárca a böngészőjében. Nincs regisztráció, nincsenek hirdetések, nincs nyomon követés – a kulcsai titkosítva maradnak a készülékén. Ethereum, Base, Arbitrum, Optimism, Polygon és további 10 hálózat.',
   },
 }

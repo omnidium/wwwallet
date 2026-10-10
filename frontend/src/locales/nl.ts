@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Verkopen',
     buyTokenLabel: 'Kopen',
     sellAmountLabel: 'Verkoopbedrag',
-    signingNotice: 'Je ondertekent een transactie naar contract {address} (via de 0x-aggregator).',
+    signingNotice: 'Je ondertekent een transactie naar contract {address} (via {provider}).',
     submit: 'Swap',
     selectToken: 'Kies een token',
     searchTokenPlaceholder: 'Zoek op naam of symbool',
@@ -338,6 +338,7 @@ export default {
       'Stel eerst een schermvergrendeling in (vingerafdruk, gezichtsherkenning of pincode) op dit apparaat en probeer het daarna opnieuw.',
     passkeyProviderNotReady:
       'Je wachtwoordbeheerder kon de wachtwoordzin niet opslaan. Als hij wacht tot je inlogt, je identiteit verifieert of een synchronisatiewachtwoordzin invoert (bijv. Google Password Manager wanneer Chrome-synchronisatie is gepauzeerd), doe dat dan eerst en probeer het daarna opnieuw.',
+    chainUnavailable: 'Dit netwerk is nog niet beschikbaar in wwwallet.',
   },
   accountCard: {
     copyAddress: 'Kopieer het adres',
@@ -421,6 +422,7 @@ export default {
     price: 'Prijs',
     swapFee: 'Swapkosten',
     integratorFee: 'Servicekosten',
+    lifiFee: 'LI.FI-kosten',
   },
   transfer: {
     fromNetwork: 'Van het netwerk',

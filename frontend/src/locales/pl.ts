@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Sprzedaj',
     buyTokenLabel: 'Kup',
     sellAmountLabel: 'Kwota sprzedaży',
-    signingNotice: 'Podpisujesz transakcję do kontraktu {address} (przez agregator 0x).',
+    signingNotice: 'Podpisujesz transakcję do kontraktu {address} (przez {provider}).',
     submit: 'Swap',
     selectToken: 'Wybierz token',
     searchTokenPlaceholder: 'Wyszukaj nazwę lub symbol',
@@ -338,6 +338,7 @@ export default {
       'Najpierw ustaw blokadę ekranu (odcisk palca, rozpoznawanie twarzy lub PIN) na tym urządzeniu, a potem spróbuj jeszcze raz.',
     passkeyProviderNotReady:
       'Twój menedżer haseł nie mógł zapisać hasła. Jeśli czeka, aż się zalogujesz, potwierdzisz swoją tożsamość lub wprowadzisz hasło synchronizacji (np. w Menedżerze haseł Google, gdy synchronizacja Chrome jest wstrzymana), zrób to, a potem spróbuj jeszcze raz.',
+    chainUnavailable: 'Ta sieć nie jest jeszcze dostępna w wwwallet.',
   },
   accountCard: {
     copyAddress: 'Skopiuj adres',
@@ -421,6 +422,7 @@ export default {
     price: 'Cena',
     swapFee: 'Opłata za wymianę',
     integratorFee: 'Opłata za usługę',
+    lifiFee: 'Opłata LI.FI',
   },
   transfer: {
     fromNetwork: 'Z sieci',

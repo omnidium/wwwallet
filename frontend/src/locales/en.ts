@@ -193,6 +193,7 @@ export default {
     price: 'Price',
     swapFee: 'Swap fee',
     integratorFee: 'Service fee',
+    lifiFee: 'LI.FI fee',
   },
   addAccount: {
     title: 'Add account',
@@ -245,7 +246,7 @@ export default {
     popularTokens: 'Popular tokens',
     noResults: 'No tokens found.',
     viewOnExplorer: 'View token on block explorer',
-    signingNotice: "You're signing a transaction to contract {address} (via the 0x aggregator).",
+    signingNotice: "You're signing a transaction to contract {address} (via {provider}).",
     submit: 'Swap',
   },
   payees: {
@@ -507,6 +508,7 @@ export default {
     tokenNotOnChain: "That token isn't supported on one of these networks.",
     noLiquidity:
       'No route is available for this right now — try a different token, amount or network.',
+    chainUnavailable: "This network isn't available in wwwallet yet.",
     transactionWouldFail:
       'This transaction would fail if submitted — check your balance and any required approval.',
   },

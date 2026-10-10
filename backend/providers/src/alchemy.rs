@@ -13,7 +13,7 @@ use crate::traits::{
     TransactionPrepProvider, TransactionStatusProvider,
 };
 use crate::types::{
-    AddressActivity, Balance, NativePrice, PriceHistory, TokenMetadata, Transaction,
+    AddressActivity, AddressPresence, Balance, NativePrice, PriceHistory, TokenMetadata, Transaction,
     TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 
@@ -23,6 +23,9 @@ use crate::types::{
 /// along inside the opaque cursor sent back to the client — a huge per-fetch
 /// size would make that cursor huge too.
 const TRANSACTION_PAGE_SIZE: usize = 25;
+
+/// ZKsync's bootloader, which every transaction there pays its gas fee to.
+const ZKSYNC_BOOTLOADER: &str = "0x0000000000000000000000000000000000008001";
 
 /// Upper bound on how many pages `fetch_all_token_balances` will fetch for a
 /// single address, so a wallet that's been flooded with thousands of
@@ -155,13 +158,55 @@ impl AlchemyProvider {
             "method": method,
             "params": params,
         });
-        let resp: Value = http::post_json(&self.rpc_url(chain), &body).await?;
+        let resp: Value = http::post_json(&self.rpc_url(chain), &body).await.map_err(not_enabled)?;
         if let Some(err) = resp.get("error") {
-            return Err(ProviderError::Upstream(err.to_string()));
+            return Err(not_enabled(ProviderError::Upstream(err.to_string())));
         }
         resp.get("result")
             .cloned()
             .ok_or_else(|| ProviderError::Upstream("missing result field".into()))
+    }
+
+    /// Several JSON-RPC calls in one HTTP request, which spends one call of
+    /// the upstream budget however many it carries. Results come back in the
+    /// order the calls were given.
+    async fn rpc_batch(&self, chain: ChainId, calls: &[(&str, Value)]) -> ProviderResult<Vec<Value>> {
+        let body: Vec<Value> = calls
+            .iter()
+            .enumerate()
+            .map(|(id, (method, params))| {
+                json!({ "jsonrpc": "2.0", "id": id, "method": method, "params": params })
+            })
+            .collect();
+        let resp: Value = http::post_json(&self.rpc_url(chain), &body).await.map_err(not_enabled)?;
+        Self::batch_results(&resp, calls.len()).map_err(not_enabled)
+    }
+
+    /// Each reply in a batch response carries its call's id; they can arrive
+    /// in any order. A batch refused outright is a single error object.
+    fn batch_results(resp: &Value, count: usize) -> ProviderResult<Vec<Value>> {
+        if let Some(err) = resp.get("error") {
+            return Err(ProviderError::Upstream(err.to_string()));
+        }
+        let replies = resp
+            .as_array()
+            .ok_or_else(|| ProviderError::Upstream("batch response isn't a list".into()))?;
+        let mut results = vec![None; count];
+        for reply in replies {
+            if let Some(err) = reply.get("error") {
+                return Err(ProviderError::Upstream(err.to_string()));
+            }
+            let slot = reply
+                .get("id")
+                .and_then(Value::as_u64)
+                .and_then(|id| results.get_mut(id as usize))
+                .ok_or_else(|| ProviderError::Upstream("batch reply with an unknown id".into()))?;
+            *slot = reply.get("result").cloned();
+        }
+        results
+            .into_iter()
+            .map(|r| r.ok_or_else(|| ProviderError::Upstream("batch reply missing".into())))
+            .collect()
     }
 
     /// A swap emits two transfer legs (token sold, token bought) under one tx
@@ -259,6 +304,35 @@ impl AlchemyProvider {
         }
     }
 
+    /// A chain whose native coin is also an ERC-20 (see
+    /// `ChainId::native_token_contract`) can report one movement twice: as
+    /// the native transfer and as the token contract's Transfer event — every
+    /// ETH transfer on ZKsync does. The token copy is dropped; one with no
+    /// native twin (CELO moved through its ERC-20 interface, ETH a ZKsync
+    /// contract sent) is shown as the native coin it is. ZKsync's payments
+    /// to its bootloader are dropped too: they're the gas fee, not a transfer.
+    fn fold_native_token_legs(chain: ChainId, transfers: Vec<Transaction>) -> Vec<Transaction> {
+        let Some(contract) = chain.native_token_contract() else { return transfers };
+        let leg = |t: &Transaction| (t.hash.clone(), t.from.to_lowercase(), t.to.as_deref().map(str::to_lowercase));
+        let native_legs: std::collections::HashSet<_> =
+            transfers.iter().filter(|t| t.contract_address.is_none()).map(leg).collect();
+        transfers
+            .into_iter()
+            .filter_map(|mut t| {
+                if !t.contract_address.as_deref().is_some_and(|c| c.eq_ignore_ascii_case(contract)) {
+                    return Some(t);
+                }
+                let to_bootloader = t.to.as_deref().is_some_and(|to| to.eq_ignore_ascii_case(ZKSYNC_BOOTLOADER));
+                if to_bootloader || native_legs.contains(&leg(&t)) {
+                    return None;
+                }
+                t.contract_address = None;
+                t.asset = chain.native_symbol().to_string();
+                Some(t)
+            })
+            .collect()
+    }
+
     /// `alchemy_getTokenBalances` in "erc20" mode returns every ERC-20
     /// contract this address has ever held a balance of (including long-dead
     /// dust), sorted by contract address — not by balance or relevance. Past
@@ -330,7 +404,8 @@ impl AlchemyProvider {
                 .rpc_call(chain, "alchemy_getAssetTransfers", json!([params]))
                 .await?;
             if let Some(transfers) = resp.get("transfers").and_then(Value::as_array) {
-                cursor.buffer.extend(transfers.iter().map(Self::parse_transfer));
+                let parsed = transfers.iter().map(Self::parse_transfer).collect();
+                cursor.buffer.extend(Self::fold_native_token_legs(chain, parsed));
             }
             state.page_key = resp.get("pageKey").and_then(Value::as_str).map(str::to_string);
             state.exhausted = state.page_key.is_none();
@@ -396,6 +471,10 @@ impl ActivityProvider for AlchemyProvider {
             if !seen_contracts.insert(contract.to_lowercase()) {
                 continue;
             }
+            // Already counted, as the native balance above.
+            if chain.native_token_contract() == Some(contract.to_lowercase().as_str()) {
+                continue;
+            }
             let raw = entry
                 .get("tokenBalance")
                 .and_then(Value::as_str)
@@ -419,6 +498,29 @@ impl ActivityProvider for AlchemyProvider {
             balances,
             transactions,
             next_cursor: cursor.into_next_cursor(),
+        })
+    }
+
+    async fn address_presence(
+        &self,
+        chain: ChainId,
+        address: &str,
+    ) -> ProviderResult<AddressPresence> {
+        let results = self
+            .rpc_batch(
+                chain,
+                &[
+                    ("eth_getBalance", json!([address, "latest"])),
+                    ("eth_getTransactionCount", json!([address, "latest"])),
+                ],
+            )
+            .await?;
+        let nonce_hex = results[1].as_str().unwrap_or("0x0");
+        let transaction_count = u64::from_str_radix(nonce_hex.trim_start_matches("0x"), 16)
+            .map_err(|_| ProviderError::Upstream(format!("unreadable nonce '{nonce_hex}'")))?;
+        Ok(AddressPresence {
+            native_balance: Self::hex_to_decimal_string(results[0].as_str().unwrap_or("0x0")),
+            transaction_count,
         })
     }
 
@@ -570,6 +672,21 @@ impl PriceHistoryProvider for AlchemyProvider {
     }
 }
 
+/// Alchemy turns away a network that isn't switched on for this app's key
+/// (a 403: "LINEA_MAINNET is not enabled for this app"), and one it serves
+/// only plain RPC on when an enhanced API is asked of it ("EAPIs not
+/// enabled on specified network"). Either way the chain can't be served.
+fn not_enabled(err: ProviderError) -> ProviderError {
+    match &err {
+        ProviderError::Upstream(body)
+            if body.contains("not enabled for this app") || body.contains("EAPIs not enabled") =>
+        {
+            ProviderError::ChainNotEnabled
+        }
+        _ => err,
+    }
+}
+
 /// Unix seconds of an ISO-8601 UTC timestamp like "2026-09-28T06:00:00Z" —
 /// the only shape the Prices API returns.
 fn unix_from_iso_timestamp(ts: &str) -> Option<i64> {
@@ -647,14 +764,23 @@ impl TransactionStatusProvider for AlchemyProvider {
 }
 
 /// Total network fee from an `eth_getTransactionReceipt` result, in wei —
-/// None if a field it needs is missing or isn't a hex quantity.
+/// None if a field it needs is missing or isn't a hex quantity, or if the
+/// fee wasn't paid in the native coin at all.
 fn receipt_fee_wei(receipt: &Value) -> Option<u128> {
+    // Celo's fee-currency transactions (CIP-64, and CIP-66/CIP-42 before
+    // and after it) pay gas in a token such as USDC, at a gas price in that
+    // token's units — read as CELO wei it would be a wrong fee, so none.
+    if matches!(receipt.get("type").and_then(Value::as_str), Some("0x7a" | "0x7b" | "0x7c")) {
+        return None;
+    }
     let quantity = |field: &str| -> Option<u128> {
         let hex = receipt.get(field)?.as_str()?.strip_prefix("0x")?;
         u128::from_str_radix(hex, 16).ok()
     };
     let execution = quantity("gasUsed")?.checked_mul(quantity("effectiveGasPrice")?)?;
-    // Only present on OP-stack chains; elsewhere it simply adds nothing.
+    // The L1 data fee, which OP-stack chains (Base, Optimism, World Chain,
+    // Ink, Unichain, Celo) and Scroll charge on top; elsewhere absent, and
+    // Arbitrum and its Orbit chains (Robinhood) count it in gas used.
     let l1 = if receipt.get("l1Fee").is_some() { quantity("l1Fee")? } else { 0 };
     execution.checked_add(l1)
 }
@@ -992,5 +1118,92 @@ mod tests {
             cursor.into_next_cursor().is_some(),
             "still-buffered leftover means there's more to hand out even once both directions are exhausted"
         );
+    }
+
+    #[test]
+    fn a_network_not_switched_on_is_reported_as_such() {
+        let not_enabled_app = ProviderError::Upstream(
+            r#"{"error":{"code":-32600,"message":"LINEA_MAINNET is not enabled for this app."}}"#.into(),
+        );
+        assert!(matches!(not_enabled(not_enabled_app), ProviderError::ChainNotEnabled));
+        let no_enhanced_apis =
+            ProviderError::Upstream(r#"{"code":-32600,"message":"EAPIs not enabled on specified network: [MANTLE_MAINNET]."}"#.into());
+        assert!(matches!(not_enabled(no_enhanced_apis), ProviderError::ChainNotEnabled));
+        let other = ProviderError::Upstream("execution reverted".into());
+        assert!(matches!(not_enabled(other), ProviderError::Upstream(_)));
+    }
+
+    #[test]
+    fn a_native_coin_reported_twice_is_listed_once_as_native() {
+        let leg = |hash: &str, from: &str, to: &str, contract: Option<&str>| Transaction {
+            hash: hash.into(),
+            from: from.into(),
+            to: Some(to.into()),
+            value: "0.1".into(),
+            asset: "ETH".into(),
+            contract_address: contract.map(str::to_string),
+            block_number: Some(1),
+            timestamp: None,
+            status: TransactionStatus::Success,
+            counter_asset: None,
+            counter_value: None,
+            counter_contract_address: None,
+        };
+        const ZK_ETH: &str = "0x000000000000000000000000000000000000800A";
+        let folded = AlchemyProvider::fold_native_token_legs(
+            ChainId::ZkSync,
+            vec![
+                leg("0xa", "0xSender", "0xMe", None),
+                leg("0xa", "0xsender", "0xme", Some(ZK_ETH)), // its twin
+                leg("0xb", "0xContract", "0xMe", Some(ZK_ETH)), // sent by a contract: no twin
+                leg("0xc", "0xMe", ZKSYNC_BOOTLOADER, Some(ZK_ETH)), // the gas fee
+                leg("0xd", "0xMe", "0xOther", Some("0xusdc")),
+            ],
+        );
+        let summary: Vec<_> = folded.iter().map(|t| (t.hash.as_str(), t.contract_address.as_deref())).collect();
+        assert_eq!(summary, [("0xa", None), ("0xb", None), ("0xd", Some("0xusdc"))]);
+
+        let celo = AlchemyProvider::fold_native_token_legs(
+            ChainId::Celo,
+            vec![leg("0xe", "0xMe", "0xOther", Some("0x471EcE3750Da237f93B8E339c536989b8978a438"))],
+        );
+        assert_eq!((celo[0].contract_address.as_deref(), celo[0].asset.as_str()), (None, "CELO"));
+
+        let base = vec![leg("0xf", "0xMe", "0xOther", Some(ZK_ETH))];
+        assert_eq!(AlchemyProvider::fold_native_token_legs(ChainId::Base, base)[0].contract_address.as_deref(), Some(ZK_ETH));
+    }
+
+    #[test]
+    fn a_fee_paid_in_another_currency_is_not_read_as_native() {
+        // A real Celo CIP-64 receipt's fields: gas priced in the fee currency.
+        let cip64 = json!({ "type": "0x7b", "gasUsed": "0x2eed7", "effectiveGasPrice": "0x459ef9d53", "l1Fee": "0x0" });
+        assert_eq!(receipt_fee_wei(&cip64), None);
+        let plain = json!({ "type": "0x2", "gasUsed": "0x5208", "effectiveGasPrice": "0x1", "l1Fee": "0x0" });
+        assert_eq!(receipt_fee_wei(&plain), Some(21_000));
+    }
+
+    #[test]
+    fn batch_replies_are_put_back_in_call_order() {
+        let resp = json!([
+            { "jsonrpc": "2.0", "id": 1, "result": "0x5" },
+            { "jsonrpc": "2.0", "id": 0, "result": "0xde0b6b3a7640000" },
+        ]);
+        assert_eq!(
+            AlchemyProvider::batch_results(&resp, 2).unwrap(),
+            vec![json!("0xde0b6b3a7640000"), json!("0x5")]
+        );
+    }
+
+    #[test]
+    fn a_batch_with_a_failed_or_missing_reply_fails_whole() {
+        let one_failed = json!([
+            { "jsonrpc": "2.0", "id": 0, "result": "0x0" },
+            { "jsonrpc": "2.0", "id": 1, "error": { "code": -32000, "message": "boom" } },
+        ]);
+        assert!(AlchemyProvider::batch_results(&one_failed, 2).is_err());
+        let one_missing = json!([{ "jsonrpc": "2.0", "id": 0, "result": "0x0" }]);
+        assert!(AlchemyProvider::batch_results(&one_missing, 2).is_err());
+        let refused = json!({ "jsonrpc": "2.0", "id": null, "error": { "code": -32600, "message": "no" } });
+        assert!(AlchemyProvider::batch_results(&refused, 2).is_err());
     }
 }

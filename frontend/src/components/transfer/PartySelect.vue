@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { isValidAddress } from '@/services/wallet'
+import { parseAddress } from '@/services/wallet'
 import { truncateAddress } from '@/services/format'
 import type { ChainSlug } from '@/services/api'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
@@ -33,7 +33,7 @@ const emit = defineEmits<{ 'update:modelValue': [string | null] }>()
 const { t } = useI18n({ useScope: 'global' })
 
 const manual = ref('')
-const manualValid = computed(() => isValidAddress(manual.value.trim()))
+const manualAddress = computed(() => parseAddress(manual.value))
 
 const items = computed<SelectItem[]>(() =>
   props.options.map((o) => ({
@@ -56,8 +56,8 @@ const fallback = computed(() =>
 )
 
 function submitManual(close: () => void) {
-  if (!manualValid.value) return
-  emit('update:modelValue', manual.value.trim())
+  if (!manualAddress.value) return
+  emit('update:modelValue', manualAddress.value)
   manual.value = ''
   close()
 }
@@ -72,11 +72,11 @@ function submitManual(close: () => void) {
         <v-text-field v-model="manual" :placeholder="t('transfer.enterAddress')" density="compact" hide-details
           prepend-inner-icon="mdi-at" autocomplete="off" spellcheck="false" @keydown.enter.prevent="submitManual(close)">
           <template #append-inner>
-            <v-btn v-if="manualValid" icon="mdi-arrow-right" size="x-small" variant="tonal" color="primary"
+            <v-btn v-if="manualAddress" icon="mdi-arrow-right" size="x-small" variant="tonal" color="primary"
               :aria-label="t('transfer.useAddress')" @click="submitManual(close)" />
           </template>
         </v-text-field>
-        <p v-if="manual.trim() && !manualValid" class="text-caption text-error mt-1 mb-0">
+        <p v-if="manual.trim() && !manualAddress" class="text-caption text-error mt-1 mb-0">
           {{ t('validation.invalidRecipientAddress') }}
         </p>
       </div>

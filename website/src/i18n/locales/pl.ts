@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet blokuje się po krótkim okresie bezczynności i nigdy nie zapisuje twojej odblokowanej sesji na dysku – zamknij kartę, a aplikacja celowo o tym zapomni.',
       },
       {
-        title: 'Pięć sieci Ethereum, jeden zestaw kont',
-        body: 'Przechowuj i wysyłaj środki w sieci głównej Ethereum, Polygon, Arbitrum, Base i Optimism, korzystając z tych samych kont i adresów.',
+        title: 'Piętnaście sieci Ethereum, jeden zestaw kont',
+        body: 'Przechowuj i wysyłaj środki w sieci głównej Ethereum oraz w 14 innych sieciach — w tym Arbitrum, Base, Optimism, Polygon, Linea i ZKsync — korzystając z tych samych kont i adresów.',
       },
     ],
     caveatTitle:
@@ -114,7 +114,7 @@ export default {
     items: [
       {
         q: 'Czy wwwallet jest naprawdę darmowy?',
-        a: 'Tak. Korzystanie z aplikacji jest bezpłatne, nie ma wersji premium ani żadnych treści za paywallem, a wwwallet nie dolicza żadnych opłat do wysyłanych ani wymienianych środków. Jedynym nieuniknionym kosztem jest opłata transakcyjna (gas) sieci, która trafia do sieci, a nie do wwwallet. Notowania wymiany pochodzą z agregatora giełd 0x, który może doliczać własną opłatę do niektórych transakcji – każda taka opłata jest widoczna na ekranie podsumowania przed potwierdzeniem.',
+        a: 'Tak. Korzystanie z aplikacji jest bezpłatne, nie ma wersji premium ani żadnych treści za paywallem, a wwwallet nie dolicza żadnych opłat do wysyłanych ani wymienianych środków. Jedynym nieuniknionym kosztem jest opłata transakcyjna (gas) sieci, która trafia do sieci, a nie do wwwallet. Notowania wymiany pochodzą z agregatora giełd 0x (lub LI.FI w sieciach, których 0x nie obsługuje), który może naliczać własną opłatę przy niektórych transakcjach – każda taka opłata jest widoczna na ekranie podsumowania przed potwierdzeniem.',
       },
       {
         q: 'Czy są tam reklamy, trackery lub narzędzia analityczne?',
@@ -166,11 +166,11 @@ export default {
       },
       {
         q: 'Jakie sieci obsługuje wwwallet?',
-        a: 'Sieć główna Ethereum oraz sieci warstwy drugiej (Layer-2): Polygon, Arbitrum, Base i Optimism – wszystko z tego samego zestawu kont.',
+        a: 'Sieć główna Ethereum, a także Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain i Scroll — wszystko z tego samego zestawu kont.',
       },
       {
         q: 'Jak doładować portfel?',
-        a: 'Załóż konto, wybierz „Wyświetl kod QR”, żeby zobaczyć adres, a potem wyślij środki na ten adres z giełdy lub innego portfela. Upewnij się, że wysyłasz środki w odpowiedniej sieci (Ethereum, Polygon, Arbitrum, Base lub Optimism) – ten sam adres działa we wszystkich sieciach, ale środki wysłane w jednej sieci pojawiają się tylko w tej sieci. Będziesz też potrzebować trochę natywnej monety sieci (np. ETH), żeby pokryć opłaty transakcyjne.',
+        a: 'Załóż konto, wybierz „Wyświetl kod QR”, żeby zobaczyć adres, a potem wyślij środki na ten adres z giełdy lub innego portfela. Upewnij się, że wysyłasz środki w odpowiedniej sieci (np. Ethereum, Base lub Arbitrum) – ten sam adres działa w każdej obsługiwanej sieci, ale środki wysłane w jednej sieci pojawiają się tylko w tej sieci. Będziesz też potrzebować trochę natywnej monety sieci (np. ETH), żeby opłacić prowizje transakcyjne.',
       },
       {
         q: 'Co mogę zrobić z wwwallet?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Darmowy, niepowierniczy portfel Ethereum',
     description:
-      'Darmowy portfel Ethereum w przeglądarce. Bez rejestracji, bez reklam, bez śledzenia — twoje klucze pozostają zaszyfrowane na twoim urządzeniu. Ethereum, Arbitrum, Base, Optimism i Polygon.',
+      'Darmowy portfel Ethereum w przeglądarce. Bez rejestracji, bez reklam, bez śledzenia — twoje klucze pozostają zaszyfrowane na twoim urządzeniu. Ethereum, Base, Arbitrum, Optimism, Polygon i 10 innych sieci.',
   },
 }

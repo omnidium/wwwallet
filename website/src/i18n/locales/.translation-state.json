@@ -117,12 +117,12 @@
       "value": "يتم قفل wwwallet بعد فترة قصيرة من عدم النشاط، ولا يقوم أبدًا بتسجيل جلستك غير المقفلة على القرص — ما عليك سوى إغلاق علامة التبويب وسينسى التطبيق ذلك، عن قصد."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "خمس شبكات إيثريوم، مجموعة واحدة من الحسابات"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "خمس عشرة شبكة إيثريوم، مجموعة واحدة من الحسابات"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "يمكنك الاحتفاظ بالأصول وإرسالها عبر الشبكة الرئيسية لإيثريوم (Ethereum mainnet) وPolygon وArbitrum وBase وOptimism باستخدام نفس الحسابات والعناوين."
+      "enHash": "469119b82403fc1f",
+      "value": "يمكنك الاحتفاظ بالأصول وإرسالها عبر الشبكة الرئيسية لـ «إيثريوم» و14 شبكة أخرى — بما في ذلك «أربيتروم» و«بيس» و«أوبتيميسم» و«بوليغون» و«لينيا» و«ZKsync» — باستخدام نفس الحسابات والعناوين."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -253,8 +253,8 @@
       "value": "هل wwwallet مجاني حقًا؟"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "نعم. لا توجد أي رسوم لاستخدامه، ولا توجد فئة مميزة، ولا يوجد أي محتوى محجوب خلف حاجز الدفع، ولا تضيف wwwallet أي رسوم على أي شيء ترسله أو تستبدله. التكلفة الوحيدة التي لا مفر منها هي رسوم المعاملة (الغاز) الخاصة بالشبكة، والتي تذهب إلى الشبكة وليس إلى wwwallet. تأتي عروض أسعار المبادلة من مجمع البورصات 0x، والذي قد يضيف رسومه الخاصة على بعض الصفقات — وتظهر أي رسوم من هذا القبيل على شاشة المراجعة قبل أن تقوم بالتأكيد."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "نعم. لا توجد أي رسوم لاستخدامه، ولا توجد فئة مميزة، ولا يوجد أي محتوى محجوب خلف حاجز الدفع، ولا تضيف wwwallet أي رسوم على أي شيء ترسله أو تستبدله. التكلفة الوحيدة التي لا مفر منها هي رسوم المعاملة (الغاز) الخاصة بالشبكة، والتي تذهب إلى الشبكة وليس إلى wwwallet. تأتي عروض أسعار المبادلة من مجمع التبادل 0x (أو LI.FI، على الشبكات التي لا يغطيها 0x)، والذي قد يضيف رسومه الخاصة على بعض الصفقات — وتظهر أي رسوم من هذا القبيل على شاشة المراجعة قبل أن تقوم بالتأكيد."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -465,16 +465,16 @@
       "value": "ما هي الشبكات التي يدعمها wwwallet؟"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "شبكة إيثريوم الرئيسية، بالإضافة إلى شبكات الطبقة الثانية Polygon وArbitrum وBase وOptimism — كلها من نفس مجموعة الحسابات."
+      "enHash": "ef8767b649ce4915",
+      "value": "شبكة إيثريوم الرئيسية، بالإضافة إلى Arbitrum وBase وOptimism وPolygon وRobinhood Chain وWorld Chain وInk وLinea وGnosis وCelo وZKsync Era وRonin وUnichain وScroll — جميعها من نفس مجموعة الحسابات."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "كيف أقوم بتعبئة رصيد محفظتي؟"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "افتح حسابًا، واختر «عرض رمز الاستجابة السريعة» (View QR code) لعرض عنوانه، ثم أرسل الأموال إلى هذا العنوان من منصة تداول أو محفظة أخرى. تأكد من إرسال الأموال عبر الشبكة الصحيحة (إيثريوم، أو بوليغون، أو أربيتروم، أو بيس، أو أوبتيميسم) — فالعنوان نفسه يعمل على جميع هذه الشبكات، لكن الأموال المرسلة عبر شبكة معينة تظهر فقط على تلك الشبكة. ستحتاج أيضًا إلى القليل من العملة الأصلية للشبكة (مثل ETH) لدفع رسوم المعاملات."
+      "enHash": "7866cbea16a7584a",
+      "value": "افتح حسابًا، واختر «عرض رمز QR» لرؤية عنوانه، ثم أرسل الأموال إلى هذا العنوان من منصة تداول أو محفظة أخرى. تأكد من إرسال الأموال عبر الشبكة الصحيحة (مثل إيثريوم أو Base أو Arbitrum) — فالعنوان نفسه يعمل على كل شبكة مدعومة، لكن الأموال المرسلة عبر شبكة معينة تظهر فقط على تلك الشبكة. ستحتاج أيضًا إلى كمية صغيرة من العملة الأصلية للشبكة (مثل ETH) لدفع رسوم المعاملات."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -533,8 +533,8 @@
       "value": "wwwallet — محفظة إيثريوم مجانية وغير أمينة"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "محفظة إيثريوم مجانية في متصفحك. لا حاجة للتسجيل، ولا إعلانات، ولا تتبع — تظل مفاتيحك مشفرة على جهازك. إيثريوم، وأربترم، وبيس، وأوبتيميسم، وبوليجون."
+      "enHash": "9cff47358c5f828b",
+      "value": "محفظة إيثريوم مجانية في متصفحك. لا حاجة للتسجيل، ولا إعلانات، ولا تتبع — تظل مفاتيحك مشفرة على جهازك. إيثريوم، وBase، وArbitrum، وOptimism، وPolygon، و10 شبكات أخرى."
     }
   },
   "bg": {
@@ -655,12 +655,12 @@
       "value": "wwwallet се заключва след кратък период на неактивност и никога не записва отключената ви сесия на диска — затворете раздела и приложението умишлено я забравя."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Пет мрежи на Ethereum, един набор от акаунти"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Петнадесет мрежи на Ethereum, един набор от акаунти"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Съхранявайте и изпращайте през основната мрежа на Ethereum, Polygon, Arbitrum, Base и Optimism с едни и същи акаунти и адреси."
+      "enHash": "469119b82403fc1f",
+      "value": "Съхранявайте и изпращайте средства в основната мрежа на Ethereum и още 14 мрежи — включително Arbitrum, Base, Optimism, Polygon, Linea и ZKsync — с едни и същи акаунти и адреси."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -791,8 +791,8 @@
       "value": "wwwallet наистина ли е безплатен?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Да. Използването му е безплатно, няма премиум ниво и нищо не е достъпно само срещу заплащане, а wwwallet не добавя такса към нищо, което изпращате или разменяте. Единственият неизбежен разход е собствената такса за транзакция (gas) на мрежата, която отива към мрежата, а не към wwwallet. Котировките за обмен идват от агрегатора на борси 0x, който може да включва собствена такса при някои сделки — всяка такава такса е посочена на екрана за преглед, преди да потвърдите."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Да. Използването му е безплатно, няма премиум ниво и нищо не е зад платена стена, а wwwallet не добавя такса към нищо, което изпращате или разменяте. Единственият неизбежен разход е собствената такса за транзакция (gas) на мрежата, която отива към мрежата, а не към wwwallet. Котировките за обмен идват от агрегатора на борси 0x (или LI.FI, в мрежи, които 0x не обхваща), който може да включва собствена такса за някои сделки — всяка такава такса е посочена на екрана за преглед, преди да потвърдите."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -1003,16 +1003,16 @@
       "value": "Кои мрежи поддържа wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Основната мрежа на Ethereum, както и Layer-2 мрежите Polygon, Arbitrum, Base и Optimism — всички от един и същ набор от акаунти."
+      "enHash": "ef8767b649ce4915",
+      "value": "Основната мрежа на Ethereum, както и Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain и Scroll — всички от един и същ набор от акаунти."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Как да заредя портфейла си?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Отворете акаунт, изберете „View QR code“, за да видите адреса му, и изпратете средства на този адрес от борса или друг портфейл. Уверете се, че изпращате средствата през правилната мрежа (Ethereum, Polygon, Arbitrum, Base или Optimism) — един и същ адрес работи във всички тях, но средствата, изпратени през една мрежа, се появяват само в нея. Ще ви е необходима и малка сума от местната монета на мрежата (като например ETH), за да покриете таксите за транзакцията."
+      "enHash": "7866cbea16a7584a",
+      "value": "Отворете акаунт, изберете „View QR code“, за да видите адреса му, и изпратете средства на този адрес от борса или друг портфейл. Уверете се, че изпращате по правилната мрежа (като Ethereum, Base или Arbitrum) — един и същ адрес работи във всяка поддържана мрежа, но средствата, изпратени по една мрежа, се появяват само в нея. Ще ви е необходима и малка сума от местната монета на мрежата (като например ETH), за да покриете таксите за транзакциите."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -1071,8 +1071,8 @@
       "value": "wwwallet — Безплатен, некастодиален портфейл за Ethereum"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Безплатен портфейл за Ethereum в браузъра ви. Без регистрация, без реклами, без проследяване — ключовете ви остават криптирани на вашето устройство. Ethereum, Arbitrum, Base, Optimism и Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Безплатен портфейл за Ethereum в браузъра ви. Без регистрация, без реклами, без проследяване — ключовете ви остават криптирани на вашето устройство. Ethereum, Base, Arbitrum, Optimism, Polygon и още 10 мрежи."
     }
   },
   "cs": {
@@ -1193,12 +1193,12 @@
       "value": "Aplikace wwwallet se po krátké době nečinnosti uzamkne a nikdy neukládá vaši odemčenou relaci na disk – zavřete-li kartu, záměrně na ni zapomene."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Pět sítí Ethereum, jedna sada účtů"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Patnáct sítí Ethereum, jedna sada účtů"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Uchovávejte a odesílejte prostředky v mainnetu Ethereum, sítích Polygon, Arbitrum, Base a Optimism pomocí stejných účtů a adres."
+      "enHash": "469119b82403fc1f",
+      "value": "Uchovávejte a odesílejte prostředky v hlavní síti Ethereum a dalších 14 sítích – včetně Arbitrum, Base, Optimism, Polygon, Linea a ZKsync – pomocí stejných účtů a adres."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -1329,8 +1329,8 @@
       "value": "Je wwwallet opravdu bezplatná?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Ano. Používání je zdarma, neexistuje žádná prémiová úroveň ani nic za placenou bránou a wwwallet nepřidává žádné poplatky k ničemu, co posíláte nebo vyměňujete. Jediným nevyhnutelným nákladem je vlastní transakční poplatek (gas) sítě, který jde síti, nikoli wwwallet. Nabídky směny pocházejí z agregátoru burz 0x, který může u některých obchodů účtovat vlastní poplatek – jakýkoli takový poplatek je uveden na obrazovce s přehledem před potvrzením."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Ano. Používání je zdarma, neexistuje žádná prémiová úroveň ani nic za placenou bránou a wwwallet nepřidává žádné poplatky k ničemu, co posíláte nebo vyměňujete. Jediným nevyhnutelným nákladem je vlastní transakční poplatek (gas) sítě, který jde síti, nikoli wwwallet. Nabídky na výměnu pocházejí z agregátoru burz 0x (nebo LI.FI v sítích, které 0x nepokrývá), který může u některých obchodů účtovat vlastní poplatek – jakýkoli takový poplatek je uveden na obrazovce s přehledem před potvrzením."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -1541,16 +1541,16 @@
       "value": "Jaké sítě wwwallet podporuje?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Hlavní síť Ethereum a sítě vrstvy 2 Polygon, Arbitrum, Base a Optimism – vše ze stejné sady účtů."
+      "enHash": "ef8767b649ce4915",
+      "value": "Hlavní síť Ethereum, plus Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain a Scroll – vše ze stejné sady účtů."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Jak mohu vložit prostředky do své peněženky?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Otevřete účet, vyberte možnost „Zobrazit QR kód“, abyste viděli jeho adresu, a odešlete prostředky na tuto adresu z burzy nebo jiné peněženky. Ujistěte se, že posíláte prostředky na správnou síť (Ethereum, Polygon, Arbitrum, Base nebo Optimism) – stejná adresa funguje na všech z nich, ale prostředky odeslané na jedné síti se zobrazí pouze na té síti. Budete také potřebovat malé množství nativní měny dané sítě (například ETH) na úhradu transakčních poplatků."
+      "enHash": "7866cbea16a7584a",
+      "value": "Otevřete účet, vyberte možnost „Zobrazit QR kód“, abyste viděli jeho adresu, a odešlete prostředky na tuto adresu z burzy nebo jiné peněženky. Ujistěte se, že posíláte prostředky na správnou síť (například Ethereum, Base nebo Arbitrum) – stejná adresa funguje na všech podporovaných sítích, ale prostředky odeslané v jedné síti se zobrazí pouze v té síti. Budete také potřebovat malé množství nativní měny dané sítě (například ETH) na úhradu transakčních poplatků."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -1609,8 +1609,8 @@
       "value": "wwwallet — Bezplatná nekustodialní peněženka pro Ethereum"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Bezplatná peněženka pro Ethereum ve vašem prohlížeči. Žádná registrace, žádné reklamy, žádné sledování – vaše klíče zůstávají zašifrované na vašem zařízení. Ethereum, Arbitrum, Base, Optimism a Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Bezplatná peněženka pro Ethereum ve vašem prohlížeči. Žádná registrace, žádné reklamy, žádné sledování – vaše klíče zůstávají zašifrované na vašem zařízení. Ethereum, Base, Arbitrum, Optimism, Polygon a dalších 10 sítí."
     }
   },
   "da": {
@@ -1731,12 +1731,12 @@
       "value": "wwwallet låses efter en kort periode uden aktivitet og gemmer aldrig din ulåste session på disken – luk fanen, og den glemmer det med vilje."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Fem Ethereum-netværk, ét sæt konti"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Femten Ethereum-netværk, ét sæt konti"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Opbevar og send på Ethereum-mainnet, Polygon, Arbitrum, Base og Optimism med de samme konti og adresser."
+      "enHash": "469119b82403fc1f",
+      "value": "Opbevar og send på Ethereums mainnet og 14 andre netværk — herunder Arbitrum, Base, Optimism, Polygon, Linea og ZKsync — med de samme konti og adresser."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -1867,8 +1867,8 @@
       "value": "Er wwwallet virkelig gratis?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Ja. Det er gratis at bruge den, der er ingen premium-niveau og intet bag en betalingsmur, og wwwallet pålægger ingen gebyrer på noget, du sender eller bytter. Den eneste uundgåelige omkostning er netværkets eget transaktionsgebyr (gas), som går til netværket og ikke til wwwallet. Byttekurser kommer fra 0x-børsaggregatoren, som kan pålægge sit eget gebyr på visse handler — et sådant gebyr vises på bekræftelsesskærmen, inden du bekræfter."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Ja. Det er gratis at bruge den, der er ingen premium-niveau og intet bag en betalingsmur, og wwwallet pålægger ingen gebyrer på noget, du sender eller bytter. Den eneste uundgåelige omkostning er netværkets eget transaktionsgebyr (gas), som går til netværket og ikke til wwwallet. Byttepriserne kommer fra 0x-børsaggregatoren (eller LI.FI på netværk, som 0x ikke dækker), som kan pålægge sit eget gebyr på visse handler — et sådant gebyr vises på gennemgangsskærmen, før du bekræfter."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -2079,16 +2079,16 @@
       "value": "Hvilke netværk understøtter wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Ethereums mainnet samt Layer-2-netværkene Polygon, Arbitrum, Base og Optimism – alt sammen fra det samme sæt konti."
+      "enHash": "ef8767b649ce4915",
+      "value": "Ethereum-mainnet samt Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain og Scroll — alt sammen fra det samme sæt konti."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Hvordan sætter jeg penge ind på min tegnebog?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Opret en konto, vælg »Vis QR-kode« for at se adressen, og send midler til den adresse fra en børs eller en anden tegnebog. Sørg for at sende via det rigtige netværk (Ethereum, Polygon, Arbitrum, Base eller Optimism) — den samme adresse fungerer på dem alle, men midler, der sendes via et netværk, vises kun på det pågældende netværk. Du skal også have lidt af netværkets egen mønt (f.eks. ETH) til at betale transaktionsgebyrer."
+      "enHash": "7866cbea16a7584a",
+      "value": "Opret en konto, vælg »Vis QR-kode« for at se adressen, og send midler til den adresse fra en børs eller en anden tegnebog. Sørg for at sende på det rigtige netværk (f.eks. Ethereum, Base eller Arbitrum) — den samme adresse fungerer på alle understøttede netværk, men midler, der sendes på et netværk, vises kun på det pågældende netværk. Du skal også have lidt af netværkets egen mønt (f.eks. ETH) til at betale transaktionsgebyrer."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -2147,8 +2147,8 @@
       "value": "wwwallet — Gratis, ikke-depotbaseret Ethereum-wallet"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Gratis Ethereum-wallet i din browser. Ingen tilmelding, ingen annoncer, ingen sporing – dine nøgler forbliver krypteret på din enhed. Ethereum, Arbitrum, Base, Optimism og Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Gratis Ethereum-wallet i din browser. Ingen tilmelding, ingen annoncer, ingen sporing — dine nøgler forbliver krypteret på din enhed. Ethereum, Base, Arbitrum, Optimism, Polygon og 10 yderligere netværk."
     }
   },
   "de": {
@@ -2269,12 +2269,12 @@
       "value": "wwwallet sperrt sich nach kurzer Inaktivität und speichert deine entsperrte Sitzung niemals auf der Festplatte – schließ den Tab und es vergisst alles, ganz bewusst."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Fünf Ethereum-Netzwerke, ein Satz von Konten"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Fünfzehn Ethereum-Netzwerke, ein Satz Konten"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Speichere und versende über das Ethereum-Mainnet, Polygon, Arbitrum, Base und Optimism mit denselben Konten und Adressen."
+      "enHash": "469119b82403fc1f",
+      "value": "Speichere und versende über das Ethereum-Mainnet und 14 weitere Netzwerke – darunter Arbitrum, Base, Optimism, Polygon, Linea und ZKsync – mit denselben Konten und Adressen."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -2405,8 +2405,8 @@
       "value": "Ist wwwallet wirklich kostenlos?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Ja. Die Nutzung ist kostenlos, es gibt keine Premium-Stufe und nichts hinter einer Paywall, und wwwallet erhebt keine Gebühren auf das, was du sendest oder tauschst. Die einzigen unvermeidbaren Kosten sind die netzwerkeigenen Transaktionsgebühren (Gasgebühren), die an das Netzwerk und nicht an wwwallet gehen. Die Swap-Angebote stammen vom 0x-Börsenaggregator, der bei einigen Trades eine eigene Gebühr erheben kann – eine solche Gebühr wird auf dem Bestätigungsbildschirm angezeigt, bevor du den Vorgang bestätigst."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Ja. Die Nutzung ist kostenlos, es gibt keine Premium-Stufe und nichts hinter einer Paywall, und wwwallet erhebt keine Gebühren auf das, was du sendest oder tauschst. Die einzigen unvermeidbaren Kosten sind die netzwerkeigenen Transaktionsgebühren (Gasgebühren), die an das Netzwerk und nicht an wwwallet gehen. Die Swap-Angebote stammen vom 0x-Börsenaggregator (oder von LI.FI in Netzwerken, die 0x nicht abdeckt), der bei einigen Trades eine eigene Gebühr erheben kann – eine solche Gebühr wird auf dem Übersichtsbildschirm angezeigt, bevor du den Vorgang bestätigst."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -2617,16 +2617,16 @@
       "value": "Welche Netzwerke unterstützt wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Das Ethereum-Mainnet sowie die Layer-2-Netzwerke Polygon, Arbitrum, Base und Optimism – alles über denselben Satz von Konten."
+      "enHash": "ef8767b649ce4915",
+      "value": "Ethereum-Mainnet sowie Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain und Scroll – alles über denselben Satz von Konten."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Wie lade ich Geld auf mein Wallet?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Eröffne ein Konto, wähle „QR-Code anzeigen“, um die Adresse zu sehen, und sende Guthaben von einer Börse oder einer anderen Wallet an diese Adresse. Achte darauf, dass du über das richtige Netzwerk sendest (Ethereum, Polygon, Arbitrum, Base oder Optimism) – dieselbe Adresse funktioniert in allen Netzwerken, aber Guthaben, das über ein bestimmtes Netzwerk gesendet wird, erscheint nur in diesem Netzwerk. Du solltest außerdem ein wenig von der nativen Währung des Netzwerks (z. B. ETH) bereithalten, um die Transaktionsgebühren zu bezahlen."
+      "enHash": "7866cbea16a7584a",
+      "value": "Eröffne ein Konto, wähle „QR-Code anzeigen“, um die Adresse zu sehen, und sende Guthaben von einer Börse oder einer anderen Wallet an diese Adresse. Achte darauf, dass du über das richtige Netzwerk sendest (z. B. Ethereum, Base oder Arbitrum) – dieselbe Adresse funktioniert in jedem unterstützten Netzwerk, aber Guthaben, das über ein bestimmtes Netzwerk gesendet wird, erscheint nur in diesem Netzwerk. Du solltest außerdem ein wenig von der nativen Coin des Netzwerks (z. B. ETH) bereithalten, um die Transaktionsgebühren zu bezahlen."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -2685,8 +2685,8 @@
       "value": "wwwallet – Kostenlose, nicht-verwahrende Ethereum-Wallet"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Kostenlose Ethereum-Wallet in deinem Browser. Keine Anmeldung, keine Werbung, kein Tracking – deine Schlüssel bleiben verschlüsselt auf deinem Gerät. Ethereum, Arbitrum, Base, Optimism und Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Kostenlose Ethereum-Wallet in deinem Browser. Keine Anmeldung, keine Werbung, kein Tracking – deine Schlüssel bleiben verschlüsselt auf deinem Gerät. Ethereum, Base, Arbitrum, Optimism, Polygon und 10 weitere Netzwerke."
     }
   },
   "el": {
@@ -2807,12 +2807,12 @@
       "value": "Το wwwallet κλειδώνει μετά από ένα σύντομο διάστημα αδράνειας και δεν αποθηκεύει ποτέ τη ξεκλείδωτη συνεδρία σας στο δίσκο — κλείστε την καρτέλα και το wwwallet την ξεχνά, σκόπιμα."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Πέντε δίκτυα Ethereum, ένα σύνολο λογαριασμών"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Δεκαπέντε δίκτυα Ethereum, ένα σύνολο λογαριασμών"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Αποθηκεύστε και στείλτε μέσω του κύριου δικτύου Ethereum, των Polygon, Arbitrum, Base και Optimism χρησιμοποιώντας τους ίδιους λογαριασμούς και τις ίδιες διευθύνσεις."
+      "enHash": "469119b82403fc1f",
+      "value": "Διατηρήστε και στείλτε κρυπτονομίσματα στο κύριο δίκτυο του Ethereum και σε 14 ακόμη δίκτυα — συμπεριλαμβανομένων των Arbitrum, Base, Optimism, Polygon, Linea και ZKsync — χρησιμοποιώντας τους ίδιους λογαριασμούς και τις ίδιες διευθύνσεις."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -2943,8 +2943,8 @@
       "value": "Είναι το wwwallet πραγματικά δωρεάν;"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Ναι. Η χρήση του είναι δωρεάν, δεν υπάρχει επίπεδο premium ούτε περιεχόμενο πίσω από paywall, και το wwwallet δεν προσθέτει καμία προμήθεια σε ό,τι στέλνετε ή ανταλλάσσετε. Το μόνο αναπόφευκτο κόστος είναι το τέλος συναλλαγής (gas) του ίδιου του δικτύου, το οποίο καταβάλλεται στο δίκτυο και όχι στο wwwallet. Οι τιμές ανταλλαγής προέρχονται από τον συγκεντρωτή συναλλαγών 0x, ο οποίος μπορεί να συμπεριλάβει τη δική του προμήθεια σε ορισμένες συναλλαγές — οποιαδήποτε τέτοια προμήθεια εμφανίζεται στην οθόνη επιβεβαίωσης πριν την ολοκλήρωση της συναλλαγής."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Ναι. Η χρήση της είναι δωρεάν, δεν υπάρχει επίπεδο premium ούτε περιορισμένη πρόσβαση, και το wwwallet δεν προσθέτει καμία προμήθεια σε ό,τι στέλνετε ή ανταλλάσσετε. Το μόνο αναπόφευκτο κόστος είναι το τέλος συναλλαγής (gas) του ίδιου του δικτύου, το οποίο καταβάλλεται στο δίκτυο και όχι στο wwwallet. Οι τιμές ανταλλαγής προέρχονται από τον συγκεντρωτή ανταλλαγών 0x (ή το LI.FI, σε δίκτυα που δεν καλύπτει το 0x), ο οποίος μπορεί να συμπεριλάβει τη δική του προμήθεια σε ορισμένες συναλλαγές — οποιαδήποτε τέτοια προμήθεια εμφανίζεται στην οθόνη επιβεβαίωσης πριν την ολοκλήρωση της συναλλαγής."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -3155,16 +3155,16 @@
       "value": "Ποια δίκτυα υποστηρίζει το wwwallet;"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Το κύριο δίκτυο του Ethereum, καθώς και τα δίκτυα Layer-2 Polygon, Arbitrum, Base και Optimism — όλα από το ίδιο σύνολο λογαριασμών."
+      "enHash": "ef8767b649ce4915",
+      "value": "Το κύριο δίκτυο του Ethereum, καθώς και τα Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain και Scroll — όλα από το ίδιο σύνολο λογαριασμών."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Πώς μπορώ να καταθέσω χρήματα στο πορτοφόλι μου;"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Ανοίξτε έναν λογαριασμό, επιλέξτε «Προβολή κωδικού QR» για να δείτε τη διεύθυνσή του και στείλτε χρήματα σε αυτή τη διεύθυνση από ένα ανταλλακτήριο ή άλλο πορτοφόλι. Βεβαιωθείτε ότι στέλνετε στο σωστό δίκτυο (Ethereum, Polygon, Arbitrum, Base ή Optimism) — η ίδια διεύθυνση λειτουργεί σε όλα αυτά, αλλά τα χρήματα που αποστέλλονται σε ένα δίκτυο εμφανίζονται μόνο σε αυτό το δίκτυο. Θα χρειαστείτε επίσης μια μικρή ποσότητα του εγγενούς νομίσματος του δικτύου (όπως το ETH) για να πληρώσετε τα τέλη συναλλαγής."
+      "enHash": "7866cbea16a7584a",
+      "value": "Ανοίξτε έναν λογαριασμό, επιλέξτε «Προβολή κωδικού QR» για να δείτε τη διεύθυνσή του και στείλτε χρήματα σε αυτή τη διεύθυνση από ένα ανταλλακτήριο ή άλλο πορτοφόλι. Βεβαιωθείτε ότι στέλνετε στο σωστό δίκτυο (όπως Ethereum, Base ή Arbitrum) — η ίδια διεύθυνση λειτουργεί σε κάθε υποστηριζόμενο δίκτυο, αλλά τα χρήματα που αποστέλλονται σε ένα δίκτυο εμφανίζονται μόνο σε αυτό το δίκτυο. Θα χρειαστείτε επίσης μια μικρή ποσότητα του εγγενούς νομίσματος του δικτύου (όπως το ETH) για την πληρωμή των τελών συναλλαγής."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -3223,8 +3223,8 @@
       "value": "wwwallet — Δωρεάν πορτοφόλι Ethereum χωρίς θεματοφυλακή"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Δωρεάν πορτοφόλι Ethereum στον περιηγητή σας. Χωρίς εγγραφή, χωρίς διαφημίσεις, χωρίς παρακολούθηση — τα κλειδιά σας παραμένουν κρυπτογραφημένα στη συσκευή σας. Ethereum, Arbitrum, Base, Optimism και Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Δωρεάν πορτοφόλι Ethereum στον περιηγητή σας. Χωρίς εγγραφή, χωρίς διαφημίσεις, χωρίς παρακολούθηση — τα κλειδιά σας παραμένουν κρυπτογραφημένα στη συσκευή σας. Ethereum, Base, Arbitrum, Optimism, Polygon και 10 ακόμη δίκτυα."
     }
   },
   "es": {
@@ -3345,12 +3345,12 @@
       "value": "wwwallet se bloquea tras un breve periodo de inactividad y nunca guarda tu sesión desbloqueada en el disco: si cierras la pestaña, se olvida, a propósito."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Cinco redes de Ethereum, un único conjunto de cuentas"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Quince redes de Ethereum, un conjunto de cuentas"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Guarda y envía fondos a través de la red principal de Ethereum, Polygon, Arbitrum, Base y Optimism con las mismas cuentas y direcciones."
+      "enHash": "469119b82403fc1f",
+      "value": "Guarda y envía a la red principal de Ethereum y a otras 14 redes —entre ellas Arbitrum, Base, Optimism, Polygon, Linea y ZKsync— con las mismas cuentas y direcciones."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -3481,8 +3481,8 @@
       "value": "¿wwwallet es realmente gratis?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Sí. Usarla es gratis, no hay ningún nivel premium ni nada detrás de un muro de pago, y wwwallet no añade ninguna comisión a lo que envíes o intercambies. El único coste inevitable es la comisión de transacción (gas) de la propia red, que va a parar a la red y no a wwwallet. Las cotizaciones de intercambio provienen del agregador de exchanges 0x, que puede incluir su propia comisión en algunas operaciones; cualquier comisión de este tipo aparece en la pantalla de revisión antes de que confirmes."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Sí. Usarla es gratis, no hay ningún nivel premium ni nada detrás de un muro de pago, y wwwallet no añade ninguna comisión a lo que envíes o intercambies. El único coste inevitable es la comisión de transacción (gas) de la propia red, que va a parar a la red y no a wwwallet. Las cotizaciones de intercambio provienen del agregador de exchanges 0x (o de LI.FI, en las redes que 0x no cubre), que puede incluir su propia comisión en algunas operaciones; cualquier comisión de este tipo aparece en la pantalla de revisión antes de que confirmes."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -3693,16 +3693,16 @@
       "value": "¿Qué redes admite wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "La red principal de Ethereum, además de las redes de capa 2 Polygon, Arbitrum, Base y Optimism, todo desde el mismo conjunto de cuentas."
+      "enHash": "ef8767b649ce4915",
+      "value": "La red principal de Ethereum, además de Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain y Scroll: todo desde el mismo conjunto de cuentas."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "¿Cómo recargo mi monedero?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Abre una cuenta, selecciona «Ver código QR» para ver tu dirección y envía fondos a esa dirección desde un exchange u otra cartera. Asegúrate de enviar los fondos por la red correcta (Ethereum, Polygon, Arbitrum, Base u Optimism): la misma dirección funciona en todas ellas, pero los fondos enviados por una red solo aparecerán en esa red. También necesitarás un poco de la moneda nativa de la red (como ETH) para pagar las comisiones de transacción."
+      "enHash": "7866cbea16a7584a",
+      "value": "Abre una cuenta, selecciona «Ver código QR» para ver tu dirección y envía fondos a esa dirección desde un exchange u otra cartera. Asegúrate de enviar los fondos por la red correcta (como Ethereum, Base o Arbitrum): la misma dirección funciona en todas las redes compatibles, pero los fondos enviados por una red solo aparecerán en esa red. También te conviene tener un poco de la moneda nativa de la red (como ETH) para pagar las comisiones de transacción."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -3761,8 +3761,8 @@
       "value": "wwwallet — Monedero de Ethereum gratuito y sin custodia"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Monedero gratuito de Ethereum en tu navegador. Sin registro, sin anuncios, sin seguimiento: tus claves permanecen cifradas en tu dispositivo. Ethereum, Arbitrum, Base, Optimism y Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Cartera gratuita de Ethereum en tu navegador. Sin registrarte, sin anuncios, sin seguimiento: tus claves permanecen cifradas en tu dispositivo. Ethereum, Base, Arbitrum, Optimism, Polygon y 10 redes más."
     }
   },
   "et": {
@@ -3883,12 +3883,12 @@
       "value": "wwwallet lukustub pärast lühikest tegevusetust ja ei salvesta teie avatud sessiooni kunagi kettale – sulgege vahekaart ja rakendus unustab selle tahtlikult."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Viis Ethereumi võrku, üks kontode komplekt"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Viisteist Ethereumi võrku, üks kontode komplekt"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Hoidke ja saatke Ethereumi põhivõrgus, Polygonis, Arbitrumis, Base’is ja Optimismis samade kontode ja aadressidega."
+      "enHash": "469119b82403fc1f",
+      "value": "Hoidke ja saatke Ethereumi põhivõrgus ja veel 14 võrgus – sealhulgas Arbitrum, Base, Optimism, Polygon, Linea ja ZKsync – samade kontode ja aadressidega."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -4019,8 +4019,8 @@
       "value": "Kas wwwallet on tõesti tasuta?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Jah. Rakenduse kasutamine on tasuta, puudub premium-tasand ja miski pole tasulise sisu taga, ning wwwallet ei lisa mingit teenustasu sinu saadetud või vahetatud summadele. Ainus vältimatu kulu on võrgu enda tehingutasu (gas), mis läheb võrgule, mitte wwwalletile. Vahetuskursid pärinevad 0x-i vahetusagregaatorilt, mis võib mõnede tehingute puhul lisada oma teenustasu – kõik sellised teenustasud on loetletud ülevaateekraanil enne kinnitamist."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Jah. Rakenduse kasutamine on tasuta, puudub premium-tasand ja midagi pole tasulise sisu taga, ning wwwallet ei lisa mingit teenustasu sinu saadetud või vahetatud summadele. Ainus vältimatu kulu on võrgu enda tehingutasu (gas), mis läheb võrgule, mitte wwwalletile. Vahetuskursid pärinevad 0x-i vahetusagregaatorilt (või LI.FI-lt võrkudes, mida 0x ei hõlma), mis võib mõnede tehingute puhul lisada oma teenustasu – sellised teenustasud on loetletud ülevaateekraanil enne kinnitamist."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -4231,16 +4231,16 @@
       "value": "Milliseid võrke wwwallet toetab?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Ethereumi põhivõrk ning 2. kihi võrgustikud Polygon, Arbitrum, Base ja Optimism – kõik samast kontode kogumist."
+      "enHash": "ef8767b649ce4915",
+      "value": "Ethereumi põhivõrk, lisaks Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain ja Scroll – kõik samast kontode kogumist."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Kuidas ma oma rahakotti raha lisan?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Avage konto, valige „Vaata QR-koodi”, et näha selle aadressi, ja saatke raha sellele aadressile vahetusplatvormilt või teisest rahakotist. Veendu, et saadad raha õiges võrgustikus (Ethereum, Polygon, Arbitrum, Base või Optimism) – sama aadress toimib neis kõigis, kuid ühes võrgustikus saadetud raha kuvatakse ainult selles võrgustikus. Samuti on vaja veidi võrgu oma münti (nt ETH), et maksta tehingutasusid."
+      "enHash": "7866cbea16a7584a",
+      "value": "Avage konto, valige „Vaata QR-koodi”, et näha selle aadressi, ja saatke raha sellele aadressile vahetusplatvormilt või teisest rahakotist. Veenduge, et saadate raha õigel võrgustikul (nt Ethereum, Base või Arbitrum) – sama aadress toimib igas toetatud võrgustikus, kuid ühel võrgustikul saadetud raha ilmub ainult selles võrgustikus. Samuti on vaja veidi võrgu oma münti (nt ETH), et maksta tehingutasusid."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -4299,8 +4299,8 @@
       "value": "wwwallet — tasuta, mittehoolduslik Ethereumi rahakott"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Tasuta Ethereumi rahakott teie brauseris. Ei registreerimist, ei reklaame, ei jälgimist – teie võtmed jäävad teie seadmes krüpteeritud kujul. Ethereum, Arbitrum, Base, Optimism ja Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Tasuta Ethereumi rahakott teie brauseris. Ei registreerimist, ei reklaame, ei jälgimist – teie võtmed jäävad teie seadmes krüpteeritud kujul. Ethereum, Base, Arbitrum, Optimism, Polygon ja veel 10 võrku."
     }
   },
   "fi": {
@@ -4421,12 +4421,12 @@
       "value": "wwwallet lukittuu lyhyen käyttämättömyysjakson jälkeen eikä koskaan tallenna avattua istuntoasi levylle – sulje välilehti, niin se unohtaa sen tarkoituksella."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Viisi Ethereum-verkkoa, yksi tilisarja"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Viisitoista Ethereum-verkkoa, yksi tilisarja"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Säilytä ja lähetä varoja Ethereumin pääverkossa, Polygonissa, Arbitrumissa, Basessa ja Optimismissa samoilla tileillä ja osoitteilla."
+      "enHash": "469119b82403fc1f",
+      "value": "Säilytä ja lähetä varoja Ethereumin pääverkossa ja 14 muussa verkossa – mukaan lukien Arbitrum, Base, Optimism, Polygon, Linea ja ZKsync – samoilla tileillä ja osoitteilla."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -4557,8 +4557,8 @@
       "value": "Onko wwwallet todella ilmainen?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Kyllä. Sen käyttö on maksutonta, eikä siinä ole premium-tasoa tai maksullisia osioita, eikä wwwallet lisää mitään palkkiota lähettämiisi tai vaihtamiisi summiin. Ainoa väistämätön kustannus on verkon oma transaktiomaksu (gas-maksu), joka menee verkolle eikä wwwalletille. Vaihtotarjoukset tulevat 0x-pörssien aggregaattorilta, joka voi lisätä oman palkkionsa joihinkin kauppoihin – tällaiset palkkiot näkyvät tarkistusnäytöllä ennen vahvistamista."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Kyllä. Sen käyttö on maksutonta, eikä siinä ole premium-tasoa tai maksullisia osioita, eikä wwwallet lisää palkkiota mihinkään lähettämääsi tai vaihtamaasi. Ainoa väistämätön kustannus on verkon oma transaktiomaksu (gas-maksu), joka menee verkolle eikä wwwalletille. Vaihtotarjoukset tulevat 0x-pörssien aggregaattorilta (tai LI.FI:ltä verkostoissa, joita 0x ei kata), joka voi lisätä oman palkkionsa joihinkin kauppoihin – tällaiset palkkiot näkyvät tarkistusnäytöllä ennen vahvistamista."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -4769,16 +4769,16 @@
       "value": "Mitä verkkoja wwwallet tukee?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Ethereumin pääverkko sekä Layer-2-verkot Polygon, Arbitrum, Base ja Optimism – kaikki samasta tilikokonaisuudesta."
+      "enHash": "ef8767b649ce4915",
+      "value": "Ethereumin pääverkko sekä Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain ja Scroll – kaikki samasta tilikokonaisuudesta."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Miten lisään varoja lompakkooni?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Avaa tili, valitse ”Näytä QR-koodi” nähdäksesi sen osoitteen ja lähetä varat kyseiseen osoitteeseen pörssistä tai toisesta lompakosta. Varmista, että lähetät varat oikealla verkostolla (Ethereum, Polygon, Arbitrum, Base tai Optimism) – sama osoite toimii kaikilla verkostoilla, mutta yhdellä verkostolla lähetetyt varat näkyvät vain kyseisellä verkostolla. Tarvitset myös hieman kyseisen verkon omaa kolikkoa (kuten ETH) transaktiomaksujen maksamiseen."
+      "enHash": "7866cbea16a7584a",
+      "value": "Avaa tili, valitse ”Näytä QR-koodi” nähdäksesi sen osoitteen ja lähetä varoja kyseiseen osoitteeseen pörssistä tai toisesta lompakosta. Varmista, että lähetät varat oikealla verkostolla (kuten Ethereum, Base tai Arbitrum) – sama osoite toimii kaikilla tuetuilla verkoilla, mutta yhdellä verkostolla lähetetyt varat näkyvät vain kyseisellä verkostolla. Tarvitset myös hieman verkon omaa kolikkoa (kuten ETH) transaktiomaksujen maksamiseen."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -4837,8 +4837,8 @@
       "value": "wwwallet — Ilmainen, ei-säilytyspohjainen Ethereum-lompakko"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Ilmainen Ethereum-lompakko selaimessasi. Ei rekisteröitymistä, ei mainoksia, ei seurantaa – avaimesi pysyvät salattuina laitteellasi. Ethereum, Arbitrum, Base, Optimism ja Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Ilmainen Ethereum-lompakko selaimessasi. Ei rekisteröitymistä, ei mainoksia, ei seurantaa – avaimesi pysyvät salattuina laitteellasi. Ethereum, Base, Arbitrum, Optimism, Polygon ja 10 muuta verkkoa."
     }
   },
   "fr": {
@@ -4959,12 +4959,12 @@
       "value": "wwwallet se verrouille après une courte période d’inactivité et n’enregistre jamais ta session déverrouillée sur le disque : si tu fermes l’onglet, l’appli oublie tout, et c’est voulu."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Cinq réseaux Ethereum, un seul ensemble de comptes"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Quinze réseaux Ethereum, un seul ensemble de comptes"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Conserve et envoie des cryptomonnaies sur le réseau principal d'Ethereum, Polygon, Arbitrum, Base et Optimism avec les mêmes comptes et adresses."
+      "enHash": "469119b82403fc1f",
+      "value": "Conserve et envoie des cryptomonnaies sur le réseau principal d’Ethereum et 14 autres réseaux — dont Arbitrum, Base, Optimism, Polygon, Linea et ZKsync — avec les mêmes comptes et adresses."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -5095,8 +5095,8 @@
       "value": "Est-ce que wwwallet est vraiment gratuit ?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Oui. Son utilisation est gratuite, il n’y a pas de formule premium ni de contenu payant, et wwwallet n’ajoute aucun frais aux transactions que tu envoies ou échanges. Le seul coût inévitable est le frais de transaction (gas) propre au réseau, qui revient au réseau et non à wwwallet. Les cotations d'échange proviennent de l'agrégateur d'échanges 0x, qui peut ajouter ses propres frais sur certaines transactions — ces frais sont indiqués sur l'écran de vérification avant que tu ne confirmes."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Oui. Son utilisation est gratuite, il n’y a pas de formule premium ni de contenu payant, et wwwallet n’ajoute aucun frais aux transferts ou aux échanges que tu effectues. Le seul coût inévitable est le frais de transaction (gas) propre au réseau, qui revient au réseau et non à wwwallet. Les cotations d'échange proviennent de l'agrégateur 0x (ou de LI.FI, sur les réseaux non couverts par 0x), qui peut appliquer ses propres frais sur certaines transactions — ces frais sont indiqués sur l'écran de vérification avant que tu ne confirmes."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -5307,16 +5307,16 @@
       "value": "Quels réseaux wwwallet prend-il en charge ?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Le réseau principal d’Ethereum, ainsi que les réseaux de couche 2 Polygon, Arbitrum, Base et Optimism — le tout à partir du même ensemble de comptes."
+      "enHash": "ef8767b649ce4915",
+      "value": "Le réseau principal d’Ethereum, ainsi qu’Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain et Scroll — le tout à partir du même ensemble de comptes."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Comment approvisionner mon portefeuille ?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Crée un compte, choisis « Afficher le code QR » pour voir son adresse, puis envoie des fonds à cette adresse depuis une plateforme d’échange ou un autre portefeuille. Assure-toi d’envoyer les fonds sur le bon réseau (Ethereum, Polygon, Arbitrum, Base ou Optimism) : la même adresse fonctionne sur tous ces réseaux, mais les fonds envoyés sur un réseau n’apparaissent que sur ce réseau-là. Tu auras également besoin d’un peu de la cryptomonnaie native du réseau (comme l’ETH) pour payer les frais de transaction."
+      "enHash": "7866cbea16a7584a",
+      "value": "Ouvre un compte, choisis « Afficher le code QR » pour voir son adresse, puis envoie des fonds vers cette adresse depuis une plateforme d’échange ou un autre portefeuille. Assure-toi d’envoyer les fonds sur le bon réseau (comme Ethereum, Base ou Arbitrum) : la même adresse fonctionne sur tous les réseaux pris en charge, mais les fonds envoyés sur un réseau n’apparaissent que sur ce réseau-là. Tu auras également besoin d’un peu de la cryptomonnaie native du réseau (comme l’ETH) pour payer les frais de transaction."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -5375,8 +5375,8 @@
       "value": "wwwallet — Portefeuille Ethereum gratuit et sans dépôt fiduciaire"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Portefeuille Ethereum gratuit dans ton navigateur. Pas d’inscription, pas de pubs, pas de suivi — tes clés restent cryptées sur ton appareil. Ethereum, Arbitrum, Base, Optimism et Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Portefeuille Ethereum gratuit dans ton navigateur. Pas d’inscription, pas de pubs, pas de suivi — tes clés restent cryptées sur ton appareil. Ethereum, Base, Arbitrum, Optimism, Polygon et 10 autres réseaux."
     }
   },
   "hu": {
@@ -5497,12 +5497,12 @@
       "value": "A wwwallet rövid inaktivitás után lezárul, és soha nem menti a feloldott munkamenetet a merevlemezre – ha bezárja a lapot, az alkalmazás szándékosan elfelejti az adatokat."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Öt Ethereum-hálózat, egy fiókkészlet"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Tizenöt Ethereum-hálózat, egy fiókkészlet"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Tartson és küldjön az Ethereum főhálózaton, a Polygonon, az Arbitrumon, a Base-en és az Optimism-en ugyanazokkal a fiókokkal és címekkel."
+      "enHash": "469119b82403fc1f",
+      "value": "Tartson és küldjön az Ethereum főhálózaton és további 14 hálózaton – beleértve az Arbitrumot, a Base-t, az Optimismet, a Polygont, a Lineát és a ZKsync-et – ugyanazokkal a fiókokkal és címekkel."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -5633,8 +5633,8 @@
       "value": "A wwwallet valóban ingyenes?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Igen. A használata ingyenes, nincs prémium szint és nincs fizetős tartalom, és a wwwallet semmilyen díjat nem számol fel az elküldött vagy cserélt összegekre. Az egyetlen elkerülhetetlen költség a hálózat saját tranzakciós (gáz) díja, amely a hálózatnak, nem pedig a wwwalletnek jut. A csereárak a 0x tőzsde-összesítőtől származnak, amely egyes tranzakciókhoz saját díjat számíthat fel – az ilyen díjakat a megerősítés előtt a felülvizsgálati képernyőn jeleníti meg a rendszer."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Igen. A használata ingyenes, nincs prémium szint és nincs fizetős tartalom, és a wwwallet semmilyen díjat nem számol fel az elküldött vagy cserélt összegekre. Az egyetlen elkerülhetetlen költség a hálózat saját tranzakciós (gáz) díja, amely a hálózatnak jut, nem pedig a wwwalletnek. A csereárak a 0x tőzsde-összesítőtől származnak (vagy a LI.FI-től, azokon a hálózatokon, amelyeket a 0x nem fed le), amely egyes tranzakciók esetén saját díjat számíthat fel – az ilyen díjakat a megerősítés előtt a visszajelzési képernyőn feltüntetik."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -5845,16 +5845,16 @@
       "value": "Mely hálózatokat támogatja a wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Az Ethereum főhálózata, valamint a Layer-2 hálózatok: Polygon, Arbitrum, Base és Optimism – mindegyik ugyanabból a fiókcsoportból."
+      "enHash": "ef8767b649ce4915",
+      "value": "Az Ethereum főhálózata, valamint az Arbitrum, a Base, az Optimism, a Polygon, a Robinhood Chain, a World Chain, az Ink, a Linea, a Gnosis, a Celo, a ZKsync Era, a Ronin, az Unichain és a Scroll – mind ugyanabból a fiókkészletből."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Hogyan tölthetem fel a pénztárcámat?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Nyisson fiókot, válassza a „QR-kód megtekintése” lehetőséget a cím megtekintéséhez, majd küldjön pénzt arra a címre egy tőzsdéről vagy egy másik pénztárcából. Győződjön meg róla, hogy a megfelelő hálózaton (Ethereum, Polygon, Arbitrum, Base vagy Optimism) küldi el a pénzt – ugyanaz a cím mindegyiken működik, de az egyik hálózaton elküldött pénzeszközök csak azon a hálózaton jelennek meg. Szüksége lesz egy kis mennyiségű hálózati natív érmére (például ETH-ra) is a tranzakciós díjak kifizetéséhez."
+      "enHash": "7866cbea16a7584a",
+      "value": "Nyisson fiókot, válassza a „QR-kód megtekintése” lehetőséget a cím megtekintéséhez, majd küldjön pénzt arra a címre egy tőzsdéről vagy egy másik pénztárcából. Győződjön meg arról, hogy a megfelelő hálózaton (például Ethereum, Base vagy Arbitrum) küldi el a pénzt – ugyanaz a cím minden támogatott hálózaton működik, de az egyik hálózaton elküldött pénzeszközök csak azon a hálózaton jelennek meg. Szüksége lesz egy kis mennyiségű hálózati natív érmére (például ETH-ra) is a tranzakciós díjak kifizetéséhez."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -5913,8 +5913,8 @@
       "value": "wwwallet — Ingyenes, nem letéti Ethereum-pénztárca"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Ingyenes Ethereum-pénztárca a böngészőjében. Nincs regisztráció, nincsenek hirdetések, nincs nyomon követés – a kulcsai titkosítva maradnak a készülékén. Ethereum, Arbitrum, Base, Optimism és Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Ingyenes Ethereum-pénztárca a böngészőjében. Nincs regisztráció, nincsenek hirdetések, nincs nyomon követés – a kulcsai titkosítva maradnak a készülékén. Ethereum, Base, Arbitrum, Optimism, Polygon és további 10 hálózat."
     }
   },
   "id": {
@@ -6035,12 +6035,12 @@
       "value": "wwwallet akan terkunci setelah beberapa saat tidak aktif, dan tidak pernah menyimpan sesi yang tidak terkunci ke disk — tutup tabnya dan aplikasi ini akan melupakannya, secara sengaja."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Lima jaringan Ethereum, satu set akun"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Lima belas jaringan Ethereum, satu set akun"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Simpan dan kirim di seluruh mainnet Ethereum, Polygon, Arbitrum, Base, dan Optimism dengan akun dan alamat yang sama."
+      "enHash": "469119b82403fc1f",
+      "value": "Simpan dan kirim di mainnet Ethereum serta 14 jaringan lainnya — termasuk Arbitrum, Base, Optimism, Polygon, Linea, dan ZKsync — dengan akun dan alamat yang sama."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -6171,8 +6171,8 @@
       "value": "Apakah wwwallet benar-benar gratis?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Ya. Tidak ada biaya untuk menggunakannya, tidak ada tingkatan premium, dan tidak ada konten di balik paywall, serta wwwallet tidak menambahkan biaya apa pun pada setiap pengiriman atau pertukaran yang Anda lakukan. Satu-satunya biaya yang tidak dapat dihindari adalah biaya transaksi (gas) jaringan itu sendiri, yang dibayarkan ke jaringan, bukan ke wwwallet. Penawaran pertukaran berasal dari agregator bursa 0x, yang mungkin mengenakan biayanya sendiri pada beberapa transaksi — biaya semacam itu tercantum di layar tinjauan sebelum Anda mengonfirmasi."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Ya. Tidak ada biaya untuk menggunakannya, tidak ada tingkatan premium, dan tidak ada konten berbayar; wwwallet juga tidak menambahkan biaya apa pun pada setiap pengiriman atau pertukaran yang Anda lakukan. Satu-satunya biaya yang tidak dapat dihindari adalah biaya transaksi (gas) jaringan itu sendiri, yang dibayarkan ke jaringan, bukan ke wwwallet. Penawaran pertukaran berasal dari agregator bursa 0x (atau LI.FI, pada jaringan yang tidak tercakup oleh 0x), yang mungkin menyertakan biayanya sendiri pada beberapa transaksi — biaya semacam itu tercantum di layar tinjauan sebelum Anda mengonfirmasi."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -6383,16 +6383,16 @@
       "value": "Jaringan apa saja yang didukung oleh wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Jaringan utama Ethereum, ditambah jaringan Layer-2 Polygon, Arbitrum, Base, dan Optimism — semuanya dari kumpulan akun yang sama."
+      "enHash": "ef8767b649ce4915",
+      "value": "Mainnet Ethereum, ditambah Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain, dan Scroll — semuanya dari kumpulan akun yang sama."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Bagaimana cara mengisi saldo dompet saya?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Buat akun, pilih “Lihat kode QR” untuk melihat alamatnya, lalu kirim dana ke alamat tersebut dari bursa atau dompet lain. Pastikan Anda mengirim dana melalui jaringan yang benar (Ethereum, Polygon, Arbitrum, Base, atau Optimism) — alamat yang sama berlaku di semua jaringan tersebut, tetapi dana yang dikirim melalui satu jaringan hanya akan muncul di jaringan tersebut. Anda juga perlu memiliki sedikit koin asli jaringan tersebut (seperti ETH) untuk membayar biaya transaksi."
+      "enHash": "7866cbea16a7584a",
+      "value": "Buka akun, pilih “Lihat kode QR” untuk melihat alamatnya, lalu kirim dana ke alamat tersebut dari bursa atau dompet lain. Pastikan Anda mengirim dana melalui jaringan yang benar (seperti Ethereum, Base, atau Arbitrum) — alamat yang sama berlaku di setiap jaringan yang didukung, tetapi dana yang dikirim melalui satu jaringan hanya akan muncul di jaringan tersebut. Anda juga perlu memiliki sedikit koin asli jaringan tersebut (seperti ETH) untuk membayar biaya transaksi."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -6451,8 +6451,8 @@
       "value": "wwwallet — Dompet Ethereum gratis dan non-custodial"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Dompet Ethereum gratis di browser Anda. Tanpa pendaftaran, tanpa iklan, tanpa pelacakan — kunci Anda tetap terenkripsi di perangkat Anda. Ethereum, Arbitrum, Base, Optimism, dan Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Dompet Ethereum gratis di browser Anda. Tanpa pendaftaran, tanpa iklan, tanpa pelacakan — kunci Anda tetap terenkripsi di perangkat Anda. Ethereum, Base, Arbitrum, Optimism, Polygon, dan 10 jaringan lainnya."
     }
   },
   "it": {
@@ -6573,12 +6573,12 @@
       "value": "wwwallet si blocca dopo un breve periodo di inattività e non salva mai la tua sessione sbloccata sul disco: chiudi la scheda e l’app se ne dimentica, di proposito."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Cinque reti Ethereum, un unico set di account"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Quindici reti Ethereum, un unico set di account"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Conserva e invia sulla mainnet di Ethereum, su Polygon, Arbitrum, Base e Optimism utilizzando gli stessi account e indirizzi."
+      "enHash": "469119b82403fc1f",
+      "value": "Conserva e invia sulla mainnet di Ethereum e su altre 14 reti — tra cui Arbitrum, Base, Optimism, Polygon, Linea e ZKsync — utilizzando gli stessi account e indirizzi."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -6709,8 +6709,8 @@
       "value": "wwwallet è davvero gratis?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Sì. L’uso è gratuito, non ci sono livelli premium né contenuti a pagamento, e wwwallet non aggiunge commissioni a nulla di ciò che invii o scambi. L’unico costo inevitabile è la commissione di transazione (gas) della rete stessa, che va alla rete piuttosto che a wwwallet. Le quotazioni di scambio provengono dall’aggregatore di exchange 0x, che può includere una propria commissione su alcune operazioni: eventuali commissioni di questo tipo sono indicate nella schermata di riepilogo prima della conferma."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Sì. L’uso è gratuito, non ci sono livelli premium né contenuti a pagamento, e wwwallet non aggiunge commissioni a nulla di ciò che invii o scambi. L’unico costo inevitabile è la commissione di transazione (gas) della rete stessa, che va alla rete piuttosto che a wwwallet. Le quotazioni di scambio provengono dall’aggregatore di exchange 0x (o da LI.FI, sulle reti non coperte da 0x), che può includere una propria commissione su alcune operazioni: eventuali commissioni di questo tipo sono indicate nella schermata di riepilogo prima che tu confermi."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -6921,16 +6921,16 @@
       "value": "Quali reti supporta wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "La mainnet di Ethereum, oltre alle reti Layer-2 Polygon, Arbitrum, Base e Optimism — tutte gestite dallo stesso insieme di account."
+      "enHash": "ef8767b649ce4915",
+      "value": "Mainnet di Ethereum, oltre ad Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain e Scroll — il tutto dallo stesso insieme di account."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Come faccio a ricaricare il mio portafoglio?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Apri un conto, scegli “Visualizza codice QR” per vedere il tuo indirizzo e invia fondi a quell’indirizzo da un exchange o da un altro portafoglio. Assicurati di inviare i fondi sulla rete giusta (Ethereum, Polygon, Arbitrum, Base o Optimism): lo stesso indirizzo funziona su tutte queste reti, ma i fondi inviati su una rete appariranno solo su quella rete. Ti servirà anche un po’ della moneta nativa della rete (come ETH) per pagare le commissioni di transazione."
+      "enHash": "7866cbea16a7584a",
+      "value": "Apri un account, scegli “Visualizza codice QR” per vedere il tuo indirizzo e invia fondi a quell’indirizzo da un exchange o da un altro portafoglio. Assicurati di inviare sulla rete giusta (come Ethereum, Base o Arbitrum): lo stesso indirizzo funziona su tutte le reti supportate, ma i fondi inviati su una rete appariranno solo su quella rete. Ti servirà anche un po’ della moneta nativa della rete (come ETH) per pagare le commissioni di transazione."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -6989,8 +6989,8 @@
       "value": "wwwallet — Portafoglio Ethereum gratuito e non custodito"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Portafoglio Ethereum gratuito nel tuo browser. Nessuna registrazione, nessuna pubblicità, nessun tracciamento: le tue chiavi rimangono crittografate sul tuo dispositivo. Ethereum, Arbitrum, Base, Optimism e Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Portafoglio Ethereum gratuito nel tuo browser. Nessuna registrazione, nessuna pubblicità, nessun tracciamento: le tue chiavi rimangono crittografate sul tuo dispositivo. Ethereum, Base, Arbitrum, Optimism, Polygon e altre 10 reti."
     }
   },
   "iw": {
@@ -7111,12 +7111,12 @@
       "value": "wwwallet ננעל לאחר פרק זמן קצר של חוסר פעילות, ולעולם אינו שומר את ההפעלה הפתוחה שלכם בדיסק — סגרו את הלשונית והאפליקציה תשכח, בכוונה."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "חמש רשתות אתריום, סט חשבונות אחד"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "חמש עשרה רשתות אתריום, סט חשבונות אחד"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "אחסנו ושלחו ברשת הראשית של אתריום, Polygon, Arbitrum, Base ו-Optimism באמצעות אותם חשבונות וכתובות."
+      "enHash": "469119b82403fc1f",
+      "value": "אחסנו ושלחו ברשת הראשית של אתריום וב-14 רשתות נוספות — כולל Arbitrum, Base, Optimism, Polygon, Linea ו-ZKsync — באמצעות אותם חשבונות וכתובות."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -7247,8 +7247,8 @@
       "value": "האם wwwallet באמת חינמית?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "כן. השימוש באפליקציה הוא ללא תשלום, אין מדרגת פרימיום ואין תוכן מאחורי חומת תשלום, ו-wwwallet לא מוסיפה עמלה לשום דבר שאתם שולחים או מחליפים. העלות היחידה שאינה ניתנת למניעה היא עמלת העסקה (גז) של הרשת עצמה, אשר מועברת לרשת ולא ל-wwwallet. הצעות המחיר להחלפה מגיעות ממאגד הבורסות 0x, שיכול לכלול עמלה משלו בחלק מהעסקאות — כל עמלה כזו מופיעה במסך הסקירה לפני שאתם מאשרים."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "כן. השימוש באפליקציה הוא ללא תשלום, אין מדרג פרימיום ואין תוכן מאחורי חומת תשלום, ו-wwwallet אינה מוסיפה עמלה לשום דבר שאתם שולחים או מחליפים. העלות היחידה שאינה ניתנת למניעה היא עמלת העסקה (גז) של הרשת עצמה, אשר מועברת לרשת ולא ל-wwwallet. הצעות המחיר להחלפה מגיעות ממאגד הבורסות 0x (או מ-LI.FI, ברשתות ש-0x אינו מכסה), אשר עשוי לכלול עמלה משלו בחלק מהעסקאות — כל עמלה כזו מופיעה במסך הסקירה לפני שתאשר את העסקה."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -7459,16 +7459,16 @@
       "value": "אילו רשתות wwwallet תומכת בהן?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "הרשת הראשית של אתריום, בנוסף לרשתות שכבה 2: Polygon, Arbitrum, Base ו-Optimism — כולן מאותה קבוצת חשבונות."
+      "enHash": "ef8767b649ce4915",
+      "value": "הרשת הראשית של אתריום, בנוסף ל-Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain ו-Scroll — כולם מאותה קבוצת חשבונות."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "איך ממלאים את הארנק?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "פתחו חשבון, בחרו ב-\"הצג קוד QR\" כדי לראות את הכתובת שלו, ושלחו כספים לכתובת זו מבורסה או מארנק אחר. ודאו שאתם שולחים ברשת הנכונה (Ethereum, Polygon, Arbitrum, Base או Optimism) — אותה כתובת פועלת בכולן, אך כספים שנשלחים ברשת אחת מופיעים רק באותה רשת. כמו כן, תזדקקו לכמות קטנה של המטבע המקורי של הרשת (כגון ETH) כדי לשלם את עמלות העסקה."
+      "enHash": "7866cbea16a7584a",
+      "value": "פתחו חשבון, בחרו ב-\"הצג קוד QR\" כדי לראות את הכתובת שלו, ושלחו כספים לכתובת זו מבורסה או מארנק אחר. ודאו שאתם שולחים ברשת הנכונה (כגון אתריום, Base או Arbitrum) — אותה כתובת פועלת בכל רשת נתמכת, אך כספים שנשלחים ברשת אחת מופיעים רק ברשת הזו. כמו כן, תזדקקו לכמות קטנה של המטבע המקורי של הרשת (כגון ETH) כדי לשלם את עמלות העסקה."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -7527,8 +7527,8 @@
       "value": "wwwallet — ארנק אתריום חינמי ולא-משמורני"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "ארנק אתריום חינמי בדפדפן שלכם. ללא הרשמה, ללא פרסומות, ללא מעקב — המפתחות שלכם נשארים מוצפנים במכשיר שלכם. אתריום, ארביטרום, בייס, אופטימיזם ופוליגון."
+      "enHash": "9cff47358c5f828b",
+      "value": "ארנק אתריום חינמי בדפדפן שלכם. ללא הרשמה, ללא פרסומות, ללא מעקב — המפתחות שלכם נשארים מוצפנים במכשיר שלכם. אתריום, Base, Arbitrum, Optimism, Polygon ועוד 10 רשתות."
     }
   },
   "ja": {
@@ -7649,12 +7649,12 @@
       "value": "wwwalletは、一定時間操作がないとロックされ、ロック解除されたセッションは決してディスクに書き込まれない。タブを閉じれば、意図的にその状態を忘れるようになっている。"
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "5つのイーサリアムネットワーク、1組のアカウント"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "15のイーサリアムネットワーク、1セットのアカウント"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "イーサリアムメインネット、Polygon、Arbitrum、Base、Optimismにおいて、同じアカウントとアドレスで資産を保有・送金できる。"
+      "enHash": "469119b82403fc1f",
+      "value": "イーサリアムメインネットおよび、Arbitrum、Base、Optimism、Polygon、Linea、ZKsyncを含むさらに14のネットワークで、同じアカウントとアドレスを使用して、資産の保有や送金が可能だ。"
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -7785,8 +7785,8 @@
       "value": "wwwalletは本当に無料なのか？"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "はい。利用料は無料であり、プレミアムプランや有料コンテンツは一切ない。また、wwwalletは送金や交換に手数料を上乗せしない。避けられないコストは、ネットワーク固有の取引手数料（ガス代）のみであり、これはwwwalletではなくネットワークに支払われるものだ。 スワップの相場は0x取引所アグリゲーターから提供されており、一部の取引では独自の手数料が含まれる場合がある。そのような手数料は、確認を行う前の確認画面に表示される。"
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "はい。利用料は無料であり、プレミアムプランや有料コンテンツは一切ない。また、wwwalletは送金や交換に手数料を上乗せしない。避けられない唯一のコストは、ネットワーク独自の取引（ガス）手数料であり、これはwwwalletではなくネットワークに支払われるものだ。 スワップの相場は、0x取引所アグリゲーター（または、0xが対応していないネットワークではLI.FI）から提供されており、一部の取引では独自の手数料が含まれる場合がある。そのような手数料は、確認を行う前の確認画面に表示される。"
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -7997,16 +7997,16 @@
       "value": "wwwalletはどのネットワークに対応しているか？"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "イーサリアムメインネットに加え、Layer-2ネットワークであるPolygon、Arbitrum、Base、Optimism――これらすべてを同一のアカウントセットから利用できる。"
+      "enHash": "ef8767b649ce4915",
+      "value": "イーサリアムメインネットに加え、Arbitrum、Base、Optimism、Polygon、Robinhood Chain、World Chain、Ink、Linea、Gnosis、Celo、ZKsync Era、Ronin、Unichain、Scroll — これらすべてを同一のアカウントセットから利用できる。"
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "ウォレットに資金を入金するにはどうすればよいか？"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "アカウントを開設し、「QRコードを表示」を選択してアドレスを確認し、取引所や別のウォレットからそのアドレスへ資金を送金する。 正しいネットワーク（イーサリアム、ポリゴン、アービトラム、ベース、またはオプティミズム）で送金するように注意すること。同じアドレスはすべてのネットワークで機能するが、あるネットワークで送金された資金はそのネットワーク上にのみ表示される。 また、取引手数料を支払うために、そのネットワークのネイティブコイン（ETHなど）を少額用意しておく必要がある。"
+      "enHash": "7866cbea16a7584a",
+      "value": "アカウントを開設し、「QRコードを表示」を選択してアドレスを確認した後、取引所や別のウォレットからそのアドレスへ資金を送金する。正しいネットワーク（イーサリアム、Base、Arbitrumなど）で送金するように注意すること。同じアドレスはサポートされているすべてのネットワークで機能するが、あるネットワークで送金された資金はそのネットワーク上でのみ表示される。 また、取引手数料を支払うために、そのネットワークのネイティブコイン（ETHなど）を少額用意しておく必要がある。"
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -8065,8 +8065,8 @@
       "value": "wwwallet — 無料の非カストディアル型イーサリアムウォレット"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "ブラウザ上で利用できる無料のイーサリアムウォレットだ。登録不要、広告なし、追跡なし――鍵はデバイス上で暗号化されたまま保管される。イーサリアム、Arbitrum、Base、Optimism、Polygonに対応している。"
+      "enHash": "9cff47358c5f828b",
+      "value": "ブラウザ上で利用できる無料のイーサリアムウォレットだ。登録不要、広告なし、トラッキングなし――鍵はデバイス上で暗号化されたまま保管される。イーサリアム、Base、Arbitrum、Optimism、Polygon、その他10のネットワークに対応している。"
     }
   },
   "ko": {
@@ -8187,12 +8187,12 @@
       "value": "wwwallet은 일정 시간 동안 활동이 없으면 자동으로 잠기며, 잠금 해제된 세션 정보를 디스크에 절대 저장하지 않습니다. 탭을 닫으면 의도적으로 해당 세션 정보를 잊어버립니다."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "5개의 이더리움 네트워크, 하나의 계정 세트"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "15개의 이더리움 네트워크, 하나의 계정 세트"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "이더리움 메인넷, 폴리곤(Polygon), 아비트럼(Arbitrum), 베이스(Base), 옵티미즘(Optimism)에서 동일한 계정과 주소를 사용하여 자산을 보관하고 전송할 수 있습니다."
+      "enHash": "469119b82403fc1f",
+      "value": "동일한 계정과 주소를 사용하여 이더리움 메인넷과 Arbitrum, Base, Optimism, Polygon, Linea, ZKsync 등 14개의 추가 네트워크에서 자산을 보관하고 전송할 수 있습니다."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -8323,8 +8323,8 @@
       "value": "wwwallet은 정말 무료인가요?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "네. 사용료가 없으며, 프리미엄 등급이나 유료 콘텐츠도 없습니다. 또한 wwwallet은 송금이나 교환 시 어떠한 수수료도 부과하지 않습니다. 피할 수 없는 유일한 비용은 네트워크 자체의 거래(가스) 수수료뿐이며, 이 수수료는 wwwallet이 아닌 네트워크 측으로 지급됩니다. 스왑 호가는 0x 거래소 애그리게이터에서 제공되며, 일부 거래에는 자체 수수료가 포함될 수 있습니다. 이러한 수수료는 확인하기 전 검토 화면에 표시됩니다."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "네. 사용료는 없으며, 프리미엄 등급도 없고 유료 콘텐츠도 없습니다. 또한 wwwallet은 사용자가 전송하거나 교환하는 모든 거래에 수수료를 부과하지 않습니다. 피할 수 없는 유일한 비용은 네트워크 자체의 거래(가스) 수수료뿐이며, 이는 wwwallet이 아닌 네트워크 측으로 지급됩니다. 스왑 호가는 0x 거래소 애그리게이터(또는 0x가 지원하지 않는 네트워크의 경우 LI.FI)에서 제공되며, 일부 거래에는 해당 플랫폼의 수수료가 포함될 수 있습니다. 이러한 수수료는 확인하기 전 검토 화면에 명시됩니다."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -8535,16 +8535,16 @@
       "value": "wwwallet은 어떤 네트워크를 지원하나요?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "이더리움 메인넷과 레이어 2 네트워크인 폴리곤(Polygon), 아비트럼(Arbitrum), 베이스(Base), 옵티미즘(Optimism)까지 — 모두 동일한 계정 세트에서 이용할 수 있습니다."
+      "enHash": "ef8767b649ce4915",
+      "value": "이더리움 메인넷은 물론, Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain, Scroll까지 — 모두 동일한 계정 세트에서 지원됩니다."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "지갑에 자금을 입금하려면 어떻게 해야 하나요?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "계정을 개설하고, “QR 코드 보기”를 선택하여 주소를 확인한 뒤, 거래소나 다른 지갑에서 해당 주소로 자금을 전송하세요. 올바른 네트워크(이더리움, 폴리곤, 아비트럼, 베이스 또는 옵티미즘)로 자금을 전송했는지 확인하세요. 동일한 주소가 모든 네트워크에서 작동하지만, 한 네트워크로 전송된 자금은 해당 네트워크에서만 표시됩니다. 또한 거래 수수료를 지불하기 위해 해당 네트워크의 기본 코인(예: ETH)을 소량 준비해야 합니다."
+      "enHash": "7866cbea16a7584a",
+      "value": "계정을 개설하고, “QR 코드 보기”를 선택하여 주소를 확인한 뒤, 거래소나 다른 지갑에서 해당 주소로 자금을 전송하세요. 올바른 네트워크(예: 이더리움, Base, Arbitrum 등)를 통해 전송해야 합니다. 동일한 주소는 지원되는 모든 네트워크에서 작동하지만, 한 네트워크를 통해 전송된 자금은 해당 네트워크에서만 표시됩니다. 또한 거래 수수료를 지불하기 위해 해당 네트워크의 기본 코인(예: ETH)을 소량 준비해 두는 것이 좋습니다."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -8603,8 +8603,8 @@
       "value": "wwwallet — 무료, 비수탁형 이더리움 지갑"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "브라우저에서 바로 사용할 수 있는 무료 이더리움 지갑입니다. 회원 가입, 광고, 추적 없음 — 사용자의 키는 기기 내에서 암호화된 상태로 안전하게 보관됩니다. 이더리움, 아비트럼, 베이스, 옵티미즘, 폴리곤을 지원합니다."
+      "enHash": "9cff47358c5f828b",
+      "value": "브라우저에서 바로 사용할 수 있는 무료 이더리움 지갑입니다. 회원 가입, 광고, 추적 없음 — 키는 기기에서 암호화된 상태로 안전하게 보관됩니다. 이더리움, 베이스, 아비트럼, 옵티미즘, 폴리곤 및 10개 이상의 네트워크를 지원합니다."
     }
   },
   "lt": {
@@ -8725,12 +8725,12 @@
       "value": "„wwwallet“ užsirakina po trumpo neveikimo laikotarpio ir niekada neįrašo jūsų atrakintos sesijos į diską – uždarykite skirtuką, ir programa tai sąmoningai pamirš."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Penki „Ethereum“ tinklai, vienas sąskaitų rinkinys"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Penkiolika „Ethereum“ tinklų, vienas sąskaitų rinkinys"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Laikykite ir siųskite per „Ethereum“ pagrindinį tinklą, „Polygon“, „Arbitrum“, „Base“ ir „Optimism“ naudodami tuos pačius paskyrus ir adresus."
+      "enHash": "469119b82403fc1f",
+      "value": "Laikykite ir siųskite per „Ethereum“ pagrindinį tinklą ir dar 14 tinklų – įskaitant „Arbitrum“, „Base“, „Optimism“, „Polygon“, „Linea“ ir „ZKsync“ – naudodami tuos pačius paskyrus ir adresus."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -8861,8 +8861,8 @@
       "value": "Ar „wwwallet“ tikrai nemokama?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Taip. Naudotis ja nemokama, nėra jokio „premium“ lygio ir nieko už mokamos sienos, o „wwwallet“ nepriskaičiuoja jokių mokesčių už siunčiamus ar keičiamus turtus. Vienintelė neišvengiama išlaida yra pačio tinklo sandorio (dujų) mokestis, kuris atitenka tinklui, o ne „wwwallet“. Keitimo kainos pateikiamos iš „0x“ biržų agregatoriaus, kuris kai kuriose operacijose gali taikyti savo mokestį – bet koks toks mokestis yra nurodytas peržiūros ekrane prieš jums patvirtinant."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Taip. Naudotis ja nemokama, nėra jokio „premium“ lygio ir nieko už mokamos sienos, o „wwwallet“ nepriskaičiuoja jokių mokesčių už siunčiamus ar keičiamus turimus. Vienintelė neišvengiama išlaida yra pačio tinklo sandorio (dujų) mokestis, kuris atitenka tinklui, o ne „wwwallet“. Keitimo kainos pateikiamos iš „0x“ biržų agregatoriaus (arba „LI.FI“, tinkle, kurio „0x“ neapima), kuris kai kuriose operacijose gali taikyti savo mokestį – bet koks toks mokestis yra nurodytas peržiūros ekrane prieš jums patvirtinant."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -9073,16 +9073,16 @@
       "value": "Kokius tinklus palaiko „wwwallet“?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "„Ethereum“ pagrindinis tinklas, taip pat 2-ojo lygmens tinklai „Polygon“, „Arbitrum“, „Base“ ir „Optimism“ – visi iš to paties sąskaitų rinkinio."
+      "enHash": "ef8767b649ce4915",
+      "value": "„Ethereum“ pagrindinis tinklas, taip pat „Arbitrum“, „Base“, „Optimism“, „Polygon“, „Robinhood Chain“, „World Chain“, „Ink“, „Linea“, „Gnosis“, „Celo“, „ZKsync Era“, „Ronin“, „Unichain“ ir „Scroll“ – visi iš to paties sąskaitų rinkinio."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Kaip įnešti lėšų į savo piniginę?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Atidarykite sąskaitą, pasirinkite „Peržiūrėti QR kodą“, kad pamatytumėte jos adresą, ir iš biržos ar kitos piniginės perveskite lėšas į tą adresą. Įsitikinkite, kad siunčiate per tinkamą tinklą („Ethereum“, „Polygon“, „Arbitrum“, „Base“ arba „Optimism“) – tas pats adresas veikia visuose juose, tačiau per vieną tinklą siunčiamos lėšos atsiranda tik tame tinkle. Be to, jums reikės šiek tiek to tinklo vietinės valiutos (pavyzdžiui, ETH), kad galėtumėte sumokėti sandorio mokesčius."
+      "enHash": "7866cbea16a7584a",
+      "value": "Atidarykite sąskaitą, pasirinkite „Peržiūrėti QR kodą“, kad pamatytumėte jos adresą, ir iš biržos ar kitos piniginės nusiųskite lėšas į tą adresą. Įsitikinkite, kad siunčiate per tinkamą tinklą (pavyzdžiui, „Ethereum“, „Base“ ar „Arbitrum“) – tas pats adresas veikia visuose palaikomuose tinkluose, tačiau viename tinkle išsiųstos lėšos atsiranda tik tame tinkle. Taip pat reikės šiek tiek tinklo vietinės valiutos (pavyzdžiui, ETH), kad galėtumėte sumokėti sandorio mokesčius."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -9141,8 +9141,8 @@
       "value": "wwwallet — Nemokama, nekustodinė „Ethereum“ piniginė"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Nemokama „Ethereum“ piniginė jūsų naršyklėje. Nereikia registruotis, nėra reklamų, nėra sekimo – jūsų raktų duomenys lieka užšifruoti jūsų įrenginyje. „Ethereum“, „Arbitrum“, „Base“, „Optimism“ ir „Polygon“."
+      "enHash": "9cff47358c5f828b",
+      "value": "Nemokama „Ethereum“ piniginė jūsų naršyklėje. Nereikia registruotis, nėra reklamų, nėra sekimo – jūsų raktų duomenys lieka užšifruoti jūsų įrenginyje. „Ethereum“, „Base“, „Arbitrum“, „Optimism“, „Polygon“ ir dar 10 tinklų."
     }
   },
   "lv": {
@@ -9263,12 +9263,12 @@
       "value": "„wwwallet“ bloķējas pēc īsa bezdarbības perioda un nekad neieraksta jūsu atbloķēto sesiju diskā — aizveriet cilni, un tā to apzināti aizmirst."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Pieci Ethereum tīkli, viens kontu kopums"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Piecpadsmit Ethereum tīkli, viens kontu kopums"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Glabājiet un sūtiet caur Ethereum galveno tīklu, Polygon, Arbitrum, Base un Optimism, izmantojot tos pašus kontus un adreses."
+      "enHash": "469119b82403fc1f",
+      "value": "Glabājiet un sūtiet caur Ethereum galveno tīklu un vēl 14 tīkliem — tostarp Arbitrum, Base, Optimism, Polygon, Linea un ZKsync — izmantojot tos pašus kontus un adreses."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -9399,8 +9399,8 @@
       "value": "Vai wwwallet patiešām ir bezmaksas?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Jā. Tās izmantošana ir bez maksas, nav premium līmeņa un nekādu maksas barjeru, un wwwallet nepiemēro komisijas maksu par jebkuru jūsu nosūtīto vai apmainīto summu. Vienīgās neizbēgamās izmaksas ir tīkla paša darījumu (gāzes) maksa, kas nonāk tīklam, nevis wwwallet. Apmaiņas kotācijas nāk no 0x biržu agregatora, kas dažos darījumos var iekļaut savu komisiju — jebkura šāda komisija tiek norādīta pārskata ekrānā, pirms jūs apstiprināt darījumu."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Jā. Tās izmantošana ir bez maksas, nav premium līmeņa un nekādu maksas barjeru, un wwwallet nepiemēro komisijas maksu par jebkuru jūsu nosūtīto vai apmainīto summu. Vienīgās neizbēgamās izmaksas ir tīkla paša transakciju (gāzes) maksa, kas nonāk tīklam, nevis wwwallet. Apmaiņas kotācijas nāk no 0x biržu agregatora (vai LI.FI, tīklos, kurus 0x neaptver), kas dažos darījumos var iekļaut savu komisiju — jebkura šāda komisija tiek norādīta pārskata ekrānā, pirms jūs apstiprināt darījumu."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -9611,16 +9611,16 @@
       "value": "Kādus tīklus atbalsta wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Ethereum galvenais tīkls, kā arī 2. slāņa tīkli Polygon, Arbitrum, Base un Optimism — visi no viena un tā paša kontu kopuma."
+      "enHash": "ef8767b649ce4915",
+      "value": "Ethereum galvenais tīkls, kā arī Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain un Scroll — visi no viena un tā paša kontu kopuma."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Kā es varu papildināt savu maku?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Atveriet kontu, izvēlieties „Skatīt QR kodu”, lai redzētu tā adresi, un nosūtiet līdzekļus uz šo adresi no biržas vai citas makas. Pārliecinieties, ka nosūtāt pareizajā tīklā (Ethereum, Polygon, Arbitrum, Base vai Optimism) — viena un tā pati adrese darbojas visos šajos tīklos, taču līdzekļi, kas nosūtīti vienā tīklā, parādās tikai tajā tīklā. Jums būs nepieciešams arī neliels daudzums tīkla vietējās monētas (piemēram, ETH), lai segtu transakcijas komisijas maksu."
+      "enHash": "7866cbea16a7584a",
+      "value": "Atveriet kontu, izvēlieties „Skatīt QR kodu”, lai redzētu tā adresi, un nosūtiet līdzekļus uz šo adresi no biržas vai citas makas. Pārliecinieties, ka nosūtāt pareizajā tīklā (piemēram, Ethereum, Base vai Arbitrum) — viena un tā pati adrese darbojas visos atbalstītajos tīklos, bet līdzekļi, kas nosūtīti vienā tīklā, parādās tikai šajā tīklā. Jums būs nepieciešams arī neliels daudzums tīkla vietējās monētas (piemēram, ETH), lai segtu transakciju komisijas maksas."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -9679,8 +9679,8 @@
       "value": "wwwallet — bezmaksas, neuzraudzīta Ethereum maku lietotne"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Bezmaksas Ethereum maku jūsu pārlūkprogrammā. Nav reģistrācijas, nav reklāmu, nav izsekošanas — jūsu atslēgas paliek šifrētas jūsu ierīcē. Ethereum, Arbitrum, Base, Optimism un Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Bezmaksas Ethereum maku jūsu pārlūkprogrammā. Nav reģistrācijas, nav reklāmu, nav izsekošanas — jūsu atslēgas paliek šifrētas jūsu ierīcē. Ethereum, Base, Arbitrum, Optimism, Polygon un vēl 10 tīkli."
     }
   },
   "nl": {
@@ -9801,12 +9801,12 @@
       "value": "wwwallet vergrendelt na een korte periode van inactiviteit en slaat je ontgrendelde sessie nooit op schijf op — sluit je het tabblad, dan vergeet het dit bewust."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Vijf Ethereum-netwerken, één set accounts"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Vijftien Ethereum-netwerken, één set accounts"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Bewaar en verstuur via het Ethereum-mainnet, Polygon, Arbitrum, Base en Optimism met dezelfde accounts en adressen."
+      "enHash": "469119b82403fc1f",
+      "value": "Bewaar en verstuur via het Ethereum-mainnet en nog 14 andere netwerken — waaronder Arbitrum, Base, Optimism, Polygon, Linea en ZKsync — met dezelfde accounts en adressen."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -9937,8 +9937,8 @@
       "value": "Is wwwallet echt gratis?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Ja. Het gebruik is gratis, er is geen premium-abonnement en er zit niets achter een betaalmuur, en wwwallet rekent geen extra kosten aan voor wat je verstuurt of ruilt. De enige onvermijdelijke kosten zijn de transactiekosten (gas) van het netwerk zelf, die naar het netwerk gaan en niet naar wwwallet. De ruilkoersen komen van de 0x-beursaggregator, die bij sommige transacties een eigen vergoeding kan rekenen — zo’n vergoeding wordt op het bevestigingsscherm weergegeven voordat je de transactie bevestigt."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Ja. Het gebruik is gratis, er is geen premium-abonnement en er zit niets achter een betaalmuur, en wwwallet rekent geen extra kosten aan voor wat je verstuurt of ruilt. De enige onvermijdelijke kosten zijn de transactiekosten (gas) van het netwerk zelf, die naar het netwerk gaan en niet naar wwwallet. De ruilkoersen komen van de 0x-beursaggregator (of LI.FI, op netwerken die 0x niet dekt), die bij sommige transacties een eigen vergoeding kan rekenen — zo’n vergoeding wordt op het bevestigingsscherm weergegeven voordat je de transactie bevestigt."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -10149,16 +10149,16 @@
       "value": "Welke netwerken ondersteunt wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Het Ethereum-mainnet, plus de Layer-2-netwerken Polygon, Arbitrum, Base en Optimism — allemaal vanuit dezelfde set accounts."
+      "enHash": "ef8767b649ce4915",
+      "value": "Het Ethereum-mainnet, plus Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain en Scroll — allemaal vanuit dezelfde set accounts."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Hoe zet ik geld op mijn wallet?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Maak een account aan, kies ‘QR-code bekijken’ om het adres te zien en stuur geld naar dat adres vanaf een exchange of een andere wallet. Zorg ervoor dat je via het juiste netwerk stuurt (Ethereum, Polygon, Arbitrum, Base of Optimism) — hetzelfde adres werkt op al deze netwerken, maar geld dat via één netwerk wordt gestuurd, verschijnt alleen op dat netwerk. Je hebt ook een klein beetje van de eigen munt van het netwerk (zoals ETH) nodig om de transactiekosten te betalen."
+      "enHash": "7866cbea16a7584a",
+      "value": "Maak een account aan, kies ‘QR-code bekijken’ om het adres te zien en stuur geld naar dat adres vanaf een beurs of een andere wallet. Zorg ervoor dat je via het juiste netwerk verstuurt (zoals Ethereum, Base of Arbitrum) — hetzelfde adres werkt op elk ondersteund netwerk, maar geld dat via één netwerk wordt verstuurd, verschijnt alleen op dat netwerk. Je hebt ook een klein beetje van de eigen munt van het netwerk (zoals ETH) nodig om transactiekosten te betalen."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -10217,8 +10217,8 @@
       "value": "wwwallet — Gratis, non-custodial Ethereum-wallet"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Gratis Ethereum-wallet in je browser. Geen aanmelding, geen advertenties, geen tracking — je sleutels blijven versleuteld op je apparaat. Ethereum, Arbitrum, Base, Optimism en Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Gratis Ethereum-wallet in je browser. Geen aanmelding, geen advertenties, geen tracking — je sleutels blijven versleuteld op je apparaat. Ethereum, Base, Arbitrum, Optimism, Polygon en nog 10 andere netwerken."
     }
   },
   "no": {
@@ -10339,12 +10339,12 @@
       "value": "wwwallet låses etter en kort periode uten aktivitet, og lagrer aldri din ulåste økt på disken – lukker du fanen, glemmer den det, med vilje."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Fem Ethereum-nettverk, ett sett med kontoer"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Femten Ethereum-nettverk, ett sett med kontoer"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Oppbevar og send på Ethereums hovednettverk, Polygon, Arbitrum, Base og Optimism med de samme kontoene og adressene."
+      "enHash": "469119b82403fc1f",
+      "value": "Oppbevar og send på Ethereums hovednettverk og 14 andre nettverk – inkludert Arbitrum, Base, Optimism, Polygon, Linea og ZKsync – med de samme kontoene og adressene."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -10475,8 +10475,8 @@
       "value": "Er wwwallet virkelig gratis?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Ja. Det koster ingenting å bruke den, det finnes ingen premium-nivå og ingenting bak en betalingsmur, og wwwallet legger ikke til noen avgift på noe du sender eller bytter. Den eneste uunngåelige kostnaden er nettverkets egen transaksjonsavgift (gas), som går til nettverket og ikke til wwwallet. Byttepriser kommer fra 0x-børsaggregatoren, som kan legge til sitt eget gebyr på enkelte handler – slike gebyrer vises på bekreftelsesskjermen før du bekrefter."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Ja. Det koster ingenting å bruke den, det finnes ingen premium-nivå og ingenting bak en betalingsmur, og wwwallet legger ikke til noen avgift på noe du sender eller bytter. Den eneste uunngåelige kostnaden er nettverkets egen transaksjonsavgift (gas), som går til nettverket og ikke til wwwallet. Byttepriser kommer fra 0x-børsaggregatoren (eller LI.FI, på nettverk som 0x ikke dekker), som kan inkludere sitt eget gebyr på enkelte handler – slike gebyrer vises på bekreftelsesskjermen før du bekrefter."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -10687,16 +10687,16 @@
       "value": "Hvilke nettverk støtter wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Ethereum-mainnet, pluss Layer-2-nettverkene Polygon, Arbitrum, Base og Optimism – alt fra det samme settet med kontoer."
+      "enHash": "ef8767b649ce4915",
+      "value": "Ethereum-mainnet, pluss Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain og Scroll – alt fra det samme settet med kontoer."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Hvordan setter jeg inn penger på lommeboken min?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Opprett en konto, velg «Vis QR-kode» for å se adressen, og send midler til den adressen fra en børs eller en annen lommebok. Sørg for at du sender på riktig nettverk (Ethereum, Polygon, Arbitrum, Base eller Optimism) – den samme adressen fungerer på alle, men midler sendt på ett nettverk vises kun på det nettverket. Du vil også trenge litt av nettverkets egen valuta (for eksempel ETH) for å betale transaksjonsgebyrene."
+      "enHash": "7866cbea16a7584a",
+      "value": "Opprett en konto, velg «Vis QR-kode» for å se adressen, og send midler til den adressen fra en børs eller en annen lommebok. Sørg for at du sender på riktig nettverk (for eksempel Ethereum, Base eller Arbitrum) – den samme adressen fungerer på alle støttede nettverk, men midler som sendes på ett nettverk vises kun på det nettverket. Du bør også ha litt av nettverkets egen valuta (for eksempel ETH) for å betale transaksjonsgebyrer."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -10755,8 +10755,8 @@
       "value": "wwwallet — Gratis, ikke-depotbasert Ethereum-lommebok"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Gratis Ethereum-lommebok i nettleseren din. Ingen registrering, ingen annonser, ingen sporing – nøklene dine forblir kryptert på enheten din. Ethereum, Arbitrum, Base, Optimism og Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Gratis Ethereum-lommebok i nettleseren din. Ingen registrering, ingen annonser, ingen sporing – nøklene dine forblir kryptert på enheten din. Ethereum, Base, Arbitrum, Optimism, Polygon og 10 andre nettverk."
     }
   },
   "pl": {
@@ -10877,12 +10877,12 @@
       "value": "wwwallet blokuje się po krótkim okresie bezczynności i nigdy nie zapisuje twojej odblokowanej sesji na dysku – zamknij kartę, a aplikacja celowo o tym zapomni."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Pięć sieci Ethereum, jeden zestaw kont"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Piętnaście sieci Ethereum, jeden zestaw kont"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Przechowuj i wysyłaj środki w sieci głównej Ethereum, Polygon, Arbitrum, Base i Optimism, korzystając z tych samych kont i adresów."
+      "enHash": "469119b82403fc1f",
+      "value": "Przechowuj i wysyłaj środki w sieci głównej Ethereum oraz w 14 innych sieciach — w tym Arbitrum, Base, Optimism, Polygon, Linea i ZKsync — korzystając z tych samych kont i adresów."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -11013,8 +11013,8 @@
       "value": "Czy wwwallet jest naprawdę darmowy?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Tak. Korzystanie z aplikacji jest bezpłatne, nie ma wersji premium ani żadnych treści za paywallem, a wwwallet nie dolicza żadnych opłat do wysyłanych ani wymienianych środków. Jedynym nieuniknionym kosztem jest opłata transakcyjna (gas) sieci, która trafia do sieci, a nie do wwwallet. Notowania wymiany pochodzą z agregatora giełd 0x, który może doliczać własną opłatę do niektórych transakcji – każda taka opłata jest widoczna na ekranie podsumowania przed potwierdzeniem."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Tak. Korzystanie z aplikacji jest bezpłatne, nie ma wersji premium ani żadnych treści za paywallem, a wwwallet nie dolicza żadnych opłat do wysyłanych ani wymienianych środków. Jedynym nieuniknionym kosztem jest opłata transakcyjna (gas) sieci, która trafia do sieci, a nie do wwwallet. Notowania wymiany pochodzą z agregatora giełd 0x (lub LI.FI w sieciach, których 0x nie obsługuje), który może naliczać własną opłatę przy niektórych transakcjach – każda taka opłata jest widoczna na ekranie podsumowania przed potwierdzeniem."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -11225,16 +11225,16 @@
       "value": "Jakie sieci obsługuje wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Sieć główna Ethereum oraz sieci warstwy drugiej (Layer-2): Polygon, Arbitrum, Base i Optimism – wszystko z tego samego zestawu kont."
+      "enHash": "ef8767b649ce4915",
+      "value": "Sieć główna Ethereum, a także Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain i Scroll — wszystko z tego samego zestawu kont."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Jak doładować portfel?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Załóż konto, wybierz „Wyświetl kod QR”, żeby zobaczyć adres, a potem wyślij środki na ten adres z giełdy lub innego portfela. Upewnij się, że wysyłasz środki w odpowiedniej sieci (Ethereum, Polygon, Arbitrum, Base lub Optimism) – ten sam adres działa we wszystkich sieciach, ale środki wysłane w jednej sieci pojawiają się tylko w tej sieci. Będziesz też potrzebować trochę natywnej monety sieci (np. ETH), żeby pokryć opłaty transakcyjne."
+      "enHash": "7866cbea16a7584a",
+      "value": "Załóż konto, wybierz „Wyświetl kod QR”, żeby zobaczyć adres, a potem wyślij środki na ten adres z giełdy lub innego portfela. Upewnij się, że wysyłasz środki w odpowiedniej sieci (np. Ethereum, Base lub Arbitrum) – ten sam adres działa w każdej obsługiwanej sieci, ale środki wysłane w jednej sieci pojawiają się tylko w tej sieci. Będziesz też potrzebować trochę natywnej monety sieci (np. ETH), żeby opłacić prowizje transakcyjne."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -11293,8 +11293,8 @@
       "value": "wwwallet — Darmowy, niepowierniczy portfel Ethereum"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Darmowy portfel Ethereum w przeglądarce. Bez rejestracji, bez reklam, bez śledzenia — twoje klucze pozostają zaszyfrowane na twoim urządzeniu. Ethereum, Arbitrum, Base, Optimism i Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Darmowy portfel Ethereum w przeglądarce. Bez rejestracji, bez reklam, bez śledzenia — twoje klucze pozostają zaszyfrowane na twoim urządzeniu. Ethereum, Base, Arbitrum, Optimism, Polygon i 10 innych sieci."
     }
   },
   "ro": {
@@ -11415,12 +11415,12 @@
       "value": "wwwallet se blochează după o scurtă perioadă de inactivitate și nu salvează niciodată sesiunea dvs. deblocată pe disc — închideți fila și aplicația uită, în mod intenționat."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Cinci rețele Ethereum, un singur set de conturi"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Cincisprezece rețele Ethereum, un singur set de conturi"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Păstrați și trimiteți pe rețeaua principală Ethereum, Polygon, Arbitrum, Base și Optimism folosind aceleași conturi și adrese."
+      "enHash": "469119b82403fc1f",
+      "value": "Dețineți și trimiteți prin rețeaua principală Ethereum și alte 14 rețele — inclusiv Arbitrum, Base, Optimism, Polygon, Linea și ZKsync — folosind aceleași conturi și adrese."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -11551,8 +11551,8 @@
       "value": "wwwallet este cu adevărat gratuit?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Da. Utilizarea este gratuită, nu există un nivel premium și nimic nu este accesibil doar contra cost, iar wwwallet nu adaugă niciun comision la ceea ce trimiteți sau schimbați. Singurul cost inevitabil este comisionul de tranzacție (gas) al rețelei, care revine rețelei, nu wwwallet. Cotațiile de schimb provin de la agregatorul de burse 0x, care poate include propriul comision la unele tranzacții — orice astfel de comision este afișat pe ecranul de verificare înainte de confirmare."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Da. Utilizarea este gratuită, nu există un nivel premium și nimic nu este accesibil doar contra cost, iar wwwallet nu adaugă niciun comision la tranzacțiile pe care le efectuați sau la schimburile pe care le realizați. Singurul cost inevitabil este comisionul de tranzacție (gas) propriu rețelei, care revine rețelei, nu wwwallet. Cotațiile de schimb provin de la agregatorul de burse 0x (sau LI.FI, pe rețelele pe care 0x nu le acoperă), care poate include propriul comision la unele tranzacții — orice astfel de comision este afișat pe ecranul de verificare înainte de confirmare."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -11763,16 +11763,16 @@
       "value": "Ce rețele suportă wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Rețeaua principală Ethereum, plus rețelele Layer-2 Polygon, Arbitrum, Base și Optimism — toate din același set de conturi."
+      "enHash": "ef8767b649ce4915",
+      "value": "Rețeaua principală Ethereum, plus Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain și Scroll — toate din același set de conturi."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Cum îmi alimentez portofelul?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Deschideți un cont, alegeți „Vizualizați codul QR” pentru a vedea adresa acestuia și trimiteți fonduri la acea adresă de la o platformă de schimb sau de la un alt portofel. Asigurați-vă că trimiteți pe rețeaua corectă (Ethereum, Polygon, Arbitrum, Base sau Optimism) — aceeași adresă funcționează pe toate, dar fondurile trimise pe o rețea apar doar pe rețeaua respectivă. De asemenea, veți avea nevoie de o cantitate mică din moneda nativă a rețelei (cum ar fi ETH) pentru a plăti comisioanele de tranzacție."
+      "enHash": "7866cbea16a7584a",
+      "value": "Deschideți un cont, alegeți „Vizualizați codul QR” pentru a vedea adresa acestuia și trimiteți fonduri către acea adresă de pe o platformă de schimb sau dintr-un alt portofel. Asigurați-vă că trimiteți pe rețeaua corectă (cum ar fi Ethereum, Base sau Arbitrum) — aceeași adresă funcționează pe toate rețelele acceptate, dar fondurile trimise pe o rețea apar doar pe acea rețea. De asemenea, veți avea nevoie de o cantitate mică din moneda nativă a rețelei (cum ar fi ETH) pentru a plăti comisioanele de tranzacție."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -11831,8 +11831,8 @@
       "value": "wwwallet — Portofel Ethereum gratuit, fără custodie"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Portofel Ethereum gratuit în browserul tău. Fără înregistrare, fără reclame, fără urmărire — cheile tale rămân criptate pe dispozitivul tău. Ethereum, Arbitrum, Base, Optimism și Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Portofel Ethereum gratuit în browserul tău. Fără înregistrare, fără reclame, fără urmărire — cheile tale rămân criptate pe dispozitivul tău. Ethereum, Base, Arbitrum, Optimism, Polygon și încă 10 rețele."
     }
   },
   "ru": {
@@ -11953,12 +11953,12 @@
       "value": "wwwallet блокируется после короткого периода бездействия и никогда не сохраняет данные твоей разблокированной сессии на диск — закрой вкладку, и приложение специально забудет о ней."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Пять сетей Ethereum, один набор учетных записей"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Пятнадцать сетей Ethereum, один набор учетных записей"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Храни и отправляй средства в основной сети Ethereum, а также в сетях Polygon, Arbitrum, Base и Optimism, используя одни и те же аккаунты и адреса."
+      "enHash": "469119b82403fc1f",
+      "value": "Храни и отправляй средства в основной сети Ethereum и ещё 14 сетях — включая Arbitrum, Base, Optimism, Polygon, Linea и ZKsync — с одними и теми же аккаунтами и адресами."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -12089,8 +12089,8 @@
       "value": "wwwallet действительно бесплатен?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Да. Использование приложения бесплатное, нет премиум-уровня и ничего за платной подпиской, а wwwallet не взимает комиссию ни за отправку, ни за обмен. Единственные неизбежные расходы — это собственная комиссия сети за транзакцию (газ), которая уходит сети, а не wwwallet. Котировки на обмен поступают от агрегатора бирж 0x, который может взимать собственную комиссию за некоторые сделки — любая такая комиссия отображается на экране подтверждения перед тем, как ты нажмёшь «Подтвердить»."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Да. Использование приложения бесплатно, нет премиум-уровня и ничего за платной подпиской, а wwwallet не взимает комиссию ни за отправку, ни за обмен. Единственные неизбежные расходы — это собственная комиссия сети за транзакцию (газ), которая уходит сети, а не wwwallet. Котировки на обмен поступают от агрегатора бирж 0x (или LI.FI — в сетях, не охватываемых 0x), который может взимать собственную комиссию за некоторые сделки — любая такая комиссия отображается на экране подтверждения перед тем, как ты нажмёшь «Подтвердить»."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -12301,16 +12301,16 @@
       "value": "Какие сети поддерживает wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Основная сеть Ethereum, а также сети второго уровня Polygon, Arbitrum, Base и Optimism — всё с одного набора аккаунтов."
+      "enHash": "ef8767b649ce4915",
+      "value": "Основная сеть Ethereum, а также Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain и Scroll — всё с одного набора учетных записей."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Как пополнить кошелек?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Открой аккаунт, выбери «Показать QR-код», чтобы увидеть адрес, и отправь средства на этот адрес с биржи или из другого кошелька. Убедись, что отправляешь средства по нужной сети (Ethereum, Polygon, Arbitrum, Base или Optimism) — один и тот же адрес работает во всех сетях, но средства, отправленные по одной сети, появятся только в этой сети. Тебе также понадобится немного монеты данной сети (например, ETH), чтобы оплатить комиссию за транзакцию."
+      "enHash": "7866cbea16a7584a",
+      "value": "Открой аккаунт, выбери «Показать QR-код», чтобы увидеть адрес, и отправь средства на этот адрес с биржи или из другого кошелька. Убедись, что отправляешь средства по нужной сети (например, Ethereum, Base или Arbitrum) — один и тот же адрес работает во всех поддерживаемых сетях, но средства, отправленные по одной сети, появятся только в этой сети. Тебе также понадобится немного монеты этой сети (например, ETH), чтобы оплатить комиссию за транзакцию."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -12369,8 +12369,8 @@
       "value": "wwwallet — бесплатный некастодиальный кошелек для Ethereum"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Бесплатный кошелек Ethereum прямо в браузере. Без регистрации, без рекламы, без отслеживания — твои ключи остаются зашифрованными на твоём устройстве. Ethereum, Arbitrum, Base, Optimism и Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Бесплатный кошелек Ethereum прямо в браузере. Без регистрации, без рекламы, без отслеживания — твои ключи остаются зашифрованными на твоём устройстве. Ethereum, Base, Arbitrum, Optimism, Polygon и ещё 10 сетей."
     }
   },
   "sk": {
@@ -12491,12 +12491,12 @@
       "value": "Aplikácia wwwallet sa po krátkej dobe nečinnosti uzamkne a nikdy nezapíše vašu odomknutú reláciu na disk – ak zatvoríte kartu, záležitosť sa zámerne zabudne."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Päť sietí Ethereum, jedna sada účtov"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Pätnásť sietí Ethereum, jedna sada účtov"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Ukladajte a posielajte prostredníctvom hlavnej siete Ethereum, Polygon, Arbitrum, Base a Optimism s rovnakými účtami a adresami."
+      "enHash": "469119b82403fc1f",
+      "value": "Uchovávajte a posielajte prostredníctvom hlavnej siete Ethereum a ďalších 14 sietí – vrátane Arbitrum, Base, Optimism, Polygon, Linea a ZKsync – s rovnakými účtami a adresami."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -12627,8 +12627,8 @@
       "value": "Je wwwallet naozaj bezplatná?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Áno. Používanie je bezplatné, neexistuje žiadna prémiová úroveň ani obsah za platobnou bránou a wwwallet nepridáva žiadne poplatky k ničomu, čo posielate alebo vymieňate. Jediným nevyhnutným nákladom je vlastný transakčný (gas) poplatok siete, ktorý ide do siete, nie do wwwallet. Kótácie výmen pochádzajú z agregátora búrz 0x, ktorý môže pri niektorých obchodoch účtovať vlastný poplatok – akýkoľvek takýto poplatok je uvedený na obrazovke s prehľadom pred potvrdením."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Áno. Používanie je bezplatné, neexistuje žiadna prémiová úroveň ani obsah za platobnou bránou a wwwallet nepridáva žiadne poplatky k ničomu, čo posielate alebo vymieňate. Jediným nevyhnutným nákladom je vlastný transakčný (gas) poplatok siete, ktorý ide do siete, nie do wwwallet. Kótácie výmen pochádzajú z agregátora búrz 0x (alebo LI.FI v sieťach, ktoré 0x nepokrýva), ktorý môže pri niektorých obchodoch účtovať vlastný poplatok – akýkoľvek takýto poplatok je uvedený na obrazovke s prehľadom pred potvrdením."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -12839,16 +12839,16 @@
       "value": "Aké siete podporuje wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Hlavná sieť Ethereum a siete Layer-2 Polygon, Arbitrum, Base a Optimism – všetko z rovnakého súboru účtov."
+      "enHash": "ef8767b649ce4915",
+      "value": "Hlavná sieť Ethereum, plus Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain a Scroll – všetko z jednej sady účtov."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Ako môžem vložiť prostriedky do svojej peňaženky?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Otvorte si účet, vyberte možnosť „Zobraziť QR kód“, aby ste videli jeho adresu, a pošlite prostriedky na túto adresu z burzy alebo inej peňaženky. Uistite sa, že posielate prostriedky na správnej sieti (Ethereum, Polygon, Arbitrum, Base alebo Optimism) – tá istá adresa funguje na všetkých z nich, ale prostriedky poslané na jednej sieti sa zobrazia len na tej sieti. Budete tiež potrebovať malé množstvo natívnej meny siete (napríklad ETH) na úhradu transakčných poplatkov."
+      "enHash": "7866cbea16a7584a",
+      "value": "Otvorte si účet, vyberte možnosť „Zobraziť QR kód“, aby ste videli jeho adresu, a pošlite prostriedky na túto adresu z burzy alebo inej peňaženky. Uistite sa, že posielate na správnu sieť (napríklad Ethereum, Base alebo Arbitrum) – tá istá adresa funguje na každej podporovanej sieti, ale prostriedky poslané na jednej sieti sa zobrazia len na tej sieti. Budete tiež potrebovať malé množstvo natívnej meny siete (napríklad ETH) na úhradu transakčných poplatkov."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -12907,8 +12907,8 @@
       "value": "wwwallet — Bezplatná peňaženka pre Ethereum bez úschovy"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Bezplatná peňaženka pre Ethereum vo vašom prehliadači. Bez registrácie, bez reklám, bez sledovania – vaše kľúče zostávajú zašifrované vo vašom zariadení. Ethereum, Arbitrum, Base, Optimism a Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Bezplatná peňaženka pre Ethereum vo vašom prehliadači. Bez registrácie, bez reklám, bez sledovania – vaše kľúče zostávajú zašifrované vo vašom zariadení. Ethereum, Base, Arbitrum, Optimism, Polygon a ďalších 10 sietí."
     }
   },
   "sl": {
@@ -13029,12 +13029,12 @@
       "value": "wwwallet se po kratkem obdobju nedejavnosti zaklene in vaše odklejene seje nikoli ne shrani na disk – zaprite zavihek in aplikacija to namerno pozabi."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Pet omrežij Ethereuma, en sklop računov"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Petnajst omrežij Ethereuma, en sklop računov"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Shranjujte in pošiljajte prek glavnega omrežja Ethereum, Polygon, Arbitrum, Base in Optimism z istimi računi in naslovi."
+      "enHash": "469119b82403fc1f",
+      "value": "Shranjujte in pošiljajte prek glavnega omrežja Ethereum in še 14 drugih omrežij – vključno z Arbitrum, Base, Optimism, Polygon, Linea in ZKsync – z istimi računi in naslovi."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -13165,8 +13165,8 @@
       "value": "Ali je wwwallet res brezplačen?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Da. Uporaba je brezplačna, ni premium ravni in ničesar za plačilnim zidom, wwwallet pa ne dodaja provizije k ničemer, kar pošljete ali zamenjate. Edini neizogibni strošek je lastna transakcijska (gas) provizija omrežja, ki gre omrežju in ne wwwalletu. Ponudbe za zamenjavo prihajajo iz agregatorja borz 0x, ki lahko pri nekaterih transakcijah vključi lastno provizijo – vsaka taka provizija je navedena na preglednem zaslonu, preden potrdite transakcijo."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Da. Uporaba je brezplačna, ni premium ravni in ničesar za plačilnim zidom, wwwallet pa ne dodaja provizije k ničemer, kar pošljete ali zamenjate. Edini neizogibni strošek je lastna transakcijska (gas) provizija omrežja, ki gre omrežju in ne wwwalletu. Ponudbe za zamenjavo prihajajo iz agregatorja borz 0x (ali LI.FI, v omrežjih, ki jih 0x ne pokriva), ki lahko pri nekaterih transakcijah vključi lastno provizijo – vsaka taka provizija je navedena na preglednem zaslonu, preden potrdite."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -13409,16 +13409,16 @@
       "value": "Katera omrežja podpira wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Glavno omrežje Ethereuma ter omrežja Layer-2 Polygon, Arbitrum, Base in Optimism – vse iz istega niza računov."
+      "enHash": "ef8767b649ce4915",
+      "value": "Glavno omrežje Ethereuma ter Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain in Scroll – vse iz istega sklopa računov."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Kako napolnim svoj denarnik?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Odprite račun, izberite »Poglej QR-kodo«, da si ogledate naslov, in na ta naslov pošljite sredstva z borze ali iz druge denarnice. Prepričajte se, da pošiljate prek pravega omrežja (Ethereum, Polygon, Arbitrum, Base ali Optimism) – isti naslov deluje na vseh omrežjih, vendar se sredstva, poslana prek enega omrežja, prikažejo le na tem omrežju. Prav tako boste potrebovali nekaj domače kriptovalute omrežja (kot je ETH) za plačilo transakcijskih stroškov."
+      "enHash": "7866cbea16a7584a",
+      "value": "Odprite račun, izberite »Poglej QR-kodo«, da si ogledate naslov, in na ta naslov pošljite sredstva z borze ali iz druge denarnice. Prepričajte se, da pošiljate prek pravega omrežja (kot so Ethereum, Base ali Arbitrum) – isti naslov deluje na vseh podprtih omrežjih, vendar se sredstva, poslana prek enega omrežja, prikažejo le na tem omrežju. Prav tako boste potrebovali nekaj domače kriptovalute omrežja (kot je ETH) za plačilo transakcijskih provizij."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -13445,8 +13445,8 @@
       "value": "wwwallet — Brezplačna denarnica za Ethereum brez skrbništva"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Brezplačna denarnica za Ethereum v vašem brskalniku. Brez registracije, brez oglasov, brez sledenja – vaši ključi ostanejo šifrirani na vaši napravi. Ethereum, Arbitrum, Base, Optimism in Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Brezplačna denarnica za Ethereum v vašem brskalniku. Brez registracije, brez oglasov, brez sledenja – vaši ključi ostanejo šifrirani na vaši napravi. Ethereum, Base, Arbitrum, Optimism, Polygon in še 10 drugih omrežij."
     }
   },
   "sv": {
@@ -13567,12 +13567,12 @@
       "value": "wwwallet låses efter en kort period av inaktivitet och sparar aldrig din upplåsta session på hårddisken – stänger du fliken glömmer den det, med avsikt."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Fem Ethereum-nätverk, en uppsättning konton"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Femton Ethereum-nätverk, en uppsättning konton"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Förvara och skicka över Ethereums mainnet, Polygon, Arbitrum, Base och Optimism med samma konton och adresser."
+      "enHash": "469119b82403fc1f",
+      "value": "Förvara och skicka över Ethereums huvudnätverk och ytterligare 14 nätverk – inklusive Arbitrum, Base, Optimism, Polygon, Linea och ZKsync – med samma konton och adresser."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -13703,8 +13703,8 @@
       "value": "Är wwwallet verkligen gratis?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Ja. Det kostar ingenting att använda den, det finns ingen premiumnivå och inget bakom en betalvägg, och wwwallet lägger inte på någon avgift på något du skickar eller byter. Den enda oundvikliga kostnaden är nätverkets egen transaktionsavgift (gasavgift), som går till nätverket snarare än till wwwallet. Byteskurser kommer från 0x-börsaggregatorn, som kan lägga på en egen avgift på vissa transaktioner – eventuella sådana avgifter visas på bekräftelseskärmen innan du bekräftar."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Ja. Det kostar ingenting att använda den, det finns ingen premiumnivå och inget bakom en betalvägg, och wwwallet lägger inte på någon avgift på något du skickar eller byter. Den enda oundvikliga kostnaden är nätverkets egen transaktionsavgift (gasavgift), som går till nätverket snarare än till wwwallet. Byteskurser hämtas från 0x-börsaggregatorn (eller LI.FI, på nätverk som 0x inte täcker), som kan lägga på en egen avgift på vissa transaktioner – eventuella sådana avgifter visas på översiktsskärmen innan du bekräftar."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -13947,16 +13947,16 @@
       "value": "Vilka nätverk stöder wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Ethereums mainnet samt Layer-2-nätverken Polygon, Arbitrum, Base och Optimism – alla från samma uppsättning konton."
+      "enHash": "ef8767b649ce4915",
+      "value": "Ethereums mainnet, samt Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain och Scroll – alla från samma uppsättning konton."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Hur sätter jag in pengar på min plånbok?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Öppna ett konto, välj ”Visa QR-kod” för att se adressen och skicka medel till den adressen från en börs eller en annan plånbok. Se till att du skickar via rätt nätverk (Ethereum, Polygon, Arbitrum, Base eller Optimism) – samma adress fungerar på alla, men medel som skickas via ett nätverk visas endast på det nätverket. Du behöver också en liten mängd av nätverkets egna mynt (t.ex. ETH) för att betala transaktionsavgifterna."
+      "enHash": "7866cbea16a7584a",
+      "value": "Öppna ett konto, välj ”Visa QR-kod” för att se adressen och skicka medel till den adressen från en börs eller en annan plånbok. Se till att du skickar via rätt nätverk (t.ex. Ethereum, Base eller Arbitrum) – samma adress fungerar på alla nätverk som stöds, men medel som skickas via ett nätverk visas endast på det nätverket. Du behöver också en liten mängd av nätverkets egna mynt (t.ex. ETH) för att betala transaktionsavgifterna."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -13983,8 +13983,8 @@
       "value": "wwwallet — Gratis, icke-förvarande Ethereum-plånbok"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Gratis Ethereum-plånbok i din webbläsare. Ingen registrering, inga annonser, ingen spårning – dina nycklar förblir krypterade på din enhet. Ethereum, Arbitrum, Base, Optimism och Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Gratis Ethereum-plånbok i din webbläsare. Ingen registrering, inga annonser, ingen spårning – dina nycklar förblir krypterade på din enhet. Ethereum, Base, Arbitrum, Optimism, Polygon och ytterligare 10 nätverk."
     }
   },
   "tr": {
@@ -14105,12 +14105,12 @@
       "value": "wwwallet, kısa bir süre kullanılmadığında kilitlenir ve kilidi açılmış oturumunuzu asla diske kaydetmez — sekmeyi kapattığınızda, kasıtlı olarak bu bilgiyi unutur."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Beş Ethereum ağı, bir hesap grubu"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "On beş Ethereum ağı, tek bir hesap grubu"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Aynı hesaplar ve adreslerle Ethereum ana ağı, Polygon, Arbitrum, Base ve Optimism ağlarında kripto paralarınızı saklayın ve gönderin."
+      "enHash": "469119b82403fc1f",
+      "value": "Aynı hesaplar ve adreslerle Ethereum ana ağı ve Arbitrum, Base, Optimism, Polygon, Linea ve ZKsync dahil olmak üzere 14 ağda daha kripto varlıklarınızı saklayın ve gönderin."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -14241,8 +14241,8 @@
       "value": "wwwallet gerçekten ücretsiz mi?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Evet. Kullanımı ücretsizdir, premium seviye yoktur ve ödeme duvarının arkasında hiçbir şey bulunmaz; ayrıca wwwallet, gönderdiğiniz veya takas ettiğiniz hiçbir şeye ek ücret eklemez. Kaçınılmaz tek maliyet, ağın kendi işlem (gaz) ücretidir ve bu ücret wwwallet'e değil, ağa ödenir. Takas teklifleri, bazı işlemlerde kendi ücretini ekleyebilen 0x borsa toplayıcısından gelir — bu tür ücretler, onaylamadan önce inceleme ekranında listelenir."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Evet. Kullanımı ücretsizdir, premium seviye yoktur ve ödeme duvarının arkasında hiçbir şey yoktur; ayrıca wwwallet, gönderdiğiniz veya takas ettiğiniz hiçbir şeye ek ücret eklemez. Kaçınılmaz tek maliyet, ağın kendi işlem (gaz) ücretidir ve bu ücret wwwallet’e değil, ağa ödenir. Takas teklifleri, 0x borsa toplayıcısından (veya 0x’in kapsamadığı ağlarda LI.FI’den) gelir; bu toplayıcı bazı işlemlerde kendi ücretini ekleyebilir — bu tür ücretler, onaylamadan önce inceleme ekranında listelenir."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -14485,16 +14485,16 @@
       "value": "wwwallet hangi ağları destekliyor?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Ethereum ana ağı ile Polygon, Arbitrum, Base ve Optimism gibi Katman-2 ağları — hepsi aynı hesap grubundan."
+      "enHash": "ef8767b649ce4915",
+      "value": "Ethereum ana ağı, ayrıca Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain ve Scroll — hepsi aynı hesap grubundan."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Cüzdanıma nasıl para yatırabilirim?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Bir hesap açın, adresini görmek için “QR kodunu görüntüle” seçeneğini seçin ve bir borsadan veya başka bir cüzdandan bu adrese para gönderin. Doğru ağda (Ethereum, Polygon, Arbitrum, Base veya Optimism) gönderdiğinizden emin olun — aynı adres hepsinde çalışır, ancak bir ağda gönderilen fonlar yalnızca o ağda görünür. Ayrıca, işlem ücretlerini ödemek için ağın kendi kripto parası (ETH gibi) da biraz gerekecektir."
+      "enHash": "7866cbea16a7584a",
+      "value": "Bir hesap açın, adresini görmek için “QR kodunu görüntüle” seçeneğini seçin ve bir borsadan veya başka bir cüzdandan bu adrese para gönderin. Doğru ağda (Ethereum, Base veya Arbitrum gibi) gönderdiğinizden emin olun — aynı adres desteklenen her ağda çalışır, ancak bir ağda gönderilen paralar yalnızca o ağda görünür. Ayrıca, işlem ücretlerini ödemek için ağın kendi kripto parası (ETH gibi) da biraz gerekecektir."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -14521,8 +14521,8 @@
       "value": "wwwallet — Ücretsiz, emanetsiz Ethereum cüzdanı"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Tarayıcınızda ücretsiz Ethereum cüzdanı. Kayıt yok, reklam yok, izleme yok — anahtarlarınız cihazınızda şifreli olarak kalır. Ethereum, Arbitrum, Base, Optimism ve Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Tarayıcınızda ücretsiz Ethereum cüzdanı. Kayıt yok, reklam yok, izleme yok — anahtarlarınız cihazınızda şifreli olarak kalır. Ethereum, Base, Arbitrum, Optimism, Polygon ve 10 ağ daha."
     }
   },
   "uk": {
@@ -14643,12 +14643,12 @@
       "value": "wwwallet блокується після короткого періоду бездіяльності й ніколи не записує вашу розблоковану сесію на диск — закрийте вкладку, і програма навмисно забуде про неї."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "П’ять мереж Ethereum, один набір облікових записів"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "П’ятнадцять мереж Ethereum, один набір облікових записів"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Зберігайте та надсилайте кошти в основній мережі Ethereum, Polygon, Arbitrum, Base та Optimism, використовуючи ті самі облікові записи та адреси."
+      "enHash": "469119b82403fc1f",
+      "value": "Зберігайте та надсилайте кошти в основній мережі Ethereum та ще 14 мережах — зокрема Arbitrum, Base, Optimism, Polygon, Linea та ZKsync — використовуючи ті самі облікові записи та адреси."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -14779,8 +14779,8 @@
       "value": "Чи справді wwwallet є безкоштовним?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Так. Користування сервісом безкоштовне, немає преміум-рівня та нічого за платною підпискою, а wwwallet не стягує комісію за будь-які ваші перекази чи обміни. Єдиною неминучою витратою є власна комісія мережі за транзакцію (gas), яка надходить до мережі, а не до wwwallet. Котирування обміну надходять від агрегатора бірж 0x, який може додавати власну комісію до деяких операцій — будь-яка така комісія відображається на екрані перегляду перед тим, як ви підтвердите операцію."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Так. Користування сервісом безкоштовне, немає преміум-рівня та нічого за платною підпискою, а wwwallet не стягує комісію за будь-які ваші перекази чи обміни. Єдиною неминучою витратою є власна комісія мережі за транзакцію (gas), яка надходить до мережі, а не до wwwallet. Котирування обміну надходять від агрегатора бірж 0x (або LI.FI — у мережах, які не охоплює 0x), який може стягувати власну комісію за деякі операції — будь-яка така комісія вказується на екрані перегляду перед тим, як ви підтвердите операцію."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -15023,16 +15023,16 @@
       "value": "Які мережі підтримує wwwallet?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Основна мережа Ethereum, а також мережі другого рівня (Layer-2) — Polygon, Arbitrum, Base та Optimism — усі з одного й того самого набору облікових записів."
+      "enHash": "ef8767b649ce4915",
+      "value": "Основна мережа Ethereum, а також Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain та Scroll — усі з одного набору облікових записів."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Як поповнити гаманець?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Відкрийте обліковий запис, виберіть «Переглянути QR-код», щоб побачити його адресу, і надішліть кошти на цю адресу з біржі або іншого гаманця. Переконайтеся, що ви надсилаєте кошти через правильну мережу (Ethereum, Polygon, Arbitrum, Base або Optimism) — одна й та сама адреса працює в усіх цих мережах, але кошти, надіслані через одну мережу, з’являються лише в цій мережі. Вам також знадобиться невелика кількість власної монети мережі (наприклад, ETH) для оплати комісій за транзакції."
+      "enHash": "7866cbea16a7584a",
+      "value": "Відкрийте обліковий запис, виберіть «Переглянути QR-код», щоб побачити свою адресу, і надішліть кошти на цю адресу з біржі або іншого гаманця. Переконайтеся, що ви надсилаєте кошти в правильній мережі (наприклад, Ethereum, Base або Arbitrum) — одна й та сама адреса працює в усіх підтримуваних мережах, але кошти, надіслані в одній мережі, з’являються лише в цій мережі. Вам також знадобиться невелика кількість власної монети мережі (наприклад, ETH) для оплати комісій за транзакції."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -15059,8 +15059,8 @@
       "value": "wwwallet — безкоштовний некастодіальний гаманець для Ethereum"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Безкоштовний гаманець Ethereum у вашому браузері. Без реєстрації, без реклами, без відстеження — ваші ключі залишаються зашифрованими на вашому пристрої. Ethereum, Arbitrum, Base, Optimism та Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Безкоштовний гаманець Ethereum у вашому браузері. Без реєстрації, без реклами, без відстеження — ваші ключі залишаються зашифрованими на вашому пристрої. Ethereum, Base, Arbitrum, Optimism, Polygon та ще 10 мереж."
     }
   },
   "vi": {
@@ -15181,12 +15181,12 @@
       "value": "wwwallet sẽ tự khóa sau một khoảng thời gian ngắn không hoạt động và tuyệt đối không lưu phiên làm việc đã mở khóa của cậu lên đĩa — chỉ cần đóng tab là ứng dụng sẽ quên ngay, đó là thiết kế có chủ đích."
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "Năm mạng Ethereum, một bộ tài khoản"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "Mười lăm mạng Ethereum, một bộ tài khoản"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "Cậu có thể lưu trữ và gửi tiền trên mạng chính Ethereum, Polygon, Arbitrum, Base và Optimism bằng cùng một tài khoản và địa chỉ."
+      "enHash": "469119b82403fc1f",
+      "value": "Cậu có thể lưu trữ và gửi tiền trên mạng chính Ethereum cùng 14 mạng khác — bao gồm Arbitrum, Base, Optimism, Polygon, Linea và ZKsync — bằng cùng một tài khoản và địa chỉ."
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -15317,8 +15317,8 @@
       "value": "wwwallet có thực sự miễn phí không?"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "Đúng vậy. Sử dụng ứng dụng hoàn toàn miễn phí, không có gói cao cấp hay nội dung trả phí nào cả, và wwwallet cũng không thu thêm phí cho bất kỳ giao dịch gửi hay trao đổi nào của cậu. Chi phí duy nhất không thể tránh khỏi là phí giao dịch (gas) của chính mạng lưới, khoản phí này được chuyển cho mạng lưới chứ không phải cho wwwallet. Báo giá trao đổi đến từ công cụ tổng hợp sàn giao dịch 0x, có thể bao gồm phí riêng của họ đối với một số giao dịch — bất kỳ khoản phí nào như vậy đều được liệt kê trên màn hình xem lại trước khi cậu xác nhận."
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "Đúng vậy. Ứng dụng hoàn toàn miễn phí, không có gói cao cấp hay nội dung trả phí nào cả, và wwwallet cũng không thu thêm phí cho bất kỳ giao dịch gửi hay trao đổi nào của cậu. Chi phí duy nhất không thể tránh khỏi là phí giao dịch (gas) của chính mạng lưới, khoản phí này được chuyển cho mạng lưới chứ không phải cho wwwallet. Báo giá trao đổi đến từ công cụ tổng hợp sàn giao dịch 0x (hoặc LI.FI, trên các mạng mà 0x không hỗ trợ), có thể bao gồm phí riêng của họ đối với một số giao dịch — bất kỳ khoản phí nào như vậy đều được liệt kê trên màn hình xem lại trước khi cậu xác nhận."
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -15561,16 +15561,16 @@
       "value": "wwwallet hỗ trợ những mạng nào?"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "Mạng chính Ethereum, cùng với các mạng Layer-2 như Polygon, Arbitrum, Base và Optimism — tất cả đều từ cùng một bộ tài khoản."
+      "enHash": "ef8767b649ce4915",
+      "value": "Mạng chính Ethereum, cùng với Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain và Scroll — tất cả đều thuộc cùng một bộ tài khoản."
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "Làm thế nào để nạp tiền vào ví của tớ?"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "Mở tài khoản, chọn “Xem mã QR” để xem địa chỉ của nó, rồi gửi tiền đến địa chỉ đó từ sàn giao dịch hoặc ví khác. Hãy đảm bảo cậu gửi tiền trên đúng mạng (Ethereum, Polygon, Arbitrum, Base hoặc Optimism) — cùng một địa chỉ hoạt động trên tất cả các mạng này, nhưng tiền gửi trên một mạng chỉ hiển thị trên mạng đó thôi. Cậu cũng nên chuẩn bị một ít đồng tiền gốc của mạng lưới đó (như ETH) để trả phí giao dịch."
+      "enHash": "7866cbea16a7584a",
+      "value": "Mở tài khoản, chọn “Xem mã QR” để xem địa chỉ ví, rồi gửi tiền đến địa chỉ đó từ sàn giao dịch hoặc ví khác. Nhớ gửi trên đúng mạng (như Ethereum, Base hoặc Arbitrum) — cùng một địa chỉ sẽ hoạt động trên mọi mạng được hỗ trợ, nhưng tiền gửi trên một mạng chỉ hiển thị trên mạng đó thôi. Cậu cũng nên chuẩn bị một ít đồng tiền gốc của mạng lưới đó (như ETH) để trả phí giao dịch."
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -15597,8 +15597,8 @@
       "value": "wwwallet — Ví Ethereum miễn phí, không lưu giữ"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "Ví Ethereum miễn phí ngay trên trình duyệt của cậu. Không cần đăng ký, không quảng cáo, không theo dõi — các khóa của cậu sẽ được mã hóa và lưu trữ an toàn trên thiết bị của cậu. Hỗ trợ Ethereum, Arbitrum, Base, Optimism và Polygon."
+      "enHash": "9cff47358c5f828b",
+      "value": "Ví Ethereum miễn phí ngay trên trình duyệt của cậu. Không cần đăng ký, không quảng cáo, không theo dõi — các khóa của cậu sẽ được mã hóa và lưu trữ an toàn trên thiết bị của cậu. Hỗ trợ Ethereum, Base, Arbitrum, Optimism, Polygon và 10 mạng lưới khác nữa."
     }
   },
   "zh-CN": {
@@ -15719,12 +15719,12 @@
       "value": "wwwallet 在短暂闲置后会自动锁定，且绝不会将您的解锁会话写入磁盘——关闭标签页后，它会刻意“遗忘”该会话。"
     },
     "wallet.points.3.title": {
-      "enHash": "438eb69bb295d6ad",
-      "value": "五个以太坊网络，一套账户"
+      "enHash": "d1459496e4cdb4c9",
+      "value": "十五个以太坊网络，一套账户"
     },
     "wallet.points.3.body": {
-      "enHash": "5866f4bdf4b9ee70",
-      "value": "使用相同的账户和地址，即可在以太坊主网、Polygon、Arbitrum、Base 和 Optimism 上进行持有和转账。"
+      "enHash": "469119b82403fc1f",
+      "value": "使用相同的账户和地址，即可在以太坊主网及另外 14 个网络（包括 Arbitrum、Base、Optimism、Polygon、Linea 和 ZKsync）上进行持有和转账。"
     },
     "wallet.caveatTitle": {
       "enHash": "63296535cf8962ea",
@@ -15855,8 +15855,8 @@
       "value": "wwwallet 真的免费吗？"
     },
     "faqs.items.0.a": {
-      "enHash": "c2e4281000c75016",
-      "value": "是的。使用该应用完全免费，没有高级会员层级，也没有付费墙限制，且 wwwallet 不会对您的任何转账或兑换操作加收任何费用。唯一不可避免的成本是网络本身的交易（gas）费用，该费用支付给网络而非 wwwallet。 兑换报价来自 0x 交易所聚合器，该聚合器可能会在某些交易中收取自身手续费——任何此类费用都会在您确认前显示在确认页面上。"
+      "enHash": "1ea13d08bf53ff7e",
+      "value": "是的。使用该应用完全免费，没有高级会员层级，也没有付费墙限制，且 wwwallet 不会对您发送或兑换的任何交易加收手续费。唯一无法避免的成本是网络本身的交易（gas）费用，该费用支付给网络而非 wwwallet。 兑换报价来自 0x 交易所聚合器（或在 0x 未覆盖的网络上由 LI.FI 提供），某些交易中可能包含其自身的手续费——此类费用会在您确认前的预览页面上列出。"
     },
     "faqs.items.1.q": {
       "enHash": "c36b171d02a0919e",
@@ -16099,16 +16099,16 @@
       "value": "wwwallet 支持哪些网络？"
     },
     "faqs.items.13.a": {
-      "enHash": "a74f900710ca610e",
-      "value": "以太坊主网，以及第二层网络 Polygon、Arbitrum、Base 和 Optimism——均通过同一组账户进行操作。"
+      "enHash": "ef8767b649ce4915",
+      "value": "以太坊主网，以及 Arbitrum、Base、Optimism、Polygon、Robinhood Chain、World Chain、Ink、Linea、Gnosis、Celo、ZKsync Era、Ronin、Unichain 和 Scroll——所有这些均可通过同一组账户进行管理。"
     },
     "faqs.items.14.q": {
       "enHash": "1d9fd759039e9193",
       "value": "如何向钱包充值？"
     },
     "faqs.items.14.a": {
-      "enHash": "81fc1513397351cd",
-      "value": "开通账户后，选择“查看二维码”以获取地址，然后从交易所或其他钱包向该地址转入资金。 请确保在正确的网络上进行转账（以太坊、Polygon、Arbitrum、Base 或 Optimism）——同一地址在所有网络上均有效，但通过某个网络发送的资金只会显示在该网络上。 您还需要准备少量该网络的原生代币（如 ETH）来支付交易手续费。"
+      "enHash": "7866cbea16a7584a",
+      "value": "开通账户后，选择“查看二维码”以获取地址，然后从交易所或其他钱包向该地址转入资金。请确保在正确的网络上进行转账（例如以太坊、Base 或 Arbitrum）——同一地址在所有支持的网络上均有效，但通过某个网络转入的资金仅会显示在该网络上。 您还需要准备少量该网络的原生代币（如 ETH）来支付交易手续费。"
     },
     "faqs.items.15.q": {
       "enHash": "121362a45d0f71b4",
@@ -16135,8 +16135,8 @@
       "value": "wwwallet — 免费、非托管的以太坊钱包"
     },
     "meta.description": {
-      "enHash": "b2038e001f8368f9",
-      "value": "浏览器中的免费以太坊钱包。无需注册、无广告、无追踪——您的密钥始终加密存储在您的设备上。支持以太坊、Arbitrum、Base、Optimism 和 Polygon。"
+      "enHash": "9cff47358c5f828b",
+      "value": "浏览器中的免费以太坊钱包。无需注册、无广告、无追踪——您的密钥始终加密存储在您的设备上。支持以太坊、Base、Arbitrum、Optimism、Polygon 以及另外 10 个网络。"
     }
   }
 }

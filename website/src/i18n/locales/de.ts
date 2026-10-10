@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet sperrt sich nach kurzer Inaktivität und speichert deine entsperrte Sitzung niemals auf der Festplatte – schließ den Tab und es vergisst alles, ganz bewusst.',
       },
       {
-        title: 'Fünf Ethereum-Netzwerke, ein Satz von Konten',
-        body: 'Speichere und versende über das Ethereum-Mainnet, Polygon, Arbitrum, Base und Optimism mit denselben Konten und Adressen.',
+        title: 'Fünfzehn Ethereum-Netzwerke, ein Satz Konten',
+        body: 'Speichere und versende über das Ethereum-Mainnet und 14 weitere Netzwerke – darunter Arbitrum, Base, Optimism, Polygon, Linea und ZKsync – mit denselben Konten und Adressen.',
       },
     ],
     caveatTitle:
@@ -114,7 +114,7 @@ export default {
     items: [
       {
         q: 'Ist wwwallet wirklich kostenlos?',
-        a: 'Ja. Die Nutzung ist kostenlos, es gibt keine Premium-Stufe und nichts hinter einer Paywall, und wwwallet erhebt keine Gebühren auf das, was du sendest oder tauschst. Die einzigen unvermeidbaren Kosten sind die netzwerkeigenen Transaktionsgebühren (Gasgebühren), die an das Netzwerk und nicht an wwwallet gehen. Die Swap-Angebote stammen vom 0x-Börsenaggregator, der bei einigen Trades eine eigene Gebühr erheben kann – eine solche Gebühr wird auf dem Bestätigungsbildschirm angezeigt, bevor du den Vorgang bestätigst.',
+        a: 'Ja. Die Nutzung ist kostenlos, es gibt keine Premium-Stufe und nichts hinter einer Paywall, und wwwallet erhebt keine Gebühren auf das, was du sendest oder tauschst. Die einzigen unvermeidbaren Kosten sind die netzwerkeigenen Transaktionsgebühren (Gasgebühren), die an das Netzwerk und nicht an wwwallet gehen. Die Swap-Angebote stammen vom 0x-Börsenaggregator (oder von LI.FI in Netzwerken, die 0x nicht abdeckt), der bei einigen Trades eine eigene Gebühr erheben kann – eine solche Gebühr wird auf dem Übersichtsbildschirm angezeigt, bevor du den Vorgang bestätigst.',
       },
       {
         q: 'Gibt es Werbung, Tracker oder Analysetools?',
@@ -166,11 +166,11 @@ export default {
       },
       {
         q: 'Welche Netzwerke unterstützt wwwallet?',
-        a: 'Das Ethereum-Mainnet sowie die Layer-2-Netzwerke Polygon, Arbitrum, Base und Optimism – alles über denselben Satz von Konten.',
+        a: 'Ethereum-Mainnet sowie Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain und Scroll – alles über denselben Satz von Konten.',
       },
       {
         q: 'Wie lade ich Geld auf mein Wallet?',
-        a: 'Eröffne ein Konto, wähle „QR-Code anzeigen“, um die Adresse zu sehen, und sende Guthaben von einer Börse oder einer anderen Wallet an diese Adresse. Achte darauf, dass du über das richtige Netzwerk sendest (Ethereum, Polygon, Arbitrum, Base oder Optimism) – dieselbe Adresse funktioniert in allen Netzwerken, aber Guthaben, das über ein bestimmtes Netzwerk gesendet wird, erscheint nur in diesem Netzwerk. Du solltest außerdem ein wenig von der nativen Währung des Netzwerks (z. B. ETH) bereithalten, um die Transaktionsgebühren zu bezahlen.',
+        a: 'Eröffne ein Konto, wähle „QR-Code anzeigen“, um die Adresse zu sehen, und sende Guthaben von einer Börse oder einer anderen Wallet an diese Adresse. Achte darauf, dass du über das richtige Netzwerk sendest (z. B. Ethereum, Base oder Arbitrum) – dieselbe Adresse funktioniert in jedem unterstützten Netzwerk, aber Guthaben, das über ein bestimmtes Netzwerk gesendet wird, erscheint nur in diesem Netzwerk. Du solltest außerdem ein wenig von der nativen Coin des Netzwerks (z. B. ETH) bereithalten, um die Transaktionsgebühren zu bezahlen.',
       },
       {
         q: 'Was kann ich mit wwwallet machen?',
@@ -243,6 +243,6 @@ export default {
   meta: {
     title: 'wwwallet – Kostenlose Non-Custodial Ethereum-Wallet',
     description:
-      'Kostenlose Ethereum-Wallet in deinem Browser. Keine Anmeldung, keine Werbung, kein Tracking – deine Schlüssel bleiben verschlüsselt auf deinem Gerät. Ethereum, Arbitrum, Base, Optimism und Polygon.',
+      'Kostenlose Ethereum-Wallet in deinem Browser. Keine Anmeldung, keine Werbung, kein Tracking – deine Schlüssel bleiben verschlüsselt auf deinem Gerät. Ethereum, Base, Arbitrum, Optimism, Polygon und 10 weitere Netzwerke.',
   },
 }

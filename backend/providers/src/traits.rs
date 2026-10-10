@@ -3,7 +3,7 @@ use async_trait::async_trait;
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
 use crate::types::{
-    AddressActivity, BridgeQuote, BridgeStatus, CoinSearchResult, ContractAbi, FxHistory, FxRates,
+    AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, CoinSearchResult, ContractAbi, FxHistory, FxRates,
     NativePrice, PriceHistory,
     SwapQuote, TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
@@ -21,6 +21,14 @@ pub trait ActivityProvider {
         chain: ChainId,
         address: &str,
     ) -> ProviderResult<AddressActivity>;
+
+    /// The address's native balance and nonce: a fraction of what
+    /// `address_activity` costs, for ruling out chains it has never used.
+    async fn address_presence(
+        &self,
+        chain: ChainId,
+        address: &str,
+    ) -> ProviderResult<AddressPresence>;
 
     /// Continues transaction history past whatever `address_activity` (or a
     /// previous call to this method) already returned, using the opaque
@@ -191,6 +199,10 @@ pub trait TransactionPrepProvider {
 #[async_trait(?Send)]
 pub trait SwapQuoteProvider {
     fn name(&self) -> &'static str;
+    /// Whether it can quote swaps on `chain` at all.
+    fn supports(&self, _chain: ChainId) -> bool {
+        true
+    }
     async fn quote(
         &self,
         chain: ChainId,

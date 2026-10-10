@@ -1,4 +1,4 @@
-import { HDNodeWallet, Wallet, isAddress } from 'ethers'
+import { HDNodeWallet, Wallet, getAddress, isAddress } from 'ethers'
 import type { ChainSlug } from './api'
 import type { NewWalletAccount } from '@/stores/accounts'
 import { translatedError } from './errors'
@@ -92,4 +92,25 @@ export async function unlockWalletForSigning(account: NewWalletAccount): Promise
 
 export function isValidAddress(address: string): boolean {
   return isAddress(address)
+}
+
+// Ronin's wallets and explorer write the same address as "ronin:" plus the
+// hex, without the 0x.
+const RONIN_ADDRESS = /^ronin:([0-9a-fA-F]{40})$/
+
+/**
+ * The address typed or pasted — 0x or bare hex, or Ronin's "ronin:" form —
+ * as a checksummed 0x address, or null if it isn't one.
+ */
+export function parseAddress(input: string): string | null {
+  const trimmed = input.trim()
+  const ronin = trimmed.match(RONIN_ADDRESS)
+  const address = ronin ? `0x${ronin[1]}` : trimmed
+  return isAddress(address) ? getAddress(address) : null
+}
+
+/** The first address anywhere in `text` (a scanned QR code: bare, an EIP-681 "ethereum:0x…" URI, or "ronin:…"), as 0x. */
+export function addressInText(text: string): string | null {
+  const match = text.match(/(?:0x|ronin:)([a-fA-F0-9]{40})/)
+  return match ? `0x${match[1]}` : null
 }

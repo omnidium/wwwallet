@@ -4,8 +4,8 @@ use serde::Deserialize;
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
 use crate::http;
-use crate::traits::{BridgeProvider, BridgeQuoteRequest};
-use crate::types::{BridgeFee, BridgeQuote, BridgeStatus, BridgeToken};
+use crate::traits::{BridgeProvider, BridgeQuoteRequest, SwapQuoteProvider};
+use crate::types::{BridgeFee, BridgeQuote, BridgeStatus, BridgeToken, SwapFee, SwapQuote};
 
 /// LI.FI aggregates bridges (Across, Stargate, CCTP, …) and DEXs behind one
 /// quote endpoint, picking the best route itself — one call covers a plain
@@ -149,6 +149,28 @@ impl LifiProvider {
             None => http::get_json(url).await,
         }
     }
+
+    /// One quote, as LI.FI returns it — a bridge when the chains differ, a
+    /// same-chain swap through its DEX aggregators when they don't.
+    async fn raw_quote(&self, request: &BridgeQuoteRequest<'_>) -> ProviderResult<LifiQuoteResponse> {
+        let mut url = url::Url::parse(&format!("{LIFI_BASE_URL}/quote"))
+            .map_err(|e| ProviderError::InvalidInput(e.to_string()))?;
+        url.query_pairs_mut()
+            .append_pair("fromChain", &request.from_chain.eip155_id().to_string())
+            .append_pair("toChain", &request.to_chain.eip155_id().to_string())
+            .append_pair("fromToken", lifi_token(request.from_chain, request.from_token))
+            .append_pair("toToken", lifi_token(request.to_chain, request.to_token))
+            .append_pair("fromAmount", request.from_amount_wei)
+            .append_pair("fromAddress", request.from_address)
+            .append_pair("toAddress", request.to_address)
+            .append_pair("integrator", INTEGRATOR);
+
+        self.get(url.as_str()).await.map_err(|err| match error_code(&err) {
+            Some(NO_ROUTE_CODE) => ProviderError::NoLiquidity,
+            Some(NOT_FOUND_CODE) => ProviderError::TokenNotOnChain,
+            _ => err,
+        })
+    }
 }
 
 /// The LI.FI error code in an upstream error body, if it is one.
@@ -166,26 +188,7 @@ impl BridgeProvider for LifiProvider {
     }
 
     async fn quote(&self, request: &BridgeQuoteRequest<'_>) -> ProviderResult<BridgeQuote> {
-        let mut url = url::Url::parse(&format!("{LIFI_BASE_URL}/quote"))
-            .map_err(|e| ProviderError::InvalidInput(e.to_string()))?;
-        url.query_pairs_mut()
-            .append_pair("fromChain", &request.from_chain.eip155_id().to_string())
-            .append_pair("toChain", &request.to_chain.eip155_id().to_string())
-            .append_pair("fromToken", request.from_token)
-            .append_pair("toToken", request.to_token)
-            .append_pair("fromAmount", request.from_amount_wei)
-            .append_pair("fromAddress", request.from_address)
-            .append_pair("toAddress", request.to_address)
-            .append_pair("integrator", INTEGRATOR);
-
-        let response: LifiQuoteResponse = self.get(url.as_str()).await.map_err(|err| {
-            match error_code(&err) {
-                Some(NO_ROUTE_CODE) => ProviderError::NoLiquidity,
-                Some(NOT_FOUND_CODE) => ProviderError::TokenNotOnChain,
-                _ => err,
-            }
-        })?;
-        extract_quote(response)
+        extract_quote(self.raw_quote(request).await?)
     }
 
     /// Either leg's hash finds the transfer. The chains are optional hints:
@@ -220,6 +223,93 @@ impl BridgeProvider for LifiProvider {
     }
 }
 
+/// Same-chain swaps on the chains 0x doesn't cover (see ZeroExProvider's
+/// `supports`): a LI.FI quote with both ends on one chain, in the same shape
+/// as 0x's, so the swap flow can't tell the two apart.
+#[async_trait(?Send)]
+impl SwapQuoteProvider for LifiProvider {
+    fn name(&self) -> &'static str {
+        "lifi"
+    }
+
+    async fn quote(
+        &self,
+        chain: ChainId,
+        sell_token: &str,
+        buy_token: &str,
+        sell_amount_wei: &str,
+        taker_address: &str,
+    ) -> ProviderResult<SwapQuote> {
+        let request = BridgeQuoteRequest {
+            from_chain: chain,
+            to_chain: chain,
+            from_token: sell_token,
+            to_token: buy_token,
+            from_amount_wei: sell_amount_wei,
+            from_address: taker_address,
+            to_address: taker_address,
+        };
+        extract_swap_quote(chain, self.raw_quote(&request).await?)
+    }
+}
+
+/// The 0xEeee… address the app (and 0x) uses for the native coin, where
+/// LI.FI answers with the zero address.
+const NATIVE_PSEUDO_ADDRESS: &str = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+
+/// LI.FI knows Celo's native coin only by its ERC-20 view (0x471E…) and
+/// rejects the native addresses there; everywhere else it takes 0xEeee….
+fn lifi_token(chain: ChainId, address: &str) -> &str {
+    match chain {
+        ChainId::Celo if is_native(address) => chain.native_token_contract().unwrap_or(address),
+        _ => address,
+    }
+}
+
+fn extract_swap_quote(chain: ChainId, response: LifiQuoteResponse) -> ProviderResult<SwapQuote> {
+    let tx = response
+        .transaction_request
+        .ok_or_else(|| ProviderError::Upstream("quote response missing transactionRequest".into()))?;
+    let estimate = response.estimate;
+    // Selling the native coin needs no approval, whatever the quote says —
+    // except CELO, which LI.FI sells as its ERC-20 (see lifi_token), so the
+    // approval the quote asks for stands.
+    let allowance_target = if is_native(&response.action.from_token.address) {
+        String::new()
+    } else {
+        estimate.approval_address.unwrap_or_default()
+    };
+    // All of them: those `included` are already out of the amount bought,
+    // the rest are paid on top, in `value`.
+    let fees = estimate
+        .fee_costs
+        .into_iter()
+        .map(|f| {
+            let lower = f.token.address.to_ascii_lowercase();
+            let native = is_native(&lower) || chain.native_token_contract() == Some(lower.as_str());
+            SwapFee {
+                kind: if is_lifi_fee(&f.name) { "lifi" } else { "protocol" }.to_string(),
+                token: if native { NATIVE_PSEUDO_ADDRESS.to_string() } else { f.token.address },
+                amount: f.amount,
+            }
+        })
+        .collect();
+    Ok(SwapQuote {
+        to: tx.to,
+        data: tx.data,
+        value: hex_to_decimal(tx.value.as_deref())?,
+        gas_price: hex_to_decimal(tx.gas_price.as_deref())?,
+        estimated_gas: hex_to_decimal(tx.gas_limit.as_deref())?,
+        buy_amount: estimate.to_amount,
+        sell_amount: estimate.from_amount,
+        allowance_target,
+        // Filled in by the registry from both tokens' decimals.
+        price: String::new(),
+        provider: "LI.FI".to_string(),
+        fees,
+    })
+}
+
 fn to_bridge_token(token: LifiToken) -> BridgeToken {
     BridgeToken {
         address: token.address,
@@ -241,6 +331,11 @@ fn hex_to_decimal(value: Option<&str>) -> ProviderResult<String> {
     u128::from_str_radix(digits, 16)
         .map(|n| n.to_string())
         .map_err(|_| ProviderError::Upstream(format!("unparseable hex quantity '{value}'")))
+}
+
+/// LI.FI's own fee ("LIFI Fixed Fee"), as opposed to a DEX's or bridge's.
+fn is_lifi_fee(name: &str) -> bool {
+    name.to_ascii_lowercase().replace('.', "").contains("lifi")
 }
 
 fn is_native(address: &str) -> bool {
@@ -423,5 +518,83 @@ mod tests {
         assert_eq!(s.from_chain, Some(ChainId::Base));
         // Solana: a chain this wallet doesn't support.
         assert_eq!(s.to_chain, None);
+    }
+
+    #[test]
+    fn same_chain_quote_becomes_a_swap_quote() {
+        // Trimmed from a real Gnosis xDAI → USDC quote.
+        let response: LifiQuoteResponse = serde_json::from_str(
+            r#"{
+                "toolDetails": { "name": "1inch" },
+                "action": {
+                    "fromToken": { "address": "0x0000000000000000000000000000000000000000", "symbol": "XDAI", "decimals": 18 },
+                    "toToken": { "address": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83", "symbol": "USDC", "decimals": 6 }
+                },
+                "estimate": {
+                    "approvalAddress": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                    "fromAmount": "5000000000000000000", "toAmount": "4986694", "toAmountMin": "4981707",
+                    "feeCosts": [{
+                        "name": "LIFI Fixed Fee", "amount": "12500000000000000", "included": true,
+                        "token": { "address": "0x0000000000000000000000000000000000000000", "symbol": "XDAI", "decimals": 18 }
+                    }]
+                },
+                "transactionRequest": {
+                    "to": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE", "data": "0xabc",
+                    "value": "0x4563918244f40000", "gasLimit": "0x7e976", "gasPrice": "0xbebc200"
+                }
+            }"#,
+        )
+        .unwrap();
+        let quote = extract_swap_quote(ChainId::Gnosis, response).unwrap();
+        assert_eq!(quote.value, "5000000000000000000");
+        assert_eq!(quote.estimated_gas, "518518");
+        assert_eq!(quote.buy_amount, "4986694");
+        assert_eq!(quote.sell_amount, "5000000000000000000");
+        // Selling the native coin: nothing to approve.
+        assert_eq!(quote.allowance_target, "");
+        assert_eq!(quote.provider, "LI.FI");
+        assert_eq!(quote.fees.len(), 1);
+        assert_eq!(quote.fees[0].kind, "lifi");
+        assert_eq!(quote.fees[0].token, NATIVE_PSEUDO_ADDRESS);
+    }
+
+    #[test]
+    fn celo_is_quoted_as_its_erc20_and_reported_back_as_native() {
+        assert_eq!(lifi_token(ChainId::Celo, NATIVE_PSEUDO_ADDRESS), "0x471ece3750da237f93b8e339c536989b8978a438");
+        assert_eq!(lifi_token(ChainId::Gnosis, NATIVE_PSEUDO_ADDRESS), NATIVE_PSEUDO_ADDRESS);
+        assert_eq!(lifi_token(ChainId::Celo, "0xcebA9300f2b948710d2653dD7B07f33A8B32118C"), "0xcebA9300f2b948710d2653dD7B07f33A8B32118C");
+
+        // Trimmed from a real CELO → USDC quote: an ERC-20 sell, so it
+        // needs an approval and sends no value.
+        let response: LifiQuoteResponse = serde_json::from_str(
+            r#"{
+                "toolDetails": { "name": "SushiSwap" },
+                "action": {
+                    "fromToken": { "address": "0x471EcE3750Da237f93B8E339c536989b8978a438", "symbol": "CELO", "decimals": 18 },
+                    "toToken": { "address": "0xcebA9300f2b948710d2653dD7B07f33A8B32118C", "symbol": "USDC", "decimals": 6 }
+                },
+                "estimate": {
+                    "approvalAddress": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                    "fromAmount": "1000000000000000000", "toAmount": "92000", "toAmountMin": "91540",
+                    "feeCosts": [
+                        { "name": "LIFI Fixed Fee", "amount": "2500000000000000", "included": true,
+                          "token": { "address": "0x471EcE3750Da237f93B8E339c536989b8978a438", "symbol": "CELO", "decimals": 18 } },
+                        { "name": "Relayer Fee", "amount": "1000", "included": false,
+                          "token": { "address": "0xcebA9300f2b948710d2653dD7B07f33A8B32118C", "symbol": "USDC", "decimals": 6 } }
+                    ]
+                },
+                "transactionRequest": {
+                    "to": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE", "data": "0xabc",
+                    "value": "0x0", "gasLimit": "0x7e976", "gasPrice": "0xbebc200"
+                }
+            }"#,
+        )
+        .unwrap();
+        let quote = extract_swap_quote(ChainId::Celo, response).unwrap();
+        assert_eq!(quote.value, "0");
+        assert_eq!(quote.allowance_target, "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE");
+        assert_eq!(quote.fees.len(), 2);
+        assert_eq!((quote.fees[0].kind.as_str(), quote.fees[0].token.as_str()), ("lifi", NATIVE_PSEUDO_ADDRESS));
+        assert_eq!(quote.fees[1].kind, "protocol");
     }
 }

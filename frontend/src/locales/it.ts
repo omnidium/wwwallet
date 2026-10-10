@@ -72,8 +72,7 @@ export default {
     sellTokenLabel: 'Vendi',
     buyTokenLabel: 'Acquista',
     sellAmountLabel: 'Importo di vendita',
-    signingNotice:
-      'Stai firmando una transazione per il contratto {address} (tramite l’aggregatore 0x).',
+    signingNotice: 'Stai firmando una transazione per il contratto {address} (tramite {provider}).',
     submit: 'Scambia',
     selectToken: 'Seleziona il token',
     searchTokenPlaceholder: 'Cerca per nome o simbolo',
@@ -341,6 +340,7 @@ export default {
       'Imposta prima un blocco dello schermo (impronta digitale, riconoscimento facciale o PIN) su questo dispositivo, poi riprova.',
     passkeyProviderNotReady:
       'Il tuo gestore di password non è riuscito a salvare la password. Se ti sta chiedendo di effettuare l’accesso, di verificare la tua identità o di inserire una passphrase di sincronizzazione (ad es. Google Password Manager quando la sincronizzazione di Chrome è in pausa), completa l’operazione, poi riprova.',
+    chainUnavailable: 'Questa rete non è ancora disponibile su wwwallet.',
   },
   accountCard: {
     copyAddress: 'Copia l’indirizzo',
@@ -424,6 +424,7 @@ export default {
     price: 'Prezzo',
     swapFee: 'Commissione di swap',
     integratorFee: 'Commissione di servizio',
+    lifiFee: 'Commissione LI.FI',
   },
   transfer: {
     fromNetwork: 'Dalla rete',

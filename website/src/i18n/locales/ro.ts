@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet se blochează după o scurtă perioadă de inactivitate și nu salvează niciodată sesiunea dvs. deblocată pe disc — închideți fila și aplicația uită, în mod intenționat.',
       },
       {
-        title: 'Cinci rețele Ethereum, un singur set de conturi',
-        body: 'Păstrați și trimiteți pe rețeaua principală Ethereum, Polygon, Arbitrum, Base și Optimism folosind aceleași conturi și adrese.',
+        title: 'Cincisprezece rețele Ethereum, un singur set de conturi',
+        body: 'Dețineți și trimiteți prin rețeaua principală Ethereum și alte 14 rețele — inclusiv Arbitrum, Base, Optimism, Polygon, Linea și ZKsync — folosind aceleași conturi și adrese.',
       },
     ],
     caveatTitle:
@@ -114,7 +114,7 @@ export default {
     items: [
       {
         q: 'wwwallet este cu adevărat gratuit?',
-        a: 'Da. Utilizarea este gratuită, nu există un nivel premium și nimic nu este accesibil doar contra cost, iar wwwallet nu adaugă niciun comision la ceea ce trimiteți sau schimbați. Singurul cost inevitabil este comisionul de tranzacție (gas) al rețelei, care revine rețelei, nu wwwallet. Cotațiile de schimb provin de la agregatorul de burse 0x, care poate include propriul comision la unele tranzacții — orice astfel de comision este afișat pe ecranul de verificare înainte de confirmare.',
+        a: 'Da. Utilizarea este gratuită, nu există un nivel premium și nimic nu este accesibil doar contra cost, iar wwwallet nu adaugă niciun comision la tranzacțiile pe care le efectuați sau la schimburile pe care le realizați. Singurul cost inevitabil este comisionul de tranzacție (gas) propriu rețelei, care revine rețelei, nu wwwallet. Cotațiile de schimb provin de la agregatorul de burse 0x (sau LI.FI, pe rețelele pe care 0x nu le acoperă), care poate include propriul comision la unele tranzacții — orice astfel de comision este afișat pe ecranul de verificare înainte de confirmare.',
       },
       {
         q: 'Există reclame, trackere sau instrumente de analiză?',
@@ -166,11 +166,11 @@ export default {
       },
       {
         q: 'Ce rețele suportă wwwallet?',
-        a: 'Rețeaua principală Ethereum, plus rețelele Layer-2 Polygon, Arbitrum, Base și Optimism — toate din același set de conturi.',
+        a: 'Rețeaua principală Ethereum, plus Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain și Scroll — toate din același set de conturi.',
       },
       {
         q: 'Cum îmi alimentez portofelul?',
-        a: 'Deschideți un cont, alegeți „Vizualizați codul QR” pentru a vedea adresa acestuia și trimiteți fonduri la acea adresă de la o platformă de schimb sau de la un alt portofel. Asigurați-vă că trimiteți pe rețeaua corectă (Ethereum, Polygon, Arbitrum, Base sau Optimism) — aceeași adresă funcționează pe toate, dar fondurile trimise pe o rețea apar doar pe rețeaua respectivă. De asemenea, veți avea nevoie de o cantitate mică din moneda nativă a rețelei (cum ar fi ETH) pentru a plăti comisioanele de tranzacție.',
+        a: 'Deschideți un cont, alegeți „Vizualizați codul QR” pentru a vedea adresa acestuia și trimiteți fonduri către acea adresă de pe o platformă de schimb sau dintr-un alt portofel. Asigurați-vă că trimiteți pe rețeaua corectă (cum ar fi Ethereum, Base sau Arbitrum) — aceeași adresă funcționează pe toate rețelele acceptate, dar fondurile trimise pe o rețea apar doar pe acea rețea. De asemenea, veți avea nevoie de o cantitate mică din moneda nativă a rețelei (cum ar fi ETH) pentru a plăti comisioanele de tranzacție.',
       },
       {
         q: 'Ce pot face cu wwwallet?',
@@ -243,6 +243,6 @@ export default {
   meta: {
     title: 'wwwallet — Portofel Ethereum gratuit, fără custodie',
     description:
-      'Portofel Ethereum gratuit în browserul tău. Fără înregistrare, fără reclame, fără urmărire — cheile tale rămân criptate pe dispozitivul tău. Ethereum, Arbitrum, Base, Optimism și Polygon.',
+      'Portofel Ethereum gratuit în browserul tău. Fără înregistrare, fără reclame, fără urmărire — cheile tale rămân criptate pe dispozitivul tău. Ethereum, Base, Arbitrum, Optimism, Polygon și încă 10 rețele.',
   },
 }

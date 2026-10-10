@@ -7,8 +7,11 @@ use crate::http;
 use crate::traits::AbiProvider;
 use crate::types::ContractAbi;
 
-/// Uses Etherscan's unified multichain v2 API (one key, `chainid` param)
-/// which covers Ethereum, Polygon, Arbitrum, Base and Optimism.
+/// Uses Etherscan's unified multichain v2 API (one key, `chainid` param),
+/// which covers most chains here but not Ink, ZKsync Era, Ronin or Scroll —
+/// a lookup there just fails, like one for an unverified contract. (Etherscan
+/// runs ZKsync's and Scroll's explorers, but its v2 chain list leaves them
+/// out: https://api.etherscan.io/v2/chainlist.)
 pub struct EtherscanProvider {
     api_key: String,
 }

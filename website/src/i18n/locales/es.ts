@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet se bloquea tras un breve periodo de inactividad y nunca guarda tu sesión desbloqueada en el disco: si cierras la pestaña, se olvida, a propósito.',
       },
       {
-        title: 'Cinco redes de Ethereum, un único conjunto de cuentas',
-        body: 'Guarda y envía fondos a través de la red principal de Ethereum, Polygon, Arbitrum, Base y Optimism con las mismas cuentas y direcciones.',
+        title: 'Quince redes de Ethereum, un conjunto de cuentas',
+        body: 'Guarda y envía a la red principal de Ethereum y a otras 14 redes —entre ellas Arbitrum, Base, Optimism, Polygon, Linea y ZKsync— con las mismas cuentas y direcciones.',
       },
     ],
     caveatTitle:
@@ -114,7 +114,7 @@ export default {
     items: [
       {
         q: '¿wwwallet es realmente gratis?',
-        a: 'Sí. Usarla es gratis, no hay ningún nivel premium ni nada detrás de un muro de pago, y wwwallet no añade ninguna comisión a lo que envíes o intercambies. El único coste inevitable es la comisión de transacción (gas) de la propia red, que va a parar a la red y no a wwwallet. Las cotizaciones de intercambio provienen del agregador de exchanges 0x, que puede incluir su propia comisión en algunas operaciones; cualquier comisión de este tipo aparece en la pantalla de revisión antes de que confirmes.',
+        a: 'Sí. Usarla es gratis, no hay ningún nivel premium ni nada detrás de un muro de pago, y wwwallet no añade ninguna comisión a lo que envíes o intercambies. El único coste inevitable es la comisión de transacción (gas) de la propia red, que va a parar a la red y no a wwwallet. Las cotizaciones de intercambio provienen del agregador de exchanges 0x (o de LI.FI, en las redes que 0x no cubre), que puede incluir su propia comisión en algunas operaciones; cualquier comisión de este tipo aparece en la pantalla de revisión antes de que confirmes.',
       },
       {
         q: '¿Hay anuncios, rastreadores o herramientas de análisis?',
@@ -166,11 +166,11 @@ export default {
       },
       {
         q: '¿Qué redes admite wwwallet?',
-        a: 'La red principal de Ethereum, además de las redes de capa 2 Polygon, Arbitrum, Base y Optimism, todo desde el mismo conjunto de cuentas.',
+        a: 'La red principal de Ethereum, además de Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain y Scroll: todo desde el mismo conjunto de cuentas.',
       },
       {
         q: '¿Cómo recargo mi monedero?',
-        a: 'Abre una cuenta, selecciona «Ver código QR» para ver tu dirección y envía fondos a esa dirección desde un exchange u otra cartera. Asegúrate de enviar los fondos por la red correcta (Ethereum, Polygon, Arbitrum, Base u Optimism): la misma dirección funciona en todas ellas, pero los fondos enviados por una red solo aparecerán en esa red. También necesitarás un poco de la moneda nativa de la red (como ETH) para pagar las comisiones de transacción.',
+        a: 'Abre una cuenta, selecciona «Ver código QR» para ver tu dirección y envía fondos a esa dirección desde un exchange u otra cartera. Asegúrate de enviar los fondos por la red correcta (como Ethereum, Base o Arbitrum): la misma dirección funciona en todas las redes compatibles, pero los fondos enviados por una red solo aparecerán en esa red. También te conviene tener un poco de la moneda nativa de la red (como ETH) para pagar las comisiones de transacción.',
       },
       {
         q: '¿Qué puedo hacer con wwwallet?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Monedero de Ethereum gratuito y sin custodia',
     description:
-      'Monedero gratuito de Ethereum en tu navegador. Sin registro, sin anuncios, sin seguimiento: tus claves permanecen cifradas en tu dispositivo. Ethereum, Arbitrum, Base, Optimism y Polygon.',
+      'Cartera gratuita de Ethereum en tu navegador. Sin registrarte, sin anuncios, sin seguimiento: tus claves permanecen cifradas en tu dispositivo. Ethereum, Base, Arbitrum, Optimism, Polygon y 10 redes más.',
   },
 }

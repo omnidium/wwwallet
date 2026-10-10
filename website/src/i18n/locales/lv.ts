@@ -48,8 +48,8 @@ export default {
         body: '„wwwallet“ bloķējas pēc īsa bezdarbības perioda un nekad neieraksta jūsu atbloķēto sesiju diskā — aizveriet cilni, un tā to apzināti aizmirst.',
       },
       {
-        title: 'Pieci Ethereum tīkli, viens kontu kopums',
-        body: 'Glabājiet un sūtiet caur Ethereum galveno tīklu, Polygon, Arbitrum, Base un Optimism, izmantojot tos pašus kontus un adreses.',
+        title: 'Piecpadsmit Ethereum tīkli, viens kontu kopums',
+        body: 'Glabājiet un sūtiet caur Ethereum galveno tīklu un vēl 14 tīkliem — tostarp Arbitrum, Base, Optimism, Polygon, Linea un ZKsync — izmantojot tos pašus kontus un adreses.',
       },
     ],
     caveatTitle: 'Jūsu atjaunošanas frāze atslēdz jūsu seifu — tā nav maģiska rezerves kopija',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'Vai wwwallet patiešām ir bezmaksas?',
-        a: 'Jā. Tās izmantošana ir bez maksas, nav premium līmeņa un nekādu maksas barjeru, un wwwallet nepiemēro komisijas maksu par jebkuru jūsu nosūtīto vai apmainīto summu. Vienīgās neizbēgamās izmaksas ir tīkla paša darījumu (gāzes) maksa, kas nonāk tīklam, nevis wwwallet. Apmaiņas kotācijas nāk no 0x biržu agregatora, kas dažos darījumos var iekļaut savu komisiju — jebkura šāda komisija tiek norādīta pārskata ekrānā, pirms jūs apstiprināt darījumu.',
+        a: 'Jā. Tās izmantošana ir bez maksas, nav premium līmeņa un nekādu maksas barjeru, un wwwallet nepiemēro komisijas maksu par jebkuru jūsu nosūtīto vai apmainīto summu. Vienīgās neizbēgamās izmaksas ir tīkla paša transakciju (gāzes) maksa, kas nonāk tīklam, nevis wwwallet. Apmaiņas kotācijas nāk no 0x biržu agregatora (vai LI.FI, tīklos, kurus 0x neaptver), kas dažos darījumos var iekļaut savu komisiju — jebkura šāda komisija tiek norādīta pārskata ekrānā, pirms jūs apstiprināt darījumu.',
       },
       {
         q: 'Vai ir reklāmas, izsekošanas rīki vai analītika?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'Kādus tīklus atbalsta wwwallet?',
-        a: 'Ethereum galvenais tīkls, kā arī 2. slāņa tīkli Polygon, Arbitrum, Base un Optimism — visi no viena un tā paša kontu kopuma.',
+        a: 'Ethereum galvenais tīkls, kā arī Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain un Scroll — visi no viena un tā paša kontu kopuma.',
       },
       {
         q: 'Kā es varu papildināt savu maku?',
-        a: 'Atveriet kontu, izvēlieties „Skatīt QR kodu”, lai redzētu tā adresi, un nosūtiet līdzekļus uz šo adresi no biržas vai citas makas. Pārliecinieties, ka nosūtāt pareizajā tīklā (Ethereum, Polygon, Arbitrum, Base vai Optimism) — viena un tā pati adrese darbojas visos šajos tīklos, taču līdzekļi, kas nosūtīti vienā tīklā, parādās tikai tajā tīklā. Jums būs nepieciešams arī neliels daudzums tīkla vietējās monētas (piemēram, ETH), lai segtu transakcijas komisijas maksu.',
+        a: 'Atveriet kontu, izvēlieties „Skatīt QR kodu”, lai redzētu tā adresi, un nosūtiet līdzekļus uz šo adresi no biržas vai citas makas. Pārliecinieties, ka nosūtāt pareizajā tīklā (piemēram, Ethereum, Base vai Arbitrum) — viena un tā pati adrese darbojas visos atbalstītajos tīklos, bet līdzekļi, kas nosūtīti vienā tīklā, parādās tikai šajā tīklā. Jums būs nepieciešams arī neliels daudzums tīkla vietējās monētas (piemēram, ETH), lai segtu transakciju komisijas maksas.',
       },
       {
         q: 'Ko es varu darīt ar wwwallet?',
@@ -241,6 +241,6 @@ export default {
   meta: {
     title: 'wwwallet — bezmaksas, neuzraudzīta Ethereum maku lietotne',
     description:
-      'Bezmaksas Ethereum maku jūsu pārlūkprogrammā. Nav reģistrācijas, nav reklāmu, nav izsekošanas — jūsu atslēgas paliek šifrētas jūsu ierīcē. Ethereum, Arbitrum, Base, Optimism un Polygon.',
+      'Bezmaksas Ethereum maku jūsu pārlūkprogrammā. Nav reģistrācijas, nav reklāmu, nav izsekošanas — jūsu atslēgas paliek šifrētas jūsu ierīcē. Ethereum, Base, Arbitrum, Optimism, Polygon un vēl 10 tīkli.',
   },
 }

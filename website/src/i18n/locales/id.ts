@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet akan terkunci setelah beberapa saat tidak aktif, dan tidak pernah menyimpan sesi yang tidak terkunci ke disk — tutup tabnya dan aplikasi ini akan melupakannya, secara sengaja.',
       },
       {
-        title: 'Lima jaringan Ethereum, satu set akun',
-        body: 'Simpan dan kirim di seluruh mainnet Ethereum, Polygon, Arbitrum, Base, dan Optimism dengan akun dan alamat yang sama.',
+        title: 'Lima belas jaringan Ethereum, satu set akun',
+        body: 'Simpan dan kirim di mainnet Ethereum serta 14 jaringan lainnya — termasuk Arbitrum, Base, Optimism, Polygon, Linea, dan ZKsync — dengan akun dan alamat yang sama.',
       },
     ],
     caveatTitle: 'Frasa pemulihan Anda membuka brankas Anda — ini bukanlah cadangan ajaib',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'Apakah wwwallet benar-benar gratis?',
-        a: 'Ya. Tidak ada biaya untuk menggunakannya, tidak ada tingkatan premium, dan tidak ada konten di balik paywall, serta wwwallet tidak menambahkan biaya apa pun pada setiap pengiriman atau pertukaran yang Anda lakukan. Satu-satunya biaya yang tidak dapat dihindari adalah biaya transaksi (gas) jaringan itu sendiri, yang dibayarkan ke jaringan, bukan ke wwwallet. Penawaran pertukaran berasal dari agregator bursa 0x, yang mungkin mengenakan biayanya sendiri pada beberapa transaksi — biaya semacam itu tercantum di layar tinjauan sebelum Anda mengonfirmasi.',
+        a: 'Ya. Tidak ada biaya untuk menggunakannya, tidak ada tingkatan premium, dan tidak ada konten berbayar; wwwallet juga tidak menambahkan biaya apa pun pada setiap pengiriman atau pertukaran yang Anda lakukan. Satu-satunya biaya yang tidak dapat dihindari adalah biaya transaksi (gas) jaringan itu sendiri, yang dibayarkan ke jaringan, bukan ke wwwallet. Penawaran pertukaran berasal dari agregator bursa 0x (atau LI.FI, pada jaringan yang tidak tercakup oleh 0x), yang mungkin menyertakan biayanya sendiri pada beberapa transaksi — biaya semacam itu tercantum di layar tinjauan sebelum Anda mengonfirmasi.',
       },
       {
         q: 'Apakah ada iklan, pelacak, atau analitik?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'Jaringan apa saja yang didukung oleh wwwallet?',
-        a: 'Jaringan utama Ethereum, ditambah jaringan Layer-2 Polygon, Arbitrum, Base, dan Optimism — semuanya dari kumpulan akun yang sama.',
+        a: 'Mainnet Ethereum, ditambah Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain, dan Scroll — semuanya dari kumpulan akun yang sama.',
       },
       {
         q: 'Bagaimana cara mengisi saldo dompet saya?',
-        a: 'Buat akun, pilih “Lihat kode QR” untuk melihat alamatnya, lalu kirim dana ke alamat tersebut dari bursa atau dompet lain. Pastikan Anda mengirim dana melalui jaringan yang benar (Ethereum, Polygon, Arbitrum, Base, atau Optimism) — alamat yang sama berlaku di semua jaringan tersebut, tetapi dana yang dikirim melalui satu jaringan hanya akan muncul di jaringan tersebut. Anda juga perlu memiliki sedikit koin asli jaringan tersebut (seperti ETH) untuk membayar biaya transaksi.',
+        a: 'Buka akun, pilih “Lihat kode QR” untuk melihat alamatnya, lalu kirim dana ke alamat tersebut dari bursa atau dompet lain. Pastikan Anda mengirim dana melalui jaringan yang benar (seperti Ethereum, Base, atau Arbitrum) — alamat yang sama berlaku di setiap jaringan yang didukung, tetapi dana yang dikirim melalui satu jaringan hanya akan muncul di jaringan tersebut. Anda juga perlu memiliki sedikit koin asli jaringan tersebut (seperti ETH) untuk membayar biaya transaksi.',
       },
       {
         q: 'Apa yang bisa saya lakukan dengan wwwallet?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Dompet Ethereum gratis dan non-custodial',
     description:
-      'Dompet Ethereum gratis di browser Anda. Tanpa pendaftaran, tanpa iklan, tanpa pelacakan — kunci Anda tetap terenkripsi di perangkat Anda. Ethereum, Arbitrum, Base, Optimism, dan Polygon.',
+      'Dompet Ethereum gratis di browser Anda. Tanpa pendaftaran, tanpa iklan, tanpa pelacakan — kunci Anda tetap terenkripsi di perangkat Anda. Ethereum, Base, Arbitrum, Optimism, Polygon, dan 10 jaringan lainnya.',
   },
 }

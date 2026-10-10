@@ -48,8 +48,8 @@ export default {
         body: 'Aplikácia wwwallet sa po krátkej dobe nečinnosti uzamkne a nikdy nezapíše vašu odomknutú reláciu na disk – ak zatvoríte kartu, záležitosť sa zámerne zabudne.',
       },
       {
-        title: 'Päť sietí Ethereum, jedna sada účtov',
-        body: 'Ukladajte a posielajte prostredníctvom hlavnej siete Ethereum, Polygon, Arbitrum, Base a Optimism s rovnakými účtami a adresami.',
+        title: 'Pätnásť sietí Ethereum, jedna sada účtov',
+        body: 'Uchovávajte a posielajte prostredníctvom hlavnej siete Ethereum a ďalších 14 sietí – vrátane Arbitrum, Base, Optimism, Polygon, Linea a ZKsync – s rovnakými účtami a adresami.',
       },
     ],
     caveatTitle: 'Vaša obnovovacia fráza odomyká váš trezor – nie je to žiadna magická záloha',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'Je wwwallet naozaj bezplatná?',
-        a: 'Áno. Používanie je bezplatné, neexistuje žiadna prémiová úroveň ani obsah za platobnou bránou a wwwallet nepridáva žiadne poplatky k ničomu, čo posielate alebo vymieňate. Jediným nevyhnutným nákladom je vlastný transakčný (gas) poplatok siete, ktorý ide do siete, nie do wwwallet. Kótácie výmen pochádzajú z agregátora búrz 0x, ktorý môže pri niektorých obchodoch účtovať vlastný poplatok – akýkoľvek takýto poplatok je uvedený na obrazovke s prehľadom pred potvrdením.',
+        a: 'Áno. Používanie je bezplatné, neexistuje žiadna prémiová úroveň ani obsah za platobnou bránou a wwwallet nepridáva žiadne poplatky k ničomu, čo posielate alebo vymieňate. Jediným nevyhnutným nákladom je vlastný transakčný (gas) poplatok siete, ktorý ide do siete, nie do wwwallet. Kótácie výmen pochádzajú z agregátora búrz 0x (alebo LI.FI v sieťach, ktoré 0x nepokrýva), ktorý môže pri niektorých obchodoch účtovať vlastný poplatok – akýkoľvek takýto poplatok je uvedený na obrazovke s prehľadom pred potvrdením.',
       },
       {
         q: 'Sú v aplikácii reklamy, sledovacie nástroje alebo analytické nástroje?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'Aké siete podporuje wwwallet?',
-        a: 'Hlavná sieť Ethereum a siete Layer-2 Polygon, Arbitrum, Base a Optimism – všetko z rovnakého súboru účtov.',
+        a: 'Hlavná sieť Ethereum, plus Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain a Scroll – všetko z jednej sady účtov.',
       },
       {
         q: 'Ako môžem vložiť prostriedky do svojej peňaženky?',
-        a: 'Otvorte si účet, vyberte možnosť „Zobraziť QR kód“, aby ste videli jeho adresu, a pošlite prostriedky na túto adresu z burzy alebo inej peňaženky. Uistite sa, že posielate prostriedky na správnej sieti (Ethereum, Polygon, Arbitrum, Base alebo Optimism) – tá istá adresa funguje na všetkých z nich, ale prostriedky poslané na jednej sieti sa zobrazia len na tej sieti. Budete tiež potrebovať malé množstvo natívnej meny siete (napríklad ETH) na úhradu transakčných poplatkov.',
+        a: 'Otvorte si účet, vyberte možnosť „Zobraziť QR kód“, aby ste videli jeho adresu, a pošlite prostriedky na túto adresu z burzy alebo inej peňaženky. Uistite sa, že posielate na správnu sieť (napríklad Ethereum, Base alebo Arbitrum) – tá istá adresa funguje na každej podporovanej sieti, ale prostriedky poslané na jednej sieti sa zobrazia len na tej sieti. Budete tiež potrebovať malé množstvo natívnej meny siete (napríklad ETH) na úhradu transakčných poplatkov.',
       },
       {
         q: 'Čo môžem robiť s wwwallet?',
@@ -240,6 +240,6 @@ export default {
   meta: {
     title: 'wwwallet — Bezplatná peňaženka pre Ethereum bez úschovy',
     description:
-      'Bezplatná peňaženka pre Ethereum vo vašom prehliadači. Bez registrácie, bez reklám, bez sledovania – vaše kľúče zostávajú zašifrované vo vašom zariadení. Ethereum, Arbitrum, Base, Optimism a Polygon.',
+      'Bezplatná peňaženka pre Ethereum vo vašom prehliadači. Bez registrácie, bez reklám, bez sledovania – vaše kľúče zostávajú zašifrované vo vašom zariadení. Ethereum, Base, Arbitrum, Optimism, Polygon a ďalších 10 sietí.',
   },
 }

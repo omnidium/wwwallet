@@ -26,6 +26,10 @@ pub enum ProviderError {
     /// only; never shown to the user as-is (see `ApiError::Unprocessable`).
     #[error("transaction would revert: {0}")]
     TransactionWouldRevert(String),
+    /// The chain isn't switched on for this backend's account with the
+    /// provider — nothing can be served for it until someone enables it.
+    #[error("chain not enabled for this provider account")]
+    ChainNotEnabled,
 }
 
 pub type ProviderResult<T> = Result<T, ProviderError>;

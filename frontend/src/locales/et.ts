@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Müü',
     buyTokenLabel: 'Osta',
     sellAmountLabel: 'Müügisumma',
-    signingNotice: 'Sa allkirjastad tehingut lepingule {address} (0x-agregaatori kaudu).',
+    signingNotice: 'Sa allkirjastad tehingut lepingule {address} (kaudu {provider}).',
     submit: 'Vahetus',
     selectToken: 'Vali token',
     searchTokenPlaceholder: 'Otsi nime või sümbolit',
@@ -338,6 +338,7 @@ export default {
       'Seadista sellele seadmele esmalt ekraanilukk (sõrmejälg, näotuvastus või PIN-kood) ja proovi uuesti.',
     passkeyProviderNotReady:
       'Teie paroolihaldur ei suutnud parooli salvestada. Kui rakendus ootab, et te sisse logiksite, oma isikut kinnitaksite või sisestaksite sünkroniseerimise parooli (nt Google’i paroolihaldur, kui Chrome’i sünkroniseerimine on peatatud), viige see lõpule ja proovige uuesti.',
+    chainUnavailable: 'See võrk ei ole wwwalletis veel saadaval.',
   },
   accountCard: {
     copyAddress: 'Kopeeri aadress',
@@ -420,6 +421,7 @@ export default {
     price: 'Hind',
     swapFee: 'Vahetustasu',
     integratorFee: 'Teenustasu',
+    lifiFee: 'LI.FI teenustasu',
   },
   transfer: {
     fromNetwork: 'Võrgustikust',

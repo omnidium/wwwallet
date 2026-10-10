@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet sẽ tự khóa sau một khoảng thời gian ngắn không hoạt động và tuyệt đối không lưu phiên làm việc đã mở khóa của cậu lên đĩa — chỉ cần đóng tab là ứng dụng sẽ quên ngay, đó là thiết kế có chủ đích.',
       },
       {
-        title: 'Năm mạng Ethereum, một bộ tài khoản',
-        body: 'Cậu có thể lưu trữ và gửi tiền trên mạng chính Ethereum, Polygon, Arbitrum, Base và Optimism bằng cùng một tài khoản và địa chỉ.',
+        title: 'Mười lăm mạng Ethereum, một bộ tài khoản',
+        body: 'Cậu có thể lưu trữ và gửi tiền trên mạng chính Ethereum cùng 14 mạng khác — bao gồm Arbitrum, Base, Optimism, Polygon, Linea và ZKsync — bằng cùng một tài khoản và địa chỉ.',
       },
     ],
     caveatTitle:
@@ -114,7 +114,7 @@ export default {
     items: [
       {
         q: 'wwwallet có thực sự miễn phí không?',
-        a: 'Đúng vậy. Sử dụng ứng dụng hoàn toàn miễn phí, không có gói cao cấp hay nội dung trả phí nào cả, và wwwallet cũng không thu thêm phí cho bất kỳ giao dịch gửi hay trao đổi nào của cậu. Chi phí duy nhất không thể tránh khỏi là phí giao dịch (gas) của chính mạng lưới, khoản phí này được chuyển cho mạng lưới chứ không phải cho wwwallet. Báo giá trao đổi đến từ công cụ tổng hợp sàn giao dịch 0x, có thể bao gồm phí riêng của họ đối với một số giao dịch — bất kỳ khoản phí nào như vậy đều được liệt kê trên màn hình xem lại trước khi cậu xác nhận.',
+        a: 'Đúng vậy. Ứng dụng hoàn toàn miễn phí, không có gói cao cấp hay nội dung trả phí nào cả, và wwwallet cũng không thu thêm phí cho bất kỳ giao dịch gửi hay trao đổi nào của cậu. Chi phí duy nhất không thể tránh khỏi là phí giao dịch (gas) của chính mạng lưới, khoản phí này được chuyển cho mạng lưới chứ không phải cho wwwallet. Báo giá trao đổi đến từ công cụ tổng hợp sàn giao dịch 0x (hoặc LI.FI, trên các mạng mà 0x không hỗ trợ), có thể bao gồm phí riêng của họ đối với một số giao dịch — bất kỳ khoản phí nào như vậy đều được liệt kê trên màn hình xem lại trước khi cậu xác nhận.',
       },
       {
         q: 'Có quảng cáo, trình theo dõi hay công cụ phân tích nào không?',
@@ -166,11 +166,11 @@ export default {
       },
       {
         q: 'wwwallet hỗ trợ những mạng nào?',
-        a: 'Mạng chính Ethereum, cùng với các mạng Layer-2 như Polygon, Arbitrum, Base và Optimism — tất cả đều từ cùng một bộ tài khoản.',
+        a: 'Mạng chính Ethereum, cùng với Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain và Scroll — tất cả đều thuộc cùng một bộ tài khoản.',
       },
       {
         q: 'Làm thế nào để nạp tiền vào ví của tớ?',
-        a: 'Mở tài khoản, chọn “Xem mã QR” để xem địa chỉ của nó, rồi gửi tiền đến địa chỉ đó từ sàn giao dịch hoặc ví khác. Hãy đảm bảo cậu gửi tiền trên đúng mạng (Ethereum, Polygon, Arbitrum, Base hoặc Optimism) — cùng một địa chỉ hoạt động trên tất cả các mạng này, nhưng tiền gửi trên một mạng chỉ hiển thị trên mạng đó thôi. Cậu cũng nên chuẩn bị một ít đồng tiền gốc của mạng lưới đó (như ETH) để trả phí giao dịch.',
+        a: 'Mở tài khoản, chọn “Xem mã QR” để xem địa chỉ ví, rồi gửi tiền đến địa chỉ đó từ sàn giao dịch hoặc ví khác. Nhớ gửi trên đúng mạng (như Ethereum, Base hoặc Arbitrum) — cùng một địa chỉ sẽ hoạt động trên mọi mạng được hỗ trợ, nhưng tiền gửi trên một mạng chỉ hiển thị trên mạng đó thôi. Cậu cũng nên chuẩn bị một ít đồng tiền gốc của mạng lưới đó (như ETH) để trả phí giao dịch.',
       },
       {
         q: 'Tớ có thể làm gì với wwwallet?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Ví Ethereum miễn phí, không lưu giữ',
     description:
-      'Ví Ethereum miễn phí ngay trên trình duyệt của cậu. Không cần đăng ký, không quảng cáo, không theo dõi — các khóa của cậu sẽ được mã hóa và lưu trữ an toàn trên thiết bị của cậu. Hỗ trợ Ethereum, Arbitrum, Base, Optimism và Polygon.',
+      'Ví Ethereum miễn phí ngay trên trình duyệt của cậu. Không cần đăng ký, không quảng cáo, không theo dõi — các khóa của cậu sẽ được mã hóa và lưu trữ an toàn trên thiết bị của cậu. Hỗ trợ Ethereum, Base, Arbitrum, Optimism, Polygon và 10 mạng lưới khác nữa.',
   },
 }

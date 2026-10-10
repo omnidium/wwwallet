@@ -55,6 +55,16 @@ pub struct AddressActivity {
     pub next_cursor: Option<serde_json::Value>,
 }
 
+/// Just enough to tell whether an address has ever been used on a chain —
+/// see `ActivityProvider::address_presence`.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AddressPresence {
+    /// The native coin's balance in its smallest unit, as a decimal string.
+    pub native_balance: String,
+    /// How many transactions this address has sent (its nonce).
+    pub transaction_count: u64,
+}
+
 /// One page of older transactions, fetched via `ActivityProvider::transaction_page`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionPage {
@@ -176,8 +186,9 @@ impl PriceHistory {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionFee {
     /// Decimal wei string: gas used × effective gas price, plus the L1 data
-    /// fee OP-stack chains (Base, Optimism) report separately. Arbitrum
-    /// already counts its L1 share in gas used.
+    /// fee that OP-stack chains (Base, Optimism, World Chain, Ink, Unichain,
+    /// Celo) and Scroll report separately. Arbitrum and its Orbit chains
+    /// (Robinhood) already count their L1 share in gas used.
     pub fee_wei: String,
     /// The account that paid it — the transaction's sender, which for a
     /// received token transfer is someone else entirely.
@@ -214,9 +225,13 @@ pub struct SwapQuote {
     pub sell_amount: String,
     pub allowance_target: String,
     pub price: String,
-    /// Aggregator/integrator fees charged on top of network gas. Already
-    /// reflected in `buy_amount` for display purposes — listed so the client
-    /// can show them separately. Empty when the quote carries no such fees.
+    /// Who quoted it, by name: "0x", or "LI.FI" on a chain 0x doesn't
+    /// cover. Shown as the swap's route.
+    pub provider: String,
+    /// Aggregator/integrator fees charged on top of network gas, listed so
+    /// the client can show them separately. 0x's are already taken out of
+    /// `buy_amount`; LI.FI's are too, or else paid on top, in `value`.
+    /// Empty when the quote carries no such fees.
     #[serde(default)]
     pub fees: Vec<SwapFee>,
 }
@@ -224,7 +239,9 @@ pub struct SwapQuote {
 /// One non-gas fee charged by a swap quote, in the token it is taken in.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SwapFee {
-    /// `"zero_ex"` or `"integrator"`.
+    /// Whose fee: `"zero_ex"` (0x's own) or `"integrator"` (an integrator's)
+    /// on a 0x quote; `"lifi"` (LI.FI's own) or `"protocol"` (the DEX's or
+    /// relayer's) on a LI.FI one.
     pub kind: String,
     /// Token contract address the fee is denominated in.
     pub token: String,

@@ -404,6 +404,13 @@ input[type='number'] {
   border-top: 1px solid rgb(var(--v-border-color) / var(--border-opacity));
 }
 
+/* Chain logos (public/chains/*.svg) are square badges; every one is shown
+ * cut to a circle, like token logos, wherever it appears: pickers, the
+ * account carousel, payees, route summaries, and as a native coin's icon. */
+img[src^='/chains/'] {
+  border-radius: 50%;
+}
+
 /* Header + native-balance rows, grouped so the chain watermark below can
  * span exactly those two rows and nothing else. */
 .card-summary {
@@ -429,7 +436,9 @@ input[type='number'] {
 
 /* SpinningCoin.vue — the logo as a coin: LAYERS copies stacked 1px apart
  * along Z, the inner ones darkened so the rim reads as an edge when it turns
- * side-on. Spins about its vertical axis while the account is refreshing. */
+ * side-on, each cut to a circle like the token row's logos (square badge
+ * logos would otherwise show their corners). Spins about its vertical axis
+ * while the account is refreshing. */
 .coin {
   position: relative;
   height: 100%;
@@ -443,6 +452,7 @@ input[type='number'] {
   /* --coin-step: Z gap between layers, scaled down for smaller coins. */
   transform: translateZ(calc(var(--layer) * var(--coin-step, 1px)));
   filter: brightness(0.55);
+  border-radius: 50%;
 }
 
 .coin-layer:not(:first-child) {
@@ -1062,10 +1072,6 @@ html.pane-open {
   height: 30px;
   perspective: 200px;
   --coin-step: 0.3px;
-}
-
-.token-detail-logo .coin-layer {
-  border-radius: 50%;
 }
 
 /* Fallback refresh cue for a token with no logo to spin. */

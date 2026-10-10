@@ -1,4 +1,4 @@
-import { translatedError } from './errors'
+import { TranslatedError, translatedError } from './errors'
 import { API_BASE_URL as BASE_URL } from './apiBase'
 import { discardSessionToken, SESSION_HEADER, sessionToken } from './session'
 
@@ -58,6 +58,12 @@ async function requestFailedError(res: Response, path: string): Promise<Error> {
       .then((body: unknown) => (body as { code?: string } | null)?.code)
       .catch(() => undefined)
     if (code === 'no_liquidity') return translatedError('errors.noLiquidity')
+    // The chain's network isn't switched on with the backend's data provider yet.
+    if (code === 'chain_unavailable') {
+      const err = translatedError('errors.chainUnavailable')
+      err.code = code
+      return err
+    }
     if (code === 'would_revert') return translatedError('errors.transactionWouldFail')
     if (code === 'token_not_on_chain') {
       const err = translatedError('errors.tokenNotOnChain')
@@ -66,6 +72,11 @@ async function requestFailedError(res: Response, path: string): Promise<Error> {
     }
   }
   return translatedError('errors.requestFailed', { path, status: res.status })
+}
+
+/** A refusal for a chain the backend can't serve at all for now — the server itself answered fine. */
+export function isChainUnavailableError(err: unknown): boolean {
+  return err instanceof TranslatedError && err.code === 'chain_unavailable'
 }
 
 async function sessionHeaders(headers: Record<string, string> = {}): Promise<Record<string, string>> {
@@ -131,6 +142,14 @@ export interface Transaction {
   counter_asset: string | null
   counter_value: string | null
   counter_contract_address: string | null
+}
+
+/** Just enough to tell whether an address has ever been used on a chain — see the backend's AddressPresence. */
+export interface AddressPresence {
+  /** The native coin's balance in wei, as a decimal string. */
+  native_balance: string
+  /** How many transactions the address has sent (its nonce). */
+  transaction_count: number
 }
 
 /** Opaque — pass back verbatim to `transactionPage` to fetch older transactions. Never inspect its shape. */
@@ -221,14 +240,25 @@ export interface SwapQuote {
   sell_amount: string
   allowance_target: string
   price: string
+  /** Who quoted it: "0x", or "LI.FI" on a chain 0x doesn't cover. */
+  provider: string
   /** Aggregator/integrator fees on top of network gas (see backend SwapFee). */
   fees?: SwapFee[]
 }
 
 export interface SwapFee {
-  kind: 'zero_ex' | 'integrator'
+  /** Whose: 0x's own or an integrator's on a 0x quote; LI.FI's own or the DEX's (`protocol`) on a LI.FI one. */
+  kind: 'zero_ex' | 'integrator' | 'lifi' | 'protocol'
   token: string
   amount: string
+}
+
+/** The i18n key naming a swap fee by whose it is. */
+export const SWAP_FEE_LABEL_KEYS: Record<SwapFee['kind'], string> = {
+  zero_ex: 'review.swapFee',
+  protocol: 'review.swapFee',
+  lifi: 'review.lifiFee',
+  integrator: 'review.integratorFee',
 }
 
 /** A cross-chain transfer's route and ready-to-sign transaction — see the backend's BridgeQuote. */
@@ -297,11 +327,28 @@ export interface TokenListItem {
   logo_url: string | null
 }
 
-export type ChainSlug = 'ethereum' | 'polygon' | 'arbitrum' | 'base' | 'optimism'
+export type ChainSlug =
+  | 'ethereum'
+  | 'polygon'
+  | 'arbitrum'
+  | 'base'
+  | 'optimism'
+  | 'robinhood'
+  | 'worldchain'
+  | 'ink'
+  | 'linea'
+  | 'gnosis'
+  | 'celo'
+  | 'zksync'
+  | 'ronin'
+  | 'unichain'
+  | 'scroll'
 
 export const api = {
   addressActivity: (chain: ChainSlug, address: string) =>
     getJson<AddressActivity>(`/api/v1/chains/${chain}/address/${encodeURIComponent(address)}`),
+  addressPresence: (chain: ChainSlug, address: string) =>
+    getJson<AddressPresence>(`/api/v1/chains/${chain}/address/${encodeURIComponent(address)}/presence`),
   transactionPage: (chain: ChainSlug, address: string, cursor: ActivityCursor) =>
     postJson<TransactionPage>(
       `/api/v1/chains/${chain}/address/${encodeURIComponent(address)}/transactions/more`,

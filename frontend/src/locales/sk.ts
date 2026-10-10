@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Predaj',
     buyTokenLabel: 'Kúpiť',
     sellAmountLabel: 'Predávaná suma',
-    signingNotice: 'Podpisujete transakciu na zmluvu {address} (prostredníctvom agregátora 0x).',
+    signingNotice: 'Podpisujete transakciu na zmluvu {address} (prostredníctvom {provider}).',
     submit: 'Swap',
     selectToken: 'Vyberte token',
     searchTokenPlaceholder: 'Vyhľadajte názov alebo symbol',
@@ -336,6 +336,7 @@ export default {
       'Najprv na tomto zariadení nastavte uzamknutie obrazovky (odtlačok prsta, rozpoznanie tváre alebo PIN) a potom to skúste znova.',
     passkeyProviderNotReady:
       'Váš správca prístupových kľúčov nedokázal uložiť prístupový kľúč. Ak čaká na vaše prihlásenie, overenie vašej identity alebo zadanie synchronizačnej frázy (napr. Správca hesiel Google, keď je synchronizácia v prehliadači Chrome pozastavená), dokončite tento proces a potom to skúste znova.',
+    chainUnavailable: 'Táto sieť zatiaľ nie je v aplikácii wwwallet dostupná.',
   },
   accountCard: {
     copyAddress: 'Skopírujte adresu',
@@ -419,6 +420,7 @@ export default {
     price: 'Cena',
     swapFee: 'Poplatok za výmenu',
     integratorFee: 'Poplatok za službu',
+    lifiFee: 'Poplatok LI.FI',
   },
   transfer: {
     fromNetwork: 'Zo siete',

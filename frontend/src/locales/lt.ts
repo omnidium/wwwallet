@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Parduoti',
     buyTokenLabel: 'Pirkti',
     sellAmountLabel: 'Parduodama suma',
-    signingNotice: 'Jūs pasirašote sandorį su sutartimi {address} (per 0x agregatorių).',
+    signingNotice: 'Jūs pasirašote sandorį su sutartimi {address} (per {provider}).',
     submit: 'Keisti',
     selectToken: 'Pasirinkite žetoną',
     searchTokenPlaceholder: 'Ieškokite pavadinimo arba simbolio',
@@ -339,6 +339,7 @@ export default {
       'Pirmiausia šiame įrenginyje nustatykite ekrano užraktą (piršto atspaudą, veido atpažinimą arba PIN kodą), tada bandykite dar kartą.',
     passkeyProviderNotReady:
       'Jūsų slaptažodžių tvarkyklė negalėjo išsaugoti slaptažodžio. Jei ji laukia, kol prisijungsite, patvirtinsite savo tapatybę arba įvesite sinchronizavimo frazę (pvz., „Google Password Manager“, kai „Chrome“ sinchronizavimas sustabdytas), atlikite tai ir pabandykite dar kartą.',
+    chainUnavailable: 'Šis tinklas dar nėra prieinamas „wwwallet“ programėlėje.',
   },
   accountCard: {
     copyAddress: 'Nukopijuokite adresą',
@@ -422,6 +423,7 @@ export default {
     price: 'Kaina',
     swapFee: 'Keitimo mokestis',
     integratorFee: 'Paslaugos mokestis',
+    lifiFee: '„LI.FI“ mokestis',
   },
   transfer: {
     fromNetwork: 'Iš tinklo',

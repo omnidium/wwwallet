@@ -72,6 +72,25 @@ impl SwapQuoteProvider for ZeroExProvider {
         "0x"
     }
 
+    /// Of the chains wwwallet supports, the ones 0x's Swap API covers
+    /// (its `GET /swap/chains`) — not Gnosis, Celo, ZKsync Era or Ronin.
+    fn supports(&self, chain: ChainId) -> bool {
+        matches!(
+            chain,
+            ChainId::Ethereum
+                | ChainId::Polygon
+                | ChainId::Arbitrum
+                | ChainId::Base
+                | ChainId::Optimism
+                | ChainId::Robinhood
+                | ChainId::WorldChain
+                | ChainId::Ink
+                | ChainId::Linea
+                | ChainId::Unichain
+                | ChainId::Scroll
+        )
+    }
+
     async fn quote(
         &self,
         chain: ChainId,
@@ -127,6 +146,7 @@ fn extract_quote(quote: ZeroExQuoteResponse) -> ProviderResult<SwapQuote> {
         sell_amount,
         allowance_target,
         price,
+        provider: "0x".to_string(),
         fees,
     })
 }
@@ -187,6 +207,7 @@ mod tests {
         assert_eq!(quote.sell_amount, "100");
         assert_eq!(quote.allowance_target, "0xallowance");
         assert_eq!(quote.price, "2");
+        assert_eq!(quote.provider, "0x");
         assert_eq!(quote.fees.len(), 1);
         assert_eq!(quote.fees[0].kind, "zero_ex");
         assert_eq!(quote.fees[0].amount, "3");
@@ -197,5 +218,14 @@ mod tests {
         let mut response = liquid_response();
         response.transaction = None;
         assert!(matches!(extract_quote(response), Err(ProviderError::Upstream(_))));
+    }
+
+    #[test]
+    fn leaves_the_chains_0x_lacks_to_the_fallback() {
+        let zerox = ZeroExProvider::new(String::new());
+        assert!(zerox.supports(ChainId::Linea));
+        for chain in [ChainId::Gnosis, ChainId::Celo, ChainId::ZkSync, ChainId::Ronin] {
+            assert!(!zerox.supports(chain));
+        }
     }
 }

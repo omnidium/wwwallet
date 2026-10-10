@@ -46,6 +46,8 @@ function goToNativeDetail() {
 // the periodic auto-refresh as well as a manual one from the native detail panel.
 const refreshing = computed(() => chainData.isLoading(props.account.chain, props.account.address))
 
+// Nothing to load until its network is switched on (see chainData).
+const chainUnavailable = computed(() => chainData.isChainUnavailable(props.account.chain))
 const activity = computed(
   () => chainData.activityByAddress[chainData.keyFor(props.account.chain, props.account.address)],
 )
@@ -206,7 +208,10 @@ function openInNewTab(url: string): void {
         @keydown.enter="goToNativeDetail" @keydown.space.prevent="goToNativeDetail">
         <v-icon icon="mdi-wallet" class="mr-2" />
         <div class="flex-grow-1">
-          <span v-if="activity === undefined" class="skeleton-row" />
+          <span v-if="activity === undefined && chainUnavailable" class="text-medium-emphasis">
+            {{ t('errors.chainUnavailable') }}
+          </span>
+          <span v-else-if="activity === undefined" class="skeleton-row" />
           <template v-else>
             <span class="balance-figure">{{ fiatTotal ?? '—' }}</span>
             <span v-if="nativeBalance !== null" class="text-medium-emphasis ml-1">
@@ -222,7 +227,7 @@ function openInNewTab(url: string): void {
       </div>
     </div>
 
-    <div v-if="activity === undefined || visibleTokenRows.length > 0"
+    <div v-if="(activity === undefined && !chainUnavailable) || visibleTokenRows.length > 0"
       class="balance-row token-row pa-3 d-flex align-center"
       @click="activity !== undefined && (expandedTokens = !expandedTokens)">
       <template v-if="activity === undefined">

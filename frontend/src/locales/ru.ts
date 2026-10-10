@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Продать',
     buyTokenLabel: 'Купить',
     sellAmountLabel: 'Сумма продажи',
-    signingNotice: 'Ты подписываешь транзакцию для контракта {address} (через агрегатор 0x).',
+    signingNotice: 'Ты подписываешь транзакцию для контракта {address} (через {provider}).',
     submit: 'Обмен',
     selectToken: 'Выбери токен',
     searchTokenPlaceholder: 'Поиск по названию или символу',
@@ -339,6 +339,7 @@ export default {
       'Сначала набери блокировку экрана (по отпечатку пальца, лицу или PIN-коду) на этом устройстве, а потом попробуй ещё раз.',
     passkeyProviderNotReady:
       'Твой менеджер паролей не смог сохранить пароль. Если он ждёт, пока ты войдёшь в систему, подтвердишь свою личность или введёшь парольную фразу для синхронизации (например, в Google Password Manager, когда синхронизация Chrome приостановлена), сначала заверши эту операцию, а потом попробуй ещё раз.',
+    chainUnavailable: 'Эта сеть пока недоступна в wwwallet.',
   },
   accountCard: {
     copyAddress: 'Скопируй адрес',
@@ -422,6 +423,7 @@ export default {
     price: 'Цена',
     swapFee: 'Комиссия за обмен',
     integratorFee: 'Комиссия за обслуживание',
+    lifiFee: 'Комиссия LI.FI',
   },
   transfer: {
     fromNetwork: 'Из сети',

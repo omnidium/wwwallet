@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet låses efter en kort periode uden aktivitet og gemmer aldrig din ulåste session på disken – luk fanen, og den glemmer det med vilje.',
       },
       {
-        title: 'Fem Ethereum-netværk, ét sæt konti',
-        body: 'Opbevar og send på Ethereum-mainnet, Polygon, Arbitrum, Base og Optimism med de samme konti og adresser.',
+        title: 'Femten Ethereum-netværk, ét sæt konti',
+        body: 'Opbevar og send på Ethereums mainnet og 14 andre netværk — herunder Arbitrum, Base, Optimism, Polygon, Linea og ZKsync — med de samme konti og adresser.',
       },
     ],
     caveatTitle:
@@ -114,7 +114,7 @@ export default {
     items: [
       {
         q: 'Er wwwallet virkelig gratis?',
-        a: 'Ja. Det er gratis at bruge den, der er ingen premium-niveau og intet bag en betalingsmur, og wwwallet pålægger ingen gebyrer på noget, du sender eller bytter. Den eneste uundgåelige omkostning er netværkets eget transaktionsgebyr (gas), som går til netværket og ikke til wwwallet. Byttekurser kommer fra 0x-børsaggregatoren, som kan pålægge sit eget gebyr på visse handler — et sådant gebyr vises på bekræftelsesskærmen, inden du bekræfter.',
+        a: 'Ja. Det er gratis at bruge den, der er ingen premium-niveau og intet bag en betalingsmur, og wwwallet pålægger ingen gebyrer på noget, du sender eller bytter. Den eneste uundgåelige omkostning er netværkets eget transaktionsgebyr (gas), som går til netværket og ikke til wwwallet. Byttepriserne kommer fra 0x-børsaggregatoren (eller LI.FI på netværk, som 0x ikke dækker), som kan pålægge sit eget gebyr på visse handler — et sådant gebyr vises på gennemgangsskærmen, før du bekræfter.',
       },
       {
         q: 'Er der annoncer, trackere eller analyseværktøjer?',
@@ -166,11 +166,11 @@ export default {
       },
       {
         q: 'Hvilke netværk understøtter wwwallet?',
-        a: 'Ethereums mainnet samt Layer-2-netværkene Polygon, Arbitrum, Base og Optimism – alt sammen fra det samme sæt konti.',
+        a: 'Ethereum-mainnet samt Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain og Scroll — alt sammen fra det samme sæt konti.',
       },
       {
         q: 'Hvordan sætter jeg penge ind på min tegnebog?',
-        a: 'Opret en konto, vælg »Vis QR-kode« for at se adressen, og send midler til den adresse fra en børs eller en anden tegnebog. Sørg for at sende via det rigtige netværk (Ethereum, Polygon, Arbitrum, Base eller Optimism) — den samme adresse fungerer på dem alle, men midler, der sendes via et netværk, vises kun på det pågældende netværk. Du skal også have lidt af netværkets egen mønt (f.eks. ETH) til at betale transaktionsgebyrer.',
+        a: 'Opret en konto, vælg »Vis QR-kode« for at se adressen, og send midler til den adresse fra en børs eller en anden tegnebog. Sørg for at sende på det rigtige netværk (f.eks. Ethereum, Base eller Arbitrum) — den samme adresse fungerer på alle understøttede netværk, men midler, der sendes på et netværk, vises kun på det pågældende netværk. Du skal også have lidt af netværkets egen mønt (f.eks. ETH) til at betale transaktionsgebyrer.',
       },
       {
         q: 'Hvad kan jeg bruge wwwallet til?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Gratis, ikke-depotbaseret Ethereum-wallet',
     description:
-      'Gratis Ethereum-wallet i din browser. Ingen tilmelding, ingen annoncer, ingen sporing – dine nøgler forbliver krypteret på din enhed. Ethereum, Arbitrum, Base, Optimism og Polygon.',
+      'Gratis Ethereum-wallet i din browser. Ingen tilmelding, ingen annoncer, ingen sporing — dine nøgler forbliver krypteret på din enhed. Ethereum, Base, Arbitrum, Optimism, Polygon og 10 yderligere netværk.',
   },
 }

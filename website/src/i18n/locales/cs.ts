@@ -48,8 +48,8 @@ export default {
         body: 'Aplikace wwwallet se po krátké době nečinnosti uzamkne a nikdy neukládá vaši odemčenou relaci na disk – zavřete-li kartu, záměrně na ni zapomene.',
       },
       {
-        title: 'Pět sítí Ethereum, jedna sada účtů',
-        body: 'Uchovávejte a odesílejte prostředky v mainnetu Ethereum, sítích Polygon, Arbitrum, Base a Optimism pomocí stejných účtů a adres.',
+        title: 'Patnáct sítí Ethereum, jedna sada účtů',
+        body: 'Uchovávejte a odesílejte prostředky v hlavní síti Ethereum a dalších 14 sítích – včetně Arbitrum, Base, Optimism, Polygon, Linea a ZKsync – pomocí stejných účtů a adres.',
       },
     ],
     caveatTitle: 'Vaše obnovovací fráze odemyká váš trezor – nejedná se o žádnou magickou zálohu',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'Je wwwallet opravdu bezplatná?',
-        a: 'Ano. Používání je zdarma, neexistuje žádná prémiová úroveň ani nic za placenou bránou a wwwallet nepřidává žádné poplatky k ničemu, co posíláte nebo vyměňujete. Jediným nevyhnutelným nákladem je vlastní transakční poplatek (gas) sítě, který jde síti, nikoli wwwallet. Nabídky směny pocházejí z agregátoru burz 0x, který může u některých obchodů účtovat vlastní poplatek – jakýkoli takový poplatek je uveden na obrazovce s přehledem před potvrzením.',
+        a: 'Ano. Používání je zdarma, neexistuje žádná prémiová úroveň ani nic za placenou bránou a wwwallet nepřidává žádné poplatky k ničemu, co posíláte nebo vyměňujete. Jediným nevyhnutelným nákladem je vlastní transakční poplatek (gas) sítě, který jde síti, nikoli wwwallet. Nabídky na výměnu pocházejí z agregátoru burz 0x (nebo LI.FI v sítích, které 0x nepokrývá), který může u některých obchodů účtovat vlastní poplatek – jakýkoli takový poplatek je uveden na obrazovce s přehledem před potvrzením.',
       },
       {
         q: 'Obsahuje aplikace reklamy, sledovací nástroje nebo analytické prvky?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'Jaké sítě wwwallet podporuje?',
-        a: 'Hlavní síť Ethereum a sítě vrstvy 2 Polygon, Arbitrum, Base a Optimism – vše ze stejné sady účtů.',
+        a: 'Hlavní síť Ethereum, plus Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain a Scroll – vše ze stejné sady účtů.',
       },
       {
         q: 'Jak mohu vložit prostředky do své peněženky?',
-        a: 'Otevřete účet, vyberte možnost „Zobrazit QR kód“, abyste viděli jeho adresu, a odešlete prostředky na tuto adresu z burzy nebo jiné peněženky. Ujistěte se, že posíláte prostředky na správnou síť (Ethereum, Polygon, Arbitrum, Base nebo Optimism) – stejná adresa funguje na všech z nich, ale prostředky odeslané na jedné síti se zobrazí pouze na té síti. Budete také potřebovat malé množství nativní měny dané sítě (například ETH) na úhradu transakčních poplatků.',
+        a: 'Otevřete účet, vyberte možnost „Zobrazit QR kód“, abyste viděli jeho adresu, a odešlete prostředky na tuto adresu z burzy nebo jiné peněženky. Ujistěte se, že posíláte prostředky na správnou síť (například Ethereum, Base nebo Arbitrum) – stejná adresa funguje na všech podporovaných sítích, ale prostředky odeslané v jedné síti se zobrazí pouze v té síti. Budete také potřebovat malé množství nativní měny dané sítě (například ETH) na úhradu transakčních poplatků.',
       },
       {
         q: 'Co mohu s wwwallet dělat?',
@@ -241,6 +241,6 @@ export default {
   meta: {
     title: 'wwwallet — Bezplatná nekustodialní peněženka pro Ethereum',
     description:
-      'Bezplatná peněženka pro Ethereum ve vašem prohlížeči. Žádná registrace, žádné reklamy, žádné sledování – vaše klíče zůstávají zašifrované na vašem zařízení. Ethereum, Arbitrum, Base, Optimism a Polygon.',
+      'Bezplatná peněženka pro Ethereum ve vašem prohlížeči. Žádná registrace, žádné reklamy, žádné sledování – vaše klíče zůstávají zašifrované na vašem zařízení. Ethereum, Base, Arbitrum, Optimism, Polygon a dalších 10 sítí.',
   },
 }

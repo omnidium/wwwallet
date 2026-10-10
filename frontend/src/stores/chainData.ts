@@ -2,7 +2,9 @@ import { defineStore } from 'pinia'
 import { ref, type Ref } from 'vue'
 import {
   api,
+  isChainUnavailableError,
   type AddressActivity,
+  type AddressPresence,
   type Balance,
   type BridgeStatus,
   type ChainSlug,
@@ -188,6 +190,11 @@ export const useChainDataStore = defineStore('chainData', () => {
   const recentSwapTokensByChain = ref<Record<string, PickedToken[]>>({})
   const transactionRatesByKey = ref<Record<string, TransactionRates>>({})
   const bridgeEndsByKey = ref<Record<string, BridgeEnds>>({})
+  // Chains the backend can't serve at all for now — their network isn't
+  // switched on with its data provider. Their accounts say so instead of
+  // loading forever, and discovery stops probing them. Nothing personal in
+  // it, so a lock doesn't clear it; the next load that succeeds does.
+  const unavailableChains = ref(new Set<ChainSlug>())
   // Lookups that found nothing this session — not retried until the next
   // one, so reopening the same transaction doesn't re-ask every time.
   const transactionRateMisses = new Set<string>()
@@ -315,6 +322,22 @@ export const useChainDataStore = defineStore('chainData', () => {
     transactionBatchSize.value = size
   }
 
+  function isChainUnavailable(chain: ChainSlug): boolean {
+    return unavailableChains.value.has(chain)
+  }
+
+  /** Passes `request` through, noting from how it turns out whether the backend can serve `chain`. */
+  async function trackAvailability<T>(chain: ChainSlug, request: Promise<T>): Promise<T> {
+    try {
+      const result = await request
+      unavailableChains.value.delete(chain)
+      return result
+    } catch (err) {
+      if (isChainUnavailableError(err)) unavailableChains.value.add(chain)
+      throw err
+    }
+  }
+
   function isLoading(chain: ChainSlug, address: string): boolean {
     return (loadingCounts.value[keyFor(chain, address)] ?? 0) > 0
   }
@@ -392,7 +415,7 @@ export const useChainDataStore = defineStore('chainData', () => {
     let tokenRefresh: Promise<unknown> = Promise.resolve()
     try {
       await hydrate()
-      const fresh = await api.addressActivity(chain, address)
+      const fresh = await trackAvailability(chain, api.addressActivity(chain, address))
       const history = await mergeIntoKnownHistory(chain, address, key, fresh)
       const merged: AddressActivity = { balances: fresh.balances, ...history }
       remember(activityByAddress, ACTIVITY_PREFIX, key, merged)
@@ -404,6 +427,15 @@ export const useChainDataStore = defineStore('chainData', () => {
         else delete loadingCounts.value[key]
       })
     }
+  }
+
+  /**
+   * The address's native balance and nonce on `chain`, in one cheap upstream
+   * call where a full load takes five or more — for discovery to rule a
+   * chain out before loading it. Nothing is kept.
+   */
+  function loadAddressPresence(chain: ChainSlug, address: string): Promise<AddressPresence> {
+    return trackAvailability(chain, api.addressPresence(chain, address))
   }
 
   /**
@@ -748,9 +780,11 @@ export const useChainDataStore = defineStore('chainData', () => {
     setTransactionBatchSize,
     isLoading,
     isLoadingMore,
+    isChainUnavailable,
     hasMoreTransactions,
     hydrate,
     loadAddressActivity,
+    loadAddressPresence,
     loadMoreTransactions,
     loadFxRates,
     loadNativePrice,

@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Sat',
     buyTokenLabel: 'Satın al',
     sellAmountLabel: 'Satış tutarı',
-    signingNotice: '{address} sözleşmesine (0x toplayıcı aracılığıyla) bir işlem imzalıyorsunuz.',
+    signingNotice: '{address} sözleşmesine ({provider} aracılığıyla) bir işlem imzalıyorsunuz.',
     submit: 'Takas',
     selectToken: 'Token seçin',
     searchTokenPlaceholder: 'Adı veya sembolü arayın',
@@ -337,6 +337,7 @@ export default {
       'Önce bu cihazda bir ekran kilidi (parmak izi, yüz tanıma veya PIN) ayarlayın, ardından tekrar deneyin.',
     passkeyProviderNotReady:
       'Şifre yöneticiniz şifreyi kaydedemedi. Eğer oturum açmanızı, kimliğinizi doğrulamanızı veya bir senkronizasyon parolasını girmenizi bekliyorsa (örneğin, Chrome senkronizasyonu duraklatıldığında Google Şifre Yöneticisi), bu işlemi tamamlayın ve ardından tekrar deneyin.',
+    chainUnavailable: "Bu ağ henüz wwwallet'te mevcut değildir.",
   },
   accountCard: {
     copyAddress: 'Adresi kopyalayın',
@@ -420,6 +421,7 @@ export default {
     price: 'Fiyat',
     swapFee: 'Takas ücreti',
     integratorFee: 'Hizmet ücreti',
+    lifiFee: 'LI.FI ücreti',
   },
   transfer: {
     fromNetwork: 'Ağdan',

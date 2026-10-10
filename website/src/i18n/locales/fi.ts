@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet lukittuu lyhyen käyttämättömyysjakson jälkeen eikä koskaan tallenna avattua istuntoasi levylle – sulje välilehti, niin se unohtaa sen tarkoituksella.',
       },
       {
-        title: 'Viisi Ethereum-verkkoa, yksi tilisarja',
-        body: 'Säilytä ja lähetä varoja Ethereumin pääverkossa, Polygonissa, Arbitrumissa, Basessa ja Optimismissa samoilla tileillä ja osoitteilla.',
+        title: 'Viisitoista Ethereum-verkkoa, yksi tilisarja',
+        body: 'Säilytä ja lähetä varoja Ethereumin pääverkossa ja 14 muussa verkossa – mukaan lukien Arbitrum, Base, Optimism, Polygon, Linea ja ZKsync – samoilla tileillä ja osoitteilla.',
       },
     ],
     caveatTitle: 'Palautuslause avaa kryptovarastosi – se ei ole mikään maaginen varmuuskopio',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'Onko wwwallet todella ilmainen?',
-        a: 'Kyllä. Sen käyttö on maksutonta, eikä siinä ole premium-tasoa tai maksullisia osioita, eikä wwwallet lisää mitään palkkiota lähettämiisi tai vaihtamiisi summiin. Ainoa väistämätön kustannus on verkon oma transaktiomaksu (gas-maksu), joka menee verkolle eikä wwwalletille. Vaihtotarjoukset tulevat 0x-pörssien aggregaattorilta, joka voi lisätä oman palkkionsa joihinkin kauppoihin – tällaiset palkkiot näkyvät tarkistusnäytöllä ennen vahvistamista.',
+        a: 'Kyllä. Sen käyttö on maksutonta, eikä siinä ole premium-tasoa tai maksullisia osioita, eikä wwwallet lisää palkkiota mihinkään lähettämääsi tai vaihtamaasi. Ainoa väistämätön kustannus on verkon oma transaktiomaksu (gas-maksu), joka menee verkolle eikä wwwalletille. Vaihtotarjoukset tulevat 0x-pörssien aggregaattorilta (tai LI.FI:ltä verkostoissa, joita 0x ei kata), joka voi lisätä oman palkkionsa joihinkin kauppoihin – tällaiset palkkiot näkyvät tarkistusnäytöllä ennen vahvistamista.',
       },
       {
         q: 'Onko sovelluksessa mainoksia, seurantalaitteita tai analytiikkaa?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'Mitä verkkoja wwwallet tukee?',
-        a: 'Ethereumin pääverkko sekä Layer-2-verkot Polygon, Arbitrum, Base ja Optimism – kaikki samasta tilikokonaisuudesta.',
+        a: 'Ethereumin pääverkko sekä Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain ja Scroll – kaikki samasta tilikokonaisuudesta.',
       },
       {
         q: 'Miten lisään varoja lompakkooni?',
-        a: 'Avaa tili, valitse ”Näytä QR-koodi” nähdäksesi sen osoitteen ja lähetä varat kyseiseen osoitteeseen pörssistä tai toisesta lompakosta. Varmista, että lähetät varat oikealla verkostolla (Ethereum, Polygon, Arbitrum, Base tai Optimism) – sama osoite toimii kaikilla verkostoilla, mutta yhdellä verkostolla lähetetyt varat näkyvät vain kyseisellä verkostolla. Tarvitset myös hieman kyseisen verkon omaa kolikkoa (kuten ETH) transaktiomaksujen maksamiseen.',
+        a: 'Avaa tili, valitse ”Näytä QR-koodi” nähdäksesi sen osoitteen ja lähetä varoja kyseiseen osoitteeseen pörssistä tai toisesta lompakosta. Varmista, että lähetät varat oikealla verkostolla (kuten Ethereum, Base tai Arbitrum) – sama osoite toimii kaikilla tuetuilla verkoilla, mutta yhdellä verkostolla lähetetyt varat näkyvät vain kyseisellä verkostolla. Tarvitset myös hieman verkon omaa kolikkoa (kuten ETH) transaktiomaksujen maksamiseen.',
       },
       {
         q: 'Mitä voin tehdä wwwallet-sovelluksella?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Ilmainen, ei-säilytyspohjainen Ethereum-lompakko',
     description:
-      'Ilmainen Ethereum-lompakko selaimessasi. Ei rekisteröitymistä, ei mainoksia, ei seurantaa – avaimesi pysyvät salattuina laitteellasi. Ethereum, Arbitrum, Base, Optimism ja Polygon.',
+      'Ilmainen Ethereum-lompakko selaimessasi. Ei rekisteröitymistä, ei mainoksia, ei seurantaa – avaimesi pysyvät salattuina laitteellasi. Ethereum, Base, Arbitrum, Optimism, Polygon ja 10 muuta verkkoa.',
   },
 }

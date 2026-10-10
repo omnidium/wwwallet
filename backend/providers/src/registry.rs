@@ -22,7 +22,7 @@ use crate::traits::{
     TransactionStatusProvider,
 };
 use crate::types::{
-    AddressActivity, BridgeQuote, BridgeStatus, CoinSearchResult, HistoricalPrice, ContractAbi, FxHistory, FxRates, NativePrice, PriceHistory,
+    AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, CoinSearchResult, HistoricalPrice, ContractAbi, FxHistory, FxRates, NativePrice, PriceHistory,
     SwapQuote, TokenListItem,
     TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
@@ -80,6 +80,7 @@ pub struct ProviderRegistry {
     tx_prep: Rc<dyn TransactionPrepProvider>,
     allowance: Rc<dyn AllowanceProvider>,
     swap: Rc<dyn SwapQuoteProvider>,
+    swap_fallback: Rc<dyn SwapQuoteProvider>,
     bridge: Rc<dyn BridgeProvider>,
     native_price: Rc<dyn NativePriceProvider>,
     native_price_fallback: Rc<dyn NativePriceProvider>,
@@ -102,6 +103,7 @@ impl ProviderRegistry {
     ) -> Self {
         let alchemy = Rc::new(AlchemyProvider::new(config.alchemy_api_key));
         let public_rpc = Rc::new(PublicRpcProvider::new());
+        let lifi = Rc::new(LifiProvider::new(config.lifi_api_key));
         Self {
             activity: alchemy.clone(),
             // Deliberately not Alchemy — see PublicRpcProvider's docs.
@@ -124,7 +126,8 @@ impl ProviderRegistry {
             abi: Rc::new(EtherscanProvider::new(config.etherscan_api_key)),
             fx: Rc::new(FrankfurterProvider::new()),
             swap: Rc::new(ZeroExProvider::new(config.zerox_api_key)),
-            bridge: Rc::new(LifiProvider::new(config.lifi_api_key)),
+            swap_fallback: lifi.clone(),
+            bridge: lifi,
             native_price: Rc::new(CoinGeckoProvider::new()),
             token_list: Rc::new(TokenListProvider::new()),
             rate_limiter_default,
@@ -177,6 +180,16 @@ impl ProviderRegistry {
     ) -> ProviderResult<AddressActivity> {
         self.check_rate_limit(client_ip, "address_activity").await?;
         self.activity.address_activity(chain, address).await
+    }
+
+    pub async fn address_presence(
+        &self,
+        chain: ChainId,
+        address: &str,
+        client_ip: &str,
+    ) -> ProviderResult<AddressPresence> {
+        self.check_rate_limit(client_ip, "address_presence").await?;
+        self.activity.address_presence(chain, address).await
     }
 
     /// Each call continues a specific client's own in-progress scroll via its
@@ -419,8 +432,7 @@ impl ProviderRegistry {
         sell_amount_wei: &str,
         taker_address: &str,
     ) -> ProviderResult<SwapQuote> {
-        let mut quote = self
-            .swap
+        let mut quote = swap_provider_for(chain, &self.swap, &self.swap_fallback)
             .quote(chain, sell_token, buy_token, sell_amount_wei, taker_address)
             .await?;
 
@@ -473,6 +485,15 @@ impl ProviderRegistry {
 
 /// Decimals-adjusted buy/sell ratio (buy tokens received per one sell token),
 /// for display purposes only.
+/// 0x wherever it covers the chain; LI.FI's same-chain routing elsewhere.
+fn swap_provider_for<'a>(
+    chain: ChainId,
+    primary: &'a Rc<dyn SwapQuoteProvider>,
+    fallback: &'a Rc<dyn SwapQuoteProvider>,
+) -> &'a Rc<dyn SwapQuoteProvider> {
+    if primary.supports(chain) { primary } else { fallback }
+}
+
 fn human_readable_price(sell_amount_wei: &str, sell_decimals: u8, buy_amount_wei: &str, buy_decimals: u8) -> String {
     let sell_raw: f64 = sell_amount_wei.parse().unwrap_or(0.0);
     let buy_raw: f64 = buy_amount_wei.parse().unwrap_or(0.0);
@@ -482,4 +503,20 @@ fn human_readable_price(sell_amount_wei: &str, sell_decimals: u8, buy_amount_wei
         return "0".to_string();
     }
     (buy / sell).to_string()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn swaps_go_to_0x_where_it_covers_the_chain_and_lifi_elsewhere() {
+        let zerox: Rc<dyn SwapQuoteProvider> = Rc::new(ZeroExProvider::new(String::new()));
+        let lifi: Rc<dyn SwapQuoteProvider> = Rc::new(LifiProvider::new(None));
+        let by_lifi: Vec<ChainId> = ChainId::ALL
+            .into_iter()
+            .filter(|&chain| swap_provider_for(chain, &zerox, &lifi).name() == "lifi")
+            .collect();
+        assert_eq!(by_lifi, [ChainId::Gnosis, ChainId::Celo, ChainId::ZkSync, ChainId::Ronin]);
+    }
 }

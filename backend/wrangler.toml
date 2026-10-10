@@ -103,9 +103,9 @@ period = 60
 # Everything else (Alchemy RPC — all networks share one bucket, as they share
 # one compute-unit quota — Ethplorer, Etherscan, 0x, LI.FI, public RPCs,
 # Frankfurter), each provider its own bucket under this limit. Sized for a
-# few wallets refreshing at once (one wallet's refresh is ~4 calls per
-# account per chain); raise it with real traffic, lower it to stretch a
-# monthly quota.
+# few wallets refreshing at once (one wallet's refresh is ~5 calls per
+# account per chain; discovery's check of each chain it isn't on is 1);
+# raise it with real traffic, lower it to stretch a monthly quota.
 [[ratelimits]]
 name = "RATE_LIMITER_UPSTREAM"
 namespace_id = "1004"

@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet vergrendelt na een korte periode van inactiviteit en slaat je ontgrendelde sessie nooit op schijf op — sluit je het tabblad, dan vergeet het dit bewust.',
       },
       {
-        title: 'Vijf Ethereum-netwerken, één set accounts',
-        body: 'Bewaar en verstuur via het Ethereum-mainnet, Polygon, Arbitrum, Base en Optimism met dezelfde accounts en adressen.',
+        title: 'Vijftien Ethereum-netwerken, één set accounts',
+        body: 'Bewaar en verstuur via het Ethereum-mainnet en nog 14 andere netwerken — waaronder Arbitrum, Base, Optimism, Polygon, Linea en ZKsync — met dezelfde accounts en adressen.',
       },
     ],
     caveatTitle: 'Je herstelzin ontgrendelt je kluis — het is geen magische back-up',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'Is wwwallet echt gratis?',
-        a: 'Ja. Het gebruik is gratis, er is geen premium-abonnement en er zit niets achter een betaalmuur, en wwwallet rekent geen extra kosten aan voor wat je verstuurt of ruilt. De enige onvermijdelijke kosten zijn de transactiekosten (gas) van het netwerk zelf, die naar het netwerk gaan en niet naar wwwallet. De ruilkoersen komen van de 0x-beursaggregator, die bij sommige transacties een eigen vergoeding kan rekenen — zo’n vergoeding wordt op het bevestigingsscherm weergegeven voordat je de transactie bevestigt.',
+        a: 'Ja. Het gebruik is gratis, er is geen premium-abonnement en er zit niets achter een betaalmuur, en wwwallet rekent geen extra kosten aan voor wat je verstuurt of ruilt. De enige onvermijdelijke kosten zijn de transactiekosten (gas) van het netwerk zelf, die naar het netwerk gaan en niet naar wwwallet. De ruilkoersen komen van de 0x-beursaggregator (of LI.FI, op netwerken die 0x niet dekt), die bij sommige transacties een eigen vergoeding kan rekenen — zo’n vergoeding wordt op het bevestigingsscherm weergegeven voordat je de transactie bevestigt.',
       },
       {
         q: 'Zijn er advertenties, trackers of analytics?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'Welke netwerken ondersteunt wwwallet?',
-        a: 'Het Ethereum-mainnet, plus de Layer-2-netwerken Polygon, Arbitrum, Base en Optimism — allemaal vanuit dezelfde set accounts.',
+        a: 'Het Ethereum-mainnet, plus Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain en Scroll — allemaal vanuit dezelfde set accounts.',
       },
       {
         q: 'Hoe zet ik geld op mijn wallet?',
-        a: 'Maak een account aan, kies ‘QR-code bekijken’ om het adres te zien en stuur geld naar dat adres vanaf een exchange of een andere wallet. Zorg ervoor dat je via het juiste netwerk stuurt (Ethereum, Polygon, Arbitrum, Base of Optimism) — hetzelfde adres werkt op al deze netwerken, maar geld dat via één netwerk wordt gestuurd, verschijnt alleen op dat netwerk. Je hebt ook een klein beetje van de eigen munt van het netwerk (zoals ETH) nodig om de transactiekosten te betalen.',
+        a: 'Maak een account aan, kies ‘QR-code bekijken’ om het adres te zien en stuur geld naar dat adres vanaf een beurs of een andere wallet. Zorg ervoor dat je via het juiste netwerk verstuurt (zoals Ethereum, Base of Arbitrum) — hetzelfde adres werkt op elk ondersteund netwerk, maar geld dat via één netwerk wordt verstuurd, verschijnt alleen op dat netwerk. Je hebt ook een klein beetje van de eigen munt van het netwerk (zoals ETH) nodig om transactiekosten te betalen.',
       },
       {
         q: 'Wat kan ik doen met wwwallet?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Gratis, non-custodial Ethereum-wallet',
     description:
-      'Gratis Ethereum-wallet in je browser. Geen aanmelding, geen advertenties, geen tracking — je sleutels blijven versleuteld op je apparaat. Ethereum, Arbitrum, Base, Optimism en Polygon.',
+      'Gratis Ethereum-wallet in je browser. Geen aanmelding, geen advertenties, geen tracking — je sleutels blijven versleuteld op je apparaat. Ethereum, Base, Arbitrum, Optimism, Polygon en nog 10 andere netwerken.',
   },
 }

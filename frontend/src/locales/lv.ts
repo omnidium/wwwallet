@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Pārdot',
     buyTokenLabel: 'Pirkt',
     sellAmountLabel: 'Pārdošanas summa',
-    signingNotice: 'Jūs parakstāt darījumu ar līgumu {address} (izmantojot 0x agregatoru).',
+    signingNotice: 'Jūs parakstāt darījumu, lai noslēgtu līgumu ar {address} (caur {provider}).',
     submit: 'Apmaiņa',
     selectToken: 'Izvēlieties žetonu',
     searchTokenPlaceholder: 'Meklējiet pēc nosaukuma vai simbolu',
@@ -338,6 +338,7 @@ export default {
       'Vispirms iestatiet ekrāna bloķēšanu (pirksta nospiedums, sejas atpazīšana vai PIN kods) šajā ierīcē, pēc tam mēģiniet vēlreiz.',
     passkeyProviderNotReady:
       'Jūsu paroles pārvaldnieks nevarēja saglabāt paroli. Ja tas gaida, lai jūs pieteiktos, apstiprinātu savu identitāti vai ievadītu sinhronizācijas paroli (piemēram, Google Password Manager, ja Chrome sinhronizācija ir apturēta), pabeidziet šo darbību un mēģiniet vēlreiz.',
+    chainUnavailable: 'Šis tīkls pagaidām nav pieejams wwwallet.',
   },
   accountCard: {
     copyAddress: 'Kopējiet adresi',
@@ -421,6 +422,7 @@ export default {
     price: 'Cena',
     swapFee: 'Apmaiņas maksa',
     integratorFee: 'Pakalpojuma maksa',
+    lifiFee: 'LI.FI maksa',
   },
   transfer: {
     fromNetwork: 'No tīkla',

@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet se po kratkem obdobju nedejavnosti zaklene in vaše odklejene seje nikoli ne shrani na disk – zaprite zavihek in aplikacija to namerno pozabi.',
       },
       {
-        title: 'Pet omrežij Ethereuma, en sklop računov',
-        body: 'Shranjujte in pošiljajte prek glavnega omrežja Ethereum, Polygon, Arbitrum, Base in Optimism z istimi računi in naslovi.',
+        title: 'Petnajst omrežij Ethereuma, en sklop računov',
+        body: 'Shranjujte in pošiljajte prek glavnega omrežja Ethereum in še 14 drugih omrežij – vključno z Arbitrum, Base, Optimism, Polygon, Linea in ZKsync – z istimi računi in naslovi.',
       },
     ],
     caveatTitle: 'Vaša obnovitvena fraza odklene vaš trezor – to ni čarobna varnostna kopija',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'Ali je wwwallet res brezplačen?',
-        a: 'Da. Uporaba je brezplačna, ni premium ravni in ničesar za plačilnim zidom, wwwallet pa ne dodaja provizije k ničemer, kar pošljete ali zamenjate. Edini neizogibni strošek je lastna transakcijska (gas) provizija omrežja, ki gre omrežju in ne wwwalletu. Ponudbe za zamenjavo prihajajo iz agregatorja borz 0x, ki lahko pri nekaterih transakcijah vključi lastno provizijo – vsaka taka provizija je navedena na preglednem zaslonu, preden potrdite transakcijo.',
+        a: 'Da. Uporaba je brezplačna, ni premium ravni in ničesar za plačilnim zidom, wwwallet pa ne dodaja provizije k ničemer, kar pošljete ali zamenjate. Edini neizogibni strošek je lastna transakcijska (gas) provizija omrežja, ki gre omrežju in ne wwwalletu. Ponudbe za zamenjavo prihajajo iz agregatorja borz 0x (ali LI.FI, v omrežjih, ki jih 0x ne pokriva), ki lahko pri nekaterih transakcijah vključi lastno provizijo – vsaka taka provizija je navedena na preglednem zaslonu, preden potrdite.',
       },
       {
         q: 'Ali so v aplikaciji oglasi, sledilci ali analitični podatki?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'Katera omrežja podpira wwwallet?',
-        a: 'Glavno omrežje Ethereuma ter omrežja Layer-2 Polygon, Arbitrum, Base in Optimism – vse iz istega niza računov.',
+        a: 'Glavno omrežje Ethereuma ter Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain in Scroll – vse iz istega sklopa računov.',
       },
       {
         q: 'Kako napolnim svoj denarnik?',
-        a: 'Odprite račun, izberite »Poglej QR-kodo«, da si ogledate naslov, in na ta naslov pošljite sredstva z borze ali iz druge denarnice. Prepričajte se, da pošiljate prek pravega omrežja (Ethereum, Polygon, Arbitrum, Base ali Optimism) – isti naslov deluje na vseh omrežjih, vendar se sredstva, poslana prek enega omrežja, prikažejo le na tem omrežju. Prav tako boste potrebovali nekaj domače kriptovalute omrežja (kot je ETH) za plačilo transakcijskih stroškov.',
+        a: 'Odprite račun, izberite »Poglej QR-kodo«, da si ogledate naslov, in na ta naslov pošljite sredstva z borze ali iz druge denarnice. Prepričajte se, da pošiljate prek pravega omrežja (kot so Ethereum, Base ali Arbitrum) – isti naslov deluje na vseh podprtih omrežjih, vendar se sredstva, poslana prek enega omrežja, prikažejo le na tem omrežju. Prav tako boste potrebovali nekaj domače kriptovalute omrežja (kot je ETH) za plačilo transakcijskih provizij.',
       },
       {
         q: 'Kaj lahko počnem z wwwallet?',
@@ -241,6 +241,6 @@ export default {
   meta: {
     title: 'wwwallet — Brezplačna denarnica za Ethereum brez skrbništva',
     description:
-      'Brezplačna denarnica za Ethereum v vašem brskalniku. Brez registracije, brez oglasov, brez sledenja – vaši ključi ostanejo šifrirani na vaši napravi. Ethereum, Arbitrum, Base, Optimism in Polygon.',
+      'Brezplačna denarnica za Ethereum v vašem brskalniku. Brez registracije, brez oglasov, brez sledenja – vaši ključi ostanejo šifrirani na vaši napravi. Ethereum, Base, Arbitrum, Optimism, Polygon in še 10 drugih omrežij.',
   },
 }

@@ -69,7 +69,7 @@ export default {
     sellTokenLabel: '卖出',
     buyTokenLabel: '购买',
     sellAmountLabel: '卖出金额',
-    signingNotice: '您正在向合约 {address} 签署一笔交易（通过 0x 聚合器）。',
+    signingNotice: '您正在向合约 {address}（通过 {provider}）签署一笔交易。',
     submit: '兑换',
     selectToken: '选择代币',
     searchTokenPlaceholder: '搜索名称或符号',
@@ -319,6 +319,7 @@ export default {
     passkeyNeedsScreenLock: '请先在此设备上设置屏幕锁定（指纹、面部识别或 PIN 码），然后重试。',
     passkeyProviderNotReady:
       '您的密码管理器无法保存该密码。如果系统正在等待您登录、验证身份或输入同步密码（例如，当 Chrome 同步暂停时，Google 密码管理器会提示），请先完成这些操作，然后重试。',
+    chainUnavailable: 'wwwallet 目前尚不支持该网络。',
   },
   accountCard: {
     copyAddress: '复制地址',
@@ -401,6 +402,7 @@ export default {
     price: '价格',
     swapFee: '兑换手续费',
     integratorFee: '服务费',
+    lifiFee: 'LI.FI 手续费',
   },
   transfer: {
     fromNetwork: '来自网络',

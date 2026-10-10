@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePayeesStore, type Payee } from '@/stores/payees'
 import { useMessagesStore } from '@/stores/messages'
-import { isValidAddress } from '@/services/wallet'
+import { addressInText, parseAddress } from '@/services/wallet'
 import { truncateAddress } from '@/services/format'
 import { chainItems } from '@/services/chainItems'
 import type { ChainSlug } from '@/services/api'
@@ -29,9 +29,9 @@ const networkItems = chainItems()
 
 const labelError = computed(() => (touched.value.label && !label.value.trim() ? t('validation.labelRequired') : null))
 const addressError = computed(() =>
-  touched.value.address && !isValidAddress(address.value.trim()) ? t('validation.validAddress') : null,
+  touched.value.address && !parseAddress(address.value) ? t('validation.validAddress') : null,
 )
-const formValid = computed(() => !!label.value.trim() && isValidAddress(address.value.trim()))
+const formValid = computed(() => !!label.value.trim() && !!parseAddress(address.value))
 
 function openForm(payee?: Payee) {
   editingId.value = payee?.id ?? null
@@ -42,21 +42,21 @@ function openForm(payee?: Payee) {
   dialogOpen.value = true
 }
 
-/** Handles both a bare address and an EIP-681 "ethereum:0x...@chainId" URI. */
+/** Handles a bare address, an EIP-681 "ethereum:0x...@chainId" URI, or Ronin's "ronin:…". */
 function onQrDecoded(data: string) {
-  const match = data.match(/0x[a-fA-F0-9]{40}/)
-  if (!match) {
+  const scanned = addressInText(data)
+  if (!scanned) {
     messages.push(t('msg.qr.noAddress'), 'warning')
     return
   }
-  address.value = match[0]
+  address.value = scanned
   touched.value.address = true
 }
 
 async function save() {
   touched.value = { label: true, address: true }
   if (!formValid.value) return
-  const patch = { label: label.value.trim(), address: address.value.trim(), chain: chain.value }
+  const patch = { label: label.value.trim(), address: parseAddress(address.value)!, chain: chain.value }
   if (editingId.value) {
     await payees.updatePayee(editingId.value, patch)
   } else {

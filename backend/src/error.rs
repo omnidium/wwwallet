@@ -58,6 +58,10 @@ impl From<wwwallet_providers::ProviderError> for ApiError {
                 code: "token_not_on_chain",
                 message: "token not supported on one of these chains".to_string(),
             },
+            wwwallet_providers::ProviderError::ChainNotEnabled => ApiError::Unprocessable {
+                code: "chain_unavailable",
+                message: "this network isn't available yet".to_string(),
+            },
             wwwallet_providers::ProviderError::TransactionWouldRevert(reason) => {
                 worker::console_warn!("transaction would revert: {reason}");
                 ApiError::Unprocessable {
@@ -70,5 +74,17 @@ impl From<wwwallet_providers::ProviderError> for ApiError {
                 ApiError::Upstream("upstream provider request failed".to_string())
             }
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn a_chain_not_switched_on_is_a_422_the_app_recognises() {
+        let err = ApiError::from(wwwallet_providers::ProviderError::ChainNotEnabled);
+        assert!(matches!(err, ApiError::Unprocessable { code: "chain_unavailable", .. }));
+        assert_eq!(err.into_response().status(), StatusCode::UNPROCESSABLE_ENTITY);
     }
 }

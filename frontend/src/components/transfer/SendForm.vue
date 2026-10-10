@@ -2,7 +2,7 @@
 import { computed, ref, toRef, watch } from 'vue'
 import { formatUnits, parseUnits } from 'ethers'
 import { api, type BridgeQuote, type ChainSlug, type Transaction, type TransactionPrep } from '@/services/api'
-import { isValidAddress, unlockWalletForSigning } from '@/services/wallet'
+import { addressInText, isValidAddress, unlockWalletForSigning } from '@/services/wallet'
 import { encodeTransfer } from '@/services/erc20'
 import { convertToUsd, convertUsd, currencySymbol, formatAmount, unitsToSignificant } from '@/services/money'
 import { truncateAddress } from '@/services/format'
@@ -76,14 +76,14 @@ function onRecipient(address: string | null) {
   if (savedOn) toChain.value = savedOn
 }
 
-/** Handles both a bare address and an EIP-681 "ethereum:0x...@chainId" URI. */
+/** Handles a bare address, an EIP-681 "ethereum:0x...@chainId" URI, or Ronin's "ronin:…". */
 function onQrDecoded(data: string) {
-  const match = data.match(/0x[a-fA-F0-9]{40}/)
-  if (!match) {
+  const address = addressInText(data)
+  if (!address) {
     messages.push(t('msg.qr.noAddress'), 'warning')
     return
   }
-  onRecipient(match[0])
+  onRecipient(address)
 }
 
 const isBridge = computed(() => toChain.value !== props.fromChain)
@@ -307,15 +307,25 @@ const formReady = computed(
     !amountError.value && amountWei.value !== null,
 )
 
+// What a native coin is called on chains where it isn't native, for the
+// bridge aggregator to resolve: ETH arrives as WETH on Polygon, Gnosis, Celo
+// and Ronin, and Gnosis's xDAI as the DAI it's bridged from. Any other
+// (POL, CELO) goes by its own symbol, or fails with "not on this network".
+const BRIDGED_AS: Record<string, string> = { ETH: 'WETH', XDAI: 'DAI' }
+
 // The same token on the destination chain, named by symbol for the bridge
-// aggregator to resolve: native ETH stays native wherever ETH is native,
-// and becomes WETH on Polygon (whose native coin is POL).
+// aggregator to resolve: a native coin stays native wherever it's native,
+// and a token that only exists there as the native coin (DAI on Gnosis)
+// arrives as it.
 const destinationToken = computed<string | null>(() => {
   const tok = selectedToken.value
   if (!tok) return null
-  if (tok.contractAddress !== null) return tok.symbol
-  if (NATIVE_ASSETS[toChain.value].symbol === tok.symbol) return NATIVE_PSEUDO_ADDRESS
-  return tok.symbol === 'ETH' ? 'WETH' : tok.symbol
+  const destNative = NATIVE_ASSETS[toChain.value].symbol
+  if (tok.contractAddress !== null) {
+    return destNative === 'XDAI' && tok.symbol === 'DAI' ? NATIVE_PSEUDO_ADDRESS : tok.symbol
+  }
+  if (destNative === tok.symbol) return NATIVE_PSEUDO_ADDRESS
+  return BRIDGED_AS[tok.symbol] ?? tok.symbol
 })
 
 function transferCall(to: string, tok: { contractAddress: string | null }, wei: string) {
@@ -610,8 +620,10 @@ async function confirm() {
     }
 
     let quote = plan.quote
-    if (quote.approval_address) {
-      const approved = await ctx.ensureAllowance(account, selectedToken.value!.contractAddress!, quote.approval_address, quote.from_amount)
+    // A native coin needs no approval, unless it's bridged as its own ERC-20 (CELO via LI.FI).
+    const approveToken = selectedToken.value!.contractAddress ?? NATIVE_ASSETS[txChain].tokenAddress ?? null
+    if (approveToken !== null && quote.approval_address) {
+      const approved = await ctx.ensureAllowance(account, approveToken, quote.approval_address, quote.from_amount)
       if (!approved) {
         busy.value = false
         messages.dismiss(msgId)

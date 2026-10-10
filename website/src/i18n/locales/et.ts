@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet lukustub pärast lühikest tegevusetust ja ei salvesta teie avatud sessiooni kunagi kettale – sulgege vahekaart ja rakendus unustab selle tahtlikult.',
       },
       {
-        title: 'Viis Ethereumi võrku, üks kontode komplekt',
-        body: 'Hoidke ja saatke Ethereumi põhivõrgus, Polygonis, Arbitrumis, Base’is ja Optimismis samade kontode ja aadressidega.',
+        title: 'Viisteist Ethereumi võrku, üks kontode komplekt',
+        body: 'Hoidke ja saatke Ethereumi põhivõrgus ja veel 14 võrgus – sealhulgas Arbitrum, Base, Optimism, Polygon, Linea ja ZKsync – samade kontode ja aadressidega.',
       },
     ],
     caveatTitle: 'Teie taastamislause avab teie hoiukambri – see ei ole mingi maagiline varukoopia',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'Kas wwwallet on tõesti tasuta?',
-        a: 'Jah. Rakenduse kasutamine on tasuta, puudub premium-tasand ja miski pole tasulise sisu taga, ning wwwallet ei lisa mingit teenustasu sinu saadetud või vahetatud summadele. Ainus vältimatu kulu on võrgu enda tehingutasu (gas), mis läheb võrgule, mitte wwwalletile. Vahetuskursid pärinevad 0x-i vahetusagregaatorilt, mis võib mõnede tehingute puhul lisada oma teenustasu – kõik sellised teenustasud on loetletud ülevaateekraanil enne kinnitamist.',
+        a: 'Jah. Rakenduse kasutamine on tasuta, puudub premium-tasand ja midagi pole tasulise sisu taga, ning wwwallet ei lisa mingit teenustasu sinu saadetud või vahetatud summadele. Ainus vältimatu kulu on võrgu enda tehingutasu (gas), mis läheb võrgule, mitte wwwalletile. Vahetuskursid pärinevad 0x-i vahetusagregaatorilt (või LI.FI-lt võrkudes, mida 0x ei hõlma), mis võib mõnede tehingute puhul lisada oma teenustasu – sellised teenustasud on loetletud ülevaateekraanil enne kinnitamist.',
       },
       {
         q: 'Kas seal on reklaame, jälgimisseadmeid või analüütikat?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'Milliseid võrke wwwallet toetab?',
-        a: 'Ethereumi põhivõrk ning 2. kihi võrgustikud Polygon, Arbitrum, Base ja Optimism – kõik samast kontode kogumist.',
+        a: 'Ethereumi põhivõrk, lisaks Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain ja Scroll – kõik samast kontode kogumist.',
       },
       {
         q: 'Kuidas ma oma rahakotti raha lisan?',
-        a: 'Avage konto, valige „Vaata QR-koodi”, et näha selle aadressi, ja saatke raha sellele aadressile vahetusplatvormilt või teisest rahakotist. Veendu, et saadad raha õiges võrgustikus (Ethereum, Polygon, Arbitrum, Base või Optimism) – sama aadress toimib neis kõigis, kuid ühes võrgustikus saadetud raha kuvatakse ainult selles võrgustikus. Samuti on vaja veidi võrgu oma münti (nt ETH), et maksta tehingutasusid.',
+        a: 'Avage konto, valige „Vaata QR-koodi”, et näha selle aadressi, ja saatke raha sellele aadressile vahetusplatvormilt või teisest rahakotist. Veenduge, et saadate raha õigel võrgustikul (nt Ethereum, Base või Arbitrum) – sama aadress toimib igas toetatud võrgustikus, kuid ühel võrgustikul saadetud raha ilmub ainult selles võrgustikus. Samuti on vaja veidi võrgu oma münti (nt ETH), et maksta tehingutasusid.',
       },
       {
         q: 'Mida ma saan wwwalletiga teha?',
@@ -241,6 +241,6 @@ export default {
   meta: {
     title: 'wwwallet — tasuta, mittehoolduslik Ethereumi rahakott',
     description:
-      'Tasuta Ethereumi rahakott teie brauseris. Ei registreerimist, ei reklaame, ei jälgimist – teie võtmed jäävad teie seadmes krüpteeritud kujul. Ethereum, Arbitrum, Base, Optimism ja Polygon.',
+      'Tasuta Ethereumi rahakott teie brauseris. Ei registreerimist, ei reklaame, ei jälgimist – teie võtmed jäävad teie seadmes krüpteeritud kujul. Ethereum, Base, Arbitrum, Optimism, Polygon ja veel 10 võrku.',
   },
 }

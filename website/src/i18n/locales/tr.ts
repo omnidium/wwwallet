@@ -48,8 +48,8 @@ export default {
         body: 'wwwallet, kısa bir süre kullanılmadığında kilitlenir ve kilidi açılmış oturumunuzu asla diske kaydetmez — sekmeyi kapattığınızda, kasıtlı olarak bu bilgiyi unutur.',
       },
       {
-        title: 'Beş Ethereum ağı, bir hesap grubu',
-        body: 'Aynı hesaplar ve adreslerle Ethereum ana ağı, Polygon, Arbitrum, Base ve Optimism ağlarında kripto paralarınızı saklayın ve gönderin.',
+        title: 'On beş Ethereum ağı, tek bir hesap grubu',
+        body: 'Aynı hesaplar ve adreslerle Ethereum ana ağı ve Arbitrum, Base, Optimism, Polygon, Linea ve ZKsync dahil olmak üzere 14 ağda daha kripto varlıklarınızı saklayın ve gönderin.',
       },
     ],
     caveatTitle: 'Kurtarma ifadeniz, kasanızın kilidini açar — bu sihirli bir yedekleme değildir.',
@@ -113,7 +113,7 @@ export default {
     items: [
       {
         q: 'wwwallet gerçekten ücretsiz mi?',
-        a: "Evet. Kullanımı ücretsizdir, premium seviye yoktur ve ödeme duvarının arkasında hiçbir şey bulunmaz; ayrıca wwwallet, gönderdiğiniz veya takas ettiğiniz hiçbir şeye ek ücret eklemez. Kaçınılmaz tek maliyet, ağın kendi işlem (gaz) ücretidir ve bu ücret wwwallet'e değil, ağa ödenir. Takas teklifleri, bazı işlemlerde kendi ücretini ekleyebilen 0x borsa toplayıcısından gelir — bu tür ücretler, onaylamadan önce inceleme ekranında listelenir.",
+        a: 'Evet. Kullanımı ücretsizdir, premium seviye yoktur ve ödeme duvarının arkasında hiçbir şey yoktur; ayrıca wwwallet, gönderdiğiniz veya takas ettiğiniz hiçbir şeye ek ücret eklemez. Kaçınılmaz tek maliyet, ağın kendi işlem (gaz) ücretidir ve bu ücret wwwallet’e değil, ağa ödenir. Takas teklifleri, 0x borsa toplayıcısından (veya 0x’in kapsamadığı ağlarda LI.FI’den) gelir; bu toplayıcı bazı işlemlerde kendi ücretini ekleyebilir — bu tür ücretler, onaylamadan önce inceleme ekranında listelenir.',
       },
       {
         q: 'Reklam, izleme araçları veya analiz araçları var mı?',
@@ -165,11 +165,11 @@ export default {
       },
       {
         q: 'wwwallet hangi ağları destekliyor?',
-        a: 'Ethereum ana ağı ile Polygon, Arbitrum, Base ve Optimism gibi Katman-2 ağları — hepsi aynı hesap grubundan.',
+        a: 'Ethereum ana ağı, ayrıca Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain ve Scroll — hepsi aynı hesap grubundan.',
       },
       {
         q: 'Cüzdanıma nasıl para yatırabilirim?',
-        a: 'Bir hesap açın, adresini görmek için “QR kodunu görüntüle” seçeneğini seçin ve bir borsadan veya başka bir cüzdandan bu adrese para gönderin. Doğru ağda (Ethereum, Polygon, Arbitrum, Base veya Optimism) gönderdiğinizden emin olun — aynı adres hepsinde çalışır, ancak bir ağda gönderilen fonlar yalnızca o ağda görünür. Ayrıca, işlem ücretlerini ödemek için ağın kendi kripto parası (ETH gibi) da biraz gerekecektir.',
+        a: 'Bir hesap açın, adresini görmek için “QR kodunu görüntüle” seçeneğini seçin ve bir borsadan veya başka bir cüzdandan bu adrese para gönderin. Doğru ağda (Ethereum, Base veya Arbitrum gibi) gönderdiğinizden emin olun — aynı adres desteklenen her ağda çalışır, ancak bir ağda gönderilen paralar yalnızca o ağda görünür. Ayrıca, işlem ücretlerini ödemek için ağın kendi kripto parası (ETH gibi) da biraz gerekecektir.',
       },
       {
         q: 'wwwallet ile neler yapabilirim?',
@@ -242,6 +242,6 @@ export default {
   meta: {
     title: 'wwwallet — Ücretsiz, emanetsiz Ethereum cüzdanı',
     description:
-      'Tarayıcınızda ücretsiz Ethereum cüzdanı. Kayıt yok, reklam yok, izleme yok — anahtarlarınız cihazınızda şifreli olarak kalır. Ethereum, Arbitrum, Base, Optimism ve Polygon.',
+      'Tarayıcınızda ücretsiz Ethereum cüzdanı. Kayıt yok, reklam yok, izleme yok — anahtarlarınız cihazınızda şifreli olarak kalır. Ethereum, Base, Arbitrum, Optimism, Polygon ve 10 ağ daha.',
   },
 }

@@ -4,7 +4,7 @@ export default {
   meta: {
     title: 'wwwallet — Free, non-custodial Ethereum wallet',
     description:
-      'Free Ethereum wallet in your browser. No sign-up, no ads, no tracking — your keys stay encrypted on your device. Ethereum, Arbitrum, Base, Optimism and Polygon.',
+      'Free Ethereum wallet in your browser. No sign-up, no ads, no tracking — your keys stay encrypted on your device. Ethereum, Base, Arbitrum, Optimism, Polygon and 10 more networks.',
   },
   nav: {
     principles: 'Principles',
@@ -104,8 +104,8 @@ export default {
         body: 'wwwallet locks after a short period of inactivity, and never writes your unlocked session to disk — close the tab and it forgets, on purpose.',
       },
       {
-        title: 'Five Ethereum networks, one set of accounts',
-        body: 'Hold and send across Ethereum mainnet, Polygon, Arbitrum, Base, and Optimism with the same accounts and addresses.',
+        title: 'Fifteen Ethereum networks, one set of accounts',
+        body: 'Hold and send across Ethereum mainnet and 14 more networks — including Arbitrum, Base, Optimism, Polygon, Linea, and ZKsync — with the same accounts and addresses.',
       },
     ],
     caveatTitle: 'Your recovery phrase unlocks your vault — it’s not a magic backup',
@@ -169,7 +169,7 @@ export default {
     items: [
       {
         q: 'Is wwwallet really free?',
-        a: 'Yes. There’s no charge to use it, no premium tier and nothing behind a paywall, and wwwallet adds no fee to anything you send or swap. The only unavoidable cost is the network’s own transaction (gas) fee, which goes to the network rather than to wwwallet. Swap quotes come from the 0x exchange aggregator, which can include its own fee on some trades — any such fee is listed on the review screen before you confirm.',
+        a: 'Yes. There’s no charge to use it, no premium tier and nothing behind a paywall, and wwwallet adds no fee to anything you send or swap. The only unavoidable cost is the network’s own transaction (gas) fee, which goes to the network rather than to wwwallet. Swap quotes come from the 0x exchange aggregator (or LI.FI, on networks 0x doesn’t cover), which can include its own fee on some trades — any such fee is listed on the review screen before you confirm.',
       },
       {
         q: 'Are there ads, trackers or analytics?',
@@ -221,11 +221,11 @@ export default {
       },
       {
         q: 'What networks does wwwallet support?',
-        a: 'Ethereum mainnet, plus the Layer-2 networks Polygon, Arbitrum, Base, and Optimism — all from the same set of accounts.',
+        a: 'Ethereum mainnet, plus Arbitrum, Base, Optimism, Polygon, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain, and Scroll — all from the same set of accounts.',
       },
       {
         q: 'How do I fund my wallet?',
-        a: 'Open an account, choose “View QR code” to see its address, and send funds to that address from an exchange or another wallet. Make sure you send on the right network (Ethereum, Polygon, Arbitrum, Base, or Optimism) — the same address works on all of them, but funds sent on one network only appear on that network. You’ll also want a little of the network’s native coin (such as ETH) to pay transaction fees.',
+        a: 'Open an account, choose “View QR code” to see its address, and send funds to that address from an exchange or another wallet. Make sure you send on the right network (such as Ethereum, Base, or Arbitrum) — the same address works on every supported network, but funds sent on one network only appear on that network. You’ll also want a little of the network’s native coin (such as ETH) to pay transaction fees.',
       },
       {
         q: 'What can I do with wwwallet?',

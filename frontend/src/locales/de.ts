@@ -72,8 +72,7 @@ export default {
     sellTokenLabel: 'Verkaufen',
     buyTokenLabel: 'Kaufen',
     sellAmountLabel: 'Verkaufsbetrag',
-    signingNotice:
-      'Du unterschreibst eine Transaktion an den Vertrag {address} (über den 0x-Aggregator).',
+    signingNotice: 'Du unterschreibst eine Transaktion an den Vertrag {address} (über {provider}).',
     submit: 'Swap',
     selectToken: 'Token auswählen',
     searchTokenPlaceholder: 'Suche nach Name oder Symbol',
@@ -348,6 +347,7 @@ export default {
       'Richte zuerst eine Bildschirmsperre (Fingerabdruck, Gesichtserkennung oder PIN) auf diesem Gerät ein und versuche es dann erneut.',
     passkeyProviderNotReady:
       'Dein Passwort-Manager konnte das Passwort nicht speichern. Wenn er darauf wartet, dass du dich anmeldest, deine Identität bestätigst oder eine Synchronisierungs-Passphrase eingibst (z. B. bei Google Passwort-Manager, wenn die Chrome-Synchronisierung pausiert ist), erledige das erst und versuche es dann erneut.',
+    chainUnavailable: 'Dieses Netzwerk ist in wwwallet noch nicht verfügbar.',
   },
   accountCard: {
     copyAddress: 'Kopiere die Adresse',
@@ -431,6 +431,7 @@ export default {
     price: 'Preis',
     swapFee: 'Swap-Gebühr',
     integratorFee: 'Servicegebühr',
+    lifiFee: 'LI.FI-Gebühr',
   },
   transfer: {
     fromNetwork: 'Aus dem Netzwerk',

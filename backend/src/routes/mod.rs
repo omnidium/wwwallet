@@ -16,6 +16,10 @@ pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
             get(chains::address_activity),
         )
         .route(
+            "/api/v1/chains/{chain}/address/{address}/presence",
+            get(chains::address_presence),
+        )
+        .route(
             "/api/v1/chains/{chain}/address/{address}/transactions/more",
             post(chains::transaction_page),
         )

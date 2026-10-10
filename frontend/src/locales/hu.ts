@@ -72,7 +72,7 @@ export default {
     sellTokenLabel: 'Eladás',
     buyTokenLabel: 'Vásárlás',
     sellAmountLabel: 'Eladási összeg',
-    signingNotice: 'Tranzakciót írsz alá a {address} szerződéshez (a 0x aggregátoron keresztül).',
+    signingNotice: 'Tranzakciót írsz alá a {address} szerződéshez (a {provider}-en keresztül).',
     submit: 'Csere',
     selectToken: 'Token kiválasztása',
     searchTokenPlaceholder: 'Név vagy szimbólum keresése',
@@ -345,6 +345,7 @@ export default {
       'Először állítson be képernyőzárást (ujjlenyomat, arcfelismerés vagy PIN-kód) ezen az eszközön, majd próbálja meg újra.',
     passkeyProviderNotReady:
       'A jelszókezelő nem tudta elmenteni a jelszót. Ha a rendszer arra vár, hogy bejelentkezz, igazold a személyazonosságodat, vagy add meg a szinkronizálási jelszót (pl. a Google Jelszókezelőben, amikor a Chrome szinkronizálása szünetel), akkor hajtsd végre ezeket a lépéseket, majd próbáld meg újra.',
+    chainUnavailable: 'Ez a hálózat még nem érhető el a wwwallet-ben.',
   },
   accountCard: {
     copyAddress: 'Másolja ki a címet',
@@ -428,6 +429,7 @@ export default {
     price: 'Ár',
     swapFee: 'Csere díja',
     integratorFee: 'Szolgáltatási díj',
+    lifiFee: 'LI.FI díj',
   },
   transfer: {
     fromNetwork: 'A hálózatról',
