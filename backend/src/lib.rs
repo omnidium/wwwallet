@@ -4,6 +4,7 @@ mod session;
 mod state;
 
 use std::rc::Rc;
+use std::time::Duration;
 
 use axum::http::{header, HeaderName, HeaderValue, Method};
 use tower::Service;
@@ -106,4 +107,11 @@ fn build_cors_layer(env: &Env) -> CorsLayer {
             header::CONTENT_TYPE,
             HeaderName::from_static(routes::session::SESSION_HEADER),
         ])
+        // Every request carries the session header, so each one needs a
+        // preflight — and without this the browser keeps a preflight's answer
+        // for only about 5 seconds, so it asks again before nearly every call
+        // (a page load's address checks alone are dozens). Chrome caps this at
+        // 2 hours; the answer only changes when the allowed origins, methods or
+        // headers do, which is a deploy.
+        .max_age(Duration::from_secs(2 * 60 * 60))
 }
