@@ -35,6 +35,21 @@ const PAGE_SIZE: &str = "100";
 /// any real token moves to or from one address.
 const TRANSFER_LIMIT: &str = "0x64";
 
+/// Chains Alchemy's spam classifier doesn't cover. It still answers
+/// `isSpam: false` there, for everything — airdropped "$1000 USDT Reward"
+/// lures included — so that's passed on as "unknown" rather than "clean".
+/// Measured on 2026-10-10: across ~1,500 collections on two heavily
+/// airdropped addresses, these chains had none flagged; every other chain
+/// had some.
+const UNCLASSIFIED_SPAM_CHAINS: [ChainId; 6] = [
+    ChainId::Robinhood,
+    ChainId::Linea,
+    ChainId::Gnosis,
+    ChainId::Celo,
+    ChainId::Ronin,
+    ChainId::Scroll,
+];
+
 const MAX_TEXT: usize = 200;
 const MAX_DESCRIPTION: usize = 1000;
 const MAX_ATTRIBUTES: usize = 50;
@@ -78,8 +93,12 @@ impl NftProvider for AlchemyProvider {
         let mut query = vec![("owner", owner), ("withMetadata", "true"), ("pageSize", PAGE_SIZE)];
         query.extend(page_key.map(|key| ("pageKey", key)));
         let resp = self.nft_get(chain, "getContractsForOwner", &query).await?;
+        let classified = !UNCLASSIFIED_SPAM_CHAINS.contains(&chain);
         Ok(NftCollectionPage {
-            collections: list(&resp, "contracts").filter_map(parse_collection).collect(),
+            collections: list(&resp, "contracts")
+                .filter_map(parse_collection)
+                .map(|c| NftCollection { is_spam: c.is_spam.filter(|_| classified), ..c })
+                .collect(),
             next_page_key: next_page_key(&resp),
         })
     }
@@ -491,6 +510,13 @@ mod tests {
 
         let fungible = json!({ "category": "erc20", "hash": "0x3", "from": "0xa", "to": "0xb" });
         assert!(parse_transfer(&fungible, &wanted).is_none());
+    }
+
+    #[test]
+    fn a_not_spam_verdict_from_a_chain_alchemy_doesnt_check_counts_for_nothing() {
+        assert!(UNCLASSIFIED_SPAM_CHAINS.contains(&ChainId::Gnosis));
+        assert!(!UNCLASSIFIED_SPAM_CHAINS.contains(&ChainId::Ethereum));
+        assert!(!UNCLASSIFIED_SPAM_CHAINS.contains(&ChainId::Arbitrum));
     }
 
     #[test]

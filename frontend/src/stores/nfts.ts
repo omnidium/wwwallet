@@ -4,6 +4,7 @@ import { api, type ChainSlug, type Nft, type NftCollection, type NftTransfer } f
 import { getPrivate, isCacheUnlocked, putPrivate } from '@/services/secureCache'
 import { NFT_REFRESH_MS, NFT_SENT_MARKER_MS } from '@/config/appSettings'
 import { useVaultStore } from '@/stores/vault'
+import { isSpamName } from '@/services/nftSpam'
 
 // Cached like chainData's personal data (encrypted, see
 // services/secureCache.ts), but read entry by entry when first needed rather
@@ -47,13 +48,15 @@ export function nftKey(chain: ChainSlug, contract: string, tokenId: string): str
 
 /**
  * Spam airdrops land on every active address, often with a lure for a name
- * ("Claim your reward at…"). Trusts the provider's verdict where it gives
- * one; where it doesn't classify the chain at all, a collection with neither
- * a name nor a picture is taken for spam.
+ * ("Claim your reward at…"). A collection a marketplace has verified is
+ * trusted; otherwise it's spam if the provider says so, or if its name gives
+ * it away (services/nftSpam.ts) — the provider misses many, and on some
+ * chains doesn't check at all (it says "unknown" there, never "clean").
  */
 export function looksLikeSpam(collection: NftCollection): boolean {
-  if (collection.is_spam !== null) return collection.is_spam
-  return !collection.name && !collection.image.thumbnail
+  if (collection.verified) return false
+  if (collection.is_spam === true) return true
+  return isSpamName(collection.name)
 }
 
 export const useNftsStore = defineStore('nfts', () => {

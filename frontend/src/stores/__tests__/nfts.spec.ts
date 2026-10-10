@@ -65,14 +65,24 @@ describe('nfts store', () => {
   })
 
   describe('what counts as spam', () => {
-    it("trusts the provider's verdict where it gives one", () => {
+    it("takes the provider's word when it says spam", () => {
       expect(looksLikeSpam(collection({ is_spam: true }))).toBe(true)
-      expect(looksLikeSpam(collection({ is_spam: false, name: null, image: { thumbnail: null, full: null } }))).toBe(false)
     })
 
-    it('takes a nameless, pictureless collection for spam where the chain is unclassified', () => {
-      expect(looksLikeSpam(collection({ is_spam: null, name: null, image: { thumbnail: null, full: null } }))).toBe(true)
-      expect(looksLikeSpam(collection({ is_spam: null }))).toBe(false)
+    it('still hides a lure the provider calls clean, or never checked', () => {
+      const lure = { name: '10,000 USDT reward at usdt-stake.top' }
+      expect(looksLikeSpam(collection({ is_spam: false, ...lure }))).toBe(true)
+      expect(looksLikeSpam(collection({ is_spam: null, ...lure }))).toBe(true)
+      expect(looksLikeSpam(collection({ is_spam: null, name: null }))).toBe(true)
+    })
+
+    it('shows a plainly named collection, checked or not', () => {
+      expect(looksLikeSpam(collection({ is_spam: false, name: 'POAP' }))).toBe(false)
+      expect(looksLikeSpam(collection({ is_spam: null, name: 'POAP' }))).toBe(false)
+    })
+
+    it('trusts a marketplace-verified collection over everything else', () => {
+      expect(looksLikeSpam(collection({ verified: true, is_spam: true, name: null }))).toBe(false)
     })
   })
 
