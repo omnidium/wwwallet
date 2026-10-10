@@ -11,6 +11,7 @@ Full design rationale and phased migration plan: see the plan history in this re
 - **Client-side vault**: wallets (encrypted keystores), payees, settings, and the TOTP secret all live in one client-side encrypted vault (IndexedDB), unlocked locally via a passkey-verified gate. Recovery/cross-device continuity happens by restoring an encrypted vault backup from the user's own Google Drive (`appDataFolder`) or a local file — entirely client↔Google, no backend involvement.
 - **Static i18n**: languages, message strings, and currency names are bundled as static TypeScript files (`frontend/src/locales/`), not fetched from a server — there's nothing to fetch, cache, or go offline for.
 - **Multi-chain**: Ethereum mainnet, Polygon, Arbitrum, Base, Optimism, Robinhood Chain, World Chain, Ink, Linea, Gnosis, Celo, ZKsync Era, Ronin, Unichain, Scroll.
+- **NFTs**: each account's NFTs on every chain but Ink (Alchemy's NFT API doesn't cover it). Anyone can airdrop an NFT that says anything, so pictures only ever load from Alchemy's own image caches, NFT text is shown as plain text, and suspected spam is hidden by default — what the user hides or unhides is kept in the vault. ERC-721 and ERC-1155 NFTs can be sent; buying and selling happen on OpenSea, linked from each NFT where OpenSea lists that chain.
 
 ## Repository layout
 
