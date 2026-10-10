@@ -581,5 +581,9 @@ export default {
     cannotSend:
       'Seda ei saa sellele aadressile saata – vastuvõtja ei pruugi NFT-sid vastu võtta või sellel kontol ei ole neid enam.',
     notSendable: 'See NFT ei kasuta standardset wwwallet-i saatmisfunktsiooni.',
+    floorPrice: 'Minimaalne hind',
+    floorSource: 'Madalaim noteering {marketplace}',
+    floorOn: 'Minimaalne hind {marketplace}: {price}',
+    viewOn: 'Vaata {marketplace}',
   },
 }

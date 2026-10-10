@@ -582,5 +582,9 @@ export default {
     cannotSend:
       'Na tuto adresu to nelze odeslat – příjemce možná NFT nepřijímá, nebo tento účet již NFT neobsahuje.',
     notSendable: 'Tento NFT nepoužívá standardní wwwallet, který lze odeslat.',
+    floorPrice: 'Minimální cena',
+    floorSource: 'Nejnižší cena na {marketplace}',
+    floorOn: 'Minimální cena na {marketplace}: {price}',
+    viewOn: 'Zobrazit na {marketplace}',
   },
 }

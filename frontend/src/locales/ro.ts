@@ -591,5 +591,9 @@ export default {
     cannotSend:
       'Nu poate fi trimis la acea adresă — este posibil ca destinatarul să nu accepte NFT-uri sau ca acest cont să nu mai dețină adresa respectivă.',
     notSendable: 'Acest NFT nu utilizează o funcție standard de trimitere a wwwallet.',
+    floorPrice: 'Prețul minim',
+    floorSource: 'Poziția cea mai joasă în clasament pe {marketplace}',
+    floorOn: 'Prețul minim pe {marketplace}: {price}',
+    viewOn: 'Vizualizați pe {marketplace}',
   },
 }

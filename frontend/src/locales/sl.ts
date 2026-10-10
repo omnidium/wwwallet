@@ -582,5 +582,9 @@ export default {
     cannotSend:
       'Na ta naslov ga ni mogoče poslati – prejemnik morda ne sprejema NFT-jev ali pa ta račun jih ne hrani več.',
     notSendable: 'Ta NFT ne uporablja standardnega wwwallet, ki ga je mogoče poslati.',
+    floorPrice: 'Najnižja cena',
+    floorSource: 'Najnižja uvrstitev na {marketplace}',
+    floorOn: 'Najnižja cena na {marketplace}: {price}',
+    viewOn: 'Oglejte si na {marketplace}',
   },
 }

@@ -591,5 +591,9 @@ export default {
     cannotSend:
       'Nem lehet elküldeni arra a címre – előfordulhat, hogy a címzett nem fogad el NFT-ket, vagy ez a fiók már nem rendelkezik vele.',
     notSendable: 'Ez az NFT nem használja a wwwallet által küldhető szabványos kifejezéseket.',
+    floorPrice: 'Minimális ár',
+    floorSource: 'A legalacsonyabb jegyzés {marketplace}',
+    floorOn: 'Minimális ár a {marketplace}-on: {price}',
+    viewOn: 'Megtekintés: {marketplace}',
   },
 }

@@ -583,5 +583,9 @@ export default {
     cannotSend:
       'Det går inte att skicka till den adressen – mottagaren kanske inte accepterar NFT:er, eller så finns det inte längre på det kontot.',
     notSendable: 'Denna NFT använder inte en standard-wwwallet som kan skickas.',
+    floorPrice: 'Minimipris',
+    floorSource: 'Lägsta notering på {marketplace}',
+    floorOn: 'Lägsta pris på {marketplace}: {price}',
+    viewOn: 'Visa på {marketplace}',
   },
 }

@@ -595,5 +595,9 @@ export default {
     cannotSend:
       'Es kann nicht an diese Adresse gesendet werden – der Empfänger akzeptiert möglicherweise keine NFTs oder dieses Konto verfügt nicht mehr darüber.',
     notSendable: 'Dieses NFT nutzt keine Standard-Wallet, die wwwallet versenden kann.',
+    floorPrice: 'Mindestpreis',
+    floorSource: 'Niedrigster Kurs bei {marketplace}',
+    floorOn: 'Mindestpreis auf {marketplace}: {price}',
+    viewOn: 'Anzeigen unter {marketplace}',
   },
 }

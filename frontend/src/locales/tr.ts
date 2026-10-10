@@ -583,5 +583,9 @@ export default {
     cannotSend:
       "Bu adrese gönderilemez — alıcı NFT'leri kabul etmiyor olabilir veya bu hesapta artık NFT bulunmuyor olabilir.",
     notSendable: "Bu NFT, wwwallet'in gönderebileceği standart bir yöntem kullanmaz.",
+    floorPrice: 'Taban fiyat',
+    floorSource: "{marketplace}'da en alt sıradaki liste",
+    floorOn: "{marketplace}'daki taban fiyat: {price}",
+    viewOn: '{marketplace} adresinde görüntüle',
   },
 }

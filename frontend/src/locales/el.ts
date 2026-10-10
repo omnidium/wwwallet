@@ -595,5 +595,9 @@ export default {
     cannotSend:
       'Δεν μπορεί να σταλεί σε αυτή τη διεύθυνση — ο παραλήπτης ενδέχεται να μην δέχεται NFT ή ο λογαριασμός αυτός να μην τα διατηρεί πλέον.',
     notSendable: 'Αυτό το NFT δεν χρησιμοποιεί ένα τυπικό wwwallet που μπορεί να στείλει.',
+    floorPrice: 'Ελάχιστη τιμή',
+    floorSource: 'Χαμηλότερη τιμή στο {marketplace}',
+    floorOn: 'Ελάχιστη τιμή στο {marketplace}: {price}',
+    viewOn: 'Προβολή στο {marketplace}',
   },
 }

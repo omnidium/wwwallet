@@ -1787,6 +1787,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Este NFT no utiliza una frase de recuperación estándar que wwwallet pueda enviar."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Precio mínimo"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Precio más bajo en {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Precio mínimo en {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Ver en {marketplace}"
     }
   },
   "ar": {
@@ -3577,6 +3593,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "لا تستخدم هذه الـ NFT ميزة الإرسال القياسية في wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "السعر الأدنى"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "أدنى سعر مدرج على {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "السعر الأدنى على {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "عرض على {marketplace}"
     }
   },
   "bg": {
@@ -5367,6 +5399,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Този NFT не използва стандартната функция за изпращане на wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Минимална цена"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Най-ниска цена на {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Минимална цена на {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Вижте в {marketplace}"
     }
   },
   "cs": {
@@ -7157,6 +7205,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Tento NFT nepoužívá standardní wwwallet, který lze odeslat."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Minimální cena"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Nejnižší cena na {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Minimální cena na {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Zobrazit na {marketplace}"
     }
   },
   "da": {
@@ -8947,6 +9011,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Denne NFT bruger ikke en standard wwwallet, der kan sende."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Mindstepris"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Laveste notering på {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Mindstepris på {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Se på {marketplace}"
     }
   },
   "de": {
@@ -10737,6 +10817,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Dieses NFT nutzt keine Standard-Wallet, die wwwallet versenden kann."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Mindestpreis"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Niedrigster Kurs bei {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Mindestpreis auf {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Anzeigen unter {marketplace}"
     }
   },
   "el": {
@@ -12527,6 +12623,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Αυτό το NFT δεν χρησιμοποιεί ένα τυπικό wwwallet που μπορεί να στείλει."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Ελάχιστη τιμή"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Χαμηλότερη τιμή στο {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Ελάχιστη τιμή στο {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Προβολή στο {marketplace}"
     }
   },
   "et": {
@@ -14317,6 +14429,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "See NFT ei kasuta standardset wwwallet-i saatmisfunktsiooni."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Minimaalne hind"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Madalaim noteering {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Minimaalne hind {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Vaata {marketplace}"
     }
   },
   "fi": {
@@ -16107,6 +16235,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Tämä NFT ei käytä tavallista wwwallet-lähetystä."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Vähimmäishinta"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Alin listaus {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Alin hinta {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Katso {marketplace}"
     }
   },
   "fr": {
@@ -17897,6 +18041,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Ce NFT n'utilise pas la fonction standard d'envoi de wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Prix plancher"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Cotation la plus basse sur {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Prix plancher sur {marketplace} : {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Voir sur {marketplace}"
     }
   },
   "hu": {
@@ -19687,6 +19847,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Ez az NFT nem használja a wwwallet által küldhető szabványos kifejezéseket."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Minimális ár"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "A legalacsonyabb jegyzés {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Minimális ár a {marketplace}-on: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Megtekintés: {marketplace}"
     }
   },
   "id": {
@@ -21477,6 +21653,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "NFT ini tidak menggunakan fitur standar wwwallet untuk mengirim."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Harga terendah"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Harga terendah di {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Harga terendah di {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Lihat di {marketplace}"
     }
   },
   "it": {
@@ -23267,6 +23459,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Questo NFT non utilizza una funzione standard di invio di wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Prezzo minimo"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Posizione più bassa nella classifica su {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Prezzo minimo su {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Visualizza su {marketplace}"
     }
   },
   "iw": {
@@ -25057,6 +25265,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "NFT זה אינו משתמש ב-wwwallet סטנדרטי שניתן לשלוח."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "מחיר מינימום"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "הרישום הנמוך ביותר ב-{marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "מחיר מינימום ב-{marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "צפה ב-{marketplace}"
     }
   },
   "ja": {
@@ -26847,6 +27071,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "このNFTは、wwwalletが送信できる標準的な機能を使用していない。"
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "底値"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "{marketplace}での最安値"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "{marketplace}での最低価格：{price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "{marketplace}で閲覧"
     }
   },
   "ko": {
@@ -28637,6 +28877,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "이 NFT는 wwwallet에서 보낼 수 있는 표준 방식을 사용하지 않습니다."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "최저가"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "{marketplace}에서 가장 낮은 가격으로 등재됨"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "{marketplace}의 최저가: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "{marketplace}에서 보기"
     }
   },
   "lt": {
@@ -30427,6 +30683,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Šis NFT nenaudoja standartinio „wwwallet“ siuntimo."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Mažiausia kaina"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Žemiausia kaina {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Mažiausia kaina {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Peržiūrėti {marketplace}"
     }
   },
   "lv": {
@@ -32217,6 +32489,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Šis NFT neizmanto standarta wwwallet sūtīšanas funkciju."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Minimālā cena"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Zemākā cena {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Minimālā cena {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Skatīt {marketplace}"
     }
   },
   "nl": {
@@ -34007,6 +34295,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Deze NFT maakt geen gebruik van een standaard wwwallet-verzendfunctie."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Minimumprijs"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Laagste notering op {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Minimumprijs op {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Bekijk op {marketplace}"
     }
   },
   "no": {
@@ -35797,6 +36101,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Denne NFT-en bruker ikke en standard wwwallet-funksjon for sending."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Minimumspris"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Laveste notering på {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Minimumspris på {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Vis på {marketplace}"
     }
   },
   "pl": {
@@ -37587,6 +37907,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Ten NFT nie korzysta ze standardowej funkcji wysyłania w wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Cena minimalna"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Najniższa pozycja w rankingu na {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Cena minimalna na {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Zobacz na {marketplace}"
     }
   },
   "ro": {
@@ -39377,6 +39713,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Acest NFT nu utilizează o funcție standard de trimitere a wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Prețul minim"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Poziția cea mai joasă în clasament pe {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Prețul minim pe {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Vizualizați pe {marketplace}"
     }
   },
   "ru": {
@@ -41167,6 +41519,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Этот NFT не использует стандартную функцию отправки wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Минимальная цена"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Самая низкая цена на {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Минимальная цена на {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Посмотреть на {marketplace}"
     }
   },
   "sk": {
@@ -42957,6 +43325,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Tento NFT nepoužíva štandardnú funkciu odosielania, ktorú ponúka wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Minimálna cena"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Najnižšia pozícia v zozname na {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Minimálna cena na {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Zobraziť na {marketplace}"
     }
   },
   "sl": {
@@ -44747,6 +45131,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Ta NFT ne uporablja standardnega wwwallet, ki ga je mogoče poslati."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Najnižja cena"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Najnižja uvrstitev na {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Najnižja cena na {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Oglejte si na {marketplace}"
     }
   },
   "sv": {
@@ -46537,6 +46937,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Denna NFT använder inte en standard-wwwallet som kan skickas."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Minimipris"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Lägsta notering på {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Lägsta pris på {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Visa på {marketplace}"
     }
   },
   "tr": {
@@ -48327,6 +48743,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Bu NFT, wwwallet'in gönderebileceği standart bir yöntem kullanmaz."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Taban fiyat"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "{marketplace}'da en alt sıradaki liste"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "{marketplace}'daki taban fiyat: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "{marketplace} adresinde görüntüle"
     }
   },
   "uk": {
@@ -50117,6 +50549,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "Цей NFT не використовує стандартну функцію відправлення, доступну в wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Мінімальна ціна"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Найнижча ціна на {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Мінімальна ціна на {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Переглянути на {marketplace}"
     }
   },
   "vi": {
@@ -51907,6 +52355,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "NFT này không sử dụng tính năng gửi tiền tiêu chuẩn của wwwallet."
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "Giá sàn"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "Giá niêm yết thấp nhất trên {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "Giá sàn trên {marketplace}: {price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "Xem tại {marketplace}"
     }
   },
   "zh-CN": {
@@ -53697,6 +54161,22 @@
     "nfts.notSendable": {
       "enHash": "22e61ceae116f42b",
       "value": "此 NFT 不使用 wwwallet 可发送的标准功能。"
+    },
+    "nfts.floorPrice": {
+      "enHash": "1c95f11de4cf25d0",
+      "value": "最低价格"
+    },
+    "nfts.floorSource": {
+      "enHash": "8adb60d0bf9f4775",
+      "value": "最低报价在 {marketplace}"
+    },
+    "nfts.floorOn": {
+      "enHash": "a9c03a9191127bc5",
+      "value": "{marketplace} 上的最低价格：{price}"
+    },
+    "nfts.viewOn": {
+      "enHash": "40673e004db57e34",
+      "value": "在 {marketplace} 上查看"
     }
   }
 }

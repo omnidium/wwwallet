@@ -579,5 +579,9 @@ export default {
     cannotSend:
       '해당 주소로는 전송할 수 없습니다. 수신자가 NFT를 수락하지 않을 수도 있고, 해당 계정에 더 이상 NFT가 남아 있지 않을 수도 있습니다.',
     notSendable: '이 NFT는 wwwallet에서 보낼 수 있는 표준 방식을 사용하지 않습니다.',
+    floorPrice: '최저가',
+    floorSource: '{marketplace}에서 가장 낮은 가격으로 등재됨',
+    floorOn: '{marketplace}의 최저가: {price}',
+    viewOn: '{marketplace}에서 보기',
   },
 }

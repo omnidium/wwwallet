@@ -586,5 +586,9 @@ export default {
     cannotSend:
       'Non è possibile inviarlo a quell’indirizzo: il destinatario potrebbe non accettare gli NFT, oppure quell’account non lo contiene più.',
     notSendable: 'Questo NFT non utilizza una funzione standard di invio di wwwallet.',
+    floorPrice: 'Prezzo minimo',
+    floorSource: 'Posizione più bassa nella classifica su {marketplace}',
+    floorOn: 'Prezzo minimo su {marketplace}: {price}',
+    viewOn: 'Visualizza su {marketplace}',
   },
 }

@@ -592,5 +592,9 @@ export default {
       'No se puede enviar a esa dirección: puede que el destinatario no acepte NFT o que esta cuenta ya no la tenga.',
     notSendable:
       'Este NFT no utiliza una frase de recuperación estándar que wwwallet pueda enviar.',
+    floorPrice: 'Precio mínimo',
+    floorSource: 'Precio más bajo en {marketplace}',
+    floorOn: 'Precio mínimo en {marketplace}: {price}',
+    viewOn: 'Ver en {marketplace}',
   },
 }

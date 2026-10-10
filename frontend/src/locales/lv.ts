@@ -584,5 +584,9 @@ export default {
     cannotSend:
       'To nevar nosūtīt uz šo adresi — saņēmējs var nepieņemt NFT, vai arī šajā kontā vairs nav šīs summas.',
     notSendable: 'Šis NFT neizmanto standarta wwwallet sūtīšanas funkciju.',
+    floorPrice: 'Minimālā cena',
+    floorSource: 'Zemākā cena {marketplace}',
+    floorOn: 'Minimālā cena {marketplace}: {price}',
+    viewOn: 'Skatīt {marketplace}',
   },
 }

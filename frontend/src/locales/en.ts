@@ -421,6 +421,10 @@ export default {
     cannotSend:
       "It can't be sent to that address — the recipient may not accept NFTs, or this account no longer holds it.",
     notSendable: "This NFT doesn't use a standard wwwallet can send.",
+    floorPrice: 'Floor price',
+    floorSource: 'Lowest listing on {marketplace}',
+    floorOn: 'Floor price on {marketplace}: {price}',
+    viewOn: 'View on {marketplace}',
   },
   qrScanner: {
     title: 'Scan address QR code',

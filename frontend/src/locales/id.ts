@@ -590,5 +590,9 @@ export default {
     cannotSend:
       'NFT tersebut tidak dapat dikirim ke alamat tersebut — penerima mungkin tidak menerima NFT, atau akun ini tidak lagi menyimpannya.',
     notSendable: 'NFT ini tidak menggunakan fitur standar wwwallet untuk mengirim.',
+    floorPrice: 'Harga terendah',
+    floorSource: 'Harga terendah di {marketplace}',
+    floorOn: 'Harga terendah di {marketplace}: {price}',
+    viewOn: 'Lihat di {marketplace}',
   },
 }

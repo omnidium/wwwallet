@@ -564,5 +564,9 @@ export default {
     cannotSend:
       'לא ניתן לשלוח את זה לכתובת הזו — ייתכן שהנמען אינו מקבל NFTs, או שהחשבון הזה כבר לא מחזיק בו.',
     notSendable: 'NFT זה אינו משתמש ב-wwwallet סטנדרטי שניתן לשלוח.',
+    floorPrice: 'מחיר מינימום',
+    floorSource: 'הרישום הנמוך ביותר ב-{marketplace}',
+    floorOn: 'מחיר מינימום ב-{marketplace}: {price}',
+    viewOn: 'צפה ב-{marketplace}',
   },
 }

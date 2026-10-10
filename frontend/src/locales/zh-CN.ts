@@ -553,5 +553,9 @@ export default {
     sameAccount: '该账户已存有资金——请选择其他收款人。',
     cannotSend: '无法发送至该地址——收件人可能不接受 NFT，或者该账户已不再持有该资产。',
     notSendable: '此 NFT 不使用 wwwallet 可发送的标准功能。',
+    floorPrice: '最低价格',
+    floorSource: '最低报价在 {marketplace}',
+    floorOn: '{marketplace} 上的最低价格：{price}',
+    viewOn: '在 {marketplace} 上查看',
   },
 }

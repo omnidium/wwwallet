@@ -584,5 +584,9 @@ export default {
     cannotSend:
       'На цю адресу не можна надіслати NFT — одержувач може не приймати NFT, або на цьому рахунку їх більше немає.',
     notSendable: 'Цей NFT не використовує стандартну функцію відправлення, доступну в wwwallet.',
+    floorPrice: 'Мінімальна ціна',
+    floorSource: 'Найнижча ціна на {marketplace}',
+    floorOn: 'Мінімальна ціна на {marketplace}: {price}',
+    viewOn: 'Переглянути на {marketplace}',
   },
 }

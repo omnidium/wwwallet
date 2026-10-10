@@ -11,6 +11,8 @@ import { nftUrl, tokenUrl, txnUrl } from '@/services/blockExplorer'
 import { truncateAddress } from '@/services/format'
 import { addressDisplayLabel } from '@/services/addressLabel'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
+import { marketplaceLink } from '@/config/nfts'
+import { useNftFloorText } from '@/composables/useNftFloorText'
 import AppTooltip from '@/components/AppTooltip.vue'
 import CircuitSpinner from '@/components/CircuitSpinner.vue'
 import NftSendDialog from '@/components/NftSendDialog.vue'
@@ -27,6 +29,8 @@ const props = defineProps<{
   address: string
   nft: Nft | null
   collectionName: string | null
+  /** The collection's floor price, in the chain's native coin. */
+  floorPrice: number | null
 }>()
 const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
 
@@ -101,6 +105,12 @@ const transferRows = computed(() =>
   }),
 )
 
+const floorText = useNftFloorText()
+const floor = computed(() => floorText(props.chain, props.floorPrice))
+const marketplace = computed(() =>
+  props.nft ? marketplaceLink(props.chain, props.nft.contract_address, props.nft.token_id) : null,
+)
+
 const sending = computed(() => (props.nft ? nfts.isSending(props.chain, props.address, props.nft) : false))
 // An ERC-404-style hybrid is a fungible token too, and moving one of its
 // "NFTs" moves a whole token's worth — that's the token's own Send.
@@ -172,6 +182,13 @@ function toggleHidden() {
               <td>{{ t('token.network') }}</td>
               <td>{{ NATIVE_ASSETS[chain].networkName }}</td>
             </tr>
+            <tr v-if="floor">
+              <td>{{ t('nfts.floorPrice') }}</td>
+              <td>
+                {{ floor }}
+                <span class="d-block text-caption text-medium-emphasis">{{ t('nfts.floorSource', { marketplace: 'OpenSea' }) }}</span>
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -203,6 +220,8 @@ function toggleHidden() {
       <v-card-actions class="flex-wrap">
         <v-btn :href="nftUrl(chain, nft.contract_address, nft.token_id)" target="_blank" rel="noopener noreferrer"
           variant="text" prepend-icon="mdi-open-in-new">{{ t('nfts.viewOnExplorer') }}</v-btn>
+        <v-btn v-if="marketplace" :href="marketplace.url" target="_blank" rel="noopener noreferrer" variant="text"
+          prepend-icon="mdi-storefront-outline">{{ t('nfts.viewOn', { marketplace: marketplace.name }) }}</v-btn>
         <v-spacer />
         <v-btn variant="text" :prepend-icon="hidden ? 'mdi-eye' : 'mdi-eye-off'" @click="toggleHidden">
           {{ hidden ? t('nfts.showNft') : t('nfts.hideNft') }}

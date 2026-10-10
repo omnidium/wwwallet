@@ -4,7 +4,10 @@ import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import type { ChainSlug, Nft } from '@/services/api'
 import { useMessagesStore } from '@/stores/messages'
+import { useChainDataStore } from '@/stores/chainData'
 import { looksLikeSpam, useNftsStore } from '@/stores/nfts'
+import { showsFloorPrice } from '@/config/nfts'
+import { useNftFloorText } from '@/composables/useNftFloorText'
 import { displayErrorMessage } from '@/services/errors'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import AppTooltip from '@/components/AppTooltip.vue'
@@ -16,7 +19,9 @@ const { t } = useI18n({ useScope: 'global' })
 const route = useRoute()
 const router = useRouter()
 const messages = useMessagesStore()
+const chainData = useChainDataStore()
 const nfts = useNftsStore()
+const floorText = useNftFloorText()
 
 // Read reactively: going from one collection to another keeps this view
 // mounted and only changes the params.
@@ -31,6 +36,7 @@ const collection = computed(() =>
 )
 const collectionHidden = computed(() => (collection.value ? nfts.isCollectionHidden(chain.value, collection.value) : false))
 const title = computed(() => collection.value?.name ?? t('nfts.unnamedCollection'))
+const floor = computed(() => (collection.value ? floorText(chain.value, collection.value.floor_price) : null))
 
 const showHidden = ref(false)
 const page = computed(() => nfts.nftsOf(chain.value, address.value, contract.value))
@@ -47,6 +53,8 @@ watch(
     showHidden.value = false
     void nfts.readCachedCollections(chain.value, address.value)
     void nfts.readCachedSends(chain.value, address.value)
+    // For the floor price's fiat value.
+    if (showsFloorPrice(chain.value)) chainData.loadNativePrice(chain.value).catch(() => { })
     try {
       await nfts.loadNfts(chain.value, address.value, contract.value)
     } catch (err) {
@@ -117,6 +125,10 @@ function open(nft: Nft) {
       </AppTooltip>
     </header>
 
+    <p v-if="floor" class="text-caption text-medium-emphasis px-2 mb-2">
+      {{ t('nfts.floorOn', { marketplace: 'OpenSea', price: floor }) }}
+    </p>
+
     <v-alert v-if="collection && collectionHidden && looksLikeSpam(collection)" type="warning" variant="tonal"
       density="compact" class="mb-2" :text="t('nfts.spamNotice')" />
 
@@ -137,6 +149,6 @@ function open(nft: Nft) {
     </div>
 
     <NftDetailDialog v-model="detailOpen" :chain="chain" :address="address" :nft="detailNft"
-      :collection-name="collection?.name ?? null" />
+      :collection-name="collection?.name ?? null" :floor-price="collection?.floor_price ?? null" />
   </div>
 </template>

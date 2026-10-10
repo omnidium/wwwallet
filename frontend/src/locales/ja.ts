@@ -578,5 +578,9 @@ export default {
     cannotSend:
       'そのアドレスには送信できない。受信者がNFTを受け付けないか、そのアカウントにNFTがもうない可能性があるからだ。',
     notSendable: 'このNFTは、wwwalletが送信できる標準的な機能を使用していない。',
+    floorPrice: '底値',
+    floorSource: '{marketplace}での最安値',
+    floorOn: '{marketplace}での最低価格：{price}',
+    viewOn: '{marketplace}で閲覧',
   },
 }

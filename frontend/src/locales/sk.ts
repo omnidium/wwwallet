@@ -579,5 +579,9 @@ export default {
     cannotSend:
       'Na túto adresu to nie je možné poslať – príjemca nemusí prijímať NFT alebo tento účet už NFT neobsahuje.',
     notSendable: 'Tento NFT nepoužíva štandardnú funkciu odosielania, ktorú ponúka wwwallet.',
+    floorPrice: 'Minimálna cena',
+    floorSource: 'Najnižšia pozícia v zozname na {marketplace}',
+    floorOn: 'Minimálna cena na {marketplace}: {price}',
+    viewOn: 'Zobraziť na {marketplace}',
   },
 }

@@ -580,5 +580,9 @@ export default {
     cannotSend:
       'Không thể gửi đến địa chỉ đó được — người nhận có thể không chấp nhận NFT, hoặc tài khoản này không còn lưu trữ nó nữa.',
     notSendable: 'NFT này không sử dụng tính năng gửi tiền tiêu chuẩn của wwwallet.',
+    floorPrice: 'Giá sàn',
+    floorSource: 'Giá niêm yết thấp nhất trên {marketplace}',
+    floorOn: 'Giá sàn trên {marketplace}: {price}',
+    viewOn: 'Xem tại {marketplace}',
   },
 }

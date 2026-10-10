@@ -582,5 +582,9 @@ export default {
     cannotSend:
       'Sitä ei voi lähettää kyseiseen osoitteeseen – vastaanottaja ei ehkä hyväksy NFT:itä, tai tällä tilillä ei enää ole niitä.',
     notSendable: 'Tämä NFT ei käytä tavallista wwwallet-lähetystä.',
+    floorPrice: 'Vähimmäishinta',
+    floorSource: 'Alin listaus {marketplace}',
+    floorOn: 'Alin hinta {marketplace}: {price}',
+    viewOn: 'Katso {marketplace}',
   },
 }

@@ -585,5 +585,9 @@ export default {
     cannotSend:
       'To negalima siųsti į tą adresą – gavėjas gali nepriimti NFT arba šioje sąskaitoje jų jau nebėra.',
     notSendable: 'Šis NFT nenaudoja standartinio „wwwallet“ siuntimo.',
+    floorPrice: 'Mažiausia kaina',
+    floorSource: 'Žemiausia kaina {marketplace}',
+    floorOn: 'Mažiausia kaina {marketplace}: {price}',
+    viewOn: 'Peržiūrėti {marketplace}',
   },
 }
