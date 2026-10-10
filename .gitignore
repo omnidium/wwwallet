@@ -28,7 +28,6 @@ backend/.dev.vars*
 *.swp
 *.code-workspace
 .editorconfig
-.prettierrc*
 
 # Only what's needed to build, test or deploy the app, website and backend
 # is kept in the repo. Local-only tools and leftovers:
