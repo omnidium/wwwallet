@@ -33,12 +33,17 @@ pub enum Budget {
     /// Price APIs with tight quotas: Alchemy's Prices API (300 lookups an
     /// hour on the free tier) and CoinGecko's keyless API.
     Prices,
+    /// Alchemy's NFT API, whose calls cost many times what an RPC call does
+    /// against the same compute-unit quota — capped on their own so browsing
+    /// NFTs can't starve balances and history.
+    Nft,
     /// Everything else, each provider in its own bucket.
     Default,
 }
 
 struct Limiters {
     prices: Rc<RateLimiter>,
+    nft: Rc<RateLimiter>,
     default: Rc<RateLimiter>,
 }
 
@@ -49,11 +54,13 @@ thread_local! {
 }
 
 /// Called once per request (see the backend's lib.rs) with this Worker's
-/// RATE_LIMITER_UPSTREAM_PRICES / RATE_LIMITER_UPSTREAM bindings. Until it
-/// is (unit tests), budgets aren't enforced.
-pub fn install(prices: RateLimiter, default: RateLimiter) {
+/// RATE_LIMITER_UPSTREAM_PRICES / RATE_LIMITER_UPSTREAM_NFT /
+/// RATE_LIMITER_UPSTREAM bindings. Until it is (unit tests), budgets aren't
+/// enforced.
+pub fn install(prices: RateLimiter, nft: RateLimiter, default: RateLimiter) {
     LIMITERS.with(|l| {
-        *l.borrow_mut() = Some(Limiters { prices: Rc::new(prices), default: Rc::new(default) })
+        *l.borrow_mut() =
+            Some(Limiters { prices: Rc::new(prices), nft: Rc::new(nft), default: Rc::new(default) })
     });
 }
 
@@ -68,6 +75,9 @@ pub fn classify(url: &str) -> (Budget, String) {
     }
     if host == "api.coingecko.com" {
         return (Budget::Prices, "coingecko".to_string());
+    }
+    if host.ends_with(".g.alchemy.com") && path.contains("/nft/v3/") {
+        return (Budget::Nft, "alchemy-nft".to_string());
     }
     // Every Alchemy network shares one compute-unit quota.
     if host.ends_with(".g.alchemy.com") {
@@ -85,6 +95,7 @@ pub async fn spend(url: &str) -> ProviderResult<()> {
     let limiter = LIMITERS.with(|l| {
         l.borrow().as_ref().map(|l| match budget {
             Budget::Prices => l.prices.clone(),
+            Budget::Nft => l.nft.clone(),
             Budget::Default => l.default.clone(),
         })
     });
@@ -119,6 +130,10 @@ mod tests {
         assert_eq!(
             classify("https://eth-mainnet.g.alchemy.com/v2/KEY"),
             (Budget::Default, "alchemy-rpc".to_string())
+        );
+        assert_eq!(
+            classify("https://base-mainnet.g.alchemy.com/nft/v3/KEY/getContractsForOwner?owner=0xabc"),
+            (Budget::Nft, "alchemy-nft".to_string())
         );
         assert_eq!(
             classify("https://base-rpc.publicnode.com"),

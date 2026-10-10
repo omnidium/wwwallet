@@ -405,6 +405,86 @@ impl FxHistory {
     }
 }
 
+/// Where an NFT's picture can be loaded from. Only ever an image host the
+/// provider itself runs (see `NftProvider`), never the NFT's own metadata
+/// URL — that can point anywhere, including somewhere that logs who looked.
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
+pub struct NftImage {
+    /// Small, for grids.
+    pub thumbnail: Option<String>,
+    /// Full size, for a single NFT's own view.
+    pub full: Option<String>,
+}
+
+/// One NFT contract an address holds tokens of.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct NftCollection {
+    pub contract_address: String,
+    pub name: Option<String>,
+    pub symbol: Option<String>,
+    /// "ERC721" or "ERC1155"; anything else can't be sent through the
+    /// standard interfaces.
+    pub token_type: String,
+    /// How many distinct tokens of it the address holds.
+    pub owned_count: u64,
+    /// The provider's spam verdict; None where it doesn't classify a chain.
+    pub is_spam: Option<bool>,
+    /// The collection has a marketplace's verified badge. Display only: most
+    /// legitimate collections never ask for one.
+    pub verified: bool,
+    /// Lowest listed price on the marketplace the provider reads, in the
+    /// chain's native coin.
+    pub floor_price: Option<f64>,
+    pub image: NftImage,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct NftCollectionPage {
+    pub collections: Vec<NftCollection>,
+    /// Pass back as `page_key` for the next page; None on the last one.
+    pub next_page_key: Option<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct NftAttribute {
+    pub trait_type: Option<String>,
+    pub value: String,
+}
+
+/// One NFT an address holds.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Nft {
+    pub contract_address: String,
+    /// Decimal. Token ids are 256-bit, so this is never parsed into a
+    /// machine integer.
+    pub token_id: String,
+    pub token_type: String,
+    pub name: Option<String>,
+    pub description: Option<String>,
+    /// How many of it the address holds: always 1 for ERC-721.
+    pub balance: String,
+    pub image: NftImage,
+    pub attributes: Vec<NftAttribute>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct NftPage {
+    pub nfts: Vec<Nft>,
+    pub next_page_key: Option<String>,
+}
+
+/// One movement of a single NFT into or out of an address.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct NftTransfer {
+    pub hash: String,
+    pub from: String,
+    pub to: String,
+    pub block_number: Option<u64>,
+    pub timestamp: Option<String>,
+    /// How many copies moved, decimal: always 1 for ERC-721.
+    pub amount: String,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

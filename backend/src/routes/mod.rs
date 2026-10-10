@@ -24,6 +24,18 @@ pub fn build_router(state: AppState, cors: CorsLayer) -> Router {
             post(chains::transaction_page),
         )
         .route(
+            "/api/v1/chains/{chain}/address/{address}/nft-collections",
+            get(chains::nft_collections),
+        )
+        .route(
+            "/api/v1/chains/{chain}/address/{address}/nfts",
+            get(chains::nfts),
+        )
+        .route(
+            "/api/v1/chains/{chain}/address/{address}/nft-transfers",
+            get(chains::nft_transfers),
+        )
+        .route(
             "/api/v1/chains/{chain}/token/{address}",
             get(chains::token_metadata),
         )

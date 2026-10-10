@@ -2,6 +2,8 @@ use async_trait::async_trait;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 
+mod nft;
+
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
 use crate::fxrate::unix_from_iso_date;

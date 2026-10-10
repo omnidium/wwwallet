@@ -4,7 +4,7 @@ use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
 use crate::types::{
     AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, CoinSearchResult, ContractAbi, FxHistory, FxRates,
-    NativePrice, PriceHistory,
+    NativePrice, NftCollectionPage, NftPage, NftTransfer, PriceHistory,
     SwapQuote, TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 
@@ -250,4 +250,36 @@ pub trait AllowanceProvider {
         owner: &str,
         spender: &str,
     ) -> ProviderResult<String>;
+}
+
+/// The NFTs an address holds, by collection, and one NFT's movements. Backed
+/// by Alchemy's NFT API. Pages are continued with the opaque `page_key` the
+/// previous page returned.
+#[async_trait(?Send)]
+pub trait NftProvider {
+    fn name(&self) -> &'static str;
+    /// Whether it has NFT data for `chain` at all.
+    fn supports(&self, chain: ChainId) -> bool;
+    async fn collections(
+        &self,
+        chain: ChainId,
+        owner: &str,
+        page_key: Option<&str>,
+    ) -> ProviderResult<NftCollectionPage>;
+    async fn nfts(
+        &self,
+        chain: ChainId,
+        owner: &str,
+        contract_address: &str,
+        page_key: Option<&str>,
+    ) -> ProviderResult<NftPage>;
+    /// Every transfer of one token into or out of `owner`, newest first.
+    /// `token_id_hex` is 0x-prefixed hex.
+    async fn transfers(
+        &self,
+        chain: ChainId,
+        owner: &str,
+        contract_address: &str,
+        token_id_hex: &str,
+    ) -> ProviderResult<Vec<NftTransfer>>;
 }

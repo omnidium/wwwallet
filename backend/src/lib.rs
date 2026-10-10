@@ -49,6 +49,7 @@ async fn fetch(
 fn build_provider_registry(env: &Env) -> worker::Result<ProviderRegistry> {
     wwwallet_providers::upstream_budget::install(
         env.rate_limiter("RATE_LIMITER_UPSTREAM_PRICES")?,
+        env.rate_limiter("RATE_LIMITER_UPSTREAM_NFT")?,
         env.rate_limiter("RATE_LIMITER_UPSTREAM")?,
     );
     let rate_limiter_default = env.rate_limiter("RATE_LIMITER_DEFAULT")?;

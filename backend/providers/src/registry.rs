@@ -16,13 +16,14 @@ use crate::tokenlist::TokenListProvider;
 use crate::traits::{
     AbiProvider, ActivityProvider, AllowanceProvider, BridgeProvider, BridgeQuoteRequest,
     CoinPriceHistoryProvider,
-    CoinSearchProvider, FxHistoryProvider, FxRateProvider, NativePriceProvider,
+    CoinSearchProvider, FxHistoryProvider, FxRateProvider, NativePriceProvider, NftProvider,
     PriceHistoryProvider, SwapQuoteProvider, TokenMetadataProvider, TokenPriceProvider,
     TransactionBroadcaster, TransactionFeeProvider, TransactionPrepProvider,
     TransactionStatusProvider,
 };
 use crate::types::{
-    AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, CoinSearchResult, HistoricalPrice, ContractAbi, FxHistory, FxRates, NativePrice, PriceHistory,
+    AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, CoinSearchResult, HistoricalPrice, ContractAbi, FxHistory, FxRates, NativePrice,
+    NftCollectionPage, NftPage, NftTransfer, PriceHistory,
     SwapQuote, TokenListItem,
     TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
@@ -64,6 +65,7 @@ pub struct ProviderConfig {
 /// that's cheap, since it's just a handful of small structs holding API keys.
 pub struct ProviderRegistry {
     activity: Rc<dyn ActivityProvider>,
+    nfts: Rc<dyn NftProvider>,
     tokens: Rc<dyn TokenMetadataProvider>,
     /// Fills whatever `tokens` couldn't — see `token_metadata`.
     token_fallback: Rc<dyn TokenMetadataProvider>,
@@ -106,6 +108,7 @@ impl ProviderRegistry {
         let lifi = Rc::new(LifiProvider::new(config.lifi_api_key));
         Self {
             activity: alchemy.clone(),
+            nfts: alchemy.clone(),
             // Deliberately not Alchemy — see PublicRpcProvider's docs.
             broadcaster: public_rpc.clone(),
             public_rpc,
@@ -203,6 +206,56 @@ impl ProviderRegistry {
     ) -> ProviderResult<TransactionPage> {
         self.check_rate_limit(client_ip, "transaction_page").await?;
         self.activity.transaction_page(chain, address, cursor).await
+    }
+
+    /// The NFT contracts an address holds tokens of, a page at a time.
+    /// Address-specific, so never shared-cached (see public_cache.rs).
+    pub async fn nft_collections(
+        &self,
+        chain: ChainId,
+        owner: &str,
+        page_key: Option<&str>,
+        client_ip: &str,
+    ) -> ProviderResult<NftCollectionPage> {
+        self.check_rate_limit(client_ip, "nft_collections").await?;
+        self.require_nfts(chain)?;
+        self.nfts.collections(chain, owner, page_key).await
+    }
+
+    /// The tokens an address holds of one NFT contract, a page at a time.
+    pub async fn nfts(
+        &self,
+        chain: ChainId,
+        owner: &str,
+        contract_address: &str,
+        page_key: Option<&str>,
+        client_ip: &str,
+    ) -> ProviderResult<NftPage> {
+        self.check_rate_limit(client_ip, "nfts").await?;
+        self.require_nfts(chain)?;
+        self.nfts.nfts(chain, owner, contract_address, page_key).await
+    }
+
+    /// One NFT's transfers into and out of an address, newest first.
+    pub async fn nft_transfers(
+        &self,
+        chain: ChainId,
+        owner: &str,
+        contract_address: &str,
+        token_id_hex: &str,
+        client_ip: &str,
+    ) -> ProviderResult<Vec<NftTransfer>> {
+        self.check_rate_limit(client_ip, "nft_transfers").await?;
+        self.require_nfts(chain)?;
+        self.nfts.transfers(chain, owner, contract_address, token_id_hex).await
+    }
+
+    fn require_nfts(&self, chain: ChainId) -> ProviderResult<()> {
+        if self.nfts.supports(chain) {
+            Ok(())
+        } else {
+            Err(ProviderError::Unsupported)
+        }
     }
 
     /// Merges up to three sources, each only filling what the ones before it

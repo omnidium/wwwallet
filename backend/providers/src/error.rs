@@ -30,6 +30,10 @@ pub enum ProviderError {
     /// provider — nothing can be served for it until someone enables it.
     #[error("chain not enabled for this provider account")]
     ChainNotEnabled,
+    /// The provider offers nothing of this kind on this chain at all (no
+    /// NFT data on Ink, say) — not a fault, and not worth retrying.
+    #[error("not supported on this chain")]
+    Unsupported,
 }
 
 pub type ProviderResult<T> = Result<T, ProviderError>;

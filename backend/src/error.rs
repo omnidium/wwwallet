@@ -62,6 +62,10 @@ impl From<wwwallet_providers::ProviderError> for ApiError {
                 code: "chain_unavailable",
                 message: "this network isn't available yet".to_string(),
             },
+            wwwallet_providers::ProviderError::Unsupported => ApiError::Unprocessable {
+                code: "unsupported_on_chain",
+                message: "not available on this network".to_string(),
+            },
             wwwallet_providers::ProviderError::TransactionWouldRevert(reason) => {
                 worker::console_warn!("transaction would revert: {reason}");
                 ApiError::Unprocessable {
@@ -85,6 +89,13 @@ mod tests {
     fn a_chain_not_switched_on_is_a_422_the_app_recognises() {
         let err = ApiError::from(wwwallet_providers::ProviderError::ChainNotEnabled);
         assert!(matches!(err, ApiError::Unprocessable { code: "chain_unavailable", .. }));
+        assert_eq!(err.into_response().status(), StatusCode::UNPROCESSABLE_ENTITY);
+    }
+
+    #[test]
+    fn something_a_chain_doesnt_offer_is_a_422_the_app_recognises() {
+        let err = ApiError::from(wwwallet_providers::ProviderError::Unsupported);
+        assert!(matches!(err, ApiError::Unprocessable { code: "unsupported_on_chain", .. }));
         assert_eq!(err.into_response().status(), StatusCode::UNPROCESSABLE_ENTITY);
     }
 }

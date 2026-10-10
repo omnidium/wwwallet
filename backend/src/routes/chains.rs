@@ -6,7 +6,8 @@ use serde::{Deserialize, Serialize};
 use crate::error::ApiError;
 use crate::state::AppState;
 use wwwallet_providers::types::{
-    AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, ContractAbi, HistoricalPrice, FxRates, NativePrice, PriceHistory, SwapQuote, TokenListItem,
+    AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, ContractAbi, HistoricalPrice, FxRates, NativePrice,
+    NftCollectionPage, NftPage, NftTransfer, PriceHistory, SwapQuote, TokenListItem,
     TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
 };
 use wwwallet_providers::traits::BridgeQuoteRequest;
@@ -514,6 +515,103 @@ pub async fn fx_rates(
     Ok(Json(state.providers.fx_rates(&base, client_ip(&headers)).await?))
 }
 
+/// Opaque, round-tripped from a previous page's `next_page_key`. Only its
+/// size and alphabet are checked here; the provider rejects anything else.
+fn validate_page_key(page_key: &str) -> Result<(), ApiError> {
+    let ok = !page_key.is_empty() && page_key.len() <= 1024 && page_key.bytes().all(|b| b.is_ascii_graphic());
+    if !ok {
+        return Err(ApiError::BadRequest("invalid page key".to_string()));
+    }
+    Ok(())
+}
+
+/// A token id as 0x-prefixed hex: up to 256 bits.
+fn validate_token_id(token_id: &str) -> Result<(), ApiError> {
+    let digits = token_id.strip_prefix("0x").unwrap_or("");
+    let ok = !digits.is_empty() && digits.len() <= 64 && digits.chars().all(|c| c.is_ascii_hexdigit());
+    if !ok {
+        return Err(ApiError::BadRequest("token id must be 0x-prefixed hex".to_string()));
+    }
+    Ok(())
+}
+
+#[derive(Deserialize)]
+pub struct NftCollectionsQuery {
+    page_key: Option<String>,
+}
+
+#[worker::send]
+pub async fn nft_collections(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path((chain, address)): Path<(String, String)>,
+    axum::extract::Query(query): axum::extract::Query<NftCollectionsQuery>,
+) -> Result<Json<NftCollectionPage>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    validate_address(&address)?;
+    if let Some(page_key) = &query.page_key {
+        validate_page_key(page_key)?;
+    }
+    Ok(Json(
+        state
+            .providers
+            .nft_collections(chain, &address, query.page_key.as_deref(), client_ip(&headers))
+            .await?,
+    ))
+}
+
+#[derive(Deserialize)]
+pub struct NftsQuery {
+    contract: String,
+    page_key: Option<String>,
+}
+
+#[worker::send]
+pub async fn nfts(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path((chain, address)): Path<(String, String)>,
+    axum::extract::Query(query): axum::extract::Query<NftsQuery>,
+) -> Result<Json<NftPage>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    validate_address(&address)?;
+    validate_address(&query.contract)?;
+    if let Some(page_key) = &query.page_key {
+        validate_page_key(page_key)?;
+    }
+    Ok(Json(
+        state
+            .providers
+            .nfts(chain, &address, &query.contract, query.page_key.as_deref(), client_ip(&headers))
+            .await?,
+    ))
+}
+
+#[derive(Deserialize)]
+pub struct NftTransfersQuery {
+    contract: String,
+    token_id: String,
+}
+
+#[worker::send]
+pub async fn nft_transfers(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path((chain, address)): Path<(String, String)>,
+    axum::extract::Query(query): axum::extract::Query<NftTransfersQuery>,
+) -> Result<Json<Vec<NftTransfer>>, ApiError> {
+    let chain = parse_chain(&chain)?;
+    validate_address(&address)?;
+    validate_address(&query.contract)?;
+    validate_token_id(&query.token_id)?;
+    Ok(Json(
+        state
+            .providers
+            .nft_transfers(chain, &address, &query.contract, &query.token_id, client_ip(&headers))
+            .await?,
+    ))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -544,6 +642,24 @@ mod tests {
     fn parse_chain_accepts_known_slugs_and_rejects_unknown_ones() {
         assert!(parse_chain("ethereum").is_ok());
         assert!(parse_chain("dogecoin").is_err());
+    }
+
+    #[test]
+    fn page_keys_are_opaque_but_bounded() {
+        assert!(validate_page_key("4641848d-f65e-4eba-938a-6313e23e7788").is_ok());
+        assert!(validate_page_key("").is_err());
+        assert!(validate_page_key("has space").is_err());
+        assert!(validate_page_key(&"a".repeat(1025)).is_err());
+    }
+
+    #[test]
+    fn token_ids_are_0x_hex_up_to_256_bits() {
+        assert!(validate_token_id("0x24fe").is_ok());
+        assert!(validate_token_id(&format!("0x{}", "f".repeat(64))).is_ok());
+        assert!(validate_token_id(&format!("0x{}", "f".repeat(65))).is_err());
+        assert!(validate_token_id("9470").is_err());
+        assert!(validate_token_id("0x").is_err());
+        assert!(validate_token_id("0xzz").is_err());
     }
 
     #[test]

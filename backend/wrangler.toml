@@ -100,6 +100,18 @@ namespace_id = "1003"
 limit = 20
 period = 60
 
+# Alchemy's NFT API. Its calls cost many times what an RPC call does against
+# the same compute-unit quota, so they're capped apart from it: browsing NFTs
+# can't starve balances and history. One gallery page is one call; the app
+# only fetches when a gallery is opened (and refreshes, at most hourly, an
+# account it already knows holds NFTs).
+[[ratelimits]]
+name = "RATE_LIMITER_UPSTREAM_NFT"
+namespace_id = "1007"
+[ratelimits.simple]
+limit = 60
+period = 60
+
 # Everything else (Alchemy RPC — all networks share one bucket, as they share
 # one compute-unit quota — Ethplorer, Etherscan, 0x, LI.FI, public RPCs,
 # Frankfurter), each provider its own bucket under this limit. Sized for a
