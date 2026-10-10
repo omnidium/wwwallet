@@ -538,5 +538,11 @@ export default {
     traits: '特点',
     viewOnExplorer: '在区块链浏览器上查看',
     copyTokenId: '复制代币 ID',
+    history: '历史',
+    receivedFrom: '来自 {party}',
+    sentTo: '已发送至 {party}',
+    minted: 'Minted',
+    burned: '已销毁',
+    noHistory: '未找到转账记录——区块链浏览器中包含完整的交易历史。',
   },
 }

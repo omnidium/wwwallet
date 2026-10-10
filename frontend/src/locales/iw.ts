@@ -548,5 +548,11 @@ export default {
     traits: 'מאפיינים',
     viewOnExplorer: 'הצג באקספלורר',
     copyTokenId: 'העתיקו את מזהה האסימון',
+    history: 'היסטוריה',
+    receivedFrom: 'התקבל מ-{party}',
+    sentTo: 'נשלח ל-{party}',
+    minted: 'Minted',
+    burned: 'נשרף',
+    noHistory: 'לא נמצאו העברות — ל-Explorer יש את ההיסטוריה המלאה.',
   },
 }

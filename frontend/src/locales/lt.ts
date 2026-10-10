@@ -569,5 +569,11 @@ export default {
     traits: 'Būdingos savybės',
     viewOnExplorer: 'Peržiūrėti naršyklėje',
     copyTokenId: 'Nukopijuokite žetono ID',
+    history: 'Istorija',
+    receivedFrom: 'Gauta iš {party}',
+    sentTo: 'Siųsta {party}',
+    minted: 'Minted',
+    burned: 'Sudeginta',
+    noHistory: 'Pervedimų nerasta – naršyklėje yra visa istorija.',
   },
 }

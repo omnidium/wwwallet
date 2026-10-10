@@ -405,6 +405,12 @@ export default {
     traits: 'Traits',
     viewOnExplorer: 'View on explorer',
     copyTokenId: 'Copy the token ID',
+    history: 'History',
+    receivedFrom: 'Received from {party}',
+    sentTo: 'Sent to {party}',
+    minted: 'Minted',
+    burned: 'Burned',
+    noHistory: 'No transfers found — the explorer has its full history.',
   },
   qrScanner: {
     title: 'Scan address QR code',

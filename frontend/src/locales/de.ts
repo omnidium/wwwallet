@@ -579,5 +579,11 @@ export default {
     traits: 'Merkmale',
     viewOnExplorer: 'Im Explorer anzeigen',
     copyTokenId: 'Kopiere die Token-ID',
+    history: 'Geschichte',
+    receivedFrom: 'Erhalten von {party}',
+    sentTo: 'Gesendet an {party}',
+    minted: 'Minted',
+    burned: 'Verbrannt',
+    noHistory: 'Keine Transaktionen gefunden – der Explorer enthält den vollständigen Verlauf.',
   },
 }

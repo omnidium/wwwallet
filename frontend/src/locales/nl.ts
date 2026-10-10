@@ -570,5 +570,11 @@ export default {
     traits: 'Kenmerken',
     viewOnExplorer: 'Bekijk op de explorer',
     copyTokenId: 'Kopieer de token-ID',
+    history: 'Geschiedenis',
+    receivedFrom: 'Ontvangen van {party}',
+    sentTo: 'Verzonden naar {party}',
+    minted: 'Minted',
+    burned: 'Verbrand',
+    noHistory: 'Er zijn geen transacties gevonden — de explorer heeft de volledige geschiedenis.',
   },
 }

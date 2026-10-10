@@ -568,5 +568,11 @@ export default {
     traits: 'Особенности',
     viewOnExplorer: 'Посмотреть в блокчейн-браузере',
     copyTokenId: 'Скопируй ID токена',
+    history: 'История',
+    receivedFrom: 'Получено от {party}',
+    sentTo: 'Отправлено {party}',
+    minted: 'Minted',
+    burned: 'Удалено',
+    noHistory: 'Переводов не найдено — в блокчейн-браузере есть полная история.',
   },
 }

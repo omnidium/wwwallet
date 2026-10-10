@@ -574,5 +574,11 @@ export default {
     traits: 'Ciri-ciri',
     viewOnExplorer: 'Lihat di explorer',
     copyTokenId: 'Salin ID token',
+    history: 'Sejarah',
+    receivedFrom: 'Diterima dari {party}',
+    sentTo: 'Dikirim ke {party}',
+    minted: 'Minted',
+    burned: 'Telah dihapus',
+    noHistory: 'Tidak ditemukan transfer — penjelajah memiliki riwayat lengkapnya.',
   },
 }

@@ -1727,6 +1727,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Eso aún no está disponible en esta red."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Historia"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Recibido de {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Enviado a {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Quemado"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "No se han encontrado transferencias; el explorador tiene el historial completo."
     }
   },
   "ar": {
@@ -3457,6 +3481,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "هذا غير متاح على هذه الشبكة حتى الآن."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "التاريخ"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "ورد من {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "تم إرساله إلى {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "محروق"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "لم يتم العثور على أي تحويلات — يحتوي المستكشف على السجل الكامل."
     }
   },
   "bg": {
@@ -5187,6 +5235,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Това все още не е достъпно в тази мрежа."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "История"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Получено от {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Изпратено до {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Изгорено"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Не са открити преводи — експлорърът разполага с пълната история."
     }
   },
   "cs": {
@@ -6917,6 +6989,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "To v této síti zatím není k dispozici."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Historie"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Přijato od {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Odesláno na {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Spáleno"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Nebyly nalezeny žádné převody – prohlížeč obsahuje kompletní historii."
     }
   },
   "da": {
@@ -8647,6 +8743,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Det er endnu ikke tilgængeligt på dette netværk."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Historie"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Modtaget fra {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Sendt til {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Brændt"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Der blev ikke fundet nogen overførsler — explorer'en har den fulde historik."
     }
   },
   "de": {
@@ -10377,6 +10497,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Das ist in diesem Netzwerk noch nicht verfügbar."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Geschichte"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Erhalten von {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Gesendet an {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Verbrannt"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Keine Transaktionen gefunden – der Explorer enthält den vollständigen Verlauf."
     }
   },
   "el": {
@@ -12107,6 +12251,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Αυτό δεν είναι ακόμη διαθέσιμο σε αυτό το δίκτυο."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Ιστορικό"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Λήφθηκε από {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Αποστέλλεται στο {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Καμμένα"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Δεν βρέθηκαν μεταφορές — ο εξερευνητής διαθέτει το πλήρες ιστορικό."
     }
   },
   "et": {
@@ -13837,6 +14005,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "See pole selles võrgus veel saadaval."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Ajalugu"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Saadud {party}-lt"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Saadetud {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Põletatud"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Ülekandeid ei leitud – eksploraatoris on kogu ajalugu olemas."
     }
   },
   "fi": {
@@ -15567,6 +15759,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Tätä ei ole vielä saatavilla tässä verkossa."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Historia"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Vastaanotettu {party}:lta"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Lähetetty {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Poltettu"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Siirtoja ei löytynyt – explorerissa on täydellinen historia."
     }
   },
   "fr": {
@@ -17297,6 +17513,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Ce n'est pas encore disponible sur ce réseau."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Historique"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Reçu de {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Envoyé à {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Brûlé"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Aucun transfert trouvé — l’explorateur dispose de l’historique complet."
     }
   },
   "hu": {
@@ -19027,6 +19267,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Ez még nem érhető el ezen a hálózaton."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Történet"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Küldte: {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Elküldve: {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Elégetve"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Nem találtak átutalásokat – a felfedezőben megtalálható a teljes előzmény."
     }
   },
   "id": {
@@ -20757,6 +21021,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Fitur tersebut belum tersedia di jaringan ini."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Sejarah"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Diterima dari {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Dikirim ke {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Telah dihapus"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Tidak ditemukan transfer — penjelajah memiliki riwayat lengkapnya."
     }
   },
   "it": {
@@ -22487,6 +22775,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Non è ancora disponibile su questa rete."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Storia"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Ricevuto da {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Inviato a {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Bruciato"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Nessun trasferimento trovato — l’explorer ha la cronologia completa."
     }
   },
   "iw": {
@@ -24217,6 +24529,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "זה עדיין לא זמין ברשת זו."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "היסטוריה"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "התקבל מ-{party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "נשלח ל-{party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "נשרף"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "לא נמצאו העברות — ל-Explorer יש את ההיסטוריה המלאה."
     }
   },
   "ja": {
@@ -25947,6 +26283,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "このネットワークではまだ利用できない。"
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "沿革"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "{party} から受信"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "{party} に送信"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "削除済み"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "送金は見つかりませんでした — エクスプローラーには完全な履歴が記録されている。"
     }
   },
   "ko": {
@@ -27677,6 +28037,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "이 네트워크에서는 아직 해당 기능을 사용할 수 없습니다."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "연혁"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "{party}로부터 수신됨"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "{party} 에게 전송됨"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "삭제됨"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "이체 내역이 없습니다 — 익스플로러에는 전체 내역이 기록되어 있습니다."
     }
   },
   "lt": {
@@ -29407,6 +29791,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Tai šiame tinkle dar nėra prieinama."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Istorija"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Gauta iš {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Siųsta {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Sudeginta"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Pervedimų nerasta – naršyklėje yra visa istorija."
     }
   },
   "lv": {
@@ -31137,6 +31545,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Tas šajā tīklā vēl nav pieejams."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Vēsture"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Saņemts no {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Nosūtīts uz {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Izdedzināts"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Pārskaitījumi nav atrasti — pārlūkā ir pieejama pilnā vēsture."
     }
   },
   "nl": {
@@ -32867,6 +33299,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Dat is op dit netwerk nog niet beschikbaar."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Geschiedenis"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Ontvangen van {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Verzonden naar {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Verbrand"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Er zijn geen transacties gevonden — de explorer heeft de volledige geschiedenis."
     }
   },
   "no": {
@@ -34597,6 +35053,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Det er ikke tilgjengelig på dette nettverket ennå."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Historikk"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Mottatt fra {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Sendt til {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Brent"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Ingen overføringer funnet – utforskeren har full historikk."
     }
   },
   "pl": {
@@ -36327,6 +36807,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "To nie jest jeszcze dostępne w tej sieci."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Historia"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Otrzymano od {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Wysłano do {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Spalone"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Nie znaleziono żadnych przelewów — eksplorator zawiera pełną historię."
     }
   },
   "ro": {
@@ -38057,6 +38561,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Această funcție nu este încă disponibilă pe această rețea."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Istoric"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Primit de la {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Trimis către {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Ars"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Nu s-au găsit transferuri — exploratorul are istoricul complet."
     }
   },
   "ru": {
@@ -39787,6 +40315,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Эта функция пока недоступна в этой сети."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "История"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Получено от {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Отправлено {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Удалено"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Переводов не найдено — в блокчейн-браузере есть полная история."
     }
   },
   "sk": {
@@ -41517,6 +42069,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Táto funkcia v tejto sieti zatiaľ nie je k dispozícii."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "História"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Prijaté od {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Odoslané na {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Spálené"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Nenašli sa žiadne prevody – prehliadač obsahuje kompletnú históriu."
     }
   },
   "sl": {
@@ -43247,6 +43823,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "To na tem omrežju še ni na voljo."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Zgodovina"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Prejeto od {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Poslano na {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Zgorelo"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Prenosi niso bili najdeni – raziskovalnik ima celotno zgodovino."
     }
   },
   "sv": {
@@ -44977,6 +45577,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Det finns inte tillgängligt på det här nätverket ännu."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Historik"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Mottaget från {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Skickat till {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Bränd"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Inga överföringar hittades – utforskaren har den fullständiga historiken."
     }
   },
   "tr": {
@@ -46707,6 +47331,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Bu ağda henüz mevcut değildir."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Geçmiş"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "{party}'dan alındı"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "{party} adresine gönderildi"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Yok edildi"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Herhangi bir transfer bulunamadı — gezgin, tüm geçmişi barındırır."
     }
   },
   "uk": {
@@ -48437,6 +49085,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Ця функція у цій мережі поки що недоступна."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Історія"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Отримано від {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Надіслано {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Спалено"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Переказів не знайдено — у блокчейн-експлорері є повна історія транзакцій."
     }
   },
   "vi": {
@@ -50167,6 +50839,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "Tính năng đó hiện vẫn chưa có trên mạng lưới này."
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "Lịch sử"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "Nhận từ {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "Gửi đến {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "Đã xóa"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "Không tìm thấy giao dịch nào — trình khám phá có lịch sử đầy đủ."
     }
   },
   "zh-CN": {
@@ -51897,6 +52593,30 @@
     "errors.unsupportedOnChain": {
       "enHash": "331c3e44d62d8a25",
       "value": "该功能在此网络上尚不可用。"
+    },
+    "nfts.history": {
+      "enHash": "0e76960093379060",
+      "value": "历史"
+    },
+    "nfts.receivedFrom": {
+      "enHash": "d6d4d4c6d7c369f0",
+      "value": "来自 {party}"
+    },
+    "nfts.sentTo": {
+      "enHash": "7ddf2a4d4a16ca35",
+      "value": "已发送至 {party}"
+    },
+    "nfts.minted": {
+      "enHash": "3798b4e02a7b1b66",
+      "value": "Minted"
+    },
+    "nfts.burned": {
+      "enHash": "6d747b334438d2e8",
+      "value": "已销毁"
+    },
+    "nfts.noHistory": {
+      "enHash": "0db340a65cbf741f",
+      "value": "未找到转账记录——区块链浏览器中包含完整的交易历史。"
     }
   }
 }

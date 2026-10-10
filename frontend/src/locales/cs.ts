@@ -566,5 +566,11 @@ export default {
     traits: 'Charakteristické rysy',
     viewOnExplorer: 'Zobrazit v prohlížeči',
     copyTokenId: 'Zkopírujte ID tokenu',
+    history: 'Historie',
+    receivedFrom: 'Přijato od {party}',
+    sentTo: 'Odesláno na {party}',
+    minted: 'Minted',
+    burned: 'Spáleno',
+    noHistory: 'Nebyly nalezeny žádné převody – prohlížeč obsahuje kompletní historii.',
   },
 }

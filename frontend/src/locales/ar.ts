@@ -556,5 +556,11 @@ export default {
     traits: 'السمات',
     viewOnExplorer: 'عرض على المستكشف',
     copyTokenId: 'انسخ معرّف الرمز المميز',
+    history: 'التاريخ',
+    receivedFrom: 'ورد من {party}',
+    sentTo: 'تم إرساله إلى {party}',
+    minted: 'Minted',
+    burned: 'محروق',
+    noHistory: 'لم يتم العثور على أي تحويلات — يحتوي المستكشف على السجل الكامل.',
   },
 }

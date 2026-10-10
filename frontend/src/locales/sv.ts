@@ -567,5 +567,11 @@ export default {
     traits: 'Egenskaper',
     viewOnExplorer: 'Visa i utforskaren',
     copyTokenId: 'Kopiera token-ID:t',
+    history: 'Historik',
+    receivedFrom: 'Mottaget från {party}',
+    sentTo: 'Skickat till {party}',
+    minted: 'Minted',
+    burned: 'Bränd',
+    noHistory: 'Inga överföringar hittades – utforskaren har den fullständiga historiken.',
   },
 }

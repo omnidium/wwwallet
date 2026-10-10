@@ -565,5 +565,11 @@ export default {
     traits: 'Omadused',
     viewOnExplorer: 'Vaata eksploreris',
     copyTokenId: 'Kopeeri tokeni ID',
+    history: 'Ajalugu',
+    receivedFrom: 'Saadud {party}-lt',
+    sentTo: 'Saadetud {party}',
+    minted: 'Minted',
+    burned: 'Põletatud',
+    noHistory: 'Ülekandeid ei leitud – eksploraatoris on kogu ajalugu olemas.',
   },
 }

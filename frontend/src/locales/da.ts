@@ -566,5 +566,11 @@ export default {
     traits: 'Karaktertræk',
     viewOnExplorer: 'Vis i explorer',
     copyTokenId: "Kopier token-ID'et",
+    history: 'Historie',
+    receivedFrom: 'Modtaget fra {party}',
+    sentTo: 'Sendt til {party}',
+    minted: 'Minted',
+    burned: 'Brændt',
+    noHistory: "Der blev ikke fundet nogen overførsler — explorer'en har den fulde historik.",
   },
 }

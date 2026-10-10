@@ -575,5 +575,11 @@ export default {
     traits: 'Características',
     viewOnExplorer: 'Ver en el explorador',
     copyTokenId: 'Copia el ID del token',
+    history: 'Historia',
+    receivedFrom: 'Recibido de {party}',
+    sentTo: 'Enviado a {party}',
+    minted: 'Minted',
+    burned: 'Quemado',
+    noHistory: 'No se han encontrado transferencias; el explorador tiene el historial completo.',
   },
 }

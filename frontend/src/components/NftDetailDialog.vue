@@ -5,10 +5,12 @@ import type { ChainSlug, Nft } from '@/services/api'
 import { useMessagesStore } from '@/stores/messages'
 import { useNftsStore } from '@/stores/nfts'
 import { displayErrorMessage } from '@/services/errors'
-import { nftUrl, tokenUrl } from '@/services/blockExplorer'
+import { nftUrl, tokenUrl, txnUrl } from '@/services/blockExplorer'
 import { truncateAddress } from '@/services/format'
+import { addressDisplayLabel } from '@/services/addressLabel'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import AppTooltip from '@/components/AppTooltip.vue'
+import CircuitSpinner from '@/components/CircuitSpinner.vue'
 
 /**
  * One NFT's details. Everything it says about itself (name, description,
@@ -58,6 +60,42 @@ async function copyTokenId() {
   justCopied.value = true
   setTimeout(() => (justCopied.value = false), 2000)
 }
+
+const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
+
+// Fetched when the dialog opens on an NFT, at most once a session (see the store).
+watch(
+  () => [props.modelValue, props.nft] as const,
+  ([open, nft]) => {
+    if (open && nft) void nfts.ensureTransfers(props.chain, props.address, nft.contract_address, nft.token_id).catch(() => { })
+  },
+  { immediate: true },
+)
+const transfers = computed(() =>
+  props.nft ? nfts.transfersOf(props.chain, props.address, props.nft.contract_address, props.nft.token_id) : undefined,
+)
+const loadingTransfers = computed(
+  () =>
+    !!props.nft && nfts.isLoadingTransfers(props.chain, props.address, props.nft.contract_address, props.nft.token_id),
+)
+const transferRows = computed(() =>
+  (transfers.value ?? []).map((transfer) => {
+    const incoming = transfer.to.toLowerCase() === props.address.toLowerCase()
+    const party = incoming ? transfer.from : transfer.to
+    let label: string
+    if (incoming && party === ZERO_ADDRESS) label = t('nfts.minted')
+    else if (!incoming && party === ZERO_ADDRESS) label = t('nfts.burned')
+    else label = t(incoming ? 'nfts.receivedFrom' : 'nfts.sentTo', { party: addressDisplayLabel(props.chain, party) })
+    return {
+      key: `${transfer.hash}:${transfer.from}:${transfer.to}`,
+      incoming,
+      label,
+      hash: transfer.hash,
+      date: transfer.timestamp ? new Date(transfer.timestamp).toLocaleDateString() : null,
+      amount: props.nft?.token_type === 'ERC1155' ? `×${transfer.amount}` : null,
+    }
+  }),
+)
 
 function toggleHidden() {
   if (!props.nft) return
@@ -130,6 +168,20 @@ function toggleHidden() {
             </div>
           </div>
         </template>
+
+        <p class="text-medium-emphasis mt-3 mb-1">{{ t('nfts.history') }}</p>
+        <div v-if="loadingTransfers && !transfers" class="d-flex justify-center pa-2">
+          <CircuitSpinner :size="22" :label="t('common.loading')" class="text-primary" />
+        </div>
+        <p v-else-if="transferRows.length === 0" class="text-caption text-medium-emphasis">{{ t('nfts.noHistory') }}</p>
+        <a v-for="row in transferRows" :key="row.key" :href="txnUrl(chain, row.hash)" target="_blank"
+          rel="noopener noreferrer" class="nft-transfer d-flex align-center py-1">
+          <v-icon :icon="row.incoming ? 'mdi-arrow-bottom-left' : 'mdi-arrow-top-right'" size="small"
+            :color="row.incoming ? 'success' : undefined" class="mr-2" />
+          <span class="flex-grow-1 text-truncate">{{ row.label }}</span>
+          <span v-if="row.amount" class="ml-2">{{ row.amount }}</span>
+          <span v-if="row.date" class="text-caption text-medium-emphasis ml-2">{{ row.date }}</span>
+        </a>
       </v-card-text>
       <v-card-actions class="flex-wrap">
         <v-btn :href="nftUrl(chain, nft.contract_address, nft.token_id)" target="_blank" rel="noopener noreferrer"

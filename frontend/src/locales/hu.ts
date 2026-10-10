@@ -575,5 +575,11 @@ export default {
     traits: 'Jellemzők',
     viewOnExplorer: 'Megtekintés az explorerben',
     copyTokenId: 'Másolja ki a token azonosítóját',
+    history: 'Történet',
+    receivedFrom: 'Küldte: {party}',
+    sentTo: 'Elküldve: {party}',
+    minted: 'Minted',
+    burned: 'Elégetve',
+    noHistory: 'Nem találtak átutalásokat – a felfedezőben megtalálható a teljes előzmény.',
   },
 }

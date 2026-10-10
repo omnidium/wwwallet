@@ -566,5 +566,11 @@ export default {
     traits: 'Ominaisuudet',
     viewOnExplorer: 'Näytä explorerissa',
     copyTokenId: 'Kopioi tokenin tunnus',
+    history: 'Historia',
+    receivedFrom: 'Vastaanotettu {party}:lta',
+    sentTo: 'Lähetetty {party}',
+    minted: 'Minted',
+    burned: 'Poltettu',
+    noHistory: 'Siirtoja ei löytynyt – explorerissa on täydellinen historia.',
   },
 }

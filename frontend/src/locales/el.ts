@@ -579,5 +579,11 @@ export default {
     traits: 'Χαρακτηριστικά',
     viewOnExplorer: 'Προβολή στον εξερευνητή',
     copyTokenId: 'Αντιγράψτε το αναγνωριστικό του token',
+    history: 'Ιστορικό',
+    receivedFrom: 'Λήφθηκε από {party}',
+    sentTo: 'Αποστέλλεται στο {party}',
+    minted: 'Minted',
+    burned: 'Καμμένα',
+    noHistory: 'Δεν βρέθηκαν μεταφορές — ο εξερευνητής διαθέτει το πλήρες ιστορικό.',
   },
 }

@@ -564,5 +564,11 @@ export default {
     traits: 'Đặc điểm',
     viewOnExplorer: 'Xem trên trình khám phá',
     copyTokenId: 'Sao chép ID token',
+    history: 'Lịch sử',
+    receivedFrom: 'Nhận từ {party}',
+    sentTo: 'Gửi đến {party}',
+    minted: 'Minted',
+    burned: 'Đã xóa',
+    noHistory: 'Không tìm thấy giao dịch nào — trình khám phá có lịch sử đầy đủ.',
   },
 }

@@ -14,6 +14,7 @@ vi.mock('@/services/api', () => ({
   api: {
     nftCollections: vi.fn<typeof api.nftCollections>(),
     nfts: vi.fn<typeof api.nfts>(),
+    nftTransfers: vi.fn<typeof api.nftTransfers>(),
   },
 }))
 const mockedApi = vi.mocked(api)
@@ -142,6 +143,25 @@ describe('nfts store', () => {
       const store = useNftsStore()
       await Promise.all([store.loadCollections(CHAIN, HOLDER), store.loadCollections(CHAIN, HOLDER)])
       expect(mockedApi.nftCollections).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('one NFT\'s history', () => {
+    it('asks for the token id in hex, even one too big for a Number', async () => {
+      mockedApi.nftTransfers.mockResolvedValue([])
+      const tokenId = '115792089237316195423570985008687907853269984665640564039457584007913129639935'
+      await useNftsStore().ensureTransfers(CHAIN, HOLDER, CONTRACT, tokenId)
+      expect(mockedApi.nftTransfers).toHaveBeenCalledWith(CHAIN, HOLDER, CONTRACT, `0x${'f'.repeat(64)}`)
+    })
+
+    it('is fetched once a session, then shown from memory', async () => {
+      const transfer = { hash: '0x1', from: CONTRACT, to: HOLDER, block_number: 1, timestamp: null, amount: '1' }
+      mockedApi.nftTransfers.mockResolvedValue([transfer])
+      const store = useNftsStore()
+      await store.ensureTransfers(CHAIN, HOLDER, CONTRACT, '7')
+      await store.ensureTransfers(CHAIN, HOLDER, CONTRACT, '7')
+      expect(mockedApi.nftTransfers).toHaveBeenCalledTimes(1)
+      expect(store.transfersOf(CHAIN, HOLDER, CONTRACT, '7')).toEqual([transfer])
     })
   })
 

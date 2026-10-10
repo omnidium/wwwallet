@@ -566,5 +566,11 @@ export default {
     traits: 'Značilnosti',
     viewOnExplorer: 'Ogled v raziskovalcu',
     copyTokenId: 'Prepišite ID tokena',
+    history: 'Zgodovina',
+    receivedFrom: 'Prejeto od {party}',
+    sentTo: 'Poslano na {party}',
+    minted: 'Minted',
+    burned: 'Zgorelo',
+    noHistory: 'Prenosi niso bili najdeni – raziskovalnik ima celotno zgodovino.',
   },
 }

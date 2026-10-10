@@ -567,5 +567,11 @@ export default {
     traits: 'Özellikler',
     viewOnExplorer: "Explorer'da görüntüle",
     copyTokenId: 'Token kimliğini kopyalayın',
+    history: 'Geçmiş',
+    receivedFrom: "{party}'dan alındı",
+    sentTo: '{party} adresine gönderildi',
+    minted: 'Minted',
+    burned: 'Yok edildi',
+    noHistory: 'Herhangi bir transfer bulunamadı — gezgin, tüm geçmişi barındırır.',
   },
 }

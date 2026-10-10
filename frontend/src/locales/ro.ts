@@ -575,5 +575,11 @@ export default {
     traits: 'Caracteristici',
     viewOnExplorer: 'Vizualizare în explorator',
     copyTokenId: 'Copiați ID-ul tokenului',
+    history: 'Istoric',
+    receivedFrom: 'Primit de la {party}',
+    sentTo: 'Trimis către {party}',
+    minted: 'Minted',
+    burned: 'Ars',
+    noHistory: 'Nu s-au găsit transferuri — exploratorul are istoricul complet.',
   },
 }

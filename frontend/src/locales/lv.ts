@@ -568,5 +568,11 @@ export default {
     traits: 'Raksturīgās iezīmes',
     viewOnExplorer: 'Skatīt eksploratorā',
     copyTokenId: 'Kopējiet žetona ID',
+    history: 'Vēsture',
+    receivedFrom: 'Saņemts no {party}',
+    sentTo: 'Nosūtīts uz {party}',
+    minted: 'Minted',
+    burned: 'Izdedzināts',
+    noHistory: 'Pārskaitījumi nav atrasti — pārlūkā ir pieejama pilnā vēsture.',
   },
 }

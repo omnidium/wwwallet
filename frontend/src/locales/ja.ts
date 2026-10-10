@@ -562,5 +562,11 @@ export default {
     traits: '特徴',
     viewOnExplorer: 'エクスプローラーで表示',
     copyTokenId: 'トークンIDをコピーする',
+    history: '沿革',
+    receivedFrom: '{party} から受信',
+    sentTo: '{party} に送信',
+    minted: 'Minted',
+    burned: '削除済み',
+    noHistory: '送金は見つかりませんでした — エクスプローラーには完全な履歴が記録されている。',
   },
 }

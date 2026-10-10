@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, type Ref } from 'vue'
-import { api, type ChainSlug, type Nft, type NftCollection } from '@/services/api'
+import { api, type ChainSlug, type Nft, type NftCollection, type NftTransfer } from '@/services/api'
 import { getPrivate, isCacheUnlocked, putPrivate } from '@/services/secureCache'
 import { NFT_REFRESH_MS } from '@/config/appSettings'
 import { useVaultStore } from '@/stores/vault'
@@ -10,6 +10,8 @@ import { useVaultStore } from '@/stores/vault'
 // than all at unlock: most sessions never open an NFT gallery.
 const COLLECTIONS_PREFIX = 'nft-collections:'
 const NFTS_PREFIX = 'nfts:'
+// One NFT's transfers to and from an account, keyed `${keyFor}:${contract}:${tokenId}`.
+const TRANSFERS_PREFIX = 'nft-transfers:'
 
 /**
  * The user's own calls on what to show, overriding the spam guess: keys are
@@ -56,12 +58,15 @@ export const useNftsStore = defineStore('nfts', () => {
   const collectionsByAccount = ref<Record<string, Paged<NftCollection>>>({})
   // Keyed by `${keyFor}:${contract}`.
   const nftsByCollection = ref<Record<string, Paged<Nft>>>({})
+  const transfersByNft = ref<Record<string, NftTransfer[]>>({})
   const hidden = ref(new Set<string>())
   const shown = ref(new Set<string>())
   const loadingKeys = ref(new Set<string>())
   // Not refs: bookkeeping, never read reactively.
   const lookedUp = new Set<string>()
   const inFlight = new Map<string, Promise<void>>()
+  // Transfer lists fetched this session: shown from the cache after that.
+  const transfersFetched = new Set<string>()
 
   function accountKey(chain: ChainSlug, address: string): string {
     return `${chain}:${address.toLowerCase()}`
@@ -158,6 +163,30 @@ export const useNftsStore = defineStore('nfts', () => {
     )
   }
 
+  /**
+   * One NFT's history on an account: the cached list straight away, then
+   * fetched once a session — a token rarely moves, and each lookup is two
+   * calls the backend pays for.
+   */
+  async function ensureTransfers(chain: ChainSlug, address: string, contract: string, tokenId: string): Promise<void> {
+    const key = `${holdingKey(chain, address, contract)}:${tokenId}`
+    await readCached(transfersByNft, TRANSFERS_PREFIX, key)
+    if (transfersFetched.has(key)) return
+    await once(`transfers:${key}`, async () => {
+      const transfers = await api.nftTransfers(chain, address, contract, `0x${BigInt(tokenId).toString(16)}`)
+      transfersFetched.add(key)
+      remember(transfersByNft, TRANSFERS_PREFIX, key, transfers)
+    })
+  }
+
+  function transfersOf(chain: ChainSlug, address: string, contract: string, tokenId: string): NftTransfer[] | undefined {
+    return transfersByNft.value[`${holdingKey(chain, address, contract)}:${tokenId}`]
+  }
+
+  function isLoadingTransfers(chain: ChainSlug, address: string, contract: string, tokenId: string): boolean {
+    return loadingKeys.value.has(`transfers:${holdingKey(chain, address, contract)}:${tokenId}`)
+  }
+
   /** Brings what's cached for an account's collections into memory, without fetching. */
   function readCachedCollections(chain: ChainSlug, address: string): Promise<void> {
     return readCached(collectionsByAccount, COLLECTIONS_PREFIX, accountKey(chain, address))
@@ -252,6 +281,8 @@ export const useNftsStore = defineStore('nfts', () => {
   function clearPersonalData() {
     collectionsByAccount.value = {}
     nftsByCollection.value = {}
+    transfersByNft.value = {}
+    transfersFetched.clear()
     hidden.value = new Set()
     shown.value = new Set()
     loadingKeys.value = new Set()
@@ -264,6 +295,9 @@ export const useNftsStore = defineStore('nfts', () => {
     nftsByCollection,
     loadCollections,
     loadNfts,
+    ensureTransfers,
+    transfersOf,
+    isLoadingTransfers,
     readCachedCollections,
     collectionsOf,
     nftsOf,

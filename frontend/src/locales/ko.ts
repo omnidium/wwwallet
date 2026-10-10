@@ -563,5 +563,11 @@ export default {
     traits: '특징',
     viewOnExplorer: '블록체인 탐색기에서 보기',
     copyTokenId: '토큰 ID를 복사하세요',
+    history: '연혁',
+    receivedFrom: '{party}로부터 수신됨',
+    sentTo: '{party} 에게 전송됨',
+    minted: 'Minted',
+    burned: '삭제됨',
+    noHistory: '이체 내역이 없습니다 — 익스플로러에는 전체 내역이 기록되어 있습니다.',
   },
 }

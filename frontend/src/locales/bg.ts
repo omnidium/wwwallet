@@ -571,5 +571,11 @@ export default {
     traits: 'Характеристики',
     viewOnExplorer: 'Преглед в експлорера',
     copyTokenId: 'Копирайте идентификатора на токена',
+    history: 'История',
+    receivedFrom: 'Получено от {party}',
+    sentTo: 'Изпратено до {party}',
+    minted: 'Minted',
+    burned: 'Изгорено',
+    noHistory: 'Не са открити преводи — експлорърът разполага с пълната история.',
   },
 }

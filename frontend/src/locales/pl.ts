@@ -566,5 +566,11 @@ export default {
     traits: 'Cechy',
     viewOnExplorer: 'Zobacz w eksploratorze',
     copyTokenId: 'Skopiuj identyfikator tokenu',
+    history: 'Historia',
+    receivedFrom: 'Otrzymano od {party}',
+    sentTo: 'Wysłano do {party}',
+    minted: 'Minted',
+    burned: 'Spalone',
+    noHistory: 'Nie znaleziono żadnych przelewów — eksplorator zawiera pełną historię.',
   },
 }
