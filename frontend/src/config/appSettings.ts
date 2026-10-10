@@ -95,3 +95,10 @@ export const UNLOCK_PASSWORD_MIN_LENGTH = 12
  * never seen holding any is only checked when its NFTs are opened.
  */
 export const NFT_REFRESH_MS = 60 * 60_000
+
+/**
+ * How long an NFT just sent from an account stays marked as sending — the
+ * provider's index of who holds what can lag a mined transfer by minutes.
+ * The mark goes sooner once a refresh no longer lists the NFT there.
+ */
+export const NFT_SENT_MARKER_MS = 30 * 60_000

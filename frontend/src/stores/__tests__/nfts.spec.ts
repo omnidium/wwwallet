@@ -4,7 +4,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { api, type Nft, type NftCollection } from '@/services/api'
 import { importAesKey } from '@/crypto/aesGcm'
 import { clearCache, flushCacheWrites, lockCache, unlockCache } from '@/services/secureCache'
-import { NFT_REFRESH_MS } from '@/config/appSettings'
+import { NFT_REFRESH_MS, NFT_SENT_MARKER_MS } from '@/config/appSettings'
 import { looksLikeSpam, useNftsStore } from '../nfts'
 
 const persist = vi.fn<() => Promise<void>>()
@@ -162,6 +162,41 @@ describe('nfts store', () => {
       await store.ensureTransfers(CHAIN, HOLDER, CONTRACT, '7')
       expect(mockedApi.nftTransfers).toHaveBeenCalledTimes(1)
       expect(store.transfersOf(CHAIN, HOLDER, CONTRACT, '7')).toEqual([transfer])
+    })
+  })
+
+  describe('an NFT on its way out', () => {
+    it('shows as sending until a refresh no longer lists it', async () => {
+      mockedApi.nfts
+        .mockResolvedValueOnce({ nfts: [nft('1'), nft('2')], next_page_key: null })
+        .mockResolvedValueOnce({ nfts: [nft('1'), nft('2')], next_page_key: null })
+        .mockResolvedValueOnce({ nfts: [nft('2')], next_page_key: null })
+      const store = useNftsStore()
+      await store.loadNfts(CHAIN, HOLDER, CONTRACT)
+      await store.markSent(CHAIN, HOLDER, nft('1'))
+      expect(store.isSending(CHAIN, HOLDER, nft('1'))).toBe(true)
+      expect(store.isSending(CHAIN, HOLDER, nft('2'))).toBe(false)
+
+      // The provider still lists it for a while after the transfer is mined.
+      await store.loadNfts(CHAIN, HOLDER, CONTRACT)
+      expect(store.isSending(CHAIN, HOLDER, nft('1'))).toBe(true)
+
+      await store.loadNfts(CHAIN, HOLDER, CONTRACT)
+      expect(store.isSending(CHAIN, HOLDER, nft('1'))).toBe(false)
+    })
+
+    it('stops showing as sending once its time is up, or if the send failed', async () => {
+      const now = Date.now()
+      vi.spyOn(Date, 'now').mockReturnValue(now)
+      const store = useNftsStore()
+      await store.markSent(CHAIN, HOLDER, nft('1'))
+      vi.mocked(Date.now).mockReturnValue(now + NFT_SENT_MARKER_MS + 1)
+      expect(store.isSending(CHAIN, HOLDER, nft('1'))).toBe(false)
+      vi.mocked(Date.now).mockRestore()
+
+      await store.markSent(CHAIN, HOLDER, nft('2'))
+      store.unmarkSent(CHAIN, HOLDER, nft('2'))
+      expect(store.isSending(CHAIN, HOLDER, nft('2'))).toBe(false)
     })
   })
 

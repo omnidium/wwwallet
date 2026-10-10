@@ -569,5 +569,15 @@ export default {
     minted: 'Minted',
     burned: '삭제됨',
     noHistory: '이체 내역이 없습니다 — 익스플로러에는 전체 내역이 기록되어 있습니다.',
+    nft: 'NFT',
+    send: '보내기',
+    sendTitle: 'NFT 전송',
+    sending: '전송 중…',
+    held: '{count} 보유',
+    invalidQuantity: '1부터 {count}까지의 정수를 입력하세요.',
+    sameAccount: '해당 계좌에 자금이 입금되어 있습니다. 다른 수취인을 선택해 주세요.',
+    cannotSend:
+      '해당 주소로는 전송할 수 없습니다. 수신자가 NFT를 수락하지 않을 수도 있고, 해당 계정에 더 이상 NFT가 남아 있지 않을 수도 있습니다.',
+    notSendable: '이 NFT는 wwwallet에서 보낼 수 있는 표준 방식을 사용하지 않습니다.',
   },
 }

@@ -572,5 +572,15 @@ export default {
     minted: 'Minted',
     burned: 'Brændt',
     noHistory: "Der blev ikke fundet nogen overførsler — explorer'en har den fulde historik.",
+    nft: 'NFT',
+    send: 'Send',
+    sendTitle: 'Send NFT',
+    sending: 'Sender…',
+    held: '{count} holdt',
+    invalidQuantity: 'Indtast et heltal mellem 1 og {count}.',
+    sameAccount: 'Det er den konto, den ligger på — vælg en anden modtager.',
+    cannotSend:
+      "Det kan ikke sendes til den adresse — modtageren accepterer muligvis ikke NFT'er, eller denne konto indeholder det ikke længere.",
+    notSendable: 'Denne NFT bruger ikke en standard wwwallet, der kan sende.',
   },
 }

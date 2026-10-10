@@ -575,5 +575,15 @@ export default {
     minted: 'Minted',
     burned: 'Sudeginta',
     noHistory: 'Pervedimų nerasta – naršyklėje yra visa istorija.',
+    nft: 'NFT',
+    send: 'Siųsti',
+    sendTitle: 'Siųsti NFT',
+    sending: 'Siunčiama…',
+    held: '{count} išlaikyta',
+    invalidQuantity: 'Įveskite sveiką skaičių nuo 1 iki {count}.',
+    sameAccount: 'Tai sąskaita, kurioje yra lėšos – pasirinkite kitą gavėją.',
+    cannotSend:
+      'To negalima siųsti į tą adresą – gavėjas gali nepriimti NFT arba šioje sąskaitoje jų jau nebėra.',
+    notSendable: 'Šis NFT nenaudoja standartinio „wwwallet“ siuntimo.',
   },
 }

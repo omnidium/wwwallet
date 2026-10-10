@@ -432,6 +432,16 @@ export const frontendEn = {
     minted: 'Minted',
     burned: 'Burned',
     noHistory: 'No transfers found — the explorer has its full history.',
+    nft: 'NFT',
+    send: 'Send',
+    sendTitle: 'Send NFT',
+    sending: 'Sending…',
+    held: '{count} held',
+    invalidQuantity: 'Enter a whole number from 1 to {count}.',
+    sameAccount: "That's the account it's in — choose another recipient.",
+    cannotSend:
+      "It can't be sent to that address — the recipient may not accept NFTs, or this account no longer holds it.",
+    notSendable: "This NFT doesn't use a standard wwwallet can send.",
   },
   qrScanner: {
     title: 'Scan address QR code',

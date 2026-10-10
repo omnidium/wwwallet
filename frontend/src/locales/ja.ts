@@ -568,5 +568,15 @@ export default {
     minted: 'Minted',
     burned: '削除済み',
     noHistory: '送金は見つかりませんでした — エクスプローラーには完全な履歴が記録されている。',
+    nft: 'NFT',
+    send: '送信',
+    sendTitle: 'NFTを送信する',
+    sending: '送信中…',
+    held: '{count} 保持',
+    invalidQuantity: '1 から {count} までの整数を入力する。',
+    sameAccount: 'そのアカウントにはすでに資金が入っているため、別の受取人を選択してください。',
+    cannotSend:
+      'そのアドレスには送信できない。受信者がNFTを受け付けないか、そのアカウントにNFTがもうない可能性があるからだ。',
+    notSendable: 'このNFTは、wwwalletが送信できる標準的な機能を使用していない。',
   },
 }

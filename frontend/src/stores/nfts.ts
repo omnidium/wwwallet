@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, type Ref } from 'vue'
 import { api, type ChainSlug, type Nft, type NftCollection, type NftTransfer } from '@/services/api'
 import { getPrivate, isCacheUnlocked, putPrivate } from '@/services/secureCache'
-import { NFT_REFRESH_MS } from '@/config/appSettings'
+import { NFT_REFRESH_MS, NFT_SENT_MARKER_MS } from '@/config/appSettings'
 import { useVaultStore } from '@/stores/vault'
 
 // Cached like chainData's personal data (encrypted, see
@@ -12,6 +12,9 @@ const COLLECTIONS_PREFIX = 'nft-collections:'
 const NFTS_PREFIX = 'nfts:'
 // One NFT's transfers to and from an account, keyed `${keyFor}:${contract}:${tokenId}`.
 const TRANSFERS_PREFIX = 'nft-transfers:'
+// When each NFT was sent from an account, keyed by keyFor, then
+// `${contract}:${tokenId}` — see markSent.
+const SENT_PREFIX = 'nft-sent:'
 
 /**
  * The user's own calls on what to show, overriding the spam guess: keys are
@@ -59,6 +62,7 @@ export const useNftsStore = defineStore('nfts', () => {
   // Keyed by `${keyFor}:${contract}`.
   const nftsByCollection = ref<Record<string, Paged<Nft>>>({})
   const transfersByNft = ref<Record<string, NftTransfer[]>>({})
+  const sentByAccount = ref<Record<string, Record<string, number>>>({})
   const hidden = ref(new Set<string>())
   const shown = ref(new Set<string>())
   const loadingKeys = ref(new Set<string>())
@@ -148,8 +152,8 @@ export const useNftsStore = defineStore('nfts', () => {
 
   function loadNfts(chain: ChainSlug, address: string, contract: string, { more = false } = {}): Promise<void> {
     const key = holdingKey(chain, address, contract)
-    return once(`nfts:${key}:${more}`, () =>
-      loadPaged(
+    return once(`nfts:${key}:${more}`, async () => {
+      await loadPaged(
         nftsByCollection,
         NFTS_PREFIX,
         key,
@@ -159,8 +163,55 @@ export const useNftsStore = defineStore('nfts', () => {
         },
         (n) => n.token_id,
         more,
+      )
+      if (!more) await forgetDeliveredSends(chain, address, contract)
+    })
+  }
+
+  /**
+   * Marks an NFT as on its way out of an account. The provider can go on
+   * listing it there for a while after the transfer is mined, and it
+   * shouldn't look as if it could be sent again meanwhile.
+   */
+  async function markSent(chain: ChainSlug, address: string, nft: Nft): Promise<void> {
+    const key = accountKey(chain, address)
+    await readCached(sentByAccount, SENT_PREFIX, key)
+    const sent = { ...sentByAccount.value[key], [`${nft.contract_address.toLowerCase()}:${nft.token_id}`]: Date.now() }
+    remember(sentByAccount, SENT_PREFIX, key, sent)
+  }
+
+  /** For a send that failed: the NFT never left. */
+  function unmarkSent(chain: ChainSlug, address: string, nft: Nft) {
+    const key = accountKey(chain, address)
+    const sent = { ...sentByAccount.value[key] }
+    delete sent[`${nft.contract_address.toLowerCase()}:${nft.token_id}`]
+    remember(sentByAccount, SENT_PREFIX, key, sent)
+  }
+
+  function isSending(chain: ChainSlug, address: string, nft: Nft): boolean {
+    const at = sentByAccount.value[accountKey(chain, address)]?.[`${nft.contract_address.toLowerCase()}:${nft.token_id}`]
+    return at !== undefined && Date.now() - at < NFT_SENT_MARKER_MS
+  }
+
+  /** Brings an account's sent marks into memory from the cache. */
+  function readCachedSends(chain: ChainSlug, address: string): Promise<void> {
+    return readCached(sentByAccount, SENT_PREFIX, accountKey(chain, address))
+  }
+
+  /** Drops the marks of a collection's NFTs a fresh listing no longer has, and any past their time. */
+  async function forgetDeliveredSends(chain: ChainSlug, address: string, contract: string): Promise<void> {
+    const key = accountKey(chain, address)
+    await readCached(sentByAccount, SENT_PREFIX, key)
+    const sent = sentByAccount.value[key]
+    const listed = nftsOf(chain, address, contract)
+    if (!sent || !listed) return
+    const held = new Set(listed.items.map((n) => `${contract.toLowerCase()}:${n.token_id}`))
+    const kept = Object.fromEntries(
+      Object.entries(sent).filter(
+        ([id, at]) => Date.now() - at < NFT_SENT_MARKER_MS && (!id.startsWith(`${contract.toLowerCase()}:`) || held.has(id)),
       ),
     )
+    if (Object.keys(kept).length !== Object.keys(sent).length) remember(sentByAccount, SENT_PREFIX, key, kept)
   }
 
   /**
@@ -283,6 +334,7 @@ export const useNftsStore = defineStore('nfts', () => {
     nftsByCollection.value = {}
     transfersByNft.value = {}
     transfersFetched.clear()
+    sentByAccount.value = {}
     hidden.value = new Set()
     shown.value = new Set()
     loadingKeys.value = new Set()
@@ -297,6 +349,10 @@ export const useNftsStore = defineStore('nfts', () => {
     loadNfts,
     ensureTransfers,
     transfersOf,
+    markSent,
+    unmarkSent,
+    isSending,
+    readCachedSends,
     isLoadingTransfers,
     readCachedCollections,
     collectionsOf,

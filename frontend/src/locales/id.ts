@@ -580,5 +580,15 @@ export default {
     minted: 'Minted',
     burned: 'Telah dihapus',
     noHistory: 'Tidak ditemukan transfer — penjelajah memiliki riwayat lengkapnya.',
+    nft: 'NFT',
+    send: 'Kirim',
+    sendTitle: 'Kirim NFT',
+    sending: 'Mengirim…',
+    held: '{count} disimpan',
+    invalidQuantity: 'Masukkan bilangan bulat dari 1 hingga {count}.',
+    sameAccount: 'Itu adalah akun tempat dana tersebut berada — pilih penerima lain.',
+    cannotSend:
+      'NFT tersebut tidak dapat dikirim ke alamat tersebut — penerima mungkin tidak menerima NFT, atau akun ini tidak lagi menyimpannya.',
+    notSendable: 'NFT ini tidak menggunakan fitur standar wwwallet untuk mengirim.',
   },
 }

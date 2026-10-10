@@ -46,6 +46,7 @@ watch(
   async () => {
     showHidden.value = false
     void nfts.readCachedCollections(chain.value, address.value)
+    void nfts.readCachedSends(chain.value, address.value)
     try {
       await nfts.loadNfts(chain.value, address.value, contract.value)
     } catch (err) {
@@ -78,7 +79,8 @@ function tileTitle(nft: Nft): string {
   return nft.name ?? `#${nft.token_id.length > 12 ? `${nft.token_id.slice(0, 10)}…` : nft.token_id}`
 }
 
-function balanceBadge(nft: Nft): string | undefined {
+function tileBadge(nft: Nft): string | undefined {
+  if (nfts.isSending(chain.value, address.value, nft)) return t('nfts.sending')
   return nft.balance !== '1' ? `×${nft.balance}` : undefined
 }
 
@@ -124,7 +126,8 @@ function open(nft: Nft) {
     <div ref="gridEl" class="nft-grid-scroll">
       <div v-if="shownNfts.length > 0" class="nft-grid">
         <NftTile v-for="nft in shownNfts" :key="nft.token_id" :image-url="nft.image.thumbnail" :title="tileTitle(nft)"
-          :badge="balanceBadge(nft)" :dimmed="nfts.isNftHidden(chain, nft)" @select="open(nft)" />
+          :badge="tileBadge(nft)" :dimmed="nfts.isNftHidden(chain, nft) || nfts.isSending(chain, address, nft)"
+          @select="open(nft)" />
       </div>
       <div v-if="(loading && !page) || loadingMore" class="d-flex justify-center pa-4">
         <CircuitSpinner :size="22" :label="t('common.loading')" class="text-primary" />

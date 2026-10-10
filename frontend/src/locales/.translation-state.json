@@ -1751,6 +1751,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "No se han encontrado transferencias; el explorador tiene el historial completo."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Enviar"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Enviar NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Enviando…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} retenido"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Introduce un número entero del 1 al {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Esa es la cuenta en la que está; elige otro destinatario."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "No se puede enviar a esa dirección: puede que el destinatario no acepte NFT o que esta cuenta ya no la tenga."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Este NFT no utiliza una frase de recuperación estándar que wwwallet pueda enviar."
     }
   },
   "ar": {
@@ -3505,6 +3541,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "لم يتم العثور على أي تحويلات — يحتوي المستكشف على السجل الكامل."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "إرسال"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "إرسال NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "جاري الإرسال…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} تم الاحتفاظ بها"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "أدخل عددًا صحيحًا من 1 إلى {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "هذا هو الحساب الذي توجد فيه الأموال — اختر مستلمًا آخر."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "لا يمكن إرسالها إلى هذا العنوان — فقد لا يقبل المستلم NFTs، أو أن هذا الحساب لم يعد يحتفظ بها."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "لا تستخدم هذه الـ NFT ميزة الإرسال القياسية في wwwallet."
     }
   },
   "bg": {
@@ -5259,6 +5331,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Не са открити преводи — експлорърът разполага с пълната история."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Изпрати"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Изпратете NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Изпращане…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} задържано"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Въведете цяло число от 1 до {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Това е акаунтът, в който се намира — изберете друг получател."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Не може да бъде изпратено на този адрес — получателят може да не приема NFT-та или този акаунт вече не го притежава."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Този NFT не използва стандартната функция за изпращане на wwwallet."
     }
   },
   "cs": {
@@ -7013,6 +7121,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Nebyly nalezeny žádné převody – prohlížeč obsahuje kompletní historii."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Odeslat"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Odeslat NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Odesílám…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} zadrženo"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Zadejte celé číslo od 1 do {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Na tomto účtu se prostředky nacházejí – vyberte jiného příjemce."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Na tuto adresu to nelze odeslat – příjemce možná NFT nepřijímá, nebo tento účet již NFT neobsahuje."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Tento NFT nepoužívá standardní wwwallet, který lze odeslat."
     }
   },
   "da": {
@@ -8767,6 +8911,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Der blev ikke fundet nogen overførsler — explorer'en har den fulde historik."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Send"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Send NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Sender…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} holdt"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Indtast et heltal mellem 1 og {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Det er den konto, den ligger på — vælg en anden modtager."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Det kan ikke sendes til den adresse — modtageren accepterer muligvis ikke NFT'er, eller denne konto indeholder det ikke længere."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Denne NFT bruger ikke en standard wwwallet, der kan sende."
     }
   },
   "de": {
@@ -10521,6 +10701,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Keine Transaktionen gefunden – der Explorer enthält den vollständigen Verlauf."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Senden"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "NFT senden"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Sende…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} gehalten"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Gib eine ganze Zahl zwischen 1 und {count} ein."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Das ist das Konto, auf dem es sich befindet – wähle einen anderen Empfänger."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Es kann nicht an diese Adresse gesendet werden – der Empfänger akzeptiert möglicherweise keine NFTs oder dieses Konto verfügt nicht mehr darüber."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Dieses NFT nutzt keine Standard-Wallet, die wwwallet versenden kann."
     }
   },
   "el": {
@@ -12275,6 +12491,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Δεν βρέθηκαν μεταφορές — ο εξερευνητής διαθέτει το πλήρες ιστορικό."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Αποστολή"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Αποστολή NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Αποστολή…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} κρατήθηκε"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Εισάγετε έναν ακέραιο αριθμό από το 1 έως το {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Αυτός είναι ο λογαριασμός στον οποίο βρίσκεται — επιλέξτε άλλο παραλήπτη."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Δεν μπορεί να σταλεί σε αυτή τη διεύθυνση — ο παραλήπτης ενδέχεται να μην δέχεται NFT ή ο λογαριασμός αυτός να μην τα διατηρεί πλέον."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Αυτό το NFT δεν χρησιμοποιεί ένα τυπικό wwwallet που μπορεί να στείλει."
     }
   },
   "et": {
@@ -14029,6 +14281,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Ülekandeid ei leitud – eksploraatoris on kogu ajalugu olemas."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Saada"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Saada NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Saadan…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} hoiti"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Sisestage täisarv vahemikus 1 kuni {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "See on konto, millel see asub – vali teine saaja."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Seda ei saa sellele aadressile saata – vastuvõtja ei pruugi NFT-sid vastu võtta või sellel kontol ei ole neid enam."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "See NFT ei kasuta standardset wwwallet-i saatmisfunktsiooni."
     }
   },
   "fi": {
@@ -15783,6 +16071,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Siirtoja ei löytynyt – explorerissa on täydellinen historia."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Lähetä"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Lähetä NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Lähetetään…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} pidetty"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Syötä kokonaisluku väliltä 1–{count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Se on tili, jolla se on – valitse toinen vastaanottaja."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Sitä ei voi lähettää kyseiseen osoitteeseen – vastaanottaja ei ehkä hyväksy NFT:itä, tai tällä tilillä ei enää ole niitä."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Tämä NFT ei käytä tavallista wwwallet-lähetystä."
     }
   },
   "fr": {
@@ -17537,6 +17861,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Aucun transfert trouvé — l’explorateur dispose de l’historique complet."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Envoyer"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Envoyer un NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Envoi…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} conservé"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Saisis un nombre entier compris entre 1 et {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "C'est le compte sur lequel se trouve le montant — choisis un autre destinataire."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Ça ne peut pas être envoyé à cette adresse : soit le destinataire n'accepte pas les NFT, soit ce compte ne les contient plus."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Ce NFT n'utilise pas la fonction standard d'envoi de wwwallet."
     }
   },
   "hu": {
@@ -19291,6 +19651,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Nem találtak átutalásokat – a felfedezőben megtalálható a teljes előzmény."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Küldés"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "NFT küldése"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Küldés…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} tartva"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Írjon be egy 1 és {count} közötti egész számot."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Ez az a fiók, amelyben a pénz van – válasszon másik címzettet."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Nem lehet elküldeni arra a címre – előfordulhat, hogy a címzett nem fogad el NFT-ket, vagy ez a fiók már nem rendelkezik vele."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Ez az NFT nem használja a wwwallet által küldhető szabványos kifejezéseket."
     }
   },
   "id": {
@@ -21045,6 +21441,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Tidak ditemukan transfer — penjelajah memiliki riwayat lengkapnya."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Kirim"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Kirim NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Mengirim…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} disimpan"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Masukkan bilangan bulat dari 1 hingga {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Itu adalah akun tempat dana tersebut berada — pilih penerima lain."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "NFT tersebut tidak dapat dikirim ke alamat tersebut — penerima mungkin tidak menerima NFT, atau akun ini tidak lagi menyimpannya."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "NFT ini tidak menggunakan fitur standar wwwallet untuk mengirim."
     }
   },
   "it": {
@@ -22799,6 +23231,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Nessun trasferimento trovato — l’explorer ha la cronologia completa."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Invia"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Invia NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Invio in corso…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} conservato"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Inserisci un numero intero compreso tra 1 e {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "È l’account in cui si trova — scegli un altro destinatario."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Non è possibile inviarlo a quell’indirizzo: il destinatario potrebbe non accettare gli NFT, oppure quell’account non lo contiene più."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Questo NFT non utilizza una funzione standard di invio di wwwallet."
     }
   },
   "iw": {
@@ -24553,6 +25021,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "לא נמצאו העברות — ל-Explorer יש את ההיסטוריה המלאה."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "שלח"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "שלח NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "שולח…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} הוחזק"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "הזינו מספר שלם בין 1 ל-{count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "זה החשבון שבו הכסף נמצא — בחרו נמען אחר."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "לא ניתן לשלוח את זה לכתובת הזו — ייתכן שהנמען אינו מקבל NFTs, או שהחשבון הזה כבר לא מחזיק בו."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "NFT זה אינו משתמש ב-wwwallet סטנדרטי שניתן לשלוח."
     }
   },
   "ja": {
@@ -26307,6 +26811,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "送金は見つかりませんでした — エクスプローラーには完全な履歴が記録されている。"
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "送信"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "NFTを送信する"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "送信中…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} 保持"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "1 から {count} までの整数を入力する。"
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "そのアカウントにはすでに資金が入っているため、別の受取人を選択してください。"
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "そのアドレスには送信できない。受信者がNFTを受け付けないか、そのアカウントにNFTがもうない可能性があるからだ。"
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "このNFTは、wwwalletが送信できる標準的な機能を使用していない。"
     }
   },
   "ko": {
@@ -28061,6 +28601,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "이체 내역이 없습니다 — 익스플로러에는 전체 내역이 기록되어 있습니다."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "보내기"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "NFT 전송"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "전송 중…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} 보유"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "1부터 {count}까지의 정수를 입력하세요."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "해당 계좌에 자금이 입금되어 있습니다. 다른 수취인을 선택해 주세요."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "해당 주소로는 전송할 수 없습니다. 수신자가 NFT를 수락하지 않을 수도 있고, 해당 계정에 더 이상 NFT가 남아 있지 않을 수도 있습니다."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "이 NFT는 wwwallet에서 보낼 수 있는 표준 방식을 사용하지 않습니다."
     }
   },
   "lt": {
@@ -29815,6 +30391,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Pervedimų nerasta – naršyklėje yra visa istorija."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Siųsti"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Siųsti NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Siunčiama…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} išlaikyta"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Įveskite sveiką skaičių nuo 1 iki {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Tai sąskaita, kurioje yra lėšos – pasirinkite kitą gavėją."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "To negalima siųsti į tą adresą – gavėjas gali nepriimti NFT arba šioje sąskaitoje jų jau nebėra."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Šis NFT nenaudoja standartinio „wwwallet“ siuntimo."
     }
   },
   "lv": {
@@ -31569,6 +32181,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Pārskaitījumi nav atrasti — pārlūkā ir pieejama pilnā vēsture."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Nosūtīt"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Nosūtiet NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Sūtīšana…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} saglabāts"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Ievadiet veselu skaitli no 1 līdz {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Nauda atrodas šajā kontā — izvēlieties citu saņēmēju."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "To nevar nosūtīt uz šo adresi — saņēmējs var nepieņemt NFT, vai arī šajā kontā vairs nav šīs summas."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Šis NFT neizmanto standarta wwwallet sūtīšanas funkciju."
     }
   },
   "nl": {
@@ -33323,6 +33971,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Er zijn geen transacties gevonden — de explorer heeft de volledige geschiedenis."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Verzenden"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Stuur NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Bezig met verzenden…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} bewaard"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Voer een geheel getal in tussen 1 en {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Dat is de rekening waar het op staat — kies een andere ontvanger."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Het kan niet naar dat adres worden gestuurd — de ontvanger accepteert mogelijk geen NFT’s, of dit account bevat het niet meer."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Deze NFT maakt geen gebruik van een standaard wwwallet-verzendfunctie."
     }
   },
   "no": {
@@ -35077,6 +35761,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Ingen overføringer funnet – utforskeren har full historikk."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Send"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Send NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Sender…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} holdt"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Skriv inn et heltall mellom 1 og {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Det er kontoen den ligger på – velg en annen mottaker."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Det kan ikke sendes til den adressen – mottakeren godtar kanskje ikke NFT-er, eller denne kontoen har ikke lenger midlene."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Denne NFT-en bruker ikke en standard wwwallet-funksjon for sending."
     }
   },
   "pl": {
@@ -36831,6 +37551,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Nie znaleziono żadnych przelewów — eksplorator zawiera pełną historię."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Wyślij"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Wyślij NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Wysyłam…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} wstrzymane"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Wpisz liczbę całkowitą od 1 do {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "To jest konto, na którym się znajdują — wybierz innego odbiorcę."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Nie da się tego wysłać na ten adres – odbiorca może nie akceptować NFT albo na tym koncie już ich nie ma."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Ten NFT nie korzysta ze standardowej funkcji wysyłania w wwwallet."
     }
   },
   "ro": {
@@ -38585,6 +39341,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Nu s-au găsit transferuri — exploratorul are istoricul complet."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Trimite"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Trimite NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Se trimite…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} deținut"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Introduceți un număr întreg de la 1 la {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Acesta este contul în care se află — alegeți un alt destinatar."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Nu poate fi trimis la acea adresă — este posibil ca destinatarul să nu accepte NFT-uri sau ca acest cont să nu mai dețină adresa respectivă."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Acest NFT nu utilizează o funcție standard de trimitere a wwwallet."
     }
   },
   "ru": {
@@ -40339,6 +41131,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Переводов не найдено — в блокчейн-браузере есть полная история."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Отправить"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Отправить NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Отправляю…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} сохранено"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Введи целое число от 1 до {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Деньги находятся на этом аккаунте — выбери другого получателя."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "На этот адрес отправить нельзя — получатель может не принимать NFT, или на этом аккаунте их больше нет."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Этот NFT не использует стандартную функцию отправки wwwallet."
     }
   },
   "sk": {
@@ -42093,6 +42921,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Nenašli sa žiadne prevody – prehliadač obsahuje kompletnú históriu."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Odoslať"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Odoslať NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Odosielam…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} zadržané"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Zadajte celé číslo od 1 do {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "To je účet, na ktorom sa nachádza – vyberte si iného príjemcu."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Na túto adresu to nie je možné poslať – príjemca nemusí prijímať NFT alebo tento účet už NFT neobsahuje."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Tento NFT nepoužíva štandardnú funkciu odosielania, ktorú ponúka wwwallet."
     }
   },
   "sl": {
@@ -43847,6 +44711,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Prenosi niso bili najdeni – raziskovalnik ima celotno zgodovino."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Pošlji"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Pošlji NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Pošiljanje…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} zadržano"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Vnesite celo število od 1 do {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "To je račun, na katerem se nahaja – izberite drugega prejemnika."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Na ta naslov ga ni mogoče poslati – prejemnik morda ne sprejema NFT-jev ali pa ta račun jih ne hrani več."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Ta NFT ne uporablja standardnega wwwallet, ki ga je mogoče poslati."
     }
   },
   "sv": {
@@ -45601,6 +46501,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Inga överföringar hittades – utforskaren har den fullständiga historiken."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Skicka"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Skicka NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Skickar…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} höll"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Ange ett heltal mellan 1 och {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Det är det kontot den finns på – välj en annan mottagare."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Det går inte att skicka till den adressen – mottagaren kanske inte accepterar NFT:er, eller så finns det inte längre på det kontot."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Denna NFT använder inte en standard-wwwallet som kan skickas."
     }
   },
   "tr": {
@@ -47355,6 +48291,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Herhangi bir transfer bulunamadı — gezgin, tüm geçmişi barındırır."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Gönder"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "NFT gönder"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Gönderiliyor…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} tutuldu"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "1 ile {count} arasında bir tam sayı girin."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Hesap bu adreste bulunuyor — başka bir alıcı seçin."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Bu adrese gönderilemez — alıcı NFT'leri kabul etmiyor olabilir veya bu hesapta artık NFT bulunmuyor olabilir."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Bu NFT, wwwallet'in gönderebileceği standart bir yöntem kullanmaz."
     }
   },
   "uk": {
@@ -49109,6 +50081,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Переказів не знайдено — у блокчейн-експлорері є повна історія транзакцій."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Надіслати"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Надіслати NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Відправляю…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} збережено"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Введіть ціле число від 1 до {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Це той обліковий запис, на якому знаходяться кошти — виберіть іншого одержувача."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "На цю адресу не можна надіслати NFT — одержувач може не приймати NFT, або на цьому рахунку їх більше немає."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "Цей NFT не використовує стандартну функцію відправлення, доступну в wwwallet."
     }
   },
   "vi": {
@@ -50863,6 +51871,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "Không tìm thấy giao dịch nào — trình khám phá có lịch sử đầy đủ."
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "Gửi"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "Gửi NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "Đang gửi…"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} đã giữ"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "Nhập một số nguyên từ 1 đến {count}."
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "Đó là tài khoản đang chứa số tiền đó — hãy chọn người nhận khác đi nhé."
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "Không thể gửi đến địa chỉ đó được — người nhận có thể không chấp nhận NFT, hoặc tài khoản này không còn lưu trữ nó nữa."
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "NFT này không sử dụng tính năng gửi tiền tiêu chuẩn của wwwallet."
     }
   },
   "zh-CN": {
@@ -52617,6 +53661,42 @@
     "nfts.noHistory": {
       "enHash": "0db340a65cbf741f",
       "value": "未找到转账记录——区块链浏览器中包含完整的交易历史。"
+    },
+    "nfts.nft": {
+      "enHash": "35987a0f9ae77012",
+      "value": "NFT"
+    },
+    "nfts.send": {
+      "enHash": "f6f4688ff23d50c6",
+      "value": "发送"
+    },
+    "nfts.sendTitle": {
+      "enHash": "d55ab99f945fd472",
+      "value": "发送 NFT"
+    },
+    "nfts.sending": {
+      "enHash": "b8ed5279e897be5d",
+      "value": "正在发送……"
+    },
+    "nfts.held": {
+      "enHash": "a5ea074af4dc8558",
+      "value": "{count} 保留"
+    },
+    "nfts.invalidQuantity": {
+      "enHash": "fd82598503bb3013",
+      "value": "请输入 1 到 {count} 之间的一个整数。"
+    },
+    "nfts.sameAccount": {
+      "enHash": "07716cf8f30657b2",
+      "value": "该账户已存有资金——请选择其他收款人。"
+    },
+    "nfts.cannotSend": {
+      "enHash": "e24779d087f92845",
+      "value": "无法发送至该地址——收件人可能不接受 NFT，或者该账户已不再持有该资产。"
+    },
+    "nfts.notSendable": {
+      "enHash": "22e61ceae116f42b",
+      "value": "此 NFT 不使用 wwwallet 可发送的标准功能。"
     }
   }
 }

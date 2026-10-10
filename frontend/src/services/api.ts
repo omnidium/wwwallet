@@ -70,7 +70,11 @@ async function requestFailedError(res: Response, path: string): Promise<Error> {
       err.code = code
       return err
     }
-    if (code === 'would_revert') return translatedError('errors.transactionWouldFail')
+    if (code === 'would_revert') {
+      const err = translatedError('errors.transactionWouldFail')
+      err.code = code
+      return err
+    }
     if (code === 'token_not_on_chain') {
       const err = translatedError('errors.tokenNotOnChain')
       err.code = code

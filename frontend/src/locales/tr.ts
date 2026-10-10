@@ -573,5 +573,15 @@ export default {
     minted: 'Minted',
     burned: 'Yok edildi',
     noHistory: 'Herhangi bir transfer bulunamadı — gezgin, tüm geçmişi barındırır.',
+    nft: 'NFT',
+    send: 'Gönder',
+    sendTitle: 'NFT gönder',
+    sending: 'Gönderiliyor…',
+    held: '{count} tutuldu',
+    invalidQuantity: '1 ile {count} arasında bir tam sayı girin.',
+    sameAccount: 'Hesap bu adreste bulunuyor — başka bir alıcı seçin.',
+    cannotSend:
+      "Bu adrese gönderilemez — alıcı NFT'leri kabul etmiyor olabilir veya bu hesapta artık NFT bulunmuyor olabilir.",
+    notSendable: "Bu NFT, wwwallet'in gönderebileceği standart bir yöntem kullanmaz.",
   },
 }

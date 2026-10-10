@@ -576,5 +576,15 @@ export default {
     minted: 'Minted',
     burned: 'Verbrand',
     noHistory: 'Er zijn geen transacties gevonden — de explorer heeft de volledige geschiedenis.',
+    nft: 'NFT',
+    send: 'Verzenden',
+    sendTitle: 'Stuur NFT',
+    sending: 'Bezig met verzenden…',
+    held: '{count} bewaard',
+    invalidQuantity: 'Voer een geheel getal in tussen 1 en {count}.',
+    sameAccount: 'Dat is de rekening waar het op staat — kies een andere ontvanger.',
+    cannotSend:
+      'Het kan niet naar dat adres worden gestuurd — de ontvanger accepteert mogelijk geen NFT’s, of dit account bevat het niet meer.',
+    notSendable: 'Deze NFT maakt geen gebruik van een standaard wwwallet-verzendfunctie.',
   },
 }

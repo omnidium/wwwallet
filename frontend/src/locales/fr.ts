@@ -585,5 +585,15 @@ export default {
     minted: 'Minted',
     burned: 'Brûlé',
     noHistory: 'Aucun transfert trouvé — l’explorateur dispose de l’historique complet.',
+    nft: 'NFT',
+    send: 'Envoyer',
+    sendTitle: 'Envoyer un NFT',
+    sending: 'Envoi…',
+    held: '{count} conservé',
+    invalidQuantity: 'Saisis un nombre entier compris entre 1 et {count}.',
+    sameAccount: "C'est le compte sur lequel se trouve le montant — choisis un autre destinataire.",
+    cannotSend:
+      "Ça ne peut pas être envoyé à cette adresse : soit le destinataire n'accepte pas les NFT, soit ce compte ne les contient plus.",
+    notSendable: "Ce NFT n'utilise pas la fonction standard d'envoi de wwwallet.",
   },
 }

@@ -570,5 +570,15 @@ export default {
     minted: 'Minted',
     burned: 'Đã xóa',
     noHistory: 'Không tìm thấy giao dịch nào — trình khám phá có lịch sử đầy đủ.',
+    nft: 'NFT',
+    send: 'Gửi',
+    sendTitle: 'Gửi NFT',
+    sending: 'Đang gửi…',
+    held: '{count} đã giữ',
+    invalidQuantity: 'Nhập một số nguyên từ 1 đến {count}.',
+    sameAccount: 'Đó là tài khoản đang chứa số tiền đó — hãy chọn người nhận khác đi nhé.',
+    cannotSend:
+      'Không thể gửi đến địa chỉ đó được — người nhận có thể không chấp nhận NFT, hoặc tài khoản này không còn lưu trữ nó nữa.',
+    notSendable: 'NFT này không sử dụng tính năng gửi tiền tiêu chuẩn của wwwallet.',
   },
 }

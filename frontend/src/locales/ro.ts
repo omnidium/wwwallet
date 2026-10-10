@@ -581,5 +581,15 @@ export default {
     minted: 'Minted',
     burned: 'Ars',
     noHistory: 'Nu s-au găsit transferuri — exploratorul are istoricul complet.',
+    nft: 'NFT',
+    send: 'Trimite',
+    sendTitle: 'Trimite NFT',
+    sending: 'Se trimite…',
+    held: '{count} deținut',
+    invalidQuantity: 'Introduceți un număr întreg de la 1 la {count}.',
+    sameAccount: 'Acesta este contul în care se află — alegeți un alt destinatar.',
+    cannotSend:
+      'Nu poate fi trimis la acea adresă — este posibil ca destinatarul să nu accepte NFT-uri sau ca acest cont să nu mai dețină adresa respectivă.',
+    notSendable: 'Acest NFT nu utilizează o funcție standard de trimitere a wwwallet.',
   },
 }

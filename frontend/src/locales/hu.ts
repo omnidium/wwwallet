@@ -581,5 +581,15 @@ export default {
     minted: 'Minted',
     burned: 'Elégetve',
     noHistory: 'Nem találtak átutalásokat – a felfedezőben megtalálható a teljes előzmény.',
+    nft: 'NFT',
+    send: 'Küldés',
+    sendTitle: 'NFT küldése',
+    sending: 'Küldés…',
+    held: '{count} tartva',
+    invalidQuantity: 'Írjon be egy 1 és {count} közötti egész számot.',
+    sameAccount: 'Ez az a fiók, amelyben a pénz van – válasszon másik címzettet.',
+    cannotSend:
+      'Nem lehet elküldeni arra a címre – előfordulhat, hogy a címzett nem fogad el NFT-ket, vagy ez a fiók már nem rendelkezik vele.',
+    notSendable: 'Ez az NFT nem használja a wwwallet által küldhető szabványos kifejezéseket.',
   },
 }

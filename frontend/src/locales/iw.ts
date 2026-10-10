@@ -554,5 +554,15 @@ export default {
     minted: 'Minted',
     burned: 'נשרף',
     noHistory: 'לא נמצאו העברות — ל-Explorer יש את ההיסטוריה המלאה.',
+    nft: 'NFT',
+    send: 'שלח',
+    sendTitle: 'שלח NFT',
+    sending: 'שולח…',
+    held: '{count} הוחזק',
+    invalidQuantity: 'הזינו מספר שלם בין 1 ל-{count}.',
+    sameAccount: 'זה החשבון שבו הכסף נמצא — בחרו נמען אחר.',
+    cannotSend:
+      'לא ניתן לשלוח את זה לכתובת הזו — ייתכן שהנמען אינו מקבל NFTs, או שהחשבון הזה כבר לא מחזיק בו.',
+    notSendable: 'NFT זה אינו משתמש ב-wwwallet סטנדרטי שניתן לשלוח.',
   },
 }

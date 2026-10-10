@@ -1171,6 +1171,14 @@ html.pane-open {
   background: rgb(var(--v-theme-on-surface) / 0.06);
 }
 
+.nft-send-thumb {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 0.4em;
+  object-fit: cover;
+}
+
 .nft-transfer {
   color: inherit;
   text-decoration: none;

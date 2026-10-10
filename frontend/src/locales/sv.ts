@@ -573,5 +573,15 @@ export default {
     minted: 'Minted',
     burned: 'Bränd',
     noHistory: 'Inga överföringar hittades – utforskaren har den fullständiga historiken.',
+    nft: 'NFT',
+    send: 'Skicka',
+    sendTitle: 'Skicka NFT',
+    sending: 'Skickar…',
+    held: '{count} höll',
+    invalidQuantity: 'Ange ett heltal mellan 1 och {count}.',
+    sameAccount: 'Det är det kontot den finns på – välj en annan mottagare.',
+    cannotSend:
+      'Det går inte att skicka till den adressen – mottagaren kanske inte accepterar NFT:er, eller så finns det inte längre på det kontot.',
+    notSendable: 'Denna NFT använder inte en standard-wwwallet som kan skickas.',
   },
 }

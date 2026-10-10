@@ -574,5 +574,15 @@ export default {
     minted: 'Minted',
     burned: 'Izdedzināts',
     noHistory: 'Pārskaitījumi nav atrasti — pārlūkā ir pieejama pilnā vēsture.',
+    nft: 'NFT',
+    send: 'Nosūtīt',
+    sendTitle: 'Nosūtiet NFT',
+    sending: 'Sūtīšana…',
+    held: '{count} saglabāts',
+    invalidQuantity: 'Ievadiet veselu skaitli no 1 līdz {count}.',
+    sameAccount: 'Nauda atrodas šajā kontā — izvēlieties citu saņēmēju.',
+    cannotSend:
+      'To nevar nosūtīt uz šo adresi — saņēmējs var nepieņemt NFT, vai arī šajā kontā vairs nav šīs summas.',
+    notSendable: 'Šis NFT neizmanto standarta wwwallet sūtīšanas funkciju.',
   },
 }

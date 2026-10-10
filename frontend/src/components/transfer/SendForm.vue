@@ -9,6 +9,7 @@ import { truncateAddress } from '@/services/format'
 import { addressDisplayLabel } from '@/services/addressLabel'
 import { waitForTransactionConfirmation } from '@/services/transactionStatus'
 import { displayErrorMessage } from '@/services/errors'
+import { feeWeiOf } from '@/services/fees'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import { useHeldTokens } from '@/composables/useHeldTokens'
 import { useAutoQuote } from '@/composables/useAutoQuote'
@@ -362,10 +363,6 @@ const bridgeQuote = useAutoQuote(
       : null,
   (p) => api.bridgeQuote(p),
 )
-
-function feeWeiOf(prep: { gas_price: string; gas_limit: string }): bigint {
-  return BigInt(prep.gas_price) * BigInt(prep.gas_limit)
-}
 
 /** Fiat, with the token amount after it — "(…)" never wraps apart from it. */
 function tokenAmountRow(human: number, symbol: string, usdPrice: number | null) {

@@ -571,5 +571,15 @@ export default {
     minted: 'Minted',
     burned: 'Põletatud',
     noHistory: 'Ülekandeid ei leitud – eksploraatoris on kogu ajalugu olemas.',
+    nft: 'NFT',
+    send: 'Saada',
+    sendTitle: 'Saada NFT',
+    sending: 'Saadan…',
+    held: '{count} hoiti',
+    invalidQuantity: 'Sisestage täisarv vahemikus 1 kuni {count}.',
+    sameAccount: 'See on konto, millel see asub – vali teine saaja.',
+    cannotSend:
+      'Seda ei saa sellele aadressile saata – vastuvõtja ei pruugi NFT-sid vastu võtta või sellel kontol ei ole neid enam.',
+    notSendable: 'See NFT ei kasuta standardset wwwallet-i saatmisfunktsiooni.',
   },
 }

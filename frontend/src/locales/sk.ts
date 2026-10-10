@@ -569,5 +569,15 @@ export default {
     minted: 'Minted',
     burned: 'Spálené',
     noHistory: 'Nenašli sa žiadne prevody – prehliadač obsahuje kompletnú históriu.',
+    nft: 'NFT',
+    send: 'Odoslať',
+    sendTitle: 'Odoslať NFT',
+    sending: 'Odosielam…',
+    held: '{count} zadržané',
+    invalidQuantity: 'Zadajte celé číslo od 1 do {count}.',
+    sameAccount: 'To je účet, na ktorom sa nachádza – vyberte si iného príjemcu.',
+    cannotSend:
+      'Na túto adresu to nie je možné poslať – príjemca nemusí prijímať NFT alebo tento účet už NFT neobsahuje.',
+    notSendable: 'Tento NFT nepoužíva štandardnú funkciu odosielania, ktorú ponúka wwwallet.',
   },
 }

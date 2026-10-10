@@ -572,5 +572,15 @@ export default {
     minted: 'Minted',
     burned: 'Poltettu',
     noHistory: 'Siirtoja ei löytynyt – explorerissa on täydellinen historia.',
+    nft: 'NFT',
+    send: 'Lähetä',
+    sendTitle: 'Lähetä NFT',
+    sending: 'Lähetetään…',
+    held: '{count} pidetty',
+    invalidQuantity: 'Syötä kokonaisluku väliltä 1–{count}.',
+    sameAccount: 'Se on tili, jolla se on – valitse toinen vastaanottaja.',
+    cannotSend:
+      'Sitä ei voi lähettää kyseiseen osoitteeseen – vastaanottaja ei ehkä hyväksy NFT:itä, tai tällä tilillä ei enää ole niitä.',
+    notSendable: 'Tämä NFT ei käytä tavallista wwwallet-lähetystä.',
   },
 }

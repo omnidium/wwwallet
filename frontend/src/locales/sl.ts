@@ -572,5 +572,15 @@ export default {
     minted: 'Minted',
     burned: 'Zgorelo',
     noHistory: 'Prenosi niso bili najdeni – raziskovalnik ima celotno zgodovino.',
+    nft: 'NFT',
+    send: 'Pošlji',
+    sendTitle: 'Pošlji NFT',
+    sending: 'Pošiljanje…',
+    held: '{count} zadržano',
+    invalidQuantity: 'Vnesite celo število od 1 do {count}.',
+    sameAccount: 'To je račun, na katerem se nahaja – izberite drugega prejemnika.',
+    cannotSend:
+      'Na ta naslov ga ni mogoče poslati – prejemnik morda ne sprejema NFT-jev ali pa ta račun jih ne hrani več.',
+    notSendable: 'Ta NFT ne uporablja standardnega wwwallet, ki ga je mogoče poslati.',
   },
 }

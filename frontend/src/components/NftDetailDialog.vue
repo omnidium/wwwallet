@@ -4,13 +4,16 @@ import { useI18n } from 'vue-i18n'
 import type { ChainSlug, Nft } from '@/services/api'
 import { useMessagesStore } from '@/stores/messages'
 import { useNftsStore } from '@/stores/nfts'
+import { useChainDataStore } from '@/stores/chainData'
 import { displayErrorMessage } from '@/services/errors'
+import { isSendableNftType } from '@/services/nft'
 import { nftUrl, tokenUrl, txnUrl } from '@/services/blockExplorer'
 import { truncateAddress } from '@/services/format'
 import { addressDisplayLabel } from '@/services/addressLabel'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import AppTooltip from '@/components/AppTooltip.vue'
 import CircuitSpinner from '@/components/CircuitSpinner.vue'
+import NftSendDialog from '@/components/NftSendDialog.vue'
 
 /**
  * One NFT's details. Everything it says about itself (name, description,
@@ -30,6 +33,7 @@ const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
 const { t } = useI18n({ useScope: 'global' })
 const messages = useMessagesStore()
 const nfts = useNftsStore()
+const chainData = useChainDataStore()
 
 // Full size first, then the thumbnail: the provider's cached full-size
 // copy is sometimes missing, or a 1-pixel placeholder, where its thumbnail
@@ -96,6 +100,19 @@ const transferRows = computed(() =>
     }
   }),
 )
+
+const sending = computed(() => (props.nft ? nfts.isSending(props.chain, props.address, props.nft) : false))
+// An ERC-404-style hybrid is a fungible token too, and moving one of its
+// "NFTs" moves a whole token's worth — that's the token's own Send.
+const alsoFungible = computed(
+  () =>
+    !!props.nft &&
+    !!chainData.activityByAddress[chainData.keyFor(props.chain, props.address)]?.balances.some(
+      (b) => b.contract_address?.toLowerCase() === props.nft!.contract_address,
+    ),
+)
+const sendable = computed(() => !!props.nft && isSendableNftType(props.nft.token_type) && !alsoFungible.value)
+const sendOpen = ref(false)
 
 function toggleHidden() {
   if (!props.nft) return
@@ -190,7 +207,15 @@ function toggleHidden() {
         <v-btn variant="text" :prepend-icon="hidden ? 'mdi-eye' : 'mdi-eye-off'" @click="toggleHidden">
           {{ hidden ? t('nfts.showNft') : t('nfts.hideNft') }}
         </v-btn>
+        <v-btn v-if="sendable" color="primary" variant="flat" prepend-icon="mdi-send" :disabled="sending"
+          @click="sendOpen = true">
+          {{ sending ? t('nfts.sending') : t('nfts.send') }}
+        </v-btn>
       </v-card-actions>
+      <p v-if="!sendable" class="text-caption text-medium-emphasis px-4 pb-2">{{ t('nfts.notSendable') }}</p>
     </v-card>
   </v-dialog>
+
+  <NftSendDialog v-if="nft && sendable" v-model="sendOpen" :chain="chain" :address="address" :nft="nft"
+    :title="title" :collection-name="collectionName" @sent="emit('update:modelValue', false)" />
 </template>
