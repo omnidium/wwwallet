@@ -222,10 +222,13 @@ function toggleHidden() {
           variant="text" prepend-icon="mdi-open-in-new">{{ t('nfts.viewOnExplorer') }}</v-btn>
         <v-btn v-if="marketplace" :href="marketplace.url" target="_blank" rel="noopener noreferrer" variant="text"
           prepend-icon="mdi-storefront-outline">{{ t('nfts.viewOn', { marketplace: marketplace.name }) }}</v-btn>
-        <v-spacer />
+      </v-card-actions>
+      <v-card-actions>
         <v-btn variant="text" :prepend-icon="hidden ? 'mdi-eye' : 'mdi-eye-off'" @click="toggleHidden">
           {{ hidden ? t('nfts.showNft') : t('nfts.hideNft') }}
         </v-btn>
+        <v-spacer />
+        <v-btn variant="text" @click="emit('update:modelValue', false)">{{ t('common.cancel') }}</v-btn>
         <v-btn v-if="sendable" color="primary" variant="flat" prepend-icon="mdi-send" :disabled="sending"
           @click="sendOpen = true">
           {{ sending ? t('nfts.sending') : t('nfts.send') }}
