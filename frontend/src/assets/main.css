@@ -1140,8 +1140,54 @@ html.pane-open {
   opacity: 0.45;
 }
 
+/* NftDetailDialog.vue — full screen: its bars span the screen, its
+ * content keeps to a readable column down the middle. */
+.nft-detail {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.nft-detail-content {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
 .nft-detail-image {
-  max-height: 50vh;
+  width: min(100%, 60vh);
+  margin-inline: auto;
+}
+
+/* Still loading: placeholders the size of what's coming. */
+.nft-detail-image--pending,
+.nft-skeleton-trait {
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+.nft-skeleton-title {
+  width: 12em;
+  max-width: 60%;
+  height: 1.25em;
+}
+
+.nft-skeleton-line {
+  display: block;
+  width: 100%;
+  height: 1em;
+  margin-bottom: 0.5em;
+}
+
+.nft-skeleton-line+.nft-skeleton-line {
+  width: 60%;
+}
+
+.nft-skeleton-value {
+  width: 6em;
+  height: 1em;
+  vertical-align: middle;
+}
+
+.nft-skeleton-trait {
+  height: 3em;
 }
 
 .nft-detail-image img {

@@ -56,8 +56,9 @@ useInfiniteScroll(() => {
 }, gridEl)
 
 // A collection of one NFT opens straight onto that NFT: its own page would
-// hold a single tile, one more tap away from anything.
-const opening = ref<string | null>(null)
+// hold a single tile, one more tap away from anything. The panel opens at
+// once on what's known — the NFT as last seen, or else just its collection —
+// and fills in as the NFT loads.
 const detailNft = ref<Nft | null>(null)
 const detailCollection = ref<NftCollection | null>(null)
 const detailOpen = ref(false)
@@ -68,28 +69,32 @@ async function open(collection: NftCollection) {
   const contract = collection.contract_address
   const collectionPath = `/accounts/${chain}/${address}/nfts/${contract}`
   if (collection.owned_count !== 1) return router.push(collectionPath)
-  if (opening.value) return
-  if (nfts.nftsOf(chain, address, contract)?.items.length === 1) {
-    // The last-known NFT shows straight away; this refreshes it.
-    nfts.loadNfts(chain, address, contract).catch(() => { })
-  } else {
-    opening.value = contract
-    try {
-      await nfts.loadNfts(chain, address, contract)
-    } catch {
-      // The collection's page, below, says what went wrong.
-    } finally {
-      opening.value = null
-    }
-    if (unmounted) return
-  }
-  const items = nfts.nftsOf(chain, address, contract)?.items
-  if (items?.length !== 1) return router.push(collectionPath)
+  const cached = nfts.nftsOf(chain, address, contract)?.items
+  detailCollection.value = collection
+  detailNft.value = cached?.length === 1 ? cached[0]! : null
+  detailOpen.value = true
   // For the floor price's fiat value.
   if (showsFloorPrice(chain)) chainData.loadNativePrice(chain).catch(() => { })
-  detailCollection.value = collection
-  detailNft.value = items[0]!
-  detailOpen.value = true
+  let failure: unknown = null
+  try {
+    await nfts.loadNfts(chain, address, contract)
+  } catch (err) {
+    failure = err
+  }
+  // Closed, or moved on to another, while it loaded.
+  if (unmounted || !detailOpen.value || detailCollection.value !== collection) return
+  const items = nfts.nftsOf(chain, address, contract)?.items
+  if (items?.length === 1) {
+    detailNft.value = items[0]!
+  } else if (failure) {
+    if (detailNft.value) return
+    detailOpen.value = false
+    messages.push(displayErrorMessage(failure), 'error')
+  } else {
+    // It holds none, or several, by now: its page shows which.
+    detailOpen.value = false
+    router.push(collectionPath)
+  }
 }
 
 function countBadge(collection: NftCollection): string | undefined {
@@ -115,8 +120,7 @@ function countBadge(collection: NftCollection): string | undefined {
         <NftTile v-for="collection in shownCollections" :key="collection.contract_address"
           :image-url="collection.image.thumbnail" :title="collection.name ?? t('nfts.unnamedCollection')"
           :badge="countBadge(collection)" :verified="collection.verified" :verified-label="t('nfts.verified')"
-          :dimmed="nfts.isCollectionHidden(chain, collection) || opening === collection.contract_address"
-          @select="open(collection)" />
+          :dimmed="nfts.isCollectionHidden(chain, collection)" @select="open(collection)" />
       </div>
       <div v-if="(loading && !collections) || loadingMore" class="d-flex justify-center pa-4">
         <CircuitSpinner :size="22" :label="t('common.loading')" class="text-primary" />
