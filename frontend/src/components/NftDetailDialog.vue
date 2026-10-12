@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { ChainSlug, Nft } from '@/services/api'
+import type { ChainSlug, Nft, NftCollection } from '@/services/api'
 import { useMessagesStore } from '@/stores/messages'
-import { useNftsStore } from '@/stores/nfts'
+import { looksLikeSpam, useNftsStore } from '@/stores/nfts'
 import { useChainDataStore } from '@/stores/chainData'
 import { displayErrorMessage } from '@/services/errors'
 import { isSendableNftType } from '@/services/nft'
@@ -31,6 +31,12 @@ const props = defineProps<{
   collectionName: string | null
   /** The collection's floor price, in the chain's native coin. */
   floorPrice: number | null
+  /**
+   * Its collection, when it's the collection's only NFT and was opened
+   * straight from the gallery — which lists collections, not NFTs, so hiding
+   * it there has to hide the collection, or it would stay in the gallery.
+   */
+  onlyNftOf?: NftCollection | null
 }>()
 const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
 
@@ -54,7 +60,14 @@ const imageUrl = computed(() => imageSources.value[imageAttempt.value] ?? null)
 function onImageLoad(event: Event) {
   if ((event.target as HTMLImageElement).naturalWidth <= 1) imageAttempt.value++
 }
-const hidden = computed(() => (props.nft ? nfts.isNftHidden(props.chain, props.nft) : false))
+const hidden = computed(() => {
+  if (props.onlyNftOf) return nfts.isCollectionHidden(props.chain, props.onlyNftOf)
+  return props.nft ? nfts.isNftHidden(props.chain, props.nft) : false
+})
+const hideLabel = computed(() => {
+  if (props.onlyNftOf) return hidden.value ? t('nfts.showCollection') : t('nfts.hideCollection')
+  return hidden.value ? t('nfts.showNft') : t('nfts.hideNft')
+})
 const title = computed(() => props.nft?.name ?? (props.nft ? `#${truncateTokenId(props.nft.token_id)}` : ''))
 
 function truncateTokenId(id: string): string {
@@ -126,15 +139,29 @@ const sendOpen = ref(false)
 
 function toggleHidden() {
   if (!props.nft) return
-  nfts.setNftHidden(props.chain, props.nft, !hidden.value).catch((err) => messages.push(displayErrorMessage(err), 'error'))
+  const change = props.onlyNftOf
+    ? nfts.setCollectionHidden(props.chain, props.onlyNftOf, !hidden.value)
+    : nfts.setNftHidden(props.chain, props.nft, !hidden.value)
+  change.catch((err) => messages.push(displayErrorMessage(err), 'error'))
 }
 </script>
 
 <template>
   <v-dialog :model-value="modelValue" max-width="480" @update:model-value="emit('update:modelValue', $event)">
     <v-card v-if="nft" class="pa-2 txn-detail-card">
-      <v-card-title class="text-truncate">{{ title }}</v-card-title>
+      <v-card-title class="d-flex align-center">
+        <span class="text-truncate">{{ title }}</span>
+        <v-spacer />
+        <AppTooltip :text="hideLabel">
+          <template #default="{ activatorProps }">
+            <v-btn v-bind="activatorProps" :icon="hidden ? 'mdi-eye' : 'mdi-eye-off'" variant="text" size="small"
+              class="ml-2 mr-n2" :aria-label="hideLabel" @click="toggleHidden" />
+          </template>
+        </AppTooltip>
+      </v-card-title>
       <v-card-text>
+        <v-alert v-if="onlyNftOf && hidden && looksLikeSpam(onlyNftOf)" type="warning" variant="tonal" density="compact"
+          class="mb-3" :text="t('nfts.spamNotice')" />
         <div class="nft-detail-image mb-3">
           <img v-if="imageUrl" :key="imageUrl" :src="imageUrl" alt="" decoding="async" referrerpolicy="no-referrer"
             @load="onImageLoad" @error="imageAttempt++" />
@@ -224,11 +251,8 @@ function toggleHidden() {
           prepend-icon="mdi-storefront-outline">{{ t('nfts.viewOn', { marketplace: marketplace.name }) }}</v-btn>
       </v-card-actions>
       <v-card-actions>
-        <v-btn variant="text" :prepend-icon="hidden ? 'mdi-eye' : 'mdi-eye-off'" @click="toggleHidden">
-          {{ hidden ? t('nfts.showNft') : t('nfts.hideNft') }}
-        </v-btn>
-        <v-spacer />
         <v-btn variant="text" @click="emit('update:modelValue', false)">{{ t('common.cancel') }}</v-btn>
+        <v-spacer />
         <v-btn v-if="sendable" color="primary" variant="flat" prepend-icon="mdi-send" :disabled="sending"
           @click="sendOpen = true">
           {{ sending ? t('nfts.sending') : t('nfts.send') }}
