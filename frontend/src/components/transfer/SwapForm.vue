@@ -2,6 +2,7 @@
 import { computed, ref, toRef, watch } from 'vue'
 import { formatUnits, parseUnits } from 'ethers'
 import { api, SWAP_FEE_LABEL_KEYS, type BridgeQuote, type ChainSlug, type SwapQuote, type Transaction } from '@/services/api'
+import { maxFeeWeiOf } from '@/services/fees'
 import { formatAmount, unitsToSignificant } from '@/services/money'
 import { truncateAddress } from '@/services/format'
 import { waitForTransactionConfirmation } from '@/services/transactionStatus'
@@ -114,9 +115,10 @@ async function setMax() {
   busy.value = true
   try {
     // A swap or bridge call's gas isn't known until quoted — a plain
-    // transfer's, with generous headroom, is reserved out of the sellable amount.
+    // transfer's, with generous headroom, is reserved out of the sellable
+    // amount, at the most it can cost: that has to be in the balance up front.
     const prep = await api.transactionPrep(props.fromChain, props.fromAddress, props.fromAddress, '0')
-    const reserve = BigInt(prep.gas_price) * BigInt(prep.gas_limit) * (isCross.value ? 30n : 10n)
+    const reserve = maxFeeWeiOf(prep) * (isCross.value ? 30n : 10n)
     const balance = BigInt(native.rawBalance)
     setPickedAmount(balance > reserve ? balance - reserve : 0n, native.decimals)
   } catch (err) {

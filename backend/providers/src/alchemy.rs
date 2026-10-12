@@ -171,8 +171,25 @@ impl AlchemyProvider {
 
     /// Several JSON-RPC calls in one HTTP request, which spends one call of
     /// the upstream budget however many it carries. Results come back in the
-    /// order the calls were given.
+    /// order the calls were given; any one failing fails them all.
     async fn rpc_batch(&self, chain: ChainId, calls: &[(&str, Value)]) -> ProviderResult<Vec<Value>> {
+        let resp = self.rpc_batch_response(chain, calls).await?;
+        Self::batch_results(&resp, calls.len()).map_err(not_enabled)
+    }
+
+    /// `rpc_batch`, but with each call's own result: one the chain doesn't
+    /// offer doesn't fail the rest.
+    async fn rpc_batch_each(
+        &self,
+        chain: ChainId,
+        calls: &[(&str, Value)],
+    ) -> ProviderResult<Vec<ProviderResult<Value>>> {
+        let resp = self.rpc_batch_response(chain, calls).await?;
+        let replies = Self::batch_replies(&resp, calls.len()).map_err(not_enabled)?;
+        Ok(replies.into_iter().map(|r| r.map_err(not_enabled)).collect())
+    }
+
+    async fn rpc_batch_response(&self, chain: ChainId, calls: &[(&str, Value)]) -> ProviderResult<Value> {
         let body: Vec<Value> = calls
             .iter()
             .enumerate()
@@ -180,35 +197,41 @@ impl AlchemyProvider {
                 json!({ "jsonrpc": "2.0", "id": id, "method": method, "params": params })
             })
             .collect();
-        let resp: Value = http::post_json(&self.rpc_url(chain), &body).await.map_err(not_enabled)?;
-        Self::batch_results(&resp, calls.len()).map_err(not_enabled)
+        http::post_json(&self.rpc_url(chain), &body).await.map_err(not_enabled)
+    }
+
+    fn batch_results(resp: &Value, count: usize) -> ProviderResult<Vec<Value>> {
+        Self::batch_replies(resp, count)?.into_iter().collect()
     }
 
     /// Each reply in a batch response carries its call's id; they can arrive
     /// in any order. A batch refused outright is a single error object.
-    fn batch_results(resp: &Value, count: usize) -> ProviderResult<Vec<Value>> {
+    fn batch_replies(resp: &Value, count: usize) -> ProviderResult<Vec<ProviderResult<Value>>> {
         if let Some(err) = resp.get("error") {
             return Err(ProviderError::Upstream(err.to_string()));
         }
         let replies = resp
             .as_array()
             .ok_or_else(|| ProviderError::Upstream("batch response isn't a list".into()))?;
-        let mut results = vec![None; count];
+        let mut results: Vec<Option<ProviderResult<Value>>> = (0..count).map(|_| None).collect();
         for reply in replies {
-            if let Some(err) = reply.get("error") {
-                return Err(ProviderError::Upstream(err.to_string()));
-            }
             let slot = reply
                 .get("id")
                 .and_then(Value::as_u64)
                 .and_then(|id| results.get_mut(id as usize))
                 .ok_or_else(|| ProviderError::Upstream("batch reply with an unknown id".into()))?;
-            *slot = reply.get("result").cloned();
+            *slot = Some(match reply.get("error") {
+                Some(err) => Err(ProviderError::Upstream(err.to_string())),
+                None => reply
+                    .get("result")
+                    .cloned()
+                    .ok_or_else(|| ProviderError::Upstream("batch reply without a result".into())),
+            });
         }
-        results
+        Ok(results
             .into_iter()
-            .map(|r| r.ok_or_else(|| ProviderError::Upstream("batch reply missing".into())))
-            .collect()
+            .map(|r| r.unwrap_or_else(|| Err(ProviderError::Upstream("batch reply missing".into()))))
+            .collect())
     }
 
     /// A swap emits two transfer legs (token sold, token bought) under one tx
@@ -787,6 +810,60 @@ fn receipt_fee_wei(receipt: &Value) -> Option<u128> {
     execution.checked_add(l1)
 }
 
+/// How many recent blocks' tips `eip1559_fees` looks at.
+const FEE_HISTORY_BLOCKS: &str = "0xa";
+
+#[derive(Debug, PartialEq)]
+struct Eip1559Fees {
+    /// Base fee plus tip: what a unit of gas is expected to cost.
+    expected: u128,
+    max_fee_per_gas: u128,
+    max_priority_fee_per_gas: u128,
+}
+
+/// EIP-1559 fees for a transaction sent now, from `eth_feeHistory` over the
+/// last FEE_HISTORY_BLOCKS blocks (with each one's median tip) and the
+/// node's own suggested tip, where it gave one.
+///
+/// The tip is the node's suggestion unless that's zero or missing — Ethereum
+/// suggests 0 while its blocks are paying some, and ZKsync has no such call —
+/// and then the median of the recent blocks' median tips: zero where tips
+/// really are ignored (Arbitrum, Robinhood, ZKsync).
+///
+/// The cap is twice the next block's base fee plus the tip. A transaction
+/// signed with no more than the base fee when it was sent (as these were,
+/// before) waits for as long as fees stay higher; the base fee rises at most
+/// 12.5% a block, so twice it lasts six full blocks of rises. Only the base
+/// fee at the time plus the tip is ever charged.
+///
+/// None where the chain's blocks carry no base fee, which is signed with a
+/// plain gas price instead.
+fn eip1559_fees(history: &Value, node_tip: Option<&Value>) -> Option<Eip1559Fees> {
+    let quantity = |v: &Value| -> Option<u128> { u128::from_str_radix(v.as_str()?.strip_prefix("0x")?, 16).ok() };
+    // One more than the blocks asked for: the last is the next block's.
+    let base_fee = quantity(history.get("baseFeePerGas")?.as_array()?.last()?)?;
+    if base_fee == 0 {
+        return None;
+    }
+    let tip = match node_tip.and_then(quantity) {
+        Some(tip) if tip > 0 => tip,
+        _ => {
+            let mut tips: Vec<u128> = history
+                .get("reward")
+                .and_then(Value::as_array)
+                .map(|blocks| blocks.iter().filter_map(|block| quantity(block.get(0)?)).collect())
+                .unwrap_or_default();
+            tips.sort_unstable();
+            tips.get(tips.len() / 2).copied().unwrap_or(0)
+        }
+    };
+    Some(Eip1559Fees {
+        expected: base_fee.checked_add(tip)?,
+        max_fee_per_gas: base_fee.checked_mul(2)?.checked_add(tip)?,
+        max_priority_fee_per_gas: tip,
+    })
+}
+
 #[async_trait(?Send)]
 impl TransactionFeeProvider for AlchemyProvider {
     fn name(&self) -> &'static str {
@@ -831,11 +908,25 @@ impl TransactionPrepProvider for AlchemyProvider {
             estimate_params["data"] = json!(d);
         }
 
-        let nonce_hex = self
-            .rpc_call(chain, "eth_getTransactionCount", json!([from, "pending"]))
+        // One request: eth_maxPriorityFeePerGas isn't offered everywhere
+        // (not on ZKsync), so each call fails on its own.
+        let replies = self
+            .rpc_batch_each(
+                chain,
+                &[
+                    ("eth_getTransactionCount", json!([from, "pending"])),
+                    ("eth_gasPrice", json!([])),
+                    ("eth_feeHistory", json!([FEE_HISTORY_BLOCKS, "latest", [50]])),
+                    ("eth_maxPriorityFeePerGas", json!([])),
+                ],
+            )
             .await?;
-        let gas_price_hex = self.rpc_call(chain, "eth_gasPrice", json!([])).await?;
-        // Unlike the two calls above (genuine infra failures if they error),
+        let [nonce_hex, gas_price_hex, history, node_tip]: [ProviderResult<Value>; 4] = replies
+            .try_into()
+            .map_err(|_| ProviderError::Upstream("batch reply count".into()))?;
+        let (nonce_hex, gas_price_hex) = (nonce_hex?, gas_price_hex?);
+        let fees = history.ok().and_then(|history| eip1559_fees(&history, node_tip.ok().as_ref()));
+        // Unlike the calls above (genuine infra failures if they error),
         // an estimateGas error means the transaction as constructed would
         // revert on-chain — a property of these specific inputs, not the
         // network — so it's reclassified into its own error the API layer
@@ -854,11 +945,17 @@ impl TransactionPrepProvider for AlchemyProvider {
         )
         .unwrap_or(0);
 
+        let gas_price = match &fees {
+            Some(fees) => fees.expected.to_string(),
+            None => Self::hex_to_decimal_string(gas_price_hex.as_str().unwrap_or("0x0")),
+        };
         Ok(TransactionPrep {
             nonce,
-            gas_price: Self::hex_to_decimal_string(gas_price_hex.as_str().unwrap_or("0x0")),
+            gas_price,
             gas_limit: Self::hex_to_decimal_string(gas_limit_hex.as_str().unwrap_or("0x0")),
             chain_id: chain.eip155_id(),
+            max_fee_per_gas: fees.as_ref().map(|f| f.max_fee_per_gas.to_string()),
+            max_priority_fee_per_gas: fees.as_ref().map(|f| f.max_priority_fee_per_gas.to_string()),
         })
     }
 }
@@ -1207,5 +1304,64 @@ mod tests {
         assert!(AlchemyProvider::batch_results(&one_missing, 2).is_err());
         let refused = json!({ "jsonrpc": "2.0", "id": null, "error": { "code": -32600, "message": "no" } });
         assert!(AlchemyProvider::batch_results(&refused, 2).is_err());
+    }
+
+    #[test]
+    fn a_failed_call_in_a_batch_leaves_the_others_their_results() {
+        let resp = json!([
+            { "jsonrpc": "2.0", "id": 1, "error": { "code": -32601, "message": "method not found" } },
+            { "jsonrpc": "2.0", "id": 0, "result": "0x5" },
+        ]);
+        let replies = AlchemyProvider::batch_replies(&resp, 3).unwrap();
+        assert_eq!(replies[0].as_ref().unwrap(), &json!("0x5"));
+        assert!(replies[1].is_err());
+        assert!(replies[2].is_err(), "a call with no reply at all is an error too");
+    }
+
+    fn fee_history(base_fees: &[&str], tips: &[&str]) -> Value {
+        json!({
+            "baseFeePerGas": base_fees,
+            "reward": tips.iter().map(|tip| json!([tip])).collect::<Vec<_>>(),
+        })
+    }
+
+    #[test]
+    fn eip1559_fees_cap_at_twice_the_next_base_fee_plus_the_tip() {
+        // Polygon's shape: the node's 30 gwei minimum tip wins over what
+        // recent blocks happened to pay.
+        let history = fee_history(&["0x3b9aca00", "0x4a817c800"], &["0x2540be4000"]);
+        let fees = eip1559_fees(&history, Some(&json!("0x6fc23ac00"))).unwrap();
+        assert_eq!(
+            fees,
+            Eip1559Fees {
+                expected: 20_000_000_000 + 30_000_000_000,
+                max_fee_per_gas: 2 * 20_000_000_000 + 30_000_000_000,
+                max_priority_fee_per_gas: 30_000_000_000,
+            }
+        );
+    }
+
+    #[test]
+    fn eip1559_fees_take_recent_blocks_median_tip_when_the_node_suggests_none() {
+        // Ethereum's shape on 2026-10-11: the node suggested a 0 tip while
+        // blocks paid 0.005-0.1 gwei — a 0-tip transaction sat for minutes.
+        let history = fee_history(
+            &["0x5529b11", "0x4f75eb1"],
+            &["0x4c4b40", "0x4c4b40", "0x5f5e100", "0xd5032d", "0x4c4b40"],
+        );
+        let fees = eip1559_fees(&history, Some(&json!("0x0"))).unwrap();
+        assert_eq!(fees.max_priority_fee_per_gas, 5_000_000);
+        assert_eq!(fees.expected, 83_320_497 + 5_000_000);
+        assert_eq!(fees.max_fee_per_gas, 2 * 83_320_497 + 5_000_000);
+        // ZKsync has no eth_maxPriorityFeePerGas, and its blocks pay no tips.
+        let zksync = fee_history(&["0x2b27f50", "0x2b27f50"], &["0x0", "0x0", "0x0"]);
+        assert_eq!(eip1559_fees(&zksync, None).unwrap().max_priority_fee_per_gas, 0);
+    }
+
+    #[test]
+    fn eip1559_fees_are_none_without_a_base_fee() {
+        assert_eq!(eip1559_fees(&fee_history(&["0x0", "0x0"], &["0x1"]), None), None);
+        assert_eq!(eip1559_fees(&json!({ "oldestBlock": "0x1" }), None), None);
+        assert_eq!(eip1559_fees(&fee_history(&["0x1", "garbage"], &[]), None), None);
     }
 }

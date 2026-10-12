@@ -9,7 +9,7 @@ import { truncateAddress } from '@/services/format'
 import { addressDisplayLabel } from '@/services/addressLabel'
 import { waitForTransactionConfirmation } from '@/services/transactionStatus'
 import { displayErrorMessage } from '@/services/errors'
-import { feeWeiOf } from '@/services/fees'
+import { feeFieldsOf, feeWeiOf, maxFeeWeiOf } from '@/services/fees'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import { useHeldTokens } from '@/composables/useHeldTokens'
 import { useAutoQuote } from '@/composables/useAutoQuote'
@@ -260,11 +260,13 @@ async function feeReserveWei(): Promise<bigint> {
   const to = toAddress.value && isValidAddress(toAddress.value) ? toAddress.value : props.fromAddress
   if (!isBridge.value) {
     const prep = await api.transactionPrep(props.fromChain, props.fromAddress, to, '0')
-    return BigInt(prep.gas_price) * BigInt(prep.gas_limit)
+    return maxFeeWeiOf(prep)
   }
   // A bridge call costs far more gas than a plain transfer and isn't known
   // until quoted — so quote the near-full balance once and keep its gas
-  // (plus headroom for drift, and any fee charged on top) back.
+  // back, three times over: it's signed capped at twice the base fee, which
+  // has to be in the balance up front (plus headroom for drift), with any
+  // fee charged on top.
   const probe = (BigInt(tok.rawBalance) * 9n) / 10n
   const quote = await api.bridgeQuote({
     fromChain: props.fromChain,
@@ -275,7 +277,7 @@ async function feeReserveWei(): Promise<bigint> {
     fromAddress: props.fromAddress,
     toAddress: to,
   })
-  const gas = (BigInt(quote.gas_price) * BigInt(quote.gas_limit) * 12n) / 10n
+  const gas = BigInt(quote.gas_price) * BigInt(quote.gas_limit) * 3n
   return gas + (BigInt(quote.value) - BigInt(quote.from_amount))
 }
 
@@ -480,20 +482,24 @@ async function openReview() {
       let wei = amountWei.value
       let prep: TransactionPrep
       if (tok.contractAddress === null && sendMaxIntent.value) {
-        // Fee from THIS call, so it can never drift from what's signed.
+        // Fee from THIS call, so it can never drift from what's signed. The
+        // most it can cost is kept back, so a sliver of it (whatever the
+        // base fee doesn't rise to) stays behind.
         prep = await api.transactionPrep(props.fromChain, props.fromAddress, to, '0')
         const balance = BigInt(tok.rawBalance)
-        const fee = feeWeiOf(prep)
-        wei = (balance > fee ? balance - fee : 0n).toString()
+        const maxFee = maxFeeWeiOf(prep)
+        wei = (balance > maxFee ? balance - maxFee : 0n).toString()
       } else {
         const call = transferCall(to, tok, wei)
         prep = await api.transactionPrep(props.fromChain, props.fromAddress, call.to, call.value, call.data)
       }
       const call = transferCall(to, tok, wei)
       const fee = feeWeiOf(prep)
+      const maxFee = maxFeeWeiOf(prep)
       // Gas is paid in the native coin whatever's being sent — an ERC-20 send
       // with plenty of token but no ETH would otherwise only fail at broadcast.
-      if (!hasGasFor(tok.contractAddress === null ? BigInt(wei) + fee : fee)) return
+      // The network wants the most it can cost in the balance up front.
+      if (!hasGasFor(tok.contractAddress === null ? BigInt(wei) + maxFee : maxFee)) return
       const humanAmount = Number(formatUnits(wei, tok.decimals))
       prepared.value = { kind: 'direct', prep, ...call, humanAmount }
       const rows: ReviewRow[] = [
@@ -590,7 +596,7 @@ async function confirm() {
         ...(plan.data ? { data: plan.data } : {}),
         nonce: plan.prep.nonce,
         gasLimit: plan.prep.gas_limit,
-        gasPrice: plan.prep.gas_price,
+        ...feeFieldsOf(plan.prep),
         chainId: plan.prep.chain_id,
       })
       const { transaction_hash: hash } = await api.broadcastTransaction(txChain, signed)

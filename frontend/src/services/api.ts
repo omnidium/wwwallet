@@ -295,11 +295,16 @@ export interface TransactionFee {
   payer: string
 }
 
+/** Decimal wei strings — see the backend's TransactionPrep. */
 export interface TransactionPrep {
   nonce: number
+  /** What a unit of gas is expected to cost, for showing the fee; the most it can cost is `max_fee_per_gas`. */
   gas_price: string
   gas_limit: string
   chain_id: number
+  /** EIP-1559 caps to sign with; null (or absent, from an older backend) where the chain has no base fee. */
+  max_fee_per_gas?: string | null
+  max_priority_fee_per_gas?: string | null
 }
 
 export type TransactionStatus = 'success' | 'failed' | 'pending'

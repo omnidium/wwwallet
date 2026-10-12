@@ -11,6 +11,7 @@ import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import { convertUsd, formatAmount, formatFiat, toHumanAmount } from '@/services/money'
 import { unlockWalletForSigning } from '@/services/wallet'
 import { encodeApprove } from '@/services/erc20'
+import { feeFieldsOf } from '@/services/fees'
 import { waitForBridgeArrival, waitForTransactionConfirmation } from '@/services/transactionStatus'
 import type { PartyOption } from '@/components/transfer/PartySelect.vue'
 import type { ChainOption } from '@/components/transfer/ChainSelect.vue'
@@ -171,7 +172,7 @@ export function useTransferContext() {
       data: approveData,
       nonce: prep.nonce,
       gasLimit: prep.gas_limit,
-      gasPrice: prep.gas_price,
+      ...feeFieldsOf(prep),
       chainId: prep.chain_id,
     })
     const { transaction_hash: hash } = await api.broadcastTransaction(chain, signed)
@@ -211,7 +212,7 @@ export function useTransferContext() {
       ...(call.data ? { data: call.data } : {}),
       nonce: prep.nonce,
       gasLimit: prep.gas_limit,
-      gasPrice: prep.gas_price,
+      ...feeFieldsOf(prep),
       chainId: prep.chain_id,
     })
     const { transaction_hash } = await api.broadcastTransaction(account.chain, signed)

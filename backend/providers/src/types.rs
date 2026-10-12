@@ -205,9 +205,18 @@ pub struct ContractAbi {
 pub struct TransactionPrep {
     pub nonce: u64,
     /// Decimal-string wei values, to avoid float/u64 precision loss in JSON.
+    ///
+    /// What a unit of gas is expected to cost — on an EIP-1559 chain, the
+    /// next block's base fee plus the tip — for showing the fee. The most it
+    /// can cost is `max_fee_per_gas`.
     pub gas_price: String,
     pub gas_limit: String,
     pub chain_id: u64,
+    /// EIP-1559 caps to sign it with, on every chain whose blocks carry a
+    /// base fee; None on one without, which is signed with `gas_price` as a
+    /// legacy transaction instead.
+    pub max_fee_per_gas: Option<String>,
+    pub max_priority_fee_per_gas: Option<String>,
 }
 
 /// A ready-to-sign swap transaction from a DEX aggregator, plus the ERC-20

@@ -4,7 +4,7 @@ import { api, type ChainSlug, type Nft, type TransactionPrep } from '@/services/
 import { TranslatedError, displayErrorMessage } from '@/services/errors'
 import { isValidAddress, unlockWalletForSigning } from '@/services/wallet'
 import { encodeNftTransfer, isSendableNftType } from '@/services/nft'
-import { feeWeiOf } from '@/services/fees'
+import { feeFieldsOf, feeWeiOf, maxFeeWeiOf } from '@/services/fees'
 import { addressDisplayLabel } from '@/services/addressLabel'
 import { waitForTransactionConfirmation } from '@/services/transactionStatus'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
@@ -103,7 +103,7 @@ async function openReview() {
     const native = chainData.activityByAddress[chainData.keyFor(props.chain, props.address)]?.balances.find(
       (b) => b.contract_address === null,
     )
-    if (native && fee > BigInt(native.balance)) {
+    if (native && maxFeeWeiOf(prep) > BigInt(native.balance)) {
       messages.push(t('validation.insufficientGas', { symbol: NATIVE_ASSETS[props.chain].symbol }), 'error')
       return
     }
@@ -143,7 +143,7 @@ async function confirm() {
       data: plan.data,
       nonce: plan.prep.nonce,
       gasLimit: plan.prep.gas_limit,
-      gasPrice: plan.prep.gas_price,
+      ...feeFieldsOf(plan.prep),
       chainId: plan.prep.chain_id,
     })
     const { transaction_hash: hash } = await api.broadcastTransaction(chain, signed)
