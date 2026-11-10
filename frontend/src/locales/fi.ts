@@ -404,6 +404,7 @@ export default {
     finalRecipient: 'Lopullinen vastaanottaja',
     onNetwork: '{network}:ssa, sillan kautta',
     onOtherNetwork: 'toisessa verkossa, sillan kautta',
+    swapRate: 'Valuuttakurssi',
   },
   transferPicker: {
     title: 'Valitse tili tai maksunsaaja siirtoa varten',

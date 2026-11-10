@@ -412,6 +412,7 @@ export default {
     finalRecipient: 'Destinataire final',
     onNetwork: 'sur {network}, via un pont',
     onOtherNetwork: 'sur un autre réseau, via un pont',
+    swapRate: 'Taux de change',
   },
   transferPicker: {
     title: 'Clique sur un compte ou un bénéficiaire pour effectuer un virement',

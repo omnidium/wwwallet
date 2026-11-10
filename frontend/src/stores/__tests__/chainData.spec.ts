@@ -136,6 +136,40 @@ describe('chainData client-side cache', () => {
     expect(merged.next_cursor).toBeNull()
   })
 
+  it("keeps a swap's recorded bought leg when the indexer only saw what was sold", async () => {
+    const store = useChainDataStore()
+    mockedApi.addressActivity.mockResolvedValue(activity(['0x1']))
+    await store.loadAddressActivity(CHAIN, HOLDER)
+    const sold = { ...txn('0xswap'), asset: 'USDC', contract_address: TOKEN, value: '100' }
+    store.prependTransaction(CHAIN, HOLDER, {
+      ...sold,
+      status: 'pending',
+      counter_asset: 'ETH',
+      counter_value: '0.03',
+      counter_contract_address: null,
+    })
+
+    mockedApi.addressActivity.mockResolvedValue({ balances: [], transactions: [sold, txn('0x1')], next_cursor: null })
+    await store.loadAddressActivity(CHAIN, HOLDER)
+
+    const swap = store.activityByAddress[ACTIVITY_KEY]!.transactions[0]!
+    expect(swap).toMatchObject({ status: 'success', counter_asset: 'ETH', counter_value: '0.03' })
+  })
+
+  it("lets the indexer's own bought leg replace the one recorded", async () => {
+    const store = useChainDataStore()
+    mockedApi.addressActivity.mockResolvedValue(activity(['0x1']))
+    await store.loadAddressActivity(CHAIN, HOLDER)
+    const sold = { ...txn('0xswap'), asset: 'USDC', contract_address: TOKEN, value: '100' }
+    store.prependTransaction(CHAIN, HOLDER, { ...sold, status: 'pending', counter_asset: 'ETH', counter_value: '0.03' })
+
+    const indexed = { ...sold, counter_asset: 'ETH', counter_value: '0.0301' }
+    mockedApi.addressActivity.mockResolvedValue({ balances: [], transactions: [indexed, txn('0x1')], next_cursor: null })
+    await store.loadAddressActivity(CHAIN, HOLDER)
+
+    expect(store.activityByAddress[ACTIVITY_KEY]!.transactions[0]!.counter_value).toBe('0.0301')
+  })
+
   it('keeps known history when a refresh comes back with no transactions at all', async () => {
     const store = useChainDataStore()
     mockedApi.addressActivity.mockResolvedValue(activity(['0x2', '0x1'], 'cursor-1'))

@@ -405,6 +405,7 @@ export default {
     finalRecipient: 'Eindontvanger',
     onNetwork: 'op {network}, via een bridge',
     onOtherNetwork: 'op een ander netwerk, via een bridge',
+    swapRate: 'Wisselkoers',
   },
   transferPicker: {
     title: 'Klik op een account of ontvanger om geld over te maken',

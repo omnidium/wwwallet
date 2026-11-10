@@ -405,6 +405,7 @@ export default {
     finalRecipient: 'Кінцевий одержувач',
     onNetwork: 'на {network}, через міст',
     onOtherNetwork: 'в іншій мережі, через міст',
+    swapRate: 'Курс обміну',
   },
   transferPicker: {
     title: 'Наведіть курсор на рахунок або одержувача, щоб здійснити переказ',

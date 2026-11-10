@@ -402,6 +402,7 @@ export default {
     finalRecipient: 'Người nhận cuối cùng',
     onNetwork: 'trên {network}, qua cầu nối',
     onOtherNetwork: 'trên một mạng khác, thông qua cầu nối',
+    swapRate: 'Tỷ giá hối đoái',
   },
   transferPicker: {
     title: 'Chọn tài khoản hoặc người nhận để chuyển tiền',

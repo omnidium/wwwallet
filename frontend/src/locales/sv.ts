@@ -404,6 +404,7 @@ export default {
     finalRecipient: 'Slutmottagare',
     onNetwork: 'på {network}, via en brygga',
     onOtherNetwork: 'på ett annat nätverk, via en brygga',
+    swapRate: 'Växelkurs',
   },
   transferPicker: {
     title: 'Välj ett konto eller en mottagare för att överföra',

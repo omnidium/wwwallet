@@ -409,6 +409,7 @@ export default {
     finalRecipient: 'Destinatarul final',
     onNetwork: 'pe {network}, prin intermediul unui bridge',
     onOtherNetwork: 'pe o altă rețea, prin intermediul unui bridge',
+    swapRate: 'Cursul de schimb',
   },
   transferPicker: {
     title: 'Selectați un cont sau un beneficiar pentru a efectua transferul',

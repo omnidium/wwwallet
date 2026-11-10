@@ -132,10 +132,34 @@ function persist(key: string, data: unknown) {
  */
 function mergeFreshPage(existing: Transaction[], fresh: Transaction[]): Transaction[] {
   const freshByHash = new Map(fresh.map((t) => [t.hash, t]))
-  const refreshed = existing.map((t) => freshByHash.get(t.hash) ?? t)
+  const refreshed = existing.map((t) => {
+    const update = freshByHash.get(t.hash)
+    return update ? keepRecordedSwapLeg(t, update) : t
+  })
   const existingHashes = new Set(existing.map((t) => t.hash))
   const brandNew = fresh.filter((t) => !existingHashes.has(t.hash))
   return [...brandNew, ...refreshed]
+}
+
+/**
+ * On a chain where the indexer can't see native coin a contract pays out
+ * (see the backend's alchemy_reports_internal_transfers), a swap into that
+ * coin comes back with only the leg that was sold. A swap sent from this
+ * device recorded what it bought when it was broadcast (see SwapForm), so
+ * that leg is kept rather than lost to the indexer's view of it.
+ */
+function keepRecordedSwapLeg(known: Transaction, update: Transaction): Transaction {
+  if (known.counter_asset === null || update.counter_asset !== null) return update
+  const sameSale =
+    update.from.toLowerCase() === known.from.toLowerCase() &&
+    (update.contract_address?.toLowerCase() ?? null) === (known.contract_address?.toLowerCase() ?? null)
+  if (!sameSale) return update
+  return {
+    ...update,
+    counter_asset: known.counter_asset,
+    counter_value: known.counter_value,
+    counter_contract_address: known.counter_contract_address,
+  }
 }
 
 /** Appends an older page fetched via a cursor, deduping defensively against a page-seam overlap. */

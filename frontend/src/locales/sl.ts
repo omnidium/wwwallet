@@ -403,6 +403,7 @@ export default {
     finalRecipient: 'Končni prejemnik',
     onNetwork: 'na {network}, prek mostu',
     onOtherNetwork: 'v drugem omrežju prek mostu',
+    swapRate: 'Menjalni tečaj',
   },
   transferPicker: {
     title: 'Za prenos izberite račun ali prejemnika',

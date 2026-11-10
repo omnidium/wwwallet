@@ -403,6 +403,7 @@ export default {
     finalRecipient: 'Konečný príjemca',
     onNetwork: 'na {network}, cez most',
     onOtherNetwork: 'v inej sieti, prostredníctvom mosta',
+    swapRate: 'Výmenný kurz',
   },
   transferPicker: {
     title: 'Kliknite na účet alebo príjemcu, aby ste vykonali prevod',

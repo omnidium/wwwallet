@@ -12,6 +12,7 @@ import { toHumanAmount, convertUsd, formatFiat, formatAmount, formatPercentChang
 import { tokenUrl } from '@/services/blockExplorer'
 import { truncateAddress } from '@/services/format'
 import { groupTransactionsByDate } from '@/services/transactionGrouping'
+import { amountOfToken, swapLegOf } from '@/services/swapLegs'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import { useTransactionBatchLoader } from '@/composables/useTransactionBatchLoader'
 import { DUST_THRESHOLD_USD } from '@/config/appSettings'
@@ -174,17 +175,15 @@ async function refresh() {
 }
 
 const activityLoaded = computed(() => !holderAddress || holderActivity.value !== undefined)
+// A swap is listed under both of its tokens: what was sold and what was bought.
 const tokenTransactions = computed(
-  () =>
-    holderActivity.value?.transactions.filter((t) =>
-      address === null ? t.contract_address === null : t.contract_address?.toLowerCase() === address.toLowerCase(),
-    ) ?? [],
+  () => holderActivity.value?.transactions.filter((t) => swapLegOf(t, address) !== null) ?? [],
 )
 const visibleTokenTransactions = computed(() => {
   if (!hideDustTxns.value) return tokenTransactions.value
   const priceUsd = currentPriceUsd.value
   if (priceUsd === null) return tokenTransactions.value
-  return tokenTransactions.value.filter((t) => Number(t.value) * priceUsd >= DUST_THRESHOLD_USD)
+  return tokenTransactions.value.filter((t) => Number(amountOfToken(t, address)) * priceUsd >= DUST_THRESHOLD_USD)
 })
 const transactionGroups = computed(() => groupTransactionsByDate(visibleTokenTransactions.value, locale.value))
 
@@ -322,6 +321,6 @@ function openTransaction(txn: Transaction) {
     </template>
 
     <TransactionDetailDialog v-model="detailOpen" :chain="chain" :transaction="detailTransaction"
-      :my-address="holderAddress" />
+      :my-address="holderAddress" :token="address" />
   </div>
 </template>

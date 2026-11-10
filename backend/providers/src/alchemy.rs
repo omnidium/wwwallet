@@ -47,6 +47,12 @@ struct DirectionCursor {
     /// i.e. every transfer that direction will ever have is already either in
     /// `buffer` or already handed to the client.
     exhausted: bool,
+    /// Whether this direction's transfers include internal ones. Settled by
+    /// its first fetch and kept from then on, since a `pageKey` only
+    /// continues the query it was issued for — a cursor from before internal
+    /// transfers were asked for carries on without them.
+    #[serde(default)]
+    internal: bool,
 }
 
 /// Alchemy-specific continuation token round-tripped opaquely through
@@ -226,6 +232,7 @@ impl AlchemyProvider {
         }
         let mut merged = Vec::new();
         for (_, legs) in by_hash {
+            let legs = Self::net_native_refund(legs, &address_lower);
             if let [a, b] = &legs[..] {
                 let a_sent = a.from.to_lowercase() == address_lower;
                 let b_sent = b.from.to_lowercase() == address_lower;
@@ -252,6 +259,55 @@ impl AlchemyProvider {
         }
         merged.sort_by_key(|t| std::cmp::Reverse(t.block_number));
         merged
+    }
+
+    /// A swap that sells native coin can hand some of it back: the router
+    /// refunds whatever the trade didn't use, as an internal transfer. That
+    /// makes three legs (coin out, token in, coin back) where the swap merge
+    /// expects two, so the refund is netted off the coin sent instead —
+    /// the sent leg then says what the swap actually spent. Only that exact
+    /// shape is touched; a refund with no token bought beside it is a plain
+    /// pair of transfers and stays as it is.
+    fn net_native_refund(mut legs: Vec<Transaction>, address_lower: &str) -> Vec<Transaction> {
+        if legs.len() != 3 {
+            return legs;
+        }
+        let sent = |t: &Transaction| {
+            t.from.to_lowercase() == address_lower
+                && t.to.as_deref().map(str::to_lowercase).as_deref() != Some(address_lower)
+        };
+        let received = |t: &Transaction| {
+            t.from.to_lowercase() != address_lower
+                && t.to.as_deref().map(str::to_lowercase).as_deref() == Some(address_lower)
+        };
+        let native = |t: &Transaction| t.contract_address.is_none();
+        let Some(out) = legs.iter().position(|t| sent(t) && native(t)) else { return legs };
+        let Some(back) = legs.iter().position(|t| received(t) && native(t)) else { return legs };
+        let bought = legs.iter().any(|t| received(t) && !native(t));
+        let (Ok(spent), Ok(refund)) = (legs[out].value.parse::<f64>(), legs[back].value.parse::<f64>()) else {
+            return legs;
+        };
+        if !bought || refund >= spent {
+            return legs;
+        }
+        legs[out].value = Self::trim_decimal(spent - refund);
+        legs.remove(back);
+        legs
+    }
+
+    /// Alchemy's values are floats already, so 12 places is still finer than
+    /// they are — and keeps a subtraction's float noise (0.1 coming out as
+    /// 0.09999999999999998) out of what the client shows.
+    fn trim_decimal(value: f64) -> String {
+        let fixed = format!("{value:.12}");
+        fixed.trim_end_matches('0').trim_end_matches('.').to_string()
+    }
+
+    /// An internal transfer of nothing — a value-less contract call into
+    /// this address — moved no money, so isn't a transaction worth listing.
+    fn is_empty_internal_transfer(t: &Value) -> bool {
+        t.get("category").and_then(Value::as_str) == Some("internal")
+            && t.get("value").and_then(Value::as_f64).is_none_or(|v| v == 0.0)
     }
 
     fn hex_to_decimal_string(hex: &str) -> String {
@@ -390,11 +446,22 @@ impl AlchemyProvider {
             if state.exhausted {
                 continue;
             }
+            // Native coin a contract pays out (a swap's ETH leg, sent by the
+            // router) is an internal transfer. Only ever *to* this address: an
+            // externally owned account never makes a contract call itself.
+            if state.page_key.is_none() {
+                state.internal = direction == "toAddress" && chain.alchemy_reports_internal_transfers();
+            }
+            let categories = if state.internal {
+                json!(["external", "erc20", "internal"])
+            } else {
+                json!(["external", "erc20"])
+            };
             let mut params = json!({
                 "fromBlock": "0x0",
                 "toBlock": to_block,
                 direction: address,
-                "category": ["external", "erc20"],
+                "category": categories,
                 "withMetadata": true,
                 "order": "desc",
                 "maxCount": format!("0x{TRANSACTION_PAGE_SIZE:x}"),
@@ -406,7 +473,12 @@ impl AlchemyProvider {
                 .rpc_call(chain, "alchemy_getAssetTransfers", json!([params]))
                 .await?;
             if let Some(transfers) = resp.get("transfers").and_then(Value::as_array) {
-                let parsed = transfers.iter().map(Self::parse_transfer).collect();
+                // A zero-value internal call moves nothing — it's plumbing.
+                let parsed = transfers
+                    .iter()
+                    .filter(|t| !Self::is_empty_internal_transfer(t))
+                    .map(Self::parse_transfer)
+                    .collect();
                 cursor.buffer.extend(Self::fold_native_token_legs(chain, parsed));
             }
             state.page_key = resp.get("pageKey").and_then(Value::as_str).map(str::to_string);
@@ -1052,6 +1124,73 @@ mod tests {
         let merged = AlchemyProvider::merge_swap_legs(three_legs, ME);
         assert_eq!(merged.len(), 3);
         assert!(merged.iter().all(|t| t.counter_asset.is_none()));
+    }
+
+    fn token_leg(hash: &str, from: &str, to: &str, asset: &str, value: &str) -> Transaction {
+        Transaction {
+            value: value.to_string(),
+            contract_address: Some(format!("0x{asset}")),
+            ..sample_leg(hash, from, to, asset)
+        }
+    }
+
+    #[test]
+    fn merge_swap_legs_merges_a_token_sale_paid_out_in_native_coin() {
+        const ME: &str = "0xMe";
+        // USDC sold for ETH: the ETH arrives as the router's internal transfer.
+        let legs = vec![
+            token_leg("0xswap", ME, "0xRouter", "USDC", "100"),
+            Transaction { value: "0.03".to_string(), ..sample_leg("0xswap", "0xRouter", ME, "ETH") },
+        ];
+
+        let merged = AlchemyProvider::merge_swap_legs(legs, ME);
+
+        assert_eq!(merged.len(), 1);
+        assert_eq!(merged[0].asset, "USDC");
+        assert_eq!(merged[0].counter_asset.as_deref(), Some("ETH"));
+        assert_eq!(merged[0].counter_value.as_deref(), Some("0.03"));
+        assert!(merged[0].counter_contract_address.is_none());
+    }
+
+    #[test]
+    fn merge_swap_legs_nets_a_native_refund_off_the_coin_sold() {
+        const ME: &str = "0xMe";
+        let legs = vec![
+            sample_leg("0xswap", ME, "0xRouter", "ETH"),
+            token_leg("0xswap", "0xRouter", ME, "USDC", "2900"),
+            Transaction { value: "0.1".to_string(), ..sample_leg("0xswap", "0xRouter", ME, "ETH") },
+        ];
+
+        let merged = AlchemyProvider::merge_swap_legs(legs, ME);
+
+        assert_eq!(merged.len(), 1);
+        assert_eq!(merged[0].asset, "ETH");
+        assert_eq!(merged[0].value, "0.9");
+        assert_eq!(merged[0].counter_asset.as_deref(), Some("USDC"));
+    }
+
+    #[test]
+    fn net_native_refund_leaves_a_refund_with_nothing_bought_alone() {
+        const ME: &str = "0xMe";
+        // Two native receipts, no token: not a swap shape, nothing netted.
+        let legs = vec![
+            sample_leg("0xh", ME, "0xA", "ETH"),
+            Transaction { value: "0.1".to_string(), ..sample_leg("0xh", "0xA", ME, "ETH") },
+            Transaction { value: "0.2".to_string(), ..sample_leg("0xh", "0xB", ME, "ETH") },
+        ];
+        let kept = AlchemyProvider::net_native_refund(legs, &ME.to_lowercase());
+        assert_eq!(kept.len(), 3);
+        assert_eq!(kept[0].value, "1");
+    }
+
+    #[test]
+    fn zero_value_internal_transfers_are_recognised() {
+        let empty = json!({ "category": "internal", "value": 0 });
+        let paid = json!({ "category": "internal", "value": 0.5 });
+        let external = json!({ "category": "external", "value": 0 });
+        assert!(AlchemyProvider::is_empty_internal_transfer(&empty));
+        assert!(!AlchemyProvider::is_empty_internal_transfer(&paid));
+        assert!(!AlchemyProvider::is_empty_internal_transfer(&external));
     }
 
     fn sample_leg_at_block(hash: &str, from: &str, to: &str, asset: &str, block: u64) -> Transaction {

@@ -405,6 +405,7 @@ export default {
     finalRecipient: 'Galīgais saņēmējs',
     onNetwork: 'uz {network}, izmantojot tiltu',
     onOtherNetwork: 'citā tīklā, izmantojot tiltu',
+    swapRate: 'Valūtas kurss',
   },
   transferPicker: {
     title: 'Noklikšķiniet uz konta vai saņēmēja, lai veiktu pārskaitījumu',

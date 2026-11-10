@@ -405,6 +405,7 @@ export default {
     finalRecipient: 'Ostateczny odbiorca',
     onNetwork: 'na {network}, przez most',
     onOtherNetwork: 'w innej sieci, za pośrednictwem mostka',
+    swapRate: 'Kurs wymiany',
   },
   transferPicker: {
     title: 'Wybierz konto lub odbiorcę, żeby dokonać przelewu',

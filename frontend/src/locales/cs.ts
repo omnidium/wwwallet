@@ -404,6 +404,7 @@ export default {
     finalRecipient: 'Konečný příjemce',
     onNetwork: 'na {network}, přes most',
     onOtherNetwork: 'na jiné síti, prostřednictvím mostu',
+    swapRate: 'Směnný kurz',
   },
   transferPicker: {
     title: 'Klikněte na účet nebo příjemce platby a proveďte převod',
