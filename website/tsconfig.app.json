@@ -5,7 +5,10 @@
     "noUncheckedIndexedAccess": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["../shared/*"],
+      // As in the wallet app's tsconfig: ../shared has no node_modules, and
+      // vue-tsc 3.3.12+ mistypes the shared components without `vue`.
+      "vue": ["./node_modules/vue"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo"
   }
