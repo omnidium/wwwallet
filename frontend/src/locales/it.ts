@@ -407,6 +407,7 @@ export default {
     finalRecipient: 'Destinatario finale',
     onNetwork: 'su {network}, tramite un bridge',
     onOtherNetwork: 'su un’altra rete, tramite un bridge',
+    swapRate: 'Tasso di cambio',
   },
   transferPicker: {
     title: 'Seleziona un conto o un beneficiario per effettuare il trasferimento',

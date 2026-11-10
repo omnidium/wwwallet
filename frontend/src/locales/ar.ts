@@ -397,6 +397,7 @@ export default {
     finalRecipient: 'المستلم النهائي',
     onNetwork: 'على {network}، عبر جسر',
     onOtherNetwork: 'على شبكة أخرى، عبر جسر',
+    swapRate: 'سعر الصرف',
   },
   transferPicker: {
     title: 'اضغط على حساب أو مستفيد لإجراء التحويل',

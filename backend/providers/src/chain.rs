@@ -113,6 +113,27 @@ impl ChainId {
         }
     }
 
+    /// Whether Alchemy's asset-transfers API answers the `internal` category
+    /// (native coin moved by a contract call rather than a transaction's own
+    /// value, e.g. a router paying out a swap's ETH) here. Every other chain
+    /// rejects a request that asks for it. Probed November 2026.
+    pub fn alchemy_reports_internal_transfers(self) -> bool {
+        match self {
+            ChainId::Ethereum | ChainId::Polygon | ChainId::Base | ChainId::Robinhood => true,
+            ChainId::Arbitrum
+            | ChainId::Optimism
+            | ChainId::WorldChain
+            | ChainId::Ink
+            | ChainId::Linea
+            | ChainId::Gnosis
+            | ChainId::Celo
+            | ChainId::ZkSync
+            | ChainId::Ronin
+            | ChainId::Unichain
+            | ChainId::Scroll => false,
+        }
+    }
+
     /// Alchemy's network slug for this chain, used to build API URLs.
     pub fn alchemy_slug(self) -> &'static str {
         match self {

@@ -411,6 +411,7 @@ export default {
     finalRecipient: 'Destinatario final',
     onNetwork: 'en {network}, a través de un puente',
     onOtherNetwork: 'en otra red, a través de un puente',
+    swapRate: 'Tipo de cambio',
   },
   transferPicker: {
     title: 'Selecciona una cuenta o un destinatario para realizar la transferencia',

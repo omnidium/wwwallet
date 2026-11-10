@@ -401,6 +401,7 @@ export default {
     finalRecipient: '최종 수신자',
     onNetwork: '{network}에서, 브릿지를 통해',
     onOtherNetwork: '다른 네트워크에서, 브리지를 통해',
+    swapRate: '환율',
   },
   transferPicker: {
     title: '계정이나 수취인을 선택하여 송금하세요',

@@ -412,6 +412,7 @@ export default {
     finalRecipient: 'Végső címzett',
     onNetwork: 'a {network}-on, hídon keresztül',
     onOtherNetwork: 'egy másik hálózaton, hídon keresztül',
+    swapRate: 'Árfolyam',
   },
   transferPicker: {
     title: 'Válasszon ki egy számlát vagy kedvezményezettet az átutaláshoz',

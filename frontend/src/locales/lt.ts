@@ -406,6 +406,7 @@ export default {
     finalRecipient: 'Galutinis gavėjas',
     onNetwork: 'per {network}, naudojant tiltą',
     onOtherNetwork: 'kitame tinkle, per tiltą',
+    swapRate: 'Valiutos kursas',
   },
   transferPicker: {
     title: 'Norėdami atlikti pervedimą, pasirinkite sąskaitą arba gavėją',

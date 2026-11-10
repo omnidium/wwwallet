@@ -394,6 +394,7 @@ export default {
     finalRecipient: 'נמען סופי',
     onNetwork: 'ב-{network}, דרך גשר',
     onOtherNetwork: 'ברשת אחרת, באמצעות גשר',
+    swapRate: 'שער החליפין',
   },
   transferPicker: {
     title: 'לחצו על חשבון או על מקבל תשלום כדי לבצע העברה',

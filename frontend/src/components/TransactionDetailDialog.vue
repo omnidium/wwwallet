@@ -7,6 +7,7 @@ import { txnUrl, addressUrl } from '@/services/blockExplorer'
 import { addressDisplayLabel } from '@/services/addressLabel'
 import { truncateAddress } from '@/services/format'
 import { convertUsd, formatAmount, formatFiat } from '@/services/money'
+import { swapRate, type TokenContract } from '@/services/swapLegs'
 import { txRateAsset, useChainDataStore } from '@/stores/chainData'
 import { useSettingsLocaleStore } from '@/stores/settingsLocale'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
@@ -18,6 +19,8 @@ const props = defineProps<{
   transaction: Transaction | null
   /** The account it's being viewed from — decides send/receive coloring, as in TransactionRow. */
   myAddress: string | null
+  /** The token whose history it's opened from (null: the native coin) — a swap's rate is put in its terms. */
+  token?: TokenContract
 }>()
 const emit = defineEmits<{ 'update:modelValue': [boolean] }>()
 
@@ -125,6 +128,19 @@ const counterFiat = computed(() =>
     ? fiatOf(Number(props.transaction.counter_value), props.transaction.counter_contract_address)
     : null,
 )
+
+// Put in terms of the token being viewed, with the other way round beneath.
+// Significant digits, since a rate between two very differently priced
+// tokens can be far below formatAmount's six decimals.
+const rateText = computed(() => {
+  const rate = props.transaction ? swapRate(props.transaction, props.token) : null
+  if (!rate) return null
+  const fmt = new Intl.NumberFormat(locale.value, { maximumSignificantDigits: 6 })
+  return {
+    primary: `1 ${rate.baseAsset} = ${fmt.format(rate.rate)} ${rate.quoteAsset}`,
+    inverse: `1 ${rate.quoteAsset} = ${fmt.format(1 / rate.rate)} ${rate.baseAsset}`,
+  }
+})
 
 // Significant digits rather than formatAmount's fixed six decimals: an L2
 // fee is routinely a few millionths of an ETH, which that would round to 0.
@@ -244,6 +260,13 @@ const paidBySomeoneElse = computed(
               <td class="text-receive">
                 <span class="text-no-wrap">+{{ formatAmount(Number(transaction.counter_value)) }} {{ transaction.counter_asset }}</span>
                 <template v-if="counterFiat">{{ ' ' }}<span class="text-no-wrap txn-detail-fiat">{{ counterFiat }}</span></template>
+              </td>
+            </tr>
+            <tr v-if="rateText">
+              <td>{{ t('transactionDetail.swapRate') }}</td>
+              <td>
+                <span class="text-no-wrap">{{ rateText.primary }}</span>
+                <span class="d-block text-caption text-medium-emphasis text-no-wrap">{{ rateText.inverse }}</span>
               </td>
             </tr>
             <tr v-else>

@@ -406,6 +406,7 @@ export default {
     finalRecipient: 'Конечный получатель',
     onNetwork: 'на {network}, через мост',
     onOtherNetwork: 'в другой сети через мост',
+    swapRate: 'Курс валют',
   },
   transferPicker: {
     title: 'Наведи курсор на аккаунт или получателя, чтобы совершить перевод',

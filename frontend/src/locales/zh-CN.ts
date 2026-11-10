@@ -385,6 +385,7 @@ export default {
     finalRecipient: '最终收件人',
     onNetwork: '在 {network} 上，通过跨链桥',
     onOtherNetwork: '在另一个网络上，通过跨链桥',
+    swapRate: '汇率',
   },
   transferPicker: {
     title: '点击账户或收款人即可转账',

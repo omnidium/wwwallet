@@ -1803,6 +1803,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Ver en {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Tipo de cambio"
     }
   },
   "ar": {
@@ -3609,6 +3613,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "عرض على {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "سعر الصرف"
     }
   },
   "bg": {
@@ -5415,6 +5423,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Вижте в {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Валутен курс"
     }
   },
   "cs": {
@@ -7221,6 +7233,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Zobrazit na {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Směnný kurz"
     }
   },
   "da": {
@@ -9027,6 +9043,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Se på {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Valutakurs"
     }
   },
   "de": {
@@ -10833,6 +10853,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Anzeigen unter {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Wechselkurs"
     }
   },
   "el": {
@@ -12639,6 +12663,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Προβολή στο {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Συναλλαγματική ισοτιμία"
     }
   },
   "et": {
@@ -14445,6 +14473,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Vaata {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Vahetuskurss"
     }
   },
   "fi": {
@@ -16251,6 +16283,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Katso {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Valuuttakurssi"
     }
   },
   "fr": {
@@ -18057,6 +18093,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Voir sur {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Taux de change"
     }
   },
   "hu": {
@@ -19863,6 +19903,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Megtekintés: {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Árfolyam"
     }
   },
   "id": {
@@ -21669,6 +21713,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Lihat di {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Nilai tukar"
     }
   },
   "it": {
@@ -23475,6 +23523,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Visualizza su {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Tasso di cambio"
     }
   },
   "iw": {
@@ -25281,6 +25333,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "צפה ב-{marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "שער החליפין"
     }
   },
   "ja": {
@@ -27087,6 +27143,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "{marketplace}で閲覧"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "為替レート"
     }
   },
   "ko": {
@@ -28893,6 +28953,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "{marketplace}에서 보기"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "환율"
     }
   },
   "lt": {
@@ -30699,6 +30763,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Peržiūrėti {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Valiutos kursas"
     }
   },
   "lv": {
@@ -32505,6 +32573,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Skatīt {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Valūtas kurss"
     }
   },
   "nl": {
@@ -34311,6 +34383,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Bekijk op {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Wisselkoers"
     }
   },
   "no": {
@@ -36117,6 +36193,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Vis på {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Valutakurs"
     }
   },
   "pl": {
@@ -37923,6 +38003,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Zobacz na {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Kurs wymiany"
     }
   },
   "ro": {
@@ -39729,6 +39813,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Vizualizați pe {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Cursul de schimb"
     }
   },
   "ru": {
@@ -41535,6 +41623,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Посмотреть на {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Курс валют"
     }
   },
   "sk": {
@@ -43341,6 +43433,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Zobraziť na {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Výmenný kurz"
     }
   },
   "sl": {
@@ -45147,6 +45243,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Oglejte si na {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Menjalni tečaj"
     }
   },
   "sv": {
@@ -46953,6 +47053,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Visa på {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Växelkurs"
     }
   },
   "tr": {
@@ -48759,6 +48863,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "{marketplace} adresinde görüntüle"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Döviz kuru"
     }
   },
   "uk": {
@@ -50565,6 +50673,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Переглянути на {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Курс обміну"
     }
   },
   "vi": {
@@ -52371,6 +52483,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "Xem tại {marketplace}"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "Tỷ giá hối đoái"
     }
   },
   "zh-CN": {
@@ -54177,6 +54293,10 @@
     "nfts.viewOn": {
       "enHash": "40673e004db57e34",
       "value": "在 {marketplace} 上查看"
+    },
+    "transactionDetail.swapRate": {
+      "enHash": "c42b0984ec1c79e8",
+      "value": "汇率"
     }
   }
 }

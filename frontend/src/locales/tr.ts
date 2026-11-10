@@ -404,6 +404,7 @@ export default {
     finalRecipient: 'Nihai alıcı',
     onNetwork: '{network} üzerinde, bir köprü aracılığıyla',
     onOtherNetwork: 'başka bir ağda, bir köprü aracılığıyla',
+    swapRate: 'Döviz kuru',
   },
   transferPicker: {
     title: 'Para transferi yapmak için bir hesaba veya alıcıya dokunun',

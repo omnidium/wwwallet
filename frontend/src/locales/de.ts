@@ -414,6 +414,7 @@ export default {
     finalRecipient: 'Endempfänger',
     onNetwork: 'auf {network}, über eine Bridge',
     onOtherNetwork: 'in einem anderen Netzwerk, über eine Bridge',
+    swapRate: 'Wechselkurs',
   },
   transferPicker: {
     title: 'Auf ein Konto oder an einen Empfänger überweisen',

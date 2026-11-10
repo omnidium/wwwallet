@@ -110,6 +110,7 @@ export const frontendEn = {
     amount: 'Amount',
     sold: 'Sold',
     bought: 'Bought',
+    swapRate: 'Exchange rate',
     networkFee: 'Transaction fee',
     paidBySender: 'Paid by the sender',
     feeUnavailable: 'Not available yet',

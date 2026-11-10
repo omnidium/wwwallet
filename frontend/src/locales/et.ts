@@ -404,6 +404,7 @@ export default {
     finalRecipient: 'Lõplik saaja',
     onNetwork: '{network} kaudu, silla kaudu',
     onOtherNetwork: 'teises võrgus, silla kaudu',
+    swapRate: 'Vahetuskurss',
   },
   transferPicker: {
     title: 'Vali ülekanne tegemiseks konto või saaja',

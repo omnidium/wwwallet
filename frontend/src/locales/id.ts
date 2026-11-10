@@ -409,6 +409,7 @@ export default {
     finalRecipient: 'Penerima akhir',
     onNetwork: 'di {network}, melalui jembatan',
     onOtherNetwork: 'di jaringan lain, melalui jembatan',
+    swapRate: 'Nilai tukar',
   },
   transferPicker: {
     title: 'Ketuk akun atau penerima pembayaran untuk mentransfer',

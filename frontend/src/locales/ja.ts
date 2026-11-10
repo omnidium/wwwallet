@@ -400,6 +400,7 @@ export default {
     finalRecipient: '最終受信者',
     onNetwork: '{network}上で、ブリッジ経由で',
     onOtherNetwork: '別のネットワーク上で、ブリッジを介して',
+    swapRate: '為替レート',
   },
   transferPicker: {
     title: '送金先アカウントまたは受取人をタップして送金する',

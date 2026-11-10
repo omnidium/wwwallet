@@ -407,6 +407,7 @@ export default {
     finalRecipient: 'Краен получател',
     onNetwork: 'на {network}, чрез мост',
     onOtherNetwork: 'в друга мрежа, чрез мост',
+    swapRate: 'Валутен курс',
   },
   transferPicker: {
     title: 'Натиснете върху сметка или получател, за да извършите превод',

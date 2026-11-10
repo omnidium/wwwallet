@@ -405,6 +405,7 @@ export default {
     finalRecipient: 'Endelig mottaker',
     onNetwork: 'på {network}, via en bro',
     onOtherNetwork: 'på et annet nettverk, via en bro',
+    swapRate: 'Valutakurs',
   },
   transferPicker: {
     title: 'Velg en konto eller mottaker for å overføre',
