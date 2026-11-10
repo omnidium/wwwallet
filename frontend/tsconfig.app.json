@@ -9,7 +9,12 @@
     // Path mapping for cleaner imports.
     "paths": {
       "@/*": ["./src/*"],
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["../shared/*"],
+      // ../shared has no node_modules of its own, so nothing would resolve
+      // `vue` for the shared components. vue-tsc 3.3.12+ then can't tell
+      // their template's constants from refs, and unwraps them as if they
+      // were (".value does not exist on '"wwwallet"'").
+      "vue": ["./node_modules/vue"]
     },
 
     // `vue-tsc --build` produces a .tsbuildinfo file for incremental type-checking.
