@@ -5,7 +5,7 @@ use crate::error::{ProviderError, ProviderResult};
 use crate::types::{
     AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, CoinSearchResult, ContractAbi, FxHistory, FxRates,
     NativePrice, NftCollectionPage, NftPage, NftTransfer, PriceHistory,
-    SwapQuote, TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
+    SwapQuote, TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatusReport,
 };
 
 /// Fetches native + token balances and recent transactions for an address.
@@ -163,7 +163,7 @@ pub trait TransactionStatusProvider {
         &self,
         chain: ChainId,
         transaction_hash: &str,
-    ) -> ProviderResult<TransactionStatus>;
+    ) -> ProviderResult<TransactionStatusReport>;
 }
 
 /// Reads what a mined transaction paid in network fees. Unavailable while

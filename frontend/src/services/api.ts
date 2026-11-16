@@ -147,11 +147,18 @@ export interface Transaction {
   contract_address: string | null
   block_number: number | null
   timestamp: string | null
-  status: TransactionStatus
+  /**
+   * 'dropped' is the app's own: a transaction sent from this device that the
+   * network has no record of (see chainData's reconcilePending). It never
+   * comes from the backend's history.
+   */
+  status: TransactionStatus | 'dropped'
   /** Set when this is a same-hash swap: the received leg, alongside the sent leg above. */
   counter_asset: string | null
   counter_value: string | null
   counter_contract_address: string | null
+  /** Client-only: when this device sent it (ms since epoch), for a transaction not yet in history. */
+  submitted_at?: number
 }
 
 /** Just enough to tell whether an address has ever been used on a chain — see the backend's AddressPresence. */
@@ -308,6 +315,16 @@ export interface TransactionPrep {
 }
 
 export type TransactionStatus = 'success' | 'failed' | 'pending'
+
+/** What the network knows of one transaction — see the backend's TransactionStatusReport. */
+export interface TransactionStatusReport {
+  status: TransactionStatus
+  /** Once mined. Absent from an older backend. */
+  block_number?: number | null
+  timestamp?: string | null
+  /** False when the network has no record of it, mined or waiting. Absent from an older backend. */
+  known?: boolean
+}
 
 export interface SwapQuote {
   to: string
@@ -474,7 +491,7 @@ export const api = {
       raw_transaction: rawTransaction,
     }),
   transactionStatus: (chain: ChainSlug, hash: string) =>
-    getJson<{ status: TransactionStatus }>(`/api/v1/chains/${chain}/tx-status/${encodeURIComponent(hash)}`),
+    getJson<TransactionStatusReport>(`/api/v1/chains/${chain}/tx-status/${encodeURIComponent(hash)}`),
   transactionFee: (chain: ChainSlug, hash: string) =>
     getJson<TransactionFee>(`/api/v1/chains/${chain}/tx-fee/${encodeURIComponent(hash)}`),
   transactionPrep: (chain: ChainSlug, from: string, to: string, valueWei: string, data?: string) =>

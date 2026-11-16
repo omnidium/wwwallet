@@ -70,6 +70,17 @@ export const QUOTE_DEBOUNCE_MS = 600
 /** A shown quote older than this is re-fetched before it's reviewed — prices and bridge fees drift. */
 export const QUOTE_MAX_AGE_MS = 30_000
 
+/**
+ * A transaction sent from this device that the network still has no record
+ * of this long after it was sent is taken as dropped (or replaced by another
+ * with its nonce) — well past any delay in it reaching the node that's asked.
+ * See services/pendingTransactions.ts.
+ */
+export const DROPPED_TRANSACTION_MS = 10 * 60_000
+
+/** At most this many still-pending transactions are looked up per account refresh. */
+export const PENDING_CHECKS_PER_REFRESH = 5
+
 /** How often a bridged transfer's arrival is checked, and for at most how long. */
 export const BRIDGE_STATUS_POLL_MS = 10_000
 export const BRIDGE_STATUS_MAX_WAIT_MS = 60 * 60_000

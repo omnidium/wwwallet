@@ -1,12 +1,13 @@
 import type { Transaction } from '@/services/api'
+import { transactionTime } from '@/services/pendingTransactions'
 
 export interface TransactionGroup {
   dateLabel: string
   transactions: Transaction[]
 }
 
-function dateLabel(timestamp: string, locale: string): string {
-  const date = new Date(timestamp)
+function dateLabel(time: number, locale: string): string {
+  const date = new Date(time)
   const sameYear = date.getFullYear() === new Date().getFullYear()
   return new Intl.DateTimeFormat(locale, {
     month: 'short',
@@ -15,11 +16,15 @@ function dateLabel(timestamp: string, locale: string): string {
   }).format(date)
 }
 
-/** Transactions with no timestamp yet (still pending) are grouped first, ahead of any dated group. */
+/**
+ * Transactions with no time yet (still pending) are grouped first, ahead of
+ * any dated group. One that was dropped, never mined, goes by when it was sent.
+ */
 export function groupTransactionsByDate(transactions: Transaction[], locale: string): TransactionGroup[] {
   const groups: TransactionGroup[] = []
   for (const txn of transactions) {
-    const label = txn.timestamp ? dateLabel(txn.timestamp, locale) : ''
+    const time = transactionTime(txn)
+    const label = time !== null ? dateLabel(time, locale) : ''
     const current = groups.at(-1)
     if (current?.dateLabel === label) current.transactions.push(txn)
     else groups.push({ dateLabel: label, transactions: [txn] })

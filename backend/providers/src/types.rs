@@ -42,6 +42,22 @@ pub enum TransactionStatus {
     Pending,
 }
 
+/// What the network knows of one transaction, by hash — see
+/// `TransactionStatusProvider`.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct TransactionStatusReport {
+    pub status: TransactionStatus,
+    /// Once mined: the block it's in.
+    pub block_number: Option<u64>,
+    /// Once mined: that block's time, as ISO 8601 UTC. Left out if the block
+    /// couldn't be read — the status is still worth having without it.
+    pub timestamp: Option<String>,
+    /// False when the network has no record of it at all, mined or waiting:
+    /// it was dropped from the mempool, or another transaction took its
+    /// nonce. Always true once mined.
+    pub known: bool,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AddressActivity {
     pub balances: Vec<Balance>,

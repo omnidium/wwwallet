@@ -403,6 +403,9 @@ export default {
     onNetwork: 'trên {network}, qua cầu nối',
     onOtherNetwork: 'trên một mạng khác, thông qua cầu nối',
     swapRate: 'Tỷ giá hối đoái',
+    status_dropped: 'Chưa thực hiện',
+    droppedNote:
+      'Mạng lưới không ghi nhận giao dịch này, nên nó chưa bao giờ được thực hiện: không có gì được gửi đi và cũng không có phí nào được thanh toán.',
   },
   transferPicker: {
     title: 'Chọn tài khoản hoặc người nhận để chuyển tiền',

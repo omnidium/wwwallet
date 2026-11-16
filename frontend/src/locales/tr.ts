@@ -405,6 +405,9 @@ export default {
     onNetwork: '{network} üzerinde, bir köprü aracılığıyla',
     onOtherNetwork: 'başka bir ağda, bir köprü aracılığıyla',
     swapRate: 'Döviz kuru',
+    status_dropped: 'Yürütülmedi',
+    droppedNote:
+      'Ağda bu işlemin kaydı bulunmadığından, işlem hiçbir zaman gerçekleşmemiştir: hiçbir şey gönderilmemiştir ve herhangi bir ücret ödenmemiştir.',
   },
   transferPicker: {
     title: 'Para transferi yapmak için bir hesaba veya alıcıya dokunun',

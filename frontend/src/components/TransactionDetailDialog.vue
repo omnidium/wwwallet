@@ -198,6 +198,9 @@ const paidBySomeoneElse = computed(
                   :style="{ color: transaction.status === 'success' ? 'green' : transaction.status === 'failed' ? 'red' : undefined }">
                   {{ t(`transactionDetail.status_${transaction.status}`) }}
                 </span>
+                <span v-if="transaction.status === 'dropped'" class="d-block text-caption text-medium-emphasis">
+                  {{ t('transactionDetail.droppedNote') }}
+                </span>
               </td>
             </tr>
             <tr v-if="transaction.timestamp">

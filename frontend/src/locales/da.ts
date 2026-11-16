@@ -406,6 +406,9 @@ export default {
     onNetwork: 'på {network}, via en bro',
     onOtherNetwork: 'på et andet netværk via en bro',
     swapRate: 'Valutakurs',
+    status_dropped: 'Ikke udført',
+    droppedNote:
+      'Netværket har ingen registrering af denne transaktion, så den blev aldrig gennemført: der blev ikke sendt noget, og der blev ikke betalt noget gebyr.',
   },
   transferPicker: {
     title: 'Vælg en konto eller modtager for at overføre',

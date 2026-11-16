@@ -412,6 +412,9 @@ export default {
     onNetwork: 'en {network}, a través de un puente',
     onOtherNetwork: 'en otra red, a través de un puente',
     swapRate: 'Tipo de cambio',
+    status_dropped: 'No se ha llevado a cabo',
+    droppedNote:
+      'La red no tiene constancia de esta transacción, así que nunca se llevó a cabo: no se envió nada ni se pagó ninguna comisión.',
   },
   transferPicker: {
     title: 'Selecciona una cuenta o un destinatario para realizar la transferencia',

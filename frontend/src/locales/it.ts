@@ -408,6 +408,9 @@ export default {
     onNetwork: 'su {network}, tramite un bridge',
     onOtherNetwork: 'su un’altra rete, tramite un bridge',
     swapRate: 'Tasso di cambio',
+    status_dropped: 'Non eseguito',
+    droppedNote:
+      'La rete non ha alcuna traccia di questa transazione, quindi non è mai andata a buon fine: non è stato inviato nulla e non è stata pagata alcuna commissione.',
   },
   transferPicker: {
     title: 'Seleziona un conto o un beneficiario per effettuare il trasferimento',

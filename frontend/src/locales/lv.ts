@@ -406,6 +406,9 @@ export default {
     onNetwork: 'uz {network}, izmantojot tiltu',
     onOtherNetwork: 'citā tīklā, izmantojot tiltu',
     swapRate: 'Valūtas kurss',
+    status_dropped: 'Nav izpildīts',
+    droppedNote:
+      'Tīklā nav šī darījuma ieraksta, tātad tas nekad nav noticis: nekas netika nosūtīts un netika samaksāta komisija.',
   },
   transferPicker: {
     title: 'Noklikšķiniet uz konta vai saņēmēja, lai veiktu pārskaitījumu',

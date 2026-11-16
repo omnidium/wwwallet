@@ -8,7 +8,7 @@ use crate::state::AppState;
 use wwwallet_providers::types::{
     AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, ContractAbi, HistoricalPrice, FxRates, NativePrice,
     NftCollectionPage, NftPage, NftTransfer, PriceHistory, SwapQuote, TokenListItem,
-    TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
+    TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatusReport,
 };
 use wwwallet_providers::traits::BridgeQuoteRequest;
 use wwwallet_providers::ChainId;
@@ -204,11 +204,6 @@ pub async fn broadcast_transaction(
     Ok(Json(BroadcastResponse { transaction_hash }))
 }
 
-#[derive(Serialize)]
-pub struct TransactionStatusResponse {
-    status: TransactionStatus,
-}
-
 fn validate_tx_hash(hash: &str) -> Result<(), ApiError> {
     let is_hex_hash = hash.len() == 66
         && hash.starts_with("0x")
@@ -224,15 +219,14 @@ pub async fn transaction_status(
     State(state): State<AppState>,
     headers: HeaderMap,
     Path((chain, hash)): Path<(String, String)>,
-) -> Result<Json<TransactionStatusResponse>, ApiError> {
+) -> Result<Json<TransactionStatusReport>, ApiError> {
     state
         .providers
         .check_rate_limit(client_ip(&headers), "transaction_status")
         .await?;
     let chain = parse_chain(&chain)?;
     validate_tx_hash(&hash)?;
-    let status = state.providers.transaction_status(chain, &hash).await?;
-    Ok(Json(TransactionStatusResponse { status }))
+    Ok(Json(state.providers.transaction_status(chain, &hash).await?))
 }
 
 #[worker::send]

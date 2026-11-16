@@ -407,6 +407,9 @@ export default {
     onNetwork: 'per {network}, naudojant tiltą',
     onOtherNetwork: 'kitame tinkle, per tiltą',
     swapRate: 'Valiutos kursas',
+    status_dropped: 'Neįgyvendinta',
+    droppedNote:
+      'Tinkle nėra šio sandorio įrašo, taigi jis niekada nebuvo įvykdytas: nieko nebuvo išsiųsta ir nebuvo sumokėtas joks mokestis.',
   },
   transferPicker: {
     title: 'Norėdami atlikti pervedimą, pasirinkite sąskaitą arba gavėją',

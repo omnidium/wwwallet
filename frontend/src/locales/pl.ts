@@ -406,6 +406,9 @@ export default {
     onNetwork: 'na {network}, przez most',
     onOtherNetwork: 'w innej sieci, za pośrednictwem mostka',
     swapRate: 'Kurs wymiany',
+    status_dropped: 'Nie zrealizowano',
+    droppedNote:
+      'Sieć nie ma żadnych danych o tej transakcji, więc nigdy nie doszła do skutku: nic nie zostało wysłane i nie zapłacono żadnej opłaty.',
   },
   transferPicker: {
     title: 'Wybierz konto lub odbiorcę, żeby dokonać przelewu',

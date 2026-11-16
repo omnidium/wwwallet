@@ -402,6 +402,9 @@ export default {
     onNetwork: '{network}에서, 브릿지를 통해',
     onOtherNetwork: '다른 네트워크에서, 브리지를 통해',
     swapRate: '환율',
+    status_dropped: '미실행',
+    droppedNote:
+      '네트워크에는 이 거래에 대한 기록이 없으므로, 거래가 성사되지 않았습니다. 즉, 아무것도 전송되지 않았고 수수료도 지불되지 않았습니다.',
   },
   transferPicker: {
     title: '계정이나 수취인을 선택하여 송금하세요',

@@ -6,7 +6,7 @@ mod nft;
 
 use crate::chain::ChainId;
 use crate::error::{ProviderError, ProviderResult};
-use crate::fxrate::unix_from_iso_date;
+use crate::fxrate::{iso_timestamp_from_unix, unix_from_iso_date};
 use crate::http;
 use crate::traits::{
     ActivityProvider, AllowanceProvider, CoinPriceHistoryProvider, NativePriceProvider,
@@ -16,7 +16,7 @@ use crate::traits::{
 };
 use crate::types::{
     AddressActivity, AddressPresence, Balance, NativePrice, PriceHistory, TokenMetadata, Transaction,
-    TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
+    TransactionFee, TransactionPage, TransactionPrep, TransactionStatus, TransactionStatusReport,
 };
 
 /// How many raw transfers to ask Alchemy for per direction (sent/received) on
@@ -842,22 +842,61 @@ impl TransactionStatusProvider for AlchemyProvider {
         &self,
         chain: ChainId,
         transaction_hash: &str,
-    ) -> ProviderResult<TransactionStatus> {
-        let receipt = self
-            .rpc_call(chain, "eth_getTransactionReceipt", json!([transaction_hash]))
+    ) -> ProviderResult<TransactionStatusReport> {
+        // One request for both: the receipt says whether (and how) it was
+        // mined, the transaction itself whether the network has heard of it.
+        let results = self
+            .rpc_batch(
+                chain,
+                &[
+                    ("eth_getTransactionReceipt", json!([transaction_hash])),
+                    ("eth_getTransactionByHash", json!([transaction_hash])),
+                ],
+            )
             .await?;
-        // No receipt yet means not yet mined, not an error — eth_getTransactionReceipt
-        // returns a JSON-RPC `null` result (not a missing field) while pending.
-        if receipt.is_null() {
-            return Ok(TransactionStatus::Pending);
+        let mut report = status_report(&results[0], &results[1]);
+        // The receipt carries no time, its block does. Best effort: asked
+        // once, when the client's poll first sees it mined.
+        if let Some(block) = report.block_number {
+            report.timestamp = self
+                .rpc_call(chain, "eth_getBlockByNumber", json!([format!("0x{block:x}"), false]))
+                .await
+                .ok()
+                .and_then(|b| b.get("timestamp").and_then(Value::as_str).and_then(parse_hex_i64))
+                .map(iso_timestamp_from_unix);
         }
-        let status_hex = receipt.get("status").and_then(Value::as_str).unwrap_or("0x1");
-        Ok(if status_hex == "0x0" {
-            TransactionStatus::Failed
-        } else {
-            TransactionStatus::Success
-        })
+        Ok(report)
     }
+}
+
+/// A transaction's status from its receipt and the transaction itself, each
+/// as eth_getTransactionReceipt / eth_getTransactionByHash return them — a
+/// JSON-RPC `null` result (not a missing field) when there's none. No
+/// receipt is not yet mined; no transaction either, never heard of.
+fn status_report(receipt: &Value, transaction: &Value) -> TransactionStatusReport {
+    if receipt.is_null() {
+        return TransactionStatusReport {
+            status: TransactionStatus::Pending,
+            block_number: None,
+            timestamp: None,
+            known: !transaction.is_null(),
+        };
+    }
+    let status_hex = receipt.get("status").and_then(Value::as_str).unwrap_or("0x1");
+    TransactionStatusReport {
+        status: if status_hex == "0x0" { TransactionStatus::Failed } else { TransactionStatus::Success },
+        block_number: receipt
+            .get("blockNumber")
+            .and_then(Value::as_str)
+            .and_then(parse_hex_i64)
+            .and_then(|b| u64::try_from(b).ok()),
+        timestamp: None,
+        known: true,
+    }
+}
+
+fn parse_hex_i64(hex: &str) -> Option<i64> {
+    i64::from_str_radix(hex.trim_start_matches("0x"), 16).ok()
 }
 
 /// Total network fee from an `eth_getTransactionReceipt` result, in wei —
@@ -1125,6 +1164,28 @@ mod tests {
         assert_eq!(unix_from_iso_timestamp("1970-01-02T01:00:05Z"), Some(86_400 + 3600 + 5));
         assert_eq!(unix_from_iso_timestamp("2026-09-28T06:00:00.000Z"), unix_from_iso_timestamp("2026-09-28T06:00:00Z"));
         assert_eq!(unix_from_iso_timestamp("garbage"), None);
+    }
+
+    #[test]
+    fn status_report_tells_waiting_from_never_heard_of() {
+        let waiting = status_report(&Value::Null, &json!({ "hash": "0xabc", "blockNumber": null }));
+        assert_eq!(waiting.status, TransactionStatus::Pending);
+        assert!(waiting.known);
+
+        let dropped = status_report(&Value::Null, &Value::Null);
+        assert_eq!(dropped.status, TransactionStatus::Pending);
+        assert!(!dropped.known);
+    }
+
+    #[test]
+    fn status_report_reads_a_mined_receipt() {
+        let tx = json!({ "hash": "0xabc" });
+        let ok = status_report(&json!({ "status": "0x1", "blockNumber": "0x1a2b" }), &tx);
+        assert_eq!((ok.status, ok.block_number, ok.known), (TransactionStatus::Success, Some(0x1a2b), true));
+
+        let reverted = status_report(&json!({ "status": "0x0", "blockNumber": "0x10" }), &tx);
+        assert_eq!(reverted.status, TransactionStatus::Failed);
+        assert_eq!(reverted.block_number, Some(16));
     }
 
     #[test]

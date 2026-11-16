@@ -100,6 +100,9 @@ export const frontendEn = {
     status_success: 'Success',
     status_failed: 'Failed',
     status_pending: 'Pending',
+    status_dropped: 'Not executed',
+    droppedNote:
+      'The network has no record of this transaction, so it never went through: nothing was sent and no fee was paid.',
     timestamp: 'Timestamp',
     from: 'From',
     to: 'To',

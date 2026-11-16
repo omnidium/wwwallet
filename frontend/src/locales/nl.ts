@@ -406,6 +406,9 @@ export default {
     onNetwork: 'op {network}, via een bridge',
     onOtherNetwork: 'op een ander netwerk, via een bridge',
     swapRate: 'Wisselkoers',
+    status_dropped: 'Niet uitgevoerd',
+    droppedNote:
+      'Het netwerk heeft geen gegevens over deze transactie, dus die is nooit doorgegaan: er is niets verzonden en er zijn geen kosten betaald.',
   },
   transferPicker: {
     title: 'Klik op een account of ontvanger om geld over te maken',

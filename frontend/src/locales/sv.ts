@@ -405,6 +405,9 @@ export default {
     onNetwork: 'på {network}, via en brygga',
     onOtherNetwork: 'på ett annat nätverk, via en brygga',
     swapRate: 'Växelkurs',
+    status_dropped: 'Ej genomfört',
+    droppedNote:
+      'Nätverket har inga uppgifter om denna transaktion, så den genomfördes aldrig: ingenting skickades och ingen avgift betalades.',
   },
   transferPicker: {
     title: 'Välj ett konto eller en mottagare för att överföra',

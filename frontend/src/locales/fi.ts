@@ -405,6 +405,9 @@ export default {
     onNetwork: '{network}:ssa, sillan kautta',
     onOtherNetwork: 'toisessa verkossa, sillan kautta',
     swapRate: 'Valuuttakurssi',
+    status_dropped: 'Ei toteutettu',
+    droppedNote:
+      'Verkossa ei ole tietoja tästä transaktiosta, joten se ei koskaan toteutunut: mitään ei lähetetty eikä maksua suoritettu.',
   },
   transferPicker: {
     title: 'Valitse tili tai maksunsaaja siirtoa varten',

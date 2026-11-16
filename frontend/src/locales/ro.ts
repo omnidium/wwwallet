@@ -410,6 +410,9 @@ export default {
     onNetwork: 'pe {network}, prin intermediul unui bridge',
     onOtherNetwork: 'pe o altă rețea, prin intermediul unui bridge',
     swapRate: 'Cursul de schimb',
+    status_dropped: 'Neexecutat',
+    droppedNote:
+      'Rețeaua nu are nicio înregistrare a acestei tranzacții, deci aceasta nu a fost efectuată niciodată: nu s-a trimis nimic și nu s-a plătit niciun comision.',
   },
   transferPicker: {
     title: 'Selectați un cont sau un beneficiar pentru a efectua transferul',

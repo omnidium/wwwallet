@@ -18,6 +18,7 @@ vi.mock('@/services/api', () => ({
     historicalPrice: vi.fn<typeof api.historicalPrice>(),
     fxRatesOn: vi.fn<typeof api.fxRatesOn>(),
     bridgeLookup: vi.fn<typeof api.bridgeLookup>(),
+    transactionStatus: vi.fn<typeof api.transactionStatus>(),
   },
 }))
 const mockedApi = vi.mocked(api)
@@ -154,6 +155,45 @@ describe('chainData client-side cache', () => {
 
     const swap = store.activityByAddress[ACTIVITY_KEY]!.transactions[0]!
     expect(swap).toMatchObject({ status: 'success', counter_asset: 'ETH', counter_value: '0.03' })
+  })
+
+  it('marks a sent transaction history never lists by what the network says of it', async () => {
+    const store = useChainDataStore()
+    mockedApi.addressActivity.mockResolvedValue({
+      balances: [],
+      transactions: [{ ...txn('0x1'), timestamp: '2026-11-10T10:00:00.000Z' }],
+      next_cursor: null,
+    })
+    await store.loadAddressActivity(CHAIN, HOLDER)
+    store.prependTransaction(CHAIN, HOLDER, { ...txn('0xreverted'), status: 'pending' })
+    store.prependTransaction(CHAIN, HOLDER, { ...txn('0xwaiting'), status: 'pending' })
+    mockedApi.transactionStatus.mockImplementation(async (_chain, hash) =>
+      hash === '0xreverted'
+        ? { status: 'failed', block_number: 7, timestamp: '2026-11-12T08:00:00.000Z', known: true }
+        : { status: 'pending', block_number: null, timestamp: null, known: true },
+    )
+
+    await store.loadAddressActivity(CHAIN, HOLDER)
+
+    const history = store.activityByAddress[ACTIVITY_KEY]!.transactions
+    expect(history.map((t) => [t.hash, t.status])).toEqual([
+      ['0xwaiting', 'pending'],
+      ['0xreverted', 'failed'],
+      ['0x1', 'success'],
+    ])
+    expect(history[1]!.timestamp).toBe('2026-11-12T08:00:00.000Z')
+  })
+
+  it('leaves a pending transaction as it is when the lookup fails', async () => {
+    const store = useChainDataStore()
+    mockedApi.addressActivity.mockResolvedValue(activity(['0x1']))
+    await store.loadAddressActivity(CHAIN, HOLDER)
+    store.prependTransaction(CHAIN, HOLDER, { ...txn('0xsent'), status: 'pending' })
+    mockedApi.transactionStatus.mockRejectedValue(new Error('upstream down'))
+
+    await store.loadAddressActivity(CHAIN, HOLDER)
+
+    expect(store.activityByAddress[ACTIVITY_KEY]!.transactions[0]).toMatchObject({ hash: '0xsent', status: 'pending' })
   })
 
   it("lets the indexer's own bought leg replace the one recorded", async () => {

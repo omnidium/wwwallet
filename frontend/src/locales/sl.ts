@@ -404,6 +404,9 @@ export default {
     onNetwork: 'na {network}, prek mostu',
     onOtherNetwork: 'v drugem omrežju prek mostu',
     swapRate: 'Menjalni tečaj',
+    status_dropped: 'Ni izvedeno',
+    droppedNote:
+      'Omrežje nima zapisa o tej transakciji, zato ta ni bila nikoli izvedena: nič ni bilo poslano in ni bila plačana nobena provizija.',
   },
   transferPicker: {
     title: 'Za prenos izberite račun ali prejemnika',

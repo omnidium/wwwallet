@@ -405,6 +405,9 @@ export default {
     onNetwork: '{network} kaudu, silla kaudu',
     onOtherNetwork: 'teises võrgus, silla kaudu',
     swapRate: 'Vahetuskurss',
+    status_dropped: 'Ei ole täidetud',
+    droppedNote:
+      'Võrgustikus puudub selle tehingu kirje, seega see ei läinud kunagi läbi: midagi ei saadetud ja tasu ei makstud.',
   },
   transferPicker: {
     title: 'Vali ülekanne tegemiseks konto või saaja',

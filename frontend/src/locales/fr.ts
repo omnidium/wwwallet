@@ -413,6 +413,9 @@ export default {
     onNetwork: 'sur {network}, via un pont',
     onOtherNetwork: 'sur un autre réseau, via un pont',
     swapRate: 'Taux de change',
+    status_dropped: 'Non exécuté',
+    droppedNote:
+      "Le réseau n'a aucune trace de cette transaction, donc elle n'a jamais été effectuée : rien n'a été envoyé et aucun frais n'a été payé.",
   },
   transferPicker: {
     title: 'Clique sur un compte ou un bénéficiaire pour effectuer un virement',

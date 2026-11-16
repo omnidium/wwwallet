@@ -395,6 +395,9 @@ export default {
     onNetwork: 'ב-{network}, דרך גשר',
     onOtherNetwork: 'ברשת אחרת, באמצעות גשר',
     swapRate: 'שער החליפין',
+    status_dropped: 'לא בוצע',
+    droppedNote:
+      'ברשת אין תיעוד של העסקה הזו, ולכן היא מעולם לא בוצעה: לא נשלח דבר ולא שולמו עמלות.',
   },
   transferPicker: {
     title: 'לחצו על חשבון או על מקבל תשלום כדי לבצע העברה',

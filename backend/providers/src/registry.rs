@@ -25,7 +25,7 @@ use crate::types::{
     AddressActivity, AddressPresence, BridgeQuote, BridgeStatus, CoinSearchResult, HistoricalPrice, ContractAbi, FxHistory, FxRates, NativePrice,
     NftCollectionPage, NftPage, NftTransfer, PriceHistory,
     SwapQuote, TokenListItem,
-    TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatus,
+    TokenMetadata, TransactionFee, TransactionPage, TransactionPrep, TransactionStatusReport,
 };
 use crate::zerox::ZeroExProvider;
 
@@ -439,7 +439,7 @@ impl ProviderRegistry {
         &self,
         chain: ChainId,
         transaction_hash: &str,
-    ) -> ProviderResult<TransactionStatus> {
+    ) -> ProviderResult<TransactionStatusReport> {
         self.tx_status.transaction_status(chain, transaction_hash).await
     }
 

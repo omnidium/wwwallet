@@ -27,11 +27,13 @@ import {
 } from '@/services/secureCache'
 import { createConcurrencyLimiter } from '@/services/concurrencyLimit'
 import { tokenUsdValue } from '@/services/money'
+import { placeInHistory, resolvePending } from '@/services/pendingTransactions'
 import { NATIVE_ASSETS } from '@/config/nativeAssets'
 import type { PickedToken } from '@/components/TokenPickerField.vue'
 import {
   DEFAULT_TRANSACTION_BATCH_SIZE,
   DUST_THRESHOLD_USD,
+  PENDING_CHECKS_PER_REFRESH,
   TOKEN_METADATA_CONCURRENCY,
   TOKEN_METADATA_RECHECK_MS,
 } from '@/config/appSettings'
@@ -443,6 +445,8 @@ export const useChainDataStore = defineStore('chainData', () => {
       const history = await mergeIntoKnownHistory(chain, address, key, fresh)
       const merged: AddressActivity = { balances: fresh.balances, ...history }
       remember(activityByAddress, ACTIVITY_PREFIX, key, merged)
+      // Only what history didn't list is still pending by now.
+      await reconcilePending(chain, address)
       if (refreshTokenMetadata) tokenRefresh = refreshHeldTokenMetadata(chain, fresh.balances)
     } finally {
       void tokenRefresh.finally(() => {
@@ -551,11 +555,49 @@ export const useChainDataStore = defineStore('chainData', () => {
     const key = keyFor(chain, address)
     const existing = activityByAddress.value[key]
     if (!existing) return
+    const sent = { ...txn, submitted_at: txn.submitted_at ?? Date.now() }
     const merged: AddressActivity = {
       ...existing,
-      transactions: [txn, ...existing.transactions.filter((t) => t.hash !== txn.hash)],
+      transactions: [sent, ...existing.transactions.filter((t) => t.hash !== txn.hash)],
     }
     remember(activityByAddress, ACTIVITY_PREFIX, key, merged)
+  }
+
+  /**
+   * Looks up, on the network itself, the transactions sent from this device
+   * that are still pending after a refresh — history only ever lists one
+   * that moved money, so a reverted or dropped one would otherwise stay
+   * pending for good (see services/pendingTransactions.ts). At most
+   * PENDING_CHECKS_PER_REFRESH per call; a lookup failing just leaves its
+   * transaction as it was, for the next refresh to try again.
+   */
+  async function reconcilePending(chain: ChainSlug, address: string) {
+    const key = keyFor(chain, address)
+    const pending = (activityByAddress.value[key]?.transactions ?? [])
+      .filter((t) => t.status === 'pending')
+      .slice(0, PENDING_CHECKS_PER_REFRESH)
+    const resolved: Transaction[] = []
+    await Promise.all(
+      pending.map(async (txn) => {
+        try {
+          const report = await api.transactionStatus(chain, txn.hash)
+          const next = report ? resolvePending(txn, report, Date.now()) : null
+          if (next) resolved.push(next)
+        } catch {
+          // Still pending as far as anyone knows — the next refresh asks again.
+        }
+      }),
+    )
+    // Re-read: history may have moved on while the lookups were out — and
+    // something it listed meanwhile beats what was looked up.
+    const current = activityByAddress.value[key]
+    if (!current || !resolved.length) return
+    let transactions = current.transactions
+    for (const txn of resolved) {
+      if (transactions.find((t) => t.hash === txn.hash)?.status !== 'pending') continue
+      transactions = placeInHistory(transactions, txn)
+    }
+    if (transactions !== current.transactions) remember(activityByAddress, ACTIVITY_PREFIX, key, { ...current, transactions })
   }
 
   /**
@@ -745,7 +787,8 @@ export const useChainDataStore = defineStore('chainData', () => {
    * Asked once per session at most; once known and settled, never again.
    */
   async function ensureBridgeEnds(chain: ChainSlug, txn: Transaction) {
-    if (txn.status === 'pending' || txn.counter_asset !== null) return
+    // Nothing moved — no far end to find.
+    if (txn.status === 'pending' || txn.status === 'dropped' || txn.counter_asset !== null) return
     await hydrate()
     const key = keyFor(chain, txn.hash)
     if (bridgeEndsByKey.value[key] || bridgeEndsMisses.has(key)) return

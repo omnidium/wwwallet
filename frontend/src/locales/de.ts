@@ -415,6 +415,9 @@ export default {
     onNetwork: 'auf {network}, über eine Bridge',
     onOtherNetwork: 'in einem anderen Netzwerk, über eine Bridge',
     swapRate: 'Wechselkurs',
+    status_dropped: 'Nicht ausgeführt',
+    droppedNote:
+      'Das Netzwerk hat keinen Eintrag zu dieser Transaktion, sie wurde also nie ausgeführt: Es wurde nichts gesendet und keine Gebühr gezahlt.',
   },
   transferPicker: {
     title: 'Auf ein Konto oder an einen Empfänger überweisen',

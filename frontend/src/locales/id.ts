@@ -410,6 +410,9 @@ export default {
     onNetwork: 'di {network}, melalui jembatan',
     onOtherNetwork: 'di jaringan lain, melalui jembatan',
     swapRate: 'Nilai tukar',
+    status_dropped: 'Belum dilaksanakan',
+    droppedNote:
+      'Jaringan tidak memiliki catatan mengenai transaksi ini, sehingga transaksi tersebut tidak pernah terlaksana: tidak ada yang dikirim dan tidak ada biaya yang dibayarkan.',
   },
   transferPicker: {
     title: 'Ketuk akun atau penerima pembayaran untuk mentransfer',

@@ -1807,6 +1807,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Tipo de cambio"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "No se ha llevado a cabo"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "La red no tiene constancia de esta transacción, así que nunca se llevó a cabo: no se envió nada ni se pagó ninguna comisión."
     }
   },
   "ar": {
@@ -3617,6 +3625,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "سعر الصرف"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "لم يتم التنفيذ"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "لا يوجد لدى الشبكة أي سجل لهذه المعاملة، لذا فهي لم تتم أبدًا: لم يتم إرسال أي شيء ولم يتم دفع أي رسوم."
     }
   },
   "bg": {
@@ -5427,6 +5443,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Валутен курс"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Не е изпълнено"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Мрежата няма записи за тази транзакция, така че тя никога не е била осъществена: нищо не е било изпратено и не е била платена такса."
     }
   },
   "cs": {
@@ -7237,6 +7261,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Směnný kurz"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Nebylo provedeno"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Síť nemá o této transakci žádný záznam, takže se nikdy neuskutečnila: nic nebylo odesláno a nebyl zaplacen žádný poplatek."
     }
   },
   "da": {
@@ -9047,6 +9079,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Valutakurs"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Ikke udført"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Netværket har ingen registrering af denne transaktion, så den blev aldrig gennemført: der blev ikke sendt noget, og der blev ikke betalt noget gebyr."
     }
   },
   "de": {
@@ -10857,6 +10897,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Wechselkurs"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Nicht ausgeführt"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Das Netzwerk hat keinen Eintrag zu dieser Transaktion, sie wurde also nie ausgeführt: Es wurde nichts gesendet und keine Gebühr gezahlt."
     }
   },
   "el": {
@@ -12667,6 +12715,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Συναλλαγματική ισοτιμία"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Δεν εκτελέστηκε"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Το δίκτυο δεν έχει καταγράψει αυτή τη συναλλαγή, οπότε δεν πραγματοποιήθηκε ποτέ: δεν στάλθηκε τίποτα και δεν καταβλήθηκε καμία προμήθεια."
     }
   },
   "et": {
@@ -14477,6 +14533,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Vahetuskurss"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Ei ole täidetud"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Võrgustikus puudub selle tehingu kirje, seega see ei läinud kunagi läbi: midagi ei saadetud ja tasu ei makstud."
     }
   },
   "fi": {
@@ -16287,6 +16351,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Valuuttakurssi"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Ei toteutettu"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Verkossa ei ole tietoja tästä transaktiosta, joten se ei koskaan toteutunut: mitään ei lähetetty eikä maksua suoritettu."
     }
   },
   "fr": {
@@ -18097,6 +18169,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Taux de change"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Non exécuté"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Le réseau n'a aucune trace de cette transaction, donc elle n'a jamais été effectuée : rien n'a été envoyé et aucun frais n'a été payé."
     }
   },
   "hu": {
@@ -19907,6 +19987,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Árfolyam"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Nem hajtották végre"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "A hálózatnak nincs nyilvántartása erről a tranzakcióról, így az soha nem került végrehajtásra: semmit sem küldtek el, és díjat sem fizettek."
     }
   },
   "id": {
@@ -21717,6 +21805,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Nilai tukar"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Belum dilaksanakan"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Jaringan tidak memiliki catatan mengenai transaksi ini, sehingga transaksi tersebut tidak pernah terlaksana: tidak ada yang dikirim dan tidak ada biaya yang dibayarkan."
     }
   },
   "it": {
@@ -23527,6 +23623,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Tasso di cambio"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Non eseguito"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "La rete non ha alcuna traccia di questa transazione, quindi non è mai andata a buon fine: non è stato inviato nulla e non è stata pagata alcuna commissione."
     }
   },
   "iw": {
@@ -25337,6 +25441,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "שער החליפין"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "לא בוצע"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "ברשת אין תיעוד של העסקה הזו, ולכן היא מעולם לא בוצעה: לא נשלח דבר ולא שולמו עמלות."
     }
   },
   "ja": {
@@ -27147,6 +27259,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "為替レート"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "未実行"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "ネットワークにはこの取引の記録がないため、取引は成立しなかった。つまり、何も送金されず、手数料も支払われていない。"
     }
   },
   "ko": {
@@ -28957,6 +29077,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "환율"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "미실행"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "네트워크에는 이 거래에 대한 기록이 없으므로, 거래가 성사되지 않았습니다. 즉, 아무것도 전송되지 않았고 수수료도 지불되지 않았습니다."
     }
   },
   "lt": {
@@ -30767,6 +30895,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Valiutos kursas"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Neįgyvendinta"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Tinkle nėra šio sandorio įrašo, taigi jis niekada nebuvo įvykdytas: nieko nebuvo išsiųsta ir nebuvo sumokėtas joks mokestis."
     }
   },
   "lv": {
@@ -32577,6 +32713,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Valūtas kurss"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Nav izpildīts"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Tīklā nav šī darījuma ieraksta, tātad tas nekad nav noticis: nekas netika nosūtīts un netika samaksāta komisija."
     }
   },
   "nl": {
@@ -34387,6 +34531,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Wisselkoers"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Niet uitgevoerd"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Het netwerk heeft geen gegevens over deze transactie, dus die is nooit doorgegaan: er is niets verzonden en er zijn geen kosten betaald."
     }
   },
   "no": {
@@ -36197,6 +36349,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Valutakurs"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Ikke utført"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Nettverket har ingen registrering av denne transaksjonen, så den ble aldri gjennomført: ingenting ble sendt og ingen avgift ble betalt."
     }
   },
   "pl": {
@@ -38007,6 +38167,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Kurs wymiany"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Nie zrealizowano"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Sieć nie ma żadnych danych o tej transakcji, więc nigdy nie doszła do skutku: nic nie zostało wysłane i nie zapłacono żadnej opłaty."
     }
   },
   "ro": {
@@ -39817,6 +39985,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Cursul de schimb"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Neexecutat"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Rețeaua nu are nicio înregistrare a acestei tranzacții, deci aceasta nu a fost efectuată niciodată: nu s-a trimis nimic și nu s-a plătit niciun comision."
     }
   },
   "ru": {
@@ -41627,6 +41803,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Курс валют"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Не выполнено"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "В сети нет записи об этой транзакции, значит, она так и не прошла: ничего не было отправлено и комиссия не была уплачена."
     }
   },
   "sk": {
@@ -43437,6 +43621,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Výmenný kurz"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Nevykonané"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Sieť nemá o tejto transakcii žiadny záznam, takže sa nikdy neuskutočnila: nič nebolo odoslané a nebol zaplatený žiadny poplatok."
     }
   },
   "sl": {
@@ -45247,6 +45439,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Menjalni tečaj"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Ni izvedeno"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Omrežje nima zapisa o tej transakciji, zato ta ni bila nikoli izvedena: nič ni bilo poslano in ni bila plačana nobena provizija."
     }
   },
   "sv": {
@@ -47057,6 +47257,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Växelkurs"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Ej genomfört"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Nätverket har inga uppgifter om denna transaktion, så den genomfördes aldrig: ingenting skickades och ingen avgift betalades."
     }
   },
   "tr": {
@@ -48867,6 +49075,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Döviz kuru"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Yürütülmedi"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Ağda bu işlemin kaydı bulunmadığından, işlem hiçbir zaman gerçekleşmemiştir: hiçbir şey gönderilmemiştir ve herhangi bir ücret ödenmemiştir."
     }
   },
   "uk": {
@@ -50677,6 +50893,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Курс обміну"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Не виконано"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "У мережі немає запису про цю транзакцію, отже, вона так і не відбулася: нічого не було надіслано, і комісія не була сплачена."
     }
   },
   "vi": {
@@ -52487,6 +52711,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "Tỷ giá hối đoái"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "Chưa thực hiện"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "Mạng lưới không ghi nhận giao dịch này, nên nó chưa bao giờ được thực hiện: không có gì được gửi đi và cũng không có phí nào được thanh toán."
     }
   },
   "zh-CN": {
@@ -54297,6 +54529,14 @@
     "transactionDetail.swapRate": {
       "enHash": "c42b0984ec1c79e8",
       "value": "汇率"
+    },
+    "transactionDetail.status_dropped": {
+      "enHash": "e332f71c8de664f5",
+      "value": "未执行"
+    },
+    "transactionDetail.droppedNote": {
+      "enHash": "7090fd0b8a34dde2",
+      "value": "该网络上没有此笔交易的记录，因此该交易从未成功：既未发送任何资产，也未支付任何手续费。"
     }
   }
 }

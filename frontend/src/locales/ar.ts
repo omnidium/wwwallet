@@ -398,6 +398,9 @@ export default {
     onNetwork: 'على {network}، عبر جسر',
     onOtherNetwork: 'على شبكة أخرى، عبر جسر',
     swapRate: 'سعر الصرف',
+    status_dropped: 'لم يتم التنفيذ',
+    droppedNote:
+      'لا يوجد لدى الشبكة أي سجل لهذه المعاملة، لذا فهي لم تتم أبدًا: لم يتم إرسال أي شيء ولم يتم دفع أي رسوم.',
   },
   transferPicker: {
     title: 'اضغط على حساب أو مستفيد لإجراء التحويل',

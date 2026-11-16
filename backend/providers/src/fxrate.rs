@@ -45,6 +45,14 @@ fn iso_date_from_unix_days(days: i64) -> String {
     format!("{year:04}-{month:02}-{day:02}")
 }
 
+/// "YYYY-MM-DDTHH:MM:SS.000Z" for Unix seconds — the shape Alchemy gives a
+/// transfer's block time in, so a time read from a block matches it.
+pub(crate) fn iso_timestamp_from_unix(secs: i64) -> String {
+    let (days, rem) = (secs.div_euclid(86_400), secs.rem_euclid(86_400));
+    let (h, m, s) = (rem / 3600, rem % 3600 / 60, rem % 60);
+    format!("{}T{h:02}:{m:02}:{s:02}.000Z", iso_date_from_unix_days(days))
+}
+
 /// Midnight UTC of a "YYYY-MM-DD" date as Unix seconds (Hinnant's
 /// days_from_civil, the inverse of the above).
 pub(crate) fn unix_from_iso_date(date: &str) -> Option<i64> {
@@ -139,5 +147,12 @@ mod tests {
         assert_eq!(iso_date_from_unix_days(0), "1970-01-01");
         assert_eq!(iso_date_from_unix_days(19_782), "2024-02-29");
         assert_eq!(iso_date_from_unix_days(20_728), "2026-10-02");
+    }
+
+    #[test]
+    fn iso_timestamp_from_unix_matches_known_times() {
+        assert_eq!(iso_timestamp_from_unix(0), "1970-01-01T00:00:00.000Z");
+        // 2026-10-02 at 13:45:07 UTC.
+        assert_eq!(iso_timestamp_from_unix(20_728 * 86_400 + 49_507), "2026-10-02T13:45:07.000Z");
     }
 }

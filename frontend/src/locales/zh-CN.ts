@@ -386,6 +386,9 @@ export default {
     onNetwork: '在 {network} 上，通过跨链桥',
     onOtherNetwork: '在另一个网络上，通过跨链桥',
     swapRate: '汇率',
+    status_dropped: '未执行',
+    droppedNote:
+      '该网络上没有此笔交易的记录，因此该交易从未成功：既未发送任何资产，也未支付任何手续费。',
   },
   transferPicker: {
     title: '点击账户或收款人即可转账',

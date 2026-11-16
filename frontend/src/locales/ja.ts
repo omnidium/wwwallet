@@ -401,6 +401,9 @@ export default {
     onNetwork: '{network}上で、ブリッジ経由で',
     onOtherNetwork: '別のネットワーク上で、ブリッジを介して',
     swapRate: '為替レート',
+    status_dropped: '未実行',
+    droppedNote:
+      'ネットワークにはこの取引の記録がないため、取引は成立しなかった。つまり、何も送金されず、手数料も支払われていない。',
   },
   transferPicker: {
     title: '送金先アカウントまたは受取人をタップして送金する',

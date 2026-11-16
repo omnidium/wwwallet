@@ -413,6 +413,9 @@ export default {
     onNetwork: 'a {network}-on, hídon keresztül',
     onOtherNetwork: 'egy másik hálózaton, hídon keresztül',
     swapRate: 'Árfolyam',
+    status_dropped: 'Nem hajtották végre',
+    droppedNote:
+      'A hálózatnak nincs nyilvántartása erről a tranzakcióról, így az soha nem került végrehajtásra: semmit sem küldtek el, és díjat sem fizettek.',
   },
   transferPicker: {
     title: 'Válasszon ki egy számlát vagy kedvezményezettet az átutaláshoz',

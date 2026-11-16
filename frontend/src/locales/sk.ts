@@ -404,6 +404,9 @@ export default {
     onNetwork: 'na {network}, cez most',
     onOtherNetwork: 'v inej sieti, prostredníctvom mosta',
     swapRate: 'Výmenný kurz',
+    status_dropped: 'Nevykonané',
+    droppedNote:
+      'Sieť nemá o tejto transakcii žiadny záznam, takže sa nikdy neuskutočnila: nič nebolo odoslané a nebol zaplatený žiadny poplatok.',
   },
   transferPicker: {
     title: 'Kliknite na účet alebo príjemcu, aby ste vykonali prevod',
