@@ -37,7 +37,7 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       # Pinned to the line matching the `worker` crate in Cargo.toml: worker-build
       # 0.9 refuses to build anything on worker 0.8. Move both together.
-      - run: cargo install worker-build --version ^0.8 --locked
+      - run: cargo install worker-build --version ^0.9 --locked
       - run: cd backend && worker-build --release
 
   deploy:
@@ -52,7 +52,7 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       # Pinned to the line matching the `worker` crate in Cargo.toml: worker-build
       # 0.9 refuses to build anything on worker 0.8. Move both together.
-      - run: cargo install worker-build --version ^0.8 --locked
+      - run: cargo install worker-build --version ^0.9 --locked
       # wrangler.toml's [build] command runs worker-build itself as part of
       # `wrangler deploy` — this step just needs the binary on PATH.
       #
